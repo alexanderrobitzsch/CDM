@@ -1,0 +1,58 @@
+
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
+vers <- paste("R package version", meta$Version)
+
+citHeader("To cite the 'CDM' package in publications use:")
+
+bibentry(bibtype = "Article",
+  title        = "The {R} Package {CDM} for Cognitive Diagnosis Models",
+  author       = c(person(given = c("Ann", "Cathrice"),
+                          family = "George",
+                          email = "a.george@bifie.at"),
+                   person(given = "Alexander",
+                          family = "Robitzsch",
+                          email = "robitzsch@ipn.uni-kiel.de"),
+                   person(given = "Thomas",
+                          family = "Kiefer"),
+                   person(given = "J{\\\"u}rgen",
+                          family = "Gro{\\ss}"),
+                   person(given = "Ali",
+                          family = "{\\\"U}nl{\\\"u}")),
+  journal      = "Journal of Statistical Software",
+  year         = "2016",
+  volume       = "74",
+  number       = "2",
+  pages        = "1--24",
+  doi          = "10.18637/jss.v074.i02",
+  textVersion  =
+  paste("George, A. C., Robitzsch, A., Kiefer, T., Gross, J., & Uenlue, A. (2016).",
+        "The R Package CDM for cognitive diagnosis models.",
+        "Journal of Statistical Software, 74(2), 1-24.",
+        "doi:10.18637/jss.v074.i02")
+)
+
+
+
+
+citEntry(entry="Manual",
+         title = "CDM: Cognitive Diagnosis Modeling",
+         author = c(
+                   person(given = "Alexander",
+                          family = "Robitzsch",
+                          email = "robitzsch@ipn.uni-kiel.de"),
+                   person(given = "Thomas",
+                          family = "Kiefer"),
+		person(given = c("Ann", "Cathrice"),
+                          family = "George"),
+                   person(given = "Ali",
+                          family = "{\\\"U}nl{\\\"u}")) ,
+         year = year,
+         note = vers,
+	 url = "https://CRAN.R-project.org/package=CDM" ,
+         textVersion =
+         paste0("Robitzsch, A., Kiefer, T., George, A. C., & Uenlue, A. (",
+               year,
+               "). CDM: Cognitive diagnosis modeling. ",
+               vers, ". https://CRAN.R-project.org/package=CDM")
+	)
+

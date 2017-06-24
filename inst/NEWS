@@ -1,0 +1,667 @@
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+----------------------- CDM NEWS -----------------------------
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+CDM package
+                        +-+-+-+
+                        |C|D|M|
+                        +-+-+-+
+
+        A. Robitzsch [aut, cre], T. Kiefer[aut], 
+         A. C. George [aut], & A. Uenlue [aut]
+
+mailto:
+robitzsch@ipn.uni-kiel.de
+
+For reporting a bug, please always provide a reproducible 
+R script and (if necessary) a corresponding dataset.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+--------------------------------------------------------------
+VERSIONS CDM 5.7  |  2017-06-24  |  Last: CDM 5.7-9
+--------------------------------------------------------------
+
+ADDED * included S3 method 'IRT.frequencies' for calculation 
+        of observed and expected frequencies of univariate and 
+        bivariate distributions (suggested by Rudolf Debelak)
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: IRT.frequencies (1)
+
+--------------------------------------------------------------
+VERSIONS CDM 5.6  |  2017-06-17  |  Last: CDM 5.6-16
+--------------------------------------------------------------
+
+NOTE  * internal restructure of 'gdina' and 'gdm' functions
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
+
+--------------------------------------------------------------
+VERSIONS CDM 5.5  |  2017-04-11  |  Last: CDM 5.5-21
+--------------------------------------------------------------
+
+NOTE  * corrected a wrong specification in the Rd manual
+        of 'skillspace.hierarchy' (Example 2; thanks to
+        Peida Zhan) 
+FIXED * corrected calculations of MD and MAD statistics in 
+        'IRT.RMSD'
+FIXED * fixed a bug in computation of 'itemfit.sx2' in case of
+        cells with frequencies of zero (thanks to Carmen Koehler)
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: skillspace.hierarchy (2)
+
+--------------------------------------------------------------
+CDM 5.4 (2017-02-08)   --  CRAN CDM 5.4-0
+--------------------------------------------------------------
+
+FIXED  * fixed warnings in calculation of standard errors in
+         'gdina' and 'gdina.wald'
+         (thanks to Andres Alberto Burga Leon)
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
+
+--------------------------------------------------------------
+CDM 5.3 (2017-01-11)   --  CRAN CDM 5.3-0
+--------------------------------------------------------------
+
+ADDED * included function CDM::IRT.RMSD which computed group-wise
+        item fit. The RMSD item fit statistic was denoted as 
+        RMSEA in previous publications and is internally computed 
+        by the CDM::itemfit.rmsea function in the CDM package.
+ADDED * included chi square statistic and MAD statistic (mean 
+        absolute deviation) of item fit in CDM::IRT.RMSD
+NOTE  * cleaned code in function 'WaldTest' a bit
+        (thanks to suggestions of Michael Chirico)
+NOTE  * added links to recently released GDINA package in R. 
+        Included Example 1d for fitting a GDINA model with 
+        GDINA::GDINA.
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: IRT.RMSD (1), gdina (1d)
+
+--------------------------------------------------------------
+CDM 5.2 (2016-10-14)   --  CRAN CDM 5.2-1
+--------------------------------------------------------------
+
+NOTE  * extended 'item_by_group' function which can now handle
+        partial set of group-specific items
+ADDED * included option for a subset of invariant items in 
+        multiple group estimation of GDINA model in 'gdina'
+        (requested by Hamid Bahrami)
+FIXED * fixed a bug in setting boundaries for guessing and slipping 
+        parameters in 'din' (thanks to Jill-Jen Vie)
+NOTE  * reference to new Journal of Statistical Software George et al.
+        article in the CITATION file and the CDM manual
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: item_by_group (1), 
+        gdina (5)
+
+--------------------------------------------------------------
+CDM 5.1 (2016-08-29)   --  CRAN CDM 5.1-0
+--------------------------------------------------------------
+
+FIXED  * changed the method of standard error calculation in
+         'gdina' function. It seems that previous CDM version produced
+         overestimated standard errors (thanks to Xue-Lan Qiu). 
+         The improved calculation is now the default specified as the 
+         argument 'se_version=1'. The behavior of older CDM versions can 
+         be obtained with 'se_version=0'.
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
+
+--------------------------------------------------------------
+CDM 5.0  (2016-07-11)   --  CRAN CDM 5.0-0
+--------------------------------------------------------------
+
+NOTE  * changed the way of calculating numerical derivatives in
+        'numerical_Hessian'
+NOTE  * included utility function 'abs_approx' for a differentiable
+        function approximation (and its derivative 'abs_approx_D1')
+        of absolute value function
+NOTE  * added argument 'append' in function 'osink'
+NOTE  * included a utility function 'summary_sink' which sinks 
+        summary output of a method into a file
+NOTE  * included utility function 'deltaMethod' for nonlinear
+        transformations of parameters
+NOTE  * included utility function 'item_by_group' which extends
+        a dataset of item responses and a grouping variable to an
+        extended dataset of group-specific item responses
+ADDED * added sequential GDINA model for polytomous item responses
+        (Ma & de la Torre, 2016, BJMSP) in 'gdina' function.
+NOTE  * included argument 'invariance' in 'gdina' which allows
+        specification of non-invariant item parameters across
+        multiple groups (see ?gdina, Example 5)
+NOTE  * changed number of M-steps in 'slca' in default to 10 
+        iterations (msteps=10)
+      
+DATA  * included/modified datasets: data.cdm04
+EXAMP * included/modified examples: abs_approx (1), 
+        summary_sink (1), deltaMethod (1), item_by_group (1),
+        gdina (5,11)
+
+--------------------------------------------------------------
+CDM 4.991 (2016-05-31)   --  CRAN CDM 4.991-1
+--------------------------------------------------------------
+
+NOTE  * changed argument structure of 'numerical_hessian'
+NOTE  * included maximum likelihood estimation method for
+        GDINA models (method='ML') which seems to be more stable
+        when method='ULS' (or 'WLS') has a bad convergence
+        behavior. Now, the GDINA function switches to ML
+        estimation if the RRUM model is used 
+        (thanks to a correspondence with Thomas Eckes).
+NOTE  * added an example of fitting (data.cdm, Example 1) the 
+        reduced RUM model in the CDM package (see the recent
+        Chiu et al., IJT paper)
+NOTE  * changed default value of 'max.increment' argument in
+        'gdina' function to .3
+FIXED * fixed a bug in 'gdina.dif' (thanks to Sinem Senfarah)
+
+DATA  * included/modified datasets: data.cdm03
+EXAMP * included/modified examples: data.cdm (1)
+
+--------------------------------------------------------------
+CDM 4.8 (2016-03-10)   --  CRAN CDM 4.8-0
+--------------------------------------------------------------
+
+FIXED * fixed a bug in 'itemfit.sx2' for fitted objects in TAM
+NOTE  * slightly changed output of 'print' methods
+NOTE  * changed argument 'rdigits' to 'digits' in 'summary'
+        method if necessary
+NOTE  * included utility functions 'osink' and 'csink' for 
+        writing output of 'summary' into a file
+NOTE  * allowed argument 'file' in 'summary' method for objects 
+        of class 'gdina', 'gdm', 'mcdina' and 'slca'
+ADDED * included function 'numerical_Hessian' for a numerical
+        evaluation of the Hessian matrix
+        
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: osink (1),
+        numerical_Hessian (1)
+
+--------------------------------------------------------------
+CDM 4.7 (2016-01-30)   --  CRAN CDM 4.7-0
+--------------------------------------------------------------
+
+NOTE  * extended Wald test for item fit 'gdina.wald' for DINO
+        models. In addition, an effect size of approximation
+        ('uwgtdist' and 'wgtdist') is included
+NOTE  * cleaned namespace file and defined imported functions
+        in a more explicit way
+ADDED * added a S3 method 'IRT.parameterTable'
+ADDED * added a utility function 'WaldTest' for performing
+        Wald tests
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: gdina.wald (1), data.ecpe (1),
+
+--------------------------------------------------------------
+CDM 4.6 (2015-11-04)   --  CRAN CDM 4.6-0
+--------------------------------------------------------------
+
+NOTE  * included optional lower and upper bounds for estimation
+        of guessing and slipping parameters in 'din' (arguments
+        'guess.min', 'guess.max', 'slip.min', 'slip.max') 
+        (requested by Kevin Carl Santos)
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
+
+--------------------------------------------------------------
+CDM 4.5 (2015-08-28)   --  CRAN CDM 4.5-0
+--------------------------------------------------------------
+
+NOTE  * extended 'din' and 'gdina' functions for items with more
+        than five measured attributes per item
+        (requested by Alvaro Artavia Medrano)
+NOTE  * included 'converged' value for all models indicating
+        whether maximum number of iterations was reached
+        (suggested by an anonymous reviewer) 
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
+
+--------------------------------------------------------------
+CDM 4.4 (2015-07-01)   --  CRAN CDM 4.4-1
+--------------------------------------------------------------
+
+FIXED * fixed a bug in function 'sequential.items'
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
+
+--------------------------------------------------------------
+CDM 4.3 (2015-06-05)   --  CRAN CDM 4.3-0
+--------------------------------------------------------------
+
+NOTE  * included t and p values in 'IRT.jackknife.gdina'
+FIXED * fixed bugs in 'summary.gdina' and 'gdina' due to
+        computational problems in standard error calculation
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
+
+--------------------------------------------------------------
+CDM 4.2 (2015-02-23)   --  CRAN CDM 4.2-12
+--------------------------------------------------------------
+
+FIXED * fixed the ignorance of the 'centered.latent' argument 
+        in the 'gdm' function
+ADDED * included S3 methods 'IRT.expectedCounts' for extracting
+        expected counts and 'IRT.data' for extracting the used
+        item response dataset
+ADDED * included general plotting function for item response
+        functions 'IRT.irfprobPlot'. This function can be used 
+        with both lattice and graphics packages.        
+ADDED * included S3 method 'predict' (and function 'IRT.predict')
+        for computing expected values and residuals for
+        fitted models in CDM        
+NOTE  * added attributes group and weights to 'IRT.data' value 
+NOTE  * added a summary method for 'IRT.compareModels'
+NOTE  * changed output of posterior in 'gdina'
+ADDED * included function 'IRT.repDesign' for constructing 
+        replicate designs
+ADDED * added arguments for fixing and initial parameters in
+        'gdina' function 
+NOTE  * added parameter table and matrix of polychoric correlations
+        among skills in 'gdina' output 
+ADDED * added S3 method 'IRT.jackknife' and an initial version
+        for models of class 'gdina'
+ADDED * added function 'IRT.derivedParameter' for replication methods
+        for derived parameters based on objects of class 'IRT.jackknife'
+
+DATA  * included/modified datasets: data.timss11.G4.AUT,
+        data.timss11.G4.AUT.part
+EXAMP * included/modified examples: IRT.expectedCounts (1,2),
+        IRT.irfprobPlot (1,2), predict (1,2),
+        IRT.data (1), IRT.repDesign (1,2), gdina (1), 
+        IRT.jackknife (1,2)
+
+--------------------------------------------------------------
+CDM 4.1 (2014-12-17)   --  CRAN CDM 4.1
+--------------------------------------------------------------
+
+NOTE  * included confidence intervals S3 method for din objects
+FIXED * fixed a bug in printing BIC for 'gdina' objects
+NOTE  * included S3 method 'IRT.modelfit' for assessment of
+        absolute model fit
+NOTE  * included S3 method 'IRT.se' for computation of standard
+        errors
+NOTE  * included S3 method 'IRT.IC' for extracting information
+        criteria and 'IRT.compareModels' for model comparisons
+NOTE  * included object names in 'anova' methods for CDM objects
+NOTE  * included S3 method 'IRT.anova'
+NOTE  * removed MX2 statistic from 'modelfit.cor' function
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: vcov.din (1), IRT.modelfit (1),
+        IRT.IC (1), IRT.compareModels (1), anova (1,2)
+
+--------------------------------------------------------------
+CDM 4.0 (2014-11-21)   --  CRAN CDM 4.0
+--------------------------------------------------------------
+
+NOTE  * included argument for iteration progress in 'gdm'
+        and 'slca'
+NOTE  * included value call in 'din', 'gdina', 'gdm',
+        'mcdina' and 'slca'
+NOTE  * changed print method in 'din' and included print method
+        for 'gdina', 'gdm' and 'slca'
+NOTE  * added anova and coef method for 'slca' function
+ADDED * added asymptotic covariance matrix estimation S3 method
+        'vcov' for objects of class din
+ADDED * added computation of entropy of whole test and items in
+        function 'entropy.lca' (Asparouhov & Muthen, 2014)
+NOTE  * included a summary function for 'cdi.kli'
+NOTE  * included a function 'skillspace.full' for creating a 
+        skill space for dichotomous skills
+ADDED * included a plot S3 method for 'gdm' and 'slca'        
+NOTE  * corrected a bug in person value of 'gdm': missing standard
+        errors of EAPs of multiple dimensions are now included
+ADDED * included person fit appropriateness statistic (Liu et al., 2009)
+ADDED * included S3 methods 'IRT.likelihood', 'IRT.personfit',
+        'IRT.irfprob' and 'IRT.factor.scores' for objects of classes 
+        din, gdina, gdm, slca and mcdina
+NOTE  * included person parameter estimation (classification) for
+        'slca' and 'mcdina' functions
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: data.dcm (1), modelfit.cor (2),
+        vcov-CDM (1), entropy.lca (1,2,3), personfit.appropriateness (1,2),
+        slca (1), IRT.likelihood (1), IRT.irfprob (1), IRT.factor.scores (1)
+
+--------------------------------------------------------------
+CDM 3.4 (2014-08-31)   --  CRAN CDM 3.4-21
+--------------------------------------------------------------
+
+NOTE  * speeded itemfit.sx2 a bit
+NOTE  * included output value 'pattern' in multiple group GDINA models
+        (requested by Sung Eun Kim)
+NOTE  * included adjusted mean absolute deviation of Q3 statistics (MADaQ3)
+        in modelfit.cor.din
+EXAMP * included examples for running CDMs in mirt package
+          o DINA model ('data.dcm', Model 1)
+          o additive GDINA model ('data.dcm', Model 6)
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: modelfit.cor (1), din.deterministic,
+        itemfit.sx2 (1), data.dcm (1,6) 
+
+--------------------------------------------------------------
+CDM 3.3 (2014-05-25)   --  CRAN CDM 3.3-24
+--------------------------------------------------------------
+
+ADDED * included structured latent class analysis for polytomous data ('slca')
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: slca (1,2,3,4,5)
+
+--------------------------------------------------------------
+CDM 3.2 (2014-04-23)   --  CRAN CDM 3.2-6
+--------------------------------------------------------------
+
+NOTE  * included an argument save.devmin in 'gdina' for more parsimonious
+        savings of output values to avoid working memory overflow for 
+        large datasets
+NOTE  * included effect size of differential item functioning in
+        gdina model (included in 'gdina.dif')
+FIXED * fixed a bug in itemfit.sx2
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: gdina.dif (1)
+
+--------------------------------------------------------------
+CDM 3.1 (2014-03-21)   --  CRAN CDM 3.1-14
+--------------------------------------------------------------
+
+FIXED * fixed a bug when printing objects of class 'din'
+NOTE  * allowed vector input of item response pattern in 'plot.din'
+NOTE  * disabled argument log.file in 'summary.din'
+NOTE  * included random initial parameter values in 'din' and 'gdina'
+NOTE  * changed some settings in plot.din
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: din (1), gdina (1), plot.din
+
+--------------------------------------------------------------
+CDM 3.0 (2014-02-26)   --  CRAN CDM 3.0-29
+--------------------------------------------------------------
+
+NOTE  * changed output in summary.gdina a bit (fixed a bug for
+        the output of skill probabilities)
+NOTE  * included the argument 'avoid.zeroprobs' in gdina function
+        to avoid zero probabilities of skill classes and inversion
+        of singular matrices   
+NOTE  * fixed problems in itemfit.sx2 for empty cells (thanks to
+        Balal Izanloo)
+ADDED * included a Wald test for the GDINA model (gdina.wald)
+ADDED * included assessment of item-wise differential item functioning 
+        in the GDINA model (gdina.dif)
+FIXED * removed minor bug in summary.gdina
+FIXED * fixed a bug with singular design matrix in skill space reduction    
+ADDED * included calculation of polychoric correlation in summary.gdina
+        and an additional function skill.polychor
+NOTE  * removed parallel plot form plot.din
+FIXED * fixed a crucial bug for in the multidimensional GDMs with item slope
+        parameter estimation
+ADDED * included function 'mcdina' for estimating the multiple group multiple
+        choice DINA (MCDINA) model with polytomous attributes
+
+DATA  * included/modified datasets: data.cdm01, data.cdm02
+EXAMP * included/modified examples: data.ecpe, gdina.wald (1), 
+        gdina.dif (1), din (7), mcdina (1,2,3)
+
+--------------------------------------------------------------
+CDM 2.7 (2014-01-30)   --  CRAN CDM 2.7-7
+--------------------------------------------------------------
+
+ADDED * included cognitive diagnostic indices based on Kullback-Leibler
+        information ('cdi.kli')
+NOTE  * changed NAMESPACE and DESCRIPTION files due to a change in Rcpp
+NOTE  * included non-exported Rcpp files for calculating individual 
+        likelihood and posterior distribution for polytomous items and
+        multiple groups
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: cdi.kli (1)
+
+--------------------------------------------------------------
+CDM 2.6 (2014-01-19)   --  CRAN CDM 2.6-13
+--------------------------------------------------------------
+
+FIXED * fixed a bug in polytomous GDINA models with only one skill
+NOTE  * included value 'zeroprob.skillclasses' in skillspace.hierarchy
+NOTE  * included a more efficient skill space reduction method in
+        gdina: using the argument 'reduced.skillspace.method',
+        the new implemented method is now the default
+ADDED * included data transformation function 'sequential.items' for
+        constructing dichtomous pseudo items from polytomous items for
+        estimation sequential item response models 
+
+DATA  * included/modified datasets: data.sda6, data.timss03.G8.su,
+        data.timss07.G4.lee
+EXAMP * included/modified examples: gdm (10)
+
+--------------------------------------------------------------
+CDM 2.5 (2014-01-16)   --  CRAN CDM 2.5-48
+--------------------------------------------------------------
+
+FIXED * fixed a bug when inverting a singular matrix in standard error
+        calculation in gdina function (thanks to Hsin-Hao Chen)
+NOTE  * included conditional item probabilities in gdina output
+NOTE  * included gdina plot function (thanks to a discussion with 
+        Hamdollah Ravand)
+FIXED * fixed a bug in summary.dina if data without column names
+        is provided (thanks to Hu Jinxiang)
+FIXED * removed a bug in gdina function which occured sometimes
+        due to division by zero (thanks to Hu Jinxiang)
+FIXED * fixed a bug in cdm.est.class.accuracy for GDINA models
+        (thanks to Hamdollah Ravand)
+FIXED * fixed some instable numerical behavior for higher order
+        GDINA models (thanks to Ed Merkle)
+FIXED * fixed a bug in calculating number of estimated parameters for
+        'din' function in case of skill classes with zero probability
+        (thanks to Juergen Gross)
+NOTE  * added some explanations in the manual of 'modelfit.cor'
+ADDED * included S-X2 item fit statistic ('itemfit.sx2') accompanied
+        with a summary and a plot method
+ADDED * included marginal skill classification reliability in
+        'cdm.est.class.accuracy' function
+ADDED * implemented significance tests in modelfit.cor and modelfit.cor.din
+ADDED * included jackknife estimation of standard
+        errors and bias corrected estimators in modelfit.cor.din
+NOTE  * speeded function 'modelfit.cor' by moving some parts of the code
+        to Rcpp
+NOTE  * included warnings in case of nonconvergence in gdina function
+        (thanks to a dataset provided by Hamdollah Ravand)
+NOTE  * slight change of algorithm for skill space reduction which
+        seems to improve convergence behavior
+ADDED * included a function for skill space approximation
+ADDED * included a function for calculation reduced skill spaces
+        if hierarchies among skills exist ('skillspace.hierarchy')
+ADDED * included generalized distance discriminating method and a function
+        for computing ideal response patterns
+
+DATA  * included/modified datasets: data.hr, data.melab, data.jang, 
+        data.dtmr
+EXAMP * included/modified examples: gdm (4,5,6), gdina (8,9), sim.din (3), 
+        sim.gdina (2,3), itemfit.sx2 (1,2), din(6)
+
+--------------------------------------------------------------
+CDM 2.4 (2013-10-24)   --  CRAN CDM 2.4-9
+--------------------------------------------------------------
+
+DATA  * included two datasets 'data.dcm' and 'data.ecpe'
+DATA  * eliminated a recoding error in data.Students
+
+--------------------------------------------------------------
+CDM 2.3 (2013-09-06)   --  CRAN CDM 2.3-15
+--------------------------------------------------------------
+
+NOTE  * worked on slight improvements of computation time in din
+        and gdina
+DATA  * included multiple group dataset 'data.mg'
+NOTE  * cleaned CDM manual (thanks to Michaela Mayr)
+
+--------------------------------------------------------------
+CDM 2.2 (2013-08-20)   --  CRAN CDM 2.2-20
+--------------------------------------------------------------
+
+NOTE  * accelerated rowMaxs function
+ADDED * included Q-matrix validation function (de la Torre, 2008)
+ADDED * included joint maximum likelihood estimation and
+        classification function for the mixed DINA/DINO model
+        -> function din.deterministic
+EXAMP * included another example (based on attribute vectors) 
+        in sim.din function
+ADDED * included polytomous GDINA model (Chen & de la Torre, 2013)  
+
+--------------------------------------------------------------
+CDM 2.01 (2013-07-27)   --  CRAN CDM 2.01-11
+--------------------------------------------------------------
+
+FIXED * fixed a bug in gdm in multiple group estimation: group
+        labeling was incorrect and is now included in output group.stat
+        and displayed in summary.gdm
+NOTE  * improved convergence behavior for multiple group analysis
+NOTE  * accelerated calculation in gdm: skillspace reduction
+
+--------------------------------------------------------------
+CDM 1.5 (2013-07-09)   --  CRAN CDM 1.5-12
+--------------------------------------------------------------
+
+NOTE  * allowed for centering of intercepts and slopes in gdm
+ADDED * included satured skill distribution estimation in gdm
+FIXED * fixed a bug in the calculation of RMSEA itemfit, although
+        is not clear if the correct formula is used
+FIXED * fixed a bug in gdm with varying number of item categories
+        (thanks to Artur Pokropek)
+ADDED * included the multidimensional latent class IRT model 
+        (Bartolucci, 2007) in gdm (skillspace="est")
+NOTE  * speeded calculation of modelfit.cor
+
+--------------------------------------------------------------
+CDM 1.4 (2013-06-30)   --  CRAN CDM 1.4-16
+--------------------------------------------------------------
+
+FIXED * eliminated a bug in GDINA function for link="log"
+ADDED * included the parametrization of the reduced RUM model in gdina
+ADDED * worked on higher order GDINA model which has the argument
+        HOGDINA in gdina. Now there is dependency on the 'fa' factor 
+        analysis function in the psych package.
+ADDED * included log-likelihood extractor functions
+ADDED * included group-wise calculation of RMSEA statistics
+        see itemfit.rmsea and the gdm output (thanks to Artur Pokropek)
+FIXED * (hopefully) fixed a bug in gdm function with differing number of
+        item categories (thanks to Artur Pokropek)  
+NOTE  * use frequency patterns in gdm to speed up calculations
+        for large data sets (argument 'use.freqpatt' in gdm function)
+NOTE  * included more than one step in gdm function
+        - arguments msteps (set to 8 M steps as the default) and convM
+
+--------------------------------------------------------------
+CDM 1.3 (2013-05-15)   --  CRAN CDM 1.3-17
+--------------------------------------------------------------
+
+ADDED * included the general diagnostic model (function gdm)
+ADDED * included a function for calculating equivalent skill classes
+        for the DINA/DINO model
+ADDED * modelfit and anova functions are also accessible for the GDM
+FIXED * fixed a bug in the function for classification accuracy
+ADDED * included the RMSEA item fit index
+FIXED * fixed a bug in gdina estimation
+ADDED * included coef extractor function
+
+--------------------------------------------------------------
+CDM 1.2-3 (2013-02-12)
+--------------------------------------------------------------
+
+ADDED * included a model fit function modelfit.cor(.din) for the
+        comparison of observed and expected correlations
+FIXED * fixed a bug in the gdina function when applying the model
+        with one skill
+
+--------------------------------------------------------------
+CDM 1.2-1/1.2-2 (2013-02-01)
+--------------------------------------------------------------
+
+ADDED * allow for user specified reduced skill space designs
+ADDED * included tetrachoric correlations in summary.gdina function
+ADDED * handled zero probability classes in gdina function
+ADDED * allowed for output and input of attribute patterns in sim.din
+        function
+NOTE  * included relative deviance change as convergence criterion in din
+        function
+ADDED * included function for determining a statistically equivalent 
+        DINA model (von Davier, 2013)
+NOTE  * changed structure of din summary
+ADDED * included an anova function
+ADDED * included a function for estimating classification reliability
+FIXED * fixed a bug in gdina function when creating design matrices
+
+--------------------------------------------------------------
+CDM 1.2.0 (2012-09-30)
+--------------------------------------------------------------
+
+ADDED * implemented the latent skill space reduction according
+        to Xu and von Davier (2008)
+FIXED * fixed a bug in calculation of estimated parameters
+FIXED * fixed a bug in IDI calculation
+FIXED * corrected MLE based classification in case of latent
+        classes with a priori spceified zero probability in the
+        din function (yet to be done in gdina)
+FIXED * fixed a bug in standard error calculation in gdina
+NOTE  * speed improvements in din and gdina function
+        - included a C function for calculating the posterior 
+          distribution
+NOTE  * check of admissible rule in gdina
+ADDED * include rule "GDINA2" and "GDINA1" ("GDINA1" is 
+        equivalent to "ACDM")
+ADDED * Simulation function for the GDINA model included
+ADDED * multiple group gdina function for estimation of
+        generalized DINA models (de la Torre, 2011)
+ADDED * included new function summary.gdina
+
+--------------------------------------------------------------
+CDM 1.1 (2012-07-29)
+--------------------------------------------------------------
+
+NOTE  * highest argument deleted from print.din method
+NOTE  * new argument for summary.din n.skill.classes
+NOTE  * skill pattern probabilities deleted from print.din
+NOTE  * skill pattern summary replaced by n most frequent skill 
+        classes in summary.din
+NOTE  * (argument ask=TRUE in summary.din placed by overwrite=FALSE)
+NOTE  * use a different item discrimination index (Lee et al., 2012)
+NOTE  * remove GDINA estimation from this package version because
+        it is in an experimental status 
+        -> gdina will be included in CDM >= 1.1-1
+NOTE  * new optional attribute for q-matrix specification list of skill 
+        labels
+NOTE  * changed ouput in din function
+        -> pattern, like and posterior are sorted according to the original 
+           input data frame
+FIXED * remove a bug for models with only attribute
+ADDED * new argument for din method zeroprob.skillclasses
+ADDED * new argument for din method equal.itempars
+NOTE  * new arguments for summary.din method log.file and ask
+FIXED * minor bug fixes in print.din method
+NOTE  * replace internal method rowProds with faster rowProds2
+NOTE  * option for writing an output file of model results included in 
+        function summary.din 
+
+--------------------------------------------------------------
+CDM 1.0 (2011-10-27)
+--------------------------------------------------------------
+               [--- FIRST CRAN RELEASE ---]

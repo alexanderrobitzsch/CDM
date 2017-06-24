@@ -1,6 +1,6 @@
 \name{IRT.frequencies}
 \alias{IRT.frequencies}
-\alias{IRT.frequencies.default}
+\alias{IRT_frequencies_default}
 \alias{IRT_frequencies_wrapper}
 \alias{IRT.frequencies.din}
 \alias{IRT.frequencies.gdina}
@@ -22,9 +22,9 @@ bivariate distributions.
 \usage{
 IRT.frequencies(object, \dots)
 
-IRT.frequencies.default(data, post, probs, weights=NULL)
+IRT_frequencies_default(data, post, probs, weights=NULL)
 
-IRT_frequencies_wrapper(object)
+IRT_frequencies_wrapper(object, \dots)
 
 \method{IRT.frequencies}{din}(object, \dots)
 
@@ -115,7 +115,7 @@ fres1 <- IRT.frequencies(mod1)
 data <- IRT.data(object)
 post <- IRT.posterior(object)
 probs <- IRT.irfprob(object)
-fres2 <- IRT.frequencies.default(data=data, post=post, probs=probs)
+fres2 <- IRT_frequencies_default(data=data, post=post, probs=probs)
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

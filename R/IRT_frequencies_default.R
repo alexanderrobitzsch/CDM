@@ -1,5 +1,5 @@
 
-IRT.frequencies.default <- function(data, post, probs, weights=NULL)
+IRT_frequencies_default <- function(data, post, probs, weights=NULL)
 {
 	dim_probs <- dim(probs)
 	K <- dim_probs[2]

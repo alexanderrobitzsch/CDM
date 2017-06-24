@@ -24,7 +24,7 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 5.7  |  2017-06-24  |  Last: CDM 5.7-9
+VERSIONS CDM 5.7  |  2017-06-24  |  Last: CDM 5.7-16
 --------------------------------------------------------------
 
 ADDED * included S3 method 'IRT.frequencies' for calculation 

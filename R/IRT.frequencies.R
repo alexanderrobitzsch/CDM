@@ -6,13 +6,13 @@ IRT.frequencies <- function(object, ...){
     UseMethod("IRT.frequencies")
 }
 
-IRT_frequencies_wrapper <- function(object)
+IRT_frequencies_wrapper <- function(object, ...)
 {
 	data <- IRT.data(object=object)
 	weights <- attr(data, "weights")
 	post <- IRT.posterior(object=object)
 	probs <- IRT.irfprob(object=object)
-	res <- IRT.frequencies.default(data=data, post=post, probs=probs, weights=weights)
+	res <- IRT_frequencies_default(data=data, post=post, probs=probs, weights=weights)
 	return(res)
 }
 

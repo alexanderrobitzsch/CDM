@@ -193,25 +193,3 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-
-static const R_CallMethodDef CallEntries[] = {
-    {"CDM_cdm_kli_id_C", (DL_FUNC) &CDM_cdm_kli_id_C, 2},
-    {"CDM_din_deterministic_devcrit_C", (DL_FUNC) &CDM_din_deterministic_devcrit_C, 5},
-    {"CDM_din_jml_devcrit_C", (DL_FUNC) &CDM_din_jml_devcrit_C, 5},
-    {"CDM_generalized_distance_method__C", (DL_FUNC) &CDM_generalized_distance_method__C, 6},
-    {"CDM_ideal_resp_pattern__C", (DL_FUNC) &CDM_ideal_resp_pattern__C, 2},
-    {"CDM_IRT_predict", (DL_FUNC) &CDM_IRT_predict, 4},
-    {"CDM_calc_scoredistribution_cdm", (DL_FUNC) &CDM_calc_scoredistribution_cdm, 2},
-    {"CDM_modelfit_cor2_Cpp", (DL_FUNC) &CDM_modelfit_cor2_Cpp, 7},
-    {"CDM_probs_pcm_groups_C", (DL_FUNC) &CDM_probs_pcm_groups_C, 6},
-    {"CDM_calccounts_pcm_groups_C", (DL_FUNC) &CDM_calccounts_pcm_groups_C, 7},
-    {"CDM_calc_slca_probs", (DL_FUNC) &CDM_calc_slca_probs, 3},
-    {"CDM_calc_slca_deriv", (DL_FUNC) &CDM_calc_slca_deriv, 6},
-    {"CDM_calc_Xdes", (DL_FUNC) &CDM_calc_Xdes, 2},
-    {NULL, NULL, 0}
-};
-
-RcppExport void R_init_CDM(DllInfo *dll) {
-    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
-    R_useDynamicSymbols(dll, FALSE);
-}

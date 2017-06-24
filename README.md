@@ -10,7 +10,7 @@ The official version of `CDM` is hosted on CRAN and may be found [here](https://
 The CRAN version can be installed from within R using:
 
 ```r
-install.packages("BIFIEsurvey")
+install.packages("CDM")
 ```
 
 #### GitHub version

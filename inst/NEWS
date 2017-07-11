@@ -22,6 +22,20 @@ R script and (if necessary) a corresponding dataset.
 
 
 
+--------------------------------------------------------------
+VERSIONS CDM 5.8  |  2017-07-11  |  Last: CDM 5.8-3
+--------------------------------------------------------------
+
+NOTE  * fixed a bug in 'equivalent.dina' and included an 
+        additional example (thanks to Sedat San)
+NOTE  * moved lattice and psych packages from 'Imports' to 
+        'Suggests'. Removed MASS and plyr packages from 
+        'Imports'.
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: equivalent.dina (3)
+
+
 
 --------------------------------------------------------------
 VERSIONS CDM 5.7  |  2017-06-24  |  Last: CDM 5.7-16

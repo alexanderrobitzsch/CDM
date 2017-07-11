@@ -127,7 +127,7 @@ function( data , posterior , probs ){
 
 	# fisherz from psych package
 	# residual of correlation
-	itempairs$fcor <- psych::fisherz( itempairs$corObs ) - psych::fisherz( itempairs$corExp )
+	itempairs$fcor <- CDM_fisherz( itempairs$corObs ) - CDM_fisherz( itempairs$corExp )
 	
 	#----
 	# p values and p value adjustments adjustments

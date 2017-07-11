@@ -33,16 +33,12 @@ simul.mcdina <- function( alpha ,  pars_lc , pars_lr , skillcl ){
         probs <- lc.ii[ match( lr.ii , paste(lc.ii$lr) ) , grep( "Cat" , colnames(pars_lc ) ) ]
         Nc <- ncol(probs)
         rn <- stats::runif(N)	
-        # probs1 <- rowCumsums.sirt(matr=as.matrix(probs)  )
-		# eval( parse ( text = "probs1 <- sirt::rowCumsums.sirt(matr=as.matrix(probs)  )" ) )
 		probs1 <- sirt::rowCumsums.sirt(matr=as.matrix(probs)  )
-        # dat[,ii] <- rowIntervalIndex.sirt(matr= probs1 ,rn) 
-		# eval( parse ( text = "dat[,ii] <- sirt::rowIntervalIndex.sirt(matr= probs1 ,rn) " ) )
 		dat[,ii] <- sirt::rowIntervalIndex.sirt(matr= probs1 ,rn)
         print(paste0( "Item " ,ii )) ; utils::flush.console()
-                }
-      return(dat)
-      }
+    }
+    return(dat)
+}
 #################################################################  
 
 # Examples:

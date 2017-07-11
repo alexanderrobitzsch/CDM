@@ -59,6 +59,10 @@ diagnostic model: Two variants of a model equivalency.
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 %}
 \examples{
+#############################################################################
+# EXAMPLE 1: Toy example 
+#############################################################################
+
 # define a Q-matrix
 Q <- matrix( c( 1,0,0 ,  0,1,0 , 
         0,0,1,   1,0,1 ,  1,1,1 ) , byrow=TRUE , ncol=3 )
@@ -72,12 +76,18 @@ res1
 res2 <- CDM::equivalent.dina( q.matrix=Q , reparametrization="A")
 res2
 
+\dontrun{
+#############################################################################
+# EXAMPLE 2: Estimation with two equivalent DINA models 
+#############################################################################
+
 # simulate data
 set.seed(789)
 D <- ncol(Q)
 mean.alpha <- c( -.5 , .5 , 0  )
-r1 <- .5 ; Sigma.alpha <- matrix( r1 , D , D ) + diag(1-r1,D)
-dat1 <- sim.din( N=2000 , q.matrix=Q , mean = mean.alpha , Sigma=Sigma.alpha )
+r1 <- .5
+Sigma.alpha <- matrix( r1 , D , D ) + diag(1-r1,D)
+dat1 <- CDM::sim.din( N=2000 , q.matrix=Q , mean = mean.alpha , Sigma=Sigma.alpha )
 
 # estimate DINA model
 mod1 <- CDM::din( dat1$dat , q.matrix=Q )
@@ -96,6 +106,31 @@ cbind( mod2$coef , mod1$coef )
 
 # compare estimated skill class probabilities
 round( cbind( mod2$attribute.patt, mod1$attribute.patt ) , 4 )
+
+
+#############################################################################
+# EXAMPLE 3: Examples from von Davier (2014) 
+#############################################################################
+
+# define Q-matrix
+Q <- matrix( 0 , nrow=8 , ncol=3 )
+Q[2 , ] <- c(1,0,0)
+Q[3 , ] <- c(0,1,0)
+Q[4 , ] <- c(1,1,0)
+Q[5 , ] <- c(0,0,1)
+Q[6 , ] <- c(1,0,1)
+Q[6 , ] <- c(0,0,1)
+Q[7 , ] <- c(0,1,1)
+Q[8 , ] <- c(1,1,1)
+
+#- parametrization A
+res1 <- CDM::equivalent.dina(q.matrix=Q, reparametrization="A")
+res1
+
+#- parametrization B
+res2 <- CDM::equivalent.dina(q.matrix=Q, reparametrization="B")
+res2
+}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

@@ -69,17 +69,22 @@ import(mvtnorm)
 #***************************************************
 #************** Imports ****************************
 
-importFrom(MASS, mvrnorm)
-importFrom(lattice, xyplot)
-importFrom(plyr, rbind.fill)
 importFrom(polycor, polychor)
-importFrom(psych, fa)
-importFrom(psych, fisherz)
 importFrom(sfsmisc, QUnif)
 
 
+#***************************************************
+#************** Suggests ****************************
+# requireNamespace("another_package")
+# CDM_require_namespace("CDM_another_package")
 
-
+# importFrom(BIFIEsurvey, BIFIE.data.jack)
+# importFrom(BIFIEsurvey, BIFIE.data.boot)
+# importFrom(lattice, xyplot)
+# importFrom(psych, fa)
+# importFrom(sirt, rowCumsums.sirt)
+# importFrom(sirt, rowIntervalIndex.sirt)
+# importFrom(sirt, sirt_rbind_fill)
 
 ########################################################
 ################ EXPORTS ###############################

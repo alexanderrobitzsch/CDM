@@ -5,7 +5,13 @@
 IRT.irfprobPlot <- function( object , items=NULL , 
        min.theta=-4 , max.theta=4 , cumul=FALSE , 
 	   smooth=TRUE , ask=TRUE ,
-	   n.theta = 40 , package = "lattice" ,  ... ){	
+	   n.theta = 40 , package = "lattice" ,  ... )
+{	
+	if (package=="lattice"){
+		CDM_require_namespace("lattice")
+	}
+
+
 	#************************************   
 	# extract item response functions
 	irfprob <- IRT.irfprob( object )
@@ -15,9 +21,7 @@ IRT.irfprobPlot <- function( object , items=NULL ,
 	
 	if ( ! is.null( items) ){
 		irfprob <- irfprob[ items ,,,drop=FALSE ]
-							}
-	
-
+	}	
 	items.labels <- dimnames(irfprob)[[1]]
 	I <- length(items.labels)
 	#***********************************
@@ -40,8 +44,8 @@ IRT.irfprobPlot <- function( object , items=NULL ,
 			a1 <- stats::aggregate( irf.ii[2,] , list(theta[,dd]) , mean )		
 			if ( stats::sd(a1[,2])> 1E-7 ){
 				vv <- dd
-						}		
-						}
+			}		
+		}
 		dd <- vv					
 	
 		# compute functions

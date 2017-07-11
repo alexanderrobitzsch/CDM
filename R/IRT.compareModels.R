@@ -2,20 +2,22 @@
 ###############################################################################
 # compare models based on likelihood and information criteria
 IRT.compareModels <- function( object , ... ){
-		cl <- match.call()
-		cl1 <- paste(cl)[-c(1)]
-		object_list <- list(...)		
+	CDM_require_namespace("sirt")
+
+	cl <- match.call()
+	cl1 <- paste(cl)[-c(1)]
+	object_list <- list(...)		
 		
-		#****************************
-		# information criteria
-		irtmodfit <- FALSE
-		cm1 <- NULL
-		if ( length( grep("IRT.modelfit" , class(object) ) ) > 0 ){
-				irtmodfit <- TRUE 
-				cm1 <- c( cm1 , object$objname )
-						}  else { 
-				cm1 <- c( cm1 , cl1[1] )
-                        }				
+	#****************************
+	# information criteria
+	irtmodfit <- FALSE
+	cm1 <- NULL
+	if ( length( grep("IRT.modelfit" , class(object) ) ) > 0 ){
+		irtmodfit <- TRUE 
+		cm1 <- c( cm1 , object$objname )
+	}  else { 
+		cm1 <- c( cm1 , cl1[1] )
+    }				
 		if (irtmodfit){  
 			dfr <- t(object$IRT.IC)
 			dfr <- as.data.frame(dfr)
@@ -53,7 +55,7 @@ IRT.compareModels <- function( object , ... ){
 								}
    		   if ( ! irtmodfit ){  dfr <- rbind( dfr , dfr1 ) }
 		   if (irtmodfit ){ 
-					dfr <- plyr::rbind.fill( as.data.frame(dfr) , as.data.frame(dfr1 ) ) 
+					dfr <- sirt::sirt_rbind_fill( as.data.frame(dfr) , as.data.frame(dfr1 ) ) 
 							}
 					}
 		rownames(dfr) <- NULL

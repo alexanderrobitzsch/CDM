@@ -11,6 +11,7 @@ gdina_attr_rpf_hogdina <- function( attr.patt , attr.prob , theta.k , wgt.theta 
 	TP <- length(theta.k)
 	NAP <- nrow(attr.patt)
     if (HOGDINA>0){
+		CDM_require_namespace("psych")
 		fm1 <- psych::fa(r=wc$rho, nfactors=1 , fm="minres" , max.iter=15 , warnings=FALSE)
 		L <- as.vector( fm1$loadings )
 		L <- L / ( max(1,max(L)) + .0025 )

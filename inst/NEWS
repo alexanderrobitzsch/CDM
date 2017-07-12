@@ -23,7 +23,7 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 5.8  |  2017-07-11  |  Last: CDM 5.8-3
+VERSIONS CDM 5.8  |  2017-07-12  |  Last: CDM 5.8-5
 --------------------------------------------------------------
 
 NOTE  * fixed a bug in 'equivalent.dina' and included an 
@@ -31,6 +31,8 @@ NOTE  * fixed a bug in 'equivalent.dina' and included an
 NOTE  * moved lattice and psych packages from 'Imports' to 
         'Suggests'. Removed MASS and plyr packages from 
         'Imports'.
+NOTE  * imported utility functions 'CDM_require_namespace'
+        and 'CDM_rmvnorm'.
 
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: equivalent.dina (3)

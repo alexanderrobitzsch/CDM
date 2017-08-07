@@ -2,7 +2,6 @@
 ###############################################################################
 # compare models based on likelihood and information criteria
 IRT.compareModels <- function( object , ... ){
-	CDM_require_namespace("sirt")
 
 	cl <- match.call()
 	cl1 <- paste(cl)[-c(1)]
@@ -55,7 +54,7 @@ IRT.compareModels <- function( object , ... ){
 								}
    		   if ( ! irtmodfit ){  dfr <- rbind( dfr , dfr1 ) }
 		   if (irtmodfit ){ 
-					dfr <- sirt::sirt_rbind_fill( as.data.frame(dfr) , as.data.frame(dfr1 ) ) 
+					dfr <- CDM_rbind_fill( as.data.frame(dfr) , as.data.frame(dfr1 ) ) 
 							}
 					}
 		rownames(dfr) <- NULL

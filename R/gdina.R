@@ -481,7 +481,6 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	
 	#####################################################
 	# itemwise standard error calculation
-	
 	res <- gdina_post_calc_se( G=G, p.aj.xi=p.aj.xi, item.patt.freq=item.patt.freq, attr.prob=attr.prob, 
 				p.xi.aj=p.xi.aj, IP=IP, J=J, calc.se=calc.se, aggr.attr.patt=aggr.attr.patt, Aj=Aj, Mj=Mj, R.lj=R.lj, 
 				I.lj=I.lj, item.patt.split=item.patt.split, resp.patt=resp.patt, delta=delta, linkfct=linkfct, rule=rule, 
@@ -498,7 +497,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	if (rrum.model){
 		rrum.params <- .rrum.param( delta.summary=delta.summary, q.matrix=q.matrix )
 	}
-				
+	
 	#--- skill pattern and attribute pattern
 	res <- gdina_post_skill_pattern( attr.prob=attr.prob, G=G, attr.patt.c=attr.patt.c, K=K, maxAttr=maxAttr, 
 				q.matrix=q.matrix, q.entries=q.entries, attr.patt=attr.patt ) 
@@ -533,11 +532,11 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	pi.k <- res$pi.k
 	n.ik <- res$n.ik
 	pi.k <- res$pi.k	
-
+	
 	#---- calculate model implied probabilities	
 	probitem <- gdina_probitem( Mj=Mj, Aj=Aj, delta=delta, rule=rule, linkfct=linkfct, 
 					delta.summary=delta.summary ) 	
-
+					
 	#***************************** OUTPUT **********************************
 	if (progress){
 		cat("---------------------------------------------------------------------------------\n")
@@ -591,7 +590,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 					attr.prob=attr.prob0, delta.fixed=delta.fixed, sequential=sequential,
 					invariance=invariance, se_version=se_version ) 	
 	res$control <- control			
-    #--- create parameter table						
+    #--- create parameter table	
 	res$partable <- gdina_partable(res)	
 	#--- polychoric correlations
 	res$polychor <- CDM.calc.polychor(res)	

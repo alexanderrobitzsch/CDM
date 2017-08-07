@@ -9,7 +9,7 @@ sim.gdina <- function( n , q.matrix , delta , link = "identity" ,
     I <- length(delta)
     # simulate alpha
 	if ( is.null(alpha) ){
-		alpha <- 1* ( mvtnorm::rmvnorm( n , mean = thresh.alpha , sigma = cov.alpha ) > 0 )
+		alpha <- 1* ( CDM_rmvnorm( n , mean = thresh.alpha , sigma = cov.alpha ) > 0 )
 	}
     dat <- matrix( NA , n , I )
     for (ii in 1:I){

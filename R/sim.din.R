@@ -29,7 +29,7 @@ sim.din <- function( N=0, q.matrix, guess = rep(.2, nrow(q.matrix) ), slip = gue
 
 	# simulated normal variates
 	if (N>0){
-		normsim <- mvtnorm::rmvnorm( N, mean, Sigma)
+		normsim <- CDM_rmvnorm( N, mean, Sigma)
 		# dichotomous variates
 		dichsim <- 1 * ( normsim > 0 )
 				}

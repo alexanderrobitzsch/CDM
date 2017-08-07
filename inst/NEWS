@@ -23,7 +23,7 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 5.8  |  2017-07-12  |  Last: CDM 5.8-5
+VERSIONS CDM 5.8  |  2017-08-07  |  Last: CDM 5.8-7
 --------------------------------------------------------------
 
 NOTE  * fixed a bug in 'equivalent.dina' and included an 
@@ -33,11 +33,11 @@ NOTE  * moved lattice and psych packages from 'Imports' to
         'Imports'.
 NOTE  * imported utility functions 'CDM_require_namespace'
         and 'CDM_rmvnorm'.
+FIXED * fixed a bug in 'gdina' for Q-matrices with only one
+        skills (thanks to Matthew Madison)
 
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: equivalent.dina (3)
-
-
 
 --------------------------------------------------------------
 VERSIONS CDM 5.7  |  2017-06-24  |  Last: CDM 5.7-16

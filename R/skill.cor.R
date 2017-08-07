@@ -49,27 +49,33 @@ skill.polychor <- function( object , colindex=1 ){
     ap <- object$attribute.patt
     aps <- object$attribute.patt.splitted	
     # collect all skill combinations
-    skill.combis <- t( utils::combn( nrow(object$skill.patt ) , 2) )
+	NO <- nrow(object$skill.patt )
+	skill.combis <- matrix(NA, nrow=0,ncol=2)
+	if (NO>1){
+		skill.combis <- t( utils::combn( NO , 2) )
+	}
+	ZZ <- nrow(skill.combis)
     skill.cors <- matrix(1 , ncol(aps) , ncol(aps) )	
-    ZZ <- nrow(skill.combis)
 	warn_temp <- options()$warn
 	options(warn=-1) 
-    for (zz in 1:ZZ){
-        # zz <- 8
-        ll <- skill.combis[zz,]
-        ss1 <- ll[1]
-        ss2 <- ll[2]
-        v1 <- stats::aggregate( ap[ , colindex ] , list( aps[,ss1] , aps[,ss2] ) , sum )
-        NR <- length( unique( aps[,ss1] ) )
-        NC <- length( unique( aps[,ss2] ) )
-        v1 <- matrix(  v1[,3] , nrow=NR , ncol=NC )		
-        skill.cors[ss1,ss2] <- skill.cors[ss2,ss1] <- polycor::polychor( v1 )    
-                }
+	if (ZZ>0){
+		for (zz in 1:ZZ){
+			# zz <- 8
+			ll <- skill.combis[zz,]
+			ss1 <- ll[1]
+			ss2 <- ll[2]
+			v1 <- stats::aggregate( ap[ , colindex ] , list( aps[,ss1] , aps[,ss2] ) , sum )
+			NR <- length( unique( aps[,ss1] ) )
+			NC <- length( unique( aps[,ss2] ) )
+			v1 <- matrix(  v1[,3] , nrow=NR , ncol=NC )		
+			skill.cors[ss1,ss2] <- skill.cors[ss2,ss1] <- polycor::polychor( v1 )    
+		}
+	}
 	options(warn=warn_temp)					
 	rownames(skill.cors) <- colnames(skill.cors) <- rownames(object$skill.patt)
     res <- list(  "cor.skills" = skill.cors )
 	return(res)
-		}
+}
 #####################################################
 
 ######################################################

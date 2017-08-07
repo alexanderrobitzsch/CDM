@@ -1,8 +1,8 @@
 Package: CDM
 Type: Package
 Title: Cognitive Diagnosis Modeling
-Version: 5.8-7
-Date: 2017-08-07 16:33:35
+Version: 5.8-8
+Date: 2017-08-07 16:52:43
 Author: 
     Alexander Robitzsch [aut, cre], Thomas Kiefer [aut],
     Ann Cathrice George [aut], Ali Uenlue [aut]
@@ -24,7 +24,7 @@ Imports:
     stats, utils
 Suggests:
     BIFIEsurvey, GDINA, lattice, miceadds, mirt, psych, 
-    sirt (>= 2.1-14), TAM
+    sirt, TAM
 LinkingTo:
     Rcpp, RcppArmadillo
 LazyLoad: yes

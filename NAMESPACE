@@ -84,7 +84,7 @@ importFrom(sfsmisc, QUnif)
 # importFrom(psych, fa)
 # importFrom(sirt, rowCumsums.sirt)
 # importFrom(sirt, rowIntervalIndex.sirt)
-# importFrom(sirt, sirt_rbind_fill)
+
 
 ########################################################
 ################ EXPORTS ###############################

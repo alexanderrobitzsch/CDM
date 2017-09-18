@@ -1,3 +1,6 @@
+//// File Name: itemfit_sx2_calc_scoredistribution_cdm.cpp
+//// File Version: 3.01
+//// File Last Change: 2017-01-31 15:01:12
 
 
 // #include <RcppArmadillo.h>

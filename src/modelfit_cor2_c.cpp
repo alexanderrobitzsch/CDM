@@ -1,3 +1,6 @@
+//// File Name: modelfit_cor2_c.cpp
+//// File Version: 3.02
+//// File Last Change: 2017-01-31 15:06:21
 
 // #include <RcppArmadillo.h>
 #include <Rcpp.h>

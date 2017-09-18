@@ -1,3 +1,6 @@
+//// File Name: probs_multcat_items_counts_c.cpp
+//// File Version: 3.02
+//// File Last Change: 2017-02-07 12:23:45
 
 // #include <RcppArmadillo.h>
 #include <Rcpp.h>

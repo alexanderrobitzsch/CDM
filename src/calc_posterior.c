@@ -1,3 +1,6 @@
+//// File Name: calc_posterior.c
+//// File Version: 1.01
+//// File Last Change: 2013-05-29 10:49:34
 #include <Rinternals.h>
 
 SEXP calcfx(SEXP sFx, SEXP sRprobs, SEXP sRespIndList, SEXP sResp){

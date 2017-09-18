@@ -1,6 +1,6 @@
 ## File Name: gdina.R
-## File Version: 9.113
-## File Last Change: 2017-08-07 16:32:04
+## File Version: 9.115
+## File Last Change: 2017-09-18 15:51:36
 
 
 ################################################################################
@@ -97,7 +97,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	res <- gdina_proc_noninvariance_multiple_groups( data=data, q.matrix=q.matrix, 
 				invariance=invariance, group=group )
 	data <- res$data
-	q.matrix <- res$q.matrix	
+	q.matrix <- res$q.matrix
 	
 	########################################################
 	# add item and attribute labels	if necessary

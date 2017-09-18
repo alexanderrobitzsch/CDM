@@ -2,7 +2,12 @@
 year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
 vers <- paste("R package version", meta$Version)
 
-citHeader("To cite the 'CDM' package in publications use:")
+pkg <- meta$Package
+pkg_title <- "Cognitive diagnosis modeling"
+
+citHeader( paste0( "To cite the '", pkg , "' package in publications use:") )
+
+
 
 bibentry(bibtype = "Article",
   title        = "The {R} Package {CDM} for Cognitive Diagnosis Models",
@@ -34,25 +39,25 @@ bibentry(bibtype = "Article",
 
 
 
+
 citEntry(entry="Manual",
-         title = "CDM: Cognitive Diagnosis Modeling",
+         title = paste0( pkg , ": " , pkg_title ) ,
          author = c(
                    person(given = "Alexander",
                           family = "Robitzsch",
                           email = "robitzsch@ipn.uni-kiel.de"),
                    person(given = "Thomas",
                           family = "Kiefer"),
-		person(given = c("Ann", "Cathrice"),
+                   person(given = c("Ann", "Cathrice"),
                           family = "George"),
                    person(given = "Ali",
                           family = "{\\\"U}nl{\\\"u}")) ,
          year = year,
          note = vers,
-	 url = "https://CRAN.R-project.org/package=CDM" ,
+     url =  paste0( "https://CRAN.R-project.org/package=", pkg) ,
          textVersion =
          paste0("Robitzsch, A., Kiefer, T., George, A. C., & Uenlue, A. (",
                year,
-               "). CDM: Cognitive diagnosis modeling. ",
-               vers, ". https://CRAN.R-project.org/package=CDM")
-	)
-
+               "). " , pkg , ": " , pkg_title , ". ",
+               vers, paste0( ". https://CRAN.R-project.org/package=", pkg) )
+    )

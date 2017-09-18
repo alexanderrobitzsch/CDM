@@ -23,13 +23,15 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 5.9  |  2017-09-18  |  Last: CDM 5.9-3
+VERSIONS CDM 5.9  |  2017-09-18  |  Last: CDM 5.9-6
 --------------------------------------------------------------
 
-NOTE  * xxx
+FIXED * fixed a bug in 'gdina' function in argument 'invariance'
+        if a vector of item names were used
+        (thanks to Hamdollah Ravand) 
 
 DATA  * included/modified datasets: ---
-EXAMP * included/modified examples: ---
+EXAMP * included/modified examples: gdina (5.5)
 
 
 --------------------------------------------------------------

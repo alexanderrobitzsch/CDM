@@ -1,3 +1,6 @@
+## File Name: gdina_partable.R
+## File Version: 0.08
+## File Last Change: 2017-06-05 18:13:22
 
 ###################################################
 # create parameter table for GDINA model

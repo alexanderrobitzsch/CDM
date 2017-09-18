@@ -1,3 +1,6 @@
+## File Name: IRT_frequencies_default.R
+## File Version: 0.05
+## File Last Change: 2017-06-24 15:26:59
 
 IRT_frequencies_default <- function(data, post, probs, weights=NULL)
 {

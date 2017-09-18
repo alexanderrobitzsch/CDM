@@ -1,3 +1,6 @@
+## File Name: vcov.din.R
+## File Version: 1.55
+## File Last Change: 2017-01-31 14:07:30
 
 ##########################################################
 # vcov din object

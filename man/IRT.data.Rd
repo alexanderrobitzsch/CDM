@@ -1,3 +1,7 @@
+%% File Name: IRT.data.Rd
+%% File Version: 0.05
+%% File Last Change: 2017-01-31 14:08:31
+
 \name{IRT.data}
 \alias{IRT.data}
 \alias{IRT.data.din}

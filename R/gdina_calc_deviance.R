@@ -1,3 +1,6 @@
+## File Name: gdina_calc_deviance.R
+## File Version: 0.01
+## File Last Change: 2017-06-04 19:15:46
 
 gdina_calc_deviance <- function( p.xi.aj , attr.prob, item.patt.freq, loglike, G, IP)
 {

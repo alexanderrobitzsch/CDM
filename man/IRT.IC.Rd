@@ -1,3 +1,7 @@
+%% File Name: IRT.IC.Rd
+%% File Version: 0.06
+%% File Last Change: 2017-01-31 14:08:31
+
 \name{IRT.IC}
 \alias{IRT.IC}
 %- Also NEED an '\alias' for EACH other topic documented here.

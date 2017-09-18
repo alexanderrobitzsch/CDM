@@ -1,3 +1,6 @@
+## File Name: IRT_RMSD_calc_rmsd.R
+## File Version: 3.15
+## File Last Change: 2017-03-21 19:04:04
 
 	
 ##########################################

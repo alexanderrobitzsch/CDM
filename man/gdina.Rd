@@ -1,3 +1,7 @@
+%% File Name: gdina.Rd
+%% File Version: 2.993
+%% File Last Change: 2017-01-31 14:08:31
+
 \name{gdina}
 \alias{gdina}
 \alias{summary.gdina}

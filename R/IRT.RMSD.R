@@ -1,3 +1,6 @@
+## File Name: IRT.RMSD.R
+## File Version: 0.16
+## File Last Change: 2017-03-01 13:05:47
 
 IRT.RMSD <- function( object )
 {

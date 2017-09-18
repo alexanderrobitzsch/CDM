@@ -1,3 +1,7 @@
+%% File Name: data.dcm.Rd
+%% File Version: 0.18
+%% File Last Change: 2017-01-31 14:08:30
+
 \name{data.dcm}
 \alias{data.dcm}
 \docType{data}

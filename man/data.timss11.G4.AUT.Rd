@@ -1,3 +1,7 @@
+%% File Name: data.timss11.G4.AUT.Rd
+%% File Version: 0.07
+%% File Last Change: 2017-01-31 14:08:30
+
 \name{data.timss11.G4.AUT}
 \alias{data.timss11.G4.AUT}
 \alias{data.timss11.G4.AUT.part}

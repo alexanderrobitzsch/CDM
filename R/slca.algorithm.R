@@ -1,3 +1,6 @@
+## File Name: slca.algorithm.R
+## File Version: 1.17
+## File Last Change: 2017-01-31 15:55:17
 # probs <- .gdm.calc.prob( a,b,thetaDes,Qmatrix,I,K,TP,TD)
 #############################################################
 .slca.calc.prob0 <- function( Xdes , Xlambda , I,K,TP){

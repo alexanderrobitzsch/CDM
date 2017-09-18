@@ -1,3 +1,6 @@
+## File Name: IRT.repDesign.R
+## File Version: 0.09
+## File Last Change: 2017-07-11 09:46:59
 
 ########################################################
 IRT.repDesign <- function( data , wgt = NULL, jktype = "JK_TIMSS", 

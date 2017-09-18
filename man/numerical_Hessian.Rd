@@ -1,3 +1,7 @@
+%% File Name: numerical_Hessian.Rd
+%% File Version: 0.18
+%% File Last Change: 2017-01-31 14:08:32
+
 \name{numerical_Hessian}
 \alias{numerical_Hessian}
 %- Also NEED an '\alias' for EACH other topic documented here.

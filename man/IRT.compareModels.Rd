@@ -1,3 +1,7 @@
+%% File Name: IRT.compareModels.Rd
+%% File Version: 0.12
+%% File Last Change: 2017-01-31 14:08:31
+
 \name{IRT.compareModels}
 \alias{IRT.compareModels}
 \alias{summary.IRT.compareModels}

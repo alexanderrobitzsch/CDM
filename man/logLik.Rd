@@ -1,3 +1,7 @@
+%% File Name: logLik.Rd
+%% File Version: 0.13
+%% File Last Change: 2017-01-31 14:08:32
+
 \name{logLik}
 \alias{logLik.din}
 \alias{logLik.gdina}

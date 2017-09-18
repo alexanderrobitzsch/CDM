@@ -1,3 +1,7 @@
+%% File Name: fraction.subtraction.qmatrix.Rd
+%% File Version: 1.04
+%% File Last Change: 2017-01-31 14:08:31
+
 \name{fraction.subtraction.qmatrix}
 
 \alias{fraction.subtraction.qmatrix}

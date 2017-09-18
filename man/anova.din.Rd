@@ -1,3 +1,7 @@
+%% File Name: anova.din.Rd
+%% File Version: 1.22
+%% File Last Change: 2017-01-31 14:08:30
+
 \name{anova}
 \alias{anova.din}
 \alias{anova.gdina}

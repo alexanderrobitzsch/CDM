@@ -1,3 +1,6 @@
+## File Name: gdina_proc_spec_rrum.R
+## File Version: 0.02
+## File Last Change: 2017-06-05 13:27:17
 
 gdina_proc_spec_rrum <- function(rule, method, linkfct)
 {

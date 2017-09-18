@@ -1,3 +1,7 @@
+%% File Name: entropy.lca.Rd
+%% File Version: 0.17
+%% File Last Change: 2017-01-31 14:08:31
+
 \name{entropy.lca}
 \alias{entropy.lca}
 \alias{summary.entropy.lca}

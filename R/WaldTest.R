@@ -1,3 +1,6 @@
+## File Name: WaldTest.R
+## File Version: 0.08
+## File Last Change: 2017-01-31 14:07:30
 #################################################
 # helper function Wald test
 WaldTest <- function( delta , vcov , R , nobs , cvec = NULL , eps=1E-10 ){

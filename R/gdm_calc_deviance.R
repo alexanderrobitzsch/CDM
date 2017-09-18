@@ -1,3 +1,6 @@
+## File Name: gdm_calc_deviance.R
+## File Version: 0.01
+## File Last Change: 2017-06-12 14:14:14
 
 gdm_calc_deviance <- function(G, use.freqpatt, ind.group, p.xi.aj, pi.k, weights)
 {

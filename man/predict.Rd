@@ -1,3 +1,7 @@
+%% File Name: predict.Rd
+%% File Version: 0.13
+%% File Last Change: 2017-01-31 14:08:32
+
 \name{predict}
 
 \alias{IRT.predict}

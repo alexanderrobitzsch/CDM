@@ -1,3 +1,6 @@
+## File Name: numerical_Hessian.R
+## File Version: 0.15
+## File Last Change: 2017-01-31 14:07:29
 
 ##############################################################################
 # numerical computation of the Hessian matrix

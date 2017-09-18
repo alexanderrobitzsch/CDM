@@ -1,3 +1,6 @@
+## File Name: gdina_maximum_parameter_change.R
+## File Version: 0.01
+## File Last Change: 2017-06-04 19:30:03
 
 gdina_maximum_parameter_change <- function( delta, delta.new, linkfct )
 {

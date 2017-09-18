@@ -1,3 +1,7 @@
+%% File Name: din.validate.qmatrix.Rd
+%% File Version: 1.20
+%% File Last Change: 2017-01-31 14:08:31
+
 \name{din.validate.qmatrix}
 \alias{din.validate.qmatrix}
 %- Also NEED an '\alias' for EACH other topic documented here.

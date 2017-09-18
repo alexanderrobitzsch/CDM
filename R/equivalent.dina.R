@@ -1,3 +1,6 @@
+## File Name: equivalent.dina.R
+## File Version: 2.11
+## File Last Change: 2017-07-08 14:06:50
 equivalent.dina <- function (q.matrix, reparametrization = "B") 
 {
     K <- ncol(q.matrix)

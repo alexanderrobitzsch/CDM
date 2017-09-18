@@ -1,3 +1,7 @@
+%% File Name: CDM-package.Rd
+%% File Version: 2.68
+%% File Last Change: 2017-02-08 10:03:34
+
 \name{CDM-package}
 
 \alias{CDM-package}

@@ -1,3 +1,6 @@
+## File Name: gdm_constraints_itempars.R
+## File Version: 0.01
+## File Last Change: 2017-06-14 18:41:36
 
 ###############################################
 # constraints for item parameters

@@ -1,3 +1,6 @@
+## File Name: equivalent.skillclasses.R
+## File Version: 0.07
+## File Last Change: 2017-01-31 14:07:26
 
 #**********************************************************
 # calculates a latent response under the din function

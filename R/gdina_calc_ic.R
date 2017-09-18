@@ -1,3 +1,6 @@
+## File Name: gdina_calc_ic.R
+## File Version: 0.01
+## File Last Change: 2017-06-05 15:04:23
 
 gdina_calc_ic <- function( delta, delta.designmatrix, delta.fixed, G, ncolZ, K, HOGDINA,
 		item.patt.freq, zeroprob.skillclasses, loglike )

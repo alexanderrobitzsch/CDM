@@ -1,3 +1,6 @@
+## File Name: gdina_attribute_patterns_reduced_skillspace.R
+## File Version: 0.02
+## File Last Change: 2017-06-17 14:01:50
 
 gdina_attribute_patterns_reduced_skillspace <- function( attr.patt, K, maxAttr, q.matrix,
 		Z.skillspace )

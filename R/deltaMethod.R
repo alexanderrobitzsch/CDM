@@ -1,3 +1,6 @@
+## File Name: deltaMethod.R
+## File Version: 0.03
+## File Last Change: 2017-01-31 14:07:26
 ###############################################################
 deltaMethod <- function( derived.pars , est, Sigma , h=1E-5 ){
 	#***

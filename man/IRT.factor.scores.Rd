@@ -1,3 +1,7 @@
+%% File Name: IRT.factor.scores.Rd
+%% File Version: 0.06
+%% File Last Change: 2017-01-31 14:08:31
+
 \name{IRT.factor.scores}
 \alias{IRT.factor.scores}
 \alias{IRT.factor.scores.din}

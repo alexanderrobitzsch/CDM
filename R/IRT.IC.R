@@ -1,3 +1,6 @@
+## File Name: IRT.IC.R
+## File Version: 0.04
+## File Last Change: 2017-01-31 14:07:27
 
 ##############################################################################
 # information criteria

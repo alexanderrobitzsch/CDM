@@ -1,3 +1,6 @@
+## File Name: skillspace.approximation.R
+## File Version: 0.03
+## File Last Change: 2017-01-31 14:07:30
 ###########################################
 # skill space approximation
 skillspace.approximation <- function( L , K , nmax=5000 ){

@@ -1,3 +1,7 @@
+%% File Name: IRT.repDesign.Rd
+%% File Version: 0.13
+%% File Last Change: 2017-01-31 14:08:31
+
 \name{IRT.repDesign}
 \alias{IRT.repDesign}
 %- Also NEED an '\alias' for EACH other topic documented here.

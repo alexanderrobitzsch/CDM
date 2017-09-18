@@ -1,3 +1,7 @@
+%% File Name: item_by_group.Rd
+%% File Version: 0.12
+%% File Last Change: 2017-01-31 14:08:32
+
 \name{item_by_group}
 \alias{item_by_group}
 %- Also NEED an '\alias' for EACH other topic documented here.

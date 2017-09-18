@@ -1,3 +1,6 @@
+## File Name: anova.din.R
+## File Version: 1.11
+## File Last Change: 2017-01-31 14:07:25
 
 anova.din <- IRT.anova
 

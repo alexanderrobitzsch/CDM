@@ -1,3 +1,7 @@
+%% File Name: print.summary.din.Rd
+%% File Version: 1.05
+%% File Last Change: 2017-01-31 14:08:32
+
 \name{print.summary.din}
 
 \alias{print.summary.din}

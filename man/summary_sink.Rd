@@ -1,3 +1,7 @@
+%% File Name: summary_sink.Rd
+%% File Version: 0.04
+%% File Last Change: 2017-01-31 14:08:32
+
 \name{summary_sink}
 \alias{summary_sink}
 

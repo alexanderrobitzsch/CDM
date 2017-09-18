@@ -1,3 +1,6 @@
+## File Name: sequential.items.R
+## File Version: 1.03
+## File Last Change: 2017-01-31 14:07:29
 #################################################
 # converts a dataset with polytomous item responses
 # into a dataset with sequential dichotomous items

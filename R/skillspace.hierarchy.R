@@ -1,3 +1,6 @@
+## File Name: skillspace.hierarchy.R
+## File Version: 0.10
+## File Last Change: 2017-01-31 14:07:30
 ###############################################################
 # computation of skill space hierarchy
 skillspace.hierarchy <- function( B , skill.names  ){

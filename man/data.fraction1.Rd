@@ -1,3 +1,7 @@
+%% File Name: data.fraction1.Rd
+%% File Version: 0.12
+%% File Last Change: 2017-01-31 14:08:30
+
 \name{data.fraction1}
 \alias{data.fraction1}
 \docType{data}

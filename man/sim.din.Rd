@@ -1,3 +1,7 @@
+%% File Name: sim.din.Rd
+%% File Version: 2.05
+%% File Last Change: 2017-01-31 14:08:32
+
 \name{sim.din}
 \alias{sim.din}
 

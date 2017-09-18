@@ -1,3 +1,6 @@
+## File Name: din.deterministic_alg.R
+## File Version: 0.09
+## File Last Change: 2017-01-31 15:36:42
 
 ##############################################################
 # link to Rcpp functions

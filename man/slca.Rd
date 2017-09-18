@@ -1,3 +1,7 @@
+%% File Name: slca.Rd
+%% File Version: 1.54
+%% File Last Change: 2017-01-31 14:08:32
+
 \name{slca}
 \alias{slca}
 \alias{summary.slca}

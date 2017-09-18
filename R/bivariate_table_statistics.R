@@ -1,3 +1,6 @@
+## File Name: bivariate_table_statistics.R
+## File Version: 0.04
+## File Last Change: 2017-06-22 13:02:37
 
 bivariate_table_statistics <- function( freqtable, values=NULL)
 {

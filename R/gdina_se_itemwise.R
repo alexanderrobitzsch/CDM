@@ -1,3 +1,6 @@
+## File Name: gdina_se_itemwise.R
+## File Version: 0.11
+## File Last Change: 2017-06-05 18:15:27
 
 gdina_se_itemwise <- function( R.lj_jj , I.lj_jj , apjj ,
 		Mjjj , Mjj2 , PAJXI , IP , item.patt.split_jj , resp.patt_jj ,

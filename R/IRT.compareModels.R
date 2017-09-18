@@ -1,3 +1,6 @@
+## File Name: IRT.compareModels.R
+## File Version: 0.15
+## File Last Change: 2017-08-07 17:47:17
 
 ###############################################################################
 # compare models based on likelihood and information criteria

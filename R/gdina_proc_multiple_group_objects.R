@@ -1,3 +1,6 @@
+## File Name: gdina_proc_multiple_group_objects.R
+## File Version: 0.01
+## File Last Change: 2017-06-05 13:51:17
 
 gdina_proc_multiple_group_objects <- function(group)
 {

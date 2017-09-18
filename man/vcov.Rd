@@ -1,3 +1,7 @@
+%% File Name: vcov.Rd
+%% File Version: 0.27
+%% File Last Change: 2017-01-31 14:08:32
+
 \name{vcov}
 \alias{vcov.din}
 \alias{confint.din}

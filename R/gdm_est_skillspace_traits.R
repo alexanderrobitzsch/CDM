@@ -1,3 +1,6 @@
+## File Name: gdm_est_skillspace_traits.R
+## File Version: 0.02
+## File Last Change: 2017-06-12 14:10:07
 
 #####################################################
 # estimation of skill space

@@ -1,3 +1,6 @@
+## File Name: logLik_CDM.R
+## File Version: 0.08
+## File Last Change: 2017-01-31 14:07:28
 #########################################
 # Log likelihood functions
 #########################################

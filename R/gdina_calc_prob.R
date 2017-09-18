@@ -1,3 +1,6 @@
+## File Name: gdina_calc_prob.R
+## File Version: 0.01
+## File Last Change: 2017-06-04 18:28:02
 
 gdina_calc_prob <- function( progress, iter, disp , J , L , aggr.attr.patt, Mj, delta,
 		linkfct)

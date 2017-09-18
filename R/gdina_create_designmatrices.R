@@ -1,3 +1,6 @@
+## File Name: gdina_create_designmatrices.R
+## File Version: 0.01
+## File Last Change: 2017-06-05 12:38:10
 
 gdina_create_designmatrices <- function( J, Mj, Aj, q.matrix, rule, L, attr.patt )
 {

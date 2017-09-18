@@ -1,3 +1,7 @@
+%% File Name: IRT.expectedCounts.Rd
+%% File Version: 0.04
+%% File Last Change: 2017-01-31 14:08:31
+
 \name{IRT.expectedCounts}
 \alias{IRT.expectedCounts}
 \alias{IRT.expectedCounts.din}

@@ -1,3 +1,7 @@
+%% File Name: data.pgdina.Rd
+%% File Version: 0.14
+%% File Last Change: 2017-01-31 14:08:30
+
 \name{data.pgdina}
 \alias{data.pgdina}
 \docType{data}

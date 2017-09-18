@@ -1,3 +1,6 @@
+## File Name: gdina_itemfit.R
+## File Version: 0.01
+## File Last Change: 2017-06-05 15:17:44
 
 gdina_itemfit <- function( L, J, R.lj, I.lj, item.patt.freq , G , attr.prob, data, pjM )
 {

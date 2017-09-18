@@ -1,3 +1,6 @@
+## File Name: entropy.lca.R
+## File Version: 0.10
+## File Last Change: 2017-01-31 14:07:26
 
 ####################################################
 # entropy for din, gdina and mcdina objects

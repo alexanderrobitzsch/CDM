@@ -1,3 +1,7 @@
+%% File Name: WaldTest.Rd
+%% File Version: 0.07
+%% File Last Change: 2017-01-31 14:08:32
+
 \name{WaldTest}
 \alias{WaldTest}
 

@@ -1,3 +1,7 @@
+%% File Name: cdi.kli.Rd
+%% File Version: 0.11
+%% File Last Change: 2017-01-31 14:08:30
+
 \name{cdi.kli}
 \alias{cdi.kli}
 \alias{summary.cdi.kli}

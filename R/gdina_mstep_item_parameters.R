@@ -1,3 +1,6 @@
+## File Name: gdina_mstep_item_parameters.R
+## File Version: 0.05
+## File Last Change: 2017-06-04 19:52:30
 
 gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.increment ,
 		increment.factor, J, Aj, Mj, delta, method, avoid.zeroprobs, invM.list, linkfct,

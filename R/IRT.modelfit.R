@@ -1,3 +1,6 @@
+## File Name: IRT.modelfit.R
+## File Version: 0.10
+## File Last Change: 2017-01-31 14:07:28
 
 ###########################################################
 IRT.modelfit <- function (object, ...) {

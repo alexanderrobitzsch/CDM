@@ -1,3 +1,6 @@
+## File Name: ideal.response.pattern.R
+## File Version: 0.05
+## File Last Change: 2017-01-31 15:43:03
 
 
 #########################################################################

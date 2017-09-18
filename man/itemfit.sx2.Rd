@@ -1,3 +1,7 @@
+%% File Name: itemfit.sx2.Rd
+%% File Version: 1.26
+%% File Last Change: 2017-01-31 14:08:32
+
 \name{itemfit.sx2}
 \alias{itemfit.sx2}
 \alias{summary.itemfit.sx2}

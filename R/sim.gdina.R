@@ -1,3 +1,6 @@
+## File Name: sim.gdina.R
+## File Version: 2.09
+## File Last Change: 2017-07-12 10:44:50
 
 
 

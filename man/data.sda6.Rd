@@ -1,3 +1,7 @@
+%% File Name: data.sda6.Rd
+%% File Version: 0.07
+%% File Last Change: 2017-01-31 14:08:30
+
 \name{data.sda6}
 \alias{data.sda6}
 \docType{data}

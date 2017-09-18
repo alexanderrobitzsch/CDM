@@ -1,3 +1,6 @@
+## File Name: CDM_fisherz.R
+## File Version: 0.01
+## File Last Change: 2017-07-11 10:02:26
 
 
 ## copy from psych::fisherz

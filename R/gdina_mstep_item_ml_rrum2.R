@@ -1,3 +1,6 @@
+## File Name: gdina_mstep_item_ml_rrum2.R
+## File Version: 1.03
+## File Last Change: 2017-01-31 14:07:27
 
 #####################################################
 # GDINA M-step item parameters

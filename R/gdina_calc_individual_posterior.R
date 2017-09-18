@@ -1,3 +1,6 @@
+## File Name: gdina_calc_individual_posterior.R
+## File Version: 0.01
+## File Last Change: 2017-06-04 18:36:59
 
 gdina_calc_individual_posterior <- function(G, IP, attr.prob, p.xi.aj, L, I,
 		zeroprob.skillclasses, reduced.skillspace, item.patt.freq)

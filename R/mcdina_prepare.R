@@ -1,3 +1,6 @@
+## File Name: mcdina_prepare.R
+## File Version: 0.20
+## File Last Change: 2017-01-31 14:07:29
 ##############################################
 # modify q-matrix
 mcdina.modify.qmatrix <- function( q.matrix , skillclasses){	

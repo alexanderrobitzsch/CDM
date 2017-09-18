@@ -1,3 +1,7 @@
+%% File Name: IRT.irfprob.Rd
+%% File Version: 0.08
+%% File Last Change: 2017-01-31 14:08:31
+
 \name{IRT.irfprob}
 \alias{IRT.irfprob}
 \alias{IRT.irfprob.din}

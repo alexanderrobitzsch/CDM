@@ -1,3 +1,6 @@
+## File Name: solve_add_ridge.R
+## File Version: 0.02
+## File Last Change: 2017-01-31 14:07:30
 
 solve_add_ridge <- function(A , eps = 1E-7)
 {

@@ -1,3 +1,7 @@
+%% File Name: skillspace.hierarchy.Rd
+%% File Version: 0.16
+%% File Last Change: 2017-02-20 14:14:03
+
 \name{skillspace.hierarchy}
 \alias{skillspace.hierarchy}
 \alias{skillspace.full}

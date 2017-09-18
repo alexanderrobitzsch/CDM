@@ -1,3 +1,6 @@
+## File Name: gdm_est_a_cat.R
+## File Version: 0.04
+## File Last Change: 2017-06-12 13:48:51
 
 ###########################################
 # estimation of a

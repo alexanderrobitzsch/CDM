@@ -1,3 +1,6 @@
+## File Name: osink.R
+## File Version: 1.04
+## File Last Change: 2017-01-31 14:07:29
 
 # 	osink( file = file , suffix = "__SUMMARY.Rout" )
 

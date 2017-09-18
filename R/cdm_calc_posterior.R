@@ -1,3 +1,6 @@
+## File Name: cdm_calc_posterior.R
+## File Version: 1.04
+## File Last Change: 2017-06-05 12:14:30
 
 ###########################################################
 # compute posterior distribution

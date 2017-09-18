@@ -1,3 +1,7 @@
+%% File Name: IRT.anova.Rd
+%% File Version: 0.03
+%% File Last Change: 2017-01-31 14:08:31
+
 \name{IRT.anova}
 \alias{IRT.anova}
 %- Also NEED an '\alias' for EACH other topic documented here.

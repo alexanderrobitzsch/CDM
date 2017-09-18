@@ -1,3 +1,6 @@
+## File Name: mcdina.R
+## File Version: 0.64
+## File Last Change: 2017-06-05 18:48:55
 
 #############################################################
 # Multiple Choice DINA Model

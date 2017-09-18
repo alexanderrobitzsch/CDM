@@ -1,3 +1,6 @@
+## File Name: cdm.est.calc.accuracy.R
+## File Version: 2.17
+## File Last Change: 2017-01-31 14:07:25
 
 ########################################################################
 # CDM classification accuracy

@@ -1,3 +1,6 @@
+## File Name: gdina_attr_rpf_hogdina.R
+## File Version: 0.03
+## File Last Change: 2017-07-11 10:00:20
 
 
 ####################################

@@ -1,3 +1,7 @@
+%% File Name: skill.cor.Rd
+%% File Version: 2.06
+%% File Last Change: 2017-01-31 14:08:32
+
 \name{skill.cor}
 \alias{skill.cor}
 \alias{skill.polychor}

@@ -1,3 +1,6 @@
+## File Name: gdina_init_class_probabilities.R
+## File Version: 0.01
+## File Last Change: 2017-06-05 12:47:04
 
 gdina_init_class_probabilities <- function( G, L, seed , attr.prob.init )
 {

@@ -1,3 +1,7 @@
+%% File Name: mcdina.Rd
+%% File Version: 0.20
+%% File Last Change: 2017-01-31 14:08:32
+
 \name{mcdina}
 \alias{mcdina}
 \alias{summary.mcdina}

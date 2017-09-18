@@ -1,3 +1,7 @@
+%% File Name: din.deterministic.Rd
+%% File Version: 0.16
+%% File Last Change: 2017-01-31 14:08:30
+
 \name{din.deterministic}
 \alias{din.deterministic}
 %- Also NEED an '\alias' for EACH other topic documented here.

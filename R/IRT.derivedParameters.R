@@ -1,3 +1,6 @@
+## File Name: IRT.derivedParameters.R
+## File Version: 0.03
+## File Last Change: 2017-01-31 14:07:27
 
 ######################################################################
 IRT.derivedParameters <- function( jkobject , derived.parameters ){

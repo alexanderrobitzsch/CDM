@@ -1,3 +1,6 @@
+## File Name: gdina_progress_em_algorithm.R
+## File Version: 0.02
+## File Last Change: 2017-06-05 12:25:05
 
 gdina_progress_em_algorithm <- function( delta , data , like.new , loglikeold ,
 		max.par.change , iter , progress, progress.item )

@@ -1,3 +1,7 @@
+%% File Name: abs_approx.Rd
+%% File Version: 0.03
+%% File Last Change: 2017-01-31 14:08:30
+
 \name{abs_approx}
 \alias{abs_approx}
 \alias{abs_approx_D1}

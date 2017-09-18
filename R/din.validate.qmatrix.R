@@ -1,3 +1,6 @@
+## File Name: din.validate.qmatrix.R
+## File Version: 1.05
+## File Last Change: 2017-01-31 14:07:26
 ######################################################
 # Q-matrix validation
 din.validate.qmatrix <- function( object , digits = 3 , print=TRUE){

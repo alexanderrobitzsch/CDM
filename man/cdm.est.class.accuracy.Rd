@@ -1,3 +1,7 @@
+%% File Name: cdm.est.class.accuracy.Rd
+%% File Version: 1.13
+%% File Last Change: 2017-01-31 14:08:30
+
 \name{cdm.est.class.accuracy}
 \alias{cdm.est.class.accuracy}
 %- Also NEED an '\alias' for EACH other topic documented here.

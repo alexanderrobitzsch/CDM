@@ -1,3 +1,6 @@
+## File Name: summary.gdm.R
+## File Version: 1.18
+## File Last Change: 2017-01-31 14:07:30
 #*******************************************************
 # Summary for gdm object
 summary.gdm <- function( object , file = NULL , ... ){

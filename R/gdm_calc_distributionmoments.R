@@ -1,3 +1,6 @@
+## File Name: gdm_calc_distributionmoments.R
+## File Version: 0.01
+## File Last Change: 2017-06-12 14:33:31
 
 				
 #######################################################################

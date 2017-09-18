@@ -1,3 +1,6 @@
+## File Name: gdina_probitem.R
+## File Version: 0.11
+## File Last Change: 2017-06-05 13:09:06
 
 #################################################################################
 # calculate model implied probabilities in GDINA models

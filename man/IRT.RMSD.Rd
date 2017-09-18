@@ -1,3 +1,7 @@
+%% File Name: IRT.RMSD.Rd
+%% File Version: 0.11
+%% File Last Change: 2017-03-02 11:06:48
+
 \name{IRT.RMSD}
 \alias{IRT.RMSD}
 \alias{summary.IRT.RMSD}

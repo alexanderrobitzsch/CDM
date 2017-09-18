@@ -1,3 +1,7 @@
+%% File Name: data.dtmr.Rd
+%% File Version: 0.11
+%% File Last Change: 2017-01-31 14:08:30
+
 \name{data.dtmr}
 \alias{data.dtmr}
 \docType{data}

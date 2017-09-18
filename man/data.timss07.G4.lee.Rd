@@ -1,3 +1,7 @@
+%% File Name: data.timss07.G4.lee.Rd
+%% File Version: 0.05
+%% File Last Change: 2017-01-31 14:08:30
+
 \name{data.timss07.G4.lee}
 \alias{data.timss07.G4.lee}
 \docType{data}

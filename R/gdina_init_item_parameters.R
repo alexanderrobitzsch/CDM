@@ -1,3 +1,6 @@
+## File Name: gdina_init_item_parameters.R
+## File Version: 0.02
+## File Last Change: 2017-06-05 13:18:08
 
 gdina_init_item_parameters <- function( delta.init, linkfct, J, seed, Mj,
 	delta.basispar.init, delta.designmatrix, Mj.index, rule )

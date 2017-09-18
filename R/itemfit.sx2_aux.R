@@ -1,3 +1,6 @@
+## File Name: itemfit.sx2_aux.R
+## File Version: 3.08
+## File Last Change: 2017-03-07 19:38:26
 
 
 #################################################

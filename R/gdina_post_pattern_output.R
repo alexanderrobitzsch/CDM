@@ -1,3 +1,6 @@
+## File Name: gdina_post_pattern_output.R
+## File Version: 0.01
+## File Last Change: 2017-06-05 14:49:58
 
 gdina_post_pattern_output <- function(G, p.xi.aj, zeroprob.skillclasses,
 	item.patt, attr.patt.c, p.aj.xi, item.patt.subj, group2, attr.patt, K )

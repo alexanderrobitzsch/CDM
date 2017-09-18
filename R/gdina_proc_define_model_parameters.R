@@ -1,3 +1,6 @@
+## File Name: gdina_proc_define_model_parameters.R
+## File Version: 0.01
+## File Last Change: 2017-06-05 13:57:08
 
 gdina_proc_define_model_parameters <- function( dat.items, q.matrix, rule, HOGDINA, G )
 {

@@ -1,3 +1,6 @@
+## File Name: item_by_group.R
+## File Version: 0.12
+## File Last Change: 2017-01-31 14:07:28
 
 ##########################################################
 # creates an extended dataset with item responses in which

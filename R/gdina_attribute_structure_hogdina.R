@@ -1,3 +1,6 @@
+## File Name: gdina_attribute_structure_hogdina.R
+## File Version: 0.03
+## File Last Change: 2017-06-04 19:26:04
 
 gdina_attribute_structure_hogdina <- function(G, attr.prob, attr.patt, wgt.theta ,
 			HOGDINA, a.attr, b.attr, theta.k )

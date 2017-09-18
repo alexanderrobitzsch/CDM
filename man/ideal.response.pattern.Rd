@@ -1,3 +1,7 @@
+%% File Name: ideal.response.pattern.Rd
+%% File Version: 0.06
+%% File Last Change: 2017-06-20 13:42:15
+
 \name{ideal.response.pattern}
 \alias{ideal.response.pattern}
 %- Also NEED an '\alias' for EACH other topic documented here.

@@ -1,3 +1,6 @@
+## File Name: gdina_post_skill_pattern.R
+## File Version: 0.01
+## File Last Change: 2017-06-05 18:02:53
 
 gdina_post_skill_pattern <- function( attr.prob, G, attr.patt.c, K, maxAttr, q.matrix,
 		q.entries, attr.patt )

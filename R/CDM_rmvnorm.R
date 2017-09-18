@@ -1,3 +1,6 @@
+## File Name: CDM_rmvnorm.R
+## File Version: 0.01
+## File Last Change: 2017-07-12 10:41:43
 
 
 CDM_rmvnorm <- function(n, mean, sigma, ...)

@@ -1,3 +1,7 @@
+%% File Name: IRT.jackknife.Rd
+%% File Version: 0.14
+%% File Last Change: 2017-01-31 14:08:31
+
 \name{IRT.jackknife}
 \alias{IRT.jackknife}
 \alias{IRT.jackknife.gdina}

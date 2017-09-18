@@ -1,3 +1,6 @@
+## File Name: modelfit.cor.R
+## File Version: 1.19
+## File Last Change: 2017-07-11 10:03:00
 
 #############################################################################
 modelfit.cor <-

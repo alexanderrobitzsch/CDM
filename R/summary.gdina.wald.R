@@ -1,3 +1,6 @@
+## File Name: summary.gdina.wald.R
+## File Version: 0.02
+## File Last Change: 2017-01-31 14:07:30
 
 ##############################################################
 # summary method	

@@ -1,3 +1,6 @@
+## File Name: gdina_post_posterior_output.R
+## File Version: 0.02
+## File Last Change: 2017-06-17 14:09:55
 
 gdina_post_posterior_output <- function(G, p.aj.xi, p.xi.aj, pattern, data, item.patt.subj,
 		item.patt, attr.prob, group)

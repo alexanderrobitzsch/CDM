@@ -1,3 +1,6 @@
+## File Name: gdina_post_calc_se.R
+## File Version: 0.01
+## File Last Change: 2017-06-05 18:39:09
 
 gdina_post_calc_se <- function(G, p.aj.xi, item.patt.freq, attr.prob, p.xi.aj, IP, J,
 		calc.se, aggr.attr.patt, Aj, Mj, R.lj, I.lj, item.patt.split, resp.patt, delta, linkfct,

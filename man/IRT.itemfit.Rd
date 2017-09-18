@@ -1,3 +1,7 @@
+%% File Name: IRT.itemfit.Rd
+%% File Version: 0.04
+%% File Last Change: 2017-01-31 14:08:31
+
 \name{IRT.itemfit}
 \alias{IRT.itemfit}
 \alias{IRT.itemfit.din}

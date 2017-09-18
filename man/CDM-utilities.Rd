@@ -1,3 +1,7 @@
+%% File Name: CDM-utilities.Rd
+%% File Version: 0.03
+%% File Last Change: 2017-07-12 10:42:40
+
 \name{CDM-utilities}
 \alias{CDM-utilities}
 \alias{CDM_require_namespace}

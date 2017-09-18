@@ -1,3 +1,6 @@
+## File Name: IRT_RMSD_calc_distributions.R
+## File Version: 0.02
+## File Last Change: 2017-02-26 18:35:25
 
 IRT_RMSD_calc_distributions <- function( n.ik , pi.k , eps = 1E-30 )
 {

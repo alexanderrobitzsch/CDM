@@ -1,3 +1,6 @@
+## File Name: gdina_calc_expected_counts.R
+## File Version: 0.05
+## File Last Change: 2017-06-17 14:08:19
 
 gdina_calc_expected_counts <- function( G , J , L , item.patt.freq, p.aj.xi, some.missings ,
 		ipr , attr.patt.c, resp.patt, item.patt.split, data )

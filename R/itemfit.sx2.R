@@ -1,3 +1,6 @@
+## File Name: itemfit.sx2.R
+## File Version: 3.11
+## File Last Change: 2017-03-07 19:38:41
 
 ############################################################
 # Item fit according to the S-X^2 statistic 

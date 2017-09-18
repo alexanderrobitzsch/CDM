@@ -1,3 +1,6 @@
+## File Name: gdina_proc_split_item_response_patterns.R
+## File Version: 0.01
+## File Last Change: 2017-06-05 14:12:17
 
 gdina_proc_split_item_response_patterns <- function( item.patt, J )
 {

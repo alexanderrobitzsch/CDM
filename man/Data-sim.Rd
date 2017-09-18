@@ -1,3 +1,7 @@
+%% File Name: Data-sim.Rd
+%% File Version: 1.13
+%% File Last Change: 2017-01-31 14:08:30
+
 \name{Data-sim}
 
 \alias{Data-sim}

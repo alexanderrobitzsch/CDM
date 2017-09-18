@@ -1,3 +1,6 @@
+## File Name: gdm_progress_em_algorithm.R
+## File Version: 0.01
+## File Last Change: 2017-06-12 14:23:22
 
 gdm_progress_em_algorithm <- function( progress , disp, iter, dev, dev0 , b_change ,
 		a_change, deltadiff, dev_digits=4, parm_digits=6 )

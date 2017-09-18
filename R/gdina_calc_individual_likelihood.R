@@ -1,3 +1,6 @@
+## File Name: gdina_calc_individual_likelihood.R
+## File Version: 0.02
+## File Last Change: 2017-06-05 12:14:54
 
 gdina_calc_individual_likelihood <- function(IP, L, pjM, item.patt.split, J,
 		resp.ind.list, zeroprob.skillclasses)

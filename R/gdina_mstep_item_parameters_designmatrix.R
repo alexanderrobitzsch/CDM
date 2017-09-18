@@ -1,3 +1,6 @@
+## File Name: gdina_mstep_item_parameters_designmatrix.R
+## File Version: 0.02
+## File Last Change: 2017-06-17 14:07:19
 
 gdina_mstep_item_parameters_designmatrix <- function( delta.new , delta.designmatrix ,
 		delta.basispar.lower, delta.basispar.upper, Mj.index, J )

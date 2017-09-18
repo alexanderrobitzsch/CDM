@@ -1,3 +1,7 @@
+%% File Name: gdina.wald.Rd
+%% File Version: 0.22
+%% File Last Change: 2017-01-31 14:08:31
+
 \name{gdina.wald}
 \alias{gdina.wald}
 \alias{summary.gdina.wald}

@@ -1,3 +1,6 @@
+## File Name: gdm_Qmatrix.R
+## File Version: 0.01
+## File Last Change: 2017-06-14 18:40:30
 
 			
 #################################################

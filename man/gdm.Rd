@@ -1,3 +1,7 @@
+%% File Name: gdm.Rd
+%% File Version: 4.28
+%% File Last Change: 2017-06-17 14:03:44
+
 \name{gdm}
 \alias{gdm}
 \alias{summary.gdm}

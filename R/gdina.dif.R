@@ -1,11 +1,11 @@
 ## File Name: gdina.dif.R
-## File Version: 1.12
-## File Last Change: 2017-01-31 14:07:26
+## File Version: 1.15
+## File Last Change: 2017-09-28 15:39:36
 ##########################################################
 # differential item functioning in the GDINA model
 # a Wald test is used for testing item-wise DIF
-gdina.dif <- function( object ){
-
+gdina.dif <- function( object )
+{
 	ocontrol <- object$control
 	G <- object$G
 	J <- ncol(object$dat)
@@ -20,7 +20,7 @@ gdina.dif <- function( object ){
 		names(prob.exp.group[[gg]]) <- colnames(object$data)
 		delta.group[[gg]] <- res.gg$delta
 		varmat.group[[gg]] <- res.gg$varmat.delta
-				}
+	}
 	ndj <- res.gg$ndj
 	# expanded delta vectors and design matrix
 	Rdesign <- varmat_all <- delta_all <- as.list(1:J)
@@ -40,11 +40,11 @@ gdina.dif <- function( object ){
 				for (vv in 1:nj){
 						Rdesign.jj[ vv + nj*(gg-1) , vv + nj*(gg-1) ] <- 1
 						Rdesign.jj[ vv + nj*(gg-1) , vv + nj*(gg) ] <- -1
-								}
-						}
+				}
+			}
 		ocoef[ ocoef$itemno ==	jj , paste0("est_Group",gg	) ] <- delta.group[[gg]][[jj]]
 		ocoef[ ocoef$itemno ==	jj , paste0("se_Group",gg	) ] <- sqrt( diag(varmat.group[[gg]][[jj]] ))
-						}
+		}
 		varmat_all[[jj]] <- varmat.jj
 		delta_all[[jj]] <- delta.jj            
 		Rdesign[[jj]] <- Rdesign.jj            
@@ -72,13 +72,6 @@ gdina.dif <- function( object ){
 			"varmat_all" = varmat_all , "prob.exp.group" = prob.exp.group)
 	class(res) <- "gdina.dif"
 	return(res)
-	}
+}
 ##########################################################
 
-summary.gdina.dif <- function(object,...){
-		stats <- object$difstats
-		for (vv in 2:ncol(stats) ){ 
-			stats[,vv] <- round(stats[,vv],4) 
-				}		
-		print(stats)
-			}

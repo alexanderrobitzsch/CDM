@@ -1,6 +1,6 @@
 %% File Name: CDM-utilities.Rd
-%% File Version: 0.03
-%% File Last Change: 2017-07-12 10:42:40
+%% File Version: 0.04
+%% File Last Change: 2017-09-20 09:41:10
 
 \name{CDM-utilities}
 \alias{CDM-utilities}
@@ -20,7 +20,7 @@ Utility functions in \pkg{CDM}.
 CDM_require_namespace(pkg)    
 
 ## mvtnorm::rmvnorm with vector conversion for n=1
-CDM_rmvnorm(n, mean, sigma, ...)
+CDM_rmvnorm(n, mean=NULL, sigma, ...)
 }
 
 \arguments{

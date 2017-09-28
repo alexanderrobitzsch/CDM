@@ -1,10 +1,11 @@
 ## File Name: gdina.dif_aux.R
-## File Version: 1.32
-## File Last Change: 2017-01-31 14:07:26
+## File Version: 1.38
+## File Last Change: 2017-09-28 15:38:29
 ###############################################
 # auxiliary calculations in gdina model for
 # detection of differential item functioning
-gdina.dif.aux <- function( ocontrol , gg , data ){
+gdina.dif.aux <- function( ocontrol , gg , data )
+{
 	aggr.patt.designmatrix <- ocontrol$aggr.patt.designmatrix
 	Aj <- ocontrol$Aj
 	Mj <- ocontrol$Mj
@@ -15,11 +16,10 @@ gdina.dif.aux <- function( ocontrol , gg , data ){
 	aggr.attr.patt <- ocontrol$aggr.attr.patt
 	IP <- ocontrol$IP
 	p.aj.xi <- ocontrol$p.aj.xi[,,gg]
-	
-	ind1 <- match( ocontrol$item.patt , ocontrol$item.patt.subj)
+
+	ind1 <- match( ocontrol$item.patt[,gg] , ocontrol$item.patt.subj)
 	ind1 <- stats::na.omit(ind1)
-	p.aj.xi <- p.aj.xi[ ind1 , ]
-	
+	# p.aj.xi <- p.aj.xi[ ind1 , ]	
 	item.patt.split <- ocontrol$item.patt.split
 	resp.patt <- ocontrol$resp.patt
 	item.patt.freq <- ocontrol$item.patt.freq[,gg]
@@ -86,10 +86,10 @@ gdina.dif.aux <- function( ocontrol , gg , data ){
                 for (kk in 1:M1){
                     pg1 <-  PAJXI[ , apjj == kk  ]                  
                     if ( is.vector(pg1) ){ 
-                                p.ajast.xi[,kk] <- pg1 
-                                    } else {
-                                p.ajast.xi[,kk] <- rowSums( pg1 ) 
-                                        }
+                        p.ajast.xi[,kk] <- pg1 
+                    } else {
+                        p.ajast.xi[,kk] <- rowSums( pg1 ) 
+                    }
                 }   
 			se_version <- ocontrol$se_version		
 			res_jj <- gdina_se_itemwise( R.lj_jj = R.lj[jj,] , I.lj_jj = I.lj[jj,] , 
@@ -123,20 +123,20 @@ gdina.dif.aux <- function( ocontrol , gg , data ){
                                     }
                 try( a1 <- solve( infomat.jj + diag( eps2 , ncol(infomat.jj) ) ) )
                 if ( is.null(a1)){ 
-                        cat( "Item" , colnames(data)[jj] , "Singular item parameter covariance matrix\n")
-                        a1 <- NA*infomat.jj 
-                            }
+                    cat( "Item" , colnames(data)[jj] , "Singular item parameter covariance matrix\n")
+                    a1 <- NA*infomat.jj 
+                }
                 varmat.palj[[jj]] <- Ijj <- a1
                 Wj <- diag( Ilj.ast[,2] )   
                 if ( ( method == "ULS" ) ){             
                     x1 <- t(Mjjj) %*% Mjjj  
-                    diag(x1) <- diag(x1) + 10^(-8)                      
+                    diag(x1) <- diag(x1) + 1E-8                  
                     Wjjj <- solve( x1 ) %*% t(Mjjj)
-                                    } else {
+                } else {
                     x1 <- t(Mjjj) %*% Wj %*% Mjjj                                   
-                    diag(x1) <- diag(x1) + 10^(-8)                  
+                    diag(x1) <- diag(x1) + 1E-8
                     Wjjj <- solve( x1 ) %*% t(Mjjj) %*% Wj
-                                            }
+                }
                 if ( linkfct == "logit" ){
                     pjjj.link <- 1 / ( ( pjjj * ( 1 - pjjj ) ) + eps2 )
                     pjjj.link <- diag( pjjj.link )
@@ -146,7 +146,7 @@ gdina.dif.aux <- function( ocontrol , gg , data ){
                     pjjj.link <- 1 /  ( pjjj  + eps2 )
                     pjjj.link <- diag( pjjj.link )
                     Wjjj <- Wjjj %*% pjjj.link
-                        }
+                }
                 varmat.delta[[jj]] <- Wjjj %*% Ijj %*% t(Wjjj) 
 				# varmat.delta[[jj]] <- t(Wjjj) %*% Ijj %*% Wjjj  # this is wrong!!
 		
@@ -158,5 +158,5 @@ gdina.dif.aux <- function( ocontrol , gg , data ){
 	res <- list( "delta" = delta , "varmat.delta" = varmat.delta ,
 		"ndj" = ndj , "prob_exp" = prob_exp )
     return(res)
-		}
+}
 #####################################################################

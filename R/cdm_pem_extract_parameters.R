@@ -1,0 +1,12 @@
+## File Name: cdm_pem_extract_parameters.R
+## File Version: 0.01
+## File Last Change: 2017-10-04 17:19:14
+
+cdm_pem_extract_parameters <- function( parm, parmgroup, pem_parameter_index )
+{
+	info <- pem_parameter_index[[ parmgroup ]]
+	x_dim <- info$dim
+	x <- parm[ info$index ]
+	x <- cdm_pem_adjust_dimension(x=x, x_dim=x_dim )
+	return(x)
+}

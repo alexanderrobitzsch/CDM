@@ -1,12 +1,12 @@
 ## File Name: gdm_est_skillspace_traits.R
-## File Version: 0.02
-## File Last Change: 2017-06-12 14:10:07
+## File Version: 0.04
+## File Last Change: 2017-10-06 10:39:41
 
 #####################################################
 # estimation of skill space
 gdm_est_skillspace_traits <- function( n.ik , a , b , theta.k , Qmatrix , I , K , TP,
-		TD , numdiff.parm , max.increment , msteps , convM ){
-	# sum over groups
+		TD , numdiff.parm , max.increment , msteps , convM )
+{
 	n.ik0 <- apply( n.ik , c(1,2,3) , sum )
 	h <- numdiff.parm
 	parchange <- 1000
@@ -25,9 +25,11 @@ gdm_est_skillspace_traits <- function( n.ik , a , b , theta.k , Qmatrix , I , K 
 			theta.k2 <- theta.k - h*Q0
 			pjk2 <- gdm_calc_prob( a=a, b=b, thetaDes=theta.k2, Qmatrix=Qmatrix, I=I, K=K, TP=TP, TD=TD ) 
 			res <- gdm_numdiff_index( pjk=pjk, pjk1=pjk1, pjk2=pjk2, n.ik=n.ik0, max.increment=max.increment, 
-						numdiff.parm=numdiff.parm, eps=1E-80 ) 
-			theta.k[,dd] <- theta.k[,dd] + res$increment		
-			se.theta.k[,dd] <- 1 / sqrt( abs(res$d2) )
+						numdiff.parm=numdiff.parm ) 
+			increment <- res$increment
+			d2 <- res$d2
+			theta.k[,dd] <- theta.k[,dd] + increment		
+			se.theta.k[,dd] <- 1 / sqrt( abs(d2) )
 		}
 		iter <- iter + 1 
 		parchange <- max( abs( theta.k - theta.k0 ))
@@ -36,7 +38,7 @@ gdm_est_skillspace_traits <- function( n.ik , a , b , theta.k , Qmatrix , I , K 
 	#--- OUTPUT
 	res <- list( theta.k = theta.k , se.theta.k = se.theta.k )
 	return(res)
-	}
+}
 ##########################################################
 
 .gdm.est.skillspace.traits <- gdm_est_skillspace_traits

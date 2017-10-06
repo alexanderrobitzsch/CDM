@@ -22,8 +22,20 @@ R script and (if necessary) a corresponding dataset.
 
 
 
+
 --------------------------------------------------------------
-VERSIONS CDM 5.9  |  2017-09-28  |  Last: CDM 5.9-9
+VERSIONS CDM 6.0  |  2017-10-06  |  Last: CDM 6.0-1
+--------------------------------------------------------------
+
+NOTE  * xxx
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
+
+
+
+--------------------------------------------------------------
+VERSIONS CDM 5.9  |  2017-10-06  |  Last: CDM 5.9-27
 --------------------------------------------------------------
 
 FIXED * fixed a bug in 'gdina' function in argument 'invariance'
@@ -31,10 +43,13 @@ FIXED * fixed a bug in 'gdina' function in argument 'invariance'
         (thanks to Hamdollah Ravand) 
 FIXED * fixed the broken function 'gdina.dif'
         (thanks again to Hamdollah Ravand)
+ADDED * added EM acceleration method P-EM in function 'slca' by 
+        argument 'PEM'
+NOTE  * included P-EM utility functions 'cdm_pen_XXX' and
+        'cdm_print_summary_data_frame'
 
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: gdina (5.5)
-
 
 --------------------------------------------------------------
 VERSIONS CDM 5.8  |  2017-08-07  |  Last: CDM 5.8-9

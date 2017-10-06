@@ -1,6 +1,6 @@
 ## File Name: slca.R
-## File Version: 1.43
-## File Last Change: 2017-06-24 11:43:55
+## File Version: 1.816
+## File Last Change: 2017-10-06 11:02:35
 
 
 ###########################################
@@ -13,9 +13,10 @@ slca <- function( data , group=NULL,
 	Xlambda.constr.V=NULL , Xlambda.constr.c=NULL , 
 	delta.designmatrix =NULL ,  delta.init = NULL , 
 	delta.fixed = NULL , delta.linkfct = "log" ,  
-    maxiter=1000, conv=10^(-5), globconv=10^(-5), msteps=10 , 
-	convM=.0005 , decrease.increments = FALSE , oldfac = 0 , 
-	seed=NULL , progress = TRUE ,  ...){	
+    maxiter=1000, conv=1E-5, globconv=1E-5, msteps=10 , 
+	convM=.0005 , decrease.increments = FALSE , oldfac = 0 , dampening_factor=1.01,
+	seed=NULL , progress = TRUE , PEM=TRUE, PEM_itermax=maxiter, ...)
+{	
 	#************************************************************
 	# mean.constraint [ dimension , group , value ]
 	# Sigma.constraint [ dimension1 , dimension2 , group , value ]	
@@ -26,6 +27,8 @@ slca <- function( data , group=NULL,
 	s1 <- Sys.time()
 	e1 <- environment()	
 	use.freqpatt <- FALSE 
+	deviance.history <- rep(NA, maxiter)	
+	
 	## prevent from warnings in R CMD check "no visible binding"
 	## gdm: no visible binding for global variable 'TD'
 	TD <- TP <- EAP.rel <- mean.trait <- sd.trait <- skewness.trait <- NULL
@@ -44,93 +47,66 @@ slca <- function( data , group=NULL,
 	dat.ind <- as.list( 1:(K+1) )
 	for (ii in 0:K){
 		dat.ind[[ii+1]] <- 1 * ( dat==ii )*dat.resp
-				}
+	}
 	I <- ncol(dat)	# number of items
 	n <- nrow(dat)
-# cat("a300\n")	
+
 	# arrange groups
 	if ( is.null(group)){ 
 		G <- 1 
 		group0 <- group <- rep(1,n)
-				} 
-			else {
+	} else {
 		group0 <- group
-	  if( ! ( is.numeric(group) ) ){
+		if( ! ( is.numeric(group) ) ){
 			gr2 <- unique( sort(paste( group ) ))
-			    } else {
-		gr2 <- unique( sort( group ) )
-						}
+		} else {
+			gr2 <- unique( sort( group ) )
+		}
 		G <- length(gr2)
 		group <- match( group , gr2 )
-							}
+	}
 	group.stat <- NULL
 	if (G>1){
 		a1 <- stats::aggregate( 1+0*group , list(group) , sum )
 		a2 <- rep("",G)
 		for (gg in 1:G){
 			a2[gg] <- group0[ which( group == gg )[1]  ]
-						}
+		}
 		group.stat <- cbind( a2 , a1 )
 		colnames(group.stat) <- c(  "group.orig" , "group" , "N"  )
 	    Ngroup <- a1[,2]		
-			}	
-    if (G==1){ Ngroup <- length(group) }
-# cat("a400\n")
+	}	
+    if (G==1){ 
+		Ngroup <- length(group) 
+	}
+
 	KK <- K	# if KK == 1 then a slope parameter for all items is estimated
     deltaNULL <- 0
 	if ( is.null(delta.designmatrix) ){
 	    deltaNULL <- 1
 		delta.designmatrix <- diag( dim(Xdes)[3] )
-							}
-# print(delta.designmatrix)	
+	}
+
 	# lambda basis parameters for X
-	if ( is.null(seed) ){
-		seed.used <- round( stats::runif(1,2,10000 ) )
-					} else { seed.used <- seed }
-	set.seed( seed.used )
 	
+	#--- set seed
+	res <- slca_set_seed(seed=seed)	
+	seed.used <- res$seed.used
+	
+	#--- inits Xlambda
 	Nlam <- dim(Xdes)[[4]]
-	if ( is.null( Xlambda.init ) ){
-		Xlambda.init <- stats::runif( Nlam , -1 , 1 )
-						}
-	Xlambda <- Xlambda.init
+	Xlambda <- Xlambda.init <- slca_inits_Xlambda( Xlambda.init=Xlambda.init, Xdes=Xdes, Nlam=Nlam ) 
 	
-	# starting values for distributions
-	
-#    delta.init <- matrix(1,nrow=1,ncol=1)
-	TP <- nrow(delta.designmatrix)
+	#-- starting values for distributions	
+	res <- slca_inits_skill_distribution( delta.designmatrix=delta.designmatrix, delta.init=delta.init, 
+				delta.linkfct=delta.linkfct, G=G, K=K, I=I ) 
+	TP <- res$TP
+	n.ik <- res$n.ik
+	pi.k <- res$pi.k
+	delta <- res$delta
 
-	if (  ! is.null(delta.init) ){	
-		delta <- delta.init
-		if ( delta.linkfct == "log"){
-			pik <- exp( delta.designmatrix %*% delta.init[,1] )
-						} else {
-			pik <- stats::plogis( delta.designmatrix %*% delta.init[,1] )
-							}
-									} else {
-		# delta.init <- runif( Nlam , -.5 , .5 )
-		pik <- rep( 1 /TP , TP ) + runif(TP , 0 , .5 )
-		pik <- pik / sum(pik)
-		if ( delta.linkfct == "logit"){
-		g1 <- solve( crossprod( delta.designmatrix )) %*% 
-					t( delta.designmatrix) %*% pik				
-				delta <- matrix( g1[,1] , 
-						nrow=ncol(delta.designmatrix) , ncol=G)
-						} else {
-			delta <- matrix( 0 , ncol(delta.designmatrix) , G )		
-		delta[1,] <- 1		}
-					}
-
-	pi.k <- matrix( 0 , TP , G )
-	for (gg in 1:G){ pi.k[,gg] <- pik }
-	n.ik <- array( 0 , dim=c(TP,I,K+1,G) )	
-
-
-	#***
-	# response patterns
-    resp.ind.list <- list( 1:I )
-	for (ii in 1:I){ resp.ind.list[[ii]] <- which( dat.resp[,ii] == 1)  }	
-#cat("a900\n")	
+	#--- response patterns
+	resp.ind.list <- gdm_proc_response_indicators(dat.resp=dat.resp)		
 
 	se.Xlambda <- 0*Xlambda
 	max.increment.Xlambda <- .3
@@ -138,223 +114,166 @@ slca <- function( data , group=NULL,
 	# lambda constraints
 	Xlambda.constraint <- NULL
 
-
 	#***
 	# preparations for calc.counts
-	dat.ind2 <- as.list( 1:(K+1) )
-	ind.group <- as.list( 1:G )
-    for (kk in 1:(K+1)){ 
-		l1 <- as.list(1:G)
-		for (gg in 1:G){
-		  if ( ! use.freqpatt ){
-			ind.gg <- which( group == gg )
-			ind.group[[gg]] <- ind.gg
-			dkk <- (dat.ind[[kk]])[ ind.gg , ]
-			l1[[gg]] <- dkk * dat.resp[ind.gg,] * weights[ind.gg] 	
-							}
-		  if ( use.freqpatt ){
-			dkk <- dat.ind[[kk]]
-			if (G>1){ 	wgg <- weights[,gg]	 }
-			if (G==1){ wgg <- weights 
-					ind.group[[gg]] <- which( group==gg)
-							}
-			l1[[gg]] <- dkk * dat.resp * wgg 
-							}
-						}   # end gg
-			dat.ind2[[kk]] <- l1
-					}
-
-# print("p400")					
+	res <- gdm_prep_calc_counts( K=K, G=G, group=group, weights=weights, dat.resp=dat.resp, dat.ind=dat.ind, 
+				use.freqpatt=use.freqpatt ) 
+	ind.group <- res$ind.group
+	dat.ind2 <- res$dat.ind2				
 	
 	#*****
 	# reducing computational burden for design matrix
 	dimXdes <- dim(Xdes)
-	Xdes_ <- as.vector(Xdes)
-	res <- calc_Xdes( Xdes_ , dimXdes )
+	res <- calc_Xdes( XDES=as.vector(Xdes), dimXdes=dimXdes )		
 	# XdesM     [ii,kk,tt,ll, value ] 
 	NX <- res$NXdesM
 	XdesM <- res$XdesM[1:NX,]
 	XdesM <- XdesM[ order( XdesM[,1]*NX + XdesM[,3] ) , ]	
 	
 	# Xlambda constraints	
+	V <- e2 <- V1 <- NULL
 	if ( ! is.null(Xlambda.constr.V) ){
-			V <- Xlambda.constr.V
-			e2 <- matrix( Xlambda.constr.c , nrow=ncol(V) , ncol=1 )
-			V1 <- solve( crossprod(V) )
-										}				
+		V <- Xlambda.constr.V
+		e2 <- matrix( Xlambda.constr.c , nrow=ncol(V) , ncol=1 )
+		V1 <- solve( crossprod(V) )
+	}				
+
+
+	#-- preliminaries PEM acceleration
+	if (PEM){	
+		envir <- environment()	
+		pem_pars <- c("delta","Xlambda")				
+		pem_output_vars <- c("pi.k","Xlambda","delta")
+		parmlist <- cdm_pem_inits_assign_parmlist(pem_pars=pem_pars, envir=envir)
+		res <- cdm_pem_inits( parmlist=parmlist)
+		pem_parameter_index <- res$pem_parameter_index
+		pem_parameter_sequence <- res$pem_parameter_sequence				
+		PEM <- TRUE		
+	}
+
+
+	
+	#- for posterior calculation
+	gwt0 <- matrix( 1 , nrow=n , ncol=TP )	
 					
 	#---
 	# initial values algorithm
+	max.increment <- 1
 	dev <- 0	; iter <- 0
 	globconv1 <- conv1 <- 1000
 	disp <- paste( paste( rep(".", 70 ) , collapse="") ,"\n", sep="")
 	mindev <- Inf
-# cat("s700\n")	
+	iterate <- TRUE
+	
 	############################################
 	# BEGIN MML Algorithm
 	############################################
 		
-	while( ( iter < maxiter ) & ( ( globconv1 > globconv) | ( conv1 > conv) ) ){
+	while( ( iter < maxiter ) & ( ( globconv1 > globconv) | ( conv1 > conv) ) & iterate ){
 		
-		#****
-		# collect old parameters
+		#--- collect old parameters
 		Xlambda0 <- Xlambda 
 		dev0 <- dev
 		delta0 <- delta
 		pi.k0 <- pi.k
-
-#  z0 <- Sys.time()
  		
-		#****
-		#1 calculate probabilities
-		probs <- .slca.calc.prob( XdesM , dimXdes , Xlambda )
+		#--- 1 calculate probabilities
+		probs <- slca_calc_prob( XdesM=XdesM, dimXdes=dimXdes, Xlambda=Xlambda ) 
 
-		#*****
-		#2 calculate individual likelihood
-		h1 <- matrix( 1 , nrow=n , ncol=TP )
-		res.hwt <- cdm_calc_posterior(rprobs= probs , gwt=h1 , 
-					 resp=dat , nitems= I , 
-					 resp.ind.list=resp.ind.list , normalization=FALSE , 
-					 thetasamp.density= NULL , snodes=0 )	
+		#--- 2 calculate individual likelihood
+		res.hwt <- slca_calc_posterior( probs=probs, gwt0=gwt0, dat=dat, I=I, resp.ind.list=resp.ind.list )
 		p.xi.aj <- res.hwt$hwt 	
 		
-		#*****
-		#3 calculate posterior and marginal distributions
-		res <- gdm_calc_post(pi.k,group,p.xi.aj,weights,G,ind.group,
-				use.freqpatt )
+		#--- 3 calculate posterior and marginal distributions
+		res <- gdm_calc_post( pi.k=pi.k, group=group, p.xi.aj=p.xi.aj, weights=weights, G=G, ind.group=ind.group, 
+					use.freqpatt=use.freqpatt ) 
 		p.aj.xi <- res$p.aj.xi
 		pi.k <- res$pi.k
-
-
-# cat("calc.post") ; z1 <- Sys.time(); print(z1-z0) ; z0 <- z1	
 		
 		#*****
 		#4 calculate expected counts
 		# n.ik [ 1:TP , 1:I , 1:(K+1) , 1:G ]
-		res <- .slca.calc.counts(G,weights,dat.ind,dat,
-					dat.resp,p.aj.xi,K,n.ik,TP,I,group , dat.ind2 , ind.group ,
-					use.freqpatt )		
+		res <- slca_calc_counts( G=G, weights=weights, dat.ind=dat.ind, dat=dat, dat.resp=dat.resp, p.aj.xi=p.aj.xi, K=K, 
+					n.ik=n.ik, TP=TP, I=I, group=group, dat.ind2=dat.ind2, ind.group=ind.group, 
+					use.freqpatt=use.freqpatt ) 
 		n.ik <- res$n.ik
 		n.ik1 <- res$n.ik1
 		N.ik <- res$N.ik
 		N.ik1 <- res$N.ik1
 
-# cat("calc.counts") ; z1 <- Sys.time(); print(z1-z0) ; z0 <- z1		
-
-
 		#*****
 		#5 M step: Xdelta parameter estimation
 		# n.ik  [1:TP,1:I,1:K,1:G]
 		# probs[1:I,1:K,1:TP]
-		res <- .slca.est.Xlambda(Xlambda , Xdes , probs, n.ik1, N.ik1, I, K, G,
-			max.increment,TP,msteps,convM , Xlambda.fixed , XdesM , dimXdes , oldfac)		
-	
+		res <- slca_est_Xlambda( Xlambda=Xlambda, Xdes=Xdes, probs=probs, n.ik1=n.ik1, N.ik1=N.ik1, I=I, K=K, G=G, 
+					max.increment=max.increment, TP=TP, msteps=msteps, convM=convM, 
+					Xlambda.fixed=Xlambda.fixed, XdesM=XdesM, dimXdes=dimXdes, oldfac=oldfac, 
+					decrease.increments=decrease.increments, dampening_factor=dampening_factor, 
+					Xlambda.constr.V=Xlambda.constr.V, e2=e2, V1=V1 ) 
 		Xlambda <- res$Xlambda
 		se.Xlambda <- res$se.Xlambda
-		if (decrease.increments){ 	
-				max.increment.Xlambda <- res$max.increment.Xlambda/1.01	
-				max.increment <- max.increment.Xlambda 
-							}
-		
-		# linear constraints on Xlambda parameters
-		
-		# below is code copied from rasch.pml3 (sirt package)
-		#................
-			# linear constraints: Let e be the vector of error
-			# correlations, V a design matrix and c a vector.
-			# The constraints can be written in the form 
-			# c = V * e . Then V*e - c = 0.
-			# See the Neuhaus paper:
-			# e_cons = e + V * (V'V)^(-1) * ( c - V * e )
-		if ( ! is.null(Xlambda.constr.V) ){
-            e1 <- matrix( Xlambda , ncol=1 )
-			Xlambda <- ( e1 + V %*% V1 %*% ( e2 - t(V) %*% e1 ) )[,1]		
-									}
-		#	if ( ! is.null( err.constraintM ) ){
-		#	    V1 <- solve( t(V) %*% V )
-		#		e1 <- matrix( eps.corr , ncol=1 )
-		#		eps.corr2 <- eps.corr + V %*% V1 %*% ( err.constraintV - t(V) %*% e1 ) 
-		#		eps.corr <- eps.corr2
-		#								}		
-		#    err.constraintM=NULL , err.constraintV=NULL ,
-		#     V <- err.constraintM
-		#     err.constraintV <- ...
-		#     Me=v
-		#.................
-		#          
-		#     c = V*Xlambda
-		
-		
-		# Xlambda.constr.V=NULL , Xlambda.constr.c=NULL , 
-
-
-
-# cat("est b") ; z1 <- Sys.time(); print(z1-z0) ; z0 <- z1		
-	
-						
+		max.increment <- res$max.increment	
+					
 		#*****
 		#7 M step: estimate reduced skillspace
-		res <- .slca.est.skillspace(Ngroup, pi.k , 
-			delta.designmatrix , G , delta  , delta.fixed , 
-			eps=10^(-4) , oldfac , delta.linkfct)
+		res <- slca_est_skillspace( Ngroup=Ngroup, pi.k=pi.k, delta.designmatrix=delta.designmatrix, G=G, delta=delta, 
+					delta.fixed=delta.fixed, eps=1E-7, oldfac=oldfac, delta.linkfct=delta.linkfct ) 
 		pi.k <- res$pi.k
 		delta <- res$delta
 		covdelta <- res$covdelta
 
-# cat("skillspace") ; z1 <- Sys.time(); print(z1-z0) ; z0 <- z1		
+		#******
+		#7a P-EM acceleration
 
+		#-- PEM acceleration
+		if (PEM){
+			#-- collect all parameters in a list
+			parmlist <- cdm_pem_inits_assign_parmlist(pem_pars=pem_pars, envir=envir)			
+			#-- define log-likelihood function
+			ll_fct <- "slca_calc_loglikelihood"
+			#- extract parameters
+			ll_args <- list( Xlambda=Xlambda, delta=delta, delta.designmatrix=delta.designmatrix, XdesM=XdesM, 
+							dimXdes=dimXdes, gwt0=gwt0, dat=dat, I=I, resp.ind.list=resp.ind.list, G=G, 
+							use.freqpatt=use.freqpatt, ind.group=ind.group, weights=weights, 
+							Xlambda.constr.V=Xlambda.constr.V, e2=e2, V1=V1 ) 
+			#-- apply acceleration function
+			res <- cdm_pem_acceleration( iter=iter, pem_parameter_index=pem_parameter_index, 
+						pem_parameter_sequence=pem_parameter_sequence, pem_pars=pem_pars, 
+						PEM_itermax=PEM_itermax, parmlist=parmlist, ll_fct=ll_fct, ll_args=ll_args )
+			#-- collect output					
+			PEM <- res$PEM
+			pem_parameter_sequence <- res$pem_parameter_sequence
+			if ( res$pem_update ){
+				cdm_pem_acceleration_assign_output_parameters( res_ll_fct=res$res_ll_fct, 
+							vars=pem_output_vars , envir=envir ) 
+			}
 			
+		}			
+		 
 		#*****
 		#8 calculate likelihood
 		# n.ik [ TP , I , K+1 , G ]
 		# N.ik [ TP , I , G ]
 		# probs [I , K+1 , TP ]
-		ll <- 0
-		for (gg in 1:G){ 
-#			ind.gg <- which(group==gg)
-			if ( ! use.freqpatt ){
-				ind.gg <- ind.group[[gg]]
-				ll <- ll + sum( weights[ind.gg] * log( rowSums( p.xi.aj[ind.gg,] * 
-							matrix( pi.k[,gg] , nrow= length(ind.gg) , ncol=nrow(pi.k) , byrow=TRUE ) ) ) )
-									}
-			if ( use.freqpatt ){
-			  if (G>1){   wgg <- weights[,gg]  }
-			  if (G==1){ wgg <- weights }
-				ll <- ll + sum( wgg * log( rowSums( p.xi.aj * 
-							matrix( pi.k[,gg] , nrow= nrow(p.xi.aj) , 
-									ncol=nrow(pi.k) , byrow=TRUE ) ) ) )
-									}
-							
-							}
+		ll <- slca_calc_likelihood( G=G, use.freqpatt=use.freqpatt, ind.group=ind.group, p.xi.aj=p.xi.aj, pi.k=pi.k, 
+					weights=weights ) 							
 		dev <- -2*ll	
+		deviance.history[iter+1] <- dev					
 
-#  cat("calc LL") ; z1 <- Sys.time(); print(z1-z0) ; z0 <- z1		
-
-		#~~~~~~~~~~~~~~~~~~~~~~~~~~
-		# display progress		
-		gg0 <- 0
-		gg1 <- abs( Xlambda - Xlambda0 )
-# print(Xlambda)		
-		pardiff <- max( gg1 , gg0 )
+		#---- display progress		
+		Xlambda_change <- gg1 <- abs( Xlambda - Xlambda0 )
+		pardiff <- max( gg1 )
 		deltadiff <- abs( pi.k - pi.k0 )	
 		conv1 <- max( c(pardiff,deltadiff))
 		globconv1 <- abs( dev - dev0) 
 		iter <- iter +1
-		if (progress){
-			cat(disp)	
-			cat("Iteration" , iter , "   " , paste( Sys.time() ) , "\n" )		
-			cat( paste( "   Deviance = "  , 
-					   round( dev , 4 ) , 
-					  if (iter > 1 ){ " | Deviance change = " } else {""} ,
-							 if( iter>1){round( - dev + dev0 , 6 )} else { ""}	,sep=""))
-			if ( dev > dev0 & (iter>1 ) ){ cat( "  Deviance increases!") } ; cat("\n")
-			cat( paste( "    Maximum Xlambda parameter change = " , 
-								 round( max( gg1) , 6 ) ,  " \n"   )  )  
-			cat( paste( "    Maximum distribution parameter change = " , 
-								 round( max( deltadiff ) , 6 ) ,  " \n"   )  )  
-			utils::flush.console()
-				}
-
+		#** print progress
+		slca_print_progress_em_algorithm( progress=progress, disp=disp, iter=iter, dev=dev, dev0=dev0, deltadiff=deltadiff, 
+					Xlambda_change=pardiff ) 
+		if ( globconv1 < globconv ){
+			iterate <- FALSE
+		}
+		
 		# save values corresponding to minimal deviance
 		if ( ( dev < mindev ) | ( iter == 1 ) ){
 			Xlambda.min <- Xlambda
@@ -366,55 +285,46 @@ slca <- function( data , group=NULL,
 			covdelta.min <- covdelta
 			mindev <- dev
 			iter.min <- iter
-					}
+		}
 		
-								}
-		############################################
-		# END MML Algorithm
-		############################################
+	}
+	############################################
+	# END MML Algorithm
+	############################################
 		
-			Xlambda.min -> Xlambda
-			se.Xlambda.min -> se.Xlambda
-			pi.k.min -> pi.k
-			n.ik.min -> n.ik
-			probs.min -> probs
-			delta.min -> delta
-			covdelta.min -> covdelta
-			mindev -> dev
-			# iter.min -> iter
+	Xlambda.min -> Xlambda
+	se.Xlambda.min -> se.Xlambda
+	pi.k.min -> pi.k
+	n.ik.min -> n.ik
+	probs.min -> probs
+	delta.min -> delta
+	covdelta.min -> covdelta
+	mindev -> dev
+	# iter.min -> iter
 		
-		# names
-		if ( is.null(dimnames(Xdes)[[4]] ) ){
-			dimnames(Xdes)[[4]] <- paste0("lam" , 1:Nlam ) }
-		if ( is.null(dimnames(Xdes)[[3]] ) ){
-			dimnames(Xdes)[[3]] <- paste0("Class" , 1:TP ) }	
+	# names
+	if ( is.null(dimnames(Xdes)[[4]] ) ){
+		dimnames(Xdes)[[4]] <- paste0("lam" , 1:Nlam ) 
+	}
+	if ( is.null(dimnames(Xdes)[[3]] ) ){
+		dimnames(Xdes)[[3]] <- paste0("Class" , 1:TP ) 
+	}	
 		
-		names(Xlambda) <- dimnames(Xdes)[[4]]
-		colnames(pi.k) <- paste0("Group" , 1:G )
-		rownames(pi.k) <- dimnames(Xdes)[[3]]		
+	names(Xlambda) <- dimnames(Xdes)[[4]]
+	colnames(pi.k) <- paste0("Group" , 1:G )
+	rownames(pi.k) <- dimnames(Xdes)[[3]]		
 		
-		#  collect item parameters
-		item1 <- array( aperm( probs , c(2,1,3)) , dim= c(I*maxK , TP) )
-		colnames(item1) <- dimnames(Xdes)[[3]] 
-		item <- data.frame("item" = rep(colnames(dat) , each=maxK) , 
+	#  collect item parameters
+	item1 <- array( aperm( probs , c(2,1,3)) , dim= c(I*maxK , TP) )
+	colnames(item1) <- dimnames(Xdes)[[3]] 
+	item <- data.frame("item" = rep(colnames(dat) , each=maxK) , 
 						"Cat" = rep(0:K , I) , item1 )			
-		rownames(item) <- paste0( rep(colnames(dat) , each=maxK) , "_Cat" , rep(0:K , I) )
+	rownames(item) <- paste0( rep(colnames(dat) , each=maxK) , "_Cat" , rep(0:K , I) )		
 		
-		
-#		res <- .gdm.collect.itempars( data , K , D , b , a , TD , thetaDes ,
-#					irtmodel , se.b , se.a , data0)
-#		.attach.environment( res , envir=e1 )					
-				
-		# calculate distribution properties
-#		res <- .gdm.calc.distributionmoments( D , G , pi.k , theta.k )
-#		.attach.environment( res , envir=e1 )	
-		
-		# Information criteria
-		ic <- .slca.calc.ic( dev , dat , G ,   
-					K, TP ,I , delta.designmatrix , delta.fixed ,
-					Xlambda , Xlambda.fixed , data0 , deltaNULL ,
-					Xlambda.constr.V
-						)
+	#-- Information criteria
+	ic <- slca_calc_ic( dev=dev, dat=dat, G=G, K=K, TP=TP, I=I, delta.designmatrix=delta.designmatrix, 
+				delta.fixed=delta.fixed, Xlambda=Xlambda, Xlambda.fixed=Xlambda.fixed, data0=data0, 
+				deltaNULL=deltaNULL, Xlambda.constr.V=Xlambda.constr.V ) 
 
 	#########################################
 	# item fit [ items , theta , categories ] 
@@ -434,43 +344,21 @@ slca <- function( data , group=NULL,
 	#*************************
 	# collect output	
 	s2 <- Sys.time()
-	res <- list( item = item , deviance=dev , ic = ic , 
-				Xlambda = Xlambda , se.Xlambda = se.Xlambda , 
-				pi.k=pi.k , pjk = probs , n.ik = n.ik ,  
-				G=G , I = ncol(data) , N = nrow(data) , 
-				TP=TP , delta = delta , covdelta=covdelta , 
-				delta.designmatrix = delta.designmatrix , 
-				MLE.class=mle.class , MAP.class = map.class , data = data ,
-				group.stat=group.stat )
-	res$p.xi.aj <- p.xi.aj ; res$posterior <- p.aj.xi 
-	res$K.item <- K.item
-	res$time <- list( s1=s1,s2=s2 , timediff=s2-s1)
-	res$iter <- iter
-	res$iter.min <- iter.min
-	res$converged <- iter < maxiter
-	
-	# some further values for modelfit.gdm
-	res$AIC <- res$ic$AIC
-	res$BIC <- res$ic$BIC	
-	res$Npars <- res$ic$np	
-	res$loglike <- - res$deviance / 2
-	res$seed.used <- seed.used
-	res$Xlambda.init <- Xlambda.init
-	res$delta.init <- delta.init
-	
-	res$control$weights <- weights
-	res$control$group <- group
-	
-	if (progress){
-                cat("----------------------------------- \n")
-                cat("Start:" , paste( s1) , "\n")
-                cat("End:" , paste(s2) , "\n")
-                cat("Difference:" , print(s2 -s1), "\n")
-                cat("----------------------------------- \n")
-				}
-	res$call <- cl			
+	time <- list( s1=s1,s2=s2 , timediff=s2-s1)
+	control <- list()
+	control$weights <- weights
+	control$group <- group	
+	res <- list( item=item, deviance=dev, ic=ic, Xlambda=Xlambda, se.Xlambda=se.Xlambda, pi.k=pi.k, pjk=probs, 
+				n.ik=n.ik, G=G, I=I, N=n, TP=TP, delta=delta, covdelta=covdelta, 
+				delta.designmatrix=delta.designmatrix, MLE.class=mle.class, MAP.class=map.class, 
+				data=data, group.stat=group.stat, p.xi.aj=p.xi.aj, posterior=p.aj.xi, K.item=K.item, 
+				time=time, iter=iter, iter.min=iter.min, converged=iter<maxiter, 
+				deviance.history=deviance.history, AIC=ic$AIC, BIC=ic$BIC, Npars=ic$np, loglike=-dev/2, 
+				seed.used=seed.used, PEM=PEM, Xlambda.init=Xlambda.init, delta.init=delta.init, 
+				control=control, call=cl ) 		
 	class(res) <- "slca"
-	return(res)
-				
-		}		
+	#--- print progress
+	slca_print_progress_end( s1=s1, s2=s2, progress=progress ) 
+	return(res)				
+}		
 ###################################################

@@ -1,8 +1,8 @@
 Package: CDM
 Type: Package
 Title: Cognitive Diagnosis Modeling
-Version: 5.9-9
-Date: 2017-09-28 15:46:11
+Version: 6.0-1
+Date: 2017-10-06 14:08:17
 Author: 
     Alexander Robitzsch [aut, cre], Thomas Kiefer [aut],
     Ann Cathrice George [aut], Ali Uenlue [aut]
@@ -16,7 +16,9 @@ Description:
     the multiple choice DINA model, the general diagnostic
     model (GDM), the multidimensional linear compensatory
     item response model and the structured latent class
-    model (SLCA).
+    model (SLCA). See George, Robitzsch, Kiefer, Gross, and
+    Uenlue (2017) <DOI:10.18637/jss.v074.i02> for further
+    details.
 Depends:
     R (>= 3.1), mvtnorm
 Imports: 

@@ -1,6 +1,6 @@
 ## File Name: bivariate_table_statistics.R
-## File Version: 0.04
-## File Last Change: 2017-06-22 13:02:37
+## File Version: 0.05
+## File Last Change: 2017-10-06 11:05:49
 
 bivariate_table_statistics <- function( freqtable, values=NULL)
 {
@@ -24,9 +24,9 @@ bivariate_table_statistics <- function( freqtable, values=NULL)
 	#--- bivariate statistics
 	valuesM <- outer( values, values )
 	probs <- freqtable / sum( freqtable )
-	cov <- sum( probs * valuesM ) - M1 * M2
-	cor <- cov / SD1 / SD2
+	cov1 <- sum( probs * valuesM ) - M1 * M2
+	cor1 <- cov1 / SD1 / SD2
 	#--- output
-	res <- list( cov=cov, cor=cor, M1=M1, SD1=SD1, K1=K1, M2=M2, SD2=SD2, K2=K2)
+	res <- list( cov=cov1, cor=cor1, M1=M1, SD1=SD1, K1=K1, M2=M2, SD2=SD2, K2=K2)
 	return(res)
 }

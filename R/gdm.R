@@ -1,6 +1,6 @@
 ## File Name: gdm.R
-## File Version: 8.615
-## File Last Change: 2017-06-14 18:51:02
+## File Version: 8.622
+## File Last Change: 2017-10-06 10:28:27
 
 
 ###########################################
@@ -98,7 +98,9 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
 	dat[ is.na(data) ] <- 0
 	dat0 <- dat
 	# center slopes
-	if ( irtmodel!="2PL" ){ centerslopes <- FALSE }	
+	if ( irtmodel!="2PL" ){ 
+		centerslopes <- FALSE 
+	}	
 	# use frequency pattern. If yes, then some data preparation follows.
 	if ( use.freqpatt ){
 		res <- gdm_data_prep( dat=dat, data=data, weights=weights, group=group ) 
@@ -174,31 +176,31 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
 	Qmatrix <- res$Qmatrix
 	a <- res$a
 
-	# constraints on item parameters
+	#--- constraints on item parameters
 	res <- gdm_constraints_itempars( b.constraint=b.constraint, a.constraint=a.constraint, K=K, TD=TD, 
 				Qmatrix=Qmatrix, a=a ) 
 	a.constraint <- res$a.constraint
 	b.constraint <- res$b.constraint
 	a <- res$a
 	
-	# starting values for distributions
+	#--- starting values for distributions
 	Sigma <- diag(1,D)
 	pik <- mvtnorm::dmvnorm( matrix( theta.k ,ncol=D) , mean=rep(0,D) , sigma = Sigma )
-	pi.k <- matrix( 0 , TP , G )
+	pi.k <- matrix( 0 , nrow=TP, ncol=G )
 	for (gg in 1:G){ 
-		pi.k[,gg] <- pik 
+		pi.k[,gg] <- cdm_sumnorm( pik )
 	}
-	n.ik <- array( 0 , dim=c(TP,I,K+1,G) )	
+	n.ik <- array( 0, dim=c(TP,I,K+1,G) )	
 	
-	#***
-	# response patterns
-    resp.ind.list <- list( 1:I )
-	for (ii in 1:I){ resp.ind.list[[ii]] <- which( dat.resp[,ii] == 1)  }	
+	#--- response patterns
+	resp.ind.list <- gdm_proc_response_indicators(dat.resp=dat.resp)	
 	
     #***
 	# extract number of skills per dimensions
 	skill.levels <- rep(0,D)
-	for (dd in 1:D){ skill.levels[dd] <- length( unique(theta.k[,dd] ) ) }
+	for (dd in 1:D){ 
+		skill.levels[dd] <- length( unique(theta.k[,dd] ) ) 
+	}
 	
 	#****
 	# create thetaDes design matrix for loglinear smoothing
@@ -232,28 +234,10 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
 	
 	#***
 	# preparations for calc.counts
-	dat.ind2 <- as.list( 1:(K+1) )
-	ind.group <- as.list( 1:G )
-    for (kk in 1:(K+1)){ 
-		l1 <- as.list(1:G)
-		for (gg in 1:G){
-		  if ( ! use.freqpatt ){
-			ind.gg <- which( group == gg )
-			ind.group[[gg]] <- ind.gg
-			dkk <- (dat.ind[[kk]])[ ind.gg , ]
-			l1[[gg]] <- dkk * dat.resp[ind.gg,] * weights[ind.gg] 	
-							}
-		  if ( use.freqpatt ){
-			dkk <- dat.ind[[kk]]
-			if (G>1){ 	wgg <- weights[,gg]	 }
-			if (G==1){ wgg <- weights 
-					ind.group[[gg]] <- which( group==gg)
-							}
-			l1[[gg]] <- dkk * dat.resp * wgg 
-							}
-						}   # end gg
-			dat.ind2[[kk]] <- l1
-					}
+	res <- gdm_prep_calc_counts( K=K, G=G, group=group, weights=weights, dat.resp=dat.resp, dat.ind=dat.ind, 
+				use.freqpatt=use.freqpatt ) 
+	ind.group <- res$ind.group
+	dat.ind2 <- res$dat.ind2	
 						
 	#---
 	# initial values algorithm
@@ -269,8 +253,11 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
 		
 		#****
 		# collect old parameters
-		b0 <- b ; a0 <- a ; dev0 <- dev
-		delta0 <- delta ; pi.k0 <- pi.k
+		b0 <- b
+		a0 <- a
+		dev0 <- dev
+		delta0 <- delta
+		pi.k0 <- pi.k
  		
 		#****
 		#1 calculate probabilities
@@ -352,7 +339,7 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
 		# estimate skillspace		
         if ( skillspace == "est" ){
 			res <- gdm_est_skillspace_traits( n.ik=n.ik, a=a, b=b, theta.k=theta.k, Qmatrix=Qmatrix, I=I, K=K, TP=TP, TD=TD, 
-						numdiff.parm=.001, max.increment=1, msteps=msteps, convM=convM ) 
+						numdiff.parm=1E-3, max.increment=1, msteps=msteps, convM=convM ) 
 			theta.k <- res$theta.k
 			se.theta.k <- res$se.theta.k
 			thetaDes <- theta.k

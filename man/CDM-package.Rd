@@ -1,6 +1,6 @@
 %% File Name: CDM-package.Rd
-%% File Version: 2.68
-%% File Last Change: 2017-02-08 10:03:34
+%% File Version: 2.69
+%% File Last Change: 2017-10-06 14:07:36
 
 \name{CDM-package}
 
@@ -13,13 +13,17 @@
 }
 
 \description{
-Functions for cognitive diagnosis modeling
-    and multidimensional item response modeling for dichotomous
-    and polytomous data. This package enables the estimation of the
-    DINA and DINO model, the multiple group (polytomous) GDINA model, 
-    the multiple choice DINA model, the general diagnostic model (GDM), 
-    the multidimensional linear compensatory item response model and 
-    the structured latent class model (SLCA).
+    Functions for cognitive diagnosis modeling
+    and multidimensional item response modeling for
+    dichotomous and polytomous data. This package
+    enables the estimation of the DINA and DINO model,
+    the multiple group (polytomous) GDINA model,
+    the multiple choice DINA model, the general diagnostic
+    model (GDM), the multidimensional linear compensatory
+    item response model and the structured latent class
+    model (SLCA). See George, Robitzsch, Kiefer, Gross, and
+    Uenlue (2017) <DOI:10.18637/jss.v074.i02> for further
+    details.
 }
 
 \details{

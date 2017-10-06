@@ -1,6 +1,6 @@
 %% File Name: slca.Rd
-%% File Version: 1.54
-%% File Last Change: 2017-01-31 14:08:32
+%% File Version: 1.59
+%% File Last Change: 2017-10-05 18:36:31
 
 \name{slca}
 \alias{slca}
@@ -24,8 +24,9 @@ slca(data, group = NULL, weights = rep(1, nrow(data)), Xdes,
   Xlambda.init = NULL, Xlambda.fixed = NULL, Xlambda.constr.V=NULL , 
   Xlambda.constr.c=NULL ,  delta.designmatrix = NULL, 
   delta.init = NULL, delta.fixed = NULL, delta.linkfct = "log" ,
-  maxiter = 1000, conv = 10^(-5), globconv = 10^(-5), msteps = 10, convM = 5e-04, 
-  decrease.increments = FALSE, oldfac=0, seed=NULL , progress=TRUE , ...)
+  maxiter = 1000, conv = 1e-5, globconv = 1e-5, msteps = 10, convM = 5e-04, 
+  decrease.increments = FALSE, oldfac=0, dampening_factor=1.01, seed=NULL, progress=TRUE,
+  PEM=TRUE, PEM_itermax=maxiter, ...)
   
 \method{summary}{slca}(object, file = NULL , \dots)
 
@@ -108,11 +109,17 @@ Global deviance convergence criterion
 	then the regularized estimate \eqn{x_t^{\ast}} is obtained by
 	\eqn{x_t^{\ast} = f x_{t-1} + (1-f) x_t}. Therefore, values of
 	\code{oldfac} near to one only allow for small changes in estimated
-	parameters from in succeeding iterations.}	
+	parameters from in succeeding iterations.}
+\item{dampening_factor}{Factor larger than one defining the specified decrease in
+   decrements in iterations.}    	
 \item{seed}{Simulation seed for initial parameters. The default
 of \code{NULL} corresponds to a random seed.}
 \item{progress}{An optional logical indicating whether the function
     should print the progress of iteration in the estimation process.  }
+\item{PEM}{Logical indicating whether the P-EM acceleration should be
+applied (Berlinet & Roland, 2012).}
+\item{PEM_itermax}{Number of iterations in which the P-EM method should be
+applied.}    
   \item{object}{A required object of class \code{slca}}
 \item{file}{Optional file name for a file in which \code{summary}
 should be sinked.}        
@@ -195,6 +202,10 @@ following entries:
 
 
 \references{
+Berlinet, A. F., & Roland, C. (2012). 
+Acceleration of the EM algorithm: P-EM versus epsilon algorithm.
+\emph{Computational Statistics & Data Analysis}, \bold{56}(12), 4122-4137.		
+
 Formann, A. K. (1992). Linear logistic latent class analysis for polytomous data. 
 \emph{Journal of the American Statistical Association}, \bold{87}, 476-486.	
 

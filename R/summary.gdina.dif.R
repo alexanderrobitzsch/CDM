@@ -1,6 +1,6 @@
 ## File Name: summary.gdina.dif.R
 ## File Version: 0.01
-## File Last Change: 2017-09-28 15:29:24
+## File Last Change: 2017-09-28 15:29:31
 
 
 summary.gdina.dif <- function(object,...)

@@ -1,16 +1,13 @@
-## File Name: slca.postprocess.R
-## File Version: 0.05
-## File Last Change: 2017-01-31 14:07:30
-
+## File Name: slca_calc_ic.R
+## File Version: 0.13
+## File Last Change: 2017-10-04 17:22:04
 
 
 #############################################################
 # calculation of information criteria and number of parameters
-.slca.calc.ic <- function( dev , dat , G ,   
-			K, TP ,I , delta.designmatrix , delta.fixed ,
-			Xlambda , Xlambda.fixed , data0 , deltaNULL ,
-			Xlambda.constr.V 
-				){
+slca_calc_ic <- function( dev, dat, G, K, TP ,I , delta.designmatrix , delta.fixed ,
+			Xlambda , Xlambda.fixed , data0 , deltaNULL , Xlambda.constr.V 	)
+{
     ic <- list( "deviance" = dev , "n" = nrow(data0) )
 	ic$traitpars <- 0
 	ic$itempars <- 0	
@@ -18,28 +15,22 @@
 	ic$itempars <- length(Xlambda)
 	if ( ! is.null(Xlambda.fixed ) ){
 		ic$itempars <- ic$itempars - nrow(Xlambda.fixed )
-									}
+	}
 	if ( ! is.null( Xlambda.constr.V ) ){
 		ic$itempars <- ic$itempars - ncol(Xlambda.constr.V )
-									}
+	}
 																
 	ic$traitpars <- G * ncol(delta.designmatrix ) - G*deltaNULL
 	if ( ! is.null(delta.fixed ) ){
 		ic$traitpars <- ic$traitpars - nrow(delta.fixed )
-									}
+	}
 	#***********************************************
 	# information criteria
 	ic$np <- ic$itempars + ic$traitpars	
-#	ic$n <- n # number of persons
-	# AIC
-        ic$AIC <- dev + 2*ic$np
-        # BIC
-        ic$BIC <- dev + ( log(ic$n) )*ic$np
-        # CAIC (conistent AIC)
-        ic$CAIC <- dev + ( log(ic$n) + 1 )*ic$np
-		# corrected AIC
-        ic$AICc <- ic$AIC + 2*ic$np * ( ic$np + 1 ) / ( ic$n - ic$np - 1 )				
+	#-- compute criteria
+	ic <- cdm_calc_information_criteria(ic=ic)		
     return(ic)
-		}
+}
 ###################################################################
 		
+.slca.calc.ic <- slca_calc_ic

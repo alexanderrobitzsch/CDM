@@ -1,12 +1,13 @@
 ## File Name: gdm_calc_post.R
-## File Version: 0.01
-## File Last Change: 2017-06-12 13:16:30
+## File Version: 0.02
+## File Last Change: 2017-10-06 10:30:08
 
 
 ###############################################################
 # calculation of posterior probabilities
-gdm_calc_post <- function(pi.k,group,p.xi.aj,weights,G,ind.group ,
-		use.freqpatt ){
+gdm_calc_post <- function(pi.k, group, p.xi.aj, weights, G, ind.group,
+		use.freqpatt )
+{
 		# posterior probabilities  P( \alpha_l | X_i ) 		
 	sel <- 1
 	if ( use.freqpatt & (G>1) ){ 

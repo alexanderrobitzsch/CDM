@@ -1,6 +1,6 @@
 ## File Name: gdina.R
-## File Version: 9.115
-## File Last Change: 2017-09-18 15:51:36
+## File Version: 9.127
+## File Last Change: 2017-10-08 21:09:44
 
 
 ################################################################################
@@ -36,7 +36,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 					avoid.zeroprobs = FALSE , 
 					seed = 0 , 		
 					save.devmin=TRUE , calc.se = TRUE ,
-					se_version = 1 , 
+					se_version = 1 , PEM = FALSE , PEM_itermax = maxit , 
 					...
 						){
                     
@@ -226,6 +226,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 					Z.skillspace=Z.skillspace ) 
 		Z <- res$Z
 		ncolZ <- res$ncolZ
+		beta <- rep(0, ncol(Z) )
 	}
 			
 	################################################################################
@@ -303,9 +304,37 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 
 	#** for reduced skillspace
 	if (reduced.skillspace){
-		item_patt_freq_matr <- outer( item.patt.freq , rep( 1 , L) )	
+		item_patt_freq_matr <- outer( item.patt.freq , rep( 1 , L) )
+		
 	}
     
+	#--- delta parameter indices
+	res <- gdina_proc_delta_indices(delta=delta, Mj=Mj)
+	delta_indices <- res$delta_indices
+	delta_partable <- res$delta_partable
+	delta_vec <- unlist(delta)
+
+	# reconvert vector into a list
+    delta <- gdina_delta_convert_into_list( delta_vec=delta_vec, delta_indices=delta_indices, J=J ) 
+				
+	#-- preliminaries PEM acceleration
+	if (PEM){	
+		envir <- environment()	
+		if (! reduced.skillspace){
+			pem_pars <- c("delta_vec","attr.prob")
+		}
+		if ( reduced.skillspace){
+			pem_pars <- c("delta_vec","beta")
+		}
+		pem_output_vars <- unique( c( pem_pars , "delta.new","attr.prob") )
+		parmlist <- cdm_pem_inits_assign_parmlist(pem_pars=pem_pars, envir=envir)
+		res <- cdm_pem_inits( parmlist=parmlist)
+		pem_parameter_index <- res$pem_parameter_index
+		pem_parameter_sequence <- res$pem_parameter_sequence				
+	}
+	
+	deviance.history <- rep(NA, maxit)
+	
 	#********************************
 	# extract parameters with minimal deviances
 
@@ -415,7 +444,35 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 								delta.basispar.lower=delta.basispar.lower, 
 								delta.basispar.upper=delta.basispar.upper, Mj.index=Mj.index , J=J) 		
 		}
-									
+
+		delta_vec <- unlist(delta.new)
+			
+		#-- PEM acceleration
+		if (PEM){
+			#-- collect all parameters in a list
+			parmlist <- cdm_pem_inits_assign_parmlist(pem_pars=pem_pars, envir=envir)			
+			#-- define log-likelihood function
+			ll_fct <- gdina_calc_loglikelihood
+			#- extract parameters
+			ll_args <- list( delta_vec=delta_vec, beta=beta, attr.prob=attr.prob, Z=Z, delta_indices=delta_indices, J=J, 
+					iter=iter, disp=disp, L=L, aggr.attr.patt=aggr.attr.patt, Mj=Mj, linkfct=linkfct, IP=IP, 
+					item.patt.split=item.patt.split, resp.ind.list=resp.ind.list, 
+					zeroprob.skillclasses=zeroprob.skillclasses, item.patt.freq=item.patt.freq, 
+					loglike=loglike, G=G, reduced.skillspace=reduced.skillspace ) 
+			#-- apply general acceleration function (take care of the correct iteration index:
+			#    it must start at zero)
+			res <- cdm_pem_acceleration( iter=iter-1, pem_parameter_index=pem_parameter_index, 
+						pem_parameter_sequence=pem_parameter_sequence, pem_pars=pem_pars, 
+						PEM_itermax=PEM_itermax, parmlist=parmlist, ll_fct=ll_fct, ll_args=ll_args,
+						deviance.history=deviance.history )
+			#-- collect output					
+			PEM <- res$PEM
+			pem_parameter_sequence <- res$pem_parameter_sequence
+			cdm_pem_acceleration_assign_output_parameters( res_ll_fct=res$res_ll_fct, 
+							vars=pem_output_vars , envir=envir, update=res$pem_update ) 			
+		}			
+		
+		
 		#################################################
 
 		#--- calculate deviance
@@ -438,7 +495,8 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 		devchange <- abs( 2*(like.new-loglikeold) )
    	
 		#**** update parameters at minimal deviance
-		dev <- -2*like.new		
+		dev <- -2*like.new	
+		deviance.history[iter-1] <- dev		
 		if (save.devmin){		
 			if ( dev < dev.min ){
 				iter.min <- iter-1	
@@ -558,7 +616,8 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 				beta=beta, covbeta=covbeta, display=disp, item.patt.split=item.patt.split, 
 				item.patt.freq=item.patt.freq, model.type=r1, iter=iter, iterused=iterused, rrum.model=rrum.model,
 				rrum.params= rrum.params, group.stat=group.stat,  NAttr=maxAttr, invariance=invariance, 
-				HOGDINA=HOGDINA, seed= seed, iter=iter, converged=iter < maxit )
+				HOGDINA=HOGDINA, seed= seed, iter=iter, converged=iter < maxit ,
+				deviance.history=deviance.history)
 		 
 	if (HOGDINA>=0) { 
 	    colnames(a.attr) <- paste0( "a.Gr" , 1:G )

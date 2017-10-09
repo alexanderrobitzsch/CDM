@@ -1,6 +1,6 @@
 ## File Name: gdina_mstep_item_ml.R
-## File Version: 0.18
-## File Last Change: 2017-06-04 18:16:53
+## File Version: 0.19
+## File Last Change: 2017-10-08 19:23:38
 
 #####################################################
 # GDINA M-step item parameters
@@ -34,7 +34,7 @@ gdina_mstep_item_ml <- function(
 				if ( linkfct == "logit"){
 					irf1 <- plogis(irf1)
 				}
-				irf1 <- squeeze.cdm( irf1 , c(eps,1-eps) )				
+				irf1 <- cdm_squeeze( irf1 , c(eps,1-eps) )				
 				ll <- - sum( Rlj.ast * log(abs(irf1)) + 
 						   ( Ilj.ast - Rlj.ast ) * log( abs(1 - irf1 ) ) )
 				return(ll)

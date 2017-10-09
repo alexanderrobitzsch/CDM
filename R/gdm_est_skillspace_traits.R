@@ -1,6 +1,6 @@
 ## File Name: gdm_est_skillspace_traits.R
-## File Version: 0.04
-## File Last Change: 2017-10-06 10:39:41
+## File Version: 0.09
+## File Last Change: 2017-10-08 15:37:00
 
 #####################################################
 # estimation of skill space
@@ -11,22 +11,34 @@ gdm_est_skillspace_traits <- function( n.ik , a , b , theta.k , Qmatrix , I , K 
 	h <- numdiff.parm
 	parchange <- 1000
 	iter <- 1
-	se.theta.k <- 0 * theta.k
+	se.theta.k <- 0 * theta.k	
 	Q1 <- matrix( 0 , nrow=TP , ncol=TD)
+	
+	#-- define likelihood function and list of arguments
+	prob_fct <- gdm_calc_prob
+	prob_args <- list( a=a, b=b, thetaDes=theta.k, Qmatrix=Qmatrix, I=I, K=K, TP=TP, TD=TD ) 
+	parm_args_varname <- "thetaDes"
+	
+	#--------- begin M-steps
 	while( ( iter <= msteps ) & (parchange > convM ) ){
 		theta.k0 <- theta.k
 		for ( dd in 1:TD){	
 			Q0 <- Q1
 			Q0[,dd] <- 1
 			# calculate log-likelihood
-			pjk <- gdm_calc_prob( a=a, b=b, thetaDes=theta.k, Qmatrix=Qmatrix, I=I, K=K, TP=TP, TD=TD ) 
-			theta.k1 <- theta.k + h*Q0
-			pjk1 <- gdm_calc_prob( a=a, b=b, thetaDes=theta.k1, Qmatrix=Qmatrix, I=I, K=K, TP=TP, TD=TD ) 
-			theta.k2 <- theta.k - h*Q0
-			pjk2 <- gdm_calc_prob( a=a, b=b, thetaDes=theta.k2, Qmatrix=Qmatrix, I=I, K=K, TP=TP, TD=TD ) 
+			prob_args[[ parm_args_varname ]] <- theta.k0
+			pjk <- do.call( what=prob_fct, args=prob_args)
+
+			prob_args[[ parm_args_varname ]] <- theta.k0 + h*Q0
+			pjk1 <- do.call( what=prob_fct, args=prob_args)
+
+			prob_args[[ parm_args_varname ]] <- theta.k0 - h*Q0
+			pjk2 <- do.call( what=prob_fct, args=prob_args)
+
+			#-- compute increments
 			res <- gdm_numdiff_index( pjk=pjk, pjk1=pjk1, pjk2=pjk2, n.ik=n.ik0, max.increment=max.increment, 
 						numdiff.parm=numdiff.parm ) 
-			increment <- res$increment
+			increment <- res$increment						
 			d2 <- res$d2
 			theta.k[,dd] <- theta.k[,dd] + increment		
 			se.theta.k[,dd] <- 1 / sqrt( abs(d2) )

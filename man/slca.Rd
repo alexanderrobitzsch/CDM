@@ -1,6 +1,6 @@
 %% File Name: slca.Rd
-%% File Version: 1.59
-%% File Last Change: 2017-10-05 18:36:31
+%% File Version: 1.66
+%% File Last Change: 2017-10-08 12:59:13
 
 \name{slca}
 \alias{slca}
@@ -16,7 +16,8 @@ Structured Latent Class Analysis (SLCA)
 
 \description{
 This function implements a structured latent class model for
-polytomous item responses (Formann, 1992).
+polytomous item responses (Formann, 1992). Lasso estimation for the
+item parameters is included (Chen et al., 2015; Sun et al., 2016).
 }
 
 \usage{
@@ -24,6 +25,7 @@ slca(data, group = NULL, weights = rep(1, nrow(data)), Xdes,
   Xlambda.init = NULL, Xlambda.fixed = NULL, Xlambda.constr.V=NULL , 
   Xlambda.constr.c=NULL ,  delta.designmatrix = NULL, 
   delta.init = NULL, delta.fixed = NULL, delta.linkfct = "log" ,
+  Xlambda_positive=NULL, regular_lam = 0, regular_w = NULL, regular_n = nrow(data),
   maxiter = 1000, conv = 1e-5, globconv = 1e-5, msteps = 10, convM = 5e-04, 
   decrease.increments = FALSE, oldfac=0, dampening_factor=1.01, seed=NULL, progress=TRUE,
   PEM=TRUE, PEM_itermax=maxiter, ...)
@@ -81,6 +83,13 @@ Fixed \eqn{\delta} parameters. This must be a matrix with three columns:
 	This can be the log-linear link (\code{log}) or the
 	logistic link function (\code{logit}).
 }
+\item{Xlambda_positive}{Optional vector of logical indicating which
+	elements of \eqn{\bold{\lambda}_x} should be constrained to be
+positive.}
+\item{regular_lam}{Numeric. Regularization parameter}
+\item{regular_w}{Vector for weighting the regularization penalty}
+\item{regular_n}{Vector of regularization factor. This will be 
+typically the sample size.}
   \item{maxiter}{
 Maximum number of iterations
 }
@@ -153,6 +162,14 @@ This model contains classical uni- and multidimensional latent trait models,
 latent class analysis, located latent class analysis, cognitive diagnostic
 models, the general diagnostic model and mixture item response models as 
 special cases (see Formann & Kohlmann, 1998; Formann, 2007).
+
+The function also allows for regularization of \eqn{\lambda_{xv}} parameters
+using the lasso approach (Sun et al., 2016).
+More formally, the penalty function can be written as 
+\deqn{pen( \bold{\lambda}_x ) =  p_\lambda \sum_v n_v w_v | \lambda_{xv} }
+where \eqn{p_\lambda} can be specified with \code{regular_lam},
+\eqn{w_v} can be specified with \code{regular_w}, and
+\eqn{n_v} can be specified with \code{regular_n}.
 }
 
 
@@ -206,6 +223,10 @@ Berlinet, A. F., & Roland, C. (2012).
 Acceleration of the EM algorithm: P-EM versus epsilon algorithm.
 \emph{Computational Statistics & Data Analysis}, \bold{56}(12), 4122-4137.		
 
+Chen, Y., Liu, J., Xu, G., & Ying, Z. (2015). 
+Statistical analysis of Q-matrix based diagnostic classification models. 
+\emph{Journal of the American Statistical Association}, \bold{110}, 850-866.
+
 Formann, A. K. (1992). Linear logistic latent class analysis for polytomous data. 
 \emph{Journal of the American Statistical Association}, \bold{87}, 476-486.	
 
@@ -219,6 +240,10 @@ Formann, A. K., & Kohlmann, T. (1998). Structural latent class models.
 
 Neuhaus, W. (1996). Optimal estimation under
 linear constraints. \emph{Astin Bulletin}, \bold{26}, 233-245. 
+
+Sun, J., Chen, Y., Liu, J., Ying, Z., & Xin, T. (2016).
+Latent variable selection for multidimensional item response theory models 
+via \eqn{L_1} regularization. \emph{Psychometrika}, \bold{81}(4), 921-939.
 
 Xu, X., & von Davier, M. (2008). \emph{Fitting the structured general diagnostic
 model to NAEP data}. ETS Research Report ETS RR-08-27. Princeton, ETS.
@@ -242,7 +267,8 @@ See \url{http://www.antonformann.at/} for more information.
 
 \seealso{
 For latent trait models with continuous latent variables see the
-\pkg{mirt}, \pkg{MultiLCIRT} or \pkg{TAM} package.
+\pkg{mirt} or \pkg{TAM} packages. For a discrete trait distribution see
+the \pkg{MultiLCIRT} package. 
 
 For latent class models see the \pkg{poLCA}, \pkg{covLCA} or \pkg{randomLCA}
 package.
@@ -505,7 +531,6 @@ delta.designmatrix[1:TP,2] <- theta.k^2
 delta.designmatrix[TP + 1:TP,3] <- 1
 delta.designmatrix[TP+ 1:TP,4] <- theta.k^2
 b1 <- stats::qnorm( colMeans( dat ) )
-Xlambda.init <- c( b1 , b1 + stats::runif(I, -2  , 2 ) , 1 , 1 )
 Xlambda.init <- c( stats::runif( 2*I  , -1.8 , 1.8 ) , 1 ,1 )
 Xlambda.fixed <- cbind( c(2*I+1 , 2*I+2) , 1 )
 # estimate model

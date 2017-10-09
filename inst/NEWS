@@ -24,10 +24,16 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 6.0  |  2017-10-06  |  Last: CDM 6.0-1
+VERSIONS CDM 6.0  |  2017-10-09  |  Last: CDM 6.0-10
 --------------------------------------------------------------
 
-NOTE  * xxx
+ADDED * included regularized maximum likelihood in 'slca'
+ADDED * included option for positivity constraints of Xlambda
+        parameter in 'slca'
+ADDED * included P-EM acceleration method in 'slca', 'gdm',
+        and 'gdina'
+NOTE  * avoided inversion of singular covariance matrices in
+        'gdina' by using 'MASS::ginv'
 
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: ---

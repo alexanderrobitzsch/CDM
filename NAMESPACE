@@ -69,6 +69,7 @@ import(mvtnorm)
 #***************************************************
 #************** Imports ****************************
 
+importFrom(MASS, ginv)
 importFrom(polycor, polychor)
 importFrom(sfsmisc, QUnif)
 

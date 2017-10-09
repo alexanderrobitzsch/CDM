@@ -1,6 +1,6 @@
 ## File Name: gdm_calc_counts.R
-## File Version: 0.02
-## File Last Change: 2017-10-06 10:30:40
+## File Version: 0.03
+## File Last Change: 2017-10-08 13:30:34
 
 ################################################	
 # calculation of expected counts
@@ -14,22 +14,22 @@ gdm_calc_counts <- function(G, weights, dat.ind, dat, dat.resp,
     if (G==1){
 		gg <- 1
 		for (kk in 1:(K+1)){   #		kk <- 1	# category 0 ( -> 1 )
-            dkk2 <- dat.ind2[[kk]][[gg]]
+            dkk2 <- weights*dat.ind2[[kk]][[gg]]
 			n.ik[,,kk,gg] <- crossprod( p.aj.xi , dkk2 )
 			N.ik[,,gg] <- N.ik[,,gg] + n.ik[,,kk,gg]
 		}	
 	}
 	if (G>1){
 		for (gg in 1:G){	# gg <- 1
-			if ( ! use.freqpatt ){	
-				ind.gg <- ind.group[[gg]]
+			ind.gg <- ind.group[[gg]]
+			if ( ! use.freqpatt ){					
 				t.p.aj.xi.gg <- t( p.aj.xi[ind.gg,] )
 			} 
 			if ( use.freqpatt ){	
 				t.p.aj.xi.gg <- t( p.aj.xi[[gg]] )
 			} 					
 			for (kk in 1:(K+1)){   #		kk <- 1	# category 0 ( -> 1 )
-				dkk2 <- dat.ind2[[kk]][[gg]]
+				dkk2 <- weights[ind.gg] * dat.ind2[[kk]][[gg]]
 				if ( use.freqpatt ){
 					if (G>1){ 
 						dkk2 <- dkk2[ which(weights[,gg] > 0) , ] 

@@ -1,6 +1,6 @@
 %% File Name: gdm.Rd
-%% File Version: 4.28
-%% File Last Change: 2017-06-17 14:03:44
+%% File Version: 4.31
+%% File Last Change: 2017-10-08 18:26:47
 
 \name{gdm}
 \alias{gdm}
@@ -27,7 +27,8 @@ gdm( data, theta.k, irtmodel="2PL", group=NULL, weights=rep(1, nrow(data)),
     standardized.latent=FALSE , centered.latent=FALSE , 
     centerintercepts=FALSE , centerslopes=FALSE ,
     maxiter=1000,  conv=1e-5, globconv=1e-5, msteps=4 , convM=.0005 ,
-    decrease.increments = FALSE , use.freqpatt=FALSE , progress=TRUE , ...) 
+    decrease.increments = FALSE , use.freqpatt=FALSE , progress=TRUE , 
+    PEM=FALSE, PEM_itermax=maxiter, ...) 
 
 \method{summary}{gdm}(object, file = NULL , \dots)
 
@@ -175,6 +176,10 @@ Global deviance convergence criterion
  	An optional logical indicating whether the function should print the 
  	progress of iteration in the estimation process. 
 }		
+\item{PEM}{Logical indicating whether the P-EM acceleration should be
+applied (Berlinet & Roland, 2012).}
+\item{PEM_itermax}{Number of iterations in which the P-EM method should be
+applied.} 
   \item{object}{A required object of class \code{gdm}}
 \item{file}{Optional file name for a file in which \code{summary}
 should be sinked.}        
@@ -323,6 +328,10 @@ polytomous item responses. \emph{arXiv preprint}, \emph{arXiv:1201.4667}.
 
 Bartolucci, F. (2007). A class of multidimensional IRT models for testing 
 unidimensionality and clustering items. \emph{Psychometrika}, \bold{72}, 141-157.
+
+Berlinet, A. F., & Roland, C. (2012). 
+Acceleration of the EM algorithm: P-EM versus epsilon algorithm.
+\emph{Computational Statistics & Data Analysis}, \bold{56}(12), 4122-4137.
 
 von Davier, M. (2008). A general diagnostic model applied to 
 language testing data. \emph{British Journal

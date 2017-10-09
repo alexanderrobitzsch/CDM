@@ -1,10 +1,10 @@
 ## File Name: cdm_pem_acceleration.R
-## File Version: 0.03
-## File Last Change: 2017-10-05 17:19:53
+## File Version: 0.06
+## File Last Change: 2017-10-08 20:43:31
 
 
 cdm_pem_acceleration <- function( iter, pem_parameter_index, pem_parameter_sequence, 
-		pem_pars, PEM_itermax , parmlist , ll_fct , ll_args )
+		pem_pars, PEM_itermax , parmlist , ll_fct , ll_args, deviance.history=NULL )
 {		
 	res0 <- ll <- NULL
 	PEM <- TRUE
@@ -32,7 +32,7 @@ cdm_pem_acceleration <- function( iter, pem_parameter_index, pem_parameter_seque
 		P2 <- pem_parameter_sequence$P2
 		iterate <- TRUE
 		ii <- 0
-		
+
 		#--- begin PEM iterations
 		while (iterate){
 			ll_args0 <- ll_args
@@ -57,6 +57,17 @@ cdm_pem_acceleration <- function( iter, pem_parameter_index, pem_parameter_seque
 	if (iter > PEM_itermax){
 		PEM <- FALSE
 	}
+	if ( ! is.null( deviance.history) ){
+		diff_history <- diff( deviance.history[ 1:iter ] )
+		NL0 <- 15
+		NL <- min( NL0 , iter )   # number of lags
+		if ( iter > NL0 ){
+			diff2 <- diff_history[ seq( iter - 1 , iter - NL , -1 ) ]
+			PEM <- ! ( sum( ( diff2 < 0 ) ) > ( .35 * NL0 ) )
+		}
+
+	}
+	
 	#--- output
 	res <- list(ll=ll, pem_parameter_sequence=pem_parameter_sequence, PEM=PEM,
 					res_ll_fct = res0, pem_update=pem_update )

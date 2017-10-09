@@ -1,6 +1,6 @@
 ## File Name: summary.slca.R
-## File Version: 1.23
-## File Last Change: 2017-10-04 17:14:47
+## File Version: 1.25
+## File Last Change: 2017-10-07 21:09:57
 
 #*******************************************************
 # Summary for slca object
@@ -42,11 +42,14 @@ summary.slca <- function( object , file = NULL , ... )
 		
     cat( "\nDeviance = " , round( object$deviance , 2 ) , " | " )
     cat( "Log Likelihood = " , round( -object$deviance/2 , 2 ) , "\n" )	
+    cat( "Penalty = " , round( object$regular_penalty  , 2 ) , "\n" )		
+	
     cat( "Number of persons = " , object$ic$n , "\n" )    
 
     cat( "Number of estimated parameters = " , object$ic$np , "\n" )    
     cat( "  Number of estimated lambda parameters = " , object$ic$itempars , "\n" ) 
-    cat( "  Number of estimated distribution parameters = " , object$ic$traitpars , "\n" )    
+    cat( "  Number of non-active lambda parameters = " , object$ic$nonactive , "\n" ) 	
+    cat( "  Number of estimated distribution parameters = " , object$ic$traitpars , "\n\n" )    
 
 	#-- information criteria
 	cdm_print_summary_information_criteria(object=object)

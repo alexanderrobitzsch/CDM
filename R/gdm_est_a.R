@@ -1,6 +1,6 @@
 ## File Name: gdm_est_a.R
-## File Version: 0.03
-## File Last Change: 2017-06-12 13:45:44
+## File Version: 0.05
+## File Last Change: 2017-10-08 17:49:35
 
 
 
@@ -52,31 +52,28 @@ gdm_est_a <- function(probs, n.ik, N.ik, I, K, G,a,a.constraint,TD,
 				d2.b[ii,td] <- sum(v1) - sum( l0^2 * N.ik[,ii,gg] )
 			}
 		}
-		increment <-  d1.b / abs( d2.b + eps )
-		increment[ is.na(increment) ] <- 0		
-		increment <- ifelse(abs(increment)> max.increment, 
-						   sign(increment)*max.increment , increment )							   					  				
+		#--- calc increments
+		res <- cdm_calc_increment( d1=d1.b, d2=d2.b, max.increment=max.increment )
+		increment <- res$increment
+		max.increment <- res$max.increment			
+		
 		a[,,1] <- a[,,1] + increment	
 		se.a <- sqrt( 1 / abs( d2.b + eps ) )
 		if (K>1){ 
 			for (kk in 2:K){ 
-				a[,,kk] <- a[,,1] }	 
+				a[,,kk] <- a[,,1] 
+			}	 
 		}	
-		if ( ! is.null( a.constraint) ){
-			a[ a.constraint[,1:3,drop=FALSE] ] <- a.constraint[,4,drop=FALSE]
-			se.a[ a.constraint[,1:3,drop=FALSE] ] <- 0			
-			increment[ a.constraint[,1:2,drop=FALSE] ] <- 0			
-		}		
-		if (centerslopes){
-			if (TD>1){
-				m11 <- t( colSums( a[,,1] ) / colSums( Qmatrix ) )	
-				a[,,1] <- a[,,1] / m11[ rep(1,I) , ]
-			}
-			if (TD==1){
-				m11 <- t( colSums( a ) / colSums( Qmatrix ) )	
-				a <- a / m11[ rep(1,I) , ]
-			}						
-		}
+		
+		#--- constraints
+        res <- gdm_est_a_constraints( a=a, se.a=se.a, a.constraint=a.constraint, increment=increment ) 
+		a <- res$a
+		se.a <- res$se.a
+		increment <- res$increment
+		
+		#--- centerslopes
+        a <- gdm_est_a_centerslopes( a=a, centerslopes=centerslopes, Qmatrix=Qmatrix, TD=TD ) 
+		
 		parchange <- max( abs(a-a0) )
 		iter <- iter + 1
 	}	# end iter

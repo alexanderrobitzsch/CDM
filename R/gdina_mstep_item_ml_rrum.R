@@ -1,6 +1,6 @@
 ## File Name: gdina_mstep_item_ml_rrum.R
-## File Version: 0.26
-## File Last Change: 2017-06-04 18:19:17
+## File Version: 0.27
+## File Last Change: 2017-10-08 19:24:02
 
 #####################################################
 # GDINA M-step item parameters
@@ -30,7 +30,7 @@ gdina_mstep_item_ml_rrum <- function(
 			delta_jj <- rrumpars2logpars( stats::plogis(delta_jj) )
 			irf1 <- ( Mjjj %*% delta_jj )[,1]
 			irf1 <- exp(irf1)		
-			irf1 <- squeeze.cdm( irf1 , c(eps,1-eps) )				
+			irf1 <- cdm_squeeze( irf1 , c(eps,1-eps) )				
 			ll <- - sum( Rlj.ast * log(abs(irf1)) + 
 						   ( Ilj.ast - Rlj.ast ) * log( abs(1 - irf1 ) ) )
 			return(ll)

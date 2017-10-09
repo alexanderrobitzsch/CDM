@@ -1,6 +1,6 @@
 ## File Name: gdina_mstep_item_uls.R
-## File Version: 0.07
-## File Last Change: 2017-06-04 19:56:59
+## File Version: 0.08
+## File Last Change: 2017-10-08 19:24:49
 
 #####################################################
 # GDINA M-step item parameters
@@ -11,11 +11,11 @@ gdina_mstep_item_uls <- function( pjjj , Ilj.ast , Rlj.ast , eps , avoid.zeropro
 	eps2 <- eps
 
 	if (linkfct == "logit" ){ 
-		pjjj <- squeeze.cdm( pjjj , c(eps,1-eps) )
+		pjjj <- cdm_squeeze( pjjj , c(eps,1-eps) )
 		pjjj <- stats::qlogis( pjjj ) 
 	}
 	if (linkfct == "log" ){ 
-		pjjj <- squeeze.cdm( pjjj , c(eps,10) )
+		pjjj <- cdm_squeeze( pjjj , c(eps,10) )
 		pjjj <- log( pjjj ) 				
 	}
 								

@@ -1,13 +1,14 @@
 ## File Name: slca_est_Xlambda.R
-## File Version: 0.07
-## File Last Change: 2017-10-04 17:59:29
+## File Version: 0.18
+## File Last Change: 2017-10-08 12:46:29
 
 
 ###########################################################################
 # estimation of Xlambda parameters
 slca_est_Xlambda <- function(Xlambda , Xdes , probs, n.ik1, N.ik1, I, K, G,
 	max.increment, TP ,msteps, convM , Xlambda.fixed , XdesM , dimXdes , oldfac,
-	decrease.increments, dampening_factor = 1.01, Xlambda.constr.V, e2, V1 )
+	decrease.increments, dampening_factor = 1.01, Xlambda.constr.V, e2, V1, 
+	regularization, regular_lam_used, regular_n, Xlambda_positive )
 {	
  	# max.increment0 <- max.increment <- 1
 	max.increment0 <- max.increment
@@ -28,22 +29,27 @@ slca_est_Xlambda <- function(Xlambda , Xdes , probs, n.ik1, N.ik1, I, K, G,
 		# probs  num [1:I, 1:maxK, 1:TP]
 		# n.ik  num [1:I, 1:maxK, 1:TP]
 		# N.ik  num [1:I,1:TP]
-		# Xdes  num [1:I, 1:maxK, 1:TP, 1:Nlam] 	    				
-		res <- calc_slca_deriv( XdesM=XdesM, dimXdes=dimXdes, Xlambda=Xlambda , probs=as.vector(probs) ,
-					nik=as.vector(n.ik) , Nik=as.vector(N.ik) )   
+		# Xdes  num [1:I, 1:maxK, 1:TP, 1:Nlam] 	
+		#-- calculate derivatives
+        res <- slca_est_Xlambda_calc_deriv( XdesM=XdesM, dimXdes=dimXdes, Xlambda=Xlambda, probs=probs, n.ik=n.ik, N.ik=N.ik ) 
 		d1.b <- res$d1b
-		d2.b <- res$d2b
-		increment <- d1.b / ( abs( d2.b + eps ) )
-		increment[ is.na(increment) ] <- 0		
-		increment <- ifelse(abs(increment)> max.increment, 
-					sign(increment)*max.increment , increment )				
-		max.increment <- max(abs(increment)) / .98
-		Xlambda <- Xlambda + increment
+		d2.b <- res$d2b		
+		#-- calculate increment		
+        res <- slca_est_Xlambda_calc_increment( d1=d1.b, d2=d2.b, x0=Xlambda, regularization=regularization, 
+						regular_lam_used=regular_lam_used, max.increment=max.increment ) 
+		increment <- res$increment
+		max.increment <- res$max.increment		
+		
+		#-- update parameter		
+		Xlambda <- Xlambda + increment			
 		se.Xlambda <- sqrt( 1 / abs( d2.b+ eps ) )
-		if ( ! is.null( Xlambda.fixed) ){
-			Xlambda[ Xlambda.fixed[,1] ] <- Xlambda.fixed[,2]
-			se.Xlambda[ Xlambda.fixed[,1] ] <- 0		
-		}				
+		#-- positivity constraint
+		Xlambda <- cdm_positivity_restriction(x=Xlambda, positive=Xlambda_positive)
+		#-- parameter fixings
+		res <- cdm_include_fixed_parameters( parm=Xlambda, se_parm=se.Xlambda, parm_fixed=Xlambda.fixed )
+		Xlambda <- res$parm
+		se.Xlambda <- res$se_parm
+
 		iter <- iter + 1
 		parchange <- max( abs(Xlambda0-Xlambda))
 	}  # end M-steps
@@ -68,9 +74,10 @@ slca_est_Xlambda <- function(Xlambda , Xdes , probs, n.ik1, N.ik1, I, K, G,
 	max.increment <- max( abs( Xlambda - Xlambda00 ))
 	if (decrease.increments){ 	
 		max.increment0 <- max.increment0 / dampening_factor	
-	}					
+	}			
+	regular_penalty <- sum( regular_lam_used * abs( Xlambda ) )
 	#----- output
-	res <- list(Xlambda = Xlambda , se.Xlambda = se.Xlambda , max.increment=max.increment0)
+	res <- list(Xlambda = Xlambda , se.Xlambda = se.Xlambda , max.increment=max.increment0, regular_penalty=regular_penalty)
 	return(res)
 }
 

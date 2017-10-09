@@ -1,8 +1,8 @@
 Package: CDM
 Type: Package
 Title: Cognitive Diagnosis Modeling
-Version: 6.0-1
-Date: 2017-10-06 14:08:17
+Version: 6.0-10
+Date: 2017-10-09 09:48:10
 Author: 
     Alexander Robitzsch [aut, cre], Thomas Kiefer [aut],
     Ann Cathrice George [aut], Ali Uenlue [aut]
@@ -22,8 +22,8 @@ Description:
 Depends:
     R (>= 3.1), mvtnorm
 Imports: 
-    graphics, grDevices, methods, polycor, Rcpp, sfsmisc, 
-    stats, utils
+    graphics, grDevices, MASS, methods, polycor, Rcpp, 
+    sfsmisc, stats, utils
 Suggests:
     BIFIEsurvey, GDINA, lattice, miceadds, mirt, psych, 
     sirt, TAM

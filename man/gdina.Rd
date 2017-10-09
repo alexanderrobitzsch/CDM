@@ -1,6 +1,6 @@
 %% File Name: gdina.Rd
-%% File Version: 2.994
-%% File Last Change: 2017-09-18 15:53:46
+%% File Version: 2.9961
+%% File Last Change: 2017-10-08 21:10:20
 
 \name{gdina}
 \alias{gdina}
@@ -34,7 +34,7 @@ gdina(data, q.matrix, skillclasses=NULL, conv.crit=0.0001, dev.crit=.1 ,  maxit=
     weights=rep(1, nrow(data)), rule="GDINA", progress=TRUE, progress.item=FALSE ,
     mstep_iter = 10 , mstep_conv = 1E-4 , increment.factor=1.01, fac.oldxsi=0 , 
     max.increment = .3 , avoid.zeroprobs = FALSE , seed=0, save.devmin=TRUE , 
-    calc.se=TRUE , se_version = 1 ,  ...)
+    calc.se=TRUE , se_version = 1 , PEM = FALSE, PEM_itermax = maxit,  ...)
 
 \method{summary}{gdina}(object, digits = 4 , file = NULL ,  \dots)
 
@@ -219,6 +219,10 @@ errors should be calculated.}
 	since \pkg{CDM} 5.1 and is the default. Comparability with 
     previous \pkg{CDM} versions can be obtained with \code{se_version=0}. 
 }
+\item{PEM}{Logical indicating whether the P-EM acceleration should be
+applied (Berlinet & Roland, 2012).}
+\item{PEM_itermax}{Number of iterations in which the P-EM method should be
+applied.} 
   \item{object}{A required object of class \code{gdina}, obtained
     from a call to the function \code{\link{gdina}}.  }
   \item{digits}{Number of digits after decimal separator to display.  }
@@ -367,6 +371,10 @@ is applied for polytomous item responses}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
 \references{
+Berlinet, A. F., & Roland, C. (2012). 
+Acceleration of the EM algorithm: P-EM versus epsilon algorithm.
+\emph{Computational Statistics & Data Analysis}, \bold{56}(12), 4122-4137.
+
   Chen, J., & de la Torre, J. (2013). 
   A general cognitive diagnosis model for expert-defined polytomous attributes.
   \emph{Applied Psychological Measurement}, \bold{37}, 419-437.

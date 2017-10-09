@@ -1,13 +1,13 @@
 ## File Name: gdina_reduced_skillspace.R
-## File Version: 0.07
-## File Last Change: 2017-06-04 19:00:27
+## File Version: 0.09
+## File Last Change: 2017-10-08 19:30:54
 ###################################################
 # auxiliary function reduced skill space
 gdina_reduced_skillspace <- function( ntheta , Z , 
-	reduced.skillspace.method=2 , eps=10^(-10) )
+	reduced.skillspace.method=2 , eps=1E-10 )
 {		
 	#***********************************
-	ntheta <- ntheta / sum(ntheta)
+	ntheta <- cdm_sumnorm( ntheta )
 	lntheta <- matrix(log(ntheta+eps),ncol=1 )
 	V <- diag( ntheta)		
 	#---------------------------
@@ -23,12 +23,12 @@ gdina_reduced_skillspace <- function( ntheta , Z ,
 	if ( reduced.skillspace.method == 2){		
 		mod <- stats::lm( lntheta ~ 0 + Z , weights = ntheta )
 		beta <- matrix( mod$coef , nrow=ncol(Z) , ncol=1 )
-		beta[ is.na(beta ) ] <- 0
+		beta[ is.na(beta) ] <- 0
 	}
 	#*******************************************
 	pred.ntheta <- exp( Z %*% beta )
 	# calculate attribute probability
-	attr.prob <- ( pred.ntheta / sum(pred.ntheta ) )[,1]
+	attr.prob <- cdm_sumnorm( pred.ntheta[,1] )
 	#***** output
 	res <- list("beta"=beta , "pred.ntheta"=pred.ntheta , 
 				"attr.prob"=attr.prob)

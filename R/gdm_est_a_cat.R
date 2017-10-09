@@ -1,6 +1,6 @@
 ## File Name: gdm_est_a_cat.R
-## File Version: 0.04
-## File Last Change: 2017-06-12 13:48:51
+## File Version: 0.07
+## File Last Change: 2017-10-08 17:58:45
 
 ###########################################
 # estimation of a
@@ -11,6 +11,7 @@ gdm_est_a_cat <- function(probs, n.ik, N.ik, I, K, G,a,a.constraint,TD,
 	parchange <- 1
 	a00 <- a
 	eps <- 1E-10
+	max.increment0 <- max.increment
 	
 	while( ( iter <= msteps ) & ( parchange > convM )  ){
 		a0 <- a
@@ -43,10 +44,11 @@ gdm_est_a_cat <- function(probs, n.ik, N.ik, I, K, G,a,a.constraint,TD,
 				}				
 			}
 		}				
-		increment <-  d1.b / abs( d2.b + eps )
-		increment[ is.na(increment) ] <- 0		
-		increment <- ifelse(abs(increment)> max.increment, 
-						    sign(increment)*max.increment , increment )	
+		#--- calc increments
+		res <- cdm_calc_increment( d1=d1.b, d2=d2.b, max.increment=max.increment )
+		increment <- res$increment
+		max.increment <- res$max.increment	
+														
 		a <- a + increment
 		se.a <- sqrt( 1 / abs( d2.b + eps ) )
 		if ( ! is.null( a.constraint) ){
@@ -58,7 +60,12 @@ gdm_est_a_cat <- function(probs, n.ik, N.ik, I, K, G,a,a.constraint,TD,
 		parchange <- max( abs( a - a0 ))
 	} # iter
 	#-------------
-	max.increment.a <- max(abs(a-a00)) / .95				
+	
+	#-- final trimming of the increment
+	res <- cdm_increment_trimming_after_mstep( parm=a, parm0=a00, max.increment0=max.increment0, type=2 )	
+	a <- res$parm
+	max.increment.a <- res$max.increment0
+	
 	if (decrease.increments){ 	
 		max.increment.a <- max.increment.a / 1.01				
 	}	

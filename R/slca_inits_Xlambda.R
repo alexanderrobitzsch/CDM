@@ -1,11 +1,20 @@
 ## File Name: slca_inits_Xlambda.R
-## File Version: 0.02
-## File Last Change: 2017-10-06 10:46:06
+## File Version: 0.03
+## File Last Change: 2017-10-08 12:31:32
 
-slca_inits_Xlambda <- function( Xlambda.init, Xdes, Nlam)
+slca_inits_Xlambda <- function( Xlambda.init, Xdes, Nlam, Xlambda_positive, Xlambda.fixed)
 {	
-	if ( is.null( Xlambda.init ) ){
-		Xlambda.init <- stats::runif( Nlam , -1 , 1 )
+	if ( is.null( Xlambda_positive ) ){
+		Xlambda_positive <- rep( FALSE, Nlam )
 	}
-	return(Xlambda.init)
+	if ( is.null( Xlambda.init ) ){
+		Xlambda.init <- stats::runif( Nlam , -1 , 1 ) + 1 * Xlambda_positive
+	}
+	if ( ! is.null( Xlambda.fixed ) ){
+		Xlambda.init[ Xlambda.fixed[,1] ] <- Xlambda.fixed[,2]
+		Xlambda_positive[ Xlambda.fixed[,1] ] <- FALSE	
+	}
+	#--- output
+	res <- list( Xlambda.init=Xlambda.init, Xlambda_positive=Xlambda_positive)
+	return(res)
 }

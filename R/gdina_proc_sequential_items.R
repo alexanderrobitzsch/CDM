@@ -1,6 +1,5 @@
 ## File Name: gdina_proc_sequential_items.R
 ## File Version: 0.03
-## File Last Change: 2017-06-05 13:36:47
 
 gdina_proc_sequential_items <- function( data , q.matrix )
 {

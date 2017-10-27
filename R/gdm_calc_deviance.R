@@ -1,6 +1,5 @@
 ## File Name: gdm_calc_deviance.R
-## File Version: 0.01
-## File Last Change: 2017-06-12 14:14:14
+## File Version: 0.02
 
 gdm_calc_deviance <- function(G, use.freqpatt, ind.group, p.xi.aj, pi.k, weights)
 {
@@ -16,10 +15,10 @@ gdm_calc_deviance <- function(G, use.freqpatt, ind.group, p.xi.aj, pi.k, weights
 		}
 		if ( use.freqpatt ){
 			if (G>1){   
-				wgg <- weights[,gg]  
+				wgg <- weights[,gg]
 			}
 			if (G==1){ 
-				wgg <- weights 
+				wgg <- weights
 			}
 			ll <- ll + sum( wgg * log( rowSums( p.xi.aj * matrix( pi.k[,gg] , nrow= nrow(p.xi.aj) , 
 									ncol=nrow(pi.k) , byrow=TRUE ) ) ) )

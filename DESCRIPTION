@@ -1,8 +1,8 @@
 Package: CDM
 Type: Package
 Title: Cognitive Diagnosis Modeling
-Version: 6.0-10
-Date: 2017-10-09 09:48:10
+Version: 6.0-11
+Date: 2017-10-27 13:18:20
 Author: 
     Alexander Robitzsch [aut, cre], Thomas Kiefer [aut],
     Ann Cathrice George [aut], Ali Uenlue [aut]
@@ -17,7 +17,7 @@ Description:
     model (GDM), the multidimensional linear compensatory
     item response model and the structured latent class
     model (SLCA). See George, Robitzsch, Kiefer, Gross, and
-    Uenlue (2017) <DOI:10.18637/jss.v074.i02> for further
+    Uenlue (2017) <doi:10.18637/jss.v074.i02> for further
     details.
 Depends:
     R (>= 3.1), mvtnorm

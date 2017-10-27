@@ -1,6 +1,5 @@
 ## File Name: cdm_pem_inits_assign_parmlist.R
 ## File Version: 0.01
-## File Last Change: 2017-10-05 17:54:13
 
 
 cdm_pem_inits_assign_parmlist <- function(pem_pars, envir)

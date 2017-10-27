@@ -1,6 +1,5 @@
 ## File Name: gdina_se_itemwise.R
-## File Version: 0.14
-## File Last Change: 2017-10-08 21:09:18
+## File Version: 0.15
 
 gdina_se_itemwise <- function( R.lj_jj , I.lj_jj , apjj ,
 		Mjjj , Mjj2 , PAJXI , IP , item.patt.split_jj , resp.patt_jj ,
@@ -110,6 +109,6 @@ gdina_se_itemwise <- function( R.lj_jj , I.lj_jj , apjj ,
 	}	
 	#--- output
 	res <- list( infomat.jj = infomat.jj , varmat.palj_jj = varmat.palj_jj ,
-			varmat.delta_jj = varmat.delta_jj)
+					varmat.delta_jj = varmat.delta_jj)
 	return(res)
 }

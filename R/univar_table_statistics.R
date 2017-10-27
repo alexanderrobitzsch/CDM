@@ -1,6 +1,5 @@
 ## File Name: univar_table_statistics.R
 ## File Version: 0.01
-## File Last Change: 2017-06-20 15:22:26
 
 univar_table_statistics <- function(freq, values=NULL)
 {

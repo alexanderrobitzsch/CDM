@@ -1,6 +1,5 @@
 ## File Name: gdina_proc_hogdina_theta_distribution.R
 ## File Version: 0.01
-## File Last Change: 2017-06-05 13:33:52
 
 gdina_proc_hogdina_theta_distribution <- function(G)
 {

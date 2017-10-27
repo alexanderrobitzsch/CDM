@@ -1,6 +1,5 @@
 %% File Name: deltaMethod.Rd
 %% File Version: 0.05
-%% File Last Change: 2017-01-31 14:08:30
 
 \name{deltaMethod}
 \alias{deltaMethod}

@@ -1,6 +1,5 @@
 %% File Name: data.cdm.Rd
 %% File Version: 0.14
-%% File Last Change: 2017-01-31 14:08:30
 
 \name{data.cdm}
 

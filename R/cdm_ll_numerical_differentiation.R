@@ -1,6 +1,5 @@
 ## File Name: cdm_ll_numerical_differentiation.R
 ## File Version: 0.01
-## File Last Change: 2017-10-08 15:05:26
 
 cdm_ll_numerical_differentiation <- function(ll0, ll1, ll2, h)
 {

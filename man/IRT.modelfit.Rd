@@ -1,6 +1,5 @@
 %% File Name: IRT.modelfit.Rd
 %% File Version: 0.13
-%% File Last Change: 2017-01-31 14:08:31
 
 \name{IRT.modelfit}
 \alias{IRT.modelfit}

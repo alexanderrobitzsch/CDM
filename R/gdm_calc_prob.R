@@ -1,6 +1,5 @@
 ## File Name: gdm_calc_prob.R
 ## File Version: 0.01
-## File Last Change: 2017-06-12 13:10:13
 
 #######################################
 # calculate probability in the GDM		

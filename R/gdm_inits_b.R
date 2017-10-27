@@ -1,6 +1,5 @@
 ## File Name: gdm_inits_b.R
 ## File Version: 0.01
-## File Last Change: 2017-10-08 13:22:59
 
 
 gdm_inits_b <- function( dat0, dat.resp0, I , K )

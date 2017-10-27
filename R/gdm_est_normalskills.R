@@ -1,6 +1,5 @@
 ## File Name: gdm_est_normalskills.R
 ## File Version: 0.08
-## File Last Change: 2017-10-08 14:44:45
 
 ##############################################################
 # estimation of skill distribution under normality

@@ -1,6 +1,5 @@
 %% File Name: fraction.subtraction.data.Rd
 %% File Version: 2.03
-%% File Last Change: 2017-01-31 14:08:31
 
 \name{fraction.subtraction.data}
 

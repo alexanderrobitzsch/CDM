@@ -1,6 +1,5 @@
 ## File Name: cdm_print_summary_computation_time.R
 ## File Version: 0.01
-## File Last Change: 2017-10-04 17:07:23
 
 
 cdm_print_summary_computation_time <- function(object)

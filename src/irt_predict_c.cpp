@@ -1,6 +1,5 @@
 //// File Name: irt_predict_c.cpp
 //// File Version: 3.02
-//// File Last Change: 2017-06-24 12:32:01
 
 // [[Rcpp::depends(RcppArmadillo)]]
 

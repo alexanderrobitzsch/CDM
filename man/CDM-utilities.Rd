@@ -1,6 +1,5 @@
 %% File Name: CDM-utilities.Rd
 %% File Version: 0.08
-%% File Last Change: 2017-10-06 10:10:08
 
 \name{CDM-utilities}
 \alias{CDM-utilities}

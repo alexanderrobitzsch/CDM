@@ -1,6 +1,5 @@
 ## File Name: rrum.param.R
 ## File Version: 0.02
-## File Last Change: 2017-01-31 14:07:29
 
 
 

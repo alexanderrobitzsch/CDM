@@ -1,6 +1,5 @@
 %% File Name: sequential.items.Rd
 %% File Version: 0.12
-%% File Last Change: 2017-01-31 14:08:32
 
 \name{sequential.items}
 \alias{sequential.items}

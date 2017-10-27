@@ -1,6 +1,5 @@
 ## File Name: gdm_est_a_constraints.R
 ## File Version: 0.01
-## File Last Change: 2017-10-08 17:02:35
 
 gdm_est_a_constraints <- function(a, se.a, a.constraint, increment )
 {

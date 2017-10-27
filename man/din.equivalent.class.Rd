@@ -1,6 +1,5 @@
 %% File Name: din.equivalent.class.Rd
 %% File Version: 0.17
-%% File Last Change: 2017-01-31 14:08:30
 
 \name{din.equivalent.class}
 \alias{din.equivalent.class}

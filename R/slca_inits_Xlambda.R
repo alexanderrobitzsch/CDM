@@ -1,6 +1,5 @@
 ## File Name: slca_inits_Xlambda.R
 ## File Version: 0.03
-## File Last Change: 2017-10-08 12:31:32
 
 slca_inits_Xlambda <- function( Xlambda.init, Xdes, Nlam, Xlambda_positive, Xlambda.fixed)
 {	

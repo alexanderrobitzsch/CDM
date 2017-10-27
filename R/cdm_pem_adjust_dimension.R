@@ -1,6 +1,5 @@
 ## File Name: cdm_pem_adjust_dimension.R
 ## File Version: 0.01
-## File Last Change: 2017-10-04 17:16:53
 
 cdm_pem_adjust_dimension <- function(x, x_dim )
 {

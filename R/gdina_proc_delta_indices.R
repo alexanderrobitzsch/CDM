@@ -1,6 +1,5 @@
 ## File Name: gdina_proc_delta_indices.R
 ## File Version: 0.01
-## File Last Change: 2017-10-08 19:56:54
 
 gdina_proc_delta_indices <- function(delta, Mj)
 {

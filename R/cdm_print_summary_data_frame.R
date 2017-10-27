@@ -1,6 +1,5 @@
 ## File Name: cdm_print_summary_data_frame.R
 ## File Version: 0.03
-## File Last Change: 2017-10-06 10:16:59
 
 
 cdm_print_summary_data_frame <- function(obji, from=NULL, to=NULL, digits=3)

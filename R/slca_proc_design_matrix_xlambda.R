@@ -1,6 +1,5 @@
 ## File Name: slca_proc_design_matrix_xlambda.R
 ## File Version: 0.01
-## File Last Change: 2017-10-07 18:51:39
 
 slca_proc_design_matrix_xlambda <- function(Xdes)
 {

@@ -1,6 +1,5 @@
 ## File Name: gdina_proc_check_admissible_rules.R
 ## File Version: 0.01
-## File Last Change: 2017-06-05 13:29:26
 
 gdina_proc_check_admissible_rules <- function(rule)
 {

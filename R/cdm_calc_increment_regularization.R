@@ -1,6 +1,5 @@
 ## File Name: cdm_calc_increment_regularization.R
 ## File Version: 0.01
-## File Last Change: 2017-10-07 19:49:17
 
 cdm_calc_increment_regularization <- function( d1, d2, x0, regular_lam_used, max.increment, eps=1E-10, adj_fac=.98 )
 {

@@ -1,6 +1,5 @@
 ## File Name: slca_inits_skill_distribution.R
 ## File Version: 0.02
-## File Last Change: 2017-10-06 11:02:19
 
 slca_inits_skill_distribution <- function( delta.designmatrix, delta.init, 
 		delta.linkfct, G, K, I )

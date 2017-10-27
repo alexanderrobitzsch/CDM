@@ -1,6 +1,5 @@
 %% File Name: gdina.Rd
 %% File Version: 2.9961
-%% File Last Change: 2017-10-08 21:10:20
 
 \name{gdina}
 \alias{gdina}

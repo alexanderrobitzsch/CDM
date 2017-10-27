@@ -1,6 +1,5 @@
 ## File Name: gdina_progress_start_estimation.R
 ## File Version: 0.01
-## File Last Change: 2017-06-05 13:53:09
 
 gdina_progress_start_estimation <- function( progress, linkfct, disp, G, groupre, s1)
 {

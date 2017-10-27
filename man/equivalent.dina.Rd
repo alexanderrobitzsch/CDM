@@ -1,6 +1,5 @@
 %% File Name: equivalent.dina.Rd
 %% File Version: 1.13
-%% File Last Change: 2017-07-11 09:44:39
 
 \name{equivalent.dina}
 \alias{equivalent.dina}

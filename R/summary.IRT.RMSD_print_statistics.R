@@ -1,6 +1,5 @@
 ## File Name: summary.IRT.RMSD_print_statistics.R
 ## File Version: 0.03
-## File Last Change: 2017-01-31 14:07:30
 
 summary.IRT.RMSD_print_statistics <- function( stat_summary, stat, digits){
 	obji <- stat_summary

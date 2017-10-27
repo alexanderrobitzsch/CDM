@@ -1,6 +1,5 @@
 ## File Name: cdm_pem_create_parameter_index.R
 ## File Version: 0.05
-## File Last Change: 2017-10-04 17:18:56
 
 
 cdm_pem_create_parameter_index <- function( parmlist )

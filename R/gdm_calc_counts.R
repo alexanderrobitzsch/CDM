@@ -1,6 +1,5 @@
 ## File Name: gdm_calc_counts.R
-## File Version: 0.03
-## File Last Change: 2017-10-08 13:30:34
+## File Version: 0.04
 
 ################################################	
 # calculation of expected counts
@@ -11,10 +10,10 @@ gdm_calc_counts <- function(G, weights, dat.ind, dat, dat.resp,
 	# n.ik [ 1:TP , 1:I , 1:(K+1) , 1:G ]
 	# N.ik [ 1:TP , 1:I ,  1:G ]
 	N.ik <- array( 0 , dim=c(TP,I,G) )
-    if (G==1){
+	if (G==1){
 		gg <- 1
 		for (kk in 1:(K+1)){   #		kk <- 1	# category 0 ( -> 1 )
-            dkk2 <- weights*dat.ind2[[kk]][[gg]]
+			dkk2 <- weights*dat.ind2[[kk]][[gg]]
 			n.ik[,,kk,gg] <- crossprod( p.aj.xi , dkk2 )
 			N.ik[,,gg] <- N.ik[,,gg] + n.ik[,,kk,gg]
 		}	

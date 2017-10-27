@@ -1,6 +1,5 @@
 ## File Name: confint.din.R
 ## File Version: 0.07
-## File Last Change: 2017-01-31 14:07:26
 
 #############################################################
 # confidence interval for objects of class din

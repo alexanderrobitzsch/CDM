@@ -1,6 +1,5 @@
 ## File Name: cdm_pem_extract_parameters.R
 ## File Version: 0.01
-## File Last Change: 2017-10-04 17:19:14
 
 cdm_pem_extract_parameters <- function( parm, parmgroup, pem_parameter_index )
 {

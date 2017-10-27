@@ -1,6 +1,5 @@
 ## File Name: slca_calc_posterior.R
 ## File Version: 0.01
-## File Last Change: 2017-10-04 17:49:16
 
 
 slca_calc_posterior <- function(probs, gwt0, dat, I, resp.ind.list)

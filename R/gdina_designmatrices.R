@@ -1,6 +1,5 @@
 ## File Name: gdina_designmatrices.R
 ## File Version: 0.12
-## File Last Change: 2017-01-31 14:07:26
 
 #****************************************************************
 # design matrices for GDINA model

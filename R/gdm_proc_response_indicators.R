@@ -1,6 +1,5 @@
 ## File Name: gdm_proc_response_indicators.R
 ## File Version: 0.01
-## File Last Change: 2017-10-06 10:21:03
 
 gdm_proc_response_indicators <- function(dat.resp)
 {

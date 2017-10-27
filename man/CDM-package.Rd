@@ -1,6 +1,5 @@
 %% File Name: CDM-package.Rd
 %% File Version: 2.69
-%% File Last Change: 2017-10-06 14:07:36
 
 \name{CDM-package}
 

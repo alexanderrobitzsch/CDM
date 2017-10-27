@@ -1,6 +1,5 @@
 ## File Name: slca_calc_likelihood.R
 ## File Version: 0.02
-## File Last Change: 2017-10-03 19:28:30
 
 slca_calc_likelihood <- function(G, use.freqpatt, ind.group, p.xi.aj, pi.k, weights )
 {

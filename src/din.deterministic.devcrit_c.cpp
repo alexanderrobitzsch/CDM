@@ -1,6 +1,5 @@
 //// File Name: din.deterministic.devcrit_c.cpp
 //// File Version: 3.04
-//// File Last Change: 2017-06-24 12:31:37
 
 
 

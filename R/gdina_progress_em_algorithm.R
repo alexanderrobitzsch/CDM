@@ -1,11 +1,10 @@
 ## File Name: gdina_progress_em_algorithm.R
-## File Version: 0.02
-## File Last Change: 2017-06-05 12:25:05
+## File Version: 0.03
 
 gdina_progress_em_algorithm <- function( delta , data , like.new , loglikeold ,
 		max.par.change , iter , progress, progress.item )
 {
-    if (progress) {  
+	if (progress) {  
 		if (progress.item){ 
 			g1 <- unlist( lapply( delta , FUN = function(ll){ paste( round(ll,4) , collapse= " " ) } ))
 			g1 <- matrix( paste( colnames(data) , g1 ) , ncol=1)

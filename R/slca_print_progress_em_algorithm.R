@@ -1,6 +1,5 @@
 ## File Name: slca_print_progress_em_algorithm.R
 ## File Version: 0.03
-## File Last Change: 2017-10-07 21:01:27
 
 slca_print_progress_em_algorithm <- function(progress, disp, iter, dev, dev0, deltadiff, Xlambda_change,
 		regularization, regular_penalty , digits_dev = 4, digits_parm = 6 )

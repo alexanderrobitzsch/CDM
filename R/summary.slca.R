@@ -1,6 +1,5 @@
 ## File Name: summary.slca.R
 ## File Version: 1.25
-## File Last Change: 2017-10-07 21:09:57
 
 #*******************************************************
 # Summary for slca object

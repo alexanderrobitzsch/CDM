@@ -1,6 +1,5 @@
 ## File Name: gdina_mstep_item_ml.R
-## File Version: 0.19
-## File Last Change: 2017-10-08 19:23:38
+## File Version: 0.21
 
 #####################################################
 # GDINA M-step item parameters
@@ -75,5 +74,4 @@ gdina_mstep_item_ml <- function(
 	return(res)													
 }
 ######################################################			
-			
-			
+

@@ -1,6 +1,5 @@
 %% File Name: coef.Rd
 %% File Version: 0.16
-%% File Last Change: 2017-01-31 14:08:30
 
 \name{coef}
 \alias{coef.din}

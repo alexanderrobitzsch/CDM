@@ -1,6 +1,5 @@
 %% File Name: itemfit.rmsea.Rd
 %% File Version: 1.10
-%% File Last Change: 2017-01-31 14:08:32
 
 \name{itemfit.rmsea}
 \alias{itemfit.rmsea}

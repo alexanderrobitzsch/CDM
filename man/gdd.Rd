@@ -1,6 +1,5 @@
 %% File Name: gdd.Rd
 %% File Version: 0.10
-%% File Last Change: 2017-01-31 14:08:31
 
 \name{gdd}
 \alias{gdd}

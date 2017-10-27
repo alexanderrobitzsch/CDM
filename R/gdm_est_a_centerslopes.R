@@ -1,6 +1,5 @@
 ## File Name: gdm_est_a_centerslopes.R
 ## File Version: 0.01
-## File Last Change: 2017-10-08 16:54:59
 
 gdm_est_a_centerslopes <- function(a, centerslopes, Qmatrix, TD )
 {

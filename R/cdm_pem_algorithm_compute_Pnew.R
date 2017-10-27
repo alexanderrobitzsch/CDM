@@ -1,6 +1,5 @@
 ## File Name: cdm_pem_algorithm_compute_Pnew.R
 ## File Version: 0.01
-## File Last Change: 2017-10-04 17:18:30
 
 cdm_pem_algorithm_compute_Pnew <- function( tt, P0, P1, P2)
 {

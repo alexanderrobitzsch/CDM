@@ -1,6 +1,5 @@
 ## File Name: array3_sum.R
 ## File Version: 0.01
-## File Last Change: 2017-02-26 19:06:32
 
 #*** summation of the third margin in a three-dimensional array
 array3_sum <- function( arr  )

@@ -1,6 +1,5 @@
 //// File Name: gdd_c.cpp
 //// File Version: 3.01
-//// File Last Change: 2017-01-31 14:51:05
 
 
 

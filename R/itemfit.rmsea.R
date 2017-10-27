@@ -1,6 +1,5 @@
 ## File Name: itemfit.rmsea.R
 ## File Version: 0.22
-## File Last Change: 2017-01-31 14:07:28
 
 ###########################################################
 # RMSEA Item fit

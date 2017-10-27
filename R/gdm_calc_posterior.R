@@ -1,6 +1,5 @@
 ## File Name: gdm_calc_posterior.R
 ## File Version: 0.01
-## File Last Change: 2017-10-08 17:11:12
 
 gdm_calc_posterior <- function(probs, gwt0, dat, I, resp.ind.list)
 {

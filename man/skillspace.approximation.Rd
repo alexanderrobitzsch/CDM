@@ -1,6 +1,5 @@
 %% File Name: skillspace.approximation.Rd
 %% File Version: 0.07
-%% File Last Change: 2017-01-31 14:08:32
 
 \name{skillspace.approximation}
 \alias{skillspace.approximation}

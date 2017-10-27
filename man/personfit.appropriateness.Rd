@@ -1,6 +1,5 @@
 %% File Name: personfit.appropriateness.Rd
 %% File Version: 0.14
-%% File Last Change: 2017-01-31 14:08:32
 
 \name{personfit.appropriateness}
 \alias{personfit.appropriateness}

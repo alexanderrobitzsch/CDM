@@ -1,6 +1,5 @@
 ## File Name: slca_calc_loglikelihood.R
 ## File Version: 0.08
-## File Last Change: 2017-10-08 12:48:41
 
 slca_calc_loglikelihood <- function(Xlambda, delta, delta.designmatrix, XdesM, dimXdes, gwt0, dat, I, resp.ind.list,
 		G, use.freqpatt, ind.group, weights, Xlambda.constr.V, e2, V1, Xlambda_positive)

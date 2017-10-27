@@ -1,6 +1,5 @@
 ## File Name: gdd.R
 ## File Version: 0.08
-## File Last Change: 2017-01-31 15:38:48
 #################################################################
 # generalized distance discriminating method
 gdd <- function( data , q.matrix , theta , b , a  , skillclasses=NULL){

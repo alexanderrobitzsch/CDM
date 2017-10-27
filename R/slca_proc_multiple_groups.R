@@ -1,6 +1,5 @@
 ## File Name: slca_proc_multiple_groups.R
 ## File Version: 0.02
-## File Last Change: 2017-10-07 19:14:53
 
 slca_proc_multiple_groups <- function( group, n)
 {

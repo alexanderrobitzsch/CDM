@@ -1,6 +1,5 @@
 ## File Name: cdm_increment_trimming_after_mstep.R
 ## File Version: 0.01
-## File Last Change: 2017-10-08 17:57:54
 
 
 cdm_increment_trimming_after_mstep <- function( parm, parm0, max.increment0, type )

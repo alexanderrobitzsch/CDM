@@ -1,6 +1,5 @@
 ## File Name: gdina_delta_convert_into_list.R
 ## File Version: 0.01
-## File Last Change: 2017-10-08 19:58:38
 
 
 gdina_delta_convert_into_list <- function( delta_vec, delta_indices, J)

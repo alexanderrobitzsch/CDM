@@ -1,6 +1,5 @@
 ## File Name: slca_proc_regularization.R
 ## File Version: 0.03
-## File Last Change: 2017-10-07 21:03:15
 
 slca_proc_regularization <- function(regular_lam, regular_w, Nlam, Xlambda.fixed, regular_n )
 {

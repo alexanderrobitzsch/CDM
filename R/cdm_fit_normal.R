@@ -1,6 +1,5 @@
 ## File Name: cdm_fit_normal.R
 ## File Version: 0.02
-## File Last Change: 2017-10-08 14:40:30
 
 
 cdm_fit_normal <- function(x, w)

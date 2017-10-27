@@ -1,6 +1,5 @@
 ## File Name: gdm_est_b_centerintercepts.R
 ## File Version: 0.01
-## File Last Change: 2017-10-08 13:51:41
 
 gdm_est_b_centerintercepts <- function(b, centerintercepts, TD, Qmatrix )
 {

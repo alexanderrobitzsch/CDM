@@ -1,6 +1,5 @@
 ## File Name: slca_calc_prob0.R
 ## File Version: 0.01
-## File Last Change: 2017-10-04 16:20:31
 
 slca_calc_prob0 <- function( Xdes , Xlambda , I,K,TP)
 {

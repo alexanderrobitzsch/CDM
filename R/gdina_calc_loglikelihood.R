@@ -1,6 +1,5 @@
 ## File Name: gdina_calc_loglikelihood.R
 ## File Version: 0.01
-## File Last Change: 2017-10-08 20:49:05
 
 gdina_calc_loglikelihood <- function(delta_vec, beta, attr.prob, Z, delta_indices, J,
 		iter, disp, L, aggr.attr.patt, Mj, linkfct, IP, item.patt.split, 

@@ -1,6 +1,5 @@
 %% File Name: modelfit.cor.Rd
 %% File Version: 1.50
-%% File Last Change: 2017-01-31 14:08:32
 
 \name{modelfit.cor}
 \alias{modelfit.cor}

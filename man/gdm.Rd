@@ -1,6 +1,5 @@
 %% File Name: gdm.Rd
 %% File Version: 4.31
-%% File Last Change: 2017-10-08 18:26:47
 
 \name{gdm}
 \alias{gdm}

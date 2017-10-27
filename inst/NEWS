@@ -24,7 +24,7 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 6.0  |  2017-10-09  |  Last: CDM 6.0-10
+VERSIONS CDM 6.0  |  2017-10-27  |  Last: CDM 6.0-11
 --------------------------------------------------------------
 
 ADDED * included regularized maximum likelihood in 'slca'

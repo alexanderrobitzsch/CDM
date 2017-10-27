@@ -1,6 +1,5 @@
 ## File Name: gdm_data_prep.R
-## File Version: 0.01
-## File Last Change: 2017-06-04 17:54:46
+## File Version: 0.02
 
 
 ############################################
@@ -72,10 +71,10 @@ gdm_data_prep <- function( dat , data , weights , group )
 	dat[ dat.resp==0] <- 0
 	cat("Number of response patterns =" , nrow(dat) , "\n")
 	utils::flush.console()
-	res <- list( "weights"=weights , "dat" = dat , "dat.resp"=dat.resp ,
-		"data"=data , "item.patt" = item.patt )
+	res <- list( weights=weights , dat = dat , dat.resp=dat.resp ,
+					data=data , item.patt = item.patt )
 	return(res)
-}			
+}
 ####################################################
 
 .gdm.data.prep <- gdm_data_prep

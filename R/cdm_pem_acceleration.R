@@ -1,6 +1,5 @@
 ## File Name: cdm_pem_acceleration.R
 ## File Version: 0.06
-## File Last Change: 2017-10-08 20:43:31
 
 
 cdm_pem_acceleration <- function( iter, pem_parameter_index, pem_parameter_sequence, 

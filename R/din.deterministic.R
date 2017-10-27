@@ -1,6 +1,5 @@
 ## File Name: din.deterministic.R
 ## File Version: 1.02
-## File Last Change: 2017-01-31 14:07:26
 
 #####################################################
 # Deterministic din estimation

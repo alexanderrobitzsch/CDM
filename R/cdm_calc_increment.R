@@ -1,6 +1,5 @@
 ## File Name: cdm_calc_increment.R
 ## File Version: 0.08
-## File Last Change: 2017-10-08 15:16:43
 
 cdm_calc_increment <- function( d1, d2, max.increment , eps = 1E-10, adj_fac = .98, type=1 )
 {

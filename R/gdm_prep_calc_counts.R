@@ -1,6 +1,5 @@
 ## File Name: gdm_prep_calc_counts.R
 ## File Version: 0.01
-## File Last Change: 2017-10-04 16:44:01
 
 gdm_prep_calc_counts <- function(K, G, group, weights, dat.resp, dat.ind, use.freqpatt)
 {

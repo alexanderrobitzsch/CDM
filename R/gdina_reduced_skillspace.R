@@ -1,6 +1,5 @@
 ## File Name: gdina_reduced_skillspace.R
 ## File Version: 0.09
-## File Last Change: 2017-10-08 19:30:54
 ###################################################
 # auxiliary function reduced skill space
 gdina_reduced_skillspace <- function( ntheta , Z , 

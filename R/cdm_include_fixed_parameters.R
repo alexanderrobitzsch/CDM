@@ -1,6 +1,5 @@
 ## File Name: cdm_include_fixed_parameters.R
 ## File Version: 0.03
-## File Last Change: 2017-10-08 13:46:08
 
 cdm_include_fixed_parameters <- function( parm, se_parm, parm_fixed )
 {

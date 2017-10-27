@@ -1,6 +1,5 @@
 ## File Name: gdina.dif_aux.R
 ## File Version: 1.38
-## File Last Change: 2017-09-28 15:39:13
 ###############################################
 # auxiliary calculations in gdina model for
 # detection of differential item functioning

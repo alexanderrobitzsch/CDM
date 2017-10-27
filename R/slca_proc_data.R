@@ -1,6 +1,5 @@
 ## File Name: slca_proc_data.R
 ## File Version: 0.02
-## File Last Change: 2017-10-07 18:47:46
 
 slca_proc_data <- function(data)
 {

@@ -1,6 +1,5 @@
 ## File Name: gdm_calc_loglikelihood.R
-## File Version: 0.04
-## File Last Change: 2017-10-08 19:37:46
+## File Version: 0.05
 
 gdm_calc_loglikelihood <- function(irtmodel, skillspace, b, a, centerintercepts, centerslopes, TD, Qmatrix,
 		Ngroup, pi.k, delta.designmatrix, delta, G, theta.k, D, mean.constraint, Sigma.constraint,
@@ -9,7 +8,7 @@ gdm_calc_loglikelihood <- function(irtmodel, skillspace, b, a, centerintercepts,
 {
 	#---------------------------------
 	# constraints on parameters
-    b <- gdm_est_b_centerintercepts( b=b, centerintercepts=centerintercepts, TD=TD, Qmatrix=Qmatrix )
+	b <- gdm_est_b_centerintercepts( b=b, centerintercepts=centerintercepts, TD=TD, Qmatrix=Qmatrix )
 	if (irtmodel=="2PL"){
 		a <- gdm_est_a_centerslopes( a=a, centerslopes=centerslopes, Qmatrix=Qmatrix, TD=TD ) 
 	}
@@ -36,7 +35,7 @@ gdm_calc_loglikelihood <- function(irtmodel, skillspace, b, a, centerintercepts,
 	#--- probabilities
 	probs <- gdm_calc_prob( a=a, b=b, thetaDes=thetaDes, Qmatrix=Qmatrix, I=I, K=K, TP=TP, TD=TD ) 
 	#--- posterior
-    res.hwt <- gdm_calc_posterior( probs=probs, gwt0=gwt0, dat=dat, I=I, resp.ind.list=resp.ind.list ) 
+	res.hwt <- gdm_calc_posterior( probs=probs, gwt0=gwt0, dat=dat, I=I, resp.ind.list=resp.ind.list ) 
 	p.xi.aj <- res.hwt$hwt
 	res <- gdm_calc_deviance( G=G, use.freqpatt=use.freqpatt, ind.group=ind.group, p.xi.aj=p.xi.aj, 
 					pi.k=pi.k, weights=weights )

@@ -1,6 +1,5 @@
 ## File Name: cdm_calc_information_criteria.R
 ## File Version: 0.01
-## File Last Change: 2017-10-04 16:59:16
 
 cdm_calc_information_criteria <- function(ic)
 {

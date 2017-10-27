@@ -1,6 +1,5 @@
 ## File Name: slca_est_skillspace.R
 ## File Version: 0.04
-## File Last Change: 2017-10-08 13:11:52
 
 ###########################################################################
 # reduced skillspace estimation

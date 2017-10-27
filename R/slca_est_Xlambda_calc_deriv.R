@@ -1,6 +1,5 @@
 ## File Name: slca_est_Xlambda_calc_deriv.R
 ## File Version: 0.01
-## File Last Change: 2017-10-07 20:51:03
 
 slca_est_Xlambda_calc_deriv <- function(XdesM, dimXdes, Xlambda, probs, n.ik, N.ik)
 {

@@ -1,6 +1,5 @@
 ## File Name: cdi.kli.R
 ## File Version: 0.07
-## File Last Change: 2017-01-31 15:35:25
 
 #######################################################
 # cognitive diagnostic indices

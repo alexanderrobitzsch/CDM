@@ -1,6 +1,5 @@
 ## File Name: slca_set_seed.R
 ## File Version: 0.02
-## File Last Change: 2017-10-05 18:53:05
 
 slca_set_seed <- function(seed)
 {

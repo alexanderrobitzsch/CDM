@@ -1,6 +1,5 @@
 %% File Name: IRT.frequencies.Rd
 %% File Version: 0.07
-%% File Last Change: 2017-06-24 15:27:57
 
 \name{IRT.frequencies}
 \alias{IRT.frequencies}

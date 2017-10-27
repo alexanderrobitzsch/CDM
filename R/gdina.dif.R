@@ -1,6 +1,5 @@
 ## File Name: gdina.dif.R
 ## File Version: 1.15
-## File Last Change: 2017-09-28 15:39:36
 ##########################################################
 # differential item functioning in the GDINA model
 # a Wald test is used for testing item-wise DIF

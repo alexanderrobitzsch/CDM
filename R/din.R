@@ -1,6 +1,5 @@
 ## File Name: din.R
 ## File Version: 2.31
-## File Last Change: 2017-06-05 12:16:10
 
 #************************************************************************
 # Function rowProds2 now included in din

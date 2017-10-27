@@ -1,6 +1,5 @@
 ## File Name: dataframe_summary.R
 ## File Version: 0.04
-## File Last Change: 2017-01-31 14:07:26
 
 dataframe_summary <- function( dfr , exclude_index , labels , na.rm=TRUE )
 {

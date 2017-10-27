@@ -1,6 +1,5 @@
 ## File Name: IRT.irfprob.R
 ## File Version: 0.05
-## File Last Change: 2017-01-31 14:07:27
 
 ###########################################################
 # extracts the individual irfprob

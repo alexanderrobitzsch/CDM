@@ -1,6 +1,5 @@
 %% File Name: sim.gdina.Rd
 %% File Version: 1.17
-%% File Last Change: 2017-01-31 14:08:32
 
 \name{sim.gdina}
 \alias{sim.gdina}

@@ -1,6 +1,5 @@
 ## File Name: cdm_squeeze.R
 ## File Version: 0.04
-## File Last Change: 2017-10-08 19:23:09
 
 #*********************************
 # copied squeeze function from mice package

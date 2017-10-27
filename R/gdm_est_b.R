@@ -1,6 +1,5 @@
 ## File Name: gdm_est_b.R
 ## File Version: 0.37
-## File Last Change: 2017-10-08 18:00:23
 
 ###########################################################################
 # estimation of b parameters

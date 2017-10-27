@@ -1,6 +1,5 @@
 //// File Name: slca_cfunctions.cpp
 //// File Version: 3.01
-//// File Last Change: 2017-01-31 15:19:29
 
 // #include <RcppArmadillo.h>
 #include <Rcpp.h>

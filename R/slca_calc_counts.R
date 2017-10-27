@@ -1,6 +1,5 @@
 ## File Name: slca_calc_counts.R
 ## File Version: 0.01
-## File Last Change: 2017-10-03 18:56:57
 
 
 ################################################	

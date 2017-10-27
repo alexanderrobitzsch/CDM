@@ -1,6 +1,5 @@
 ## File Name: gdm.R
-## File Version: 8.634
-## File Last Change: 2017-10-08 18:25:43
+## File Version: 8.635
 
 
 ###########################################
@@ -169,7 +168,7 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
 	}
 	n.ik <- array( 0, dim=c(TP,I,K+1,G) )		
 	
-    #***
+	#***
 	# extract number of skills per dimensions
 	skill.levels <- rep(0,D)
 	for (dd in 1:D){ 
@@ -260,7 +259,7 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
  
 		#*****
 		#2 calculate individual likelihood
-        res.hwt <- gdm_calc_posterior( probs=probs, gwt0=gwt0, dat=dat, I=I, resp.ind.list=resp.ind.list ) 
+		res.hwt <- gdm_calc_posterior( probs=probs, gwt0=gwt0, dat=dat, I=I, resp.ind.list=resp.ind.list ) 
 		p.xi.aj <- res.hwt$hwt 	
 		
 		#*****
@@ -471,6 +470,6 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
 	}
 	class(res) <- "gdm"
 	res$call <- cl
-	return(res)				
-}		
+	return(res)
+}
 ###################################################

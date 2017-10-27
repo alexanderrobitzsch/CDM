@@ -1,6 +1,5 @@
 ## File Name: cdm_pem_extract_dimension.R
 ## File Version: 0.01
-## File Last Change: 2017-10-04 17:19:04
 
 cdm_pem_extract_dimension <- function(x)
 {

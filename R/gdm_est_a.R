@@ -1,8 +1,5 @@
 ## File Name: gdm_est_a.R
-## File Version: 0.05
-## File Last Change: 2017-10-08 17:49:35
-
-
+## File Version: 0.06
 
 ###########################################
 # estimation of a
@@ -85,7 +82,7 @@ gdm_est_a <- function(probs, n.ik, N.ik, I, K, G,a,a.constraint,TD,
 	#-- OUTPUT
 	res <- list( a = a , se.a = se.a , max.increment.a = max.increment.a)
 	return(res)
-}		
+}
 
 
 .gdm.est.a <- gdm_est_a

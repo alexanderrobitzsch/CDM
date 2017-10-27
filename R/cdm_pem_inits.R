@@ -1,6 +1,5 @@
 ## File Name: cdm_pem_inits.R
 ## File Version: 0.04
-## File Last Change: 2017-10-05 17:58:05
 
 cdm_pem_inits <- function( parmlist )
 {

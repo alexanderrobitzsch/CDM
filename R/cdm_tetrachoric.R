@@ -1,10 +1,10 @@
 ## File Name: cdm_tetrachoric.R
-## File Version: 0.01
+## File Version: 0.06
 
 
 ####################################################################
 # hogdina: tetrachoric correlation
-cdm_tetrachoric <- function( dat , weights , delta=.007 , maxit = 10000  )
+cdm_tetrachoric <- function( dat , weights , delta=.007 , maxit = 10000, maxval =.999 )
 {
 	# process data
 	dat <- as.matrix(dat)
@@ -17,7 +17,7 @@ cdm_tetrachoric <- function( dat , weights , delta=.007 , maxit = 10000  )
 	# calculate frequencies
 	dfr <- data.frame( "item1" = rep(1:I,I) , "item2" = rep(1:I, each=I ) )
 
-	h1 <- crossprod( 1*(dat==1 ) , ( dat==0 ) )
+	h1 <- crossprod( 1*(dat==1) , (dat==0) )
 	dfr$f11 <- matrix( crossprod( ( dat==1 )*w2 , (w2*( dat==1 ))) , ncol=1 , byrow=TRUE )
 	dfr$f10 <- matrix( crossprod( ( dat==1 )*w2 , (w2*( dat==0 ))) , ncol=1 , byrow=TRUE )
 	dfr$f01 <- matrix( crossprod( ( dat==0 )*w2 , (w2*( dat==1 ))) , ncol=1 , byrow=TRUE ) 
@@ -27,7 +27,7 @@ cdm_tetrachoric <- function( dat , weights , delta=.007 , maxit = 10000  )
 	dfr$p11 <- dfr$f11 / dfr$ftot
 	dfr$pi1 <- ( dfr$f11 + dfr$f10 ) / dfr$ftot
 	dfr$pi2 <- ( dfr$f11 + dfr$f01 ) / dfr$ftot
-	# subdata of dfr
+	# subdataset of dfr
 	dfr <- dfr[ dfr$item1 > dfr$item2 , ]
 	dfr <- dfr[ dfr$ftot > 0 , ]
 	dfr$qi1 <- stats::qnorm( dfr$pi1)
@@ -58,8 +58,11 @@ cdm_tetrachoric <- function( dat , weights , delta=.007 , maxit = 10000  )
 		}
 		i2 <- which( dfr$conv==1 & dfr0$conv==1 )
 		if (length(i2) > 0){    
-			dfr[ i2 , vars] <- dfr0[ i2 , vars] }
-	}
+			dfr[ i2 , vars] <- dfr0[ i2 , vars] 
+		}
+		dfr$r0 <- ifelse( abs(dfr$r0) > maxval , sign(dfr$r0)*maxval , dfr$r0 )
+		dfr$conv <- ifelse( abs(dfr$r0) >= maxval , 1 , dfr$conv )
+	}	
 	TC <- matrix(NA , I , I )
 	diag(TC) <- 1
 	TC[ as.matrix(dfr[ , c("item1","item2") ] ) ] <- dfr$r0

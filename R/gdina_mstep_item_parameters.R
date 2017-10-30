@@ -1,21 +1,27 @@
 ## File Name: gdina_mstep_item_parameters.R
-## File Version: 0.05
+## File Version: 0.23
 
 gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.increment ,
 		increment.factor, J, Aj, Mj, delta, method, avoid.zeroprobs, invM.list, linkfct,
 		rule, iter, fac.oldxsi, rrum.model, delta.fixed, devchange, mstep_iter , mstep_conv,
-		Mj.index , suffstat_probs )
+		Mj.index , suffstat_probs, regular_lam, regular_type, cd_steps,
+		mono.constr , Aj_mono_constraints, mono_maxiter )
 {
-
+	mono_constraints_fitted <- NULL
+	
 	# calculation of expected counts
 	R.ljM <- R.lj %*% aggr.patt.designmatrix
 	I.ljM <- I.lj %*% aggr.patt.designmatrix
-
+	penalty <- 0
+	ll_value <- 0
+	
 	eps2 <- eps <- 1E-10
     max.increment <- max.increment / increment.factor
 	
 	delta.new <- NULL
-	for (jj in 1:J){ 	# begin item
+	#----- loop over items
+	for (jj in 1:J){ 	# begin item	
+	
 		Ajjj <- Aj[[jj]]
 		Mjjj <- Mj[[jj]][[1]]
 		Rlj.ast <- R.ljM[ jj, Mj.index[jj,5]:Mj.index[jj,6] ]
@@ -31,7 +37,7 @@ gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.
 		}		
 		#*** optimization ULS / WLS		
 		if ( method %in% c("ULS","WLS") ){
-			res_jj <- do.call("gdina_mstep_item_uls" , arglist )
+			res_jj <- do.call( what=gdina_mstep_item_uls , args=arglist )
 		}
 		#*** optimization ML
 		rrum <- ( rule[jj] == "ACDM" )	& ( linkfct == "log")
@@ -39,15 +45,25 @@ gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.
 			arglist$mstep_iter <- mstep_iter
 			arglist$mstep_conv <- mstep_conv
 			if ( ! rrum ){
-				res_jj <- do.call("gdina_mstep_item_ml" , arglist )
+				arglist$regular_lam <- regular_lam
+				arglist$regular_type <- regular_type
+				arglist$cd_steps <- cd_steps
+				arglist$mono.constr <- mono.constr
+				arglist$Aj_mono_constraints_jj <- Aj_mono_constraints[[jj]]
+				arglist$mono_maxiter <- mono_maxiter
+				res_jj <- do.call( what=gdina_mstep_item_ml , args=arglist )
+				penalty <- penalty + res_jj$penalty
+				ll_value <- ll_value + res_jj$ll_value
 			}
 			if (  rrum ){
-				res_jj <- do.call("gdina_mstep_item_ml_rrum" , arglist )			
-			}												
-		}						
-		delta.new <- res_jj$delta.new					
+				res_jj <- do.call( what=gdina_mstep_item_ml_rrum , args=arglist )
+			}
+		}
+		delta.new <- res_jj$delta.new	
+
 	}		# end item
 	#----------------- OUTPUT -------------
-	res <- list( delta.new = delta.new, suffstat_probs=suffstat_probs )
+	res <- list( delta.new = delta.new, suffstat_probs=suffstat_probs, mono_constraints_fitted=mono_constraints_fitted,
+					penalty=penalty, ll_value=ll_value)
 	return(res)
 }

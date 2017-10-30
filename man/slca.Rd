@@ -1,5 +1,5 @@
 %% File Name: slca.Rd
-%% File Version: 1.66
+%% File Version: 1.71
 
 \name{slca}
 \alias{slca}
@@ -15,8 +15,9 @@ Structured Latent Class Analysis (SLCA)
 
 \description{
 This function implements a structured latent class model for
-polytomous item responses (Formann, 1992). Lasso estimation for the
-item parameters is included (Chen et al., 2015; Sun et al., 2016).
+polytomous item responses (Formann, 1985, 1992). Lasso estimation for the
+item parameters is included (Chen et al., 2015; Chen et al., 2017;
+Sun et al., 2016).
 }
 
 \usage{
@@ -165,7 +166,7 @@ special cases (see Formann & Kohlmann, 1998; Formann, 2007).
 The function also allows for regularization of \eqn{\lambda_{xv}} parameters
 using the lasso approach (Sun et al., 2016).
 More formally, the penalty function can be written as 
-\deqn{pen( \bold{\lambda}_x ) =  p_\lambda \sum_v n_v w_v | \lambda_{xv} }
+\deqn{pen( \bold{\lambda}_x ) =  p_\lambda \sum_v n_v w_v | \lambda_{xv} | }
 where \eqn{p_\lambda} can be specified with \code{regular_lam},
 \eqn{w_v} can be specified with \code{regular_w}, and
 \eqn{n_v} can be specified with \code{regular_n}.
@@ -225,6 +226,14 @@ Acceleration of the EM algorithm: P-EM versus epsilon algorithm.
 Chen, Y., Liu, J., Xu, G., & Ying, Z. (2015). 
 Statistical analysis of Q-matrix based diagnostic classification models. 
 \emph{Journal of the American Statistical Association}, \bold{110}, 850-866.
+
+Chen, Y., Li, X., Liu, J., & Ying, Z. (2017). Regularized latent class analysis 
+with application in cognitive diagnosis. \emph{Psychometrika}, 
+\bold{82}, 660-692.
+
+Formann, A. K. (1985). Constrained latent class models: Theory and applications.
+\emph{British Journal of Mathematical and Statistical Psychology},
+\bold{38}, 87-111.
 
 Formann, A. K. (1992). Linear logistic latent class analysis for polytomous data. 
 \emph{Journal of the American Statistical Association}, \bold{87}, 476-486.	
@@ -332,7 +341,7 @@ delta.fixed <- cbind( 1 , 1 ,1 )
 
 # estimate model
 mod1 <- CDM::slca( dat , Xdes=Xdes , delta.designmatrix=delta.designmatrix , 
-            Xlambda.init=Xlambda.init , delta.fixed = delta.fixed, maxiter = 70 )
+            Xlambda.init=Xlambda.init , delta.fixed = delta.fixed )
 summary(mod1)
 plot(mod1, cex.names=.7 )
 

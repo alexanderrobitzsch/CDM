@@ -1,5 +1,5 @@
 ## File Name: slca.R
-## File Version: 1.839
+## File Version: 1.842
 
 
 ###########################################
@@ -252,34 +252,40 @@ slca <- function( data , group=NULL,
 			iterate <- FALSE
 		}
 		
-		# save values corresponding to minimal deviance
-		if ( ( dev < mindev ) | ( iter == 1 ) ){
-			Xlambda.min <- Xlambda
-			se.Xlambda.min <- se.Xlambda
-			pi.k.min <- pi.k
-			n.ik.min <- n.ik
-			probs.min <- probs
-			delta.min <- delta
-			covdelta.min <- covdelta
-			mindev <- dev
+		# save values corresponding to minimal deviance,
+		# only in models with no regularization
+		if ( regular_lam == 0 ){
+			if ( ( dev < mindev ) | ( iter == 1 ) ){
+				Xlambda.min <- Xlambda
+				se.Xlambda.min <- se.Xlambda
+				pi.k.min <- pi.k
+				n.ik.min <- n.ik
+				probs.min <- probs
+				delta.min <- delta
+				covdelta.min <- covdelta
+				mindev <- dev
+				iter.min <- iter
+			}
+		} else {
 			iter.min <- iter
 		}
-		
 	}
 	############################################
 	# END MML Algorithm
 	############################################
 		
-	Xlambda.min -> Xlambda
-	se.Xlambda.min -> se.Xlambda
-	pi.k.min -> pi.k
-	n.ik.min -> n.ik
-	probs.min -> probs
-	delta.min -> delta
-	covdelta.min -> covdelta
-	mindev -> dev
-	# iter.min -> iter
-		
+	if ( regular_lam == 0 ){	
+		Xlambda.min -> Xlambda
+		se.Xlambda.min -> se.Xlambda
+		pi.k.min -> pi.k
+		n.ik.min -> n.ik
+		probs.min -> probs
+		delta.min -> delta
+		covdelta.min -> covdelta
+		mindev -> dev
+		# iter.min -> iter
+	}
+	
 	# names
 	if ( is.null(dimnames(Xdes)[[4]] ) ){
 		dimnames(Xdes)[[4]] <- paste0("lam" , 1:Nlam ) 

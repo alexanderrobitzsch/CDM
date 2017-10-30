@@ -1,5 +1,5 @@
 ## File Name: cdm_pem_acceleration.R
-## File Version: 0.06
+## File Version: 0.08
 
 
 cdm_pem_acceleration <- function( iter, pem_parameter_index, pem_parameter_sequence, 
@@ -43,6 +43,9 @@ cdm_pem_acceleration <- function( iter, pem_parameter_index, pem_parameter_seque
 							pem_parameter_index=pem_parameter_index ) 
 			res <- do.call( what=ll_fct, args = ll_args )
 			ll <- res$ll
+			if ( is.na(ll) ){
+				ll <- -Inf
+			}			
 			if ( ll < ll0 ){
 				iterate <- FALSE				
 			}

@@ -1,5 +1,5 @@
 ## File Name: gdm_data_prep.R
-## File Version: 0.02
+## File Version: 0.03
 
 
 ############################################
@@ -45,18 +45,17 @@ gdm_data_prep <- function( dat , data , weights , group )
 	}
 	if (G>1){
 		for (gg in 1:G){
-	#gg <- 1
-		ind.gg <- which( group == gg )
-		a2 <- rowsum( weights[ind.gg] , item.patt.subj[ind.gg] )
-		a2 <- data.frame( "pattern" = rownames(a2) , a2[,1] )		
-		colnames(a2)[2] <- paste0("freq.Gr" , gg)
-		rownames(a2) <- NULL
-		if (gg == 1){ item.patt <- a2 }
-		if (gg > 1){
-			item.patt <- merge( item.patt , a2 , by ="pattern" , all=TRUE )
-					}
-		item.patt[ is.na(item.patt) ] <- 0
-				}
+			ind.gg <- which( group == gg )
+			a2 <- rowsum( weights[ind.gg] , item.patt.subj[ind.gg] )
+			a2 <- data.frame( "pattern" = rownames(a2) , a2[,1] )		
+			colnames(a2)[2] <- paste0("freq.Gr" , gg)
+			rownames(a2) <- NULL
+			if (gg == 1){ item.patt <- a2 }
+			if (gg > 1){
+				item.patt <- merge( item.patt , a2 , by ="pattern" , all=TRUE )
+			}
+			item.patt[ is.na(item.patt) ] <- 0
+		}
 		weights <- item.patt[,-1]
 	}	
 	#***

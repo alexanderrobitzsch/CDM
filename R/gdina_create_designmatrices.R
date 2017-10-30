@@ -1,7 +1,7 @@
 ## File Name: gdina_create_designmatrices.R
-## File Version: 0.01
+## File Version: 0.04
 
-gdina_create_designmatrices <- function( J, Mj, Aj, q.matrix, rule, L, attr.patt )
+gdina_create_designmatrices <- function( J, Mj, Aj, q.matrix, rule, L, attr.patt, mono.constr )
 {
 	Mj.userdefined <- TRUE
 	if ( is.null(Mj) ){ 
@@ -10,6 +10,7 @@ gdina_create_designmatrices <- function( J, Mj, Aj, q.matrix, rule, L, attr.patt
 	}
 	# Notation for Mj and Aj follows De La Torre (2011)
 	Aj <- NULL
+	Aj_mono_constraints <- NULL
 	Nattr.items <- rowSums(q.matrix >= 1)
 	# list of necessary attributes per item
 	necc.attr <- as.list( rep(NA,J) )
@@ -23,6 +24,10 @@ gdina_create_designmatrices <- function( J, Mj, Aj, q.matrix, rule, L, attr.patt
 			stop( paste("Q matrix row " , jj , " has only zero entries\n" , sep="") ) 
 		}	
 		Aj1 <- Aj[[jj]] <- .create.Aj( Nattr.items[jj] )
+		#--- define monotonicity constraints
+		if (mono.constr){
+			Aj_mono_constraints[[jj]] <- gdina_create_designmatrices_monotonicity_constraints(Ajjj=Aj[[jj]] )
+		}
 		if ( ! Mj.userdefined ){ 
 			Mj[[jj]] <- .create.Mj( Aj[[jj]] , rule = rule[jj] )	
 		}
@@ -62,6 +67,6 @@ gdina_create_designmatrices <- function( J, Mj, Aj, q.matrix, rule, L, attr.patt
 	#--- OUTPUT
 	res <- list(Mj=Mj, Mj.userdefined=Mj.userdefined, Aj=Aj, Nattr.items=Nattr.items, necc.attr=necc.attr,
 				aggr.attr.patt=aggr.attr.patt, attr.items=attr.items, aggr.patt.designmatrix=aggr.patt.designmatrix,
-				Mj.index=Mj.index )
+				Mj.index=Mj.index, Aj_mono_constraints=Aj_mono_constraints )
 	return(res)
 }

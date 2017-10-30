@@ -24,7 +24,7 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 6.0  |  2017-10-27  |  Last: CDM 6.0-11
+VERSIONS CDM 6.0  |  2017-10-30  |  Last: CDM 6.0-32
 --------------------------------------------------------------
 
 ADDED * included regularized maximum likelihood in 'slca'
@@ -34,9 +34,22 @@ ADDED * included P-EM acceleration method in 'slca', 'gdm',
         and 'gdina'
 NOTE  * avoided inversion of singular covariance matrices in
         'gdina' by using 'MASS::ginv'
+NOTE  * included several sub-datasets and different Q-matrices
+        of the fraction subtraction dataset (see 'data.fraction')
+NOTE  * slight changes in algorithm of higher-order GDINA model
+NOTE  * included argument 'diag_only' in 'numerical_Hessian'
+NOTE  * exported utility functions 'cdm_fa1', 'cdm_print_summary_call',
+        'cdm_print_summary_computation_time', 'cdm_scad_threshold',
+        'cdm_soft_threshold', 'cdm_fit_normal',
+        'cdm_parameter_regularization', 'cdm_penalty_values'
+NOTE  * included derivative function 'numerical_Hessian_partial'
+ADDED * added option for monotonicity constraints in 'gdina'
+ADDED * added regularization methods in 'gdina'. Options are the
+        SCAD penalty, the lasso penalty and the ridge penalty.
 
-DATA  * included/modified datasets: ---
-EXAMP * included/modified examples: ---
+DATA  * included/modified datasets: data.fraction3, 
+        data.fraction4, data.fraction5
+EXAMP * included/modified examples: gdina (1.9, 1.10)
 
 
 

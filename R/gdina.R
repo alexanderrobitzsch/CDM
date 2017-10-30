@@ -1,5 +1,5 @@
 ## File Name: gdina.R
-## File Version: 9.127
+## File Version: 9.175
 
 
 ################################################################################
@@ -25,6 +25,8 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 					HOGDINA = -1 , 
 					Z.skillspace = NULL , 
                     weights = rep( 1, nrow( data ) ),  rule = "GDINA", 
+					regular_lam = 0, regular_type = "none", 
+					mono.constr = FALSE, 
                     progress = TRUE , 
 					progress.item = FALSE , 
 					mstep_iter = 10 ,
@@ -36,8 +38,10 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 					seed = 0 , 		
 					save.devmin=TRUE , calc.se = TRUE ,
 					se_version = 1 , PEM = FALSE , PEM_itermax = maxit , 
+					cd = FALSE, cd_steps = 1 , mono_maxiter = 10,
 					...
-						){
+						)
+{
                     
 # data: a required matrix of binary response data, whereas the items are in the columns 
 #       and the response pattern in the rows. NA values are allowed.
@@ -239,7 +243,8 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	# create design matrices 
 	################################################################################	
 
-	res <- gdina_create_designmatrices( J=J, Mj=Mj, Aj=Aj, q.matrix=q.matrix, rule=rule, L=L, attr.patt=attr.patt ) 
+	res <- gdina_create_designmatrices( J=J, Mj=Mj, Aj=Aj, q.matrix=q.matrix, rule=rule, L=L, attr.patt=attr.patt,
+				mono.constr=mono.constr) 
 	Mj <- res$Mj
 	Mj.userdefined <- res$Mj.userdefined
 	Aj <- res$Aj
@@ -249,6 +254,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	attr.items <- res$attr.items
 	aggr.patt.designmatrix <- res$aggr.patt.designmatrix
 	Mj.index <- res$Mj.index	
+	Aj_mono_constraints <- res$Aj_mono_constraints
 	
 	###############################################################################
 	# initial item parameters
@@ -277,7 +283,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
    
     iter <- 1 # Iteration number
     likediff <- 1 # Difference in likelihood estimates
-    loglike <- 0 # init for log-Likelihood
+	opt_fct <- loglike <- 0 # init for log-Likelihood
     
     # init value for maximum parameter change in likelihood maximization
     max.par.change <- 1000
@@ -334,6 +340,29 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	
 	deviance.history <- rep(NA, maxit)
 	
+	#------------------------------
+	# regularization, coordinate descent and monotonicity constraints
+	regularization <- FALSE
+	cd_algorithm <- FALSE
+	if (regular_type %in% c("lasso","scad") ){
+		regularization <- TRUE
+		cd_algorithm <- TRUE
+		method <- "ML"
+	}
+	if (regular_type %in% c("ridge") ){
+		regularization <- TRUE
+		method <- "ML"
+	}	
+	if ( cd ){ cd_algorithm <- TRUE }	
+	if ( mono.constr ){
+		linkfct <- "logit"
+		method <- "ML"
+	}
+	if (regularization){
+		save.devmin <- FALSE
+		linkfct <- "logit"
+	}
+	
 	#********************************
 	# extract parameters with minimal deviances
 
@@ -350,8 +379,8 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
     
     while ( ( iter <= maxit ) & 
 				( ( max.par.change > conv.crit ) | ( devchange > dev.crit  ) )	)
-	{
-
+	{		
+		
 		################################################################################
 		# STEP I:                                                                      #
 		# calculate P(X_i | alpha_l):                                                  # 
@@ -426,14 +455,19 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 		# M Step																	   # 
 		# GDINA Model																   #
 		################################################################################
-
+		
 		res <- gdina_mstep_item_parameters( R.lj=R.lj, I.lj=I.lj, aggr.patt.designmatrix=aggr.patt.designmatrix, 
 					max.increment=max.increment, increment.factor=increment.factor, J=J, Aj=Aj, Mj=Mj, delta=delta, 
 					method=method, avoid.zeroprobs=avoid.zeroprobs, invM.list=invM.list, linkfct=linkfct, rule=rule, 
 					iter=iter, fac.oldxsi=fac.oldxsi, rrum.model=rrum.model, delta.fixed=delta.fixed, devchange=devchange, 
-					mstep_iter=mstep_iter, mstep_conv=mstep_conv, Mj.index=Mj.index, suffstat_probs=suffstat_probs ) 	
+					mstep_iter=mstep_iter, mstep_conv=mstep_conv, Mj.index=Mj.index, suffstat_probs=suffstat_probs,
+					regular_lam=regular_lam, regular_type=regular_type, cd_steps=cd_steps,
+					mono.constr=mono.constr, Aj_mono_constraints=Aj_mono_constraints, mono_maxiter=mono_maxiter) 	
 		delta.new <- res$delta.new
 		suffstat_probs <- res$suffstat_probs
+		mono_constraints_fitted <- res$mono_constraints_fitted
+		penalty <- res$penalty		
+		ll_value <- res$ll_value
 	
 		##########################################################################
 		# estimation with a design matrix for delta parameters
@@ -476,9 +510,12 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 
 		#--- calculate deviance
 		res <- gdina_calc_deviance( p.xi.aj=p.xi.aj, attr.prob=attr.prob, item.patt.freq=item.patt.freq, 
-					loglike=loglike, G=G, IP=IP ) 
+					loglike=loglike, G=G, IP=IP, regularization=regularization, penalty=penalty,
+					opt_fct=opt_fct) 
 		like.new <- res$like.new
 		likediff <- res$likediff
+		opt_fct <- res$opt_fct
+		opt_fct_change <- res$opt_fct_change
 		loglikeold <- loglike
 		loglike <- like.new
 		
@@ -487,8 +524,12 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 		delta <- delta.new	  # reset delta parameter estimates
 	
 		#--- progress EM algorithm
-		res <- gdina_progress_em_algorithm( delta=delta, data=data, like.new=like.new, loglikeold=loglikeold, 
-					max.par.change=max.par.change, iter=iter, progress=progress, progress.item=progress.item ) 
+        res <- gdina_progress_em_algorithm( delta=delta, data=data, like.new=like.new, loglikeold=loglikeold, 
+					max.par.change=max.par.change, iter=iter, progress=progress, 
+					progress.item=progress.item, regularization=regularization, penalty=penalty, 
+					opt_fct=opt_fct, opt_fct_change=opt_fct_change, ll_value=ll_value,
+					regular_type = regular_type ) 
+
 		utils::flush.console() # Output is flushing on the console
 		iter <- iter + 1 # new iteration number                                    
 		devchange <- abs( 2*(like.new-loglikeold) )
@@ -508,6 +549,9 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 				attr.prob.min <- attr.prob
 				loglike.min <- loglike
 			}		
+		}
+		if ( ! save.devmin ){
+			iter.min <- iter
 		}
 		#********************************
 		
@@ -529,7 +573,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 		I.lj.min -> I.lj		
 		attr.prob.min -> attr.prob
 		loglike.min -> loglike		
-		}
+	}
 	#****************************************
 
 	#--- pattern output
@@ -564,17 +608,25 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	attr.prob <- res$attr.prob
 	skill.patt <- res$skill.patt
 	
-	#------- calculation of the AIC und BIC        
+	#--- monotonicity boundaries and regularized parameters
+    res <- gdina_postproc_regularized_constrained_parameters( mono.constr=mono.constr, delta=delta, 
+					Aj_mono_constraints=Aj_mono_constraints, Mj=Mj, linkfct=linkfct, regularization=regularization,
+					data=data ) 
+	numb_bound_mono <- res$numb_bound_mono
+	numb_regular_pars <- res$numb_regular_pars
+	item_bound_mono <- res$item_bound_mono
+	
+	#--- calculation of the AIC und BIC        
 	res <- gdina_calc_ic( delta=delta, delta.designmatrix=delta.designmatrix, delta.fixed=delta.fixed, 
 				G=G, ncolZ=ncolZ, K=K, HOGDINA=HOGDINA, item.patt.freq=item.patt.freq, 
-				zeroprob.skillclasses=zeroprob.skillclasses, loglike=loglike )
+				zeroprob.skillclasses=zeroprob.skillclasses, loglike=loglike, numb_regular_pars=numb_regular_pars )
 	Npars <- res$Npars
 	aic <- res$aic
 	bic <- res$bic
 	caic <- res$caic
 	Nskillpar <- res$Nskillpar
 	Nipar <- res$Nipar	
-	
+
 	#--- postprocess posterior distributions	
 	res <- gdina_post_posterior_output( G=G, p.aj.xi=p.aj.xi, p.xi.aj=p.xi.aj, pattern=pattern, data=data, 
 				item.patt.subj=item.patt.subj, item.patt=item.patt, attr.prob=attr.prob, group=group ) 
@@ -584,7 +636,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	posterior <- res$posterior
 	pattern <- res$pattern
 	attr.prob0 <- res$attr.prob0	
-				
+	
 	#--- item fit [ items , theta , categories ] 
 	res <- gdina_itemfit( L=L, J=J, R.lj=R.lj, I.lj=I.lj, item.patt.freq=item.patt.freq, G=G, 
 				attr.prob=attr.prob, data=data, pjM=pjM ) 
@@ -609,22 +661,29 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 				Nskillclasses=L, varmat.delta=varmat.delta, varmat.palj=varmat.palj,
                 posterior=posterior, like=p.xi.aj, data=data, q.matrix=q.matrix,
                 pattern=pattern, attribute.patt=attr.prob, skill.patt=skill.patt,
+				attr.prob=attr.prob$class.prob,
                 subj.pattern=item.patt.subj, attribute.patt.splitted=attr.patt, 
 				pjk=pjM,  Mj=Mj, Aj=Aj, rule=rule, linkfct=linkfct, delta.designmatrix=delta.designmatrix, 
 				reduced.skillspace=reduced.skillspace, Z.skillspace=if(reduced.skillspace){ Z } else { NULL }, 
 				beta=beta, covbeta=covbeta, display=disp, item.patt.split=item.patt.split, 
 				item.patt.freq=item.patt.freq, model.type=r1, iter=iter, iterused=iterused, rrum.model=rrum.model,
 				rrum.params= rrum.params, group.stat=group.stat,  NAttr=maxAttr, invariance=invariance, 
-				HOGDINA=HOGDINA, seed= seed, iter=iter, converged=iter < maxit ,
-				deviance.history=deviance.history)
+				HOGDINA=HOGDINA, mono.constr=mono.constr, regularization=regularization, regular_lam=regular_lam,
+				numb_bound_mono=numb_bound_mono, item_bound_mono=item_bound_mono, numb_regular_pars=numb_regular_pars, 
+				regular_type=regular_type, cd_algorithm=cd_algorithm, cd_steps=cd_steps, 
+				seed= seed, iter=iter, converged=iter < maxit , iter.min=iter.min, 
+				deviance.history=deviance.history, penalty=penalty, opt_fct=opt_fct )
 		 
 	if (HOGDINA>=0) { 
 	    colnames(a.attr) <- paste0( "a.Gr" , 1:G )
 		colnames(b.attr) <- paste0( "b.Gr" , 1:G )
-		rownames(b.attr) <- rownames(a.attr) <- colnames(q.matrix)
+		int.attr <- - b.attr / a.attr
+		colnames(int.attr) <- paste0( "int.Gr" , 1:G )
+		rownames(int.attr) <- rownames(b.attr) <- rownames(a.attr) <- colnames(q.matrix)
 		res$a.attr <- a.attr 
 		res$b.attr <- b.attr
-		res$attr.rf <- cbind( b.attr , a.attr )
+		res$int.attr <- int.attr
+		res$attr.rf <- cbind( b.attr , a.attr, int.attr )
 	}						
 	# computation time
     time1$s2 <- Sys.time()

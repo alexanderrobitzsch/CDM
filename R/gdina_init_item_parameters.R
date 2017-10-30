@@ -1,5 +1,5 @@
 ## File Name: gdina_init_item_parameters.R
-## File Version: 0.02
+## File Version: 0.06
 
 gdina_init_item_parameters <- function( delta.init, linkfct, J, seed, Mj,
 	delta.basispar.init, delta.designmatrix, Mj.index, rule )
@@ -27,14 +27,8 @@ gdina_init_item_parameters <- function( delta.init, linkfct, J, seed, Mj,
 			for ( jj in 1:J){
 				N1jj <- ncol(Mj[[jj]][[1]])
 				l1 <- rep(0,N1jj)
-				if ( seed == 0 ){
-					dd1 <- -1 ; dd2 <- 1
-				} else {			
-					dd1 <- stats::runif( 1 , -2 , 0 )					
-					dd2 <- stats::runif( 1 , 0 , 2 )					
-				}
-				l1[1] <- dd1
-				l1[N1jj] <- dd2
+				l1[1] <- -2
+				l1[-1] <- 4 / N1jj
 				delta[[jj]] <- l1
 			}
 		}

@@ -1,14 +1,11 @@
 ## File Name: gdina_mstep_item_ml_update_parameter.R
-## File Version: 0.16
+## File Version: 0.32
 
 gdina_mstep_item_ml_update_parameter <- function( delta_jj, max_increment,
-	regular_lam, regular_type, regularization, ll_FUN, h, mstep_conv, cd_steps)
+	regular_lam, regular_type, regularization, ll_FUN, h, mstep_conv, cd_steps,
+	regular_alpha, regular_tau )
 {
 	eps <- 1E-5
-	if ( regular_type == "ridge" ){
-		regularization <- FALSE
-#		regularization <- TRUE
-	}
 	#--- no regularization
 	if ( ! regularization ){
 		res1 <- numerical_Hessian(par=delta_jj , h = h, FUN = ll_FUN , gradient=TRUE, hessian=TRUE, diag_only=FALSE )
@@ -21,10 +18,10 @@ gdina_mstep_item_ml_update_parameter <- function( delta_jj, max_increment,
 	}
 	#--- regularization
 	if (regularization){
-		NP <- length(delta_jj)		
+		NP <- length(delta_jj)
 		for (pp in 1:NP){	
 			iterate_pp <- TRUE
-			vv <- 0
+			vv <- 0		
 			while (iterate_pp){	
 				delta_jj_pp <- delta_jj
 				res <- numerical_Hessian_partial(par=delta_jj , FUN=ll_FUN , h = h, coordinate = pp )
@@ -35,7 +32,8 @@ gdina_mstep_item_ml_update_parameter <- function( delta_jj, max_increment,
 				vv <- vv + 1
 				if (pp >= 2 ){
 					delta_jj[pp] <- gdina_mstep_item_ml_update_parameter_regularization(x=delta_jj[pp], 
-											regular_type=regular_type, regular_lam=regular_lam )
+											regular_type=regular_type, regular_lam=regular_lam,
+											regular_alpha = regular_alpha, regular_tau=regular_tau )
 				}
 				parchange_pp <- max( abs( delta_jj_pp - delta_jj ))
 				if ( parchange_pp < mstep_conv ){ 

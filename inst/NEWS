@@ -24,7 +24,7 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 6.0  |  2017-10-30  |  Last: CDM 6.0-32
+VERSIONS CDM 6.0  |  2017-11-06  |  Last: CDM 6.0-56
 --------------------------------------------------------------
 
 ADDED * included regularized maximum likelihood in 'slca'
@@ -39,17 +39,26 @@ NOTE  * included several sub-datasets and different Q-matrices
 NOTE  * slight changes in algorithm of higher-order GDINA model
 NOTE  * included argument 'diag_only' in 'numerical_Hessian'
 NOTE  * exported utility functions 'cdm_fa1', 'cdm_print_summary_call',
-        'cdm_print_summary_computation_time', 'cdm_scad_threshold',
-        'cdm_soft_threshold', 'cdm_fit_normal',
+        'cdm_print_summary_computation_time', threshold operators
+        'cdm_XXX_threshold' for diverse 'XXX', 'cdm_fit_normal',
         'cdm_parameter_regularization', 'cdm_penalty_values'
 NOTE  * included derivative function 'numerical_Hessian_partial'
 ADDED * added option for monotonicity constraints in 'gdina'
-ADDED * added regularization methods in 'gdina'. Options are the
-        SCAD penalty, the lasso penalty and the ridge penalty.
+ADDED * added regularization methods in 'gdina'. Implemented are
+        the penalties SCAD, lasso, ridge, SCAD-L2, truncated L1, MCP
+        (Xu & Shang, 2017, JASA) 
+NOTE  * included argument 'freq_weights' in 'gdina' to disable the
+        usage of frequency weights
+ADDED * included prior distributions for item parameters in 
+        'gdina' function
+ADDED * added regularized latent class estimation ('reglca';
+        Chen et al., 2015, JASA; Chen et al., 2017, Psychometrika)
+
 
 DATA  * included/modified datasets: data.fraction3, 
         data.fraction4, data.fraction5
-EXAMP * included/modified examples: gdina (1.9, 1.10)
+EXAMP * included/modified examples: gdina (1.9, 1.10, 1.11),
+        slca (6), reglca (1)
 
 
 

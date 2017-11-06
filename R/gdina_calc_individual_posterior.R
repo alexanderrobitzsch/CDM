@@ -1,11 +1,12 @@
 ## File Name: gdina_calc_individual_posterior.R
-## File Version: 0.01
+## File Version: 0.03
 
 gdina_calc_individual_posterior <- function(G, IP, attr.prob, p.xi.aj, L, I,
 		zeroprob.skillclasses, reduced.skillspace, item.patt.freq)
 {
     # posterior probabilities  P( \alpha_l | X_i ) 
-	if (G== 1){ 
+	if (G==1){ 
+#!!!! avoid usage of outer!!		
 		p.aj.xi <- outer( rep(1,IP), attr.prob ) * p.xi.aj 
 	} else {
 		 p.aj.xi <- array( 0 , c( IP , L , G ) )

@@ -1,8 +1,9 @@
 ## File Name: cdm_trim_increment.R
-## File Version: 0.02
+## File Version: 0.03
 
 cdm_trim_increment <- function( increment, max.increment, type=1 )
 {
+	increment[ is.na(increment) ] <- 0
 	if ( type == 1){
 		increment <- ifelse(abs(increment)> max.increment, 
 					sign(increment)*max.increment , increment )	

@@ -1,5 +1,5 @@
 %% File Name: CDM-utilities.Rd
-%% File Version: 0.19
+%% File Version: 0.35
 
 \name{CDM-utilities}
 \alias{CDM-utilities}
@@ -14,10 +14,16 @@
 \alias{cdm_print_summary_call}
 \alias{cdm_print_summary_computation_time}
 \alias{cdm_scad_threshold}
-\alias{cdm_soft_threshold}
+\alias{cdm_lasso_threshold}
 \alias{cdm_fit_normal}
 \alias{cdm_parameter_regularization}
 \alias{cdm_penalty_values}
+\alias{cdm_ridge_threshold}
+\alias{cdm_elnet_threshold}
+\alias{cdm_scadL2_threshold}
+\alias{cdm_tlp_threshold}
+\alias{cdm_mcp_threshold}
+
 
 \title{Utility Functions in \pkg{CDM}}
 
@@ -31,7 +37,7 @@ Utility functions in \pkg{CDM}.
 CDM_require_namespace(pkg)    
 
 ## print function in summary
-cdm_print_summary_data_frame(obji, from=NULL, to=NULL, digits=3)
+cdm_print_summary_data_frame(obji, from=NULL, to=NULL, digits=3, rownames_null=FALSE)
 ## print summary call
 cdm_print_summary_call(object)
 ## print computation time
@@ -47,12 +53,25 @@ cdm_fa1(Sigma, method=1, maxit=50, conv=1E-5)
 
 ## SCAD thresholding operator
 cdm_scad_threshold(beta, lambda, a=3.7)
-## LASSO thresholding operator
-cdm_soft_threshold(val, eta )
+## lasso thresholding operator
+cdm_lasso_threshold(val, eta )
+## ridge thresholding operator
+cdm_ridge_threshold(beta, lambda)
+## elastic net threshold operator
+cdm_elnet_threshold( beta, lambda, alpha )
+## SCAD-L2 thresholding operator
+cdm_scadL2_threshold(beta, lambda, alpha, a=3.7)
+## truncated L1 penalty thresholding operator 
+cdm_tlp_threshold( beta, tau, lambda )
+## MCP thresholding operator
+cdm_mcp_threshold(beta, lambda, a=3.7)
+
 ## general thresholding operator for regularization
-cdm_parameter_regularization(x, regular_type, regular_lam )
+cdm_parameter_regularization(x, regular_type, regular_lam, regular_alpha=NULL, 
+         regular_tau=NULL )
 ## values of penalty function
-cdm_penalty_values(x, regular_type, regular_lam, regular_tau=NULL)
+cdm_penalty_values(x, regular_type, regular_lam, regular_tau=NULL,
+       regular_alpha=NULL)
 
 ## utility functions for P-EM acceleration
 cdm_pem_inits(parmlist)
@@ -68,6 +87,7 @@ cdm_pem_acceleration_assign_output_parameters(res_ll_fct, vars, envir, update)
 \item{from}{Integer}
 \item{to}{Intger}
 \item{digits}{Number of digits used for printing}
+\item{rownames_null}{Logical}
 \item{object}{Object}
 \item{n}{Integer}
 \item{mean}{Mean vector or matrix if separate means for cases are provided. In this case,
@@ -83,12 +103,15 @@ item loadings, method \code{2} estimation of same item loadings.}
 \item{conv}{Convergence criterion}
 \item{beta}{Numeric}
 \item{lambda}{Regularization parameter}
+\item{alpha}{Regularization parameter}
 \item{a}{Parameter}
+\item{tau}{Regularization parameter}
 \item{val}{Numeric}
 \item{eta}{Regularization parameter}
 \item{regular_type}{Type of regularization}
 \item{regular_lam}{Regularization parameter \eqn{\lambda}}
 \item{regular_tau}{Regularization parameter \eqn{\tau}}
+\item{regular_alpha}{Regularization parameter \eqn{\alpha}}
 \item{parmlist}{List containing parameters}
 \item{pem_pars}{Vector containing parameter names}
 \item{envir}{Environment}

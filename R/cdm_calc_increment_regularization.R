@@ -1,17 +1,16 @@
 ## File Name: cdm_calc_increment_regularization.R
-## File Version: 0.01
+## File Version: 0.08
 
-cdm_calc_increment_regularization <- function( d1, d2, x0, regular_lam_used, max.increment, eps=1E-10, adj_fac=.98 )
+cdm_calc_increment_regularization <- function( d1, d2, x0, regular_lam_used, max.increment, eps=1E-10, adj_fac=.98 ,
+			regular_type)
 {
-	val <-  d2 * x0 + d1
-	eta <- regular_lam_used
-	res <- cdm_soft_threshold( val=val, eta=regular_lam_used )
-	updated <- res / abs( d2 + eps )
+	val <- x0 + d1 / abs( d2 + eps )
+	updated <- cdm_parameter_regularization(x=val, regular_type=regular_type, regular_lam=regular_lam_used)	
 	increment <- updated - x0
-	increment[ is.na(increment) ] <- 0
+	max.increment <- 3
 	increment <- cdm_trim_increment( increment=increment, max.increment=max.increment ) 
 	updated <- x0 + increment
-	max.increment <- max(abs(increment)) / adj_fac
+	max.increment <- max(abs(increment)) / adj_fac	
 	#--- output
 	res <- list( increment = increment, updated = updated, max.increment=max.increment )
 	return(res)

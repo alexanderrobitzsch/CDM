@@ -1,5 +1,5 @@
 ## File Name: summary.slca.R
-## File Version: 1.25
+## File Version: 1.27
 
 #*******************************************************
 # Summary for slca object
@@ -50,6 +50,11 @@ summary.slca <- function( object , file = NULL , ... )
     cat( "  Number of non-active lambda parameters = " , object$ic$nonactive , "\n" ) 	
     cat( "  Number of estimated distribution parameters = " , object$ic$traitpars , "\n\n" )    
 
+	cat( "Regularization = " , object$regularization , "\n" ) 	
+	cat( "  Regularization method = " , object$regular_type , "\n" ) 	
+	cat( "  Regularization parameter lambda = " , object$regular_lam , "\n\n" ) 	
+	
+	
 	#-- information criteria
 	cdm_print_summary_information_criteria(object=object)
 

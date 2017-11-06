@@ -1,5 +1,5 @@
 ## File Name: slca.R
-## File Version: 1.842
+## File Version: 1.848
 
 
 ###########################################
@@ -13,7 +13,7 @@ slca <- function( data , group=NULL,
 	delta.designmatrix =NULL ,  delta.init = NULL , 
 	delta.fixed = NULL , delta.linkfct = "log" ,  
 	Xlambda_positive = NULL, 
-	regular_lam = 0 , regular_w = NULL , regular_n = nrow(data) , 
+	regular_type = "lasso", regular_lam = 0 , regular_w = NULL , regular_n = nrow(data) , 
     maxiter=1000, conv=1E-5, globconv=1E-5, msteps=10 , 
 	convM=.0005 , decrease.increments = FALSE , oldfac = 0 , dampening_factor=1.01,
 	seed=NULL , progress = TRUE , PEM=TRUE, PEM_itermax=maxiter, ...)
@@ -111,7 +111,7 @@ slca <- function( data , group=NULL,
 
 	#-- regularization	
 	res <- slca_proc_regularization( regular_lam=regular_lam, regular_w=regular_w, Nlam=Nlam, Xlambda.fixed=Xlambda.fixed, 
-					regular_n=regular_n ) 
+					regular_n=regular_n, regular_type=regular_type ) 
 	regular_lam <- res$regular_lam
 	regular_w <- res$regular_w
 	regular_lam_used <- res$regular_lam_used
@@ -184,12 +184,14 @@ slca <- function( data , group=NULL,
 		#5 M step: Xdelta parameter estimation
 		# n.ik  [1:TP,1:I,1:K,1:G]
 		# probs[1:I,1:K,1:TP]
+
         res <- slca_est_Xlambda( Xlambda=Xlambda, Xdes=Xdes, probs=probs, n.ik1=n.ik1, N.ik1=N.ik1, I=I, K=K, G=G, 
 					 max.increment=max.increment, TP=TP, msteps=msteps, convM=convM, 
 					 Xlambda.fixed=Xlambda.fixed, XdesM=XdesM, dimXdes=dimXdes, oldfac=oldfac, 
 					 decrease.increments=decrease.increments, dampening_factor=dampening_factor, 
 					 Xlambda.constr.V=Xlambda.constr.V, e2=e2, V1=V1, regularization=regularization, 
-					 regular_lam_used=regular_lam_used, regular_n=regular_n, Xlambda_positive=Xlambda_positive ) 
+					 regular_lam_used=regular_lam_used, regular_n=regular_n, Xlambda_positive=Xlambda_positive,
+					 regular_type=regular_type ) 
 		Xlambda <- res$Xlambda
 		se.Xlambda <- res$se.Xlambda
 		max.increment <- res$max.increment	
@@ -246,7 +248,7 @@ slca <- function( data , group=NULL,
 		globconv1 <- abs( dev - dev0) 
 		iter <- iter +1
 		#---- print progress
-        slca_print_progress_em_algorithm( progress=progress, disp=disp, iter=iter, dev=dev, dev0=dev0, deltadiff=deltadiff, 
+        res <- slca_print_progress_em_algorithm( progress=progress, disp=disp, iter=iter, dev=dev, dev0=dev0, deltadiff=deltadiff, 
 				Xlambda_change=pardiff, regularization=regularization, regular_penalty=regular_penalty ) 
 		if ( globconv1 < globconv ){
 			iterate <- FALSE
@@ -340,7 +342,7 @@ slca <- function( data , group=NULL,
 				deviance.history=deviance.history, AIC=ic$AIC, BIC=ic$BIC, Npars=ic$np, loglike=-dev/2, 
 				seed.used=seed.used, PEM=PEM, Xlambda.init=Xlambda.init, delta.init=delta.init, 
 				Xlambda_positive=Xlambda_positive, regular_penalty=regular_penalty, regular_n=regular_n, 
-				regular_lam=regular_lam, regular_w=regular_w, regular_lam_used=regular_lam_used,
+				regular_type=regular_type, regular_lam=regular_lam, regular_w=regular_w, regular_lam_used=regular_lam_used,
 				regular_indicator_parameters=regular_indicator_parameters, regularization=regularization, 
 				control=control, call=cl ) 		
 	class(res) <- "slca"

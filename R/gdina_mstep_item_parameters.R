@@ -1,11 +1,12 @@
 ## File Name: gdina_mstep_item_parameters.R
-## File Version: 0.23
+## File Version: 0.37
 
 gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.increment ,
 		increment.factor, J, Aj, Mj, delta, method, avoid.zeroprobs, invM.list, linkfct,
 		rule, iter, fac.oldxsi, rrum.model, delta.fixed, devchange, mstep_iter , mstep_conv,
 		Mj.index , suffstat_probs, regular_lam, regular_type, cd_steps,
-		mono.constr , Aj_mono_constraints, mono_maxiter )
+		mono.constr , Aj_mono_constraints, mono_maxiter, regular_alpha, regular_tau,
+		regularization_types, prior_intercepts, prior_slopes, use_prior )
 {
 	mono_constraints_fitted <- NULL
 	
@@ -14,6 +15,7 @@ gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.
 	I.ljM <- I.lj %*% aggr.patt.designmatrix
 	penalty <- 0
 	ll_value <- 0
+	logprior_value <- 0
 	
 	eps2 <- eps <- 1E-10
     max.increment <- max.increment / increment.factor
@@ -51,9 +53,17 @@ gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.
 				arglist$mono.constr <- mono.constr
 				arglist$Aj_mono_constraints_jj <- Aj_mono_constraints[[jj]]
 				arglist$mono_maxiter <- mono_maxiter
+				arglist$regular_alpha <- regular_alpha
+				arglist$regular_tau <- regular_tau
+				arglist$regularization_types <- regularization_types				
+				arglist$prior_intercepts <- prior_intercepts
+				arglist$prior_slopes <- prior_slopes
+				arglist$use_prior <- use_prior				
+				#-- estimation step
 				res_jj <- do.call( what=gdina_mstep_item_ml , args=arglist )
-				penalty <- penalty + res_jj$penalty
+				penalty <- penalty + res_jj$penalty						
 				ll_value <- ll_value + res_jj$ll_value
+				logprior_value <- logprior_value + res_jj$logprior_value
 			}
 			if (  rrum ){
 				res_jj <- do.call( what=gdina_mstep_item_ml_rrum , args=arglist )
@@ -64,6 +74,6 @@ gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.
 	}		# end item
 	#----------------- OUTPUT -------------
 	res <- list( delta.new = delta.new, suffstat_probs=suffstat_probs, mono_constraints_fitted=mono_constraints_fitted,
-					penalty=penalty, ll_value=ll_value)
+					penalty=penalty, ll_value=ll_value, logprior_value=logprior_value)
 	return(res)
 }

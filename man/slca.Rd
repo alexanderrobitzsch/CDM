@@ -1,5 +1,5 @@
 %% File Name: slca.Rd
-%% File Version: 1.71
+%% File Version: 1.76
 
 \name{slca}
 \alias{slca}
@@ -25,10 +25,10 @@ slca(data, group = NULL, weights = rep(1, nrow(data)), Xdes,
   Xlambda.init = NULL, Xlambda.fixed = NULL, Xlambda.constr.V=NULL , 
   Xlambda.constr.c=NULL ,  delta.designmatrix = NULL, 
   delta.init = NULL, delta.fixed = NULL, delta.linkfct = "log" ,
-  Xlambda_positive=NULL, regular_lam = 0, regular_w = NULL, regular_n = nrow(data),
-  maxiter = 1000, conv = 1e-5, globconv = 1e-5, msteps = 10, convM = 5e-04, 
-  decrease.increments = FALSE, oldfac=0, dampening_factor=1.01, seed=NULL, progress=TRUE,
-  PEM=TRUE, PEM_itermax=maxiter, ...)
+  Xlambda_positive=NULL, regular_type = "lasso", regular_lam = 0, regular_w = NULL,
+  regular_n = nrow(data), maxiter = 1000, conv = 1e-5, globconv = 1e-5, msteps = 10, 
+  convM = 5e-04, decrease.increments = FALSE, oldfac=0, dampening_factor=1.01, 
+  seed=NULL, progress=TRUE, PEM=TRUE, PEM_itermax=maxiter, ...)
   
 \method{summary}{slca}(object, file = NULL , \dots)
 
@@ -86,6 +86,9 @@ Fixed \eqn{\delta} parameters. This must be a matrix with three columns:
 \item{Xlambda_positive}{Optional vector of logical indicating which
 	elements of \eqn{\bold{\lambda}_x} should be constrained to be
 positive.}
+\item{regular_type}{Regularization method which can be \code{lasso},
+\code{scad} or \code{mcp}. See \code{\link{gdina}} for more 
+ionformation and references.}
 \item{regular_lam}{Numeric. Regularization parameter}
 \item{regular_w}{Vector for weighting the regularization penalty}
 \item{regular_n}{Vector of regularization factor. This will be 
@@ -683,7 +686,8 @@ for (ii in 1:I){
         # guessing parameters
         Xdes[ii , 2 , latresp == 0, ii ] <- 1        
 }
-Xdes[1,2,,] ; Xdes[7,2,,]
+Xdes[1,2,,]
+Xdes[7,2,,]
 # skill space definition
 delta.designmatrix <- diag(TP)
 Xlambda.init <- c( rep( stats::qlogis( .2 ) , I ) , rep( stats::qlogis( .8 ) , I ) )
@@ -699,6 +703,85 @@ cbind( mod1$pi.k , probs0 )
 cbind( mod1$pjk[1,,2] , guess )
 # compare estimated and simulated slipping parameters
 cbind( 1 - mod1$pjk[4,,2] , slip )
+
+#############################################################################
+# EXAMPLE 6: Investigating differential item functioning in Rasch models
+#            with regularization
+#############################################################################
+
+#---- simulate data
+set.seed(987)
+N <- 1000   # number of persons in a group
+I <- 20    # number of items
+#* population parameters of two groups
+mu1 <- 0
+mu2 <- .6
+sd1 <- 1.4
+sd2 <- 1
+# item difficulties
+b <- seq( -1.1, 1.1 , len=I )
+# define some DIF effects and center
+dif <- rep(0,I)
+dif[ c(3,6,9,12)] <- c( .6 , -1, .75 , -.35 )
+dif
+#* simulate datasets
+dat1 <- sirt::sim.raschtype( rnorm(N, mean=mu1, sd=sd1) , b = b - dif /2 )
+colnames(dat1) <- paste0("I", 1:I, "_G1")
+dat2 <- sirt::sim.raschtype( rnorm(N, mean=mu2, sd=sd2) , b = b + dif /2 )
+colnames(dat2) <- paste0("I", 1:I, "_G2")
+dat <- sirt::sirt_rbind_fill( dat1 , dat2 )
+dat <- data.frame( "group" = rep(1:2, each=N) , dat )
+
+#-- nodes for distribution
+theta.k <- seq(-4,4,len=11)
+# define design matrix for lambda
+nitems <- ncol(dat) - 1
+maxK <- 2
+TP <- length(theta.k)
+NXlam <- 2*I + 1
+Xdes <- array( 0 , dim=c( nitems , maxK , TP ,  NXlam  ) )
+dimnames(Xdes)[[1]] <- colnames(dat)[-1]
+dimnames(Xdes)[[2]] <- paste0("Cat" , 0:(maxK-1) )
+dimnames(Xdes)[[3]] <- paste0("Theta" , 1:TP )
+dimnames(Xdes)[[4]] <- c( paste0("b" , 1:I ), paste0("dif" , 1:I ), "const" )
+# define theta design 
+for (ii in 1:nitems){
+    Xdes[ii,2,,NXlam ] <- theta.k
+}
+# item intercepts and DIF effects
+for (ii in 1:I){
+    Xdes[c(ii,ii+I) ,2,, ii ] <- -1
+    Xdes[ii,2,,ii+I] <- - 1/2
+    Xdes[ii+I,2,,ii+I] <- 1/2    
+}
+#--- skill space designmatrix
+TP <- length(theta.k)
+w1 <- stats::dnorm(theta.k)
+w1 <- w1 / sum(w1)  
+delta.designmatrix <- matrix( 1 , nrow=TP , ncol=2 )
+delta.designmatrix[,2] <- log(w1)
+
+# fixed lambda parameters
+Xlambda.fixed <- cbind(NXlam, 1 )
+# initial Xlambda parameters
+dif_sim <- 0*stats::rnorm(I, sd=.2)
+Xlambda.init <- c( - stats::qnorm( colMeans(dat1) )  , dif_sim , 1 )
+
+# delta.fixed 
+delta.fixed <- cbind( 1 , 1 , 0 )
+# regularization parameter
+regular_lam <- .2
+# weighting vector: regularize only DIF effects
+regular_w <- c( rep(0,I), rep(1,I) , 0 )
+
+#--- estimation model with scad penalty
+mod1 <- CDM::slca( dat[,-1] , group=dat$group, Xdes=Xdes, 
+            delta.designmatrix=delta.designmatrix, regular_type = "scad", 
+            Xlambda.init=Xlambda.init, delta.fixed=delta.fixed, Xlambda.fixed=Xlambda.fixed,
+            regular_lam=regular_lam, regular_w=regular_w )
+# compare true and estimated DIF effects
+cbind( "true"=dif , "estimated" = round(coef(mod1)[seq(I+1,2*I)],2) )                                   
+summary(mod1)
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

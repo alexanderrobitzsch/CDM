@@ -1,5 +1,5 @@
 ## File Name: slca_est_Xlambda.R
-## File Version: 0.18
+## File Version: 0.23
 
 
 ###########################################################################
@@ -7,7 +7,7 @@
 slca_est_Xlambda <- function(Xlambda , Xdes , probs, n.ik1, N.ik1, I, K, G,
 	max.increment, TP ,msteps, convM , Xlambda.fixed , XdesM , dimXdes , oldfac,
 	decrease.increments, dampening_factor = 1.01, Xlambda.constr.V, e2, V1, 
-	regularization, regular_lam_used, regular_n, Xlambda_positive )
+	regularization, regular_lam_used, regular_n, Xlambda_positive, regular_type )
 {	
  	# max.increment0 <- max.increment <- 1
 	max.increment0 <- max.increment
@@ -35,7 +35,7 @@ slca_est_Xlambda <- function(Xlambda , Xdes , probs, n.ik1, N.ik1, I, K, G,
 		d2.b <- res$d2b		
 		#-- calculate increment		
         res <- slca_est_Xlambda_calc_increment( d1=d1.b, d2=d2.b, x0=Xlambda, regularization=regularization, 
-						regular_lam_used=regular_lam_used, max.increment=max.increment ) 
+						regular_lam_used=regular_lam_used, max.increment=max.increment, regular_type=regular_type ) 
 		increment <- res$increment
 		max.increment <- res$max.increment		
 		
@@ -74,7 +74,8 @@ slca_est_Xlambda <- function(Xlambda , Xdes , probs, n.ik1, N.ik1, I, K, G,
 	if (decrease.increments){ 	
 		max.increment0 <- max.increment0 / dampening_factor	
 	}			
-	regular_penalty <- sum( regular_lam_used * abs( Xlambda ) )
+	penalty <- cdm_penalty_values(x=Xlambda, regular_type=regular_type, regular_lam=regular_lam_used)
+	regular_penalty <- regular_n * sum( penalty )	
 	#----- output
 	res <- list(Xlambda = Xlambda , se.Xlambda = se.Xlambda , max.increment=max.increment0, regular_penalty=regular_penalty)
 	return(res)

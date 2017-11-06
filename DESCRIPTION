@@ -1,24 +1,27 @@
 Package: CDM
 Type: Package
 Title: Cognitive Diagnosis Modeling
-Version: 6.0-32
-Date: 2017-10-30 14:04:22
+Version: 6.0-56
+Date: 2017-11-06 16:38:30
 Author: 
     Alexander Robitzsch [aut, cre], Thomas Kiefer [aut],
     Ann Cathrice George [aut], Ali Uenlue [aut]
 Maintainer: Alexander Robitzsch <robitzsch@ipn.uni-kiel.de>
 Description: 
-    Functions for cognitive diagnosis modeling
-    and multidimensional item response modeling for
-    dichotomous and polytomous data. This package
-    enables the estimation of the DINA and DINO model,
-    the multiple group (polytomous) GDINA model,
-    the multiple choice DINA model, the general diagnostic
-    model (GDM), the multidimensional linear compensatory
-    item response model and the structured latent class
-    model (SLCA). See George, Robitzsch, Kiefer, Gross, and
-    Uenlue (2017) <doi:10.18637/jss.v074.i02> for further
-    details.
+    Functions for cognitive diagnosis modeling and multidimensional item response modeling 
+    for dichotomous and polytomous item responses. This package enables the estimation of 
+    the DINA and DINO model (Junker & Sijtsma, 2001, <doi:10.1177/01466210122032064>),
+    the multiple group (polytomous) GDINA model (de la Torre, 2011, 
+    <doi:10.1007/s11336-011-9207-7>), the multiple choice DINA model (de la Torre, 2009, 
+    <doi:10.1177/0146621608320523>), the general diagnostic model (GDM; von Davier, 2008, 
+    <doi:10.1348/000711007X193957>), the structured latent class model (SLCA; Formann, 1992, 
+    <doi:10.1080/01621459.1992.10475229>) and regularized latent class analysis 
+    (Chen, Li, Liu, & Ying, 2017, <doi:10.1007/s11336-016-9545-6>). 
+    See George, Robitzsch, Kiefer, Gross, and Uenlue (2017) <doi:10.18637/jss.v074.i02> 
+    for further details on estimation and the package structure.
+    For tutorials on how to use the CDM package see 
+    George and Robitzsch (2015, <doi:10.20982/tqmp.11.3.p189>) as well as
+    Ravand and Robitzsch (2015, http://pareonline.net/getvn.asp?v=20&n=11).
 Depends:
     R (>= 3.1), mvtnorm
 Imports: 

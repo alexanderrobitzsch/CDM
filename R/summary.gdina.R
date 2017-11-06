@@ -1,5 +1,5 @@
 ## File Name: summary.gdina.R
-## File Version: 1.44
+## File Version: 1.54
 
 
 ##################################################################
@@ -52,14 +52,24 @@ summary.gdina <- function( object , digits = 4 , file = NULL , ... ){
 	cat("\n")
 	
 	cat( paste0("Parameter regularization: " ,  object$regularization , "\n") )			
-	cat( paste0("Regularization type: " ,  object$regular_type, "\n" ) )	
-	cat( paste0("Regularization parameter lambda: " ,  object$regular_lam, "\n" ) )	
-	cat( paste0("Number of regularized item parameters: " ,  object$numb_regular_pars, "\n\n" ) )
+	if (object$regularization){
+		cat( paste0("Regularization type: " ,  object$regular_type, "\n" ) )	
+		cat( paste0("Regularization parameter lambda: " ,  object$regular_lam, "\n" ) )	
+		cat( paste0("Regularization parameter alpha: " ,  object$regular_alpha, " (SCAD-L2, elastic net)\n" ) )	
+		cat( paste0("Regularization parameter tau: " ,  object$regular_tau, " (truncated L1 penalty)\n" ) )	
+		cat( paste0("Number of regularized item parameters: " ,  object$numb_regular_pars, "\n" ) )
+	}
+	cat("\n")
 	
 	cat( "Deviance =" , round( object$deviance , 2 ) ) 
-	cat( "  | Loglikelihood =" , round( - object$deviance / 2 , 2 ) ,	"\n" )
-	if ( object$regularization ){
-		cat( "Penalty =" , round( object$penalty , 2 ) ) 
+	cat( "  | Log likelihood =" , round( - object$deviance / 2 , 2 ) ,	"\n" )
+	if ( object$regularization | object$use_prior ){
+		if ( object$regularization ){
+			cat( "Penalty value =" , round( object$penalty , 2 ) ) 
+		}
+		if ( object$use_prior ){
+			cat( "Log prior value =" , round( object$logprior_value , 2 ) ) 
+		}		
 		cat( " | Optimization function =" , round( object$opt_fct , 2 ) , "\n" )
 	}
 	cat("\n")
@@ -75,11 +85,6 @@ summary.gdina <- function( object , digits = 4 , file = NULL , ... ){
 	cat( "BIC  = " , round( object$BIC , 2 ) , " | penalty =" , round( object$BIC - object$deviance ,2 ) , "\n" )  
 	cat( "CAIC = " , round( object$CAIC , 2 ) ," | penalty =" , round( object$CAIC - object$deviance ,2 ) , "\n\n" )  		
 			
-#	if (object$reduced.skillspace ){ 
-#	    cat("Goodness of fit for reduced skillspace\n")
-#		cat( "Delta index =" , round( object$delta.index , 3 ) , "\n\n")
-#						}
-
 #    cat("Model fit\n")
 #	g1 <- gdina.fit( object , print.output = TRUE )				
 	###########################################################
@@ -116,7 +121,7 @@ summary.gdina <- function( object , digits = 4 , file = NULL , ... ){
 	cat("----------------------------------------------------------------------------\n")
 	cat("Model Implied Conditional Item Probabilities \n\n")
 	obji <- object$probitem	
-	obji[,"prob"] <- round( obji$prob, 4 )	
+	obji[,"prob"] <- round( obji$prob, rdigits )	
 	print(obji)					
 	cat("----------------------------------------------------------------------------\n")
 	cat("\nSkill Probabilities \n\n")

@@ -1,5 +1,5 @@
 %% File Name: CDM-package.Rd
-%% File Version: 2.69
+%% File Version: 2.75
 
 \name{CDM-package}
 
@@ -12,17 +12,20 @@
 }
 
 \description{
-    Functions for cognitive diagnosis modeling
-    and multidimensional item response modeling for
-    dichotomous and polytomous data. This package
-    enables the estimation of the DINA and DINO model,
-    the multiple group (polytomous) GDINA model,
-    the multiple choice DINA model, the general diagnostic
-    model (GDM), the multidimensional linear compensatory
-    item response model and the structured latent class
-    model (SLCA). See George, Robitzsch, Kiefer, Gross, and
-    Uenlue (2017) <DOI:10.18637/jss.v074.i02> for further
-    details.
+    Functions for cognitive diagnosis modeling and multidimensional item response modeling 
+    for dichotomous and polytomous item responses. This package enables the estimation of 
+    the DINA and DINO model (Junker & Sijtsma, 2001, <doi:10.1177/01466210122032064>),
+    the multiple group (polytomous) GDINA model (de la Torre, 2011, 
+    <doi:10.1007/s11336-011-9207-7>), the multiple choice DINA model (de la Torre, 2009, 
+    <doi:10.1177/0146621608320523>), the general diagnostic model (GDM; von Davier, 2008, 
+    <doi:10.1348/000711007X193957>), the structured latent class model (SLCA; Formann, 1992, 
+    <doi:10.1080/01621459.1992.10475229>) and regularized latent class analysis 
+    (Chen, Li, Liu, & Ying, 2017, <doi:10.1007/s11336-016-9545-6>). 
+    See George, Robitzsch, Kiefer, Gross, and Uenlue (2017) <doi:10.18637/jss.v074.i02> 
+    for further details on estimation and the package structure.
+    For tutorials on how to use the CDM package see 
+    George and Robitzsch (2015, <doi:10.20982/tqmp.11.3.p189>) as well as
+    Ravand and Robitzsch (2015, http://pareonline.net/getvn.asp?v=20&n=11).
 }
 
 \details{
@@ -120,8 +123,16 @@
   A general cognitive diagnosis model for expert-defined polytomous attributes.
   \emph{Applied Psychological Measurement}, \bold{37}, 419-437.  
   
+Chen, Y., Li, X., Liu, J., & Ying, Z. (2017). 
+Regularized latent class analysis with application in cognitive diagnosis. 
+\emph{Psychometrika}, \bold{82}, 660-692.  
+  
   de la Torre, J., & Douglas, J. (2004). Higher-order latent trait models 
   for cognitive diagnosis. \emph{Psychometrika}, \bold{69}, 333--353.
+
+de la Torre, J. (2009). A cognitive diagnosis model for cognitively based 
+multiple-choice options. \emph{Applied Psychological Measurement}, 
+\bold{33}, 163-183.
 
   de la Torre, J. (2011). The generalized {DINA} model framework. 
   \emph{Psychometrika}, \bold{76}, 179--199.    
@@ -134,6 +145,9 @@
 Formann, A. K. (1992). Linear logistic latent class analysis for polytomous data. 
 \emph{Journal of the American Statistical Association}, \bold{87}, 476-486.  
   
+George, A. C., & Robitzsch, A. (2015) Cognitive diagnosis models in R: A didactic. 
+\emph{The Quantitative Methods for Psychology}, \bold{11}, 189-205.
+  
 George, A. C., Robitzsch, A., Kiefer, T., Gross, J., & Uenlue, A. (2016).
 The R package CDM for cognitive diagnosis models.
 \emph{Journal of Statistical Software, 74}(2), 1-24.
@@ -141,6 +155,10 @@ The R package CDM for cognitive diagnosis models.
 Junker, B. W., & Sijtsma, K. (2001). Cognitive assessment models with few  
   assumptions, and connections with nonparametric item response theory.
   \emph{Applied Psychological Measurement}, \bold{25}, 258--272.
+    
+Ravand, H., & Robitzsch, A.(2015). Cognitive diagnostic modeling using R.
+\emph{Practical Assessment, Research & Evaluation}, \bold{20}(11). 
+Available online: http://pareonline.net/getvn.asp?v=20&n=11    
     
   Rupp, A. A., & Templin, J. (2008). Unique characteristics of
   diagnostic classification models: A comprehensive review of the current

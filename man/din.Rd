@@ -1,5 +1,5 @@
 %% File Name: din.Rd
-%% File Version: 2.33
+%% File Version: 2.34
 
 \name{din}
 
@@ -222,8 +222,7 @@ zero to random initial values with \code{set.seed(seed)}.}
 
   Lee, Y.-S., de la Torre, J., & Park, Y. S. (2012). 
   Relationships between cognitive diagnosis, CTT, and IRT indices: 
-  An empirical investigation.
-    \emph{Asia Pacific Educational Research}, \bold{13}, 333-345.
+  An empirical investigation. \emph{Asia Pacific Educational Research}, \bold{13}, 333-345.
 
   Rupp, A. A., Templin, J., & Henson, R. A. (2010). \emph{Diagnostic
   Measurement: Theory, Methods, and Applications}.  New York: The Guilford

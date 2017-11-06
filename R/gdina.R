@@ -1,5 +1,5 @@
 ## File Name: gdina.R
-## File Version: 9.175
+## File Version: 9.209
 
 
 ################################################################################
@@ -26,7 +26,9 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 					Z.skillspace = NULL , 
                     weights = rep( 1, nrow( data ) ),  rule = "GDINA", 
 					regular_lam = 0, regular_type = "none", 
+					regular_alpha = NA, regular_tau=NA, 
 					mono.constr = FALSE, 
+					prior_intercepts = NULL, prior_slopes = NULL, 
                     progress = TRUE , 
 					progress.item = FALSE , 
 					mstep_iter = 10 ,
@@ -39,6 +41,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 					save.devmin=TRUE , calc.se = TRUE ,
 					se_version = 1 , PEM = FALSE , PEM_itermax = maxit , 
 					cd = FALSE, cd_steps = 1 , mono_maxiter = 10,
+					freq_weights=FALSE, 
 					...
 						)
 {
@@ -96,7 +99,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	#########################################################
 	# in case of item parameter noninvariance restructure dataset
 	#########################################################
-
+	
 	res <- gdina_proc_noninvariance_multiple_groups( data=data, q.matrix=q.matrix, 
 				invariance=invariance, group=group )
 	data <- res$data
@@ -135,7 +138,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	################################################################################
 
 	r1 <- "GDINA Model"
-
+	
 	################################################################################
 	# multiple group estimation
 	################################################################################
@@ -186,19 +189,20 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	################################################################################
 	# Initialization and missing data handling                                     #
 	################################################################################
-    
-    # recode missing data by 9
-    resp <- 1 - is.na(dat.items)
-    dat.items[ resp == 0 ] <- 9
-    
-    #--- standardize weights such that the sum of defined weights is equal to the number of rows in the data frame
-    weights <- gdina_standardize_weights( weights=weights )
+
+	# recode missing data by 9
+	resp <- 1 - is.na(dat.items)
+	dat.items[ resp == 0 ] <- 9
+
+	#--- standardize weights such that the sum of defined weights is equal to the number of rows in the data frame
+	weights <- gdina_standardize_weights( weights=weights )
 		
 	################################################################################
 	# calculate item response patterns                                             #
 	################################################################################
 
-	res <- gdina_proc_item_response_patterns( dat.items=dat.items, J=J, G=G, weights=weights, group=group ) 
+	res <- gdina_proc_item_response_patterns( dat.items=dat.items, J=J, G=G, weights=weights, 
+					group=group, freq_weights=freq_weights ) 
 	item.patt.subj <- res$item.patt.subj
 	item.patt <- res$item.patt
 	six <- res$six
@@ -259,7 +263,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	###############################################################################
 	# initial item parameters
 	###############################################################################
-	
+
 	delta <- gdina_init_item_parameters( delta.init=delta.init, linkfct=linkfct, J=J, seed=seed, Mj=Mj, 
 				delta.basispar.init=delta.basispar.init, delta.designmatrix=delta.designmatrix, Mj.index=Mj.index,
 				rule=rule ) 
@@ -276,43 +280,43 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	# some prelimaries for EM algorithm                                            #  
 	################################################################################
 
-	res <- gdina_proc_split_item_response_patterns( item.patt=item.patt, J=J )         
+	res <- gdina_proc_split_item_response_patterns( item.patt=item.patt, J=J,
+					freq_weights = freq_weights, resp=resp, dat.items=dat.items)         
 	IP <- res$IP
 	resp.patt <- res$resp.patt
 	item.patt.split <- res$item.patt.split	
    
-    iter <- 1 # Iteration number
-    likediff <- 1 # Difference in likelihood estimates
+	iter <- 1 # Iteration number
+	likediff <- 1 # Difference in likelihood estimates
 	opt_fct <- loglike <- 0 # init for log-Likelihood
     
-    # init value for maximum parameter change in likelihood maximization
-    max.par.change <- 1000
-    devchange <- 1000
+	# init value for maximum parameter change in likelihood maximization
+	max.par.change <- 1000
+	devchange <- 1000
 	
 	# analyze response patterns if there are some missings
 	cmresp <- colMeans( resp.patt )
-    some.missings <- mean(cmresp) < 1
+	some.missings <- mean(cmresp) < 1
 	
-    # calculations for expected counts
+	# calculations for expected counts
 	# response indicator list
     resp.ind.list <- list( 1:J )
 	for (i in 1:J){ 
 		resp.ind.list[[i]] <- which( resp.patt[,i] == 1)  
 	}
-	
+
 	# this matrix ipr is needed for computing R.lj
 	if (G==1){
 		ipr <- item.patt.split * item.patt.freq*resp.patt
 	}
        
-    disp <- "...........................................................\n"		
+	disp <- "...........................................................\n"		
 
 	#** for reduced skillspace
 	if (reduced.skillspace){
-		item_patt_freq_matr <- outer( item.patt.freq , rep( 1 , L) )
-		
+		item_patt_freq_matr <- outer( item.patt.freq , rep( 1 , L) )		
 	}
-    
+
 	#--- delta parameter indices
 	res <- gdina_proc_delta_indices(delta=delta, Mj=Mj)
 	delta_indices <- res$delta_indices
@@ -321,7 +325,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 
 	# reconvert vector into a list
     delta <- gdina_delta_convert_into_list( delta_vec=delta_vec, delta_indices=delta_indices, J=J ) 
-				
+
 	#-- preliminaries PEM acceleration
 	if (PEM){	
 		envir <- environment()	
@@ -337,31 +341,32 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 		pem_parameter_index <- res$pem_parameter_index
 		pem_parameter_sequence <- res$pem_parameter_sequence				
 	}
-	
+
 	deviance.history <- rep(NA, maxit)
 	
 	#------------------------------
-	# regularization, coordinate descent and monotonicity constraints
-	regularization <- FALSE
-	cd_algorithm <- FALSE
-	if (regular_type %in% c("lasso","scad") ){
-		regularization <- TRUE
-		cd_algorithm <- TRUE
-		method <- "ML"
-	}
-	if (regular_type %in% c("ridge") ){
-		regularization <- TRUE
-		method <- "ML"
-	}	
-	if ( cd ){ cd_algorithm <- TRUE }	
-	if ( mono.constr ){
-		linkfct <- "logit"
-		method <- "ML"
-	}
-	if (regularization){
-		save.devmin <- FALSE
-		linkfct <- "logit"
-	}
+	# choose regularization, coordinate descent and monotonicity constraints
+    res <- gdina_proc_regularization( regular_type=regular_type, cd=cd, mono.constr=mono.constr, linkfct=linkfct, 
+					method=method, PEM=PEM, regular_alpha=regular_alpha, regular_tau=regular_tau ) 
+	linkfct <- res$linkfct
+	save.devmin <- res$save.devmin
+	method <- res$method
+	regularization <- res$regularization
+	cd_algorithm <- res$cd_algorithm
+	PEM <- res$PEM
+	regular_alpha <- res$regular_alpha
+	regular_tau <- res$regular_tau
+	regularization_types <- res$regularization_types
+
+	#--------- process prior distributions
+	res <- gdina_proc_prior_distribution( prior_intercepts=prior_intercepts, prior_slopes=prior_slopes, method=method, 
+					linkfct=linkfct, PEM=PEM ) 
+	prior_intercepts <- res$prior_intercepts
+	prior_slopes <- res$prior_slopes
+	linkfct <- res$linkfct
+	method <- res$method
+	use_prior <- res$use_prior	
+	PEM <- res$PEM
 	
 	#********************************
 	# extract parameters with minimal deviances
@@ -376,10 +381,9 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	################################################################################
 	# BEGIN OF THE ITERATION LOOP                                                  #
 	################################################################################
-    
-    while ( ( iter <= maxit ) & 
-				( ( max.par.change > conv.crit ) | ( devchange > dev.crit  ) )	)
-	{		
+
+	while ( ( iter <= maxit ) & ( ( max.par.change > conv.crit ) | ( devchange > dev.crit  ) ) )
+	{
 		
 		################################################################################
 		# STEP I:                                                                      #
@@ -409,7 +413,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 		#######################################################################
 		# STEP II0: higher order GDINA model
 		#######################################################################
-		
+
 		if (HOGDINA >= 0){
 			res <- gdina_attribute_structure_hogdina( G=G, attr.prob=attr.prob, attr.patt=attr.patt, 
 						wgt.theta=wgt.theta, HOGDINA=HOGDINA, a.attr=a.attr, b.attr=b.attr, theta.k=theta.k ) 
@@ -456,18 +460,23 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 		# GDINA Model																   #
 		################################################################################
 		
-		res <- gdina_mstep_item_parameters( R.lj=R.lj, I.lj=I.lj, aggr.patt.designmatrix=aggr.patt.designmatrix, 
-					max.increment=max.increment, increment.factor=increment.factor, J=J, Aj=Aj, Mj=Mj, delta=delta, 
-					method=method, avoid.zeroprobs=avoid.zeroprobs, invM.list=invM.list, linkfct=linkfct, rule=rule, 
-					iter=iter, fac.oldxsi=fac.oldxsi, rrum.model=rrum.model, delta.fixed=delta.fixed, devchange=devchange, 
-					mstep_iter=mstep_iter, mstep_conv=mstep_conv, Mj.index=Mj.index, suffstat_probs=suffstat_probs,
-					regular_lam=regular_lam, regular_type=regular_type, cd_steps=cd_steps,
-					mono.constr=mono.constr, Aj_mono_constraints=Aj_mono_constraints, mono_maxiter=mono_maxiter) 	
+        res <- gdina_mstep_item_parameters( R.lj=R.lj, I.lj=I.lj, aggr.patt.designmatrix=aggr.patt.designmatrix, 
+						 max.increment=max.increment, increment.factor=increment.factor, J=J, Aj=Aj, Mj=Mj, 
+						 delta=delta, method=method, avoid.zeroprobs=avoid.zeroprobs, invM.list=invM.list, 
+						 linkfct=linkfct, rule=rule, iter=iter, fac.oldxsi=fac.oldxsi, rrum.model=rrum.model, 
+						 delta.fixed=delta.fixed, devchange=devchange, mstep_iter=mstep_iter, 
+						 mstep_conv=mstep_conv, Mj.index=Mj.index, suffstat_probs=suffstat_probs, 
+						 regular_lam=regular_lam, regular_type=regular_type, cd_steps=cd_steps, 
+						 mono.constr=mono.constr, Aj_mono_constraints=Aj_mono_constraints, 
+						 mono_maxiter=mono_maxiter, regular_alpha=regular_alpha, regular_tau=regular_tau, 
+						 regularization_types=regularization_types, prior_intercepts=prior_intercepts, 
+						 prior_slopes=prior_slopes, use_prior=use_prior )
 		delta.new <- res$delta.new
 		suffstat_probs <- res$suffstat_probs
 		mono_constraints_fitted <- res$mono_constraints_fitted
 		penalty <- res$penalty		
 		ll_value <- res$ll_value
+		logprior_value <- res$logprior_value		
 	
 		##########################################################################
 		# estimation with a design matrix for delta parameters
@@ -511,7 +520,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 		#--- calculate deviance
 		res <- gdina_calc_deviance( p.xi.aj=p.xi.aj, attr.prob=attr.prob, item.patt.freq=item.patt.freq, 
 					loglike=loglike, G=G, IP=IP, regularization=regularization, penalty=penalty,
-					opt_fct=opt_fct) 
+					opt_fct=opt_fct, logprior_value=logprior_value) 
 		like.new <- res$like.new
 		likediff <- res$likediff
 		opt_fct <- res$opt_fct
@@ -528,12 +537,12 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 					max.par.change=max.par.change, iter=iter, progress=progress, 
 					progress.item=progress.item, regularization=regularization, penalty=penalty, 
 					opt_fct=opt_fct, opt_fct_change=opt_fct_change, ll_value=ll_value,
-					regular_type = regular_type ) 
+					regular_type = regular_type, logprior_value=logprior_value, use_prior=use_prior ) 
 
 		utils::flush.console() # Output is flushing on the console
 		iter <- iter + 1 # new iteration number                                    
 		devchange <- abs( 2*(like.new-loglikeold) )
-   	
+
 		#**** update parameters at minimal deviance
 		dev <- -2*like.new	
 		deviance.history[iter-1] <- dev		
@@ -669,8 +678,11 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 				item.patt.freq=item.patt.freq, model.type=r1, iter=iter, iterused=iterused, rrum.model=rrum.model,
 				rrum.params= rrum.params, group.stat=group.stat,  NAttr=maxAttr, invariance=invariance, 
 				HOGDINA=HOGDINA, mono.constr=mono.constr, regularization=regularization, regular_lam=regular_lam,
+				regular_alpha=regular_alpha, regular_tau=regular_tau ,
 				numb_bound_mono=numb_bound_mono, item_bound_mono=item_bound_mono, numb_regular_pars=numb_regular_pars, 
 				regular_type=regular_type, cd_algorithm=cd_algorithm, cd_steps=cd_steps, 
+				prior_intercepts=prior_intercepts, prior_slopes=prior_slopes, use_prior = use_prior, 
+				logprior_value=logprior_value, 	
 				seed= seed, iter=iter, converged=iter < maxit , iter.min=iter.min, 
 				deviance.history=deviance.history, penalty=penalty, opt_fct=opt_fct )
 		 

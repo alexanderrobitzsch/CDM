@@ -1,9 +1,8 @@
 ## File Name: cdm_penalty_scad.R
-## File Version: 0.06
+## File Version: 0.11
 
-cdm_penalty_scad <- function( x, lambda )
+cdm_penalty_scad <- function( x, lambda, a = 3.7 )
 {
-	a <- 3.7	
 	y <- lambda * abs( x )	
 	y <- ifelse( ( abs(x) > lambda ) & ( abs(x) < a*lambda ) , 
                    -( x^2 - 2*a*lambda*abs(x) + lambda^2 )/ 2 / ( a-1) ,   y )

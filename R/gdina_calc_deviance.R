@@ -1,8 +1,8 @@
 ## File Name: gdina_calc_deviance.R
-## File Version: 0.07
+## File Version: 0.12
 
 gdina_calc_deviance <- function( p.xi.aj , attr.prob, item.patt.freq, loglike, G, IP,
-		regularization, penalty, opt_fct )
+		regularization, penalty=0, opt_fct=0, logprior_value=0 )
 {
 	eps <- 1E-30
 	# calculate the updated likelihood    
@@ -24,7 +24,7 @@ gdina_calc_deviance <- function( p.xi.aj , attr.prob, item.patt.freq, loglike, G
 	
 	#--- regularization
 	opt_fct_old <- opt_fct
-	opt_fct <- -2*like.new + 2* penalty
+	opt_fct <- -2*like.new + 2* penalty - 2*logprior_value
 	opt_fct_change <- - opt_fct + opt_fct_old
 	
 	#--- OUTPUT

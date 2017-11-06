@@ -1,5 +1,5 @@
 %% File Name: gdina.Rd
-%% File Version: 2.9973
+%% File Version: 3.25
 
 \name{gdina}
 \alias{gdina}
@@ -22,10 +22,16 @@ Estimating the Generalized DINA (GDINA) Model
     (de la Torre & Douglas, 2004).
     Polytomous item responses are treated by specifying a sequential
     GDINA model (Ma & de la Torre, 2016; Tutz, 1997).
+    
     The estimation can also be conducted by posing monotonocity 
-    constraints using the argument \code{moo.constr}. Moreover,
-    regularization methods SCAD, lasso and ridge for item parameters 
-    can be employed. 
+    constraints using the argument \code{mono.constr}. Moreover,
+    regularization methods SCAD, lasso, ridge, SCAD-L2 and
+    truncated \eqn{L_1} penalty (TLP) for item parameters 
+    can be employed (Xu & Shang, xxxx).
+    
+    Normally distributed priors can be specified for item parameters 
+    (item intercepts and item slopes). Note that (for convenience) the
+    prior specification holds simultaneously for all items.
 }
 \usage{
 gdina(data, q.matrix, skillclasses=NULL, conv.crit=0.0001, dev.crit=.1 ,  maxit=1000, 
@@ -35,11 +41,12 @@ gdina(data, q.matrix, skillclasses=NULL, conv.crit=0.0001, dev.crit=.1 ,  maxit=
     zeroprob.skillclasses=NULL, attr.prob.init = NULL , reduced.skillspace=TRUE , 
     reduced.skillspace.method=2 , HOGDINA=-1, Z.skillspace=NULL, 
     weights=rep(1, nrow(data)), rule="GDINA", regular_lam = 0, regular_type = "none", 
-    mono.constr = FALSE, progress=TRUE, progress.item=FALSE ,
-    mstep_iter = 10 , mstep_conv = 1E-4 , increment.factor=1.01, fac.oldxsi=0 , 
-    max.increment = .3 , avoid.zeroprobs = FALSE , seed=0, save.devmin=TRUE , 
-    calc.se=TRUE , se_version = 1 , PEM = FALSE, PEM_itermax = maxit, 
-    cd = FALSE, cd_steps = 1 , mono_maxiter = 10, ...)
+    regular_alpha=NA, regular_tau=NA, mono.constr = FALSE, 
+    prior_intercepts = NULL, prior_slopes = NULL, progress=TRUE, 
+    progress.item=FALSE, mstep_iter = 10, mstep_conv = 1E-4, increment.factor=1.01, 
+    fac.oldxsi=0, max.increment = .3, avoid.zeroprobs = FALSE, seed=0, 
+    save.devmin=TRUE, calc.se=TRUE, se_version=1, PEM = FALSE, PEM_itermax=maxit, 
+    cd = FALSE, cd_steps = 1 , mono_maxiter = 10, freq_weights=FALSE, ...)
 
 \method{summary}{gdina}(object, digits = 4 , file = NULL ,  \dots)
 
@@ -186,10 +193,21 @@ An optional vector of sample weights.
 }
 \item{regular_lam}{Regularization parameter \eqn{\lambda}}
 \item{regular_type}{Type of regularization. Can be \code{scad} (SCAD penalty),
-\code{lasso} (lasso penalty), \code{ridge} (ridge penalty) 
+\code{lasso} (lasso penalty), \code{ridge} (ridge penalty),
+\code{elnet} (elastic net), \code{scadL2} (SCAD-\eqn{L_2};
+Zeng & Xie, 2014), \code{tlp} (truncated \eqn{L_1} penalty; Xu & Shang, xxxx;
+Shen, Pan, & Zhu, 2012), \code{mcp} (MCP penalty; Zhang, 2010)
 or \code{none} (no regularization).}
+\item{regular_alpha}{Regularization parameter \eqn{\alpha} 
+(applicable for elastic net or SCAD-L2.}
+\item{regular_tau}{Regularization paramezer \eqn{\tau} for truncated
+\eqn{L_1} penalty.}
 \item{mono.constr}{Logical indicating whether monotonicity constraints
 should be fulfilled in estimation.}
+\item{prior_intercepts}{Vector with mean and standard deviation for prior
+of random intercepts (applies to all items)}
+\item{prior_slopes}{Vector with mean and standard deviation for prior
+of random slopes (applies to all items and all parameters)}
 \item{progress}{An optional logical indicating whether the function
     should print the progress of iteration in the estimation process.  }     
   \item{progress.item}{
@@ -238,6 +256,8 @@ applied.}
 \item{cd_steps}{Number of steps for each parameter in coordinate descent algorithm}
 \item{mono_maxiter}{Maximum number of iterations for fulfilling the
 monotonicity constraint}
+\item{freq_weights}{Logical indicating whether frequency weights should
+be used. Default is \code{FALSE}.}
   \item{object}{A required object of class \code{gdina}, obtained
     from a call to the function \code{\link{gdina}}.  }
   \item{digits}{Number of digits after decimal separator to display.  }
@@ -419,21 +439,31 @@ A sequential cognitive diagnosis model for polytomous responses.
   diagnostic classification models: A comprehensive review of the current
   state-of-the-art. \emph{Measurement: Interdisciplinary Research and
   Perspectives}, \bold{6}, 219-262.
+
+Shen, X., Pan, W., & Zhu, Y. (2012). Likelihood-based selection and sharp
+parameter estimation.
+\emph{Journal of the American Statistical Association}, \bold{107}, 223-232.
   
 Tutz, G. (1997). Sequential models for ordered responses. 
 In W. van der Linden & R. K. Hambleton.
 \emph{Handbook of modern item response theory} (pp. 139-152). 
 New York: Springer.  
+
+Xu, G., & Shang, Z. (xxxx). Identying latent structures in 
+restricted latent class models.
+\emph{Journal of the American Statistical Association}, \bold{xxx}, xxx-xxx.
+
+Xu, X., & von Davier, M. (2008). \emph{Fitting the structured general diagnostic
+model to NAEP data}. ETS Research Report ETS RR-08-27. Princeton, ETS.
   
-  Xu, X., & von Davier, M. (2008). \emph{Fitting the structured general diagnostic
-  model to NAEP data}. ETS Research Report ETS RR-08-27. Princeton, ETS.
-    }
+Zeng, L., & Xie, J. (2014). Group variable selection via
+SCAD-\eqn{L_2}. \emph{Statistics}, \bold{48}, 49-66.
+
+Zhang, C.-H. (2010). Nearly unbiased variable selection under minimax concave 
+penalty. \emph{Annals of Statistics}, \bold{38}, 894-942.
+}
     
-    
-%\author{
-%Alexander Robitzsch, Thomas Kiefer
-%    }
-    
+        
     
 \note{    
     The function \code{\link{din}} does not allow for multiple group estimation.
@@ -560,6 +590,18 @@ summary(mod9)
 mod10 <- CDM::gdina( data = sim.dina, q.matrix = sim.qmatrix, rule="ACDM",
                 linkfct="logit", regular_type="scad", regular_lam=.05 )
 summary(mod10)                
+
+#***
+# Model 11: Estimation of GDINA model with prior distributions
+
+# N(0,10^2) prior for item intercepts
+prior_intercepts <- c(0,10)
+# N(0,1^2) prior for item slopes
+prior_slopes <- c(0,1)
+# estimate model
+mod11 <- CDM::gdina( data = sim.dina, q.matrix = sim.qmatrix, rule="GDINA", 
+              prior_intercepts=prior_intercepts, prior_slopes = prior_slopes)
+summary(mod11)
 
 #############################################################################
 # EXAMPLE 2: Simulated DINO data

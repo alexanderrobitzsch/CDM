@@ -1,5 +1,5 @@
 %% File Name: IRT.expectedCounts.Rd
-%% File Version: 0.04
+%% File Version: 0.06
 
 \name{IRT.expectedCounts}
 \alias{IRT.expectedCounts}
@@ -8,6 +8,7 @@
 \alias{IRT.expectedCounts.mcdina}
 \alias{IRT.expectedCounts.gdm}
 \alias{IRT.expectedCounts.slca}
+\alias{IRT.expectedCounts.reglca}
 
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
@@ -25,11 +26,13 @@ IRT.expectedCounts(object, ...)
 
 \method{IRT.expectedCounts}{gdina}(object, \dots)
 
-\method{IRT.expectedCounts}{mcdina}(object, \dots)
-
 \method{IRT.expectedCounts}{gdm}(object, \dots)
 
+\method{IRT.expectedCounts}{mcdina}(object, \dots)
+
 \method{IRT.expectedCounts}{slca}(object, \dots)
+
+\method{IRT.expectedCounts}{reglca}(object, \dots)
 }
 
 
@@ -77,8 +80,7 @@ categories, latent classes and groups.
 # EXAMPLE 1: Expected counts gdm function
 #############################################################################	
 
-data( data.fraction1 )
-dat <- data.fraction1$data
+dat <- CDM::data.fraction1$data
 theta.k <- seq( -6 , 6 , len=11 )   # discretized ability
 
 #--- Model 1: Rasch model
@@ -91,17 +93,15 @@ str(emod1)
 # EXAMPLE 2: Expected counts gdina function
 #############################################################################
 
-data(sim.dina)
-data(sim.qmatrix)
-
 #--- Model 1: estimation of the GDINA model
-mod1 <- CDM::gdina( data = sim.dina ,  q.matrix = sim.qmatrix)
+mod1 <- CDM::gdina( data = CDM::sim.dina ,  q.matrix = CDM::sim.qmatrix)
 summary(mod1)
 emod1 <- CDM::IRT.expectedCounts( mod1 )
 str(emod1)
 
 #--- Model 2: GDINA model with two groups
-mod2 <- CDM::gdina( data = sim.dina ,  q.matrix = sim.qmatrix , group = rep(1:2, each=200) )
+mod2 <- CDM::gdina( data = CDM::sim.dina, q.matrix = CDM::sim.qmatrix, 
+                   group = rep(1:2, each=200) )
 summary(mod2)
 emod2 <- CDM::IRT.expectedCounts( mod2 )
 str(emod2)

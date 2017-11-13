@@ -1,5 +1,5 @@
 %% File Name: data.timss07.G4.lee.Rd
-%% File Version: 0.05
+%% File Version: 0.06
 
 \name{data.timss07.G4.lee}
 \alias{data.timss07.G4.lee}
@@ -89,9 +89,9 @@ Minnesota, and the US national sample using the TIMSS 2007.
 
 \examples{
 \dontrun{
-data(data.timss07.G4.lee)
-dat <- data.timss07.G4.lee$data
-q.matrix <- data.timss07.G4.lee$q.matrix
+dat <- CDM::data.timss07.G4.lee$data
+q.matrix <- CDM::data.timss07.G4.lee$q.matrix
+
 items <- grep( "M0" , colnames(dat) , value=TRUE )
 
 #*** Model 1: estimate DINA model

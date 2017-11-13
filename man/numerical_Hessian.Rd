@@ -1,5 +1,5 @@
 %% File Name: numerical_Hessian.Rd
-%% File Version: 0.24
+%% File Version: 0.25
 
 \name{numerical_Hessian}
 \alias{numerical_Hessian}
@@ -85,17 +85,17 @@ f <- function(x){
 par <- c(3,8,4)
 
 #--- compute gradient 
-numerical_Hessian( par = par , FUN = f , gradient=TRUE , hessian = FALSE)
+CDM::numerical_Hessian( par = par , FUN = f , gradient=TRUE , hessian = FALSE)
 \dontrun{
 mirt::numerical_deriv(par = par , f = f, gradient=TRUE)
 
 #--- compute Hessian matrix
-numerical_Hessian( par = par , FUN = f )
+CDM::numerical_Hessian( par = par , FUN = f )
 mirt::numerical_deriv(par = par , f = f, gradient=FALSE)
 numerical_Hessian( par = par , FUN = f , h = 1E-4 )
 
 #--- compute gradient and Hessian matrix
-numerical_Hessian( par = par , FUN = f , gradient=TRUE , hessian=TRUE)
+CDM::numerical_Hessian( par = par , FUN = f , gradient=TRUE , hessian=TRUE)
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

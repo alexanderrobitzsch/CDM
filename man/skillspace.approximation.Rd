@@ -1,5 +1,5 @@
 %% File Name: skillspace.approximation.Rd
-%% File Version: 0.07
+%% File Version: 0.08
 
 \name{skillspace.approximation}
 \alias{skillspace.approximation}
@@ -65,7 +65,7 @@ See also \code{\link{gdina}} (Example 9).
 #############################################################################
 
 # => 2^8 = 256 latent classes if all latent classes would be used
-skillspace.approximation( L=20  , K=8 )
+CDM::skillspace.approximation( L=20  , K=8 )
   ##             [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
   ##   P00000000    0    0    0    0    0    0    0    0
   ##   P00000001    0    0    0    0    0    0    0    1

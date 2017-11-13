@@ -1,5 +1,5 @@
 %% File Name: data.dcm.Rd
-%% File Version: 0.18
+%% File Version: 0.22
 
 \name{data.dcm}
 \alias{data.dcm}
@@ -62,20 +62,19 @@ Press.
 
 \examples{
 \dontrun{
-data(data.dcm)
+dat <- CDM::data.dcm$data[,-1]
+Q <- CDM::data.dcm$q.matrix
 
 #*****************************************************
 # Model 1: DINA model
 #*****************************************************
-mod1 <- CDM::din( data.dcm$data[,-1] , q.matrix=data.dcm$q.matrix )
+mod1 <- CDM::din( dat , q.matrix=Q )
 summary(mod1)
 
 #--------
 # Model 1m: estimate model in mirt package
 library(mirt)
 library(sirt)
-dat <- data.dcm$data[,-1]
-Q <- data.dcm$q.matrix
 
   #** define theta grid of skills
   # use the function skillspace.hierarchy just for convenience
@@ -108,7 +107,7 @@ lca_prior <- function(Theta,Etable){
   if ( is.null(Etable) ){ prior <- rep( 1/TP , TP ) }    
   if ( ! is.null(Etable) ){  
     prior <- ( rowSums(Etable[ , seq(1,2*I,2)]) + rowSums(Etable[,seq(2,2*I,2)]) )/I
-                 }
+  }
   prior <- prior / sum(prior)  
   return(prior)
  }
@@ -175,32 +174,32 @@ head( round(fsc1m$person,3) )
 #*****************************************************
 # Model 2: DINO model
 #*****************************************************
-mod2 <- CDM::din( data.dcm$data[,-1] , q.matrix=data.dcm$q.matrix , rule="DINO")
+mod2 <- CDM::din( dat, q.matrix=Q, rule="DINO")
 summary(mod2)
 
 #*****************************************************
 # Model 3: log-linear model (LCDM): this model is the GDINA model with the
 #    logit link function
 #*****************************************************
-mod3 <- CDM::gdina( data.dcm$data[,-1] , q.matrix=data.dcm$q.matrix , link="logit")
+mod3 <- CDM::gdina( dat, q.matrix=Q, link="logit")
 summary(mod3)
 
 #*****************************************************
 # Model 4: GDINA model with identity link function
 #*****************************************************
-mod4 <- CDM::gdina( data.dcm$data[,-1] , q.matrix=data.dcm$q.matrix )
+mod4 <- CDM::gdina( dat, q.matrix=Q )
 summary(mod4)
 
 #*****************************************************
 # Model 5: GDINA additive model identity link function
 #*****************************************************
-mod5 <- CDM::gdina( data.dcm$data[,-1], q.matrix=data.dcm$q.matrix , rule="ACDM")
+mod5 <- CDM::gdina( dat, q.matrix=Q, rule="ACDM")
 summary(mod5)
 
 #*****************************************************
 # Model 6: GDINA additive model logit link function
 #*****************************************************
-mod6 <- CDM::gdina( data.dcm$data[,-1], q.matrix=data.dcm$q.matrix, link="logit", rule="ACDM")
+mod6 <- CDM::gdina( dat, q.matrix=Q, link="logit", rule="ACDM")
 summary(mod6)
 
 #--------
@@ -241,7 +240,7 @@ print(cmod6m,digits=4)
 #*****************************************************
 # Model 7: Reduced RUM model
 #*****************************************************
-mod7 <- CDM::gdina( data.dcm$data[,-1] , q.matrix=data.dcm$q.matrix , rule="RRUM")
+mod7 <- CDM::gdina( dat, q.matrix=Q, rule="RRUM")
 summary(mod7)
 
 #*****************************************************
@@ -250,11 +249,11 @@ summary(mod7)
 
 #-- Model 8a: randomLCA package
 library(randomLCA)
-mod8a <- randomLCA::randomLCA( data.dcm$data[,-1], nclass= 3 , verbose=TRUE , notrials=4)
+mod8a <- randomLCA::randomLCA( dat, nclass= 3 , verbose=TRUE , notrials=4)
 
 #-- Model8b: rasch.mirtlc function in sirt package
 library(sirt)
-mod8b <- sirt::rasch.mirtlc( data.dcm$data[,-1] , Nclasses=3 , nstarts=4 )
+mod8b <- sirt::rasch.mirtlc( dat, Nclasses=3 , nstarts=4 )
 summary(mod8a)
 summary(mod8b)
 }

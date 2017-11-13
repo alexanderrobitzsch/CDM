@@ -1,5 +1,5 @@
 %% File Name: IRT.compareModels.Rd
-%% File Version: 0.12
+%% File Version: 0.13
 
 \name{IRT.compareModels}
 \alias{IRT.compareModels}
@@ -73,11 +73,9 @@ For computing absolute model fit see \code{\link{IRT.modelfit}}.
 #############################################################################
 # EXAMPLE 1: Model comparison sim.dina dataset
 #############################################################################	
-	
-data(sim.dina)
-data(sim.qmatrix)
-dat <- sim.dina
-q.matrix <- sim.qmatrix
+
+dat <- CDM::sim.dina
+q.matrix <- CDM::sim.qmatrix
 
 #*** Model 0: DINA model with equal guessing and slipping parameters
 mod0 <- CDM::din( dat , q.matrix , guess.equal=TRUE , slip.equal = TRUE )

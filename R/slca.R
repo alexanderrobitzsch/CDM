@@ -1,5 +1,5 @@
 ## File Name: slca.R
-## File Version: 1.848
+## File Version: 1.849
 
 
 ###########################################
@@ -7,22 +7,20 @@
 ###########################################
 
 slca <- function( data , group=NULL, 
-    weights=rep(1, nrow(data)), 
-	Xdes ,  Xlambda.init=NULL , Xlambda.fixed=NULL , 
-	Xlambda.constr.V=NULL , Xlambda.constr.c=NULL , 
-	delta.designmatrix =NULL ,  delta.init = NULL , 
-	delta.fixed = NULL , delta.linkfct = "log" ,  
-	Xlambda_positive = NULL, 
-	regular_type = "lasso", regular_lam = 0 , regular_w = NULL , regular_n = nrow(data) , 
-    maxiter=1000, conv=1E-5, globconv=1E-5, msteps=10 , 
-	convM=.0005 , decrease.increments = FALSE , oldfac = 0 , dampening_factor=1.01,
-	seed=NULL , progress = TRUE , PEM=TRUE, PEM_itermax=maxiter, ...)
-{	
+			weights=rep(1, nrow(data)), 
+			Xdes, Xlambda.init=NULL , Xlambda.fixed=NULL , 
+			Xlambda.constr.V=NULL , Xlambda.constr.c=NULL , 
+			delta.designmatrix =NULL ,  delta.init = NULL , 
+			delta.fixed = NULL , delta.linkfct = "log" ,  
+			Xlambda_positive = NULL, 
+			regular_type = "lasso", regular_lam = 0 , regular_w = NULL , regular_n = nrow(data) , 
+			maxiter=1000, conv=1E-5, globconv=1E-5, msteps=10 , 
+			convM=.0005 , decrease.increments = FALSE , oldfac = 0 , dampening_factor=1.01,
+			seed=NULL , progress = TRUE , PEM=TRUE, PEM_itermax=maxiter, ...)
+{
 	#************************************************************
-	# mean.constraint [ dimension , group , value ]
-	# Sigma.constraint [ dimension1 , dimension2 , group , value ]	
 	cl <- match.call()
-    theta.k <- NULL	
+	theta.k <- NULL	
 	#*************************
 	# data preparation
 	s1 <- Sys.time()
@@ -59,9 +57,9 @@ slca <- function( data , group=NULL,
 	
 	#--- define design matrices
 	KK <- K	# if KK == 1 then a slope parameter for all items is estimated
-    deltaNULL <- 0
+	deltaNULL <- 0
 	if ( is.null(delta.designmatrix) ){
-	    deltaNULL <- 1
+		deltaNULL <- 1
 		delta.designmatrix <- diag( dim(Xdes)[3] )
 	}
 
@@ -73,7 +71,7 @@ slca <- function( data , group=NULL,
 	
 	#--- inits Xlambda
 	Nlam <- dim(Xdes)[[4]]
-    res <- slca_inits_Xlambda( Xlambda.init=Xlambda.init, Xdes=Xdes, Nlam=Nlam, Xlambda_positive=Xlambda_positive, 
+	res <- slca_inits_Xlambda( Xlambda.init=Xlambda.init, Xdes=Xdes, Nlam=Nlam, Xlambda_positive=Xlambda_positive, 
 				Xlambda.fixed=Xlambda.fixed ) 
 	Xlambda <- Xlambda.init <- res$Xlambda.init
 	Xlambda_positive <- res$Xlambda_positive									
@@ -248,7 +246,7 @@ slca <- function( data , group=NULL,
 		globconv1 <- abs( dev - dev0) 
 		iter <- iter +1
 		#---- print progress
-        res <- slca_print_progress_em_algorithm( progress=progress, disp=disp, iter=iter, dev=dev, dev0=dev0, deltadiff=deltadiff, 
+		res <- slca_print_progress_em_algorithm( progress=progress, disp=disp, iter=iter, dev=dev, dev0=dev0, deltadiff=deltadiff, 
 				Xlambda_change=pardiff, regularization=regularization, regular_penalty=regular_penalty ) 
 		if ( globconv1 < globconv ){
 			iterate <- FALSE
@@ -316,9 +314,6 @@ slca <- function( data , group=NULL,
 	# item fit [ items , theta , categories ] 
 	# # n.ik [ 1:TP , 1:I , 1:(K+1) , 1:G ]
 	probs <- aperm( probs , c(3,1,2) )
-#	itemfit.rmsea <- itemfit.rmsea( n.ik , pi.k , probs ,
-#			itemnames = colnames(data) )		
-#   item$itemfit.rmsea <- itemfit.rmsea$rmsea
 
 	# person parameters
 	# ...

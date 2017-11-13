@@ -1,5 +1,5 @@
 ## File Name: logLik_CDM.R
-## File Version: 0.08
+## File Version: 0.09
 #########################################
 # Log likelihood functions
 #########################################
@@ -65,3 +65,15 @@ logLik.slca <- function (object, ...) {
     return(out)
 }
 #############################################
+#########################################
+# reglca class
+logLik.reglca <- function (object, ...) {
+	# extract log-likelihood
+	out <- object$loglike
+    # number of parameters
+    attr(out, "df") <- sum(object$Npars)
+	# extract number of observations
+    attr(out, "nobs") <- sum(object$N)
+    class(out) <- "logLik"
+    return(out)
+}

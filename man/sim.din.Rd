@@ -1,5 +1,5 @@
 %% File Name: sim.din.Rd
-%% File Version: 2.05
+%% File Version: 2.06
 
 \name{sim.din}
 \alias{sim.din}
@@ -101,7 +101,7 @@ slip <- c(0.2,0.3,0.4,0.3)
 guess <- c(0,0.1,0.05,0.2)
 
 set.seed(1567) # fix random numbers
-dat1 <- sim.din(N = 200, q.matrix, slip, guess,
+dat1 <- CDM::sim.din(N = 200, q.matrix, slip, guess,
   # Possession of the attributes with high probability 
   mean = c(0.5,0.2), 
   # Possession of the attributes is weakly correlated
@@ -109,7 +109,7 @@ dat1 <- sim.din(N = 200, q.matrix, slip, guess,
 head(dat1)
 
 set.seed(15367) # fix random numbers
-res <- sim.din(N = 200, q.matrix, slip, guess, mean = c(0.5,0.2), 
+res <- CDM::sim.din(N = 200, q.matrix, slip, guess, mean = c(0.5,0.2), 
          Sigma = matrix(c(1,0.2,0.2,1), ncol=2), rule = "DINO")
 
 # extract simulated data
@@ -128,7 +128,7 @@ head( res$alpha )
 #          -> 5 persons with 2 attributes -> see the Q-matrix above
 alpha <- matrix( c(1,0,1,0,1,1,0,1,1,1) , 
     nrow=5,ncol=2, byrow=TRUE )
-sim.din(  q.matrix = q.matrix , alpha = alpha )
+CDM::sim.din(  q.matrix = q.matrix , alpha = alpha )
 
 \dontrun{
 #############################################################################
@@ -151,8 +151,8 @@ alpha <- alpha.patt[ ind , ]    # (true) latent responses
 guess <- c(.26,.3,.07,.23,.24,.34,.05,.1)
 slip <- c(.05,.16,.19,.03,.03,.19,.15,.05)
 # simulation of the DINA model
-dat <- sim.din(N=0, q.matrix= Qmatrix, guess = guess ,
-        slip = slip , alpha=alpha)$dat
+dat <- CDM::sim.din(N=0, q.matrix= Qmatrix, guess = guess,
+              slip = slip, alpha=alpha)$dat
 # estimate model
 res <- CDM::din( dat , q.matrix=Qmatrix )
 # extract maximum likelihood estimates for individual classifications
@@ -165,9 +165,8 @@ mean( est == apply( alpha , 1 , FUN = function(ll){ paste0(ll[1],ll[2] ) } ) )
 # EXAMPLE 3: Simulation based on already estimated DINA model for data.ecpe
 #############################################################################
 
-data(data.ecpe)
-dat <- data.ecpe$data
-q.matrix <- data.ecpe$q.matrix
+dat <- CDM::data.ecpe$data
+q.matrix <- CDM::data.ecpe$q.matrix
 
 #***
 # (1) estimate DINA model
@@ -183,8 +182,8 @@ probs <- mod$attribute.patt$class.prob   # probabilities
 patt <- mod$attribute.patt.splitted      # response patterns
 alpha <- patt[ sample( 1:(length(probs) ) , n , prob=probs , replace=TRUE) , ]
 # simulate data using estimated item parameters
-res <- sim.din(N=n, q.matrix=q.matrix, guess = mod$guess$est , slip=mod$slip$est , 
-        rule = "DINA", alpha=alpha)
+res <- CDM::sim.din(N=n, q.matrix=q.matrix, guess = mod$guess$est , slip=mod$slip$est , 
+              rule = "DINA", alpha=alpha)
 # extract data
 dat <- res$dat
 }

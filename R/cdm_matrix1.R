@@ -1,0 +1,9 @@
+## File Name: cdm_matrix1.R
+## File Version: 0.01
+
+cdm_matrix1 <- function( x , ncol )
+{
+	x <- as.vector(x)
+	y <- matrix( x , nrow=length(x), ncol=ncol, byrow=FALSE )
+	return(y)
+}

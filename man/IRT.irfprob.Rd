@@ -1,5 +1,5 @@
 %% File Name: IRT.irfprob.Rd
-%% File Version: 0.08
+%% File Version: 0.14
 
 \name{IRT.irfprob}
 \alias{IRT.irfprob}
@@ -8,6 +8,8 @@
 \alias{IRT.irfprob.mcdina}
 \alias{IRT.irfprob.gdm}
 \alias{IRT.irfprob.slca}
+\alias{IRT.irfprob.reglca}
+
 
 %- Also NEED an '\alias' for EACH other topic documented here.
 
@@ -28,9 +30,11 @@ IRT.irfprob(object, \dots)
 
 \method{IRT.irfprob}{gdina}(object, \dots)
 
+\method{IRT.irfprob}{gdm}(object, \dots)
+
 \method{IRT.irfprob}{mcdina}(object, \dots)
 
-\method{IRT.irfprob}{gdm}(object, \dots)
+\method{IRT.irfprob}{reglca}(object, \dots)
 
 \method{IRT.irfprob}{slca}(object, \dots)
 }
@@ -39,7 +43,8 @@ IRT.irfprob(object, \dots)
 \arguments{
   \item{object}{
 Object of classes \code{\link{din}}, \code{\link{gdina}},
-\code{\link{mcdina}}, \code{\link{gdm}} or \code{\link{slca}}.
+\code{\link{mcdina}}, \code{\link{gdm}}, \code{\link{slca}},
+\code{\link{reglca}}.
 }
   \item{\dots}{
 More arguments to be passed.
@@ -93,12 +98,11 @@ For extracting the individual likelihood or posterior see
 # EXAMPLE 1: Extracting item response functions mcdina model
 #############################################################################
 
-data(data.cdm02)
-dat <- data.cdm02$data
-q.matrix <- data.cdm02$q.matrix
+dat <- CDM::data.cdm02$data
+q.matrix <- CDM::data.cdm02$q.matrix
 
-# estimate model (only 5 iterations for illustration purposes)
-mod1 <- CDM::mcdina( dat , q.matrix=q.matrix , maxit = 5)
+# estimate model
+mod1 <- CDM::mcdina( dat, q.matrix=q.matrix)
 # extract item response functions
 prmod1 <- CDM::IRT.irfprob(mod1)
 str(prmod1)

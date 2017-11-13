@@ -1,5 +1,5 @@
 %% File Name: din.equivalent.class.Rd
-%% File Version: 0.17
+%% File Version: 0.19
 
 \name{din.equivalent.class}
 \alias{din.equivalent.class}
@@ -62,26 +62,25 @@ in Q-matrix based cognitive diagnosis models.
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 %}
 \examples{
-# DINA models
-data(data.fraction2)
+#-- DINA models
+
 # first Q-matrix
-Q1 <- data.fraction2$q.matrix1
+Q1 <- CDM::data.fraction2$q.matrix1
 m1 <- CDM::din.equivalent.class( q.matrix = Q1 , rule="DINA" )
   ## 8 Skill classes | 5  distinguishable skill classes | Gini coefficient = 0.3 
 
 # second Q-matrix
-Q1 <- data.fraction2$q.matrix2
+Q1 <- CDM::data.fraction2$q.matrix2
 m1 <- CDM::din.equivalent.class( q.matrix = Q1 , rule="DINA" )
   ## 32 Skill classes | 9  distinguishable skill classes | Gini coefficient = 0.5 
 
 # third Q-matrix
-Q1 <- data.fraction2$q.matrix3
+Q1 <- CDM::data.fraction2$q.matrix3
 m1 <- CDM::din.equivalent.class( q.matrix = Q1 , rule="DINA" )
   ## 8 Skill classes | 8  distinguishable skill classes | Gini coefficient = 0 
 
 # original fraction subtraction data
-data(fraction.subtraction.qmatrix)
-m1 <- CDM::din.equivalent.class( q.matrix = fraction.subtraction.qmatrix , rule="DINA" )
+m1 <- CDM::din.equivalent.class( q.matrix=CDM::fraction.subtraction.qmatrix, rule="DINA")
   ## 256 Skill classes | 58  distinguishable skill classes | Gini coefficient = 0.659
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

@@ -1,5 +1,5 @@
 %% File Name: CDM-utilities.Rd
-%% File Version: 0.35
+%% File Version: 0.41
 
 \name{CDM-utilities}
 \alias{CDM-utilities}
@@ -23,6 +23,9 @@
 \alias{cdm_scadL2_threshold}
 \alias{cdm_tlp_threshold}
 \alias{cdm_mcp_threshold}
+\alias{CDM_rbind_fill}
+\alias{cdm_matrix2}
+\alias{cdm_matrix1}
 
 
 \title{Utility Functions in \pkg{CDM}}
@@ -50,6 +53,13 @@ cdm_fit_normal(x, w)
 
 ## fit unidimensional factor analysis by unweighted least squares 
 cdm_fa1(Sigma, method=1, maxit=50, conv=1E-5)
+
+## another rbind.fill implementation
+CDM_rbind_fill( x , y )
+## fills a vector row-wise into a matrix
+cdm_matrix2( x , nrow )
+## fills a vector column-wise into a matrix
+cdm_matrix1( x , ncol )
 
 ## SCAD thresholding operator
 cdm_scad_threshold(beta, lambda, a=3.7)
@@ -95,7 +105,10 @@ cdm_pem_acceleration_assign_output_parameters(res_ll_fct, vars, envir, update)
 \item{sigma}{Covariance matrix}
 \item{\dots}{More arguments to be passed}
 \item{x}{Matrix or vector}
+\item{y}{Matrix or vector}
 \item{w}{Vector of sampling weights}
+\item{nrow}{Integer}
+\item{ncol}{Integer}
 \item{Sigma}{Covariance matrix}
 \item{method}{Method \code{1} indicates estimation of different
 item loadings, method \code{2} estimation of same item loadings.}

@@ -1,5 +1,5 @@
 ## File Name: gdina.R
-## File Version: 9.209
+## File Version: 9.229
 
 
 ################################################################################
@@ -20,7 +20,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 					delta.basispar.init = NULL , 
 					zeroprob.skillclasses = NULL , 
 					attr.prob.init = NULL , 
-					reduced.skillspace=TRUE , 
+					reduced.skillspace=NULL , 
 					reduced.skillspace.method=2 , 
 					HOGDINA = -1 , 
 					Z.skillspace = NULL , 
@@ -39,7 +39,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 					avoid.zeroprobs = FALSE , 
 					seed = 0 , 		
 					save.devmin=TRUE , calc.se = TRUE ,
-					se_version = 1 , PEM = FALSE , PEM_itermax = maxit , 
+					se_version = 1 , PEM = TRUE , PEM_itermax = maxit , 
 					cd = FALSE, cd_steps = 1 , mono_maxiter = 10,
 					freq_weights=FALSE, 
 					...
@@ -163,7 +163,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	# display on R console                                                         #
 	################################################################################
 
-    disp <- r1      
+	disp <- r1      
 	s1 <- Sys.time()
 	#--- display progress
 	res <- gdina_progress_start_estimation( progress=progress, linkfct=linkfct, disp=disp, 
@@ -211,7 +211,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	################################################################################ 
 	# generate all attribute patterns                                              #
 	################################################################################
-
+	
 	res <- gdina_create_attribute_patterns( q.matrix=q.matrix, skillclasses=skillclasses, 
 				zeroprob.skillclasses=zeroprob.skillclasses, Z.skillspace=Z.skillspace, 
 				G=G, reduced.skillspace=reduced.skillspace ) 
@@ -230,12 +230,12 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	
 	if ( reduced.skillspace ){
 		res <- gdina_attribute_patterns_reduced_skillspace( attr.patt=attr.patt, K=K, maxAttr=maxAttr, q.matrix=q.matrix, 
-					Z.skillspace=Z.skillspace ) 
+					Z.skillspace=Z.skillspace, G=G ) 
 		Z <- res$Z
 		ncolZ <- res$ncolZ
-		beta <- rep(0, ncol(Z) )
+		beta <- res$beta
 	}
-			
+
 	################################################################################
 	# assign uniform prior distribution of all latent class patterns                
 	################################################################################
@@ -285,11 +285,11 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	IP <- res$IP
 	resp.patt <- res$resp.patt
 	item.patt.split <- res$item.patt.split	
-   
+
 	iter <- 1 # Iteration number
 	likediff <- 1 # Difference in likelihood estimates
 	opt_fct <- loglike <- 0 # init for log-Likelihood
-    
+
 	# init value for maximum parameter change in likelihood maximization
 	max.par.change <- 1000
 	devchange <- 1000
@@ -300,7 +300,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	
 	# calculations for expected counts
 	# response indicator list
-    resp.ind.list <- list( 1:J )
+	resp.ind.list <- list( 1:J )
 	for (i in 1:J){ 
 		resp.ind.list[[i]] <- which( resp.patt[,i] == 1)  
 	}
@@ -309,12 +309,19 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	if (G==1){
 		ipr <- item.patt.split * item.patt.freq*resp.patt
 	}
-       
+
 	disp <- "...........................................................\n"		
 
 	#** for reduced skillspace
 	if (reduced.skillspace){
-		item_patt_freq_matr <- outer( item.patt.freq , rep( 1 , L) )		
+		if (G==1){
+			item_patt_freq_matr <- cdm_matrix1( item.patt.freq , ncol=L )	
+		} else {
+			item_patt_freq_matr <- array( NA, dim=c(nrow(item.patt.freq), L, G ) )
+			for (gg in 1:G){
+				item_patt_freq_matr[,,gg] <- cdm_matrix1( item.patt.freq[,gg] , ncol=L )	
+			}
+		}
 	}
 
 	#--- delta parameter indices
@@ -324,7 +331,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	delta_vec <- unlist(delta)
 
 	# reconvert vector into a list
-    delta <- gdina_delta_convert_into_list( delta_vec=delta_vec, delta_indices=delta_indices, J=J ) 
+	delta <- gdina_delta_convert_into_list( delta_vec=delta_vec, delta_indices=delta_indices, J=J ) 
 
 	#-- preliminaries PEM acceleration
 	if (PEM){	
@@ -346,7 +353,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	
 	#------------------------------
 	# choose regularization, coordinate descent and monotonicity constraints
-    res <- gdina_proc_regularization( regular_type=regular_type, cd=cd, mono.constr=mono.constr, linkfct=linkfct, 
+	res <- gdina_proc_regularization( regular_type=regular_type, cd=cd, mono.constr=mono.constr, linkfct=linkfct, 
 					method=method, PEM=PEM, regular_alpha=regular_alpha, regular_tau=regular_tau ) 
 	linkfct <- res$linkfct
 	save.devmin <- res$save.devmin
@@ -371,10 +378,10 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	#********************************
 	# extract parameters with minimal deviances
 
-    dev.min <- 1E99
+	dev.min <- 1E99
 	R.lj.gg <- I.lj.gg <- NULL
 	suffstat_probs <- as.list(1:J)
-		
+
 	devchange <- 0	
 	#*********************************
 
@@ -390,7 +397,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 		# calculate P(X_i | alpha_l):                                                  # 
 		# probability of each item response pattern given an attribute pattern         #
 		################################################################################
-	
+
 		#--- calculate item response probabilities
 		pjM <- gdina_calc_prob( progress=progress, iter=iter, disp=disp, J=J, L=L, 
 					aggr.attr.patt=aggr.attr.patt, Mj=Mj, delta=delta, linkfct=linkfct ) 
@@ -425,16 +432,15 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 		#######################################################################
 		# STEP IIa: reduction of skill space					
 		#######################################################################
-
-		# This currently only works in case of a single group
-		if (reduced.skillspace){			
-			ntheta <- colSums( item_patt_freq_matr*p.aj.xi )
-			res <- gdina_reduced_skillspace( ntheta=ntheta, Z=Z, reduced.skillspace.method=reduced.skillspace.method )
+		
+		if (reduced.skillspace){
+			# ntheta <- colSums( item_patt_freq_matr*p.aj.xi )	
+            res <- gdina_reduced_skillspace_multiple_groups( Z=Z, reduced.skillspace.method=reduced.skillspace.method, 
+						item_patt_freq_matr=item_patt_freq_matr, p.aj.xi=p.aj.xi, G=G ) 
 			beta <- res$beta
 			attr.prob <- res$attr.prob
-			pred.ntheta <- res$pred.ntheta
 		}
-		 
+		
 		################################################################################
 		# STEP III:                                                                    #
 		# calculate I_{lj} and R_{lj}                                                  #
@@ -453,7 +459,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 		R.lj <- res$R.lj
 		I.lj.gg <- res$I.lj.gg
 		R.lj.gg <- res$R.lj.gg
-			
+		
 		################################################################################
 		# STEP IV:                                                                     #
 		# M Step																	   # 
@@ -488,7 +494,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 		}
 
 		delta_vec <- unlist(delta.new)
-			
+
 		#-- PEM acceleration
 		if (PEM){
 			#-- collect all parameters in a list
@@ -618,7 +624,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	skill.patt <- res$skill.patt
 	
 	#--- monotonicity boundaries and regularized parameters
-    res <- gdina_postproc_regularized_constrained_parameters( mono.constr=mono.constr, delta=delta, 
+	res <- gdina_postproc_regularized_constrained_parameters( mono.constr=mono.constr, delta=delta, 
 					Aj_mono_constraints=Aj_mono_constraints, Mj=Mj, linkfct=linkfct, regularization=regularization,
 					data=data ) 
 	numb_bound_mono <- res$numb_bound_mono
@@ -644,7 +650,8 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	p.xi.aj <- res$p.xi.aj
 	posterior <- res$posterior
 	pattern <- res$pattern
-	attr.prob0 <- res$attr.prob0	
+	attr.prob0 <- res$attr.prob0
+	attr_prob <- res$attr_prob
 	
 	#--- item fit [ items , theta , categories ] 
 	res <- gdina_itemfit( L=L, J=J, R.lj=R.lj, I.lj=I.lj, item.patt.freq=item.patt.freq, G=G, 
@@ -662,19 +669,21 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	if (progress){
 		cat("---------------------------------------------------------------------------------\n")
 	}
+	
 	iter <- iterused
-    res <- list( coef=delta.summary, item=delta.summary, delta=delta, se.delta=se.delta, 
-			    probitem=probitem, itemfit.rmsea=itemfit.rmsea, mean.rmsea=mean(itemfit.rmsea),	
+	res <- list( coef=delta.summary, item=delta.summary, delta=delta, se.delta=se.delta, 
+				probitem=probitem, itemfit.rmsea=itemfit.rmsea, mean.rmsea=mean(itemfit.rmsea),	
 				loglike=loglike, deviance=-2*loglike, G=G, N=colSums( as.matrix(item.patt.freq) ), 
 				AIC=aic, BIC=bic, CAIC=caic, Npars =Npars, Nipar=Nipar , Nskillpar=Nskillpar,
 				Nskillclasses=L, varmat.delta=varmat.delta, varmat.palj=varmat.palj,
-                posterior=posterior, like=p.xi.aj, data=data, q.matrix=q.matrix,
-                pattern=pattern, attribute.patt=attr.prob, skill.patt=skill.patt,
-				attr.prob=attr.prob$class.prob,
-                subj.pattern=item.patt.subj, attribute.patt.splitted=attr.patt, 
+				posterior=posterior, like=p.xi.aj, data=data, q.matrix=q.matrix,
+				pattern=pattern, attribute.patt=attr.prob, skill.patt=skill.patt,
+				attr.prob=attr_prob,
+				subj.pattern=item.patt.subj, attribute.patt.splitted=attr.patt, 
 				pjk=pjM,  Mj=Mj, Aj=Aj, rule=rule, linkfct=linkfct, delta.designmatrix=delta.designmatrix, 
 				reduced.skillspace=reduced.skillspace, Z.skillspace=if(reduced.skillspace){ Z } else { NULL }, 
 				beta=beta, covbeta=covbeta, display=disp, item.patt.split=item.patt.split, 
+				resp.ind.list=resp.ind.list, dat=item.patt.split, 
 				item.patt.freq=item.patt.freq, model.type=r1, iter=iter, iterused=iterused, rrum.model=rrum.model,
 				rrum.params= rrum.params, group.stat=group.stat,  NAttr=maxAttr, invariance=invariance, 
 				HOGDINA=HOGDINA, mono.constr=mono.constr, regularization=regularization, regular_lam=regular_lam,
@@ -687,7 +696,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 				deviance.history=deviance.history, penalty=penalty, opt_fct=opt_fct )
 		 
 	if (HOGDINA>=0) { 
-	    colnames(a.attr) <- paste0( "a.Gr" , 1:G )
+		colnames(a.attr) <- paste0( "a.Gr" , 1:G )
 		colnames(b.attr) <- paste0( "b.Gr" , 1:G )
 		int.attr <- - b.attr / a.attr
 		colnames(int.attr) <- paste0( "int.Gr" , 1:G )
@@ -696,9 +705,9 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 		res$b.attr <- b.attr
 		res$int.attr <- int.attr
 		res$attr.rf <- cbind( b.attr , a.attr, int.attr )
-	}						
+	}
 	# computation time
-    time1$s2 <- Sys.time()
+	time1$s2 <- Sys.time()
 	res$time <- time1
 	# res$time$timediff <- print(res$time$s2 - res$time$s1)	
 	res$time$timediff <- res$time$s2 - res$time$s1	
@@ -710,25 +719,25 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	control <- list( skillclasses=skillclasses, q.matrix=q.matrix, conv.crit=conv.crit, 
 					dev.crit=dev.crit, maxit=maxit, linkfct=linkfct, Mj=Mj, Aj=Aj, 
 					group=group, method=method, delta.designmatrix=delta.designmatrix, 
-					delta.basispar.lower=delta.basispar.lower, delta.basispar.upper=delta.basispar.upper, 					
+					delta.basispar.lower=delta.basispar.lower, delta.basispar.upper=delta.basispar.upper,
 					delta.basispar.init=delta.basispar.init, zeroprob.skillclasses=zeroprob.skillclasses, 
 					reduced.skillspace=reduced.skillspace, HOGDINA=HOGDINA, Z.skillspace=Z.skillspace, 
-                    weights=weights, rule=rule, I.lj=I.lj, R.lj=R.lj, I.lj.gg=I.lj.gg, 
+					weights=weights, rule=rule, I.lj=I.lj, R.lj=R.lj, I.lj.gg=I.lj.gg, 
 					R.lj.gg=R.lj.gg, aggr.patt.designmatrix=aggr.patt.designmatrix,	Mj.index=Mj.index, method=method,
 					aggr.attr.patt=aggr.attr.patt,IP=IP, p.aj.xi=p.aj.xi,item.patt.split=item.patt.split,
 					resp.patt=resp.patt,freq.pattern=freq.pattern, item.patt.freq=item.patt.freq,invM.list=invM.list,
-					item.patt.subj=item.patt.subj, item.patt=item.patt, suffstat_probs=suffstat_probs, 					
+					item.patt.subj=item.patt.subj, item.patt=item.patt, suffstat_probs=suffstat_probs, 
 					increment.factor=increment.factor, fac.oldxsi=fac.oldxsi, avoid.zeroprobs=avoid.zeroprobs,
 					attr.prob=attr.prob0, delta.fixed=delta.fixed, sequential=sequential,
 					invariance=invariance, se_version=se_version ) 	
 	res$control <- control			
-    #--- create parameter table	
+	#--- create parameter table	
 	res$partable <- gdina_partable(res)	
 	#--- polychoric correlations
 	res$polychor <- CDM.calc.polychor(res)	
 	res$call <- cl
-    class(res) <- "gdina"
-    return(res)
+	class(res) <- "gdina"
+	return(res)
 }
 ##################################################################
 

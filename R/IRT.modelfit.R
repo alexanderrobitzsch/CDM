@@ -1,5 +1,5 @@
 ## File Name: IRT.modelfit.R
-## File Version: 0.10
+## File Version: 0.12
 
 ###########################################################
 IRT.modelfit <- function (object, ...) {
@@ -33,6 +33,14 @@ IRT.modelfit.gdina <- function( object , ... ){
 						}						
 #############################################################						
 
+#####################################################
+# IRT.modelfit for gdm objects
+IRT.modelfit.gdm <- function( object , ... ){
+    cl <- paste(match.call())[2]	
+    res <- IRT.modelfit.CDM( object , mod=cl )
+	return(res)	
+}						
+#############################################################		
 
 ############################################################
 # summary
@@ -52,4 +60,5 @@ summary.IRT.modelfit.helper <- function( object , ... ){
 # summary.modelfit.cor.din 
 summary.IRT.modelfit.din <- summary.IRT.modelfit.helper
 summary.IRT.modelfit.gdina <- summary.IRT.modelfit.helper
+summary.IRT.modelfit.gdm <- summary.IRT.modelfit.helper
 # summary.IRT.modelfit.gdm <- summary.modelfit.cor.gdm

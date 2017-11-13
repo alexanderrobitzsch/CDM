@@ -1,5 +1,5 @@
 %% File Name: data.mg.Rd
-%% File Version: 0.20
+%% File Version: 0.21
 
 \name{data.mg}
 \alias{data.mg}
@@ -44,9 +44,8 @@ Subsample of a large-scale dataset of 11 survey questions.
 
 \examples{
 \dontrun{
-data(data.mg)
 library(psych)
-psych::describe(data.mg)
+psych::describe( CDM::data.mg )
   ##   > psych::describe(data.mg)
   ##          var     n       mean       sd     median    trimmed      mad        min        max
   ##   idstud   1 38243 1039653.91 19309.80 1037899.00 1039927.73 30240.59 1007168.00 1069949.00

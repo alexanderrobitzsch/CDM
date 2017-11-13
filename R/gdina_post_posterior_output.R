@@ -1,5 +1,5 @@
 ## File Name: gdina_post_posterior_output.R
-## File Version: 0.02
+## File Version: 0.04
 
 gdina_post_posterior_output <- function(G, p.aj.xi, p.xi.aj, pattern, data, item.patt.subj,
 		item.patt, attr.prob, group)
@@ -52,8 +52,14 @@ gdina_post_posterior_output <- function(G, p.aj.xi, p.xi.aj, pattern, data, item
 	# labels likelihood
 	colnames(p.xi.aj) <- paste(rownames(attr.prob))	
 	
+	if (G==1){
+		attr_prob <- as.vector( attr.prob$class.prob )
+	} else {
+		attr_prob <- as.matrix( attr.prob )
+	}	
+	
 	#--------- OUTPUT
 	res <- list( item.patt.subj=item.patt.subj, attr.prob=attr.prob, p.xi.aj=p.xi.aj, posterior=posterior,
-					pattern=pattern, attr.prob0 = attr.prob0 )
+					pattern=pattern, attr.prob0 = attr.prob0, attr_prob=attr_prob )
 	return(res)
 }

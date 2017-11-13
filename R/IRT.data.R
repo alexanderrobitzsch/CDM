@@ -1,5 +1,5 @@
 ## File Name: IRT.data.R
-## File Version: 0.06
+## File Version: 0.08
 
 
 ###########################################################
@@ -20,3 +20,10 @@ IRT.data.gdm <- IRT.data.din
 IRT.data.mcdina <- IRT.data.din
 IRT.data.slca <- IRT.data.din
 #############################################################
+
+IRT.data.reglca <- function( object , ... ){
+	dat <- object$dat0
+	attr(dat,"weights") <- object$weights
+	attr(dat,"group") <- NULL
+    return(dat)
+}

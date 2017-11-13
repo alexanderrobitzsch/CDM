@@ -1,5 +1,5 @@
 %% File Name: din.Rd
-%% File Version: 2.34
+%% File Version: 2.35
 
 \name{din}
 
@@ -581,7 +581,7 @@ summary( CDM::modelfit.cor.din( mod4 ) )
 # EXAMPLE 7: Fitting the basic local independence model (BLIM) with din
 #############################################################################
 
-miceadds::library_install("pks")
+library(pks)
 data(DoignonFalmagne7 , package="pks")
   ##  str(DoignonFalmagne7)
   ##    $ K  : int [1:9, 1:5] 0 1 0 1 1 1 1 1 1 0 ...

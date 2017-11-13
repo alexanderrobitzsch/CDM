@@ -1,5 +1,5 @@
 ## File Name: gdm.R
-## File Version: 8.635
+## File Version: 8.638
 
 
 ###########################################
@@ -68,15 +68,15 @@
 # GDM function
 # 
 gdm <- function( data , theta.k, irtmodel="2PL", group=NULL, 
-    weights=rep(1, nrow(data)), 
-	Qmatrix=NULL ,thetaDes = NULL , skillspace="loglinear",
-    b.constraint=NULL, a.constraint=NULL, 
-	mean.constraint=NULL , Sigma.constraint=NULL , 
-    delta.designmatrix=NULL, standardized.latent=FALSE , 
-	centered.latent=FALSE , centerintercepts=FALSE , centerslopes=FALSE , 
-    maxiter=1000, conv=1E-5, globconv=1E-5, msteps=4 , 
-	convM=.0005 , decrease.increments = FALSE , use.freqpatt=FALSE ,
-	progress=TRUE , PEM=FALSE, PEM_itermax=maxiter, ...)
+			weights=rep(1, nrow(data)), 
+			Qmatrix=NULL ,thetaDes = NULL , skillspace="loglinear",
+			b.constraint=NULL, a.constraint=NULL, 
+			mean.constraint=NULL , Sigma.constraint=NULL , 
+			delta.designmatrix=NULL, standardized.latent=FALSE , 
+			centered.latent=FALSE , centerintercepts=FALSE , centerslopes=FALSE , 
+			maxiter=1000, conv=1E-5, globconv=1E-5, msteps=4 , 
+			convM=.0005 , decrease.increments = FALSE , use.freqpatt=FALSE ,
+			progress=TRUE , PEM=FALSE, PEM_itermax=maxiter, ...)
 {	
 	# mean.constraint [ dimension , group , value ]
 	# Sigma.constraint [ dimension1 , dimension2 , group , value ]		
@@ -89,7 +89,7 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
 	## gdm: no visible binding for global variable 'TD'
 	TD <- TP <- EAP.rel <- mean.trait <- sd.trait <- skewness.trait <- NULL
 	K.item <- correlation.trait <- D <- NULL 
-    se.theta.k <- NULL	
+	se.theta.k <- NULL	
 	data0 <- data <- as.matrix(data)
 	dat.resp0 <- dat.resp <- 1 - is.na(data)
 	dat <- data
@@ -139,7 +139,7 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
 	
 	#--- starting values for b
 	b <- gdm_inits_b( dat0=dat0, dat.resp0=dat.resp0, I=I, K=K ) 
-		
+
 	#****
 	# item slope matrix
 	# a[1:I,1:TD] ... Items x theta dimension
@@ -229,13 +229,13 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
 		pem_parameter_sequence <- res$pem_parameter_sequence				
 	}
 
-					
 	deviance.history <- rep(NA, maxiter )
 	gwt0 <- matrix( 1 , nrow=n , ncol=TP )
-						
+
 	#---
 	# initial values algorithm
-	dev <- 0	; iter <- 0
+	dev <- 0
+	iter <- 0
 	globconv1 <- conv1 <- 1000
 	disp <- paste( paste( rep(".", 70 ) , collapse="") ,"\n", sep="")
 	
@@ -329,7 +329,7 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
 		}
 					
 		# estimate skillspace		
-        if ( skillspace == "est" ){
+		if ( skillspace == "est" ){
 			res <- gdm_est_skillspace_traits( n.ik=n.ik, a=a, b=b, theta.k=theta.k, Qmatrix=Qmatrix, I=I, K=K, TP=TP, TD=TD, 
 						numdiff.parm=1E-3, max.increment=1, msteps=msteps, convM=convM ) 
 			theta.k <- res$theta.k
@@ -408,7 +408,7 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
 				b.constraint=b.constraint, a.constraint=a.constraint, mean.constraint=mean.constraint, 
 				Sigma.constraint=Sigma.constraint, delta.designmatrix=delta.designmatrix, 
 				standardized.latent=standardized.latent, data0=data0, centerslopes=centerslopes, TP=TP, 
-				centerintercepts=centerintercepts ) 
+				centerintercepts=centerintercepts, centered.latent=centered.latent ) 
 
 	#########################################
 	# item fit [ items , theta , categories ] 
@@ -434,7 +434,7 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
 				Qmatrix=Qmatrix , pi.k=pi.k , 	
 				mean.trait=mean.trait , sd.trait = sd.trait , 
 				skewness.trait = skewness.trait , correlation.trait = correlation.trait , 
-				pjk = probs , n.ik = n.ik ,  
+				pjk = probs , n.ik = n.ik ,  delta.designmatrix=delta.designmatrix, 
 				G=G , D=D , I = ncol(data) , N = nrow(data) , 
 				delta = delta , covdelta=covdelta , data = data ,
 				group.stat=group.stat )
@@ -460,13 +460,13 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
 	# control arguments
 	res$control$weights <- weights
 	res$control$group <- group
-	
+
 	if (progress){
-        cat("----------------------------------- \n")
-        cat("Start:" , paste( s1) , "\n")
-        cat("End:" , paste(s2) , "\n")
-        cat("Difference:" , print(s2 -s1), "\n")
-        cat("----------------------------------- \n")
+		cat("----------------------------------- \n")
+		cat("Start:" , paste( s1) , "\n")
+		cat("End:" , paste(s2) , "\n")
+		cat("Difference:" , print(s2 -s1), "\n")
+		cat("----------------------------------- \n")
 	}
 	class(res) <- "gdm"
 	res$call <- cl

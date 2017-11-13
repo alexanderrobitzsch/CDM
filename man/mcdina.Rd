@@ -1,5 +1,5 @@
 %% File Name: mcdina.Rd
-%% File Version: 0.20
+%% File Version: 0.21
 
 \name{mcdina}
 \alias{mcdina}
@@ -174,10 +174,9 @@ for estimating the GDINA model.
 # EXAMPLE 1: Multiple choice DINA model for data.cdm01 dataset
 #############################################################################
 
-data(data.cdm01)
-dat <- data.cdm01$data
-group <- data.cdm01$group
-q.matrix <- data.cdm01$q.matrix
+dat <- CDM::data.cdm01$data
+group <- CDM::data.cdm01$group
+q.matrix <- CDM::data.cdm01$q.matrix
 
 #*** Model 1: Single group model
 mod1 <- CDM::mcdina( dat=dat , q.matrix=q.matrix )
@@ -219,20 +218,16 @@ summary(mod6)
 # EXAMPLE 2: Using the mcdina function for estimating the DINA model
 #############################################################################
 
-data(sim.dina)
-data(sim.qmatrix)
-
 # estimate the DINA model
-mod <- CDM::mcdina( sim.dina , q.matrix=sim.qmatrix )
+mod <- CDM::mcdina( CDM::sim.dina , q.matrix=CDM::sim.qmatrix )
 summary(mod)
 
 #############################################################################
 # EXAMPLE 3: MCDINA model with polytomous attributes
 #############################################################################
 
-data(data.cdm02)
-dat <- data.cdm02$data
-q.matrix <- data.cdm02$q.matrix
+dat <- CDM::data.cdm02$data
+q.matrix <- CDM::data.cdm02$q.matrix
 
 # estimate model with polytomous attribute B1
 mod1 <- CDM::mcdina( dat , q.matrix=q.matrix )

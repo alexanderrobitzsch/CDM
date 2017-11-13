@@ -1,5 +1,5 @@
 %% File Name: skill.cor.Rd
-%% File Version: 2.06
+%% File Version: 2.07
 
 \name{skill.cor}
 \alias{skill.cor}
@@ -56,7 +56,7 @@ using cognitive diagnosis models. \emph{Psychological Methods},
 %}
 \examples{
 # estimate model
-d4 <- CDM::din(sim.dino, q.matr = sim.qmatrix)
+d4 <- CDM::din( CDM::sim.dino, q.matrix = CDM::sim.qmatrix)
 # compute tetrachoric correlations
 skill.cor(d4)
   ## estimated tetrachoric correlations

@@ -1,5 +1,5 @@
 %% File Name: item_by_group.Rd
-%% File Version: 0.12
+%% File Version: 0.13
 
 \name{item_by_group}
 \alias{item_by_group}
@@ -63,8 +63,7 @@ Extended dataset with item responses
 # EXAMPLE 1: Create dataset with group-specific item responses
 #############################################################################
 
-data(data.mg)
-dat <- data.mg
+dat <- CDM::data.mg
 
 #-- create dataset with group-specific item responses
 dat0 <- CDM::item_by_group( dat = dat[,paste0("I",1:5)] , group=dat$group )

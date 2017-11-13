@@ -1,5 +1,5 @@
 %% File Name: IRT.frequencies.Rd
-%% File Version: 0.07
+%% File Version: 0.08
 
 \name{IRT.frequencies}
 \alias{IRT.frequencies}
@@ -108,17 +108,17 @@ data(sim.dina)
 data(sim.qmatrix)
 
 # estimate GDINA model
-mod1 <- CDM::gdina( data = sim.dina ,  q.matrix = sim.qmatrix)
+mod1 <- CDM::gdina( data = CDM::sim.dina ,  q.matrix = CDM::sim.qmatrix)
 summary(mod1)
 
 # direct usage of IRT.frequencies
-fres1 <- IRT.frequencies(mod1)
+fres1 <- CDM::IRT.frequencies(mod1)
 
 # use of the default function with input data 
-data <- IRT.data(object)
-post <- IRT.posterior(object)
-probs <- IRT.irfprob(object)
-fres2 <- IRT_frequencies_default(data=data, post=post, probs=probs)
+data <- CDM::IRT.data(object)
+post <- CDM::IRT.posterior(object)
+probs <- CDM::IRT.irfprob(object)
+fres2 <- CDM::IRT_frequencies_default(data=data, post=post, probs=probs)
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

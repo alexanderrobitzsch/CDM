@@ -1,5 +1,5 @@
 %% File Name: gdm.Rd
-%% File Version: 4.31
+%% File Version: 4.33
 
 \name{gdm}
 \alias{gdm}
@@ -439,8 +439,9 @@ summary(mod7)
 #      Unidimensional Models for polytomous data
 #############################################################################
 
-data( data.Students )
-dat <- data.Students[ , grep( "act" , colnames(data.Students) ) ]
+dat <- CDM::data.Students
+
+dat <- dat[ , grep( "act" , colnames(dat) ) ]
 theta.k <- seq( -4 , 4 , len=11 )   # discretized ability
 
 #***
@@ -459,7 +460,7 @@ summary(mod1b)
 #***
 # Model 2: PCM with two groups
 mod2 <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k , 
-            group=data.Students$urban + 1 , skillspace="normal" ,
+            group= CDM::data.Students$urban + 1 , skillspace="normal" ,
             centered.latent=TRUE)
 summary(mod2)
 
@@ -514,9 +515,8 @@ summary(mod7b)
 #      Multidimensional Models for dichotomous data
 #############################################################################
 
-data( data.fraction2 )
-dat <- data.fraction2$data
-Qmatrix <- data.fraction2$q.matrix3
+dat <- CDM::data.fraction2$data
+Qmatrix <- CDM::data.fraction2$q.matrix3
 
 #***
 # Model 1: One-dimensional Rasch model
@@ -533,9 +533,8 @@ plot(mod2)
 
 #***
 # Model 3: 3-dimensional Rasch Model (normal distribution)
-mod3 <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k , 
-            Qmatrix=Qmatrix , centered.latent=TRUE , 
-            globconv=5*10^(-3) , conv=10^(-4) , maxiter=10 )
+mod3 <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k, Qmatrix=Qmatrix, 
+            centered.latent=TRUE,  globconv=5*1E-3 , conv=1E-4 )
 summary(mod3)            
 
 #***
@@ -543,8 +542,7 @@ summary(mod3)
 # set some item parameters of items 4,1 and 2 to zero
 b.constraint <- cbind( c(4,1,2) , 1 , 0 )
 mod4 <- CDM::gdm( dat , irtmodel="1PL", theta.k=theta.k, Qmatrix=Qmatrix, 
-              b.constraint=b.constraint, skillspace="loglinear", 
-              globconv= 5*10^(-2), conv=10^(-3) )
+              b.constraint=b.constraint, skillspace="loglinear" )
 summary(mod4)            
 
 #***
@@ -552,29 +550,26 @@ summary(mod4)
 theta.k <- list( "Dim1"= seq( -5 , 5 , len=11 ) , 
                  "Dim2"= seq(-5,5,len=8) , 
                  "Dim3"=seq( -3,3,len=6) )
-mod5 <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k , 
-               Qmatrix=Qmatrix , b.constraint=b.constraint , 
-               skillspace="loglinear" , globconv= 5*10^(-2) , conv=10^(-3) )
+mod5 <- CDM::gdm( dat , irtmodel="1PL", theta.k=theta.k, Qmatrix=Qmatrix, 
+                 b.constraint=b.constraint,  skillspace="loglinear")
 summary(mod5)            
 
 #***
 # Model 6: multdimensional 2PL model (normal distribution)
 theta.k <- seq( -5 , 5 , len=13 )
 a.constraint <- cbind( c(8,1,3) , 1:3 , 1 , 1 ) # fix some slopes to 1
-mod6 <- CDM::gdm( dat , irtmodel="2PL" , theta.k=theta.k , 
-            Qmatrix=Qmatrix , centered.latent=TRUE , 
-            a.constraint=a.constraint , decrease.increments=TRUE , 
-            skillspace="normal" , maxiter=400)
+mod6 <- CDM::gdm( dat , irtmodel="2PL", theta.k=theta.k,  Qmatrix=Qmatrix, 
+            centered.latent=TRUE, a.constraint=a.constraint, decrease.increments=TRUE, 
+            skillspace="normal")
 summary(mod6)
            
 #***
 # Model 7: multdimensional 2PL model (loglinear distribution)
 a.constraint <- cbind( c(8,1,3) , 1:3 , 1 , 1 )
 b.constraint <- cbind( c(8,1,3) , 1 , 0 )
-mod7 <- CDM::gdm( dat , irtmodel="2PL" , theta.k=theta.k , 
-               Qmatrix=Qmatrix , b.constraint=b.constraint , 
-               a.constraint=a.constraint , decrease.increments=FALSE , 
-               skillspace="loglinear" , maxiter=400)
+mod7 <- CDM::gdm( dat , irtmodel="2PL", theta.k=theta.k,  Qmatrix=Qmatrix, 
+               b.constraint=b.constraint,  a.constraint=a.constraint, 
+               decrease.increments=FALSE, skillspace="loglinear")
 summary(mod7)
 
 #############################################################################
@@ -638,7 +633,7 @@ colnames(theta.k) <- c("Dim1","Dim2")
 
 # estimate model
 mod2 <- CDM::gdm( dat , theta.k = theta.k , skillspace="est" , irtmodel="1PL",
-              Qmatrix=Qmatrix , centerintercepts=TRUE , maxiter=200)
+              Qmatrix=Qmatrix , centerintercepts=TRUE)
 summary(mod2)
   ##   Estimated Skill Distribution
   ##     theta.k.Dim1 theta.k.Dim2    pi.k
@@ -651,14 +646,13 @@ summary(mod2)
 # EXAMPLE 6: Large-scale dataset data.mg
 #############################################################################
 
-data(data.mg)
-dat <- data.mg[ , paste0("I" , 1:11 ) ]
+dat <- CDM::data.mg[ , paste0("I" , 1:11 ) ]
 theta.k <- seq(-6,6,len=21)
 
 #***
 # Model 1: Generalized partial credit model with multiple groups
-mod1 <- CDM::gdm( dat , irtmodel="2PL" , theta.k=theta.k ,   group=data.mg$group , 
-              skillspace="normal" , standardized.latent=TRUE , maxiter=50 )
+mod1 <- CDM::gdm( dat , irtmodel="2PL" , theta.k=theta.k, group=CDM::data.mg$group, 
+              skillspace="normal" , standardized.latent=TRUE ,)
 summary(mod1)
 }
 }

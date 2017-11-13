@@ -1,5 +1,5 @@
 %% File Name: gdina.dif.Rd
-%% File Version: 0.13
+%% File Version: 0.14
 
 \name{gdina.dif}
 \alias{gdina.dif}
@@ -97,16 +97,18 @@ q.matrix[7:9,c(1,2)] <- 1
 # simulate first group
 guess <- rep( .2 , I )
 slip <- rep(.1, I)
-dat1 <- sim.din( N=N , q.matrix=q.matrix , guess=guess , slip=slip , mean=c(0,0) )$dat
+dat1 <- CDM::sim.din( N=N , q.matrix=q.matrix, guess=guess, slip=slip, 
+               mean=c(0,0) )$dat
 # simulate second group with some DIF items (items 1, 7 and 8)
 guess[ c(1,7)] <- c(.3 , .35 )
 slip[8] <- .25
-dat2 <- sim.din( N=N , q.matrix=q.matrix , guess=guess , slip=slip , mean=c(0.4,.25) )$dat
+dat2 <- CDM::sim.din( N=N , q.matrix=q.matrix, guess=guess, slip=slip, 
+               mean=c(0.4,.25) )$dat
 group <- rep(1:2 , each=N )
 dat <- rbind( dat1 , dat2 )
 
 #*** estimate multiple group GDINA model
-mod1 <- CDM::gdina( dat , q.matrix=q.matrix , rule="DINA" , group=group )
+mod1 <- CDM::gdina( dat, q.matrix=q.matrix, rule="DINA", group=group )
 summary(mod1)
 
 #*** assess differential item functioning

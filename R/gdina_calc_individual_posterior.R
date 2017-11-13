@@ -1,17 +1,16 @@
 ## File Name: gdina_calc_individual_posterior.R
-## File Version: 0.03
+## File Version: 0.09
 
 gdina_calc_individual_posterior <- function(G, IP, attr.prob, p.xi.aj, L, I,
 		zeroprob.skillclasses, reduced.skillspace, item.patt.freq)
 {
     # posterior probabilities  P( \alpha_l | X_i ) 
 	if (G==1){ 
-#!!!! avoid usage of outer!!		
-		p.aj.xi <- outer( rep(1,IP), attr.prob ) * p.xi.aj 
+		p.aj.xi <- cdm_matrix2( x=attr.prob , nrow=IP) * p.xi.aj 
 	} else {
 		 p.aj.xi <- array( 0 , c( IP , L , G ) )
 		for (gg in 1:G){
-			p.aj.xi[,,gg] <- outer( rep(1,IP), as.vector(attr.prob[,gg]) ) * p.xi.aj
+			p.aj.xi[,,gg] <- cdm_matrix2( x= as.vector(attr.prob[,gg]) , nrow=IP) * p.xi.aj 								
 		}
 	}
 			 

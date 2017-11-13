@@ -1,9 +1,9 @@
 ## File Name: reglca_update_parameter.R
-## File Version: 0.22
-	
+## File Version: 0.23
+
 
 reglca_update_parameter <- function(parm, pp, C, W, h, lambda, regular_type, cd_steps, conv, max_increment )
-{      
+{
 	
 	iterate <- TRUE
 	iter <- 0	
@@ -27,9 +27,9 @@ reglca_update_parameter <- function(parm, pp, C, W, h, lambda, regular_type, cd_
 		f1 <- res$d1
 		f2 <- res$d2
 		incr <- - f1 / f2
-		# incr <- f1 / f2				
+		# incr <- f1 / f2
 		incr <- cdm_trim_increment( increment=incr, max.increment=max_increment, type=1)
-		max_increment <- min( .10, max( abs(incr) ) / 1.02 )	
+		max_increment <- min( .10, max( abs(incr) ) / 1.02 )
 		parm[pp] <- parm[pp] + incr	
 
 		#-- apply threshold operator
@@ -41,7 +41,7 @@ reglca_update_parameter <- function(parm, pp, C, W, h, lambda, regular_type, cd_
 		parchange <- max( abs( parm[pp] - parm_old[pp] ))
 		if ( parchange < conv ){ iterate <- FALSE }
 		
-	}		
+	}
 	
 	#-- output
 	return(parm)

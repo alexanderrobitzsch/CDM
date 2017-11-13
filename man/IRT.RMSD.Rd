@@ -1,5 +1,5 @@
 %% File Name: IRT.RMSD.Rd
-%% File Version: 0.11
+%% File Version: 0.12
 
 \name{IRT.RMSD}
 \alias{IRT.RMSD}
@@ -98,8 +98,7 @@ In OECD (Eds.). \emph{Technical Report of the Survey of Adults Skills (PIAAC)}
 # EXAMPLE 1: data.read | 1PL model in TAM
 #############################################################################
 
-data(data.read, package="sirt")
-dat <- data.read
+dat <- sirt::data.read
 
 #*** Model 1: 1PL model
 mod1 <- TAM::tam.mml( resp = dat )

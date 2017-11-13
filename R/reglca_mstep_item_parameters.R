@@ -1,15 +1,29 @@
 ## File Name: reglca_mstep_item_parameters.R
-## File Version: 0.26
+## File Version: 0.27
 
 
 reglca_mstep_item_parameters <- function(I, n.ik, N.ik, h, mstep_iter, conv, regular_lam,
-		regular_type, cd_steps, item_probs, max_increment, iter, fac=1.02 )
+		regular_type, cd_steps, item_probs, max_increment, iter, G, fac=1.02 )
 {
 	penalty <- rep(0,I)
 	n_par <- rep(0,I)
 	n_reg <- 0
 	n_reg_item <- rep(0,I)
 	nclasses <- ncol(item_probs)
+	
+	#-- sum counts in case of multiple groups
+	if (G>1){
+		ND <- dim(n.ik)
+		n.ik0 <- n.ik
+		N.ik0 <- N.ik
+		n.ik <- array( 0, dim=ND[1:3] )
+		N.ik <- matrix( 0, nrow=ND[1], ncol=ND[2] )
+		for (gg in 1:G){
+			n.ik <- n.ik + n.ik0[,,,gg]
+			N.ik <- N.ik + N.ik0[,,gg]		
+		}
+	}
+	
 	item_probs0 <- item_probs	
 	for (ii in 1:I){	
 		freq <- n.ik[,ii,2] / N.ik[,ii]

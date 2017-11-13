@@ -1,8 +1,8 @@
 ## File Name: gdina_attribute_patterns_reduced_skillspace.R
-## File Version: 0.02
+## File Version: 0.04
 
 gdina_attribute_patterns_reduced_skillspace <- function( attr.patt, K, maxAttr, q.matrix,
-		Z.skillspace )
+		Z.skillspace, G )
 {
 	A <- attr.patt
 	# combinations
@@ -29,7 +29,11 @@ gdina_attribute_patterns_reduced_skillspace <- function( attr.patt, K, maxAttr, 
 		Z <- Z.skillspace
 	}
 	ncolZ <- ncol(Z)
+	beta <- rep(0, ncolZ )
+	if (G > 1){
+		beta <- matrix( beta , nrow=ncolZ, ncol=G)
+	}
 	#----- OUTPUT
-	res <- list(Z=Z, ncolZ=ncolZ )
+	res <- list(Z=Z, ncolZ=ncolZ, beta=beta )
 	return(res)
 }

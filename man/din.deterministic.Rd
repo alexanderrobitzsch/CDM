@@ -1,5 +1,5 @@
 %% File Name: din.deterministic.Rd
-%% File Version: 0.16
+%% File Version: 0.18
 
 \name{din.deterministic}
 \alias{din.deterministic}
@@ -113,7 +113,7 @@ q.matrix <- rbind( q.matrix , q.matrix )
 colnames(q.matrix) <- paste0("Attr",1:ncol(q.matrix))
 
 # simulate data according to the DINA model
-dat <- sim.din( N=N , q.matrix)$dat
+dat <- CDM::sim.din( N=N , q.matrix)$dat
 
 # Joint maximum likelihood estimation (the default: method="JML")
 res1 <- CDM::din.deterministic( dat , q.matrix )
@@ -129,8 +129,7 @@ res <- CDM::din.deterministic( dat , q.matrix , method="weighted.hamming" )
 
 \dontrun{
 #********* load NPCD library for JML estimation
-miceadds::library_install("NPCD")
-# choose a smaller dataset for reasons of computation time
+library(NPCD)
 
 # DINA model
 res <- NPCD::JMLE( Y=dat[1:100,] , Q=q.matrix , model="DINA" )

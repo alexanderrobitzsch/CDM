@@ -1,5 +1,5 @@
 %% File Name: modelfit.cor.Rd
-%% File Version: 1.50
+%% File Version: 1.52
 
 \name{modelfit.cor}
 \alias{modelfit.cor}
@@ -203,11 +203,12 @@ The function \code{modelfit.cor2} has the same functionality as
 #############################################################################
 # EXAMPLE 1: Model fit for sim.dina
 #############################################################################
-data(sim.dina)
-data(sim.qmatrix)
+
+dat <- CDM::sim.dina
+q.matrix <- CDM::sim.qmatrix
 
 #*** Model 1: DINA model for DINA simulated data
-mod1 <- CDM::din(sim.dina, q.matr = sim.qmatrix, rule = "DINA" )
+mod1 <- CDM::din(dat, q.matrix = q.matrix, rule = "DINA" )
 fmod1 <- CDM::modelfit.cor.din(mod1 , jkunits=10)
 summary(fmod1)
   ##   Test of Global Model Fit
@@ -235,7 +236,7 @@ itempairs[ 1:5 , c("item1","item2" , "X2" , "X2_p" , "X2_p.holm" , "Q3") ]
   ##   30 Item5 Item9 1.393583 0.237800911 1.0000000 -0.01934420
 
 #*** Model 2: DINO model for DINA simulated data
-mod2 <- CDM::din(sim.dina, q.matr = sim.qmatrix, rule = "DINO" )
+mod2 <- CDM::din(dat, q.matrix = q.matrix, rule = "DINO" )
 fmod2 <- CDM::modelfit.cor.din(mod2 , jkunits=10 )   # 10 jackknife units
 summary(fmod2)
   ##   Test of Global Model Fit
@@ -252,7 +253,7 @@ summary(fmod2)
   ##   MADaQ3          0.073      10  0.066 0.012   0.042   0.089
 
 #*** Model 3: estimate DINA model with gdina function
-mod3 <- CDM::gdina( sim.dina , q.matr = sim.qmatrix , rule="DINA" )
+mod3 <- CDM::gdina( dat , q.matrix = q.matrix , rule="DINA" )
 fmod3 <- CDM::modelfit.cor.din( mod3 , jkunits=0 )  # no Jackknife estimation
 summary(fmod3)
   ##   Test of Global Model Fit
@@ -283,10 +284,10 @@ I <- nrow(q.matrix)
 guess <- stats::runif(I, 0 , .3 )
 slip <- stats::runif( I , 0 , .4 )
 N <- 150   # number of persons
-dat <- sim.din( N=N, q.matrix=q.matrix , slip=slip , guess=guess )$dat
+dat <- CDM::sim.din( N=N, q.matrix=q.matrix , slip=slip , guess=guess )$dat
 
 #*** estmate DINA model
-mod1 <- CDM::din( dat , q.matrix = q.matrix, rule = "DINA" )
+mod1 <- CDM::din( dat, q.matrix = q.matrix, rule = "DINA" )
 fmod1 <- CDM::modelfit.cor.din(mod1 , jkunits=10)
 summary(fmod1)
   ##  Test of Global Model Fit

@@ -1,5 +1,5 @@
 %% File Name: predict.Rd
-%% File Version: 0.13
+%% File Version: 0.14
 
 \name{predict}
 
@@ -102,13 +102,11 @@ person and each item}
 # EXAMPLE 1: Fitted Rasch model in TAM package
 #############################################################################
 
-library(TAM)
-data(sim.rasch, package="TAM")
-
 #--- Model 1: Rasch model
-mod1 <- tam.mml(resp=sim.rasch) 
+library(TAM)
+mod1 <- TAM::tam.mml(resp=TAM::sim.rasch) 
 # apply IRT.predict function
-prmod1 <- CDM::IRT.predict(mod1 , mod1$resp )
+prmod1 <- CDM::IRT.predict(mod1, mod1$resp )
 str(prmod1)
 }
 
@@ -116,14 +114,11 @@ str(prmod1)
 # EXAMPLE 2: Predict function for din
 #############################################################################
 
-data(sim.dina)
-data(sim.qmatrix)
-
 # DINA Model
-mod1 <- CDM::din(sim.dina, q.matr = sim.qmatrix, rule = "DINA" )
+mod1 <- CDM::din( CDM::sim.dina, q.matr = CDM::sim.qmatrix, rule = "DINA" )
 summary(mod1)
 # apply predict method
-prmod1 <- CDM::IRT.predict( mod1 , sim.dina )
+prmod1 <- CDM::IRT.predict( mod1, sim.dina )
 str(prmod1)
 }
 

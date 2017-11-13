@@ -1,5 +1,5 @@
 ## File Name: gdm_calc_ic.R
-## File Version: 0.02
+## File Version: 0.04
 
 
 #############################################################
@@ -7,7 +7,7 @@
 gdm_calc_ic <- function( dev , dat , G ,  skillspace , irtmodel , 
 			K,D,TD,I,b.constraint,a.constraint , mean.constraint ,
 			Sigma.constraint , delta.designmatrix , standardized.latent ,
-			data0 , centerslopes , TP , centerintercepts )
+			data0 , centerslopes , TP , centerintercepts, centered.latent )
 {
     ic <- list( "deviance" = dev , "n" = nrow(data0) )
 	ic$traitpars <- 0
@@ -21,6 +21,9 @@ gdm_calc_ic <- function( dev , dat , G ,  skillspace , irtmodel ,
 		}														
 		if ( ( irtmodel %in% c("2PL","2PLcat") ) & (D==1) ){
 			ic$traitpars <- 2*(G-1)
+			if (!standardized.latent){
+				ic$traitpars <- ic$traitpars + 2
+			}
 		}	
 		if (D > 1 ){
 			ic$traitpars <- 2 * D*G + D*(D-1)/2*G
@@ -32,6 +35,7 @@ gdm_calc_ic <- function( dev , dat , G ,  skillspace , irtmodel ,
 			}
 		}														
 	}	# end normal
+
 	#******
 	# trait parameters: loglinear skillspace
 	if ( skillspace == "loglinear" ){
@@ -49,13 +53,14 @@ gdm_calc_ic <- function( dev , dat , G ,  skillspace , irtmodel ,
 	if ( ! is.null(b.constraint)){
 		ic$itempars.b <- ic$itempars.b - nrow(b.constraint)
 	}	
+
 	#************************************************
 	# item parameters a
 	ic$itempars.a <- 0
 	if ( irtmodel == "2PL"){ 
 		ic$itempars.a <- I*TD
 		if ( ! is.null(a.constraint)){
-			a.constraint2 <- a.constraint[ a.constraint[,3] == 1 , ]
+			a.constraint2 <- a.constraint[ a.constraint[,3] == 1 , , drop=FALSE]
 			ic$itempars.a <- ic$itempars.a - nrow(a.constraint2)
 		}	
 	}
@@ -71,6 +76,7 @@ gdm_calc_ic <- function( dev , dat , G ,  skillspace , irtmodel ,
 	# information criteria
 	ic$itempars <- ic$itempars.a + ic$itempars.b - ic$centeredintercepts - ic$centeredslopes
 	ic$np <- ic$itempars + ic$traitpars	
+	
 	# AIC
     ic$AIC <- dev + 2*ic$np
     # BIC

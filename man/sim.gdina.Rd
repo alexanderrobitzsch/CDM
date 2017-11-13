@@ -1,5 +1,5 @@
 %% File Name: sim.gdina.Rd
-%% File Version: 1.17
+%% File Version: 1.18
 
 \name{sim.gdina}
 \alias{sim.gdina}
@@ -145,7 +145,7 @@ delta[[9]] <- c( .2 , .2 , 0 , .3 )
 
 #******************************************
 # Now, the "real simulation" starts
-sim.res <- sim.gdina( n=n, q.matrix =q.matrix, delta=delta, link = "identity", 
+sim.res <- CDM::sim.gdina( n=n, q.matrix =q.matrix, delta=delta, link = "identity", 
                 thresh.alpha=thresh.alpha , cov.alpha=cov.alpha ,
                 Mj=Mj , Aj=Aj , necc.attr =necc.attr)
 # sim.res$data      # simulated data
@@ -180,8 +180,8 @@ patt <- mod$attribute.patt.splitted      # response patterns
 alpha <- patt[ sample( 1:(length(probs) ) , n , prob=probs , replace=TRUE) , ]
 
 # simulate data using estimated item parameters
-sim.res <- sim.gdina( n=n, q.matrix =q.matrix, delta=mod$delta, link = "identity", 
-                alpha=alpha , Mj=mod$Mj , Aj= mod$Aj , necc.attr = rp$necc.attr)               
+sim.res <- CDM::sim.gdina( n=n, q.matrix =q.matrix, delta=mod$delta, link="identity", 
+                alpha=alpha, Mj=mod$Mj, Aj= mod$Aj, necc.attr=rp$necc.attr)               
 # extract data
 dat <- sim.res$data
 
@@ -189,9 +189,8 @@ dat <- sim.res$data
 # EXAMPLE 3: Simulation based on already estimated RRUM model for data.ecpe
 #############################################################################
 
-data(data.ecpe)
-dat <- data.ecpe$data
-q.matrix <- data.ecpe$q.matrix
+dat <- CDM::data.ecpe$data
+q.matrix <- CDM::data.ecpe$q.matrix
 
 #***
 # (1) estimate reduced RUM model
@@ -214,8 +213,8 @@ patt <- mod$attribute.patt.splitted      # response patterns
 alpha <- patt[ sample( 1:(length(probs) ) , n , prob=probs , replace=TRUE) , ]
 
 # simulate data using estimated item parameters
-sim.res <- sim.gdina( n=n, q.matrix =q.matrix, delta=mod$delta, link = mod$link , 
-                alpha=alpha , Mj=mod$Mj , Aj=mod$Aj , necc.attr = rp$necc.attr)               
+sim.res <- CDM::sim.gdina( n=n, q.matrix =q.matrix, delta=mod$delta, link=mod$link, 
+                alpha=alpha, Mj=mod$Mj, Aj=mod$Aj, necc.attr = rp$necc.attr)            
 # extract data
 dat <- sim.res$data
 }

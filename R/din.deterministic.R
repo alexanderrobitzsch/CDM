@@ -1,10 +1,11 @@
 ## File Name: din.deterministic.R
-## File Version: 1.02
+## File Version: 1.03
 
 #####################################################
 # Deterministic din estimation
 din.deterministic <- function( dat , q.matrix , rule="DINA" , method="JML" , 
-	conv=.001 , maxiter=300 , increment.factor=1.05 , progress=TRUE){
+	conv=.001 , maxiter=300 , increment.factor=1.05 , progress=TRUE)
+{
 	#********************************
 	# data preparations
 	dat0 <- dat
@@ -27,17 +28,17 @@ din.deterministic <- function( dat , q.matrix , rule="DINA" , method="JML" ,
 	max.increment <- 1
 	# initial latent response vector
 	latresp.est <- latresp[ rep(1,N) , ]
-    parchange <- 1000
+	parchange <- 1000
 	if ( method=="weighted.hamming"){
 		pbar <- colMeans( dat0 , na.rm=TRUE )
 		guess <- slip <- 1 / ( pbar * ( 1 - pbar ) )
 		maxiter <- 1
-				}
+	}
 	if ( method=="hamming"){
 		guess <- slip <- rep(.2,I)
 		maxiter <- 1
-				}				
-    iter <- 0
+	}
+	iter <- 0
 	while( ( iter < maxiter ) & (parchange > conv) ){
 		slip0 <- slip
 		guess0 <- guess
@@ -45,10 +46,10 @@ din.deterministic <- function( dat , q.matrix , rule="DINA" , method="JML" ,
 		# compute individual deviations
 		if (method!="JML"){
 			res <- din.deterministic.devcrit( dat=dat , datresp=dat.resp , latresp , guess , slip )
-						  }
-	    if (method=="JML"){
+		}
+		if (method=="JML"){
 			res <- din.jml.devcrit( dat=dat , datresp=dat.resp , latresp , guess , slip )
-						}
+		}
 		# compute individual classifications
 		attr.est <- attr.patt[ res$indexcrit , ]
 		attr.est.index <- res$indexcrit
@@ -67,12 +68,12 @@ din.deterministic <- function( dat , q.matrix , rule="DINA" , method="JML" ,
 		guess <- 1 - colSums(L2) / ( colSums(L1) + .00001 )
 		# update increment	
 		if (maxiter > 1){
-			increment <- guess - guess0
-			max.increment <- max.increment/increment.factor
-			guess <- guess0 +  ifelse( abs( increment) > max.increment , sign(increment)*max.increment , increment )
-			increment <- slip - slip0
-			slip <- slip0 +  ifelse( abs( increment) > max.increment  , sign(increment)*max.increment , increment )		
-						}
+				increment <- guess - guess0
+				max.increment <- max.increment/increment.factor
+				guess <- guess0 +  ifelse( abs( increment) > max.increment , sign(increment)*max.increment , increment )
+				increment <- slip - slip0
+				slip <- slip0 +  ifelse( abs( increment) > max.increment  , sign(increment)*max.increment , increment )		
+			}
 			max.increment <- parchange <- max( abs( c(guess-guess0 , slip-slip0) ) )
 		# extract deviation value
 		if ( method!="JML"){
@@ -85,28 +86,30 @@ din.deterministic <- function( dat , q.matrix , rule="DINA" , method="JML" ,
 			if ( method=="JML"){
 				cat(" | Deviance = ",round(devval,3) )
 				cat("\n ****")
-								}
-			if ( method!="JML"){ cat(" |") }								
-				cat("  Average change in classifications = ",round(latresp.change,5) )
+			}
+			if ( method!="JML"){ cat(" |") }
+			cat("  Average change in classifications = ",round(latresp.change,5) )
 			if (method %in% c("JML","adaptive") ){	
 					cat(" | Max. param. change = " , round( max.increment,6) , "\n")
-												} else { cat("\n") }
-			utils::flush.console()			
-					}				
+			} else { 
+				cat("\n") 
 			}
-		##################################################################
-		# compute prediction error
-		prederror <- sum( dat.resp * abs( dat - latresp.est ) ) / sum( dat.resp )
-		if (progress){
-		    cat("-------------------\n" )
-			cat("Average predictor error=",round(prederror,9) )
-				cat("\n")
-								}		
-		# collect output values			
-		res <- list( "attr.est" = latresp.est , "criterion" = devval ,
-			"guess"=guess , "slip"=slip , "prederror" = prederror , 
-			"q.matrix" = q.matrix ,
-			"dat" = dat0 )
-	return(res)		
+			utils::flush.console()
 		}
+	}
+	##################################################################
+	# compute prediction error
+	prederror <- sum( dat.resp * abs( dat - latresp.est ) ) / sum( dat.resp )
+	if (progress){
+		cat("-------------------\n" )
+		cat("Average predictor error=",round(prederror,9) )
+		cat("\n")
+	}
+	# collect output values			
+	res <- list( attr.est = latresp.est , criterion = devval ,
+				guess=guess , slip=slip , prederror = prederror , 
+				q.matrix = q.matrix ,
+				dat = dat0 )
+	return(res)
+}
 #################################################################################

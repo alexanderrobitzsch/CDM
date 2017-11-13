@@ -1,9 +1,9 @@
 ## File Name: reglca_calc_ic.R
-## File Version: 0.02
+## File Version: 0.03
 
-reglca_calc_ic <- function( loglike, nclasses, I, N, n_reg)
+reglca_calc_ic <- function( loglike, nclasses, I, N, n_reg, G)
 {
-	Nskillpar <- nclasses - 1
+	Nskillpar <- G*(nclasses - 1)
 	Nipar <- I*nclasses - n_reg
 	Npars <- Nipar + Nskillpar
 	aic <- -2*loglike + 2 * Npars  

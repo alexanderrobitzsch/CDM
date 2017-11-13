@@ -1,5 +1,5 @@
 ## File Name: gdina_calc_deviance.R
-## File Version: 0.12
+## File Version: 0.14
 
 gdina_calc_deviance <- function( p.xi.aj , attr.prob, item.patt.freq, loglike, G, IP,
 		regularization, penalty=0, opt_fct=0, logprior_value=0 )
@@ -9,13 +9,13 @@ gdina_calc_deviance <- function( p.xi.aj , attr.prob, item.patt.freq, loglike, G
 	p.xi.aj[ p.xi.aj > 1 ] <- 1 - eps
 	p.xi.aj[ p.xi.aj < 0 ] <- eps	
 	if (G==1){ 	
-		l1 <- rowSums( p.xi.aj * outer( rep(1,IP), attr.prob )  ) + eps
+		l1 <- rowSums( p.xi.aj * cdm_matrix2( attr.prob , nrow=IP ) ) + eps
 		l1[ l1 < 0 ] <- eps
 	}
 	if (G>1){
 		l1 <- matrix( 0 , IP , G )
 		for (gg in 1:G){ 
-			l1[,gg] <- rowSums( p.xi.aj * outer( rep(1,IP), attr.prob[,gg] )  ) + eps
+			l1[,gg] <- rowSums( p.xi.aj * cdm_matrix2( attr.prob[,gg] , nrow=IP ) ) + eps
 			l1[ l1[,gg] < 0 ,gg] <- eps
 		}
 	}

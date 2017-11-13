@@ -1,5 +1,5 @@
 %% File Name: coef.Rd
-%% File Version: 0.16
+%% File Version: 0.17
 
 \name{coef}
 \alias{coef.din}
@@ -57,22 +57,19 @@ Parameters}
 }
 
 \examples{
-# use sim.dina dataset
-data(sim.dina)
-
 # DINA model
-d1 <- CDM::din(sim.dina, q.matr = sim.qmatrix)
+d1 <- CDM::din( CDM::sim.dina, q.matrix = CDM::sim.qmatrix)
 coef(d1)
 
 \dontrun{
 # GDINA model
-d2 <- CDM::gdina(sim.dina, q.matr = sim.qmatrix)
+d2 <- CDM::gdina( CDM::sim.dina, q.matrix = CDM::sim.qmatrix)
 coef(d2)
 
-# GDM model (use only 10 iterations for computation time reasons)
+# GDM model
 theta.k <- seq(-4,4,len=11)
-d3 <- CDM::gdm( sim.dina, irtmodel="2PL", theta.k=theta.k, Qmatrix=as.matrix(sim.qmatrix), 
-             centered.latent=TRUE , maxiter=10 )
+d3 <- CDM::gdm( CDM::sim.dina, irtmodel="2PL", theta.k=theta.k, 
+            Qmatrix=as.matrix(sim.qmatrix),  centered.latent=TRUE)
 coef(d3) 
 }
 }

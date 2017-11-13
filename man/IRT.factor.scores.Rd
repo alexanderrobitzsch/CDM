@@ -1,5 +1,5 @@
 %% File Name: IRT.factor.scores.Rd
-%% File Version: 0.06
+%% File Version: 0.07
 
 \name{IRT.factor.scores}
 \alias{IRT.factor.scores}
@@ -85,17 +85,15 @@ For extracting the individual likelihood or the individual posterior see
 # EXAMPLE 1: Extracting factor scores in the DINA model
 #############################################################################
 
-data(sim.dina)
-data(sim.qmatrix)
-# estimate model with only few iterations
-mod1 <- CDM::din(sim.dina, sim.qmatrix, maxit=10)
+# estimate DINA model
+mod1 <- CDM::din( CDM::sim.dina, q.matrix=CDM::sim.qmatrix)
 summary(mod1)
 # MLE
-fsc1a <- CDM::IRT.factor.scores(mod1 )
+fsc1a <- CDM::IRT.factor.scores(mod1)
 # MAP
-fsc1b <- CDM::IRT.factor.scores(mod1 , type="MAP")
+fsc1b <- CDM::IRT.factor.scores(mod1, type="MAP")
 # EAP
-fsc1c <- CDM::IRT.factor.scores(mod1 , type="EAP")
+fsc1c <- CDM::IRT.factor.scores(mod1, type="EAP")
 # compare classification for skill 1
 stats::xtabs( ~ fsc1a[,1] + fsc1b[,1] )
 graphics::boxplot( fsc1c[,1] ~ fsc1a[,1] )

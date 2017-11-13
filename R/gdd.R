@@ -1,8 +1,9 @@
 ## File Name: gdd.R
-## File Version: 0.08
+## File Version: 0.09
 #################################################################
 # generalized distance discriminating method
-gdd <- function( data , q.matrix , theta , b , a  , skillclasses=NULL){
+gdd <- function( data , q.matrix , theta , b , a  , skillclasses=NULL)
+{
 	data <- as.matrix(data)
 	data_isna <- is.na( data )
 	dataresp <- as.matrix( 1 - data_isna )

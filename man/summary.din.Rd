@@ -1,5 +1,5 @@
 %% File Name: summary.din.Rd
-%% File Version: 2.05
+%% File Version: 2.06
 
 \name{summary.din}
 
@@ -103,8 +103,8 @@ Press.
 
 ## Parameter estimation of DINA model
 # rule = "DINA" is default
-fractions.dina <- CDM::din(data = fraction.subtraction.data,
-  q.matrix = fraction.subtraction.qmatrix, rule = "DINA")
+fractions.dina <- CDM::din(data = CDM::fraction.subtraction.data,
+           q.matrix = CDM::fraction.subtraction.qmatrix, rule = "DINA")
   
 ## corresponding summaries, including diagnostic accuracies,
 ## most frequent skill classes and information 

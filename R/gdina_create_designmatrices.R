@@ -1,5 +1,5 @@
 ## File Name: gdina_create_designmatrices.R
-## File Version: 0.04
+## File Version: 0.05
 
 gdina_create_designmatrices <- function( J, Mj, Aj, q.matrix, rule, L, attr.patt, mono.constr )
 {
@@ -44,7 +44,7 @@ gdina_create_designmatrices <- function( J, Mj, Aj, q.matrix, rule, L, attr.patt
 		aggr.attr.patt[[jj]] <- l2		
 	}	# end item jj
 
-    #******						
+	#******						
 	# indices for Mj
 	Mj.index <- matrix( 0 , J , 6 )
 	for (jj in 1:J){

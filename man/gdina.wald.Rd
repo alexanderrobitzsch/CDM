@@ -1,5 +1,5 @@
 %% File Name: gdina.wald.Rd
-%% File Version: 0.22
+%% File Version: 0.23
 
 \name{gdina.wald}
 \alias{gdina.wald}
@@ -81,11 +81,9 @@ See the \code{\link[GDINA:modelcomp]{GDINA::modelcomp}} function in the
 #############################################################################
 # EXAMPLE 1: Wald test for DINA simulated data sim.dina
 #############################################################################		
-data(sim.dina)
-data(sim.qmatrix)
 
 # Model 1: estimate GDINA model
-mod1 <- CDM::gdina( sim.dina , q.matrix = sim.qmatrix ,  rule = "GDINA")
+mod1 <- CDM::gdina( CDM::sim.dina , q.matrix = CDM::sim.qmatrix ,  rule = "GDINA")
 summary(mod1)
 
 # perform Wald test

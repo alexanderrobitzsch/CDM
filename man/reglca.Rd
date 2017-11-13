@@ -1,5 +1,5 @@
 %% File Name: reglca.Rd
-%% File Version: 0.07
+%% File Version: 0.13
 
 \name{reglca}
 \alias{reglca}
@@ -17,8 +17,8 @@ The SCAD and MCP penalty functions are available.
 }
 
 \usage{
-reglca(dat, nclasses, weights = NULL, regular_type = "scad", regular_lam = 0, 
-   sd_noise_init = 1, item_probs_init = NULL, class_probs_init = NULL, 
+reglca(dat, nclasses, weights = NULL, group = NULL, regular_type = "scad", 
+   regular_lam = 0, sd_noise_init = 1, item_probs_init = NULL, class_probs_init = NULL, 
    random_starts = 1, random_iter = 20, conv = 1e-05, h = 1e-04, mstep_iter = 10, 
    maxit = 1000, verbose = TRUE)
    
@@ -36,41 +36,45 @@ Number of classes
   \item{weights}{
 Optional vector of sampling weights
 }
+\item{group}{
+Optional vector for grouping variable
+}
   \item{regular_type}{
-%%     ~~Describe \code{regular_type} here~~
+Regularization type. Can be \code{scad} or \code{mcp}. See \code{\link{gdina}} for
+more information.
 }
   \item{regular_lam}{
-%%     ~~Describe \code{regular_lam} here~~
+Regularization parameter \eqn{\lambda}
 }
   \item{sd_noise_init}{
-%%     ~~Describe \code{sd_noise_init} here~~
+Standard deviation for amount of noise in generating random starting values
 }
   \item{item_probs_init}{
-%%     ~~Describe \code{item_probs_init} here~~
+Optional matrix of initial item response probabilities
 }
   \item{class_probs_init}{
-%%     ~~Describe \code{class_probs_init} here~~
+Optional vector of class probabilities
 }
   \item{random_starts}{
-%%     ~~Describe \code{random_starts} here~~
+Number of random starts
 }
   \item{random_iter}{
-%%     ~~Describe \code{random_iter} here~~
+Number of initial iterations for random starts
 }
   \item{conv}{
-%%     ~~Describe \code{conv} here~~
+Convergence criterion
 }
   \item{h}{
-%%     ~~Describe \code{h} here~~
+Numerical differentiation parameter
 }
   \item{mstep_iter}{
-%%     ~~Describe \code{mstep_iter} here~~
+Number of iterations in the M-step
 }
   \item{maxit}{
-%%     ~~Describe \code{maxit} here~~
+Maximum number of iterations 
 }
   \item{verbose}{
-%%     ~~Describe \code{verbose} here~~
+Logical indicating whether convergence progress should be displayed
 }
   \item{object}{A required object of class \code{gdina}, obtained
     from a call to the function \code{\link{gdina}}.  }
@@ -81,13 +85,32 @@ should be sinked.}
 }
 
 \details{
-ADD DESCRIPTION
+The regularized latent class model for dichotomous item responses assumes \eqn{C}
+latent classes. The item response probabilities \eqn{P(X_i=1|c)=p_{ic}} are estimated
+in such a way such that the number of different \eqn{p_{ic}} values per item is 
+minimized. This approach eases interpretability and enables to recover the
+structure of a true (but unknown) cognitive diagnostic model.
 }
 
 \value{
-A list containing following elements (selection; ADD MORE ELEMENTS)
-  \item{item_probs}{Class-specific item probabilities}
-  \item{class_probs}{Latent class probabilities}
+A list containing following elements (selection):
+
+\item{item_probs}{Item response probabilities}
+\item{class_probs}{Latent class probabilities}
+\item{p.aj.xi}{Individual posterior}
+\item{p.xi.aj}{Individual likelihood}
+\item{loglike}{Log-likelihood value}
+\item{Npars}{Number of estimated parameters}
+\item{Nskillpar}{Number of skill class parameters}
+\item{G}{Number of groups}
+\item{n.ik}{Expected counts}
+\item{Nipar}{Number of item parameters}
+\item{n_reg}{Number of regularized parameters}
+\item{n_reg_item}{Number of regularized parameters per item}
+\item{item}{Data frame with item parameters}
+\item{pjk}{Item response probabilities (in an array)}
+\item{N}{Number of persons}
+\item{I}{Number of items}
 }
 
 \references{

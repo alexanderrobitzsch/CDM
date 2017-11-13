@@ -1,5 +1,5 @@
 ## File Name: gdina_mstep_item_ml.R
-## File Version: 0.852
+## File Version: 0.855
 
 #####################################################
 # GDINA M-step item parameters
@@ -28,7 +28,7 @@ gdina_mstep_item_ml <- function( pjjj , Ilj.ast , Rlj.ast , eps , avoid.zeroprob
 	
 	diag_only <- FALSE
 	regularization <- FALSE
-		
+	
 	if ( regular_type %in% regularization_types ){  
 		diag_only <- TRUE 
 		regularization <- TRUE
@@ -79,13 +79,30 @@ gdina_mstep_item_ml <- function( pjjj , Ilj.ast , Rlj.ast , eps , avoid.zeroprob
 		C <- C0 <- abs(ll_FUN(delta_jj))
 		iterate_mono <- FALSE
 		crit_pen <- 1E-10
-		delta_jj_uncon <- delta_jj		
+		delta_jj_uncon <- delta_jj	
 		irf1 <- gdina_prob_item_designmatrix( delta_jj=delta_jj, Mjjj=Mjjj, linkfct=linkfct, eps_squeeze=eps )
 		constraints_fitted_jj <- as.vector( Aj_mono_constraints_jj %*% irf1 )
 		penalty_constraints <- gdina_mstep_mono_constraints_penalty(x=constraints_fitted_jj)		
 		if ( sum(penalty_constraints) > crit_pen ){
 			iterate_mono <- TRUE
 		}
+
+		#------------------ define log-likelihood function with penalty
+		ll_FUN_mono <- function(x)
+					{
+						irf1 <- gdina_prob_item_designmatrix( delta_jj=x, Mjjj=Mjjj, linkfct=linkfct, eps_squeeze=eps )
+						ll <- - sum( Rlj.ast * log(abs(irf1)) + ( Ilj.ast - Rlj.ast ) * log( abs(1 - irf1 ) ) )
+						if (use_prior){
+							ll <- ll - logprior_FUN(x=x, p1=prior_intercepts, p2=prior_slopes)
+						}			
+						# constraints
+						y <- gdina_mstep_mono_constraints_penalty( as.vector( Aj_mono_constraints_jj %*% irf1 ) )
+						y <- C * sum( y^2 )
+						ll <- ll + y
+						return(ll)
+					}
+		#------------------			
+		
 		hh <- 1		
 		while (iterate_mono){
 

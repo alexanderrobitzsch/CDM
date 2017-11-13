@@ -1,5 +1,5 @@
 %% File Name: IRT.itemfit.Rd
-%% File Version: 0.04
+%% File Version: 0.06
 
 \name{IRT.itemfit}
 \alias{IRT.itemfit}
@@ -7,6 +7,7 @@
 \alias{IRT.itemfit.gdina}
 \alias{IRT.itemfit.gdm}
 \alias{IRT.itemfit.slca}
+\alias{IRT.itemfit.reglca}
 
 %- Also NEED an '\alias' for EACH other topic documented here.
 
@@ -27,6 +28,8 @@ IRT.itemfit(object, \dots)
 
 \method{IRT.itemfit}{gdm}(object, method="RMSEA", \dots)
 
+\method{IRT.itemfit}{reglca}(object, method="RMSEA", \dots)
+
 \method{IRT.itemfit}{slca}(object, method="RMSEA", \dots)
 }
 
@@ -34,7 +37,7 @@ IRT.itemfit(object, \dots)
 \arguments{
   \item{object}{
 Object of classes \code{\link{din}}, \code{\link{gdina}},
-\code{\link{gdm}} or \code{\link{slca}}.
+\code{\link{gdm}}, \code{\link{slca}}, \code{\link{reglca}}.
 }
 \item{method}{Method for computing item fit statistic. Until now,
 	only \code{method="RMSEA"} (see \code{\link{itemfit.rmsea}})
@@ -83,11 +86,8 @@ For extracting the individual likelihood or posterior see
 # EXAMPLE 1: DINA model item fit
 #############################################################################
 
-data(sim.dina)
-data(sim.qmatrix)
-
 # estimate model
-mod1 <- CDM::din(sim.dina, sim.qmatrix)
+mod1 <- CDM::din( CDM::sim.dina, q.matrix=CDM::sim.qmatrix)
 # compute item fit
 IRT.itemfit( mod1 )
 }

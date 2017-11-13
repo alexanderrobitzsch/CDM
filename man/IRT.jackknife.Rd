@@ -1,5 +1,5 @@
 %% File Name: IRT.jackknife.Rd
-%% File Version: 0.14
+%% File Version: 0.15
 
 \name{IRT.jackknife}
 \alias{IRT.jackknife}
@@ -89,11 +89,10 @@ library(BIFIEsurvey)
 # EXAMPLE 1: Multiple group DINA model with TIMSS data | Cluster sample
 #############################################################################
 
-data(data.timss11.G4.AUT.part)
-dat <- data.timss11.G4.AUT.part$data
-q.matrix <- data.timss11.G4.AUT.part$q.matrix2
+dat <- CDM::data.timss11.G4.AUT.part$data
+q.matrix <- CDM::data.timss11.G4.AUT.part$q.matrix2
 # extract items
-items <- paste( q.matrix$item )
+items <- paste(q.matrix$item)
 
 # generate replicate design
 rdes <- CDM::IRT.repDesign( data= dat,  wgt = "TOTWGT" , jktype="JK_TIMSS" , 
@@ -112,10 +111,8 @@ vcov(jmod1)
 # EXAMPLE 2: DINA model | Simple random sampling
 #############################################################################
 
-data(sim.dina)
-data(sim.qmatrix)
-dat <- sim.dina
-q.matrix <- sim.qmatrix
+dat <- CDM::sim.dina
+q.matrix <- CDM::sim.qmatrix
 
 # generate replicate design with 50 jackknife zones (50 random groups)
 rdes <- CDM::IRT.repDesign( data= dat ,  jktype="JK_RANDOM" , ngr=50 )

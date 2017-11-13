@@ -1,5 +1,5 @@
 %% File Name: IRT.IC.Rd
-%% File Version: 0.06
+%% File Version: 0.07
 
 \name{IRT.IC}
 \alias{IRT.IC}
@@ -57,11 +57,8 @@ A general method is defined in \code{\link{IRT.compareModels}}.
 # EXAMPLE 1: DINA example information criteria
 #############################################################################
 
-data(sim.dina)
-data(sim.qmatrix)
-
 #*** Model 1: DINA model
-mod1 <- CDM::din( sim.dina , sim.qmatrix )
+mod1 <- CDM::din( CDM::sim.dina, q.matrix=CDM::sim.qmatrix )
 summary(mod1)
 IRT.IC(mod1)	
 }

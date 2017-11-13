@@ -1,5 +1,5 @@
 %% File Name: IRT.likelihood.Rd
-%% File Version: 0.10
+%% File Version: 0.16
 
 \name{IRT.likelihood}
 \alias{IRT.likelihood}
@@ -9,11 +9,15 @@
 \alias{IRT.likelihood.mcdina}
 \alias{IRT.likelihood.gdm}
 \alias{IRT.likelihood.slca}
+\alias{IRT.likelihood.reglca}
 \alias{IRT.posterior.din}
 \alias{IRT.posterior.gdina}
 \alias{IRT.posterior.mcdina}
 \alias{IRT.posterior.gdm}
 \alias{IRT.posterior.slca}
+\alias{IRT.posterior.reglca}
+
+
 %- Also NEED an '\alias' for EACH other topic documented here.
 
 \title{
@@ -36,11 +40,14 @@ IRT.posterior(object, \dots)
 \method{IRT.likelihood}{gdina}(object, \dots)
 \method{IRT.posterior}{gdina}(object, \dots)
 
+\method{IRT.likelihood}{gdm}(object, \dots)
+\method{IRT.posterior}{gdm}(object, \dots)
+
 \method{IRT.likelihood}{mcdina}(object, \dots)
 \method{IRT.posterior}{mcdina}(object, \dots)
 
-\method{IRT.likelihood}{gdm}(object, \dots)
-\method{IRT.posterior}{gdm}(object, \dots)
+\method{IRT.likelihood}{reglca}(object, \dots)
+\method{IRT.posterior}{reglca}(object, \dots)
 
 \method{IRT.likelihood}{slca}(object, \dots)
 \method{IRT.posterior}{slca}(object, \dots)
@@ -50,7 +57,8 @@ IRT.posterior(object, \dots)
 \arguments{
   \item{object}{
 Object of classes \code{\link{din}}, \code{\link{gdina}},
-\code{\link{mcdina}}, \code{\link{gdm}} or \code{\link{slca}}.
+\code{\link{mcdina}}, \code{\link{gdm}}, \code{\link{slca}},
+\code{\link{reglca}}.
 }
   \item{\dots}{
 More arguments to be passed.
@@ -101,11 +109,8 @@ it is a matrix with attributes
 # EXAMPLE 1: Extracting likelihood and posterior from a DINA model
 #############################################################################
 
-data(sim.data)
-data(sim.qmatrix)
-
 #*** estimate model
-mod1 <- CDM::din(sim.dina, sim.qmatrix, rule = "DINA" , maxit=10)
+mod1 <- CDM::din( CDM::sim.dina, q.matrix=CDM::sim.qmatrix, rule = "DINA")
 #*** extract likelihood
 likemod1 <- CDM::IRT.likelihood(mod1)
 str(likemod1)

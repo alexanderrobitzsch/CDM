@@ -1,8 +1,9 @@
 ## File Name: WaldTest.R
-## File Version: 0.08
+## File Version: 0.09
 #################################################
 # helper function Wald test
-WaldTest <- function( delta , vcov , R , nobs , cvec = NULL , eps=1E-10 ){
+WaldTest <- function( delta , vcov , R , nobs , cvec = NULL , eps=1E-10 )
+{
 	NR <- nrow(R)
 	if ( is.null(cvec) ){
 		cvec <- rep( 0 , NR )
@@ -20,4 +21,4 @@ WaldTest <- function( delta , vcov , R , nobs , cvec = NULL , eps=1E-10 ){
 	stats["RMSEA"] <- l1
 	return(stats)
 }
-##############################################				
+##############################################

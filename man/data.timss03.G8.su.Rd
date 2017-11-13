@@ -1,5 +1,5 @@
 %% File Name: data.timss03.G8.su.Rd
-%% File Version: 0.05
+%% File Version: 0.06
 
 \name{data.timss03.G8.su}
 \alias{data.timss03.G8.su}
@@ -72,9 +72,8 @@ Measurement and Assessment (CASMA), University of Iowa.
 
 \examples{
 \dontrun{
-data(data.timss03.G8.su)
-data <- data.timss03.G8.su$data[,-c(1,2)]
-q.matrix <- data.timss03.G8.su$q.matrix
+data <- CDM::data.timss03.G8.su$data[,-c(1,2)]
+q.matrix <- CDM::data.timss03.G8.su$q.matrix
 
 #*** Model 1: DINA model with complete skill space of 2^13=8192 skill classes
 mod1 <- CDM::din( data , q.matrix )

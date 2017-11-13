@@ -1,11 +1,12 @@
 ## File Name: cdm_calc_posterior.R
-## File Version: 1.04
+## File Version: 1.05
 
 ###########################################################
 # compute posterior distribution
 cdm_calc_posterior <- function(rprobs , gwt , resp , nitems , 
 	resp.ind.list , normalization = TRUE , 
-	thetasamp.density = NULL , snodes = 0 ){
+	thetasamp.density = NULL , snodes = 0 )
+{
 
 	if ( snodes == 0 ){ 
 		fx <- gwt  

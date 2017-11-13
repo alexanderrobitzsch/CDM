@@ -1,5 +1,5 @@
 %% File Name: logLik.Rd
-%% File Version: 0.13
+%% File Version: 0.15
 
 \name{logLik}
 \alias{logLik.din}
@@ -7,6 +7,7 @@
 \alias{logLik.mcdina}
 \alias{logLik.gdm}
 \alias{logLik.slca}
+\alias{logLik.reglca}
 
 \title{Extract Log-Likelihood}
 \description{
@@ -23,25 +24,25 @@
 \method{logLik}{gdm}(object, \dots)
 
 \method{logLik}{slca}(object, \dots)
+
+\method{logLik}{reglca}(object, \dots)
 }
 
 \arguments{
   \item{object}{ An object inheriting from either class \code{din}, 
-  class \code{gdina}, \code{slca} or class \code{gdm}. 
+  \code{gdina}, \code{slca}, \code{reglca} or \code{gdm}. 
   	}
   \item{\dots}{Additional arguments}
 }
 
 \seealso{
 	\code{\link{din}}, \code{\link{gdina}}, \code{\link{gdm}},
-	\code{\link{mcdina}}, \code{\link{slca}}
+	\code{\link{mcdina}}, \code{\link{slca}}, \code{\link{reglca}}
 }
 
 \examples{
 # logLik method | DINA model
-data(sim.dina)
-data(sim.qmatrix)
-d1 <- CDM::din(sim.dina, q.matr = sim.qmatrix, rule = "DINA")
+d1 <- CDM::din( CDM::sim.dina, q.matr = CDM::sim.qmatrix, rule = "DINA")
 summary(d1)
 lld1 <- logLik(d1)
   ##   > lld1

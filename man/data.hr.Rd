@@ -1,5 +1,5 @@
 %% File Name: data.hr.Rd
-%% File Version: 0.10
+%% File Version: 0.12
 
 \name{data.hr}
 \alias{data.hr}
@@ -47,18 +47,19 @@ Simulated data according to Ravand et al. (2013).
 \references{
 Ravand, H., Barati, H., & Widhiarso, W. (2013). Exploring diagnostic capacity
 of a high stakes reading comprehension test: A pedagogical demonstration. 
-\emph{Iranian Journal of Language Testing}, \bold{3(1)}, 1-27.
+\emph{Iranian Journal of Language Testing}, \bold{3}(1), 1-27.
 }
 
 
 \examples{
 \dontrun{
-
-data(data.hr)
+	
+dat <- CDM::data.hr$data	
+Q <- CDM::data.hr$q.matrix
 
 #*************
 # Model 1: DINA model
-mod1 <- CDM::din( data.hr$data , q.matrix = data.hr$q.matrix )
+mod1 <- CDM::din( dat, q.matrix = Q )
 summary(mod1)       # summary
 
 # plot results
@@ -79,12 +80,12 @@ mod1$pattern[1:5,]   # first 5 entries
 
 #*************
 # Model 2: GDINA model
-mod2 <- CDM::gdina( data.hr$data , q.matrix = data.hr$q.matrix )
+mod2 <- CDM::gdina( dat, q.matrix = Q)
 summary(mod2)  
 
 #*************
 # Model 3: Reduced RUM model
-mod3 <- CDM::gdina( data.hr$data , q.matrix = data.hr$q.matrix , rule="RRUM" )
+mod3 <- CDM::gdina( dat, q.matrix = Q, rule="RRUM" )
 summary(mod3)  
 
 #--------

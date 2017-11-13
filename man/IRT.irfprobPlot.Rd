@@ -1,5 +1,5 @@
 %% File Name: IRT.irfprobPlot.Rd
-%% File Version: 0.10
+%% File Version: 0.11
 
 \name{IRT.irfprobPlot}
 \alias{IRT.irfprobPlot}
@@ -82,9 +82,8 @@ More arguments to be passed for the plot in \pkg{lattice}.
 #############################################################################
 # EXAMPLE 1: Plot item response functions from a unidimensional model
 #############################################################################
-data(data.Students)
-dat <- data.Students
 
+dat <- CDM::data.Students
 resp <- dat[ , paste0("sc",1:4) ]
 resp[ paste(resp[,1]) == 3 ,1] <-  2
 psych::describe(resp)
@@ -109,9 +108,8 @@ IRT.irfprobPlot( mod1 , cumul=TRUE )
 # EXAMPLE 2: Fitted mutidimensional model with gdm
 #############################################################################
 
-data( data.fraction2 )
-dat <- data.fraction2$data
-Qmatrix <- data.fraction2$q.matrix3
+dat <- CDM::data.fraction2$data
+Qmatrix <- CDM::data.fraction2$q.matrix3
 
 # Model 1: 3-dimensional Rasch Model (normal distribution)
 theta.k <- seq( -4 , 4 , len=11 )   # discretized ability

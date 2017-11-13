@@ -1,5 +1,5 @@
 %% File Name: equivalent.dina.Rd
-%% File Version: 1.13
+%% File Version: 1.14
 
 \name{equivalent.dina}
 \alias{equivalent.dina}
@@ -96,8 +96,7 @@ dat1 <- CDM::sim.din( N=2000 , q.matrix=Q , mean = mean.alpha , Sigma=Sigma.alph
 mod1 <- CDM::din( dat1$dat , q.matrix=Q )
 
 # estimate equivalent DINA model
-mod2 <- CDM::din( dat1$dat , q.matrix=res1$q.matrix.ast ,
-            skillclasses = res1$alpha.ast)
+mod2 <- CDM::din( dat1$dat, q.matrix=res1$q.matrix.ast, skillclasses = res1$alpha.ast)
 # restricted skill space must be defined by using the argument 'skillclasses'
 
 # compare model summaries
@@ -117,14 +116,14 @@ round( cbind( mod2$attribute.patt, mod1$attribute.patt ) , 4 )
 
 # define Q-matrix
 Q <- matrix( 0 , nrow=8 , ncol=3 )
-Q[2 , ] <- c(1,0,0)
-Q[3 , ] <- c(0,1,0)
-Q[4 , ] <- c(1,1,0)
-Q[5 , ] <- c(0,0,1)
-Q[6 , ] <- c(1,0,1)
-Q[6 , ] <- c(0,0,1)
-Q[7 , ] <- c(0,1,1)
-Q[8 , ] <- c(1,1,1)
+Q[2, ] <- c(1,0,0)
+Q[3, ] <- c(0,1,0)
+Q[4, ] <- c(1,1,0)
+Q[5, ] <- c(0,0,1)
+# Q[6, ] <- c(1,0,1)
+Q[6, ] <- c(0,0,1)
+Q[7, ] <- c(0,1,1)
+Q[8, ] <- c(1,1,1)
 
 #- parametrization A
 res1 <- CDM::equivalent.dina(q.matrix=Q, reparametrization="A")

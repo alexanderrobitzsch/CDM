@@ -1,5 +1,5 @@
 %% File Name: abs_approx.Rd
-%% File Version: 0.03
+%% File Version: 0.04
 
 \name{abs_approx}
 \alias{abs_approx}
@@ -59,14 +59,14 @@ Constant \eqn{\varepsilon} used for approximation
 
 x <- seq( -1 , 1 , len=101 )
 #*** plot abs function and its approximation
-graphics::plot( x , base::abs(x) , type="l" , lwd=2)
+graphics::plot( x, base::abs(x), type="l", lwd=2)
 for (vv in 2:4){
-    graphics::lines( x , CDM::abs_approx(x, eps=10^(-vv) ) , lty = vv , col=vv , lwd=2)
+    graphics::lines( x, CDM::abs_approx(x, eps=10^(-vv) ), lty = vv, col=vv, lwd=2)
 }
 #*** plot derivative of approximation of abs function
-graphics::plot( x , x , type="n" , ylab= "Derivative abs" , ylim = c(-1,1) )
+graphics::plot( x, x, type="n" , ylab= "Derivative abs", ylim = c(-1,1) )
 for (vv in 2:4){
-    graphics::lines( x , CDM::abs_approx_D1(x, eps=10^(-vv) ) , lty = vv , col=vv , lwd=2)
+    graphics::lines( x, CDM::abs_approx_D1(x, eps=10^(-vv)), lty = vv, col=vv, lwd=2)
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

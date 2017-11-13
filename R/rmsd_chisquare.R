@@ -1,10 +1,11 @@
 ## File Name: rmsd_chisquare.R
-## File Version: 0.06
+## File Version: 0.07
 
 	
 ##########################################
 # auxiliary function
-rmsd_chisquare <- function( n.ik , pi.k , probs , eps=10^(-30) ){
+rmsd_chisquare <- function( n.ik , pi.k , probs , eps=10^(-30) )
+{
 	# probs ... [ classes , items , categories ]
 	# n.ik ... [ classes , items , categories , groups ]	
 	# N.ik ... [ classes , items , categories]	
@@ -42,7 +43,6 @@ rmsd_chisquare <- function( n.ik , pi.k , probs , eps=10^(-30) ){
 		chisq_stat <- chisq_stat + chisq_stat0[,,kk]
 	}
 	chisq_stat <- colSums(chisq_stat)
-		# divide it by maxK?
 	return(chisq_stat)
 }
 

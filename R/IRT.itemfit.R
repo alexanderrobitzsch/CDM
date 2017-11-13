@@ -1,58 +1,79 @@
 ## File Name: IRT.itemfit.R
-## File Version: 0.03
+## File Version: 0.06
 
 ###########################################################
-IRT.itemfit <- function (object, ...) {
-    UseMethod("IRT.itemfit")
-       }
+IRT.itemfit <- function (object, ...)
+{
+	UseMethod("IRT.itemfit")
+}
 ###########################################################
 
 ###########################################################
 # object of class din
-IRT.itemfit.din <- function( object , method="RMSEA" , ... ){
+IRT.itemfit.din <- function( object , method="RMSEA" , ... )
+{
 	if (method=="RMSEA"){
 		ll <- object$itemfit.rmsea
 					}		
 	attr(ll,"method") <- method		
-    return(ll)
-        }
+	return(ll)
+}
 ###########################################################
 
 ###########################################################
 # object of class gdina
-IRT.itemfit.gdina <- function( object , method="RMSEA" , ... ){
+IRT.itemfit.gdina <- function( object , method="RMSEA" , ... )
+{
 	if (method=="RMSEA"){
-	    ll <- object$itemfit.rmsea
-					}		
+		ll <- object$itemfit.rmsea
+	}
 	attr(ll,"method") <- method		
-    return(ll)
-        }
+	return(ll)
+}
 ###########################################################
 
 ###########################################################
 # object of class gdm
-IRT.itemfit.gdm <- function( object , method="RMSEA" , ... ){
+IRT.itemfit.gdm <- function( object , method="RMSEA" , ... )
+{
 	if (method=="RMSEA"){
-	    ll <- object$itemfit.rmsea$rmsea
+		ll <- object$itemfit.rmsea$rmsea
 		names(ll) <- colnames(object$data)
-					}		
-	attr(ll,"method") <- method		
-    return(ll)
-        }
+	}
+	attr(ll,"method") <- method
+	return(ll)
+}
 ###########################################################
 
 ###########################################################
 # object of class slca
-IRT.itemfit.slca <- function( object , method="RMSEA" , ... ){
+IRT.itemfit.slca <- function( object , method="RMSEA" , ... )
+{
 	if (method=="RMSEA"){
 		n.ik <- object$n.ik
 		probs <- object$pjk
 		pi.k <- object$pi.k
 		ll <- itemfit.rmsea( n.ik , pi.k , probs )$rmsea	
 		names(ll) <- colnames(object$data)
-					}		
-	attr(ll,"method") <- method		
-    return(ll)
-        }
+	}
+	attr(ll,"method") <- method
+	return(ll)
+}
+###########################################################
+
+###########################################################
+# object of class reglca
+IRT.itemfit.reglca <- function( object , method="RMSEA" , ... )
+{
+	if (method=="RMSEA"){
+		n.ik <- object$n.ik
+		probs <- aperm( object$pjk , perm=c(3,1,2))
+		pi.k <- object$class_probs
+		ll <- itemfit.rmsea( n.ik , pi.k , probs )$rmsea	
+		names(ll) <- colnames(object$data)
+	}
+	attr(ll,"method") <- method
+	return(ll)
+}
 ###########################################################
 

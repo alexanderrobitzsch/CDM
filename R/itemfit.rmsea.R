@@ -1,5 +1,5 @@
 ## File Name: itemfit.rmsea.R
-## File Version: 0.25
+## File Version: 0.28
 
 ###########################################################
 # RMSEA Item fit
@@ -7,8 +7,11 @@ itemfit.rmsea <- function( n.ik , pi.k , probs , itemnames=NULL)
 {
 	# probs ... [ classes , items , categories ]
 	# n.ik ... [ classes , items , categories , groups ]	
-	# N.ik ... [ classes , items , categories]		
 
+	if (is.vector(pi.k)){
+		pi.k <- matrix(pi.k, ncol=1)
+	}
+	
 	# RMSEA (RMSD statistic) for all groups
 	itemfit.rmsea <- itemfit_rmsea_helper( n.ik=n.ik, pi.k=pi.k, probs=probs ) 
 	if ( ! is.null(itemnames) ){

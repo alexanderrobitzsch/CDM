@@ -1,5 +1,5 @@
 %% File Name: data.ecpe.Rd
-%% File Version: 0.15
+%% File Version: 0.18
 
 \name{data.ecpe}
 \alias{data.ecpe}
@@ -74,14 +74,16 @@ Obtaining diagnostic classification model estimates using Mplus.
 
 \examples{
 \dontrun{
-data(data.ecpe)
-
+	
+dat <- CDM::data.ecpe$data[,-1]
+Q <- CDM::data.ecpe$q.matrix
+	
 #*** Model 1: LCDM model 
-mod1 <- CDM::gdina( data.ecpe$data[,-1], q.matrix= data.ecpe$q.matrix , link="logit")
+mod1 <- CDM::gdina( dat, q.matrix=Q, link="logit")
 summary(mod1)
 
 #*** Model 2: DINA model 
-mod2 <- CDM::gdina( data.ecpe$data[,-1], q.matrix= data.ecpe$q.matrix , rule="DINA")
+mod2 <- CDM::gdina( dat, q.matrix=Q, rule="DINA")
 summary(mod2)
 
 # Model comparison using likelihood ratio test
@@ -93,9 +95,9 @@ anova(mod1,mod2)
 #*** Model 3: Hierarchical LCDM (HLCDM) | Templin and Bradshaw (2014)
 #      Testing a linear hierarchy
 hier <- "skill3 > skill2 > skill1"
-skill.names <- colnames( data.ecpe$q.matrix )
+skill.names <- colnames(Q)
 # define skill space with hierarchy
-skillspace <- CDM::skillspace.hierarchy( hier , skill.names= skill.names )
+skillspace <- CDM::skillspace.hierarchy( hier, skill.names= skill.names )
 skillspace$skillspace.reduced
   ##        skill1 skill2 skill3
   ##   A000      0      0      0
@@ -107,18 +109,18 @@ zeroprob.skillclasses <- skillspace$zeroprob.skillclasses
 # define user-defined parameters in LCDM: hierarchical LCDM (HLCDM)
 Mj.user <- mod1$Mj
 # select items with require two attributes
-items <- which( rowSums( data.ecpe$q.matrix ) > 1 )
+items <- which( rowSums(Q) > 1 )
 # modify design matrix for item parameters
 for (ii in items){
     m1 <- Mj.user[[ii]]
     Mj.user[[ii]][[1]] <- (m1[[1]])[,-2]
     Mj.user[[ii]][[2]] <- (m1[[2]])[-2]
-                }
+}
 
 # estimate model
 #    note that avoid.zeroprobs is set to TRUE to avoid algorithmic instabilities
-mod3 <- CDM::gdina( data.ecpe$data[,-1] , q.matrix= data.ecpe$q.matrix ,  link="logit" ,
-            zeroprob.skillclasses=zeroprob.skillclasses , Mj=Mj.user ,
+mod3 <- CDM::gdina( dat, q.matrix=Q, link="logit", 
+            zeroprob.skillclasses=zeroprob.skillclasses, Mj=Mj.user, 
             avoid.zeroprobs=TRUE )
 summary(mod3)
 
@@ -126,19 +128,19 @@ summary(mod3)
 #** estimate further models
 
 #*** Model 4: RRUM model
-mod4 <- CDM::gdina( data.ecpe$data[,-1], q.matrix= data.ecpe$q.matrix , rule="RRUM")
+mod4 <- CDM::gdina( dat, q.matrix=Q, rule="RRUM")
 summary(mod4)
 # compare some models
 IRT.compareModels(mod1 , mod2, mod3, mod4 )
 
 #*** Model 5a: GDINA model with identity link
-mod5a <- CDM::gdina( data.ecpe$data[,-1], q.matrix= data.ecpe$q.matrix , link="identity")
+mod5a <- CDM::gdina( dat, q.matrix=Q, link="identity")
 summary(mod5a)
 #*** Model 5b: GDINA model with logit link
-mod5b <- CDM::gdina( data.ecpe$data[,-1], q.matrix= data.ecpe$q.matrix , link="logit")
+mod5b <- CDM::gdina( dat, q.matrix=Q, link="logit")
 summary(mod5b)
 #*** Model 5c: GDINA model with log link
-mod5c <- CDM::gdina( data.ecpe$data[,-1], q.matrix= data.ecpe$q.matrix , link="log")
+mod5c <- CDM::gdina( dat, q.matrix=Q, link="log")
 summary(mod5c)
 # compare models
 IRT.compareModels(mod5a, mod5b, mod5c)

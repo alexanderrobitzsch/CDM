@@ -1,5 +1,5 @@
 %% File Name: itemfit.sx2.Rd
-%% File Version: 1.26
+%% File Version: 1.28
 
 \name{itemfit.sx2}
 \alias{itemfit.sx2}
@@ -118,7 +118,7 @@ library(sirt)
 dat <- sirt::sim.raschtype( theta= stats::rnorm(N) , b=b , fixed.a=a)
 
 #*** 1PL model estimated with gdm
-mod1 <- CDM::gdm( dat , theta.k=seq(-6,6,len=21) , irtmodel="1PL" )
+mod1 <- CDM::gdm( dat, theta.k=seq(-6,6,len=21), irtmodel="1PL" )
 summary(mod1)
 # estimate item fit statistic
 fitmod1 <- CDM::itemfit.sx2(mod1)
@@ -164,8 +164,8 @@ summary(fitmod2)
   ##   S-X2 = 10.22 | S-X2_df = 1.277 
 
 #*** 1PL model estimation in smirt (sirt package)
-Qmatrix <- matrix(1 , I,1 )
-mod1a <- sirt::smirt( dat , Qmatrix=Qmatrix )
+Qmatrix <- matrix(1, nrow=I, ncol=1 )
+mod1a <- sirt::smirt( dat, Qmatrix=Qmatrix )
 summary(mod1a)
 # item fit statistic
 fitmod1a <- CDM::itemfit.sx2(mod1a)
@@ -179,7 +179,7 @@ fitmod2a <- CDM::itemfit.sx2(mod2a)
 summary(fitmod2a)
 
 #*** 1PL model estimated with rasch.mml2 (in sirt)
-mod1b <- sirt::rasch.mml2( dat )
+mod1b <- sirt::rasch.mml2(dat)
 summary(mod1b)
 # estimate item fit statistic
 fitmod1b <- CDM::itemfit.sx2(mod1b)
@@ -215,11 +215,8 @@ mirt::itemfit( mod1d )	# compute item fit
 # EXAMPLE 2: Item fit statistics sim.dina dataset
 #############################################################################
 
-data(sim.dina)
-data(sim.qmatrix)
-
 #*** Model 1: DINA model (correctly specified model)
-mod1 <- CDM::din( data=sim.dina , q.matrix = sim.qmatrix )
+mod1 <- CDM::din( data=CDM::sim.dina , q.matrix=CDM::sim.qmatrix )
 summary(mod1)
 # item fit statistic
 summary( CDM::itemfit.sx2( mod1 ) )
@@ -228,10 +225,10 @@ summary( CDM::itemfit.sx2( mod1 ) )
 
 #*** Model 2: Mixed DINA/DINO model
 #***  1th item is misspecified according to DINO rule
-I <- ncol(sim.dina)
+I <- ncol(CDM::sim.dina)
 rule <- rep("DINA" , I )
 rule[1] <- "DINO"
-mod2 <- CDM::din( data=sim.dina , q.matrix = sim.qmatrix , rule=rule)
+mod2 <- CDM::din( data=CDM::sim.dina , q.matrix = CDM::sim.qmatrix , rule=rule)
 summary(mod2)
 # item fit statistic
 summary( CDM::itemfit.sx2( mod2 ) )
@@ -239,7 +236,7 @@ summary( CDM::itemfit.sx2( mod2 ) )
   ##   S-X2 = 9.925 | S-X2_df = 1.654 
 
 #*** Model 3: Additive GDINA model
-mod3 <- CDM::gdina( data=sim.dina , q.matrix = sim.qmatrix , rule="ACDM")
+mod3 <- CDM::gdina( data=CDM::sim.dina , q.matrix = CDM::sim.qmatrix , rule="ACDM")
 summary(mod3)
 # item fit statistic
 summary( CDM::itemfit.sx2( mod3 ) )

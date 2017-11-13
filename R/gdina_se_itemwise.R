@@ -1,5 +1,5 @@
 ## File Name: gdina_se_itemwise.R
-## File Version: 0.15
+## File Version: 0.16
 
 gdina_se_itemwise <- function( R.lj_jj , I.lj_jj , apjj ,
 		Mjjj , Mjj2 , PAJXI , IP , item.patt.split_jj , resp.patt_jj ,
@@ -48,7 +48,7 @@ gdina_se_itemwise <- function( R.lj_jj , I.lj_jj , apjj ,
 				p.ajast.xi[,kk] <- rowSums( pg1 ) 
 			}
 		}
-		pjjjM <- outer( rep(1,IP) , pjjj ) + 1E-20
+		pjjjM <- outer( rep(1,IP) , pjjj ) + eps2
 		nM <- ncol(pjjjM) 
 		x1 <- outer( item.patt.split_jj , rep(1,nM) )	
 		r1 <- outer( resp.patt_jj * item.patt.freq , rep(1,ncol(pjjjM) ) )
@@ -78,7 +78,7 @@ gdina_se_itemwise <- function( R.lj_jj , I.lj_jj , apjj ,
 		varmat.palj_jj <- Ijj <- a1
 		Wj <- diag( Ilj.ast[,2] )	
 		if ( avoid.zeroprobs ){
-			ind <- which( Ilj.ast[,2]  < 1E-10  )
+			ind <- which( Ilj.ast[,2]  < eps2  )
 			if ( length(ind) > 0 ){
 				Wj <- diag( Ilj.ast[-ind,2] )
 				Mjjj <- Mjjj[ - ind , ]

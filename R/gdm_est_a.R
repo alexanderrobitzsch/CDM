@@ -1,5 +1,5 @@
 ## File Name: gdm_est_a.R
-## File Version: 0.06
+## File Version: 0.07
 
 ###########################################
 # estimation of a
@@ -40,19 +40,19 @@ gdm_est_a <- function(probs, n.ik, N.ik, I, K, G,a,a.constraint,TD,
 			for (ii in 1:I){
 				v1 <- l0 <- 0
 				for (gg in 1:G){
-					for (kk in 2:(K+1) ){		# kk <- 2
+					for (kk in 2:(K+1) ){# kk <- 2
 						v1 <- v1 + N.ik[,ii,gg] * as.vector( ( Qmatrix[ii,td,kk-1] * 
 							thetaDes[ , td ] )^2 * t( probs[ii,kk,] ) )
-						l0 <- l0 + as.vector ( Qmatrix[ii,td,kk-1] * thetaDes[ , td ]  * t( probs[ii,kk,] ) )			
-					}															
-				}				
+						l0 <- l0 + as.vector ( Qmatrix[ii,td,kk-1] * thetaDes[ , td ]  * t( probs[ii,kk,] ) )
+					}
+				}
 				d2.b[ii,td] <- sum(v1) - sum( l0^2 * N.ik[,ii,gg] )
 			}
 		}
 		#--- calc increments
 		res <- cdm_calc_increment( d1=d1.b, d2=d2.b, max.increment=max.increment )
 		increment <- res$increment
-		max.increment <- res$max.increment			
+		max.increment <- res$max.increment	
 		
 		a[,,1] <- a[,,1] + increment	
 		se.a <- sqrt( 1 / abs( d2.b + eps ) )

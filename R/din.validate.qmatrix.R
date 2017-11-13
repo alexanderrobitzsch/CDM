@@ -1,15 +1,16 @@
 ## File Name: din.validate.qmatrix.R
-## File Version: 1.05
+## File Version: 1.06
 ######################################################
 # Q-matrix validation
-din.validate.qmatrix <- function( object , digits = 3 , print=TRUE){
+din.validate.qmatrix <- function( object , digits = 3 , print=TRUE)
+{
 	#*****
 	# extract original Q-matrix
 	q.matrix <- object$q.matrix
 	rule <- object$rule
 	# extract estimated parameters
 	guess <- object$guess[,1]
-    slip <- object$slip[,1]
+	slip <- object$slip[,1]
 	# calculate originally estimated IDI
 	IDI <- 1-slip-guess
 	#****
@@ -35,23 +36,19 @@ din.validate.qmatrix <- function( object , digits = 3 , print=TRUE){
 	coef.modified$item <- rep( 1:I , QQM )
 	coef.modified$qmatrix.row <- rep( 1:QQM , each=I )	
 	for (qqm in 1:QQM){	
-#		qqm <- 1
 		qt.matrix <- q.matrix.poss[ rep(qqm,I) , ]
-#		compt <- rowSums( qt.matrix )	
 		compt <- ( rowSums(qt.matrix)  )*( rule=="DINA")   + 1* ( rule == "DINO" )  		
 		# calculate expected counts
 		I.j0 <- rowSums( ( t(( attr.patt %*% t(qt.matrix) ) )  <  outer(  compt, rep(1,L) ) ) * I.lj ) 
-		I.j1 <- rowSums( ( t(( attr.patt %*% t(qt.matrix) ) )  >= outer(  compt, rep(1,L) ) ) * I.lj )             
+		I.j1 <- rowSums( ( t(( attr.patt %*% t(qt.matrix) ) )  >= outer(  compt, rep(1,L) ) ) * I.lj )
 		R.j0 <- rowSums( ( t(( attr.patt %*% t(qt.matrix) ) )  <  outer(  compt, rep(1,L) ) ) * R.lj )
 		R.j1 <- rowSums( ( t(( attr.patt %*% t(qt.matrix) ) )  >= outer(  compt, rep(1,L) ))  * R.lj )	
 		# calculate guessing and slipping parameters
-#		I.j0[ I.j0 == 0] <- 0.05
-#		I.j1[ I.j1 == 0] <- 0.05           
 		guess <- R.j0 / I.j0
 		slip <- ( I.j1 - R.j1 ) / I.j1
 		coef.modified[ I*( qqm - 1 ) + 1:I , "guess" ] <- guess
 		coef.modified[ I*( qqm - 1 ) + 1:I , "slip" ] <- slip
-						}
+	}
 	coef.modified <- coef.modified[ order( coef.modified$item ) , ]
 	coef.modified$IDI <- 1 - coef.modified$slip - coef.modified$guess
 	# look for original rows
@@ -65,7 +62,7 @@ din.validate.qmatrix <- function( object , digits = 3 , print=TRUE){
 				q.matrix.poss[ coef.modified$qmatrix.row , ] ,
 				coef.modified[ , - c(1:2) ]
 						)
-    coef.modified[ , -1 ] <- round( coef.modified[,-1] , digits )
+	coef.modified[ , -1 ] <- round( coef.modified[,-1] , digits )
 	# calculate maximum delta index per item
 	a1 <- stats::aggregate( coef.modified$IDI , list( coef.modified$itemindex ) , max )
 	coef.modified$max.IDI <- a1[ coef.modified$itemindex , 2]
@@ -81,19 +78,19 @@ din.validate.qmatrix <- function( object , digits = 3 , print=TRUE){
 		for (ii in items ){
 		    c2 <- ( coef.modified2[ coef.modified2$itemindex == ii , ] )[1,]
 			q.matrix.prop[ ii , ] <- as.vector( t(c2[ 1, seq(3 , 3+K -1) ]) )
-						}
-				}	
+		}
+	}	
 	if ( print ){
 		if ( ! nochange ){ 		
-				print( coef.modified2 ) 
-				cat("\nProposed Q-matrix:\n\n")
-				print(q.matrix.prop)
-					}
+			print( coef.modified2 ) 
+			cat("\nProposed Q-matrix:\n\n")
+			print(q.matrix.prop)
+		}
 		if ( nochange ){ cat("No Q-matrix entries should be changed.\n") }
-				}	
-	res <- list( "coef.modified" = coef.modified ,
-				"coef.modified.short" = coef.modified2 ,
-				"q.matrix.prop" = q.matrix.prop	)
+	}	
+	res <- list( coef.modified = coef.modified ,
+				coef.modified.short = coef.modified2 ,
+				q.matrix.prop = q.matrix.prop)
 	invisible(res)
-	}
+}
 ######################################################

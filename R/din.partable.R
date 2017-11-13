@@ -1,11 +1,12 @@
 ## File Name: din.partable.R
-## File Version: 0.15
+## File Version: 0.16
 
 ##############################################
 # parameter table for the din model
 din.partable <- function( guess ,  slip , attribute.patt , data , rule ,
 		guess.equal , slip.equal , constraint.guess , constraint.slip ,
-		zeroprob.skillclasses , attribute.patt.splitted ){
+		zeroprob.skillclasses , attribute.patt.splitted )
+{
 	# parameters
 	J <- nrow(guess)
 	L <- nrow(attribute.patt)
@@ -43,33 +44,33 @@ din.partable <- function( guess ,  slip , attribute.patt , data , rule ,
 		p1 <- partable[ partable$partype == "guess" , ]
 		partable[ p1$totindex , "parindex" ] <- p1$parindex[1]
 		partable[ p1$totindex , "parnames" ] <- "all_guess"		
-				}
+	}
 	if (slip.equal){
 		p1 <- partable[ partable$partype == "slip" , ]
 		partable[ p1$totindex , "parindex" ] <- p1$parindex[1]	
 		partable[ p1$totindex , "parnames" ] <- "all_slip"			
-				}				
+	}
 	if ( ! is.null(constraint.slip) ){
 		p1 <- partable[ ( partable$partype == "slip" ) &
 						( partable$item %in% constraint.slip[,1] ) , ]
 		partable[ p1$totindex , "fixed" ] <- TRUE				
 		partable[ p1$totindex , "free" ] <- FALSE
 		partable[ p1$totindex , "parindex" ] <- 0
-						}
+	}
 	if ( ! is.null(constraint.guess) ){
 		p1 <- partable[ ( partable$partype == "guess" ) &
 						( partable$item %in% constraint.guess[,1] ) , ]
 		partable[ p1$totindex , "fixed" ] <- TRUE				
 		partable[ p1$totindex , "free" ] <- FALSE
 		partable[ p1$totindex , "parindex" ] <- 0
-						}	
+	}	
 	if ( ! is.null(zeroprob.skillclasses) ){
 		p1 <- partable[ ( partable$partype == "probs" ) &
 						( partable$skillclass %in% zeroprob.skillclasses ) , ]
 		partable[ p1$totindex , "fixed" ] <- TRUE				
 		partable[ p1$totindex , "free" ] <- FALSE
 		partable[ p1$totindex , "parindex" ] <- 0
-						}																				
+	}
 	#*********************************
 	# include parameter transformation matrix
 	
@@ -102,8 +103,5 @@ din.partable <- function( guess ,  slip , attribute.patt , data , rule ,
 	partable$parindex <- match( partable$parindex , sort(unique(partable$parindex) ) ) - 1
 	res <- list( "partable" = partable , "vcov.derived" = list("A"=A) )
 	return(res)
-		}
+}
 ###########################################################		
-	
-	
-	

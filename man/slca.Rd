@@ -1,5 +1,5 @@
 %% File Name: slca.Rd
-%% File Version: 1.76
+%% File Version: 1.78
 
 \name{slca}
 \alias{slca}
@@ -294,8 +294,7 @@ For mixture Rasch or mixture IRT models see the \pkg{psychomix} or
 # EXAMPLE 1: data.Students | (Generalized) Partial Credit Model
 #############################################################################
 
-data(data.Students)
-dat <- data.Students[ , c("mj1","mj2","mj3","mj4","sc1" , "sc2") ]
+dat <- CDM::data.Students[ , c("mj1","mj2","mj3","mj4","sc1" , "sc2") ]
 # define discretized ability
 theta.k <- seq( -6 , 6 , len=21 )
 
@@ -541,7 +540,7 @@ delta.designmatrix[1:TP,1] <- 1
 delta.designmatrix[1:TP,2] <- theta.k^2
 delta.designmatrix[TP + 1:TP,3] <- 1
 delta.designmatrix[TP+ 1:TP,4] <- theta.k^2
-b1 <- stats::qnorm( colMeans( dat ) )
+b1 <- stats::qnorm( colMeans(dat) )
 Xlambda.init <- c( stats::runif( 2*I  , -1.8 , 1.8 ) , 1 ,1 )
 Xlambda.fixed <- cbind( c(2*I+1 , 2*I+2) , 1 )
 # estimate model
@@ -729,7 +728,7 @@ dat1 <- sirt::sim.raschtype( rnorm(N, mean=mu1, sd=sd1) , b = b - dif /2 )
 colnames(dat1) <- paste0("I", 1:I, "_G1")
 dat2 <- sirt::sim.raschtype( rnorm(N, mean=mu2, sd=sd2) , b = b + dif /2 )
 colnames(dat2) <- paste0("I", 1:I, "_G2")
-dat <- sirt::sirt_rbind_fill( dat1 , dat2 )
+dat <- CDM::CDM_rbind_fill( dat1 , dat2 )
 dat <- data.frame( "group" = rep(1:2, each=N) , dat )
 
 #-- nodes for distribution

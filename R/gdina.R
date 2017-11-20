@@ -1,5 +1,5 @@
 ## File Name: gdina.R
-## File Version: 9.229
+## File Version: 9.236
 
 
 ################################################################################
@@ -152,6 +152,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 	group2 <- res$group2
 																	
 	#---- parameters for HOGDINA model
+	tetrachoric <- NULL
 	if (HOGDINA >= 0){	
 		res <- gdina_proc_hogdina_theta_distribution(G=G)	
 		theta.k <- res$theta.k
@@ -339,9 +340,10 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 		if (! reduced.skillspace){
 			pem_pars <- c("delta_vec","attr.prob")
 		}
-		if ( reduced.skillspace){
+		if (reduced.skillspace){
 			pem_pars <- c("delta_vec","beta")
 		}
+		if (HOGDINA > 0){ PEM <- FALSE }
 		pem_output_vars <- unique( c( pem_pars , "delta.new","attr.prob") )
 		parmlist <- cdm_pem_inits_assign_parmlist(pem_pars=pem_pars, envir=envir)
 		res <- cdm_pem_inits( parmlist=parmlist)
@@ -423,10 +425,12 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 
 		if (HOGDINA >= 0){
 			res <- gdina_attribute_structure_hogdina( G=G, attr.prob=attr.prob, attr.patt=attr.patt, 
-						wgt.theta=wgt.theta, HOGDINA=HOGDINA, a.attr=a.attr, b.attr=b.attr, theta.k=theta.k ) 
+						wgt.theta=wgt.theta, HOGDINA=HOGDINA, a.attr=a.attr, b.attr=b.attr, theta.k=theta.k,
+						tetrachoric=tetrachoric ) 
 			a.attr <- res$a.attr
 			b.attr <- res$b.attr
 			attr.prob <- res$attr.prob
+			tetrachoric <- res$tetrachoric	
 		}
 		
 		#######################################################################
@@ -434,8 +438,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 		#######################################################################
 		
 		if (reduced.skillspace){
-			# ntheta <- colSums( item_patt_freq_matr*p.aj.xi )	
-            res <- gdina_reduced_skillspace_multiple_groups( Z=Z, reduced.skillspace.method=reduced.skillspace.method, 
+			res <- gdina_reduced_skillspace_multiple_groups( Z=Z, reduced.skillspace.method=reduced.skillspace.method, 
 						item_patt_freq_matr=item_patt_freq_matr, p.aj.xi=p.aj.xi, G=G ) 
 			beta <- res$beta
 			attr.prob <- res$attr.prob

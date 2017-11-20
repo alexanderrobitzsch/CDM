@@ -1,5 +1,5 @@
 %% File Name: vcov.Rd
-%% File Version: 0.28
+%% File Version: 0.29
 
 \name{vcov}
 \alias{vcov.din}
@@ -102,11 +102,14 @@ theory modeling. \emph{Educational and Psychological Measurement}, \bold{74(1)},
 # EXAMPLE 1: DINA model sim.dina
 #############################################################################	
 
-dat <- CDM::sim.dina
-q.matrix <- CDM::sim.qmatrix
+data(sim.dina, package="CDM")
+data(sim.qmatrix, package="CDM")
+
+dat <- sim.dina
+q.matrix <- sim.qmatrix
 
 #****** Model 1: DINA Model
-mod1 <- CDM::din( dat , q.matr = q.matrix, rule = "DINA")
+mod1 <- CDM::din( dat , q.matrix = q.matrix, rule = "DINA")
 # look into parameter table of the model
 mod1$partable
 # covariance matrix
@@ -127,7 +130,7 @@ constraint.slip <- cbind( c(2,3,5) , c(.15,.20,.25) )
 # set some skill class probabilities to zero
 zeroprob.skillclasses <- c(2,4)
 # estimate model
-mod2 <- CDM::din( dat , q.matr = q.matrix, guess.equal=TRUE , 
+mod2 <- CDM::din( dat , q.matrix = q.matrix, guess.equal=TRUE , 
      constraint.slip=constraint.slip, zeroprob.skillclasses=zeroprob.skillclasses)
 # parameter table
 mod2$partable

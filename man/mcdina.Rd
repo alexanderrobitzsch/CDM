@@ -1,5 +1,5 @@
 %% File Name: mcdina.Rd
-%% File Version: 0.21
+%% File Version: 0.25
 
 \name{mcdina}
 \alias{mcdina}
@@ -174,27 +174,29 @@ for estimating the GDINA model.
 # EXAMPLE 1: Multiple choice DINA model for data.cdm01 dataset
 #############################################################################
 
-dat <- CDM::data.cdm01$data
-group <- CDM::data.cdm01$group
-q.matrix <- CDM::data.cdm01$q.matrix
+data(data.cdm01, package="CDM")
+
+dat <- data.cdm01$data
+group <- data.cdm01$group
+q.matrix <- data.cdm01$q.matrix
 
 #*** Model 1: Single group model
-mod1 <- CDM::mcdina( dat=dat , q.matrix=q.matrix )
+mod1 <- CDM::mcdina( dat=dat, q.matrix=q.matrix )
 summary(mod1)
 
 #*** Model 2: Multiple group model with group-invariant item parameters
-mod2 <- CDM::mcdina( dat=dat , q.matrix=q.matrix , group=group , itempars="jo")
+mod2 <- CDM::mcdina( dat=dat, q.matrix=q.matrix, group=group, itempars="jo")
 summary(mod2)
 
 \dontrun{
 #*** Model 3: Multiple group model with group-specific item parameters
-mod3 <- CDM::mcdina( dat=dat , q.matrix=q.matrix , group=group , itempars="gr")
+mod3 <- CDM::mcdina( dat=dat, q.matrix=q.matrix, group=group, itempars="gr")
 summary(mod3)
 
 #*** Model 4: Multiple group model with some group-specific item parameters
 itempars <- rep("jo" , ncol(dat))
 itempars[ c( 2, 7, 9) ] <- "gr" # set items 2,7 and 9 group specific
-mod4 <- CDM::mcdina( dat=dat , q.matrix=q.matrix , group=group , itempars=itempars)
+mod4 <- CDM::mcdina( dat=dat, q.matrix=q.matrix, group=group, itempars=itempars)
 summary(mod4)
 
 #*** Model 5: Reduced skill space
@@ -203,14 +205,14 @@ summary(mod4)
 skillclasses <- scan(nlines=1)  # read only one line
     0 0 0    1 0 0    0 1 0    0 0 1    1 1 0     1 1 1    
 skillclasses <- matrix( skillclasses  , ncol=3 , byrow=TRUE )
-mod5 <- CDM::mcdina( dat , q.matrix , group=group0 ,  skillclasses=skillclasses  )
+mod5 <- CDM::mcdina( dat, q.matrix=q.matrix, group=group0,  skillclasses=skillclasses )
 summary(mod5)
 
 #*** Model 6: Reduced skill space with setting zero probabilities
 #             for some latent classes
 
 # set probabilities of classes P101 P011 (6th and 7th class) to zero
-zeroprob.skillclasses <- c( 6 , 7 )
+zeroprob.skillclasses <- c(6,7)
 mod6 <- CDM::mcdina( dat, q.matrix, group=group, zeroprob.skillclasses=zeroprob.skillclasses )
 summary(mod6)
 
@@ -218,16 +220,20 @@ summary(mod6)
 # EXAMPLE 2: Using the mcdina function for estimating the DINA model
 #############################################################################
 
+data(sim.dina, package="CDM")
+data(sim.qmatrix, package="CDM")
+
 # estimate the DINA model
-mod <- CDM::mcdina( CDM::sim.dina , q.matrix=CDM::sim.qmatrix )
+mod <- CDM::mcdina( sim.dina , q.matrix=sim.qmatrix )
 summary(mod)
 
 #############################################################################
 # EXAMPLE 3: MCDINA model with polytomous attributes
 #############################################################################
 
-dat <- CDM::data.cdm02$data
-q.matrix <- CDM::data.cdm02$q.matrix
+data(data.cdm02, package="CDM")
+dat <- data.cdm02$data
+q.matrix <- data.cdm02$q.matrix
 
 # estimate model with polytomous attribute B1
 mod1 <- CDM::mcdina( dat , q.matrix=q.matrix )

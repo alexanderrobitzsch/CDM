@@ -1,5 +1,5 @@
 %% File Name: cdi.kli.Rd
-%% File Version: 0.12
+%% File Version: 0.13
 
 \name{cdi.kli}
 \alias{cdi.kli}
@@ -86,7 +86,10 @@ Press.
 # EXAMPLE 1: Examples based on CDM::sim.dina
 #############################################################################	
 
-mod <- CDM::din( CDM::sim.dina, q.matrix = CDM::sim.qmatrix )
+data(sim.dina, package="CDM")
+data(sim.qmatrix, package="CDM")
+
+mod <- CDM::din( sim.dina, q.matrix = sim.qmatrix )
 summary(mod)
   ##  Item parameters
   ##         item guess  slip   IDI rmsea

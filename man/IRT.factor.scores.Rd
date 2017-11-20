@@ -1,5 +1,5 @@
 %% File Name: IRT.factor.scores.Rd
-%% File Version: 0.07
+%% File Version: 0.09
 
 \name{IRT.factor.scores}
 \alias{IRT.factor.scores}
@@ -85,8 +85,11 @@ For extracting the individual likelihood or the individual posterior see
 # EXAMPLE 1: Extracting factor scores in the DINA model
 #############################################################################
 
+data(sim.dina, package="CDM")
+data(sim.qmatrix, package="CDM")
+
 # estimate DINA model
-mod1 <- CDM::din( CDM::sim.dina, q.matrix=CDM::sim.qmatrix)
+mod1 <- CDM::din( sim.dina, q.matrix=sim.qmatrix)
 summary(mod1)
 # MLE
 fsc1a <- CDM::IRT.factor.scores(mod1)

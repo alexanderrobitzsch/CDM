@@ -1,5 +1,5 @@
 %% File Name: data.melab.Rd
-%% File Version: 0.11
+%% File Version: 0.12
 
 \name{data.melab}
 \alias{data.melab}
@@ -60,8 +60,10 @@ cognitive diagnostic analyses of a reading test.
 
 \examples{
 \dontrun{	
-data <- CDM::data.melab$data
-q.matrix <- CDM::data.melab$q.matrix
+data(data.melab, package="CDM")
+
+data <- data.melab$data
+q.matrix <- data.melab$q.matrix
 
 #*** Model 1: Reduced RUM model
 mod1 <- CDM::gdina( data , q.matrix , rule="RRUM" )

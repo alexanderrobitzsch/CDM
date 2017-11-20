@@ -1,5 +1,5 @@
 %% File Name: gdm.Rd
-%% File Version: 4.33
+%% File Version: 4.35
 
 \name{gdm}
 \alias{gdm}
@@ -377,7 +377,7 @@ and \pkg{sirt} package (function \code{rasch.mirtlc}).
 #      Unidimensional Models for dichotomous data
 #############################################################################
 
-data( data.fraction1 )
+data(data.fraction1, package="CDM")
 dat <- data.fraction1$data
 theta.k <- seq( -6 , 6 , len=15 )   # discretized ability
 
@@ -439,7 +439,8 @@ summary(mod7)
 #      Unidimensional Models for polytomous data
 #############################################################################
 
-dat <- CDM::data.Students
+data(data.Students, package="CDM")
+dat <- data.Students
 
 dat <- dat[ , grep( "act" , colnames(dat) ) ]
 theta.k <- seq( -4 , 4 , len=11 )   # discretized ability
@@ -515,8 +516,9 @@ summary(mod7b)
 #      Multidimensional Models for dichotomous data
 #############################################################################
 
-dat <- CDM::data.fraction2$data
-Qmatrix <- CDM::data.fraction2$q.matrix3
+data(data.fraction2, package="CDM")
+dat <- data.fraction2$data
+Qmatrix <- data.fraction2$q.matrix3
 
 #***
 # Model 1: One-dimensional Rasch model
@@ -646,7 +648,8 @@ summary(mod2)
 # EXAMPLE 6: Large-scale dataset data.mg
 #############################################################################
 
-dat <- CDM::data.mg[ , paste0("I" , 1:11 ) ]
+data(data.mg, package="CDM")
+dat <- data.mg[ , paste0("I" , 1:11 ) ]
 theta.k <- seq(-6,6,len=21)
 
 #***

@@ -1,5 +1,5 @@
 %% File Name: IRT.data.Rd
-%% File Version: 0.11
+%% File Version: 0.12
 
 \name{IRT.data}
 \alias{IRT.data}
@@ -81,8 +81,11 @@ weights vector as attributes.
 # EXAMPLE 1: Several models for sim.dina data
 #############################################################################
 
-dat <- CDM::sim.dina
-q.matrix <- CDM::sim.qmatrix
+data(sim.dina, package="CDM")
+data(sim.qmatrix, package="CDM")
+
+dat <- sim.dina
+q.matrix <- sim.qmatrix
 
 #--- Model 1: GDINA model
 mod1 <- CDM::gdina( data = dat, q.matrix = q.matrix)
@@ -121,7 +124,7 @@ for (ii in 1:I){
     Xdes[ ii , 2 , 2 , ii+I ] <- 1  # probabilities class 2
 }
 # estimate model
-mod4 <- CDM::slca( dat , Xdes=Xdes)            
+mod4 <- CDM::slca( dat, Xdes=Xdes)            
 summary(mod4)
 dmod4 <- CDM::IRT.data(mod4)
 }

@@ -1,5 +1,5 @@
 %% File Name: itemfit.sx2.Rd
-%% File Version: 1.28
+%% File Version: 1.29
 
 \name{itemfit.sx2}
 \alias{itemfit.sx2}
@@ -215,8 +215,11 @@ mirt::itemfit( mod1d )	# compute item fit
 # EXAMPLE 2: Item fit statistics sim.dina dataset
 #############################################################################
 
+data(sim.dina, package="CDM")
+data(sim.qmatrix, package="CDM")
+
 #*** Model 1: DINA model (correctly specified model)
-mod1 <- CDM::din( data=CDM::sim.dina , q.matrix=CDM::sim.qmatrix )
+mod1 <- CDM::din( data=sim.dina , q.matrix=sim.qmatrix )
 summary(mod1)
 # item fit statistic
 summary( CDM::itemfit.sx2( mod1 ) )

@@ -1,5 +1,5 @@
 %% File Name: data.Students.Rd
-%% File Version: 0.14
+%% File Version: 0.15
 
 \name{data.Students}
 \alias{data.Students}
@@ -51,7 +51,8 @@ of 8th grade students.
 \examples{
 \dontrun{
 library(psych)
-psych::describe(CDM::data.Students)
+data(data.Students, package="CDM")
+psych::describe(data.Students)
   ##          var    n mean   sd median trimmed  mad min max range  skew kurtosis   se
   ##   urban    1 2400 0.31 0.46    0.0    0.27 0.00   0   1     1  0.81    -1.34 0.01
   ##   female   2 2400 0.51 0.50    1.0    0.51 0.00   0   1     1 -0.03    -2.00 0.01

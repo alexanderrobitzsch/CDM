@@ -1,5 +1,5 @@
 %% File Name: gdina.Rd
-%% File Version: 3.34
+%% File Version: 3.402
 
 \name{gdina}
 \alias{gdina}
@@ -503,8 +503,11 @@ See the \code{\link[GDINA:GDINA]{GDINA::GDINA}} function in the
 # EXAMPLE 1: Simulated DINA data | different condensation rules 
 #############################################################################
 
-dat <- CDM::sim.dina
-Q <- CDM::sim.qmatrix
+data(sim.dina, package="CDM")
+data(sim.qmatrix, package="CDM")
+
+dat <- sim.dina
+Q <- sim.qmatrix
 
 #***
 # Model 1: estimation of the GDINA model (identity link)
@@ -555,14 +558,12 @@ summary(mod3)
 
 #***
 # Model 4: DINA model with logit link
-mod4 <- CDM::gdina( data = dat ,  q.matrix = Q , maxit= 20 , 
-                rule="DINA" , linkfct = "logit" )
+mod4 <- CDM::gdina( data = dat, q.matrix = Q, rule="DINA", linkfct = "logit" )
 summary(mod4)
 
 #***
 # Model 5: DINA model log link
-mod5 <- CDM::gdina( data = dat, q.matrix = Q, rule="DINA", 
-                     linkfct = "log")
+mod5 <- CDM::gdina( data = dat, q.matrix = Q, rule="DINA", linkfct = "log")
 summary(mod5)
 
 #***
@@ -610,8 +611,11 @@ summary(mod11)
 #    additive cognitive diagnosis model with different link functions
 #############################################################################
 
-dat <- CDM::sim.dino
-Q <- CDM::sim.qmatrix
+data(sim.dino, package="CDM")
+data(sim.matrix, package="CDM")
+
+dat <- sim.dino
+Q <- sim.qmatrix
 
 #***
 # Model 1: additive cognitive diagnosis model (ACDM; identity link)
@@ -643,8 +647,11 @@ summary(mod4)
 # EXAMPLE 3: Model with user-specified design matrices
 #############################################################################
 
-dat <- CDM::sim.dino
-Q <- CDM::sim.qmatrix
+data(sim.dino, package="CDM")
+data(sim.qmatrix, package="CDM")
+
+dat <- sim.dino
+Q <- sim.qmatrix
 
 # do a preliminary analysis and modify obtained design matrices
 mod0 <- CDM::gdina( data = dat ,  q.matrix = Q ,  maxit=1)
@@ -693,8 +700,8 @@ summary(mod)
 # EXAMPLE 4: Design matrix for delta parameters
 #############################################################################
 
-dat <- CDM::sim.dino
-Q <- CDM::sim.qmatrix
+data(sim.dino, package="CDM")
+data(sim.qmatrix, package="CDM")
 
 #~~~ estimate an initial model
 mod0 <- CDM::gdina( data = dat ,  q.matrix = Q , rule="ACDM" , maxit=1)
@@ -809,8 +816,10 @@ summary(mod3)
 # EXAMPLE 7: Polytomous GDINA model (Chen & de la Torre, 2013)
 #############################################################################
 
-dat <- CDM::data.pgdina$dat
-q.matrix <- CDM::data.pgdina$q.matrix
+data(data.pgdina, package="CDM")
+
+dat <- data.pgdina$dat
+q.matrix <- data.pgdina$q.matrix
 
 # pGDINA model with "DINA rule"
 mod1 <- CDM::gdina( dat, q.matrix=q.matrix, rule="DINA")
@@ -827,8 +836,11 @@ summary(mod2)
 # EXAMPLE 8: Fraction subtraction data: DINA and HO-DINA model
 #############################################################################
 
-dat <- CDM::fraction.subtraction.data
-Q <- CDM::fraction.subtraction.qmatrix
+data(fraction.subtraction.data, package="CDM")
+data(fraction.subtraction.qmatrix, package="CDM")
+
+dat <- fraction.subtraction.data
+Q <- fraction.subtraction.qmatrix
 
 # Model 1: DINA model
 mod1 <- CDM::gdina( dat, q.matrix = Q, rule = "DINA")
@@ -842,8 +854,10 @@ summary(mod2)
 # EXAMPLE 9: Skill space approximation data.jang
 #############################################################################
 
-data <- CDM::data.jang$data
-q.matrix <- CDM::data.jang$q.matrix
+data(data.jang, package="CDM")
+
+data <- data.jang$data
+q.matrix <- data.jang$q.matrix
 
 #*** Model 1: Reduced RUM model
 mod1 <- CDM::gdina( data, q.matrix, rule="RRUM"  , conv.crit=.001 , maxit=500 )
@@ -912,10 +926,12 @@ summary(mod3)
 # EXAMPLE 11: Sequential GDINA model (Ma & de la Torre, 2016)
 #############################################################################
 
+data(data.cdm04, package="CDM")
+
 #** attach dataset
-dat <- CDM::data.cdm04$data	# polytomous item responses
-q.matrix1 <- CDM::data.cdm04$q.matrix1
-q.matrix2 <- CDM::data.cdm04$q.matrix2
+dat <- data.cdm04$data	# polytomous item responses
+q.matrix1 <- data.cdm04$q.matrix1
+q.matrix2 <- data.cdm04$q.matrix2
 
 #-- DINA model with first Q-matrix
 mod1 <- CDM::gdina( dat , q.matrix = q.matrix1 , rule="DINA")

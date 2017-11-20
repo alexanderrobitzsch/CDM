@@ -1,5 +1,5 @@
 %% File Name: data.dcm.Rd
-%% File Version: 0.22
+%% File Version: 0.23
 
 \name{data.dcm}
 \alias{data.dcm}
@@ -62,8 +62,10 @@ Press.
 
 \examples{
 \dontrun{
-dat <- CDM::data.dcm$data[,-1]
-Q <- CDM::data.dcm$q.matrix
+data(data.dcm, package="CDM")
+
+dat <- data.dcm$data[,-1]
+Q <- data.dcm$q.matrix
 
 #*****************************************************
 # Model 1: DINA model

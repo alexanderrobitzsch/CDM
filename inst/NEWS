@@ -24,7 +24,7 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 6.0  |  2017-11-13  |  Last: CDM 6.0-81
+VERSIONS CDM 6.0  |  2017-11-20  |  Last: CDM 6.0-87
 --------------------------------------------------------------
 
 ADDED * included regularized maximum likelihood in 'slca'
@@ -58,6 +58,9 @@ NOTE  * extended option for skill space reduction in 'gdina' to
         multiple group analysis
 NOTE  * enabled 'delta.designmatrix' argument in 'gdm' function 
         which was previously ignored
+NOTE  * enabled PEM acceleration for HOGDINA models (not yet 
+        implemented, thanks to Hamdollah Ravand)
+
 
 DATA  * included/modified datasets: data.fraction3, 
         data.fraction4, data.fraction5

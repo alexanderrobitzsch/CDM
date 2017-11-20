@@ -1,13 +1,9 @@
 ## File Name: gdina_calc_prob_one_item.R
-## File Version: 0.01
+## File Version: 0.02
 
-gdina_calc_prob_one_item <- function( progress, iter, disp , J , jj, L , aggr.attr.patt, Mj, delta,
+gdina_calc_prob_one_item <- function( J , jj, L , aggr.attr.patt, Mj, delta,
 		linkfct)
 {
-	if ( progress ){
-		cat(disp)	
-		cat("Iteration" , iter , "   " , paste( Sys.time() ) , "\n" )	   
-	}
 	pj1 <- matrix( 0 , nrow = 1 , ncol = L )
 	#---- calculate P(X_j | alpha_l )
 	ajj <- ( aggr.attr.patt[[jj]] )
@@ -32,6 +28,3 @@ gdina_calc_prob_one_item <- function( progress, iter, disp , J , jj, L , aggr.at
 	#--- OUTPUT
 	return(pjM)			
 }		
-
-
-# cat( "\n Step 1a (calculate P(X_j|alpha_l)\n" ) ; a1 <- Sys.time() ; print(a1-a0) ; a0 <- a1

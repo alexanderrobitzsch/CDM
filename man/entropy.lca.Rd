@@ -1,5 +1,5 @@
 %% File Name: entropy.lca.Rd
-%% File Version: 0.18
+%% File Version: 0.21
 
 \name{entropy.lca}
 \alias{entropy.lca}
@@ -66,8 +66,11 @@ for calculating the classification accuracy.
 # EXAMPLE 1: Entropy for DINA model 
 #############################################################################	
 
+data(sim.dina, package="CDM")
+data(sim.qmatrix, package="CDM")
+
 # fit DINA Model
-mod1 <- CDM::din( CDM::sim.dina, q.matrix=CDM::sim.qmatrix, rule = "DINA")
+mod1 <- CDM::din( sim.dina, q.matrix=sim.qmatrix, rule = "DINA")
 summary(mod1)
 # compute entropy for test and items
 emod1 <- CDM::entropy.lca( mod1 )
@@ -78,8 +81,10 @@ summary(emod1)
 # EXAMPLE 2: Entropy for polytomous GDINA model
 #############################################################################
 
-dat <- CDM::data.pgdina$dat
-q.matrix <- CDM::data.pgdina$q.matrix
+data(data.pgdina, package="CDM")
+
+dat <- data.pgdina$dat
+q.matrix <- data.pgdina$q.matrix
 
 # pGDINA model with "DINA rule"
 mod1 <- CDM::gdina( dat, q.matrix=q.matrix, rule="DINA")
@@ -93,8 +98,10 @@ summary(emod1)
 # EXAMPLE 3: Entropy for MCDINA model
 #############################################################################
 
-dat <- CDM::data.cdm02$data
-q.matrix <- CDM::data.cdm02$q.matrix
+data(data.cdm02, package="CDM")
+
+dat <- data.cdm02$data
+q.matrix <- data.cdm02$q.matrix
 
 # estimate model with polytomous atribute
 mod1 <- CDM::mcdina( dat, q.matrix=q.matrix )

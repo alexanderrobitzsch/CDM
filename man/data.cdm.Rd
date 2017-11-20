@@ -1,5 +1,5 @@
 %% File Name: data.cdm.Rd
-%% File Version: 0.15
+%% File Version: 0.16
 
 \name{data.cdm}
 
@@ -155,8 +155,10 @@ A sequential cognitive diagnosis model for polytomous responses.
 # EXAMPLE 1: Reduced RUM model, Chiu et al. (2016)
 #############################################################################
 
-dat <- CDM::data.cdm03$data
-qmatrix <- CDM::data.cdm03$qmatrix
+data(data.cdm03, package="CDM")
+
+dat <- data.cdm03$data
+qmatrix <- data.cdm03$qmatrix
 
 #*** Model 1: Reduced RUM
 mod1 <- CDM::gdina( dat , q.matrix = qmatrix[,-1], rule="RRUM" )

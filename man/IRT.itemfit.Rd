@@ -1,5 +1,5 @@
 %% File Name: IRT.itemfit.Rd
-%% File Version: 0.06
+%% File Version: 0.07
 
 \name{IRT.itemfit}
 \alias{IRT.itemfit}
@@ -86,8 +86,11 @@ For extracting the individual likelihood or posterior see
 # EXAMPLE 1: DINA model item fit
 #############################################################################
 
+data(sim.dina, package="CDM")
+data(sim.qmatrix, package="CDM")
+
 # estimate model
-mod1 <- CDM::din( CDM::sim.dina, q.matrix=CDM::sim.qmatrix)
+mod1 <- CDM::din( sim.dina, q.matrix=sim.qmatrix)
 # compute item fit
 IRT.itemfit( mod1 )
 }

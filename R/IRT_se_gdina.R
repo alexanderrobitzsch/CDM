@@ -1,5 +1,5 @@
 ## File Name: IRT_se_gdina.R
-## File Version: 0.13
+## File Version: 0.14
 
 IRT_se_gdina <- function(object, h=1E-4)
 {
@@ -90,8 +90,7 @@ IRT_se_gdina <- function(object, h=1E-4)
 	
 	eps <- 1E-20
 	
-	prob_args <- list( progress=FALSE, iter=100, disp="" , 
-				J=J , jj=jj, L=L, aggr.attr.patt=aggr.attr.patt, Mj=Mj, delta=delta, linkfct=linkfct)				
+	prob_args <- list( J=J , jj=jj, L=L, aggr.attr.patt=aggr.attr.patt, Mj=Mj, delta=delta, linkfct=linkfct)				
 	pj0 <- do.call( gdina_calc_prob_one_item , args = prob_args )
 	
 	prob_args1 <- prob_args

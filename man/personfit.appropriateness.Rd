@@ -1,5 +1,5 @@
 %% File Name: personfit.appropriateness.Rd
-%% File Version: 0.15
+%% File Version: 0.17
 
 \name{personfit.appropriateness}
 \alias{personfit.appropriateness}
@@ -107,6 +107,8 @@ diagnosis. \emph{Applied Psychological Measurement}, \bold{33(8)}, 579-598.
 # EXAMPLE 1: DINA model data.ecpe
 #############################################################################
 
+data(data.ecpe, package="CDM")
+
 # fit DINA model 
 mod1 <- CDM::din( CDM::data.ecpe$data[,-1] , q.matrix=CDM::data.ecpe$q.matrix )
 summary(mod1)
@@ -125,7 +127,8 @@ plot(res)
 # EXAMPLE 2: Person fit 2PL model
 #############################################################################
 
-dat <- sirt::data.read
+data(data.read, package="sirt")
+dat <- data.read
 I <- ncol(dat)
 
 # fit 2PL model

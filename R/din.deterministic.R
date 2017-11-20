@@ -1,5 +1,5 @@
 ## File Name: din.deterministic.R
-## File Version: 1.03
+## File Version: 1.04
 
 #####################################################
 # Deterministic din estimation
@@ -68,13 +68,13 @@ din.deterministic <- function( dat , q.matrix , rule="DINA" , method="JML" ,
 		guess <- 1 - colSums(L2) / ( colSums(L1) + .00001 )
 		# update increment	
 		if (maxiter > 1){
-				increment <- guess - guess0
-				max.increment <- max.increment/increment.factor
-				guess <- guess0 +  ifelse( abs( increment) > max.increment , sign(increment)*max.increment , increment )
-				increment <- slip - slip0
-				slip <- slip0 +  ifelse( abs( increment) > max.increment  , sign(increment)*max.increment , increment )		
-			}
-			max.increment <- parchange <- max( abs( c(guess-guess0 , slip-slip0) ) )
+			increment <- guess - guess0
+			max.increment <- max.increment/increment.factor
+			guess <- guess0 +  ifelse( abs( increment) > max.increment , sign(increment)*max.increment , increment )
+			increment <- slip - slip0
+			slip <- slip0 +  ifelse( abs( increment) > max.increment  , sign(increment)*max.increment , increment )		
+		}
+		max.increment <- parchange <- max( abs( c(guess-guess0 , slip-slip0) ) )
 		# extract deviation value
 		if ( method!="JML"){
 			devval <- sum(res$mincrit) } else {

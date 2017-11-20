@@ -1,5 +1,5 @@
 %% File Name: IRT.likelihood.Rd
-%% File Version: 0.16
+%% File Version: 0.17
 
 \name{IRT.likelihood}
 \alias{IRT.likelihood}
@@ -109,8 +109,11 @@ it is a matrix with attributes
 # EXAMPLE 1: Extracting likelihood and posterior from a DINA model
 #############################################################################
 
+data(sim.dina, package="CDM")
+data(sim.qmatrix, package="CDM")
+
 #*** estimate model
-mod1 <- CDM::din( CDM::sim.dina, q.matrix=CDM::sim.qmatrix, rule = "DINA")
+mod1 <- CDM::din( sim.dina, q.matrix=sim.qmatrix, rule="DINA")
 #*** extract likelihood
 likemod1 <- CDM::IRT.likelihood(mod1)
 str(likemod1)

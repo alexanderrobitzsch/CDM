@@ -1,5 +1,5 @@
 %% File Name: item_by_group.Rd
-%% File Version: 0.13
+%% File Version: 0.15
 
 \name{item_by_group}
 \alias{item_by_group}
@@ -63,7 +63,8 @@ Extended dataset with item responses
 # EXAMPLE 1: Create dataset with group-specific item responses
 #############################################################################
 
-dat <- CDM::data.mg
+data(data.mg, package="CDM")
+dat <- data.mg
 
 #-- create dataset with group-specific item responses
 dat0 <- CDM::item_by_group( dat = dat[,paste0("I",1:5)] , group=dat$group )
@@ -81,5 +82,5 @@ colnames(dat1)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+%\keyword{ ~kwd1 }
+%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

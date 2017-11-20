@@ -1,5 +1,5 @@
 %% File Name: ideal.response.pattern.Rd
-%% File Version: 0.07
+%% File Version: 0.08
 
 \name{ideal.response.pattern}
 \alias{ideal.response.pattern}
@@ -62,7 +62,9 @@ A list with following entries
 # EXAMPLE 1: Ideal response pattern sim.qmatrix
 #############################################################################
 
-q.matrix <- CDM::sim.qmatrix
+data(sim.qmatrix, package="CDM")
+
+q.matrix <- sim.qmatrix
 CDM::ideal.response.pattern( q.matrix )
 
 # compute ideal responses for a reduced skill space

@@ -1,5 +1,5 @@
 %% File Name: data.ecpe.Rd
-%% File Version: 0.18
+%% File Version: 0.19
 
 \name{data.ecpe}
 \alias{data.ecpe}
@@ -74,9 +74,10 @@ Obtaining diagnostic classification model estimates using Mplus.
 
 \examples{
 \dontrun{
+data(data.ecpe, package="CDM")
 	
-dat <- CDM::data.ecpe$data[,-1]
-Q <- CDM::data.ecpe$q.matrix
+dat <- data.ecpe$data[,-1]
+Q <- data.ecpe$q.matrix
 	
 #*** Model 1: LCDM model 
 mod1 <- CDM::gdina( dat, q.matrix=Q, link="logit")

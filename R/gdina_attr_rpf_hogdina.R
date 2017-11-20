@@ -1,13 +1,15 @@
 ## File Name: gdina_attr_rpf_hogdina.R
-## File Version: 0.08
+## File Version: 0.14
 
 
 ####################################
 # function for calculating attribute response function
-gdina_attr_rpf_hogdina <- function( attr.patt , attr.prob , theta.k , wgt.theta , HOGDINA )
+gdina_attr_rpf_hogdina <- function( attr.patt , attr.prob , theta.k , wgt.theta , HOGDINA,
+		tetrachoric = NULL )
 { 
 	#- use weights for calculation of tetrachoric correlation
-	wc <- cdm_tetrachoric( dat=attr.patt, weights=attr.prob, maxit=200 )
+	wc <- cdm_tetrachoric( dat=attr.patt, weights=attr.prob, rho_init= tetrachoric$rho,
+					maxit=200 )
 	b <-  wc$tau
 	NB <- length(b)
 	TP <- length(theta.k)
@@ -36,7 +38,8 @@ gdina_attr_rpf_hogdina <- function( attr.patt , attr.prob , theta.k , wgt.theta 
 	}
 	# expected attribute probabilities
 	attr.prob.exp <- rowSums( probsAP * matrix( wgt.theta , nrow=NAP , ncol=TP , byrow=TRUE ) )
-	res <- list( a.attr = L1 , b.attr = b1 , attr.prob.exp = attr.prob.exp )
+	res <- list( a.attr = L1 , b.attr = b1 , attr.prob.exp = attr.prob.exp,
+					tetrachoric = wc)
     return(res)
 }
 #####################################################################

@@ -1,5 +1,5 @@
 %% File Name: data.hr.Rd
-%% File Version: 0.12
+%% File Version: 0.13
 
 \name{data.hr}
 \alias{data.hr}
@@ -53,9 +53,10 @@ of a high stakes reading comprehension test: A pedagogical demonstration.
 
 \examples{
 \dontrun{
+data(data.hr, package="CDM")
 	
-dat <- CDM::data.hr$data	
-Q <- CDM::data.hr$q.matrix
+dat <- data.hr$data	
+Q <- data.hr$q.matrix
 
 #*************
 # Model 1: DINA model

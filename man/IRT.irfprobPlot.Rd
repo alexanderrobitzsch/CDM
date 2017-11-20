@@ -1,5 +1,5 @@
 %% File Name: IRT.irfprobPlot.Rd
-%% File Version: 0.11
+%% File Version: 0.12
 
 \name{IRT.irfprobPlot}
 \alias{IRT.irfprobPlot}
@@ -83,12 +83,14 @@ More arguments to be passed for the plot in \pkg{lattice}.
 # EXAMPLE 1: Plot item response functions from a unidimensional model
 #############################################################################
 
-dat <- CDM::data.Students
+data(data.Students, package="CDM")
+
+dat <- data.Students
 resp <- dat[ , paste0("sc",1:4) ]
 resp[ paste(resp[,1]) == 3 ,1] <-  2
 psych::describe(resp)
 
-#--- Model 1: PCM in gdm
+#--- Model 1: PCM in CDM::gdm
 theta.k <- seq( -5 , 5 , len=21 )
 mod1 <- CDM::gdm( dat = resp , irtmodel="1PL" , theta.k=theta.k , skillspace="normal" ,
            centered.latent=TRUE)

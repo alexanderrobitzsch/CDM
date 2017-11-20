@@ -1,5 +1,5 @@
 %% File Name: modelfit.cor.Rd
-%% File Version: 1.52
+%% File Version: 1.53
 
 \name{modelfit.cor}
 \alias{modelfit.cor}
@@ -204,8 +204,10 @@ The function \code{modelfit.cor2} has the same functionality as
 # EXAMPLE 1: Model fit for sim.dina
 #############################################################################
 
-dat <- CDM::sim.dina
-q.matrix <- CDM::sim.qmatrix
+data(sim.dina, package="CDM")
+data(sim.qmatrix, package="CDM")
+dat <- sim.dina
+q.matrix <- sim.qmatrix
 
 #*** Model 1: DINA model for DINA simulated data
 mod1 <- CDM::din(dat, q.matrix = q.matrix, rule = "DINA" )

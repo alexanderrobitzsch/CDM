@@ -1,5 +1,5 @@
 %% File Name: cdm.est.class.accuracy.Rd
-%% File Version: 1.14
+%% File Version: 1.15
 
 \name{cdm.est.class.accuracy}
 \alias{cdm.est.class.accuracy}
@@ -77,9 +77,12 @@ diagnostic assessment.
 # EXAMPLE 1: DINO data example
 #############################################################################
 
+data(sim.dino, package="CDM")
+data(sim.qmatrix, package="CDM")
+
 #***
 # Model 1: estimate DINO model with din
-mod1 <- CDM::din( CDM::sim.dino , q.matrix = CDM::sim.qmatrix , rule="DINO")
+mod1 <- CDM::din( sim.dino , q.matrix = sim.qmatrix , rule="DINO")
 # estimate classification reliability
 cdm.est.class.accuracy(  mod1 , n.sims=5000)
   ##                P_a P_a_sim   P_c P_c_sim
@@ -91,7 +94,7 @@ cdm.est.class.accuracy(  mod1 , n.sims=5000)
 
 #***
 # Model 2: estimate DINO model with gdina
-mod2 <- CDM::gdina( CDM::sim.dino , q.matrix = CDM::sim.qmatrix , rule="DINO")
+mod2 <- CDM::gdina( sim.dino , q.matrix = sim.qmatrix , rule="DINO")
 # estimate classification reliability
 cdm.est.class.accuracy(  mod2 )
   ##                P_a   P_c

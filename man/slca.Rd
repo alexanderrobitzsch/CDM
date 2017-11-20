@@ -1,5 +1,5 @@
 %% File Name: slca.Rd
-%% File Version: 1.78
+%% File Version: 1.802
 
 \name{slca}
 \alias{slca}
@@ -294,7 +294,9 @@ For mixture Rasch or mixture IRT models see the \pkg{psychomix} or
 # EXAMPLE 1: data.Students | (Generalized) Partial Credit Model
 #############################################################################
 
-dat <- CDM::data.Students[ , c("mj1","mj2","mj3","mj4","sc1" , "sc2") ]
+data(data.Students, package="CDM")
+
+dat <- data.Students[ , c("mj1","mj2","mj3","mj4","sc1" , "sc2") ]
 # define discretized ability
 theta.k <- seq( -6 , 6 , len=21 )
 
@@ -719,10 +721,10 @@ sd1 <- 1.4
 sd2 <- 1
 # item difficulties
 b <- seq( -1.1, 1.1 , len=I )
-# define some DIF effects and center
+# define some DIF effects
 dif <- rep(0,I)
 dif[ c(3,6,9,12)] <- c( .6 , -1, .75 , -.35 )
-dif
+print(dif)
 #* simulate datasets
 dat1 <- sirt::sim.raschtype( rnorm(N, mean=mu1, sd=sd1) , b = b - dif /2 )
 colnames(dat1) <- paste0("I", 1:I, "_G1")
@@ -732,7 +734,7 @@ dat <- CDM::CDM_rbind_fill( dat1 , dat2 )
 dat <- data.frame( "group" = rep(1:2, each=N) , dat )
 
 #-- nodes for distribution
-theta.k <- seq(-4,4,len=11)
+theta.k <- seq(-4, 4, len=11)
 # define design matrix for lambda
 nitems <- ncol(dat) - 1
 maxK <- 2

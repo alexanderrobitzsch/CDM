@@ -1,5 +1,5 @@
 %% File Name: data.dtmr.Rd
-%% File Version: 0.12
+%% File Version: 0.13
 
 \name{data.dtmr}
 \alias{data.dtmr}
@@ -61,8 +61,10 @@ multidimensional test within the diagnostic classification framework.
 
 \examples{
 \dontrun{
-data <- CDM::data.dtmr$data
-q.matrix <- CDM::data.dtmr$q.matrix
+data(data.dtmr, package="CDM")
+
+data <- data.dtmr$data
+q.matrix <- data.dtmr$q.matrix
 I <- ncol(data)
 
 #*** Model 1: LCDM

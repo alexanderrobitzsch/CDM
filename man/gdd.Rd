@@ -1,5 +1,5 @@
 %% File Name: gdd.Rd
-%% File Version: 0.11
+%% File Version: 0.13
 
 \name{gdd}
 \alias{gdd}
@@ -82,12 +82,15 @@ A polytomous extension of the generalized distance discriminating method.
 # EXAMPLE 1: GDD for sim.dina
 #############################################################################	
 
-q.matrix <- CDM::sim.qmatrix
-data <- CDM::sim.dina
+data(sim.dina, package="CDM")
+data(sim.qmatrix, package="CDM")
+
+data <- sim.dina
+q.matrix <- sim.qmatrix
 
 # estimate 1PL (use irtmodel="2PL" for 2PL estimation)
 mod <- CDM::gdm( data , irtmodel="1PL" , theta.k=seq(-6,6,len=21) , 
-            decrease.increments=TRUE , conv=.001 , globconv=.001)
+                    decrease.increments=TRUE , conv=.001 , globconv=.001)
 # extract item parameters in parametrization b + a*theta
 b <- mod$b[,1]
 a <- mod$a[,,1]

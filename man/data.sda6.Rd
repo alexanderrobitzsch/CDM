@@ -1,5 +1,5 @@
 %% File Name: data.sda6.Rd
-%% File Version: 0.08
+%% File Version: 0.09
 
 \name{data.sda6}
 \alias{data.sda6}
@@ -66,8 +66,10 @@ classification modeling in student learning outcomes assessment.
 
 \examples{
 \dontrun{	
-data <- CDM::data.sda6$data
-q.matrix <- CDM::data.sda6$q.matrix
+data(data.sda6, package="CDM")
+
+data <- data.sda6$data
+q.matrix <- data.sda6$q.matrix
 
 #*** Model 1a: LCDM with gdina
 mod1a <- CDM::gdina( data , q.matrix , rule="ACDM" , linkfct="logit" ,

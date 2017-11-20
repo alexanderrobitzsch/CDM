@@ -1,5 +1,5 @@
 %% File Name: IRT.expectedCounts.Rd
-%% File Version: 0.06
+%% File Version: 0.08
 
 \name{IRT.expectedCounts}
 \alias{IRT.expectedCounts}
@@ -80,7 +80,8 @@ categories, latent classes and groups.
 # EXAMPLE 1: Expected counts gdm function
 #############################################################################	
 
-dat <- CDM::data.fraction1$data
+data(data.fraction1, package="CDM")
+dat <- data.fraction1$data
 theta.k <- seq( -6 , 6 , len=11 )   # discretized ability
 
 #--- Model 1: Rasch model
@@ -93,10 +94,13 @@ str(emod1)
 # EXAMPLE 2: Expected counts gdina function
 #############################################################################
 
+data(sim.dina, package="CDM")
+data(sim.qmatrix, package="CDM")
+
 #--- Model 1: estimation of the GDINA model
-mod1 <- CDM::gdina( data = CDM::sim.dina ,  q.matrix = CDM::sim.qmatrix)
+mod1 <- CDM::gdina( data = sim.dina, q.matrix = sim.qmatrix)
 summary(mod1)
-emod1 <- CDM::IRT.expectedCounts( mod1 )
+emod1 <- CDM::IRT.expectedCounts(mod1)
 str(emod1)
 
 #--- Model 2: GDINA model with two groups

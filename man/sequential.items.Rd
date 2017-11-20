@@ -1,5 +1,5 @@
 %% File Name: sequential.items.Rd
-%% File Version: 0.13
+%% File Version: 0.14
 
 \name{sequential.items}
 \alias{sequential.items}
@@ -100,7 +100,8 @@ New York: Springer.
 # EXAMPLE 1: Constructing sequential pseudo items for data.mg
 #############################################################################
 
-dat <- CDM::data.mg
+data(data.mg, package="CDM")
+dat <- data.mg
 items <- colnames(dat)[ which( substring( colnames(dat) ,1,1)=="I" ) ]
 ##    [1] "I1"  "I2"  "I3"  "I4"  "I5"  "I6"  "I7"  "I8"  "I9"  "I10" "I11"
 data <- dat[,items]

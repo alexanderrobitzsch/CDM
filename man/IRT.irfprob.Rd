@@ -1,5 +1,5 @@
 %% File Name: IRT.irfprob.Rd
-%% File Version: 0.14
+%% File Version: 0.15
 
 \name{IRT.irfprob}
 \alias{IRT.irfprob}
@@ -98,12 +98,14 @@ For extracting the individual likelihood or posterior see
 # EXAMPLE 1: Extracting item response functions mcdina model
 #############################################################################
 
-dat <- CDM::data.cdm02$data
-q.matrix <- CDM::data.cdm02$q.matrix
+data(data.cdm02, package="CDM")
 
-# estimate model
+dat <- data.cdm02$data
+q.matrix <- data.cdm02$q.matrix
+
+#-- estimate model
 mod1 <- CDM::mcdina( dat, q.matrix=q.matrix)
-# extract item response functions
+#-- extract item response functions
 prmod1 <- CDM::IRT.irfprob(mod1)
 str(prmod1)
 }

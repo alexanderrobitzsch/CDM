@@ -1,5 +1,5 @@
 %% File Name: IRT.repDesign.Rd
-%% File Version: 0.14
+%% File Version: 0.16
 
 \name{IRT.repDesign}
 \alias{IRT.repDesign}
@@ -104,6 +104,7 @@ library(BIFIEsurvey)
 # EXAMPLE 1: Design with Jackknife replicate weights in TIMSS
 #############################################################################
 
+data(data.timss11.G4.AUT, package="CDM")
 dat <- CDM::data.timss11.G4.AUT$data
 # generate design
 rdes <- CDM::IRT.repDesign( data= dat,  wgt = "TOTWGT" , jktype="JK_TIMSS" , 
@@ -114,6 +115,7 @@ str(rdes)
 # EXAMPLE 2: Bootstrap resampling
 #############################################################################
 
+data(sim.qmatrix, package="CDM")
 q.matrix <- CDM::sim.qmatrix
 
 # simulate data according to the DINA model

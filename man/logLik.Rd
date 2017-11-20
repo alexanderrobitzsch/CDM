@@ -1,5 +1,5 @@
 %% File Name: logLik.Rd
-%% File Version: 0.15
+%% File Version: 0.16
 
 \name{logLik}
 \alias{logLik.din}
@@ -41,8 +41,11 @@
 }
 
 \examples{
+data(sim.dina, package="CDM")
+data(sim.qmatrix, package="CDM")
+
 # logLik method | DINA model
-d1 <- CDM::din( CDM::sim.dina, q.matr = CDM::sim.qmatrix, rule = "DINA")
+d1 <- CDM::din( sim.dina, q.matrix=sim.qmatrix, rule = "DINA")
 summary(d1)
 lld1 <- logLik(d1)
   ##   > lld1

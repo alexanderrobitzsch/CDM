@@ -1,5 +1,5 @@
 ## File Name: equivalent.dina.R
-## File Version: 2.12
+## File Version: 2.14
 equivalent.dina <- function (q.matrix, reparametrization = "B") 
 {
 	K <- ncol(q.matrix)
@@ -49,10 +49,10 @@ equivalent.dina <- function (q.matrix, reparametrization = "B")
 		L1 <- length( uqclasses )
 		q.matrix.ast <- matrix(0, I, L1)
 		q.matrix.ast[ cbind(1:I , qclasses) ] <- 1
-		qclasses[ is.na(qclasses) ] <- -9		
-        rownames(q.matrix.ast) <- rownames(q.matrix)
+		qclasses[ is.na(qclasses) ] <- -9
+		rownames(q.matrix.ast) <- rownames(q.matrix)
 		v1 <- rep( "" , L1 )	
-		for (cc in 1:L1){			
+		for (cc in 1:L1){
 			q_cc <- q.matrix[ which(qclasses == cc) ,  , drop=FALSE]
 			q_cc <- q_cc[1,]
 			v1[cc] <- paste0("S*" , paste0( q_cc , collapse= "" ) )
@@ -99,7 +99,7 @@ equivalent.dina <- function (q.matrix, reparametrization = "B")
 		q.matrix.ast <- q.matrix.ast[, -1]
 	}
 	#--- OUTPUT
-    res <- list(q.matrix = q.matrix, q.matrix.ast = q.matrix.ast,
+	res <- list(q.matrix = q.matrix, q.matrix.ast = q.matrix.ast,
 					alpha=alpha, alpha.ast=alpha.ast )
-    return(res)
+	return(res)
 }

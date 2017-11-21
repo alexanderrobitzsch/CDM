@@ -1,17 +1,18 @@
 ## File Name: summary.IRT.RMSD.R
-## File Version: 0.09
+## File Version: 0.11
 
 
 #*******************************************************
 # Summary
-summary.IRT.RMSD <- function( object , file = NULL , digits = 3 , ... ){
-    	
- 	osink( file = file , suffix = paste0( "__SUMMARY.Rout") )
+summary.IRT.RMSD <- function( object , file = NULL , digits = 3 , ... )
+{
 
-    cat("-----------------------------------------------------------------------------\n")
-    d1 <- utils::packageDescription("CDM")
+	osink( file = file , suffix = paste0( "__SUMMARY.Rout") )
+
+	cat("-----------------------------------------------------------------------------\n")
+	d1 <- utils::packageDescription("CDM")
 	cat( paste( d1$Package , " " , d1$Version , " (" , d1$Date , ")" , sep="") , "\n\n" )
-    
+
 	G <- object$G
 	
 	cat("Call:\n")
@@ -43,7 +44,7 @@ summary.IRT.RMSD <- function( object , file = NULL , digits = 3 , ... ){
 	res0 <- summary.IRT.RMSD_print_statistics( stat_summary = object$MD_summary , 
 				stat = object$MD , digits=digits)		
 	
-    csink( file = file )
+	csink( file = file )
 
 }
 #*******************************************************

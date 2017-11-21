@@ -1,12 +1,13 @@
 ## File Name: vcov.loglike.din.R
-## File Version: 0.02
+## File Version: 0.04
 
 
 #########################################################################
 # compute log-likelihood for din objects
 vcov.loglike.din <- function( weights , skillprobs0 , slip0 , guess0 ,
-	     latresp , item.patt.split , resp.ind.list ,
-		 return.p.xi.aj=FALSE ){
+		latresp , item.patt.split , resp.ind.list ,
+		return.p.xi.aj=FALSE )
+{
 	########################
 	IP <- N <- length(weights)
 	L <- length(skillprobs0)
@@ -22,17 +23,17 @@ vcov.loglike.din <- function( weights , skillprobs0 , slip0 , guess0 ,
 	# calculate log-likelihood
 	h1 <- matrix( 1 , nrow=IP , ncol=L )
 	res.hwt <- calc_posterior.v2(rprobs= pjM , gwt=h1 , resp=item.patt.split , 
-									 nitems= J , 
-									 resp.ind.list=resp.ind.list , normalization=FALSE , 
-									 thetasamp.density= NULL , snodes=0 )
+									nitems= J , 
+									resp.ind.list=resp.ind.list , normalization=FALSE , 
+									thetasamp.density= NULL , snodes=0 )
 	p.xi.aj <- res.hwt$hwt
 	# Log-Likelihood (casewise)
 	ll2 <- log( rowSums( p.xi.aj * skillprobsM ) )
 	if (return.p.xi.aj){	
 		res <- list( "ll" = ll2 , "p.xi.aj"=p.xi.aj )			
-			}  else { 
+	}  else { 
 		res <- ll2 
-				}
+	}
 	return(res)
-			}
+}
 #########################################################################	

@@ -1,5 +1,5 @@
 ## File Name: slca.R
-## File Version: 1.849
+## File Version: 1.852
 
 
 ###########################################
@@ -32,7 +32,7 @@ slca <- function( data , group=NULL,
 	## gdm: no visible binding for global variable 'TD'
 	TD <- TP <- EAP.rel <- mean.trait <- sd.trait <- skewness.trait <- NULL
 	K.item <- correlation.trait <- NULL 
-    se.theta.k <- NULL
+	se.theta.k <- NULL
 	
 	#-- data processing
 	res <- slca_proc_data(data=data)
@@ -153,7 +153,7 @@ slca <- function( data , group=NULL,
 		dev0 <- dev
 		delta0 <- delta
 		pi.k0 <- pi.k
- 		
+
 		#--- 1 calculate probabilities
 		probs <- slca_calc_prob( XdesM=XdesM, dimXdes=dimXdes, Xlambda=Xlambda ) 
 
@@ -183,18 +183,18 @@ slca <- function( data , group=NULL,
 		# n.ik  [1:TP,1:I,1:K,1:G]
 		# probs[1:I,1:K,1:TP]
 
-        res <- slca_est_Xlambda( Xlambda=Xlambda, Xdes=Xdes, probs=probs, n.ik1=n.ik1, N.ik1=N.ik1, I=I, K=K, G=G, 
-					 max.increment=max.increment, TP=TP, msteps=msteps, convM=convM, 
-					 Xlambda.fixed=Xlambda.fixed, XdesM=XdesM, dimXdes=dimXdes, oldfac=oldfac, 
-					 decrease.increments=decrease.increments, dampening_factor=dampening_factor, 
-					 Xlambda.constr.V=Xlambda.constr.V, e2=e2, V1=V1, regularization=regularization, 
-					 regular_lam_used=regular_lam_used, regular_n=regular_n, Xlambda_positive=Xlambda_positive,
-					 regular_type=regular_type ) 
+	res <- slca_est_Xlambda( Xlambda=Xlambda, Xdes=Xdes, probs=probs, n.ik1=n.ik1, N.ik1=N.ik1, I=I, K=K, G=G, 
+					max.increment=max.increment, TP=TP, msteps=msteps, convM=convM, 
+					Xlambda.fixed=Xlambda.fixed, XdesM=XdesM, dimXdes=dimXdes, oldfac=oldfac, 
+					decrease.increments=decrease.increments, dampening_factor=dampening_factor, 
+					Xlambda.constr.V=Xlambda.constr.V, e2=e2, V1=V1, regularization=regularization, 
+					regular_lam_used=regular_lam_used, regular_n=regular_n, Xlambda_positive=Xlambda_positive,
+					regular_type=regular_type ) 
 		Xlambda <- res$Xlambda
 		se.Xlambda <- res$se.Xlambda
 		max.increment <- res$max.increment	
 		regular_penalty <- res$regular_penalty
-					
+
 		#*****
 		#7 M step: estimate reduced skillspace
 		res <- slca_est_skillspace( Ngroup=Ngroup, pi.k=pi.k, delta.designmatrix=delta.designmatrix, G=G, delta=delta, 
@@ -220,21 +220,22 @@ slca <- function( data , group=NULL,
 			#-- apply general acceleration function
 			res <- cdm_pem_acceleration( iter=iter, pem_parameter_index=pem_parameter_index, 
 						pem_parameter_sequence=pem_parameter_sequence, pem_pars=pem_pars, 
-						PEM_itermax=PEM_itermax, parmlist=parmlist, ll_fct=ll_fct, ll_args=ll_args, deviance.history=deviance.history )
+						PEM_itermax=PEM_itermax, parmlist=parmlist, ll_fct=ll_fct, ll_args=ll_args, 
+						deviance.history=deviance.history )
 			#-- collect output					
 			PEM <- res$PEM
 			pem_parameter_sequence <- res$pem_parameter_sequence
 			cdm_pem_acceleration_assign_output_parameters( res_ll_fct=res$res_ll_fct, 
 							vars=pem_output_vars , envir=envir, update=res$pem_update ) 			
 		}			
-		 
+
 		#*****
 		#8 calculate likelihood
 		# n.ik [ TP , I , K+1 , G ]
 		# N.ik [ TP , I , G ]
 		# probs [I , K+1 , TP ]
-		ll <- slca_calc_likelihood( G=G, use.freqpatt=use.freqpatt, ind.group=ind.group, p.xi.aj=p.xi.aj, pi.k=pi.k, 
-					weights=weights ) 							
+		ll <- slca_calc_likelihood( G=G, use.freqpatt=use.freqpatt, ind.group=ind.group, 
+					p.xi.aj=p.xi.aj, pi.k=pi.k, weights=weights ) 
 		dev <- -2*ll	
 		deviance.history[iter+1] <- dev					
 
@@ -246,8 +247,9 @@ slca <- function( data , group=NULL,
 		globconv1 <- abs( dev - dev0) 
 		iter <- iter +1
 		#---- print progress
-		res <- slca_print_progress_em_algorithm( progress=progress, disp=disp, iter=iter, dev=dev, dev0=dev0, deltadiff=deltadiff, 
-				Xlambda_change=pardiff, regularization=regularization, regular_penalty=regular_penalty ) 
+		res <- slca_print_progress_em_algorithm( progress=progress, disp=disp, iter=iter, 
+					dev=dev, dev0=dev0, deltadiff=deltadiff, 
+					Xlambda_change=pardiff, regularization=regularization, regular_penalty=regular_penalty ) 
 		if ( globconv1 < globconv ){
 			iterate <- FALSE
 		}
@@ -306,10 +308,11 @@ slca <- function( data , group=NULL,
 	rownames(item) <- paste0( rep(colnames(dat) , each=maxK) , "_Cat" , rep(0:K , I) )		
 		
 	#-- Information criteria
-    ic <- slca_calc_ic( dev=dev, dat=dat, G=G, K=K, TP=TP, I=I, delta.designmatrix=delta.designmatrix, delta.fixed=delta.fixed, 
-				Xlambda=Xlambda, Xlambda.fixed=Xlambda.fixed, data0=data0, deltaNULL=deltaNULL, 
-				Xlambda.constr.V=Xlambda.constr.V, regularization=regularization, 
-				regular_indicator_parameters=regular_indicator_parameters, Xlambda_positive=Xlambda_positive ) 
+	ic <- slca_calc_ic( dev=dev, dat=dat, G=G, K=K, TP=TP, I=I, delta.designmatrix=delta.designmatrix, 
+						delta.fixed=delta.fixed, Xlambda=Xlambda, Xlambda.fixed=Xlambda.fixed, 
+						data0=data0, deltaNULL=deltaNULL, Xlambda.constr.V=Xlambda.constr.V, 
+						regularization=regularization, regular_indicator_parameters=regular_indicator_parameters,
+						Xlambda_positive=Xlambda_positive ) 
 	#########################################
 	# item fit [ items , theta , categories ] 
 	# # n.ik [ 1:TP , 1:I , 1:(K+1) , 1:G ]

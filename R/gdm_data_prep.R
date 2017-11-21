@@ -1,5 +1,5 @@
 ## File Name: gdm_data_prep.R
-## File Version: 0.03
+## File Version: 0.04
 
 
 ############################################
@@ -27,8 +27,7 @@ gdm_data_prep <- function( dat , data , weights , group )
 		G <- length(gr2)
 		group <- match( group , gr2 )
 	}	
-    # calculate frequency of each item response pattern
-	# case of one group
+	# calculate frequency of each item response pattern in case of one group
 	if (G==1){ 
 		if ( is.null(weights) ){ weights <- rep(1,N) }
 		a2 <- rowsum( weights , item.patt.subj) 

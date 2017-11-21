@@ -1,10 +1,10 @@
 ## File Name: gdina_post_skill_pattern.R
-## File Version: 0.01
+## File Version: 0.02
 
 gdina_post_skill_pattern <- function( attr.prob, G, attr.patt.c, K, maxAttr, q.matrix,
 		q.entries, attr.patt )
 {
-    # attribute pattern
+	# attribute pattern
 	if (G==1){ 
 		attr.prob <- matrix( attr.prob, ncol=1)
 		colnames( attr.prob ) <- "class.prob"		
@@ -15,7 +15,7 @@ gdina_post_skill_pattern <- function( attr.prob, G, attr.patt.c, K, maxAttr, q.m
 	rownames( attr.prob ) <- attr.patt.c	
 	mA <- max(maxAttr)	
 	if (G==1){   
-	    sp <- NULL 
+		sp <- NULL 
 		for (kk in 0:mA ){
 			skill.patt <- matrix(apply( matrix( rep( attr.prob, K ), ncol=K) * 
 					(attr.patt==kk), 2, sum ),ncol=1)
@@ -23,7 +23,7 @@ gdina_post_skill_pattern <- function( attr.prob, G, attr.patt.c, K, maxAttr, q.m
 			colnames(skill.patt) <- paste0("skill.prob" ,kk )
 			sp <- cbind( sp , skill.patt )
 		}
-        skill.patt <- sp
+		skill.patt <- sp
 		for (kk in 1:K){ 
 			ind.kk <- setdiff( 1:mA , 1 + q.entries[[kk]] )
 			if ( length(ind.kk) > 0 ){ 

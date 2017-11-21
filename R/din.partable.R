@@ -1,5 +1,5 @@
 ## File Name: din.partable.R
-## File Version: 0.16
+## File Version: 0.17
 
 ##############################################
 # parameter table for the din model
@@ -16,7 +16,7 @@ din.partable <- function( guess ,  slip , attribute.patt , data , rule ,
 	#**************
 	# create parameter table
 	partable <- data.frame( "partype" = c( rep( c("guess","slip") , J) , 
-						  rep("probs" , L)  , rep("margprobs" , K ) )
+						rep("probs" , L)  , rep("margprobs" , K ) )
 							) 
 	partable$parindex <- c( 1:J , J + 1:J , 2*J + 1:(L-1) , 0 , rep( 0 , K ))
 	partable$item <- c( rep(1:J , each=2 ) , rep(0,L+K) )
@@ -91,7 +91,7 @@ din.partable <- function( guess ,  slip , attribute.patt , data , rule ,
 	v2 <- intersect( setdiff( probs_names , v1 ) , estpars )
 	A[ v1 , v2 ] <- - 1	
 	# marginal skill probabilities
-    rownames(attribute.patt.splitted) <- probs_names
+	rownames(attribute.patt.splitted) <- probs_names
 	colnames(attribute.patt.splitted) <- 
 			partable[ partable$partype == "margprobs" , "parnames" ]
 	attribute.patt.splitted <- ( attribute.patt.splitted - 1 ) 

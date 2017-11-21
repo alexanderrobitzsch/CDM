@@ -1,5 +1,5 @@
 ## File Name: IRT.irfprob.R
-## File Version: 0.08
+## File Version: 0.09
 
 ###########################################################
 # extracts the individual irfprob
@@ -26,26 +26,28 @@ IRT.irfprob.din <- function( object , ... )
 
 ###########################################################
 # object of class gdina
-IRT.irfprob.gdina <- function( object , ... ){
-    ll <- object$pjk
+IRT.irfprob.gdina <- function( object , ... )
+{
+	ll <- object$pjk
 	dimnames(ll)[[1]] <- colnames(object$data)
-    attr(ll,"theta") <- object$attribute.patt.splitted
+	attr(ll,"theta") <- object$attribute.patt.splitted
 	attr(ll,"prob.theta") <- object$attribute.patt[ , 1:object$G ]
 	attr(ll,"G") <- object$G	
-    return(ll)
-        }
+	return(ll)
+}
 ############################################################		
 
 ###########################################################
 # object of class mcdina
-IRT.irfprob.mcdina <- function( object , ... ){
-    ll <- object$pik
+IRT.irfprob.mcdina <- function( object , ... )
+{
+	ll <- object$pik
 	dimnames(ll)[[1]] <- colnames(object$data)
-    attr(ll,"theta") <- object$attribute.patt.splitted
+	attr(ll,"theta") <- object$attribute.patt.splitted
 	attr(ll,"prob.theta") <- object$attribute.patt
 	attr(ll,"G") <- object$G
-    return(ll)
-        }
+	return(ll)
+}
 ############################################################	
 
 ###########################################################
@@ -69,7 +71,7 @@ IRT.irfprob.slca <- function( object , ... )
 	dimnames(ll)[[1]] <- colnames(object$data)
 	attr(ll,"theta") <- NA
 	res <- list( "delta" = object$delta , 
-	             "delta.designmatrix" = object$delta.designmatrix )
+				"delta.designmatrix" = object$delta.designmatrix )
 	attr(ll,"skillspace") <- res
 	attr(ll,"prob.theta") <- object$pi.k
 	attr(ll,"G") <- object$G

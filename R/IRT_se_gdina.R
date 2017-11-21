@@ -1,10 +1,8 @@
 ## File Name: IRT_se_gdina.R
-## File Version: 0.14
+## File Version: 0.15
 
 IRT_se_gdina <- function(object, h=1E-4)
 {
-
-
 	dat <- object$dat
 	resp.ind.list <- object$resp.ind.list
 	delta <- object$delta
@@ -60,7 +58,7 @@ IRT_se_gdina <- function(object, h=1E-4)
 		}
 	}
 	
-    arglist <- list( J=J, L=L, aggr.attr.patt=aggr.attr.patt, Mj=Mj, 
+	arglist <- list( J=J, L=L, aggr.attr.patt=aggr.attr.patt, Mj=Mj, 
 					delta=delta, linkfct=linkfct, IP=IP, 
 					item.patt.split=item.patt.split, resp.ind.list=resp.ind.list, 
 					zeroprob.skillclasses=zeroprob.skillclasses, G=G, item.patt.freq=item.patt.freq,
@@ -143,8 +141,8 @@ IRT_se_gdina <- function(object, h=1E-4)
 # Revalpr("d1b")
 		
 	beta1[bb,gg] <- beta[bb,gg] + h	
-    skill_args <- list( beta=beta1, Z.skillspace=Z.skillspace, reduced.skillspace=reduced.skillspace, G=G) 
-    attr.prob1 <- do.call( what=IRT_se_gdina_calc_skill_distribution, args=skill_args )
+	skill_args <- list( beta=beta1, Z.skillspace=Z.skillspace, reduced.skillspace=reduced.skillspace, G=G) 
+	attr.prob1 <- do.call( what=IRT_se_gdina_calc_skill_distribution, args=skill_args )
 						
 	beta1[bb,gg] <- beta[bb,gg] - h
 	skill_args$beta <- beta1

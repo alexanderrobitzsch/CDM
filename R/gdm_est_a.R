@@ -1,5 +1,5 @@
 ## File Name: gdm_est_a.R
-## File Version: 0.07
+## File Version: 0.08
 
 ###########################################
 # estimation of a
@@ -63,13 +63,13 @@ gdm_est_a <- function(probs, n.ik, N.ik, I, K, G,a,a.constraint,TD,
 		}	
 		
 		#--- constraints
-        res <- gdm_est_a_constraints( a=a, se.a=se.a, a.constraint=a.constraint, increment=increment ) 
+		res <- gdm_est_a_constraints( a=a, se.a=se.a, a.constraint=a.constraint, increment=increment ) 
 		a <- res$a
 		se.a <- res$se.a
 		increment <- res$increment
 		
 		#--- centerslopes
-        a <- gdm_est_a_centerslopes( a=a, centerslopes=centerslopes, Qmatrix=Qmatrix, TD=TD ) 
+		a <- gdm_est_a_centerslopes( a=a, centerslopes=centerslopes, Qmatrix=Qmatrix, TD=TD ) 
 		
 		parchange <- max( abs(a-a0) )
 		iter <- iter + 1

@@ -1,5 +1,5 @@
 ## File Name: abs_approx.R
-## File Version: 0.04
+## File Version: 0.05
 
 
 # quadratic approximation of the absolute value function

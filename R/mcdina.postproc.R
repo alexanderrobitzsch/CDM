@@ -1,48 +1,51 @@
 ## File Name: mcdina.postproc.R
-## File Version: 0.10
+## File Version: 0.12
 
 #################################################
 # mcdina information criteria
 mcdina.calc.ic <- function( dev, weights , itemstat , pi.k , G , I ,
-			zeroprob.skillclasses ,  reduced.skillspace , Z ){
+			zeroprob.skillclasses ,  reduced.skillspace , Z )
+{
 	ic <- list( "deviance" = dev , "n" = sum(weights) , "loglik" = -dev/2 )
 	ic$G <- G
 	ic$itempars <- sum( itemstat$N.pars)
 	ic$traitpars <- G*(nrow(pi.k)-1 - length( zeroprob.skillclasses ) )
 	if ( reduced.skillspace ){
 		ic$traitpars <- G * ncol(Z) 
-				}	
+	}	
 	ic$np <- ic$itempars + ic$traitpars	
 	ic$Nskillclasses <- nrow(pi.k) - length( zeroprob.skillclasses )
 	# AIC
-    ic$AIC <- dev + 2*ic$np
-    # BIC
-    ic$BIC <- dev + ( log(ic$n) )*ic$np
-    # CAIC (consistent AIC)
-    ic$CAIC <- dev + ( log(ic$n) + 1 )*ic$np
-    # corrected AIC
-    ic$AICc <- ic$AIC + 2*ic$np * ( ic$np + 1 ) / ( ic$n - ic$np - 1 )		
+	ic$AIC <- dev + 2*ic$np
+	# BIC
+	ic$BIC <- dev + ( log(ic$n) )*ic$np
+	# CAIC (consistent AIC)
+	ic$CAIC <- dev + ( log(ic$n) + 1 )*ic$np
+	# corrected AIC
+	ic$AICc <- ic$AIC + 2*ic$np * ( ic$np + 1 ) / ( ic$n - ic$np - 1 )		
 	return(ic)
-		}
+}
 #######################################################
 # standard errors
 mcdina.calc.se.delta <- function( delta , n.ik , probs , lr_list , lc_list , 
-			itemstat , I , G , itempars , lr_counts , CC ){	
+			itemstat , I , G , itempars , lr_counts , CC )
+{	
 	se.delta <- delta
 	for (ii in 1:I){
-	for (gg in 1:G){
-		lc.ii <- lc_list[[ii]]
-		lr.ii <- lr_list[[ii]]
-		se.delta[ii,,,gg] <- sqrt( delta[ii,,,gg] * ( 1 - delta[ii,,,gg] ) / 
-			matrix( lr_counts[ii,,gg] , nrow= CC  , ncol= CC , byrow=TRUE) )
-					} # end gg 
-				} # end ii
-		return(se.delta)
-			}
+		for (gg in 1:G){
+			lc.ii <- lc_list[[ii]]
+			lr.ii <- lr_list[[ii]]
+			se.delta[ii,,,gg] <- sqrt( delta[ii,,,gg] * ( 1 - delta[ii,,,gg] ) / 
+					matrix( lr_counts[ii,,gg] , nrow= CC  , ncol= CC , byrow=TRUE) )
+		} # end gg 
+	} # end ii
+	return(se.delta)
+}
 ###############################################################
 # collect item parameters
 mcdina.collect.itempars <- function( I , lc , itempars , itemstat , dat ,
-	G , CC , delta , se.delta , group0_unique  ){
+	G , CC , delta , se.delta , group0_unique  )
+{
 	item <- NULL
 	for (ii in 1:I){
 	# ii <- 1
@@ -82,11 +85,12 @@ mcdina.collect.itempars <- function( I , lc , itempars , itemstat , dat ,
 		}	
 		}
 	return(item)
-	}
+}
 #########################################################
 # skill probabilities
 mcdina.skill.patt <- function( q.matrix , skillclasses , G , pi.k ,
-	group0_unique){	
+	group0_unique)
+{	
 	maxK <- max( q.matrix[ , -c(1:2) ] )
 	K <- ncol(skillclasses)
 	skill.patt <- matrix( NA , nrow=K , ncol=(maxK+1)*G )
@@ -108,5 +112,5 @@ mcdina.skill.patt <- function( q.matrix , skillclasses , G , pi.k ,
 	
 				
 	rownames(skill.patt) <- colnames(q.matrix)[ - c(1:2) ]
-	return(skill.patt)				
-			}
+	return(skill.patt)	
+}

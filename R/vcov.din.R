@@ -1,14 +1,13 @@
 ## File Name: vcov.din.R
-## File Version: 1.55
+## File Version: 1.56
 
 ##########################################################
 # vcov din object
 vcov.din <- function( object , extended = FALSE , infomat=FALSE ,
-			ind.item.skillprobs = TRUE , ind.item= FALSE , diagcov = FALSE , h=.001 , ... ){
+			ind.item.skillprobs = TRUE , ind.item= FALSE , diagcov = FALSE , h=.001 , ... )
+{
 
-	#********			
-# a0 <- Sys.time()			
-    infomat.ind <- infomat
+	infomat.ind <- infomat
 	latresp <- object$control$latresp
 	guess <- object$guess$est
 	slip <- object$slip$est
@@ -26,9 +25,9 @@ vcov.din <- function( object , extended = FALSE , infomat=FALSE ,
 	parnames <- unique( partable$parnames[ partable$parindex > 0 ] )
 	ll.derivM <- matrix( NA , nrow=IP , ncol=NPars )
 	colnames(ll.derivM) <- parnames
-    
+
 	J <- length(guess)
-    L <- length(attribute.patt) 	
+	L <- length(attribute.patt) 	
 
 	#*** LL evaluated at theta
 	guess0 <- guess
@@ -59,32 +58,31 @@ vcov.din <- function( object , extended = FALSE , infomat=FALSE ,
 			vecadd <- rep(0,J)
 			vecadd[ind] <- h
 			guess0 <- guess0 + vecadd 			
-						}
+		}
 		if ( paste(partable.pp$partype[1]) == "slip" ){
 			ind <- partable.pp$varyindex
 			vecadd <- rep(0,J)
 			vecadd[ind] <- h
 			slip0 <- slip0 + vecadd 
-						}
+		}
 		if ( paste(partable.pp$partype[1]) == "probs" ){
 			ind <- partable.pp$varyindex
 			vecadd <- rep(0,L)
 			vecadd[ind] <- h
 			skillprobs0 <- skillprobs0 + vecadd 
 			recalc.ll <- FALSE            
-						}                
+		}
 		if ( recalc.ll){
 			ll2 <- vcov.loglike.din( weights , skillprobs0 , slip0 , guess0 ,
 						latresp , item.patt.split , resp.ind.list)
-						} else {
+		} else {
 			skillprobsM <- matrix( skillprobs0 , nrow=IP , ncol=L , byrow=TRUE )
 			ll2 <- log( rowSums( p.xi.aj * skillprobsM ) )
-						}
-					
+		}
 		ll.deriv1 <- ( ll2 - ll1 ) / h 
 		ll.derivM[,pp] <- ll.deriv1	
-		}
-		
+	}
+
 #cat("compute first derivative") ; a1 <- Sys.time(); print(a1-a0) ; a0 <- a1		
 		
 	#----------------------------------------------------------------
@@ -103,7 +101,7 @@ vcov.din <- function( object , extended = FALSE , infomat=FALSE ,
 		pt1 <- unique(setdiff( pt1$parindex , 0 ))
 		pt2 <- unique(setdiff( pt2$parindex , 0 ))
 		infomat2[ pt1 , pt2 ] <- infomat2[ pt2 , pt1 ] <- 0
-							}
+	}
 	if (ind.item){
 		pt1 <- partable[ partable$partype %in% c("guess","slip") , ]
 		h1 <- expand.grid( pt1$parindex , pt1$parindex )
@@ -111,15 +109,14 @@ vcov.din <- function( object , extended = FALSE , infomat=FALSE ,
 		h1 <- merge( x = h1 , y = pt1[ , c("parindex" , "item") ] , by.x = 2 , by.y=1)
 		h1 <- h1[ h1[,3] != h1[,4] , ]
 		infomat2[ as.matrix( h1[,1:2] )  ] <- 0
-				}							
-						
-# cat("compute second derivative (II)") ; a1 <- Sys.time(); print(a1-a0) ; a0 <- a1							
+	}
+
 	infomat <- infomat2
 	# inverse of information matrix
-    if (infomat.ind ){
+	if (infomat.ind ){
 		covmat <- infomat 
 		cat("The information matrix is computed.\n")
-				} else {
+	} else {
 		covmat <- solve( infomat )
 		attr(covmat , "coef") <- coef(object)
 		# extended set of coefficients
@@ -129,8 +126,8 @@ vcov.din <- function( object , extended = FALSE , infomat=FALSE ,
 			x1 <- object$partable$value
 			names(x1) <- object$partable$parnames
 			attr(covmat,"coef") <- x1
-					}
-				}						
-	return(covmat)	
 		}
+	}
+return(covmat)	
+}
 #########################################################################

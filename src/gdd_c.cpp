@@ -1,5 +1,5 @@
 //// File Name: gdd_c.cpp
-//// File Version: 3.03
+//// File Version: 3.04
 
 
 
@@ -25,7 +25,7 @@ Rcpp::List generalized_distance_method__C( Rcpp::NumericMatrix data,
 	double dmin = 100 * I ;  
 	Rcpp::NumericMatrix dist(N,L) ;  
 	Rcpp::NumericVector est_skill(N) ;  
-                     
+
 	for (int nn=0;nn<N;nn++){ // begin person nn  
 		dmin=100*I;  
 		ind=0;  

@@ -1,11 +1,11 @@
 ## File Name: gdina_attribute_structure_hogdina.R
-## File Version: 0.07
+## File Version: 0.08
 
 gdina_attribute_structure_hogdina <- function(G, attr.prob, attr.patt, wgt.theta ,
 			HOGDINA, a.attr, b.attr, theta.k, tetrachoric )
 {
 	tetrachoric0 <- list()
-    for (gg in 1:G){
+	for (gg in 1:G){
 		if (G==1){ ap.gg <- attr.prob 
 		} else {
 			ap.gg <- attr.prob[,gg] 

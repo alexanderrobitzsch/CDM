@@ -1,5 +1,5 @@
 ## File Name: item_by_group.R
-## File Version: 0.13
+## File Version: 0.14
 
 ##########################################################
 # creates an extended dataset with item responses in which
@@ -18,7 +18,7 @@ item_by_group <- function( dat , group , invariant = NULL, rm.empty = TRUE )
 	#*** create extended dataset
 	dat2 <- matrix( NA , nrow = nrow(dat) , ncol= I*G )
 	cn <- sapply( vars , FUN = function(vv){
-			  paste0( vv , "_group" , group_unique ) } , simplify=FALSE)
+				paste0( vv , "_group" , group_unique ) } , simplify=FALSE)
 	colnames(dat2) <- unlist(cn)
 	for (gg in 1:G){
 		# gg <- 1

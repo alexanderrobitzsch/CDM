@@ -1,14 +1,13 @@
 ## File Name: gdina_mstep_item_uls.R
-## File Version: 0.08
+## File Version: 0.11
 
 #####################################################
 # GDINA M-step item parameters
 gdina_mstep_item_uls <- function( pjjj , Ilj.ast , Rlj.ast , eps , avoid.zeroprobs , 
-		 Mjjj , invM.list , linkfct , rule , method , iter , delta.new, max.increment , fac.oldxsi,
-		 jj , delta , rrum.model, delta.fixed , devchange)
-{			
+		Mjjj , invM.list , linkfct , rule , method , iter , delta.new, max.increment , fac.oldxsi,
+		jj , delta , rrum.model, delta.fixed , devchange)
+{
 	eps2 <- eps
-
 	if (linkfct == "logit" ){ 
 		pjjj <- cdm_squeeze( pjjj , c(eps,1-eps) )
 		pjjj <- stats::qlogis( pjjj ) 
@@ -23,7 +22,7 @@ gdina_mstep_item_uls <- function( pjjj , Ilj.ast , Rlj.ast , eps , avoid.zeropro
 	if ( avoid.zeroprobs ){
 		ind <- which( Ilj.ast  < eps  )
 		if ( length(ind) > 0 ){
-		    Wj <- diag( Ilj.ast[-ind] )
+			Wj <- diag( Ilj.ast[-ind] )
 			Mjjj <- Mjjj[ - ind , ]
 			pjjj <- pjjj[ - ind  ]
 		}
@@ -52,15 +51,13 @@ gdina_mstep_item_uls <- function( pjjj , Ilj.ast , Rlj.ast , eps , avoid.zeropro
 
 	#######################################################################
 	iter_min <- 10
-															
 	djj <- ifelse ( is.na(djj) , delta[[jj]] , djj )
-		
 	# control
-    djj.change <- djj - delta[[jj]]		
+	djj.change <- djj - delta[[jj]]		
 	while( max(abs(djj.change)) > max.increment ){
 		djj.change <- ifelse( abs(djj.change) > max.increment , djj.change / 2 , djj.change )
 	}
-	djj <- delta[[jj]] + djj.change						
+	djj <- delta[[jj]] + djj.change	
 
 	if ( rrum.model & (iter > 10) ){
 		#---
@@ -74,23 +71,23 @@ gdina_mstep_item_uls <- function( pjjj , Ilj.ast , Rlj.ast , eps , avoid.zeropro
 		#  => log(pi) = b0 + b1 + b2 and pi = exp( b0 + b1 + b2 )		
 			
 		d1 <- djj
-		#			d1 <- ifelse( d1 < 0 , .1 , d1 )						
-	    sum_d1 <- sum(d1)
+		#			d1 <- ifelse( d1 < 0 , .1 , d1 )
+		sum_d1 <- sum(d1)
 		if ( sum_d1 > 0 ){
-            d1 <- d1 - sum(d1)
+			d1 <- d1 - sum(d1)
 		}
 		d1_samp <- stats::runif( length(d1) , 0 , .01 )
-		d1[-1] <- ifelse( d1[-1] < 0 , d1_samp[-1] , d1[-1] )													
-	    sum_d1 <- sum(d1)
+		d1[-1] <- ifelse( d1[-1] < 0 , d1_samp[-1] , d1[-1] )
+		sum_d1 <- sum(d1)
 		if ( sum_d1 > 0 ){
-            d1 <- d1 - sum(d1)
-		}														
-		djj <- d1										
+			d1 <- d1 - sum(d1)
+		}
+		djj <- d1
 	}
 
 	delta.new[[jj]] <- djj
 	if ( (fac.oldxsi > 0 ) & (iter>3)){
-	    fac.oldxsi1 <- fac.oldxsi * ( devchange >= 0 )
+		fac.oldxsi1 <- fac.oldxsi * ( devchange >= 0 )
 		delta.new[[jj]] <- fac.oldxsi1*delta[[jj]] + ( 1 - fac.oldxsi1 ) * delta.new[[jj]]
 	}
 
@@ -100,12 +97,10 @@ gdina_mstep_item_uls <- function( pjjj , Ilj.ast , Rlj.ast , eps , avoid.zeropro
 		if ( ! is.na( delta.fixed.jj)[1] ){
 			delta.new[[jj]] <- delta.fixed.jj
 		}
-	}			
-			
+	}
 	#--- OUTPUT
 	res <- list( delta.new = delta.new 	)	
-	return(res)												
+	return(res)
 }
 ######################################################			
-			
-			
+

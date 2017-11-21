@@ -1,5 +1,5 @@
 ## File Name: gdina_attr_rpf_hogdina.R
-## File Version: 0.14
+## File Version: 0.15
 
 
 ####################################
@@ -14,7 +14,7 @@ gdina_attr_rpf_hogdina <- function( attr.patt , attr.prob , theta.k , wgt.theta 
 	NB <- length(b)
 	TP <- length(theta.k)
 	NAP <- nrow(attr.patt)
-    if (HOGDINA>0){
+	if (HOGDINA>0){
 		upper_bound <- .99
 		L <- cdm_fa1( Sigma = wc$rho , method=1 )$L		
 		L <- as.vector( L )
@@ -40,7 +40,7 @@ gdina_attr_rpf_hogdina <- function( attr.patt , attr.prob , theta.k , wgt.theta 
 	attr.prob.exp <- rowSums( probsAP * matrix( wgt.theta , nrow=NAP , ncol=TP , byrow=TRUE ) )
 	res <- list( a.attr = L1 , b.attr = b1 , attr.prob.exp = attr.prob.exp,
 					tetrachoric = wc)
-    return(res)
+	return(res)
 }
 #####################################################################
 

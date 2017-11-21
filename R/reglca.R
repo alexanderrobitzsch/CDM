@@ -1,5 +1,5 @@
 ## File Name: reglca.R
-## File Version: 0.76
+## File Version: 0.78
 
 reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad", regular_lam=0, 
 				sd_noise_init = 1, item_probs_init=NULL, class_probs_init=NULL, random_starts=1, 
@@ -8,7 +8,7 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
 
 	CALL <- match.call()
 	s1 <- Sys.time()
-	
+
 	#--- data processing
 	TP <- nclasses
 	res <- reglca_proc_data( dat=dat, weights=weights, group=group )
@@ -80,7 +80,7 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
 
 		#--- smoothing with Dirichlet process mixture	
 		if (use_dpm){
-            res <- reglca_dpm_smoothing( p.aj.xi=p.aj.xi, weights=weights, nclasses=nclasses, alpha=alpha ) 
+			res <- reglca_dpm_smoothing( p.aj.xi=p.aj.xi, weights=weights, nclasses=nclasses, alpha=alpha ) 
 			alpha <- res$alpha
 			class_probs <- res$class_probs
 		}
@@ -128,7 +128,7 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
 		if ( iter > maxit ){ iterate <- FALSE }	
 		
 		#--- handle random starts	
-        res <- reglca_monitor_random_starts( control_random_starts=control_random_starts, iter=iter, opt_fct=opt_fct, 
+		res <- reglca_monitor_random_starts( control_random_starts=control_random_starts, iter=iter, opt_fct=opt_fct, 
 					item_probs=item_probs, class_probs=class_probs, max_increment0=max_increment0, 
 					max_increment=max_increment, item_probs_random_starts=item_probs_random_starts, 
 					class_probs_random_starts=class_probs_random_starts ) 
@@ -163,7 +163,7 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
 	}
 	
 	#--- information criteria
-    res <- reglca_calc_ic( loglike=loglike, nclasses=nclasses, I=I, N=N, n_reg=n_reg, G=G ) 
+	res <- reglca_calc_ic( loglike=loglike, nclasses=nclasses, I=I, N=N, n_reg=n_reg, G=G ) 
 	Npars <- res$Npars
 	AIC <- res$AIC
 	BIC <- res$BIC

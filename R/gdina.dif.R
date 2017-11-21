@@ -1,5 +1,5 @@
 ## File Name: gdina.dif.R
-## File Version: 1.15
+## File Version: 1.16
 ##########################################################
 # differential item functioning in the GDINA model
 # a Wald test is used for testing item-wise DIF
@@ -26,13 +26,11 @@ gdina.dif <- function( object )
 	difstats <- data.frame( "item" = colnames(object$data) , "X2" = NA , "df" = NA)  
 	dif_es <- rep(NA,J)
 	for (jj in 1:J){          
-		# jj <- 7           
 		nj <- ndj[[jj]]
 		delta.jj <- rep(NA , nj*G )
 		varmat.jj <- matrix(0 , nj*G , nj*G )
 		Rdesign.jj <- matrix(0,nj*(G-1) , nj*G )
 		for (gg in 1:G){
-			# gg <- 1
 			delta.jj[  1:nj + nj*(gg-1)  ] <- delta.group[[gg]][[jj]]
 			varmat.jj[ 1:nj + nj*(gg-1) , 1:nj + nj*(gg-1) ] <- varmat.group[[gg]][[jj]]            
 			if (gg <G){
@@ -55,13 +53,13 @@ gdina.dif <- function( object )
 		difstats[jj,"df"] <- nrow(Rdesign.jj)
 		# effect size in case of two groups
 		if ( G == 2 ){
-		    tab1 <- prob.exp.group[[1]][[jj]]
-		    tab2 <- prob.exp.group[[2]][[jj]]			
+			tab1 <- prob.exp.group[[1]][[jj]]
+			tab2 <- prob.exp.group[[2]][[jj]]
 			g1 <- (tab1[,1]+tab2[,2])/2
-		    g1 <- sum( g1 * abs( tab1[,2] - tab2[,2] ) )
+			g1 <- sum( g1 * abs( tab1[,2] - tab2[,2] ) )
 			dif_es[jj]  <- g1
-				}
-			}    
+		}
+	}    
 	rownames(ocoef) <- paste0(ocoef$item,"_", ocoef$partype)
 	difstats$p <- 1 - stats::pchisq( difstats$X2 , df=difstats$df )
 	difstats$p.holm <- stats::p.adjust( difstats$p )               

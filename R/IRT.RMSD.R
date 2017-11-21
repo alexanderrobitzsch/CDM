@@ -1,5 +1,5 @@
 ## File Name: IRT.RMSD.R
-## File Version: 0.16
+## File Version: 0.17
 
 IRT.RMSD <- function( object )
 {
@@ -46,9 +46,9 @@ IRT.RMSD <- function( object )
 	}
 	
 	M1 <- rowSums( RMSD[,2:(G+1) ]^2 * weight_group )
-    RMSD$WRMSD <- sqrt( M1 )
+	RMSD$WRMSD <- sqrt( M1 )
 	M1 <- rowSums( RMSD_bc[,2:(G+1) ]^2 * weight_group )
-    RMSD_bc$WRMSD <- sqrt( M1 )
+	RMSD_bc$WRMSD <- sqrt( M1 )
 
 	
 	if ( G==1 ){

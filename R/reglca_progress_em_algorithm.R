@@ -1,5 +1,5 @@
 ## File Name: reglca_progress_em_algorithm.R
-## File Version: 0.08
+## File Version: 0.09
 
 reglca_progress_em_algorithm <- function( like.new , loglikeold ,
 		max.par.change , iter , progress, penalty, opt_fct,	opt_fct_change, n_reg,
@@ -33,9 +33,9 @@ reglca_progress_em_algorithm <- function( like.new , loglikeold ,
 	#--- random starts
 	if (progress & ( control_random_starts$use_random_starts) ){ 
 		cat("Random start" , control_random_starts$random_start_temp , 
-			 " Iteration" , iter , 
-			 " | Deviance = "  , round( -2*like.new , digits_opt_fct ) ,
-			 " | Penalty = "  , round(  - penalty , digits_opt_fct ) )
+			" Iteration" , iter , 
+			" | Deviance = "  , round( -2*like.new , digits_opt_fct ) ,
+			" | Penalty = "  , round(  - penalty , digits_opt_fct ) )
 		cat("\n")
 	}	
 	

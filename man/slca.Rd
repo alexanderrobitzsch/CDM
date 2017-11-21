@@ -1,5 +1,5 @@
 %% File Name: slca.Rd
-%% File Version: 1.802
+%% File Version: 1.803
 
 \name{slca}
 \alias{slca}
@@ -781,7 +781,7 @@ mod1 <- CDM::slca( dat[,-1] , group=dat$group, Xdes=Xdes,
             Xlambda.init=Xlambda.init, delta.fixed=delta.fixed, Xlambda.fixed=Xlambda.fixed,
             regular_lam=regular_lam, regular_w=regular_w )
 # compare true and estimated DIF effects
-cbind( "true"=dif , "estimated" = round(coef(mod1)[seq(I+1,2*I)],2) )                                   
+cbind( "true"=dif , "estimated" = round(coef(mod1)[seq(I+1,2*I)],2) )
 summary(mod1)
 }
 }

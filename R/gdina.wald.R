@@ -1,33 +1,33 @@
 ## File Name: gdina.wald.R
-## File Version: 0.22
+## File Version: 0.24
 ######################################################
 # Wald tests at item level
-gdina.wald <- function( object ){
+gdina.wald <- function( object )
+{
 	varmat.delta <- object$varmat.delta
 	delta <- object$delta
 	rule <- object$control$rule
 	#*****
 	# checks whether gdina.wald can be applied
 	if ( mean(rule=="GDINA") < 1 ){
-	   stop("Specify a full GDINA model for performing a Wald test.\n")
-								}
+		stop("Specify a full GDINA model for performing a Wald test.\n")
+	}
 	Mj <- object$control$Mj
 	q.matrix <- object$q.matrix
 	I <- nrow(q.matrix)
 	dat <- object$dat
 	stats_vars <- c("_X2" , "_df" , "_p", "_sig" ,  "_RMSEA" ,
-			"_wgtdist" , "_uwgtdist")
+						"_wgtdist" , "_uwgtdist")
 	SV <- length(stats_vars)
 	# number of rules
 	cdm_rules <- c("DINA" , "DINO" , "ACDM")
 	SR <- length(cdm_rules)
 	
-	
 	stats <- matrix( NA , nrow= I  , ncol=SV*SR)
 	v1 <- NULL
 	for (ss in 1:SR){
 		v1 <- c( v1 , paste0( cdm_rules[ss] , stats_vars ) )
-			}	
+	}
 	colnames(stats) <- v1
 	
 	#-----------------
@@ -58,28 +58,23 @@ gdina.wald <- function( object ){
 		if (Kii>1){
 		
 			nobs <- sum( 1 - is.na(dat[,ii] ) )
-		    
-		    #--------------------------------
+			#--------------------------------
 			# Tests for different rules
-			
 			for (rule in cdm_rules){
-				# rule <- "DINA"				
-				R <- contraint_matrix( delta.ii , rule= rule, Kii, Mj.ii )								
+				R <- contraint_matrix( delta.ii , rule= rule, Kii, Mj.ii )
 				res <- WaldTest( delta.ii , var.delta.ii , R , nobs )
 				stats[ii,paste0(rule,"_X2")] <- res$X2
 				stats[ii,paste0(rule,"_df")] <- res$df
 				stats[ii,paste0(rule,"_p")] <- res$p
 				stats[ii,paste0(rule,"_RMSEA")] <- res$RMSEA
 				Mj.ii0 <- .create.Mj( Aj.ii , rule)[[1]]
-				res.ii <- calc_dist_restricted_model(pjj , Mj.ii0 , attr.prob.ii, link,
-						  suffstat_probs.ii, aggr.attr.patt.ii	)						  
+				res.ii <- calc_dist_restricted_model(pjj, Mj.ii0, attr.prob.ii, link,
+							suffstat_probs.ii, aggr.attr.patt.ii)
 				stats[ii,paste0(rule,"_wgtdist")] <- res.ii$wgtdist
 				stats[ii,paste0(rule,"_uwgtdist")] <- res.ii$uwgtdist
-								}
-			
-			
-				}  # end if Kii > 1       
-		}  # end item
+			}
+		}  # end if Kii > 1       
+	}  # end item
 
 	stats <- data.frame( "item" = colnames(dat) , "NAttr" = rowSums(q.matrix) , stats )
 
@@ -87,12 +82,12 @@ gdina.wald <- function( object ){
 	labels <- c("**" , "*")	
 	for (rule in cdm_rules){
 		stats[ ,paste0(rule,"_sig")] <- 
-			label_significance_level( stats[,paste0(rule,"_p")] , levels , labels )		
+			label_significance_level( stats[,paste0(rule,"_p")] , levels , labels )
 	}
 	res <- list("stats"=stats, "cdm_rules" = cdm_rules)
 	class(res) <- "gdina.wald"
 	return(res)
 	}
-####################################################	
-	
+####################################################
+
 

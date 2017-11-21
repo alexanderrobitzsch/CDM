@@ -1,5 +1,5 @@
 //// File Name: modelfit_cor2_c.cpp
-//// File Version: 3.04
+//// File Version: 3.05
 
 // #include <RcppArmadillo.h>
 #include <Rcpp.h>
@@ -15,7 +15,6 @@ Rcpp::List modelfit_cor2_Cpp( Rcpp::NumericMatrix posterior,
 		Rcpp::NumericMatrix probs0, Rcpp::NumericMatrix ip, 
 		Rcpp::NumericMatrix expiijj )
 {
-
 	int NIP = ip.nrow() ;  
 	int N = posterior.nrow() ;  
 	int TP = posterior.ncol() ;  
@@ -31,7 +30,7 @@ Rcpp::List modelfit_cor2_Cpp( Rcpp::NumericMatrix posterior,
 	double niijj=0 ;  
 	double rii=0;  
 	double rjj=0;  
-       
+
 	for (int zz=0;zz<NIP;zz++){  
 		int ii = ip(zz,0);  
 		int jj = ip(zz,1);  

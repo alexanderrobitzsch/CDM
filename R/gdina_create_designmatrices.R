@@ -1,5 +1,5 @@
 ## File Name: gdina_create_designmatrices.R
-## File Version: 0.05
+## File Version: 0.06
 
 gdina_create_designmatrices <- function( J, Mj, Aj, q.matrix, rule, L, attr.patt, mono.constr )
 {
@@ -31,20 +31,20 @@ gdina_create_designmatrices <- function( J, Mj, Aj, q.matrix, rule, L, attr.patt
 		if ( ! Mj.userdefined ){ 
 			Mj[[jj]] <- .create.Mj( Aj[[jj]] , rule = rule[jj] )	
 		}
- 		l1 <- as.list( 1 )
+		l1 <- as.list( 1 )
 		l2 <- rep(0,L)	
 		for (zz in seq(1,nrow(Aj1)) ){  # begin row zz
- 			Aj1zz <- outer( rep(1,nrow(attr.patt)) , Aj1[zz,] )
+			Aj1zz <- outer( rep(1,nrow(attr.patt)) , Aj1[zz,] )
 			apzz <- attr.patt[ , nj1 ]
 			apzz <- 1 * ( apzz >= q.matrix[ rep(jj,L) ,nj1] )
 			l1[[zz]] <- which( rowMeans( apzz == Aj1zz  ) == 1)
 			l2[ l1[[zz]] ] <- zz
 		}   # end row zz
 		attr.items[[jj]] <- l1
-		aggr.attr.patt[[jj]] <- l2		
+		aggr.attr.patt[[jj]] <- l2
 	}	# end item jj
 
-	#******						
+	#******
 	# indices for Mj
 	Mj.index <- matrix( 0 , J , 6 )
 	for (jj in 1:J){
@@ -54,14 +54,14 @@ gdina_create_designmatrices <- function( J, Mj, Aj, q.matrix, rule, L, attr.patt
 	Mj.index[,3] <- cumsum( Mj.index[,1] )
 	Mj.index[,2] <- c(1,Mj.index[-J,3] + 1 )
 	Mj.index[,6] <- cumsum( Mj.index[,4] )	
-	Mj.index[,5] <- c(1,Mj.index[-J,6] + 1 )	
+	Mj.index[,5] <- c(1,Mj.index[-J,6] + 1 )
 	# compute designmatrix of aggregation of pattern
 	aggr.patt.designmatrix <- matrix( 0 , L , max(Mj.index[,6]) )
 	for (jj in 1:J){
 		Mj.index.jj <- Mj.index[jj,]
 		for (vv in seq(1,Mj.index.jj[4]) ){
 			aggr.patt.designmatrix[ , Mj.index.jj[5] - 1 + vv ] <- 1  * ( aggr.attr.patt[[jj]] == vv )
-		}				
+		}
 	}
 	
 	#--- OUTPUT

@@ -1,5 +1,5 @@
 ## File Name: sequential.items.R
-## File Version: 1.03
+## File Version: 1.04
 #################################################
 # converts a dataset with polytomous item responses
 # into a dataset with sequential dichotomous items
@@ -29,7 +29,7 @@ sequential.items <- function( data )
 					if ( maxK[ii] == 1 ){  v1 <- colnames(data)[ii] } else
 						{ v1 <- paste0( colnames(data)[ii] , "_Cat" , 1:maxK[ii] ) }
 					v1
-			  } )
+			} )
 	colnames(dat.exp) <- unlist( varnames )
 	dat.exp <- as.data.frame( dat.exp)
 	# item information table

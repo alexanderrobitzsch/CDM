@@ -1,5 +1,5 @@
 ## File Name: gdina_progress_em_algorithm.R
-## File Version: 0.21
+## File Version: 0.25
 
 gdina_progress_em_algorithm <- function( delta , data , like.new , loglikeold ,
 		max.par.change , iter , progress, progress.item, regularization, penalty, opt_fct,
@@ -9,14 +9,14 @@ gdina_progress_em_algorithm <- function( delta , data , like.new , loglikeold ,
 	digits_opt_fct <- 5
 	digits_opt_fct_change <- 7
 
-	if (progress) {  
+	if (progress){  
 		if (progress.item){ 
 			g1 <- unlist( lapply( delta , FUN = function(ll){ paste( round(ll,4) , collapse= " " ) } ))
 			g1 <- matrix( paste( colnames(data) , g1 ) , ncol=1)
 			print(g1)
 		}
 		cat( "Deviance = "  , round( -2*like.new , digits_opt_fct ) )
-        devchange <- 2*(like.new-loglikeold)		
+		devchange <- 2*(like.new-loglikeold)
 		if (iter >1){ 
 			cat(" | Deviance change = " , round( 2*(like.new-loglikeold), digits_opt_fct_change) ) 
 		}

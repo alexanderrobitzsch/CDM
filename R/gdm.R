@@ -1,5 +1,5 @@
 ## File Name: gdm.R
-## File Version: 8.638
+## File Version: 8.641
 
 
 ###########################################
@@ -256,7 +256,7 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
 		#****
 		#1 calculate probabilities
 		probs <- gdm_calc_prob( a=a, b=b, thetaDes=thetaDes, Qmatrix=Qmatrix, I=I, K=K, TP=TP, TD=TD ) 
- 
+
 		#*****
 		#2 calculate individual likelihood
 		res.hwt <- gdm_calc_posterior( probs=probs, gwt0=gwt0, dat=dat, I=I, resp.ind.list=resp.ind.list ) 
@@ -345,12 +345,12 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
 			ll_fct <- gdm_calc_loglikelihood
 			#- extract parameters
 			ll_args <- list( irtmodel=irtmodel, skillspace=skillspace, b=b, a=a, centerintercepts=centerintercepts, 
-								 centerslopes=centerslopes, TD=TD, Qmatrix=Qmatrix, Ngroup=Ngroup, pi.k=pi.k, 
-								 delta.designmatrix=delta.designmatrix, delta=delta, G=G, theta.k=theta.k, D=D, 
-								 mean.constraint=mean.constraint, Sigma.constraint=Sigma.constraint, 
-								 standardized.latent=standardized.latent, p.aj.xi=p.aj.xi, group=group, 
-								 ind.group=ind.group, weights=weights, thetaDes=thetaDes, I=I, K=K, gwt0=gwt0, dat=dat, 
-								 resp.ind.list=resp.ind.list, use.freqpatt=use.freqpatt, p.xi.aj=p.xi.aj, TP=TP ) 
+								centerslopes=centerslopes, TD=TD, Qmatrix=Qmatrix, Ngroup=Ngroup, pi.k=pi.k, 
+								delta.designmatrix=delta.designmatrix, delta=delta, G=G, theta.k=theta.k, D=D, 
+								mean.constraint=mean.constraint, Sigma.constraint=Sigma.constraint, 
+								standardized.latent=standardized.latent, p.aj.xi=p.aj.xi, group=group, 
+								ind.group=ind.group, weights=weights, thetaDes=thetaDes, I=I, K=K, gwt0=gwt0, dat=dat, 
+								resp.ind.list=resp.ind.list, use.freqpatt=use.freqpatt, p.xi.aj=p.xi.aj, TP=TP ) 
 			#-- apply general acceleration function
 			res <- cdm_pem_acceleration( iter=iter, pem_parameter_index=pem_parameter_index, 
 						pem_parameter_sequence=pem_parameter_sequence, pem_pars=pem_pars, 
@@ -415,7 +415,7 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
 	# # n.ik [ 1:TP , 1:I , 1:(K+1) , 1:G ]
 	probs <- aperm( probs , c(3,1,2) )
 	itemfit.rmsea <- itemfit.rmsea( n.ik , pi.k , probs , itemnames = colnames(data) )		
-    item$itemfit.rmsea <- itemfit.rmsea$rmsea
+	item$itemfit.rmsea <- itemfit.rmsea$rmsea
 	rownames(item) <- NULL
 	
 	# person parameters

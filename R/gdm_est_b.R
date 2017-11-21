@@ -1,13 +1,13 @@
 ## File Name: gdm_est_b.R
-## File Version: 0.37
+## File Version: 0.38
 
 ###########################################################################
 # estimation of b parameters
 gdm_est_b <- function(probs, n.ik, N.ik, I, K, G, b, b.constraint,
 	max.increment, a, thetaDes, Qmatrix, TP, TD, msteps, convM,
 	centerintercepts, decrease.increments=TRUE )
-{		
- 	# max.increment <- 1
+{
+
 	max.increment0 <- max.increment
 	iter <- 1
 	parchange <- 1
@@ -38,7 +38,7 @@ gdm_est_b <- function(probs, n.ik, N.ik, I, K, G, b, b.constraint,
 		se.b <- res$se_parm
 		
 		#-- centerintercepts
-        b <- gdm_est_b_centerintercepts( b=b, centerintercepts=centerintercepts, TD=TD, Qmatrix=Qmatrix ) 
+		b <- gdm_est_b_centerintercepts( b=b, centerintercepts=centerintercepts, TD=TD, Qmatrix=Qmatrix ) 
 			
 		iter <- iter + 1
 		parchange <- max( abs(b0-b))

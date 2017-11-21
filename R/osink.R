@@ -1,19 +1,12 @@
 ## File Name: osink.R
-## File Version: 1.04
-
-# 	osink( file = file , suffix = "__SUMMARY.Rout" )
-
-#   csink( file = file )
+## File Version: 1.06
 
 
-osink <- function( file , suffix, append = FALSE){
+osink <- function( file , suffix, append = FALSE)
+{
 	if ( ! is.null( file ) ){
 		sink( paste0( file , suffix) , split=TRUE , append = append )
-						}
-				}
-				
-csink <- function( file){
-	if ( ! is.null( file ) ){  
-	   sink()	
-				}	
-					}
+	}
+}
+
+

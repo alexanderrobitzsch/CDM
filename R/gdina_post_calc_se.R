@@ -1,5 +1,5 @@
 ## File Name: gdina_post_calc_se.R
-## File Version: 0.01
+## File Version: 0.02
 
 gdina_post_calc_se <- function(G, p.aj.xi, item.patt.freq, attr.prob, p.xi.aj, IP, J,
 		calc.se, aggr.attr.patt, Aj, Mj, R.lj, I.lj, item.patt.split, resp.patt, delta, linkfct,
@@ -25,7 +25,6 @@ gdina_post_calc_se <- function(G, p.aj.xi, item.patt.freq, attr.prob, p.xi.aj, I
 	}
 	freq.pattern <- rowSums( item.patt.freq )
 	
-    # if ( calc.se ){
 	eps2 <- 1E-10	
 	for (jj in 1:J){	
 		se.jj <- NA
@@ -41,15 +40,17 @@ gdina_post_calc_se <- function(G, p.aj.xi, item.patt.freq, attr.prob, p.xi.aj, I
 			delta_jj <- delta[[jj]]
 			res_jj <- gdina_se_itemwise( R.lj_jj=R.lj_jj, I.lj_jj=I.lj_jj, apjj=apjj, Mjjj=Mjjj, Mjj2=Mjj2, 
 							PAJXI=PAJXI, IP=IP, item.patt.split_jj=item.patt.split_jj, resp.patt_jj=resp.patt_jj, 
-							freq.pattern=freq.pattern, item.patt.freq=item.patt.freq, avoid.zeroprobs =avoid.zeroprobs,
-							data=data, jj=jj, method=method, linkfct=linkfct, delta_jj=delta_jj, se_version=se_version )			
+							freq.pattern=freq.pattern, item.patt.freq=item.patt.freq, 
+							avoid.zeroprobs =avoid.zeroprobs, data=data, jj=jj, method=method, 
+							linkfct=linkfct, delta_jj=delta_jj, 
+							se_version=se_version )	
 			varmat.delta[[jj]] <- res_jj$varmat.delta_jj
 			varmat.palj[[jj]] <- res_jj$varmat.palj_jj
-			se.jj <- sqrt( diag(varmat.delta[[jj]] )  ) 			
+			se.jj <- sqrt( diag(varmat.delta[[jj]] )  ) 
 		}
 
 		delta.summary.jj <-	data.frame( link=linkfct, item=colnames(data)[jj], itemno=jj, 
-							type=Mj[[jj]][2], rule=rule[jj], est=delta[[jj]], se=se.jj )								
+							type=Mj[[jj]][2], rule=rule[jj], est=delta[[jj]], se=se.jj )
 		# fix delta parameter here!!
 		if ( ! is.null( delta.fixed ) ){
 			delta.fixed.jj <- delta.fixed[[jj]]
@@ -81,7 +82,7 @@ gdina_post_calc_se <- function(G, p.aj.xi, item.patt.freq, attr.prob, p.xi.aj, I
 			delta.summary$partype.attr[ind.jj] <- pgjj
 		}
 	}
-	#--- OUTPUT						
+	#--- OUTPUT	
 	res <- list( varmat.delta=varmat.delta, varmat.palj=varmat.palj, se.delta=se.delta,
 					delta.summary=delta.summary, freq.pattern=freq.pattern,
 					item.patt.freq=item.patt.freq)

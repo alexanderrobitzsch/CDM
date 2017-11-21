@@ -1,5 +1,5 @@
 //// File Name: cdm_kli_id_c.cpp
-//// File Version: 3.12
+//// File Version: 3.14
 
 
 #include <Rcpp.h>
@@ -12,7 +12,7 @@ using namespace Rcpp;
 
 ///********************************************************************
 ///** cdm_kli_id_C
- 
+
 // [[Rcpp::export]]
 Rcpp::List cdm_kli_id_C( Rcpp::NumericMatrix pjk, Rcpp::NumericMatrix sc )
 { 
@@ -23,7 +23,7 @@ Rcpp::List cdm_kli_id_C( Rcpp::NumericMatrix pjk, Rcpp::NumericMatrix sc )
 	double tmp1 =0 ;  
 	double tmp2 = 0 ;  
 	double sum_hdist = 0 ;  
-       
+
 	// create item wise matrices of KLI entries  
 	Rcpp::NumericMatrix kli(TP,TP*I) ;  
 
@@ -64,8 +64,8 @@ Rcpp::List cdm_kli_id_C( Rcpp::NumericMatrix pjk, Rcpp::NumericMatrix sc )
 				tmp2 += kli( tt , uu + TP*ii ) * hdist( tt , uu ) ;  
 				for (int aa=0;aa<K;aa++){  
 					if ( ( sc(uu,aa) != sc(tt,aa) ) & ( hdist(uu,tt) == 1)  ){  
-					attr_item(ii,aa) += kli( tt , uu + TP*ii ) ;  
-					attr_item_count(ii,aa) ++ ;
+						attr_item(ii,aa) += kli( tt , uu + TP*ii ) ;  
+						attr_item_count(ii,aa) ++ ;
 					}  
 				} // end aa  
 			}   // end uu  
@@ -93,4 +93,3 @@ Rcpp::List cdm_kli_id_C( Rcpp::NumericMatrix pjk, Rcpp::NumericMatrix sc )
 				Rcpp::Named("attr_item_count") = attr_item_count
 			) ;       
 }
-        

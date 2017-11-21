@@ -1,5 +1,5 @@
 ## File Name: summary.slca.R
-## File Version: 1.28
+## File Version: 1.29
 
 #*******************************************************
 # Summary for slca object
@@ -34,7 +34,7 @@ summary.slca <- function( object , file = NULL , ... )
 		print( object$group.stat )	
 	}
 	
-    cat("\n-----------------------------------------------------------------------------\n")
+	cat("\n-----------------------------------------------------------------------------\n")
 	cat( "Number of iterations =" , object$iter , "\n" )
 	if ( ! object$converged ){ cat("Maximum number of iterations was reached.\n") }
 	cat( "Iteration with minimal deviance =" , object$iter.min , "\n" )

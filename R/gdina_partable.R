@@ -1,5 +1,5 @@
 ## File Name: gdina_partable.R
-## File Version: 0.08
+## File Version: 0.09
 
 ###################################################
 # create parameter table for GDINA model
@@ -36,14 +36,14 @@ gdina_partable <- function(res)
 	G <- res$G
 	ap0 <- ap <- res$attribute.patt
 	if (G==1){
-	   ap <- matrix( ap[,1] , ncol=1 )
+		ap <- matrix( ap[,1] , ncol=1 )
 	}
 	dfr1 <- NULL
 	for (gg in 1:G){	
 		ap.names <- paste0("prob_class" , rownames(ap0) , "_group" , gg)	
 		L <- nrow(ap)
 		dfr <- data.frame( "partype" = rep("probs",L)  , "parindex" = NA , "item" = 0 ,
-							  "item.name" = "")
+							"item.name" = "")
 		dfr$skillclass <- 1:L
 		dfr$varyindex <- NA
 		dfr$parnames <- ap.names
@@ -78,18 +78,18 @@ gdina_partable <- function(res)
 	}
 	L <- K*V
 	dfr <- data.frame( "partype" = rep("margprobs",L)  , "parindex" = NA , "item" = 0 ,
-							  "item.name" = "")
+								"item.name" = "")
 	dfr$skillclass <- 0
 	dfr$varyindex <- NA
 	dfr$parnames <- apnames
-	dfr$value <- as.vector(ap)			
+	dfr$value <- as.vector(ap)
 	dfr$fixed <- FALSE
 	dfr$free <- TRUE
 	dfr$rule <- ""
 	dfr$group <- rep( l2 , each=K)
 	dfr$totindex <- NA
 	dfr0 <- rbind( dfr0 , dfr )
-	dfr0$totindex <- seq( 1 , nrow(dfr0) )		
+	dfr0$totindex <- seq( 1 , nrow(dfr0) )
 	return(dfr0)
 }
 ######################################################		

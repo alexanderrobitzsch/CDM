@@ -1,10 +1,11 @@
 ## File Name: IRT_RMSD_calc_rmsd.R
-## File Version: 3.15
+## File Version: 3.16
 
 	
 ##########################################
 # auxiliary function RMSD calculation
-IRT_RMSD_calc_rmsd <- function( n.ik , pi.k , probs , eps=1E-30 ){	
+IRT_RMSD_calc_rmsd <- function( n.ik , pi.k , probs , eps=1E-30 )
+{	
 	#*** compute distributions based on expected counts
 	res <- IRT_RMSD_calc_distributions( n.ik = n.ik, pi.k=pi.k , eps = eps  )
 	pi.k_tot <- res$pi.k_tot
@@ -13,7 +14,7 @@ IRT_RMSD_calc_rmsd <- function( n.ik , pi.k , probs , eps=1E-30 ){
 	K <- res$K	
 	N.ik <- res$N.ik
 	eps1 <- 1
-    #------------------------------------------------	
+	#------------------------------------------------	
 	#*** RMSD fit statistic
 	dist.item <- pi.k_tot * ( p.ik_observed - probs )^2	
 	h1 <- IRT_RMSD_proc_dist_item(dist.item = dist.item)
@@ -34,12 +35,12 @@ IRT_RMSD_calc_rmsd <- function( n.ik , pi.k , probs , eps=1E-30 ){
 	h2 <- colSums( h2 ) / maxK 
 	RMSD_bc <- sqrt( ifelse( RMSD^2 - h2 < 0 , 0 , RMSD^2 - h2 ) )
 	
-    #------------------------------------------------	
+	#------------------------------------------------	
 	#*** MD fit statistic
 	dist.item <- pi.k_tot * ( p.ik_observed - probs )
 	h1 <- IRT_RMSD_proc_dist_item(dist.item = dist.item)
 	MD <- colSums( h1 ) / ( maxK - 1)
-    #------------------------------------------------	
+	#------------------------------------------------	
 	#*** MAD fit statistic
 	dist.item <- pi.k_tot * abs( p.ik_observed - probs )
 	h1 <- IRT_RMSD_proc_dist_item(dist.item = dist.item)

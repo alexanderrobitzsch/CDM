@@ -1,5 +1,5 @@
 ## File Name: IRT_se_gdina_calc_individual_likelihood.R
-## File Version: 0.14
+## File Version: 0.15
 
 IRT_se_gdina_calc_individual_likelihood <- function(J, L, aggr.attr.patt, Mj, delta, linkfct,
 		IP, item.patt.split, resp.ind.list, zeroprob.skillclasses, G, item.patt.freq,
@@ -10,7 +10,7 @@ IRT_se_gdina_calc_individual_likelihood <- function(J, L, aggr.attr.patt, Mj, de
 	p.xi.aj <- gdina_calc_individual_likelihood( IP=IP, L=L, pjM=pjM, item.patt.split=item.patt.split, 
 						J=J, resp.ind.list=resp.ind.list, zeroprob.skillclasses=zeroprob.skillclasses )
 	#--- compute attribute probabilities	
-    attr.prob <- IRT_se_gdina_calc_skill_distribution( beta=beta, Z.skillspace=Z.skillspace, 
+	attr.prob <- IRT_se_gdina_calc_skill_distribution( beta=beta, Z.skillspace=Z.skillspace, 
 						reduced.skillspace=reduced.skillspace, G=G, eps=1E-5 ) 					
 	eps <- 1E-30
 	#--- calculate the updated likelihood    

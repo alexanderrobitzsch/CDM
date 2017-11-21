@@ -1,5 +1,5 @@
 ## File Name: cdm_calc_increment.R
-## File Version: 0.08
+## File Version: 0.09
 
 cdm_calc_increment <- function( d1, d2, max.increment , eps = 1E-10, adj_fac = .98, type=1 )
 {
@@ -15,8 +15,8 @@ cdm_calc_increment <- function( d1, d2, max.increment , eps = 1E-10, adj_fac = .
 		for (kk in 1:K){
 			increment[,kk] <- cdm_trim_increment( increment=increment[,kk], max.increment=max.increment , type=type) 
 		}
-	}	
-    #--- adjust maximum increment		
+	}
+	#--- adjust maximum increment		
 	max.increment <- max(abs(increment)) / adj_fac
 	#--- output
 	res <- list(increment=increment, max.increment=max.increment)	

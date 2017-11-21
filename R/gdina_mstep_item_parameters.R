@@ -1,5 +1,5 @@
 ## File Name: gdina_mstep_item_parameters.R
-## File Version: 0.37
+## File Version: 0.38
 
 gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.increment ,
 		increment.factor, J, Aj, Mj, delta, method, avoid.zeroprobs, invM.list, linkfct,
@@ -18,12 +18,12 @@ gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.
 	logprior_value <- 0
 	
 	eps2 <- eps <- 1E-10
-    max.increment <- max.increment / increment.factor
+	max.increment <- max.increment / increment.factor
 	
 	delta.new <- NULL
 	#----- loop over items
 	for (jj in 1:J){ 	# begin item	
-	
+
 		Ajjj <- Aj[[jj]]
 		Mjjj <- Mj[[jj]][[1]]
 		Rlj.ast <- R.ljM[ jj, Mj.index[jj,5]:Mj.index[jj,6] ]

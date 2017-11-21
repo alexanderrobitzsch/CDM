@@ -1,5 +1,5 @@
 ## File Name: din.validate.qmatrix.R
-## File Version: 1.06
+## File Version: 1.07
 ######################################################
 # Q-matrix validation
 din.validate.qmatrix <- function( object , digits = 3 , print=TRUE)
@@ -73,10 +73,10 @@ din.validate.qmatrix <- function( object , digits = 3 , print=TRUE)
 	nochange <- nrow(coef.modified2) == 0
 	# calculate proposed Q-matrix
 	q.matrix.prop <- q.matrix
-    if ( ! nochange ){ 
+	if ( ! nochange ){ 
 		items <- unique( coef.modified2$itemindex )
 		for (ii in items ){
-		    c2 <- ( coef.modified2[ coef.modified2$itemindex == ii , ] )[1,]
+			c2 <- ( coef.modified2[ coef.modified2$itemindex == ii , ] )[1,]
 			q.matrix.prop[ ii , ] <- as.vector( t(c2[ 1, seq(3 , 3+K -1) ]) )
 		}
 	}	

@@ -1,5 +1,5 @@
 ## File Name: gdd.R
-## File Version: 0.09
+## File Version: 0.11
 #################################################################
 # generalized distance discriminating method
 gdd <- function( data , q.matrix , theta , b , a  , skillclasses=NULL)
@@ -20,8 +20,8 @@ gdd <- function( data , q.matrix , theta , b , a  , skillclasses=NULL)
 	# extract results
 	distmatrix <- res$dist
 	skillclass.est <- skillspace[ res$est_skill , ]
-	res <- list( "skillclass.est" = skillspace , "distmatrix" = distmatrix ,
-				  "skillspace" = skillspace , "theta" = theta )   
+	res <- list( skillclass.est = skillspace , distmatrix = distmatrix ,
+					skillspace = skillspace , theta = theta )   
 	return(res)
 }
 ###############################################################################

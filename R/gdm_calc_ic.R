@@ -1,5 +1,5 @@
 ## File Name: gdm_calc_ic.R
-## File Version: 0.04
+## File Version: 0.05
 
 
 #############################################################
@@ -9,7 +9,7 @@ gdm_calc_ic <- function( dev , dat , G ,  skillspace , irtmodel ,
 			Sigma.constraint , delta.designmatrix , standardized.latent ,
 			data0 , centerslopes , TP , centerintercepts, centered.latent )
 {
-    ic <- list( "deviance" = dev , "n" = nrow(data0) )
+	ic <- list( "deviance" = dev , "n" = nrow(data0) )
 	ic$traitpars <- 0
 	ic$itempars <- 0	
 	#******
@@ -18,7 +18,7 @@ gdm_calc_ic <- function( dev , dat , G ,  skillspace , irtmodel ,
 	if ( skillspace == "normal" ){
 		if (irtmodel=="1PL" & ( D==1 )){
 			ic$traitpars <- 2*(G-1)	+ 1
-		}														
+		}
 		if ( ( irtmodel %in% c("2PL","2PLcat") ) & (D==1) ){
 			ic$traitpars <- 2*(G-1)
 			if (!standardized.latent){
@@ -33,7 +33,7 @@ gdm_calc_ic <- function( dev , dat , G ,  skillspace , irtmodel ,
 			if ( ! is.null(Sigma.constraint) ){ 
 					ic$traitpars <- ic$traitpars - nrow(Sigma.constraint)			
 			}
-		}														
+		}
 	}	# end normal
 
 	#******
@@ -78,14 +78,14 @@ gdm_calc_ic <- function( dev , dat , G ,  skillspace , irtmodel ,
 	ic$np <- ic$itempars + ic$traitpars	
 	
 	# AIC
-    ic$AIC <- dev + 2*ic$np
-    # BIC
-    ic$BIC <- dev + ( log(ic$n) )*ic$np
-    # CAIC (conistent AIC)
-    ic$CAIC <- dev + ( log(ic$n) + 1 )*ic$np
+	ic$AIC <- dev + 2*ic$np
+	# BIC
+	ic$BIC <- dev + ( log(ic$n) )*ic$np
+	# CAIC (conistent AIC)
+	ic$CAIC <- dev + ( log(ic$n) + 1 )*ic$np
 	# corrected AIC
-    ic$AICc <- ic$AIC + 2*ic$np * ( ic$np + 1 ) / ( ic$n - ic$np - 1 )				
-    return(ic)
+	ic$AICc <- ic$AIC + 2*ic$np * ( ic$np + 1 ) / ( ic$n - ic$np - 1 )				
+	return(ic)
 }
 ###################################################################
 		

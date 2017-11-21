@@ -1,5 +1,5 @@
 ## File Name: gdina_calc_deviance.R
-## File Version: 0.14
+## File Version: 0.15
 
 gdina_calc_deviance <- function( p.xi.aj , attr.prob, item.patt.freq, loglike, G, IP,
 		regularization, penalty=0, opt_fct=0, logprior_value=0 )
@@ -20,7 +20,7 @@ gdina_calc_deviance <- function( p.xi.aj , attr.prob, item.patt.freq, loglike, G
 		}
 	}
 	like.new <- sum( log( l1 ) * item.patt.freq ) 
-    likediff <- abs( loglike - like.new )
+	likediff <- abs( loglike - like.new )
 	
 	#--- regularization
 	opt_fct_old <- opt_fct

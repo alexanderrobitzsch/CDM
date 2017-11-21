@@ -1,18 +1,19 @@
 ## File Name: mcdina.R
-## File Version: 0.64
+## File Version: 0.67
 
 #############################################################
 # Multiple Choice DINA Model
 # mcdina model (de la Torre, 2009)
 mcdina <- function( dat , q.matrix , group =NULL , 
-         itempars = "gr" , weights=NULL , skillclasses = NULL , 
-		 zeroprob.skillclasses = NULL ,  reduced.skillspace=TRUE , 
-		 conv.crit = 0.0001, dev.crit = .1 , maxit = 1000 , progress=TRUE ){
+			itempars = "gr" , weights=NULL , skillclasses = NULL , 
+			zeroprob.skillclasses = NULL ,  reduced.skillspace=TRUE , 
+			conv.crit = 0.0001, dev.crit = .1 , maxit = 1000 , progress=TRUE )
+{
 	# prepare data
 	s1 <- Sys.time()
 	cl <- match.call()
 	dat <- as.matrix(dat)
-		
+
 	# zero/one entries. q.matrix from ordinary DINA model!!	
 	res0 <- .mcdina.prepare.qmatrix( dat , q.matrix )
 	dat <- res0$dat
@@ -26,7 +27,7 @@ mcdina <- function( dat , q.matrix , group =NULL ,
 	skillclasses0 <- res1$skillclasses0
 	maxmaxattr <- res1$maxmaxattr
 	
-    dat0 <- dat
+	dat0 <- dat
 	dat.resp <- 1* ( 1 - is.na(dat) )
 	dat[ dat.resp == 0 ] <- 1
 	dat_ <- dat - 1 	
@@ -111,27 +112,27 @@ mcdina <- function( dat , q.matrix , group =NULL ,
 		B <- NULL
 		for (kk in 1:KK){
 			B <- cbind( B , attr.patt[ , kombis[1,kk] ] * attr.patt[ , kombis[2,kk] ] )
-					}
-		 Z <- cbind( 1 , A , B )
-		 ncolZ <- ncol(Z)
-     	v1 <- c("Int" ,  paste("A",1:K , sep="") ) 		 
+		}
+		Z <- cbind( 1 , A , B )
+		ncolZ <- ncol(Z)
+		v1 <- c("Int" ,  paste("A",1:K , sep="") ) 		 
 		v1 <- c(v1,apply( kombis , 2 , FUN = function(ll){ 
 			paste( paste( "A" , ll , sep="") , collapse="_" ) } ))
 		colnames(Z) <- v1	
 	
 		m1 <- which( maxAttr > 1 )
 		if ( max(maxAttr) > 1 ){
-		   Z1 <- Z[ , m1 , drop=FALSE ]^2
-		   colnames(Z1) <- paste0( colnames(q.matrix)[m1] , "*2")
-		   Z <- cbind( Z , Z1 )
-						}
+			Z1 <- Z[ , m1 , drop=FALSE ]^2
+			colnames(Z1) <- paste0( colnames(q.matrix)[m1] , "*2")
+			Z <- cbind( Z , Z1 )
+		}
 		if ( ! is.null(Z.skillspace) ){ 
-				Z <- Z.skillspace
-						}
+			Z <- Z.skillspace
+		}
 		# check for equal columns
 		Z <- Z[ , ! duplicated( t(Z) ) ]
 		ncolZ <- ncol(Z)		 
-			}	
+	}	
 
 	
 	iter <- dev <- 0	
@@ -143,7 +144,7 @@ mcdina <- function( dat , q.matrix , group =NULL ,
 	
 	#****************************************
 	#************ begin algorithm ***********
-    while ( ( iter < maxit ) & 
+	while ( ( iter < maxit ) & 
 				( ( max.par.change > conv.crit ) | ( devchange > dev.crit  ) )
 					){
 
@@ -158,8 +159,8 @@ mcdina <- function( dat , q.matrix , group =NULL ,
 			for (ii in 1:I){    # ii <- 1
 				lr.ii <- lr_list[[ii]]
 				probs[ii,,,gg] <- delta[ ii ,  , lr.ii$lr_index , gg]
-						}
-					}
+			}
+		}
 
 # cat("calc probs ") ; z1 <- Sys.time(); print(z1-z0) ; z0 <- z1	
 					
@@ -169,10 +170,10 @@ mcdina <- function( dat , q.matrix , group =NULL ,
 
 		probs_ <- as.matrix( array( probs , dim=c(I , CC*TP*G) ) )			
 		f.yi.qk <- probs_pcm_groups_Cpp( dat_=dat_ , dat_resp_=dat.resp ,  group_ = group  ,
-					 probs_ = probs_ ,  CC_ = CC,  TP_ =TP )$fyiqk
+					probs_ = probs_ ,  CC_ = CC,  TP_ =TP )$fyiqk
 
 # cat("calc like ") ; z1 <- Sys.time(); print(z1-z0) ; z0 <- z1	
-					 
+
 		#--- (3) calculate posterior and expected counts
 		# calccounts_pcm_groups_Cpp <- 
 		# function( dat_,  dat_resp_,  group_, fyiqk_,  pik_,  CC_,  weights_ )
@@ -232,7 +233,7 @@ mcdina <- function( dat , q.matrix , group =NULL ,
 			cat("Maximum parameter change:" , round( max.par.change, 6), "\n")
 			utils::flush.console() 			
 				}
- 	
+
 		}
 			
 	#*************** end algorithm ***********	
@@ -299,11 +300,11 @@ mcdina <- function( dat , q.matrix , group =NULL ,
 	s2 <- Sys.time()		
 	
 	res$time <- list( "s1"=s1,"s2"=s2 , "timediff"=s2-s1)				
-        cat("----------------------------------- \n")
-        cat("Start:" , paste( s1) , "\n")
-        cat("End:" , paste(s2) , "\n")
-        cat("Difference:" , print(s2 -s1), "\n")
-        cat("----------------------------------- \n")
+		cat("----------------------------------- \n")
+		cat("Start:" , paste( s1) , "\n")
+		cat("End:" , paste(s2) , "\n")
+		cat("Difference:" , print(s2 -s1), "\n")
+		cat("----------------------------------- \n")
 	class(res) <- "mcdina"	
 	res$call <- cl
 	return(res)

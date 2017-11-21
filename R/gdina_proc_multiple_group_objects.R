@@ -1,5 +1,5 @@
 ## File Name: gdina_proc_multiple_group_objects.R
-## File Version: 0.01
+## File Version: 0.04
 
 gdina_proc_multiple_group_objects <- function(group)
 {
@@ -11,7 +11,7 @@ gdina_proc_multiple_group_objects <- function(group)
 		group <- paste( group ) 
 	}
 	if ( ! is.null( group) ){
-	    group0 <- group
+		group0 <- group
 		groups <- sort( unique( group) )
 		G <- length(groups)	
 		group2 <- match( group , groups )
@@ -19,9 +19,9 @@ gdina_proc_multiple_group_objects <- function(group)
 			group <- group2
 			groupre <- TRUE
 		}
-	}	
-    group.stat <- NULL							
-    if ( G > 1 ){							
+	}
+	group.stat <- NULL
+	if ( G > 1 ){
 		# group statistics
 		a1 <- stats::aggregate( 1+0*group , list(group) , sum )
 		a2 <- rep("",G)

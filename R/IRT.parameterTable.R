@@ -1,11 +1,12 @@
 ## File Name: IRT.parameterTable.R
-## File Version: 0.03
+## File Version: 0.04
 
 
 ###########################################################
 # extracts used dataset
-IRT.parameterTable <- function(object, ...) {
-    UseMethod("IRT.parameterTable")
+IRT.parameterTable <- function(object, ...)
+{
+	UseMethod("IRT.parameterTable")
 }
 ###########################################################
 # IRT.data.din <- function( object , ... ){

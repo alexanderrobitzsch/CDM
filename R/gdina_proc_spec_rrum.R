@@ -1,10 +1,10 @@
 ## File Name: gdina_proc_spec_rrum.R
-## File Version: 0.04
+## File Version: 0.05
 
 gdina_proc_spec_rrum <- function(rule, method, linkfct)
 {
 	# estimation of a reduced RUM model
-    rrum.params <- FALSE
+	rrum.params <- FALSE
 	rrum.model <- FALSE	
 			
 	if ( any( rule  == "RRUM" ) ){

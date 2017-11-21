@@ -1,10 +1,10 @@
 ## File Name: gdina_proc_item_response_patterns.R
-## File Version: 0.23
+## File Version: 0.24
 
 gdina_proc_item_response_patterns <- function( dat.items, J, G, weights, group ,
 			freq_weights = TRUE)
 {
-    # string with item response patterns
+	# string with item response patterns
 	if (freq_weights){
 		item.patt.subj <- dat.items[,1]
 		for (jj in 2:J){
@@ -14,21 +14,21 @@ gdina_proc_item_response_patterns <- function( dat.items, J, G, weights, group ,
 		N <- nrow(dat.items)
 		item.patt.subj <- paste0( "P" , 1E6 + 1:N )
 	}
-    # calculate frequency of each item response pattern
-    item.patt <- table( item.patt.subj )
+	# calculate frequency of each item response pattern
+	item.patt <- table( item.patt.subj )
 	
-    # sort item response pattern according to their absolute frequencies
-    six <- sort( item.patt, index.return=FALSE, decreasing=TRUE)
-    # define data frame 'item.patt' with item response pattern and its frequency (weight)
-    item.patt <- cbind( "pattern" = rownames(six), "freq" = as.numeric(as.vector(six) ) )
+	# sort item response pattern according to their absolute frequencies
+	six <- sort( item.patt, index.return=FALSE, decreasing=TRUE)
+	# define data frame 'item.patt' with item response pattern and its frequency (weight)
+	item.patt <- cbind( "pattern" = rownames(six), "freq" = as.numeric(as.vector(six) ) )
 	
-    # calculate weighted frequency for each item response pattern
+	# calculate weighted frequency for each item response pattern
 	if (G==1){ 
 		h1 <- rowsum( weights , item.patt.subj )	
 		item.patt[,2] <- h1[ match( item.patt[,1] , rownames(h1) ) , 1]							
 		item.patt.freq <- as.numeric(item.patt[,2])
 	}			
-				
+
 	if (G > 1){
 		item.patt.freq <- matrix( 0 , nrow(item.patt) , G )
 		for (gg in 1:G){  

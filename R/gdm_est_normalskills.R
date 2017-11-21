@@ -1,5 +1,5 @@
 ## File Name: gdm_est_normalskills.R
-## File Version: 0.08
+## File Version: 0.09
 
 ##############################################################
 # estimation of skill distribution under normality
@@ -9,11 +9,11 @@ gdm_est_normalskills <- function( pi.k , theta.k , irtmodel, G , D ,
 {
 	# mean.constraint [ dimension , group , value ]
 	# Sigma.constraint [ dimension1 , dimension2 , group , value ]	
-   
-   #-----------------------------------------
-   #-------- unidimensional model -----------
-   #-----------------------------------------   
-   if (D==1){
+
+	#-----------------------------------------
+	#-------- unidimensional model -----------
+	#-----------------------------------------   
+	if (D==1){
 		for (gg in 1:G){
 			res <- cdm_fit_normal(x=theta.k, w=pi.k[,gg])
 			mg <- res$Mu
@@ -44,10 +44,10 @@ gdm_est_normalskills <- function( pi.k , theta.k , irtmodel, G , D ,
 		pi.k[,gg] <- cdm_sumnorm( stats::dnorm( theta.k[,1] ,mean=mg , sd=sdg)	)
 		}			
 	}
-   #-----------------------------------------
-   #-------- multidimensional model ---------
-   #-----------------------------------------
-   if (D>1){
+	#-----------------------------------------
+	#-------- multidimensional model ---------
+	#-----------------------------------------
+	if (D>1){
 		for (gg in 1:G){
 			res <- cdm_fit_normal(x=theta.k, w=pi.k[,gg] )
 			mean.gg <- res$Mu

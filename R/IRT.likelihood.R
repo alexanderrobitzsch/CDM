@@ -1,5 +1,5 @@
 ## File Name: IRT.likelihood.R
-## File Version: 0.13
+## File Version: 0.14
 
 ###########################################################
 # extracts the individual likelihood
@@ -70,7 +70,7 @@ IRT.likelihood.slca <- function( object , ... )
 	ll <- object$p.xi.aj
 	attr(ll,"theta") <- NA
 	res <- list( "delta" = object$delta , 
-	             "delta.designmatrix" = object$delta.designmatrix )
+					"delta.designmatrix" = object$delta.designmatrix )
 	attr(ll,"skillspace") <- res
 	attr(ll,"prob.theta") <- object$pi.k
 	attr(ll,"G") <- object$G

@@ -1,5 +1,5 @@
 ## File Name: itemfit.rmsea.R
-## File Version: 0.28
+## File Version: 0.29
 
 ###########################################################
 # RMSEA Item fit
@@ -25,7 +25,7 @@ itemfit.rmsea <- function( n.ik , pi.k , probs , itemnames=NULL)
 		rownames(rmsea.groups) <- itemnames 
 	}
 	for (gg in 1:G){
-        rmsea.groups[,gg] <- itemfit_rmsea_helper( n.ik=n.ik[,,,gg,drop=FALSE]  , pi.k=pi.k, probs=probs ) 
+		rmsea.groups[,gg] <- itemfit_rmsea_helper( n.ik=n.ik[,,,gg,drop=FALSE]  , pi.k=pi.k, probs=probs ) 
 	}	
 	res <- list( "rmsea" = itemfit.rmsea , "rmsea.groups"=rmsea.groups )
 	return(res)

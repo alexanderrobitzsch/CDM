@@ -1,15 +1,15 @@
 ## File Name: gdina_mstep_item_ml.R
-## File Version: 0.855
+## File Version: 0.856
 
 #####################################################
 # GDINA M-step item parameters
 gdina_mstep_item_ml <- function( pjjj , Ilj.ast , Rlj.ast , eps , avoid.zeroprobs , 
-		 Mjjj , invM.list , linkfct , rule , method , iter , delta.new, max.increment , fac.oldxsi,
-		 jj , delta , rrum.model, delta.fixed , mstep_iter , mstep_conv , devchange,
-		 regular_type, regular_lam, cd_steps, mono.constr , Aj_mono_constraints_jj, mono_maxiter,
-		 regular_alpha, regular_tau, regularization_types, prior_intercepts, prior_slopes, use_prior )
-{			
-	eps2 <- eps		
+		Mjjj , invM.list , linkfct , rule , method , iter , delta.new, max.increment , fac.oldxsi,
+		jj , delta , rrum.model, delta.fixed , mstep_iter , mstep_conv , devchange,
+		regular_type, regular_lam, cd_steps, mono.constr , Aj_mono_constraints_jj, mono_maxiter,
+		regular_alpha, regular_tau, regularization_types, prior_intercepts, prior_slopes, use_prior )
+{
+	eps2 <- eps
 	delta_jj <- delta[[jj]]
 	NP <- length(delta_jj)
 	converged <- FALSE
@@ -67,7 +67,7 @@ gdina_mstep_item_ml <- function( pjjj , Ilj.ast , Rlj.ast , eps , avoid.zeroprob
 	#------------------	
 	
 	#--- algorithm without monotonicity constraints
-    delta_jj <- gdina_mstep_item_ml_algorithm( delta_jj=delta_jj, max_increment=max_increment, regular_lam=regular_lam, 
+	delta_jj <- gdina_mstep_item_ml_algorithm( delta_jj=delta_jj, max_increment=max_increment, regular_lam=regular_lam, 
 						regular_type=regular_type, regularization=regularization, ll_FUN=ll_FUN, h=h, 
 						mstep_conv=mstep_conv, cd_steps=cd_steps, mstep_iter=mstep_iter,
 						regular_alpha = regular_alpha, regular_tau=regular_tau ) 
@@ -122,9 +122,10 @@ gdina_mstep_item_ml <- function( pjjj , Ilj.ast , Rlj.ast , eps , avoid.zeroprob
 						}
 			#------------------		
 			
-			delta_jj <- gdina_mstep_item_ml_algorithm( delta_jj=delta_jj, max_increment=max_increment, regular_lam=regular_lam, 
-								regular_type=regular_type, regularization=regularization, ll_FUN=ll_FUN_mono, h=h, 
-								mstep_conv=mstep_conv, cd_steps=cd_steps, mstep_iter=mstep_iter ) 
+			delta_jj <- gdina_mstep_item_ml_algorithm( delta_jj=delta_jj, max_increment=max_increment, 
+								regular_lam=regular_lam, regular_type=regular_type, 
+								regularization=regularization, ll_FUN=ll_FUN_mono, h=h, 
+								mstep_conv=mstep_conv, cd_steps=cd_steps, mstep_iter=mstep_iter )
 			irf1 <- gdina_prob_item_designmatrix( delta_jj=delta_jj, Mjjj=Mjjj, linkfct=linkfct, eps_squeeze=eps )
 			constraints_fitted_jj <- as.vector( Aj_mono_constraints_jj %*% irf1 )
 			penalty_constraints <- gdina_mstep_mono_constraints_penalty(x=constraints_fitted_jj)	
@@ -143,7 +144,7 @@ gdina_mstep_item_ml <- function( pjjj , Ilj.ast , Rlj.ast , eps , avoid.zeroprob
 	
 	delta.new[[jj]] <- delta_jj
 	if ( (fac.oldxsi > 0 ) & (iter>3) ){
-	    fac.oldxsi1 <- fac.oldxsi * ( devchange >= 0 )
+		fac.oldxsi1 <- fac.oldxsi * ( devchange >= 0 )
 		delta.new[[jj]] <- fac.oldxsi1*delta[[jj]] + ( 1 - fac.oldxsi1 ) * delta.new[[jj]]
 	}
 
@@ -170,8 +171,8 @@ gdina_mstep_item_ml <- function( pjjj , Ilj.ast , Rlj.ast , eps , avoid.zeroprob
 	
 	#*** output	
 	res <- list( delta.new = delta.new, penalty = penalty, ll_value=ll_value, 
-						logprior_value = logprior_value)	
-	return(res)													
+						logprior_value = logprior_value)
+	return(res)
 }
-######################################################			
+######################################################
 

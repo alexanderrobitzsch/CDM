@@ -1,5 +1,5 @@
 ## File Name: slca_calc_likelihood.R
-## File Version: 0.02
+## File Version: 0.03
 
 slca_calc_likelihood <- function(G, use.freqpatt, ind.group, p.xi.aj, pi.k, weights )
 {
@@ -9,7 +9,7 @@ slca_calc_likelihood <- function(G, use.freqpatt, ind.group, p.xi.aj, pi.k, weig
 		if ( ! use.freqpatt ){
 			ind.gg <- ind.group[[gg]]
 			ll <- ll + sum( weights[ind.gg] * log( rowSums( p.xi.aj[ind.gg,] * 
-							    matrix( pi.k[,gg] , nrow=length(ind.gg) , ncol=nrow(pi.k) , byrow=TRUE ) ) ) )
+								matrix( pi.k[,gg] , nrow=length(ind.gg) , ncol=nrow(pi.k) , byrow=TRUE ) ) ) )
 		}
 		#-- use frequency pattern
 		if ( use.freqpatt ){

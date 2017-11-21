@@ -1,10 +1,10 @@
 ## File Name: IRT.repDesign.R
-## File Version: 0.09
+## File Version: 0.11
 
 ########################################################
 IRT.repDesign <- function( data , wgt = NULL, jktype = "JK_TIMSS", 
-     jkzone = NULL, jkrep = NULL, jkfac = NULL, fayfac = 1 , 
-     wgtrep = "W_FSTR" , ngr=100 , Nboot=200 , seed = .Random.seed )
+		jkzone = NULL, jkrep = NULL, jkfac = NULL, fayfac = 1 , 
+		wgtrep = "W_FSTR" , ngr=100 , Nboot=200 , seed = .Random.seed )
 {
 	#---------------------------------
 	# BIFIEsurvey must be loaded
@@ -20,15 +20,15 @@ IRT.repDesign <- function( data , wgt = NULL, jktype = "JK_TIMSS",
 					jkfac = jkfac, fayfac = 1 , 
 					wgtrep = wgtrep , pvpre = NULL , ngr=ngr ,
 					seed = seed , cdata=FALSE)
-		} else {
+	} else {
 		bdat2 <- BIFIEsurvey::BIFIE.data.boot( data , wgt=wgt ,  pv_vars = NULL ,
 					Nboot = Nboot , seed = seed , cdata=FALSE)					
 	}
 	cat("+++ Generated IRT.repDesign object\n")			
 	# output
 	res <- list( "wgt" = bdat2$wgt , "wgtrep" = bdat2$wgtrep , 
-                "fayfac" = bdat2$fayfac , "RR" = ncol( bdat2$wgtrep) )			
-	class(res) <- "IRT.repDesign"					
+				"fayfac" = bdat2$fayfac , "RR" = ncol( bdat2$wgtrep) )			
+	class(res) <- "IRT.repDesign"	
 	return(res)			
 }
-########################################################################					
+########################################################################

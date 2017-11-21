@@ -1,5 +1,5 @@
 ## File Name: slca_proc_multiple_groups.R
-## File Version: 0.02
+## File Version: 0.03
 
 slca_proc_multiple_groups <- function( group, n)
 {
@@ -21,9 +21,9 @@ slca_proc_multiple_groups <- function( group, n)
 		}
 		group.stat <- cbind( a2 , a1 )
 		colnames(group.stat) <- c(  "group.orig" , "group" , "N"  )
-	    Ngroup <- a1[,2]		
+		Ngroup <- a1[,2]		
 	}	
-    if (G==1){ 
+	if (G==1){ 
 		Ngroup <- length(group) 
 	}
 	#---- output

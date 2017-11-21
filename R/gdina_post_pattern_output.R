@@ -1,11 +1,11 @@
 ## File Name: gdina_post_pattern_output.R
-## File Version: 0.01
+## File Version: 0.02
 
 gdina_post_pattern_output <- function(G, p.xi.aj, zeroprob.skillclasses,
 	item.patt, attr.patt.c, p.aj.xi, item.patt.subj, group2, attr.patt, K )
 {
 
-    # calculate posterior probability for each attribute pattern
+	# calculate posterior probability for each attribute pattern
 	if (G==1){	
 		# set likelihood for skill classes with zero probability to zero
 		if ( ! is.null(zeroprob.skillclasses) ){
@@ -36,7 +36,7 @@ gdina_post_pattern_output <- function(G, p.xi.aj, zeroprob.skillclasses,
 			pattern$map.post[ind.gg] <- l1[ind2.gg]		
 					}
 			}
-    # calculate posterior probabilities for all skills separately
+	# calculate posterior probabilities for all skills separately
 	if (G==1){
 		attr.postprob <- p.aj.xi %*% attr.patt
 		colnames( attr.postprob ) <- paste("post.attr",1:K, sep="")

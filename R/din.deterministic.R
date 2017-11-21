@@ -1,5 +1,5 @@
 ## File Name: din.deterministic.R
-## File Version: 1.04
+## File Version: 1.05
 
 #####################################################
 # Deterministic din estimation
@@ -82,15 +82,15 @@ din.deterministic <- function( dat , q.matrix , rule="DINA" , method="JML" ,
 		iter <- iter + 1
 		# print progress
 		if (progress){
-		    cat("Iteration" , iter )
+			cat("Iteration", iter )
 			if ( method=="JML"){
 				cat(" | Deviance = ",round(devval,3) )
 				cat("\n ****")
 			}
 			if ( method!="JML"){ cat(" |") }
 			cat("  Average change in classifications = ",round(latresp.change,5) )
-			if (method %in% c("JML","adaptive") ){	
-					cat(" | Max. param. change = " , round( max.increment,6) , "\n")
+			if (method %in% c("JML","adaptive") ){
+				cat(" | Max. param. change = " , round( max.increment,6) , "\n")
 			} else { 
 				cat("\n") 
 			}

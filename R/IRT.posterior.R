@@ -1,5 +1,5 @@
 ## File Name: IRT.posterior.R
-## File Version: 0.08
+## File Version: 0.09
 
 ###########################################################
 # extracts the individual posterior
@@ -66,7 +66,7 @@ IRT.posterior.slca <- function( object , ... )
 	ll <- object$posterior
 	attr(ll,"theta") <- NA
 	res <- list( "delta" = object$delta , 
-	             "delta.designmatrix" = object$delta.designmatrix )
+				"delta.designmatrix" = object$delta.designmatrix )
 	attr(ll,"skillspace") <- res
 	attr(ll,"prob.theta") <- object$pi.k
 	attr(ll,"G") <- object$G

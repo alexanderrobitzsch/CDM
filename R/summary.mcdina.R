@@ -1,10 +1,11 @@
 ## File Name: summary.mcdina.R
-## File Version: 0.12
+## File Version: 0.15
 
 
 ##################################################################
 # Summary of the GDINA model
-summary.mcdina <- function( object , digits = 4 , file = NULL , ... ){
+summary.mcdina <- function( object , digits = 4 , file = NULL , ... )
+{
 	#-------------------------------------------------------
 	# INPUT:
 	# object	... result from GDINA analysis
@@ -12,7 +13,7 @@ summary.mcdina <- function( object , digits = 4 , file = NULL , ... ){
 	#-------------------------------------------------------
 	rdigits <- digits
 	
- 	osink( file = file , suffix = paste0( "__SUMMARY.Rout") )
+	osink( file = file , suffix = paste0( "__SUMMARY.Rout") )
 
 
 	# Parameter summary
@@ -21,32 +22,26 @@ summary.mcdina <- function( object , digits = 4 , file = NULL , ... ){
 	cat( paste( d1$Package , " " , d1$Version , " (" , d1$Date , ")" , sep="") , "\n" )	
 	cat( "Date of Analysis:" , paste( object$time$s2 ) , "\n" )
 	cat("Computation Time:" , print(object$time$s2 - object$time$s1), "\n\n")	
- 	cat("Multiple Choice DINA Model (MC-DINA)\n") 
+	cat("Multiple Choice DINA Model (MC-DINA)\n") 
 	cat( "\nNumber of iterations =" , object$iter )
 	if ( ! object$converged ){ cat("\nMaximum number of iterations was reached.") }
 	
 	cat( "\n\nDeviance =" , round( object$ic$dev , 2 ) ) 
 	cat( "  | Loglikelihood =" , round( - object$ic$dev / 2 , 2 ) ,	"\n" )
-    cat( "Number of persons =" , object$ic$n , "\n" )    
-    cat( "Number of groups =" , object$G , "\n" )    	
-	    cat( "Number of items =" , ncol(object$dat) , "\n" )    
-    cat( "Number of estimated parameters =" , object$ic$np , "\n" )    
-    cat( "Number of estimated item parameters =" , object$ic$itempars , "\n" )    	
-    cat( "Number of estimated skill class parameters =" , object$ic$traitpars )    		
+	cat( "Number of persons =" , object$ic$n , "\n" )    
+	cat( "Number of groups =" , object$G , "\n" )    	
+	cat( "Number of items =" , ncol(object$dat) , "\n" )    
+	cat( "Number of estimated parameters =" , object$ic$np , "\n" )    
+	cat( "Number of estimated item parameters =" , object$ic$itempars , "\n" )    	
+	cat( "Number of estimated skill class parameters =" , object$ic$traitpars )    		
 	cat( " (" , object$ic$Nskillclasses , "latent skill classes)\n")
-    cat( "\nAIC = " , round( object$ic$AIC , 2 ) , " ; penalty =" , 
+	cat( "\nAIC = " , round( object$ic$AIC , 2 ) , " ; penalty =" , 
 				round( object$ic$AIC - object$ic$deviance ,2 ) , "\n" )    
-    cat( "BIC = " , round( object$ic$BIC , 2 ) , " ; penalty =" , 
+	cat( "BIC = " , round( object$ic$BIC , 2 ) , " ; penalty =" , 
 				round( object$ic$BIC - object$ic$deviance ,2 ) , "\n" )  
-    cat( "CAIC = " , round( object$ic$CAIC , 2 ) ," ; penalty =" , 
+	cat( "CAIC = " , round( object$ic$CAIC , 2 ) ," ; penalty =" , 
 				round( object$ic$CAIC - object$ic$deviance ,2 ) , "\n\n" )  
-#	if (object$reduced.skillspace ){ 
-#	    cat("Goodness of fit for reduced skillspace\n")
-#		cat( "Delta index =" , round( object$delta.index , 3 ) , "\n\n")
-#						}
 
-#    cat("Model fit\n")
-#	g1 <- gdina.fit( object , print.output = TRUE )				
 	###########################################################
 	ds <- object$item
 	cds <- colnames(ds)
@@ -88,15 +83,16 @@ summary.mcdina <- function( object , digits = 4 , file = NULL , ... ){
 					}
 	print(xt)
 
-   csink( file = file )		
-		
-		}
+csink( file = file )		
+
+}
 ##########################################################################
 
 
 #***************************************************************
 # RRUM parametrization
-.rrum.param <- function( delta.summary , q.matrix ){
+.rrum.param <- function( delta.summary , q.matrix )
+{
 	#---
 	#  RRUM parametrization
 	#  log( P(X=1) ) = b0 + b1*alpha1 + b2 * alpha2 
@@ -112,10 +108,9 @@ summary.mcdina <- function( object , digits = 4 , file = NULL , ... ){
 	rownames(rrum.params) <- delta.summary[ delta.summary$partype == 0 , "item" ]
 	colnames(rrum.params) <- c( "pi" , paste( "r_", colnames(q.matrix) , sep="") )
 	for (ii in 1:I){
-		# ii <- 2
 		d.ii <- delta.summary[ delta.summary$itemno == ii , ]
 		rrum.params[ii,"pi"] <- exp( sum( d.ii$est ) )
 		rrum.params[ ii , which( q.matrix[ii,]==1) +1 ] <- exp( - d.ii$est[-1] )
-				}
+	}
 	return( rrum.params )
-        }
+}

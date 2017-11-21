@@ -1,5 +1,5 @@
 ## File Name: summary.gdina.R
-## File Version: 1.54
+## File Version: 1.55
 
 
 ##################################################################
@@ -12,14 +12,14 @@ summary.gdina <- function( object , digits = 4 , file = NULL , ... ){
 	#-------------------------------------------------------
 	rdigits <- digits
 
- 	osink( file = file , suffix = paste0( "__SUMMARY.Rout") )
+	osink( file = file , suffix = paste0( "__SUMMARY.Rout") )
 
 	# Parameter summary
-    cat("---------------------------------------------------------------------------------------------------------- \n")
+	cat("---------------------------------------------------------------------------------------------------------- \n")
 
 	#-- print package
 	cdm_print_summary_package(pack="CDM")
-    cat("\n")	
+	cat("\n")	
 
 	#-- summary call
 	cdm_print_summary_call(object=object)	
@@ -27,10 +27,10 @@ summary.gdina <- function( object , digits = 4 , file = NULL , ... ){
 	#-- print computation time
 	cdm_print_summary_computation_time(object=object)
 	
-    if (object$HOGDINA==-1){ 
+	if (object$HOGDINA==-1){ 
 		cat("Generalized DINA Model \n") } else {
 		cat("Higher Order Generalized DINA Model \n") }
-    if ( object$G > 1 ){ 
+	if ( object$G > 1 ){ 
 		cat("  Multiple Group Estmation with",object$G , "Groups \n") 
 		# group statistics
 		cat("\nGroup statistics\n")
@@ -92,7 +92,7 @@ summary.gdina <- function( object , digits = 4 , file = NULL , ... ){
 	selvars <- intersect( c("est", "se" ) , colnames(ds) )
 	ind <- which( colnames(ds) %in% selvars ) 
 #	if (G>0){ ind <- which( colnames(ds) %in% c("est" ) ) }
-    for (ii in ind){
+	for (ii in ind){
 		ds[,ii] <- round( ds[,ii] , rdigits )
 	}
 	cat("----------------------------------------------------------------------------\n")
@@ -101,15 +101,15 @@ summary.gdina <- function( object , digits = 4 , file = NULL , ... ){
 	options(scipen=999)
 	print(ds)
 	options(scipen=r1$scipen)
-    	if ( ! is.null( object$delta.designmatrix ) ){ 
+		if ( ! is.null( object$delta.designmatrix ) ){ 
 			cat("\nNote: Standard errors are not (yet) correctly implemented!\n")
 	}	
 
 	cat("\nRMSD (RMSEA) Item Fit Statistics\n")
 	print( round( object$itemfit.rmsea,3) )
-											
-    cat("\nMean of RMSEA item fit:" , 
-    round( object$mean.rmsea ,3 ) , "\n")											
+
+	cat("\nMean of RMSEA item fit:" , 
+	round( object$mean.rmsea ,3 ) , "\n")											
 	
 	# RRUM model	
 	if (object$rrum.model){
@@ -155,6 +155,6 @@ summary.gdina <- function( object , digits = 4 , file = NULL , ... ){
 		print( round( object$attr.rf,3) )
 	}
 
-   csink( file = file )			
+	csink( file = file )
 }
 ##########################################################################

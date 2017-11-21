@@ -1,5 +1,5 @@
 ## File Name: cdm_trim_increment.R
-## File Version: 0.03
+## File Version: 0.04
 
 cdm_trim_increment <- function( increment, max.increment, type=1 )
 {
@@ -12,7 +12,7 @@ cdm_trim_increment <- function( increment, max.increment, type=1 )
 		eps <- 1E-80
 		ci <- ceiling( abs(increment) / ( abs( max.increment) + eps ) )
 		increment <- ifelse( abs( increment) > abs(max.increment)  , 
-                                 increment/(2*ci) , increment )	
+								increment/(2*ci) , increment )	
 	}		
 	return(increment)
 }

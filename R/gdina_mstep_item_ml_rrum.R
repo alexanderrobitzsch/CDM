@@ -1,18 +1,18 @@
 ## File Name: gdina_mstep_item_ml_rrum.R
-## File Version: 0.27
+## File Version: 0.28
 
 #####################################################
 # GDINA M-step item parameters
 gdina_mstep_item_ml_rrum <- function( 
-         pjjj , Ilj.ast , Rlj.ast , eps , avoid.zeroprobs , 
-		 Mjjj , invM.list , linkfct , rule , method ,
-		 iter , delta.new, max.increment , fac.oldxsi,
-		 jj , delta , rrum.model, delta.fixed , 
-		 mstep_iter , mstep_conv , devchange )
-{		
+		pjjj , Ilj.ast , Rlj.ast , eps , avoid.zeroprobs , 
+		Mjjj , invM.list , linkfct , rule , method ,
+		iter , delta.new, max.increment , fac.oldxsi,
+		jj , delta , rrum.model, delta.fixed , 
+		mstep_iter , mstep_conv , devchange )
+{
 	eps2 <- eps		
 	delta_jj <- delta[[jj]]
-	delta_jj <- stats::qlogis( logpars2rrumpars(delta_jj) )				
+	delta_jj <- stats::qlogis( logpars2rrumpars(delta_jj) )
 	converged <- FALSE
 	ii <- 0
 	max_increment <- max.increment
@@ -22,7 +22,7 @@ gdina_mstep_item_ml_rrum <- function(
 	Ilj.ast <- Ilj.ast + .05
 		
 	while ( ! converged ){
-	    delta_jj0 <- delta_jj
+		delta_jj0 <- delta_jj
 		#*** define function
 		ll_FUN <- function(x){
 			delta_jj <- x
@@ -31,7 +31,7 @@ gdina_mstep_item_ml_rrum <- function(
 			irf1 <- exp(irf1)		
 			irf1 <- cdm_squeeze( irf1 , c(eps,1-eps) )				
 			ll <- - sum( Rlj.ast * log(abs(irf1)) + 
-						   ( Ilj.ast - Rlj.ast ) * log( abs(1 - irf1 ) ) )
+							( Ilj.ast - Rlj.ast ) * log( abs(1 - irf1 ) ) )
 			return(ll)
 		}
 
@@ -59,7 +59,7 @@ gdina_mstep_item_ml_rrum <- function(
 	delta_jj <- rrumpars2logpars( delta_jj )
 	delta.new[[jj]] <- delta_jj
 	if ( (fac.oldxsi > 0 ) & (iter>3)){
-	    fac.oldxsi1 <- fac.oldxsi * ( devchange >= 0 )
+		fac.oldxsi1 <- fac.oldxsi * ( devchange >= 0 )
 		delta.new[[jj]] <- fac.oldxsi1*delta[[jj]] + ( 1 - fac.oldxsi1 ) * delta.new[[jj]]
 	}
 
@@ -69,10 +69,10 @@ gdina_mstep_item_ml_rrum <- function(
 		if ( ! is.na( delta.fixed.jj)[1] ){
 			delta.new[[jj]] <- delta.fixed.jj
 		}
-	}						
+	}
 	#*** output	
 	res <- list( delta.new = delta.new 	)	
-	return(res)													
+	return(res)	
 }
 ######################################################			
 			

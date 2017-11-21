@@ -1,5 +1,5 @@
 ## File Name: IRT.expectedCounts.R
-## File Version: 0.11
+## File Version: 0.12
 
 ###########################################################
 # extracts expected counts
@@ -12,7 +12,7 @@ IRT.expectedCounts <- function(object, ...)
 ###########################################################
 # object of class gdm
 IRT.expectedCounts.gdm <- function( object , ... )
-{    
+{
 	ll <- aperm( object$n.ik , c(2,3,1,4) )
 	attr(ll,"theta") <- object$theta.k
 	attr(ll,"prob.theta") <- object$pi.k
@@ -66,7 +66,7 @@ IRT.expectedCounts.slca <- function( object , ... )
 {
 	ll <- aperm( object$n.ik , c(2,3,1,4) )		
 	res <- list( "delta" = object$delta , 
-	             "delta.designmatrix" = object$delta.designmatrix )
+				"delta.designmatrix" = object$delta.designmatrix )
 	attr(ll,"skillspace") <- res
 	attr(ll,"prob.theta") <- object$pi.k
 	attr(ll,"G") <- object$G

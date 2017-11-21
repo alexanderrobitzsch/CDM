@@ -1,5 +1,5 @@
 ## File Name: gdm_calc_loglikelihood.R
-## File Version: 0.05
+## File Version: 0.06
 
 gdm_calc_loglikelihood <- function(irtmodel, skillspace, b, a, centerintercepts, centerslopes, TD, Qmatrix,
 		Ngroup, pi.k, delta.designmatrix, delta, G, theta.k, D, mean.constraint, Sigma.constraint,
@@ -29,7 +29,7 @@ gdm_calc_loglikelihood <- function(irtmodel, skillspace, b, a, centerintercepts,
 		b <- res$b 
 		a <- res$a			
 	}					
-    if ( skillspace == "est" ){
+	if ( skillspace == "est" ){
 		thetaDes <- theta.k
 	}		
 	#--- probabilities

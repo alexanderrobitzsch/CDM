@@ -1,5 +1,5 @@
 ## File Name: slca_est_skillspace.R
-## File Version: 0.04
+## File Version: 0.05
 
 ###########################################################################
 # reduced skillspace estimation
@@ -32,7 +32,7 @@ slca_est_skillspace <- function(Ngroup, pi.k , delta.designmatrix , G , delta , 
 			# delta.fixed: 1st column: parameter index
 			#              2nd column: group index
 			#              3rd column: parameter value 
-		    ind.gg <- which( delta.fixed[ ,2] == gg )
+			ind.gg <- which( delta.fixed[ ,2] == gg )
 			if ( length(ind.gg) > 0 ){
 				beta[ delta.fixed[ind.gg,1] ] <- delta.fixed[ind.gg,3]
 			}

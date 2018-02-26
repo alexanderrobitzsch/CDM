@@ -1,5 +1,5 @@
 %% File Name: IRT.RMSD.Rd
-%% File Version: 0.13
+%% File Version: 0.14
 
 \name{IRT.RMSD}
 \alias{IRT.RMSD}
@@ -108,6 +108,22 @@ summary(mod1)
 # item fit statistics
 imod1 <- CDM::IRT.RMSD(mod1)
 summary(imod1)
+
+#############################################################################
+# EXAMPLE 2: data.math| RMSD and MD statistic for assessing DIF
+#############################################################################
+
+data(data.math, package="sirt")
+dat <- data.math$data
+items <- grep("M[A-Z]", colnames(dat) , value=TRUE )
+
+#-- fit multiple group Rasch model 
+mod <- TAM::tam.mml( dat[,items], group= dat$female )
+summary(mod)
+
+#-- fit statistics
+rmod <- CDM::IRT.RMSD(mod)
+summary(rmod)
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

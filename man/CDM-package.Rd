@@ -1,5 +1,5 @@
 %% File Name: CDM-package.Rd
-%% File Version: 2.76
+%% File Version: 2.77
 
 \name{CDM-package}
 
@@ -25,7 +25,7 @@
     for further details on estimation and the package structure.
     For tutorials on how to use the CDM package see 
     George and Robitzsch (2015, <doi:10.20982/tqmp.11.3.p189>) as well as
-    Ravand and Robitzsch (2015, <http://pareonline.net/getvn.asp?v=20&n=11>).
+    Ravand and Robitzsch (2015).
 }
 
 \details{

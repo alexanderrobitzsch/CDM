@@ -1,5 +1,5 @@
 ## File Name: IRT.irfprobPlot.R
-## File Version: 1.08
+## File Version: 1.11
 
 ###################################################
 # plot item response functions
@@ -80,7 +80,7 @@ IRT.irfprobPlot <- function( object , items=NULL ,
 			dfr <- rbind( dfr , dfr1 )
 		}
 		item <- items.labels[ii]
-		main <- paste0('Trace lines for item ', item)
+		main <- paste0('Trace lines for item ', item, ' (Item ', ii , ')')
 		vkey <- paste0("Cat " , 0:(K-1) )
 		L1 <- K
 		#**************************************

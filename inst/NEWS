@@ -24,7 +24,7 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 6.1  |  2017-11-21  |  Last: CDM 6.1-1
+VERSIONS CDM 6.2  |  2018-02-26  |  Last: CDM 6.2-1
 --------------------------------------------------------------
 
 NOTE  * xxx
@@ -34,42 +34,52 @@ EXAMP * included/modified examples: ---
 
 
 
+--------------------------------------------------------------
+VERSIONS CDM 6.1  |  2018-02-26  |  Last: CDM 6.1-10
+--------------------------------------------------------------
 
+FIXED * fixed bug of computation of MD statistic in IRT.RMSD()
+        which was recently broken
+NOTE  * included item index in title of figures in 
+        IRT.irfprobPlot()
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: IRT.RMSD (2)
 
 --------------------------------------------------------------
 VERSIONS CDM 6.0  |  2017-11-20  |  Last: CDM 6.0-101
 --------------------------------------------------------------
 
-ADDED * included regularized maximum likelihood in 'slca'
+ADDED * included regularized maximum likelihood in slca()
 ADDED * included option for positivity constraints of Xlambda
-        parameter in 'slca'
-ADDED * included P-EM acceleration method in 'slca', 'gdm',
-        and 'gdina'
+        parameter in slca()
+ADDED * included P-EM acceleration method in slca(), gdm(),
+        and gdina()
 NOTE  * avoided inversion of singular covariance matrices in
-        'gdina' by using 'MASS::ginv'
+        gdina() by using MASS::ginv()
 NOTE  * included several sub-datasets and different Q-matrices
         of the fraction subtraction dataset (see 'data.fraction')
 NOTE  * slight changes in algorithm of higher-order GDINA model
-NOTE  * included argument 'diag_only' in 'numerical_Hessian'
-NOTE  * exported utility functions 'cdm_fa1', 'cdm_print_summary_call',
-        'cdm_print_summary_computation_time', threshold operators
-        'cdm_XXX_threshold' for diverse 'XXX', 'cdm_fit_normal',
-        'cdm_parameter_regularization', 'cdm_penalty_values',
-        'CDM_rbind_fill', 'cdm_matrix1', 'cdm_matrix2'
-NOTE  * included derivative function 'numerical_Hessian_partial'
-ADDED * added option for monotonicity constraints in 'gdina'
-ADDED * added regularization methods in 'gdina'. Implemented are
+NOTE  * included argument 'diag_only' in numerical_Hessian()
+NOTE  * exported utility functions cdm_fa1(), cdm_print_summary_call(),
+        cdm_print_summary_computation_time(), threshold operators
+        cdm_XXX_threshold() for diverse 'XXX', cdm_fit_normal(),
+        cdm_parameter_regularization(), cdm_penalty_values(),
+        CDM_rbind_fill(), cdm_matrix1(), cdm_matrix2()
+NOTE  * included derivative function numerical_Hessian_partial()
+ADDED * added option for monotonicity constraints in gdina()
+ADDED * added regularization methods in gdina(). Implemented are
         the penalties SCAD, lasso, ridge, SCAD-L2, truncated L1, MCP
         (Xu & Shang, 2017, JASA) 
-NOTE  * included argument 'freq_weights' in 'gdina' to disable the
+NOTE  * included argument 'freq_weights' in gdina() to disable the
         usage of frequency weights
 ADDED * included prior distributions for item parameters in 
-        'gdina' function
-ADDED * added regularized latent class estimation ('reglca';
+        gdina() function
+ADDED * added regularized latent class estimation (reglca();
         Chen et al., 2015, JASA; Chen et al., 2017, Psychometrika)
-NOTE  * extended option for skill space reduction in 'gdina' to
+NOTE  * extended option for skill space reduction in gdina() to
         multiple group analysis
-NOTE  * enabled 'delta.designmatrix' argument in 'gdm' function 
+NOTE  * enabled 'delta.designmatrix' argument in gdm() function 
         which was previously ignored
 NOTE  * disbaled PEM acceleration for HOGDINA models (not yet 
         implemented, thanks to Hamdollah Ravand)

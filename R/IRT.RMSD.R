@@ -1,5 +1,5 @@
 ## File Name: IRT.RMSD.R
-## File Version: 0.17
+## File Version: 0.22
 
 IRT.RMSD <- function( object )
 {
@@ -41,10 +41,14 @@ IRT.RMSD <- function( object )
 		res0 <- IRT_RMSD_calc_rmsd( n.ik=n.ik , pi.k = pi.k , probs = probs )				
 		RMSD[,gg+1] <- res0$RMSD   # RMSD
 		RMSD_bc[,gg+1] <- res0$RMSD_bc   # RMSD_bc
-		MD[,gg+1] <- res0$MD      # MD
+		
+		#----
+		md_gg <- IRT_RMSD_calc_md( n.ik=n.ik , pi.k = pi.k , probs = probs )
+		MD[,gg+1] <- md_gg 		
+		# MD[,gg+1] <- res0$MD      # MD
 		MAD[,gg+1] <- res0$MAD   # MAD
 	}
-	
+
 	M1 <- rowSums( RMSD[,2:(G+1) ]^2 * weight_group )
 	RMSD$WRMSD <- sqrt( M1 )
 	M1 <- rowSums( RMSD_bc[,2:(G+1) ]^2 * weight_group )
@@ -72,7 +76,7 @@ IRT.RMSD <- function( object )
 	#*** output
 	res <- list( MD = MD , RMSD = RMSD , RMSD_bc = RMSD_bc , MAD = MAD , 
 					chisquare_stat = chisquare_stat , 
-					CALL = CALL , G = G ,
+					call = CALL , G = G ,
 					RMSD_summary = RMSD_summary , 
 					RMSD_bc_summary = RMSD_bc_summary ,
 					MD_summary = MD_summary,

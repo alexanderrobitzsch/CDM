@@ -1,5 +1,5 @@
 ## File Name: summary.IRT.RMSD.R
-## File Version: 0.11
+## File Version: 0.12
 
 
 #*******************************************************
@@ -15,10 +15,8 @@ summary.IRT.RMSD <- function( object , file = NULL , digits = 3 , ... )
 
 	G <- object$G
 	
-	cat("Call:\n")
-	print(object$CALL)
-	cat("\n")
-	
+	#-- summary call
+	cdm_print_summary_call(object=object)		
 
 	cat("-----------------------------------------------------------------------------\n")
 	cat("Root Mean Square Deviation (RMSD) \n\n")

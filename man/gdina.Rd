@@ -1,5 +1,5 @@
 %% File Name: gdina.Rd
-%% File Version: 3.402
+%% File Version: 3.404
 
 \name{gdina}
 \alias{gdina}
@@ -57,7 +57,7 @@ gdina(data, q.matrix, skillclasses=NULL, conv.crit=0.0001, dev.crit=.1 ,  maxit=
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{data}{A required \eqn{N \times J} data matrix 
-    containing integer responses, 0, 1, ..., K. Non-dichotomous
+    containing integer responses, 0, 1, ..., K. Polytomous
     item responses are treated by the sequential GDINA model.
   \code{NA} values are allowed.  
   }

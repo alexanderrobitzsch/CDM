@@ -1,5 +1,5 @@
 ## File Name: modelfit.cor.din.R
-## File Version: 2.13
+## File Version: 2.14
 
 #############################################################
 # Model fit for din object
@@ -21,7 +21,7 @@ modelfit.cor.din <- function( dinobj , jkunits = 0 )
 		data <- as.matrix(mod$data)
 	}
 	
-	res <- modelfit.cor2( data , posterior , probs ) 
+	res <- modelfit.cor2( data=data, posterior=posterior, probs=probs ) 
 
 	#******************************************
 	# Jackknife

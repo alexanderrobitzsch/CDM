@@ -24,13 +24,15 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 6.2  |  2018-02-26  |  Last: CDM 6.2-1
+VERSIONS CDM 6.2  |  2018-04-03  |  Last: CDM 6.2-7
 --------------------------------------------------------------
 
-NOTE  * xxx
+FIXED * fixed a bug in IRT.RMSD() function for models fitted in
+        the CDM package
+NOTE  * speeded parts of the IRT.modelfit() function
 
 DATA  * included/modified datasets: ---
-EXAMP * included/modified examples: ---
+EXAMP * included/modified examples: IRT.RMSD (3)
 
 
 

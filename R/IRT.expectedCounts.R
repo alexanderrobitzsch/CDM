@@ -1,5 +1,5 @@
 ## File Name: IRT.expectedCounts.R
-## File Version: 0.12
+## File Version: 0.15
 
 ###########################################################
 # extracts expected counts
@@ -33,6 +33,7 @@ IRT.expectedCounts.din <- function( object , ... )
 	attr(ll,"theta") <- object$attribute.patt.splitted
 	attr(ll,"prob.theta") <- object$attribute.patt$class.prob
 	attr(ll,"G") <- 1
+	attr(ll,"dimnames")[[1]] <- colnames(object$dat)
 	return(ll)
 }
 ###########################################################
@@ -56,8 +57,9 @@ IRT.expectedCounts.gdina <- function( object , ... )
 	attr(ll,"theta") <- object$attribute.patt.splitted
 	attr(ll,"prob.theta") <- object$attribute.patt[ , 1:object$G ]
 	attr(ll,"G") <- object$G	
+	attr(ll,"dimnames")[[1]] <- colnames(object$dat)
 	return(ll)
-	}
+}
 ############################################################	
 
 ###########################################################

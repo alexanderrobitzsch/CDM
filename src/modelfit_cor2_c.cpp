@@ -1,5 +1,5 @@
 //// File Name: modelfit_cor2_c.cpp
-//// File Version: 3.05
+//// File Version: 3.06
 
 // #include <RcppArmadillo.h>
 #include <Rcpp.h>
@@ -94,5 +94,57 @@ Rcpp::List modelfit_cor2_Cpp( Rcpp::NumericMatrix posterior,
 		) ;         
 }
 ///********************************************************************
+
+
+
+///********************************************************************
+//** frequencies for model fit function
+///** modelfit_cor_counts
+// [[Rcpp::export]]    
+Rcpp::List modelfit_cor_counts( Rcpp::NumericMatrix data, Rcpp::NumericMatrix data_resp )
+{
+
+	int N = data.nrow();
+	int I = data.ncol();	
+	Rcpp::NumericMatrix n11(I,I);
+	Rcpp::NumericMatrix n10(I,I);
+	Rcpp::NumericMatrix n01(I,I);
+	Rcpp::NumericMatrix n00(I,I);	
+	n11.fill(0);
+	n10.fill(0);
+	n01.fill(0);
+	n00.fill(0);
+	
+	for (int ii=0; ii<I; ii++){
+		for (int jj=ii; jj<I; jj++){	
+			for (int nn=0; nn<N; nn++){	
+				if ( ( data_resp(nn,ii) == 1 ) & ( data_resp(nn,ii) == 1 ) ){
+					if ( ( data(nn,ii) == 1 ) & ( data(nn,jj) == 1 ) ){	n11(ii,jj) ++ ;	}
+					if ( ( data(nn,ii) == 1 ) & ( data(nn,jj) == 0 ) ){	n10(ii,jj) ++ ;	}
+					if ( ( data(nn,ii) == 0 ) & ( data(nn,jj) == 1 ) ){	n01(ii,jj) ++ ;	}
+					if ( ( data(nn,ii) == 0 ) & ( data(nn,jj) == 0 ) ){	n00(ii,jj) ++ ;	}
+				}
+			}
+		}
+	}
+	for (int ii=0; ii<I; ii++){
+		for (int jj=ii; jj<I; jj++){			
+			n11(jj,ii) = n11(ii,jj);
+			n10(jj,ii) = n01(ii,jj);
+			n01(jj,ii) = n10(ii,jj);
+			n00(jj,ii) = n00(ii,jj);
+		}
+	}
+		
+	//-- output
+	return Rcpp::List::create(
+			Rcpp::Named("n11") = n11,
+			Rcpp::Named("n10") = n10,
+			Rcpp::Named("n01") = n01,
+			Rcpp::Named("n00") = n00
+		);
+}
+///********************************************************************
+
 
 

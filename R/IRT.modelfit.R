@@ -1,5 +1,5 @@
 ## File Name: IRT.modelfit.R
-## File Version: 0.14
+## File Version: 0.17
 
 ###########################################################
 IRT.modelfit <- function (object, ...)
@@ -53,16 +53,12 @@ summary.IRT.modelfit.helper <- function( object , ... )
 {
 	cat("Test of Global Model Fit\n")
 	obji <- object$modelfit.test
-	for (vv in seq(2,ncol(obji))){
-		obji[,vv] <- round( obji[,vv] , 3 )
-	}
-	print(obji)
+	cdm_print_summary_data_frame(obji=obji, from=2, digits=3, rownames_null=FALSE)			
+	
+	#------
 	cat("\nFit Statistics\n")
 	obji <- object$modelfit.stat
-	for (vv in seq(1,ncol(obji))){
-		obji[,vv] <- round( obji[,vv] , 3 )
-	}
-	print(obji)	
+	cdm_print_summary_data_frame(obji=obji, from=1, digits=3, rownames_null=FALSE)		
 }
 #################################################################	
 

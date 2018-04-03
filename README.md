@@ -13,7 +13,7 @@ The CRAN version can be installed from within R using:
 utils::install.packages("CDM")
 ```
 
-#### GitHub version `CDM` 6.2-1 (2018-02-26)
+#### GitHub version `CDM` 6.2-7 (2018-04-03)
 
 The version hosted [here](https://github.com/alexanderrobitzsch/CDM) is the development version of `CDM`. 
 The GitHub version can be installed using `devtools` as:

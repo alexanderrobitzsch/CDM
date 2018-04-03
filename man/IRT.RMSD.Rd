@@ -1,5 +1,5 @@
 %% File Name: IRT.RMSD.Rd
-%% File Version: 0.14
+%% File Version: 0.16
 
 \name{IRT.RMSD}
 \alias{IRT.RMSD}
@@ -124,6 +124,23 @@ summary(mod)
 #-- fit statistics
 rmod <- CDM::IRT.RMSD(mod)
 summary(rmod)
+
+#############################################################################
+# EXAMPLE 3: RMSD statistic DINA model
+#############################################################################
+
+data(sim.dina)
+data(sim.qmatrix)
+dat <- sim.dina
+Q <- sim.qmatrix
+
+#-- fit DINA model
+mod1 <- CDM::gdina( dat , q.matrix = Q, rule="DINA" )
+summary(mod1)
+
+#-- compute RMSD fit statistic
+rmod1 <- CDM::IRT.RMSD(mod1)
+summary(rmod1)
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

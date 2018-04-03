@@ -1,5 +1,5 @@
 ## File Name: IRT.irfprob.R
-## File Version: 0.09
+## File Version: 0.12
 
 ###########################################################
 # extracts the individual irfprob

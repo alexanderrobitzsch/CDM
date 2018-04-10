@@ -1,10 +1,10 @@
 //// File Name: calc_posterior.c
-//// File Version: 1.03
+//// File Version: 1.04
 
 
 #include <Rinternals.h>
 
-SEXP calcfx(SEXP sFx, SEXP sRprobs, SEXP sRespIndList, SEXP sResp)
+SEXP _CDM_calcfx(SEXP sFx, SEXP sRprobs, SEXP sRespIndList, SEXP sResp)
 {
 
 	/****************************************************/

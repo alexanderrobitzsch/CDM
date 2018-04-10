@@ -1,5 +1,5 @@
 ## File Name: din.R
-## File Version: 2.31
+## File Version: 2.36
 
 #************************************************************************
 # Function rowProds2 now included in din
@@ -75,6 +75,8 @@ function( data, q.matrix, skillclasses = NULL , conv.crit = 0.001, dev.crit = 10
 #
 # progress: an optional logical indicating whether the function should print the progress of iteration.
 
+z0 <- Sys.time()
+
 	if ( progress){
 		cat("---------------------------------------------------------------------------------\n")
 				}
@@ -107,7 +109,6 @@ function( data, q.matrix, skillclasses = NULL , conv.crit = 0.001, dev.crit = 10
     constraint.slip <- clean$constraint.slip; guess.init <- clean$guess.init;
     slip.init <- clean$slip.init; weights <- clean$weights; rule <- clean$rule;
     progress <- clean$progress    
-
 	
 ################################################################################
 # model specification: DINA, DINO or itemwise specification of DINA or DINO    #
@@ -155,6 +156,8 @@ function( data, q.matrix, skillclasses = NULL , conv.crit = 0.001, dev.crit = 10
     # standardize weights such that the sum of defined weights is equal to the number of rows in the data frame
     weights <- nrow(dat.items)*weights / sum(weights )
 
+# cat("inits ") ; z1 <- Sys.time(); print(z1-z0) ; z0 <- z1			
+	
 ################################################################################
 # calculate item response patterns                                             #
 ################################################################################
@@ -164,15 +167,12 @@ function( data, q.matrix, skillclasses = NULL , conv.crit = 0.001, dev.crit = 10
 	item.patt.subj <- dat.items[,1]
 	for ( jj in 2:J){
 		item.patt.subj <- paste( item.patt.subj  , dat.items[,jj] , sep="")
-				}
-	
-	
+	}	
+
     # calculate frequency of each item response pattern
 	a2 <- rowsum( rep(1,I) , item.patt.subj) 
 	item.patt <- a2[,1]	
-	
     # sort item response pattern according to their absolute frequencies
-#    six <- sort( item.patt, index.return=F, decreasing=T)
 	six <- item.patt	
     # define data frame 'item.patt' with item response pattern and its frequency (weight)
 #    item.patt <- cbind( "pattern" = rownames(six), "freq" = as.numeric(as.vector( six ) ) )
@@ -194,16 +194,15 @@ function( data, q.matrix, skillclasses = NULL , conv.crit = 0.001, dev.crit = 10
 
     attr.patt <- matrix( rep( 0, K*L) , ncol=K)
     h1 <- 2
-	if (K>=2 ){
+	if ( K >= 2 ){
 		for(ll in 1:(K-1) ){
-			lk <- combn( 1:K, ll ) 
-#			lk
+			lk <- utils::combn( 1:K, ll ) 
 			for ( jj in 1:( ncol(lk) ) ){ 
 				attr.patt[ h1, lk[,jj] ] <- 1
 				h1 <- h1 + 1
-				}
 			}
 		}
+	}
     attr.patt[ L, ] <- rep( 1, K )
 	if ( ! is.null( skillclasses) ){ 
 		attr.patt <- skillclasses

@@ -1,5 +1,5 @@
-//// File Name: modelfit_cor2_c.cpp
-//// File Version: 3.06
+//// File Name: modelfit_cor2_rcpp.cpp
+//// File Version: 3.15
 
 // #include <RcppArmadillo.h>
 #include <Rcpp.h>
@@ -7,12 +7,13 @@
 using namespace Rcpp;
 
 
+
 ///********************************************************************
-///**  modelfit_cor2_Cpp
+///**  modelfit_cor2_rcpp
 // [[Rcpp::export]]
-Rcpp::List modelfit_cor2_Cpp( Rcpp::NumericMatrix posterior, 
-		Rcpp::NumericMatrix data, Rcpp::NumericMatrix dataresp, Rcpp::NumericMatrix probs1, 
-		Rcpp::NumericMatrix probs0, Rcpp::NumericMatrix ip, 
+Rcpp::List modelfit_cor2_rcpp( Rcpp::NumericMatrix posterior, 
+		Rcpp::NumericMatrix data, Rcpp::LogicalMatrix data_resp_bool, 
+		Rcpp::NumericMatrix probs1, Rcpp::NumericMatrix probs0, Rcpp::NumericMatrix ip, 
 		Rcpp::NumericMatrix expiijj )
 {
 	int NIP = ip.nrow() ;  
@@ -38,7 +39,7 @@ Rcpp::List modelfit_cor2_Cpp( Rcpp::NumericMatrix posterior,
 		for (int tt=0;tt<TP;tt++){  
 			t1 = 0 ;   
 			for (int nn=0;nn<N;nn++){  // begin nn  
-				if ( ( dataresp(nn,ii) > 0 ) & ( dataresp(nn,jj) > 0 ) ){  
+				if ( ( data_resp_bool(nn,ii) ) & ( data_resp_bool(nn,jj) ) ){  
 					t1 += posterior(nn,tt) ;  
 				}  
 			}    // end nn   
@@ -62,7 +63,7 @@ Rcpp::List modelfit_cor2_Cpp( Rcpp::NumericMatrix posterior,
 		niijj=0 ;  
 
 		for (int nn=0;nn<N;nn++){              
-			if ( ( dataresp(nn,ii) > 0 ) & ( dataresp(jj,ii) > 0 ) ){  
+			if ( ( data_resp_bool(nn,ii) ) & ( data_resp_bool(nn,jj) ) ){  
 				niijj ++ ;     
 				// calculate residuals  
 				rii = data(nn,ii) - expiijj(nn,ii) ; 
@@ -96,37 +97,40 @@ Rcpp::List modelfit_cor2_Cpp( Rcpp::NumericMatrix posterior,
 ///********************************************************************
 
 
-
 ///********************************************************************
 //** frequencies for model fit function
-///** modelfit_cor_counts
+///** cdm_modelfit_cor_counts
 // [[Rcpp::export]]    
-Rcpp::List modelfit_cor_counts( Rcpp::NumericMatrix data, Rcpp::NumericMatrix data_resp )
+Rcpp::List cdm_modelfit_cor_counts( Rcpp::IntegerMatrix data, 
+			Rcpp::LogicalMatrix data_resp_bool )
 {
 
 	int N = data.nrow();
 	int I = data.ncol();	
-	Rcpp::NumericMatrix n11(I,I);
-	Rcpp::NumericMatrix n10(I,I);
-	Rcpp::NumericMatrix n01(I,I);
-	Rcpp::NumericMatrix n00(I,I);	
-	n11.fill(0);
-	n10.fill(0);
-	n01.fill(0);
-	n00.fill(0);
-	
-	for (int ii=0; ii<I; ii++){
-		for (int jj=ii; jj<I; jj++){	
-			for (int nn=0; nn<N; nn++){	
-				if ( ( data_resp(nn,ii) == 1 ) & ( data_resp(nn,ii) == 1 ) ){
-					if ( ( data(nn,ii) == 1 ) & ( data(nn,jj) == 1 ) ){	n11(ii,jj) ++ ;	}
-					if ( ( data(nn,ii) == 1 ) & ( data(nn,jj) == 0 ) ){	n10(ii,jj) ++ ;	}
-					if ( ( data(nn,ii) == 0 ) & ( data(nn,jj) == 1 ) ){	n01(ii,jj) ++ ;	}
-					if ( ( data(nn,ii) == 0 ) & ( data(nn,jj) == 0 ) ){	n00(ii,jj) ++ ;	}
+	Rcpp::IntegerMatrix n11(I,I);
+	Rcpp::IntegerMatrix n10(I,I);
+	Rcpp::IntegerMatrix n01(I,I);
+	Rcpp::IntegerMatrix n00(I,I);	
+
+	for (int nn=0; nn<N; nn++){	
+		for (int ii=0; ii<I; ii++){
+			if ( data_resp_bool(nn,ii) ){
+				for (int jj=ii; jj<I; jj++){				
+					if ( data_resp_bool(nn,jj) ){
+						if ( data(nn,ii) == 1 ){
+							if ( data(nn,jj) == 1 ){ n11(ii,jj) ++ ;	}
+							if ( data(nn,jj) == 0 ){ n10(ii,jj) ++ ;	}
+						}
+						if ( data(nn,ii) == 0 ){
+							if ( data(nn,jj) == 1 ){ n01(ii,jj) ++ ;	}
+							if ( data(nn,jj) == 0 ){ n00(ii,jj) ++ ;	}
+						}
+					}
 				}
 			}
 		}
 	}
+	
 	for (int ii=0; ii<I; ii++){
 		for (int jj=ii; jj<I; jj++){			
 			n11(jj,ii) = n11(ii,jj);
@@ -145,6 +149,4 @@ Rcpp::List modelfit_cor_counts( Rcpp::NumericMatrix data, Rcpp::NumericMatrix da
 		);
 }
 ///********************************************************************
-
-
 

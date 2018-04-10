@@ -1,5 +1,5 @@
 ## File Name: modelfit.cor.din.R
-## File Version: 2.14
+## File Version: 2.16
 
 #############################################################
 # Model fit for din object
@@ -22,7 +22,7 @@ modelfit.cor.din <- function( dinobj , jkunits = 0 )
 	}
 	
 	res <- modelfit.cor2( data=data, posterior=posterior, probs=probs ) 
-
+	
 	#******************************************
 	# Jackknife
 	HJJ <- sum( abs( jkunits) )

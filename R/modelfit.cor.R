@@ -1,5 +1,5 @@
 ## File Name: modelfit.cor.R
-## File Version: 1.19
+## File Version: 1.21
 
 #############################################################################
 modelfit.cor <-
@@ -127,9 +127,8 @@ function( data , posterior , probs ){
     itempairs$item1 <- colnames(data)[ itempairs$item1 ]
     itempairs$item2 <- colnames(data)[ itempairs$item2 ]
 
-	# fisherz from psych package
 	# residual of correlation
-	itempairs$fcor <- CDM_fisherz( itempairs$corObs ) - CDM_fisherz( itempairs$corExp )
+	itempairs$fcor <- cdm_fisherz( itempairs$corObs ) - cdm_fisherz( itempairs$corExp )
 	
 	#----
 	# p values and p value adjustments adjustments

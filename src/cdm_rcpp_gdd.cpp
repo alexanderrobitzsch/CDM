@@ -1,5 +1,5 @@
-//// File Name: gdd_c.cpp
-//// File Version: 3.04
+//// File Name: cdm_rcpp_gdd.cpp
+//// File Version: 3.06
 
 
 
@@ -10,14 +10,13 @@ using namespace Rcpp;
 
 
 ///********************************************************************
-///**  generalized_distance_method__C
+///**  cdm_rcpp_generalized_distance_method
 // [[Rcpp::export]]
-Rcpp::List generalized_distance_method__C( Rcpp::NumericMatrix data, 
+Rcpp::List cdm_rcpp_generalized_distance_method( Rcpp::NumericMatrix data, 
 		Rcpp::NumericMatrix dataresp, Rcpp::NumericMatrix idealresp, 
 		Rcpp::NumericVector theta, Rcpp::NumericVector a,
 		Rcpp::NumericVector b )
 {
-
 	int I = idealresp.nrow() ;  
 	int L = idealresp.ncol() ;  
 	int N = data.nrow() ;  
@@ -63,9 +62,9 @@ Rcpp::List generalized_distance_method__C( Rcpp::NumericMatrix data,
 
 
 ///********************************************************************
-///**  ideal_resp_pattern__C
+///**  cdm_rcpp_ideal_resp_pattern
 // [[Rcpp::export]]
-Rcpp::NumericMatrix ideal_resp_pattern__C( Rcpp::NumericMatrix qmatrix, 
+Rcpp::NumericMatrix cdm_rcpp_ideal_resp_pattern( Rcpp::NumericMatrix qmatrix, 
 		Rcpp::NumericMatrix skillspace )
 {
 	int I = qmatrix.nrow() ;  

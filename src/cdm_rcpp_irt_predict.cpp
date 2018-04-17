@@ -1,5 +1,5 @@
-//// File Name: irt_predict_c.cpp
-//// File Version: 3.03
+//// File Name: cdm_rcpp_irt_predict.cpp
+//// File Version: 3.06
 
 // [[Rcpp::depends(RcppArmadillo)]]
 
@@ -7,13 +7,13 @@
 #include <Rcpp.h>
 
 using namespace Rcpp;
+using namespace arma;
 
 
 ///********************************************************************
-///**  IRT_predict
-
+///**  cdm_rcpp_irt_predict
 // [[Rcpp::export]]
-Rcpp::List IRT_predict( Rcpp::NumericMatrix resp, Rcpp::NumericVector irf1, 
+Rcpp::List cdm_rcpp_irt_predict( Rcpp::NumericMatrix resp, Rcpp::NumericVector irf1, 
 		int K, int TP)
 {
 	int N=resp.nrow();  

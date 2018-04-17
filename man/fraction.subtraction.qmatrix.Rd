@@ -1,5 +1,5 @@
 %% File Name: fraction.subtraction.qmatrix.Rd
-%% File Version: 1.04
+%% File Version: 1.05
 
 \name{fraction.subtraction.qmatrix}
 
@@ -50,11 +50,11 @@
 
 \references{
   de la Torre, J. and Douglas, J. (2004). Higher-order latent trait models 
-  for cognitive diagnosis. \emph{Psychometrika}, \bold{69}, 333--353.
+  for cognitive diagnosis. \emph{Psychometrika, 69}, 333--353.
   
   Tatsuoka, C. (2002). Data analytic methods for latent partially ordered classification 
-  models. \emph{Journal of the Royal Statistical Society, Series C, Applied Statistics}, 
-  \bold{51}, 337--350.
+  models. \emph{Journal of the Royal Statistical Society, Series C, Applied Statistics, 
+  51}, 337--350.
   
   Tatsuoka, K. (1984) \emph{Analysis of errors in fraction addition and subtraction 
   problems}. Final Report for NIE-G-81-0002, University of Illinois, Urbana-Champaign.  

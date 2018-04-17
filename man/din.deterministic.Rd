@@ -1,5 +1,5 @@
 %% File Name: din.deterministic.Rd
-%% File Version: 0.18
+%% File Version: 0.19
 
 \name{din.deterministic}
 \alias{din.deterministic}
@@ -73,7 +73,7 @@ A list with following entries
 \references{
 Chiu, C. Y., & Douglas, J. (2013). A nonparametric approach to 
 cognitive diagnosis by proximity to ideal response patterns. 
-\emph{Journal of Classification}, \bold{30}, 225-250.
+\emph{Journal of Classification, 30}, 225-250.
 }
 
 %\author{

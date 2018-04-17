@@ -1,15 +1,13 @@
 ## File Name: IRT.repDesign.R
-## File Version: 0.11
+## File Version: 0.13
 
 ########################################################
 IRT.repDesign <- function( data , wgt = NULL, jktype = "JK_TIMSS", 
 		jkzone = NULL, jkrep = NULL, jkfac = NULL, fayfac = 1 , 
 		wgtrep = "W_FSTR" , ngr=100 , Nboot=200 , seed = .Random.seed )
 {
-	#---------------------------------
 	# BIFIEsurvey must be loaded
-	CDM_require_namespace("BIFIEsurvey")
-		
+	CDM_require_namespace("BIFIEsurvey")		
 	data <- as.data.frame(data)	
 		
 	#*************************

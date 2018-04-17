@@ -1,5 +1,5 @@
 %% File Name: sim.gdina.Rd
-%% File Version: 1.18
+%% File Version: 1.19
 
 \name{sim.gdina}
 \alias{sim.gdina}
@@ -80,7 +80,7 @@ in a list: \code{delta}, \code{necc.attr}, \code{Aj} and \code{Mj}.
 }
 \references{
   de la Torre, J. (2011). The generalized {DINA} model framework. 
-  \emph{Psychometrika}, \bold{76}, 179--199.    
+  \emph{Psychometrika, 76}, 179--199.    
 }
 %\author{
 %Alexander Robitzsch, ...

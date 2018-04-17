@@ -1,5 +1,5 @@
 %% File Name: gdina.Rd
-%% File Version: 3.404
+%% File Version: 3.406
 
 \name{gdina}
 \alias{gdina}
@@ -417,17 +417,17 @@ is applied for polytomous item responses}
 \references{
 Berlinet, A. F., & Roland, C. (2012). 
 Acceleration of the EM algorithm: P-EM versus epsilon algorithm.
-\emph{Computational Statistics & Data Analysis}, \bold{56}(12), 4122-4137.
+\emph{Computational Statistics & Data Analysis, 56}(12), 4122-4137.
 
   Chen, J., & de la Torre, J. (2013). 
   A general cognitive diagnosis model for expert-defined polytomous attributes.
-  \emph{Applied Psychological Measurement}, \bold{37}, 419-437.
+  \emph{Applied Psychological Measurement, 37}, 419-437.
   
   de la Torre, J., & Douglas, J. A. (2004). Higher-order latent trait models 
-  for cognitive diagnosis. \emph{Psychometrika}, \bold{69}, 333-353.
+  for cognitive diagnosis. \emph{Psychometrika, 69}, 333-353.
   
   de la Torre, J. (2011). The generalized {DINA} model framework. 
-  \emph{Psychometrika}, \bold{76}, 179-199.
+  \emph{Psychometrika, 76}, 179-199.
 
 
 Ma, W., & de la Torre, J. (2016).
@@ -438,11 +438,11 @@ A sequential cognitive diagnosis model for polytomous responses.
   Rupp, A. A., & Templin, J. (2008). Unique characteristics of
   diagnostic classification models: A comprehensive review of the current
   state-of-the-art. \emph{Measurement: Interdisciplinary Research and
-  Perspectives}, \bold{6}, 219-262.
+  Perspectives, 6}, 219-262.
 
 Shen, X., Pan, W., & Zhu, Y. (2012). Likelihood-based selection and sharp
 parameter estimation.
-\emph{Journal of the American Statistical Association}, \bold{107}, 223-232.
+\emph{Journal of the American Statistical Association, 107}, 223-232.
   
 Tutz, G. (1997). Sequential models for ordered responses. 
 In W. van der Linden & R. K. Hambleton.
@@ -451,16 +451,16 @@ New York: Springer.
 
 Xu, G., & Shang, Z. (xxxx). Identying latent structures in 
 restricted latent class models.
-\emph{Journal of the American Statistical Association}, \bold{xxx}, xxx-xxx.
+\emph{Journal of the American Statistical Association, xxx}, xxx-xxx.
 
 Xu, X., & von Davier, M. (2008). \emph{Fitting the structured general diagnostic
 model to NAEP data}. ETS Research Report ETS RR-08-27. Princeton, ETS.
   
 Zeng, L., & Xie, J. (2014). Group variable selection via
-SCAD-\eqn{L_2}. \emph{Statistics}, \bold{48}, 49-66.
+SCAD-\eqn{L_2}. \emph{Statistics, 48}, 49-66.
 
 Zhang, C.-H. (2010). Nearly unbiased variable selection under minimax concave 
-penalty. \emph{Annals of Statistics}, \bold{38}, 894-942.
+penalty. \emph{Annals of Statistics, 38}, 894-942.
 }
     
         
@@ -492,6 +492,8 @@ rules at the item-level.
 
 See \code{\link{gdina.dif}} for assessing differential item
 functioning.
+
+See \code{\link{discrim.index}} for computing discrimination indices. 
 
 See the \code{\link[GDINA:GDINA]{GDINA::GDINA}} function in the
 \pkg{GDINA} package for similar functionality.

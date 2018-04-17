@@ -1,5 +1,5 @@
 %% File Name: itemfit.sx2.Rd
-%% File Version: 1.29
+%% File Version: 1.31
 
 \name{itemfit.sx2}
 \alias{itemfit.sx2}
@@ -73,19 +73,19 @@ is provided (\code{p.holm}, see
 \references{
 Li, Y., & Rupp, A. A. (2011). Performance of the S-X2 statistic for 
 full-information bifactor models. 
-\emph{Educational and Psychological Measurement}, \bold{71}, 986-1005.	
+\emph{Educational and Psychological Measurement, 71}, 986-1005.	
 	
 Orlando, M., & Thissen, D. (2000). Likelihood-based item-fit indices for 
 dichotomous item response theory models. 
-\emph{Applied Psychological Measurement}, \bold{24}, 50-64.
+\emph{Applied Psychological Measurement, 24}, 50-64.
 	
 Orlando, M., & Thissen, D. (2003). Further investigation of the performance of 
 S-X2: An item fit index for use with dichotomous item response theory models. 
-\emph{Applied Psychological Measurement}, \bold{27}, 289-298.
+\emph{Applied Psychological Measurement, 27}, 289-298.
 
 Zhang, B., & Stone, C. A. (2008). Evaluating item fit for multidimensional 
-item response models. \emph{Educational and Psychological Measurement}, 
-\bold{68}, 181-196.
+item response models. \emph{Educational and Psychological Measurement, 
+68}, 181-196.
 }
 
 \author{

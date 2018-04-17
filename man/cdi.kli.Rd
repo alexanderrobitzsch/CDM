@@ -1,5 +1,5 @@
 %% File Name: cdi.kli.Rd
-%% File Version: 0.13
+%% File Version: 0.15
 
 \name{cdi.kli}
 \alias{cdi.kli}
@@ -56,11 +56,11 @@ discrimination statistics}
 
 \references{
 Henson, R., & Douglas, J. (2005). Test construction for cognitive diagnosis. 
-\emph{Applied Psychological Measurement}, \bold{29}, 262-277.
+\emph{Applied Psychological Measurement, 29}, 262-277.
 
 Henson, R., Roussos, L., Douglas, J., & He, X. (2008). 
 Cognitive diagnostic attribute-level discrimination indices. 
-\emph{Applied Psychological Measurement}, \bold{32}, 275-288.
+\emph{Applied Psychological Measurement, 32}, 275-288.
 
 Rupp, A. A., Templin, J., & Henson, R. A. (2010). \emph{Diagnostic
 Measurement: Theory, Methods, and Applications}.  New York: The Guilford
@@ -77,9 +77,10 @@ Press.
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-%\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-%}
+\seealso{
+See \code{\link{discrim.index}} for computing discrimination indices at the
+probability metric.
+}
 
 \examples{
 #############################################################################

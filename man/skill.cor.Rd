@@ -1,5 +1,5 @@
 %% File Name: skill.cor.Rd
-%% File Version: 2.09
+%% File Version: 2.11
 
 \name{skill.cor}
 \alias{skill.cor}
@@ -39,8 +39,7 @@ A list with following entries:
 }
 \references{
 Templin, J., & Henson, R. (2006). Measurement of psychological disorders 
-using cognitive diagnosis models. \emph{Psychological Methods}, 
-\bold{11}, 287-305.
+using cognitive diagnosis models. \emph{Psychological Methods, 11}, 287-305.
 }
 %\author{
 %Alexander Robitzsch

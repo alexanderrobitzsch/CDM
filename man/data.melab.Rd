@@ -1,5 +1,5 @@
 %% File Name: data.melab.Rd
-%% File Version: 0.12
+%% File Version: 0.13
 
 \name{data.melab}
 \alias{data.melab}
@@ -50,11 +50,11 @@ Simulated data according to Li (2011).
 
 \references{
 Li, H. (2011). A cognitive diagnostic analysis of the MELAB reading test. 
-\emph{Spaan Fellow}, \bold{9}, 17-46.
+\emph{Spaan Fellow, 9}, 17-46.
 	
 Li, H., & Suen, H. K. (2013). Constructing and validating a Q-matrix for 
 cognitive diagnostic analyses of a reading test. 
-\emph{Educational Assessment}, \bold{18}, 1-25.
+\emph{Educational Assessment, 18}, 1-25.
 }
 
 

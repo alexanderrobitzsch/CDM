@@ -1,5 +1,5 @@
 ## File Name: mcdina.R
-## File Version: 0.67
+## File Version: 0.83
 
 #############################################################
 # Multiple Choice DINA Model
@@ -28,10 +28,12 @@ mcdina <- function( dat , q.matrix , group =NULL ,
 	maxmaxattr <- res1$maxmaxattr
 	
 	dat0 <- dat
-	dat.resp <- 1* ( 1 - is.na(dat) )
+	dat_na <- is.na(dat)
+	dat.resp <- 1* ( 1 - dat_na )
+	dat_resp_bool <- ! dat_na
 	dat[ dat.resp == 0 ] <- 1
 	dat_ <- dat - 1 	
-	eps <- 10^(-10)
+	eps <- 1e-10
 	I <- ncol(dat)	# number of items
 	CC <- max( q.matrix[,2] )	# maximal number of categories
 	K <- ncol(q.matrix)-2		# number of skills
@@ -165,21 +167,16 @@ mcdina <- function( dat , q.matrix , group =NULL ,
 # cat("calc probs ") ; z1 <- Sys.time(); print(z1-z0) ; z0 <- z1	
 					
 		#--- (2) calculate likelihood
-		# probs_pcm_groups_Cpp <- 
-		# function( dat_ , dat_resp_,  group_ , probs_,  CC_ ,  TP_ ){
-
 		probs_ <- as.matrix( array( probs , dim=c(I , CC*TP*G) ) )			
-		f.yi.qk <- probs_pcm_groups_Cpp( dat_=dat_ , dat_resp_=dat.resp ,  group_ = group  ,
-					probs_ = probs_ ,  CC_ = CC,  TP_ =TP )$fyiqk
-
+		res <- cdm_rcpp_mcdina_probs_pcm_groups( dat=dat_, dat_resp_bool=dat_resp_bool, 
+						group=group, probs=probs_, CC=CC, TP=TP )
+		f.yi.qk <- res$fyiqk 									
+	
 # cat("calc like ") ; z1 <- Sys.time(); print(z1-z0) ; z0 <- z1	
 
-		#--- (3) calculate posterior and expected counts
-		# calccounts_pcm_groups_Cpp <- 
-		# function( dat_,  dat_resp_,  group_, fyiqk_,  pik_,  CC_,  weights_ )
-
-		res1 <- calccounts_pcm_groups_Cpp( dat_ = dat_ ,  dat_resp_ = dat.resp ,  group_=group , 
-					fyiqk_ = f.yi.qk ,  pik_ = pi.k ,  CC_ =CC ,  weights_ =weights )
+		#--- (3) calculate posterior and expected counts		
+		res1 <- cdm_rcpp_mcdina_calccounts_pcm_groups( dat=dat_, dat_resp_bool=dat_resp_bool, 
+						group=group, fyiqk=f.yi.qk, pik=pi.k, CC=CC, weights=weights ) 
 		n.ik <- array( res1$nik , dim = c( I , CC , TP , G ) )
 		count_pik <- res1$count_pik	
 		for (gg in 1:G){		

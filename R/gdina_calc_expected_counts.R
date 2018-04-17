@@ -1,5 +1,5 @@
 ## File Name: gdina_calc_expected_counts.R
-## File Version: 0.06
+## File Version: 0.08
 
 gdina_calc_expected_counts <- function( G , J , L , item.patt.freq, p.aj.xi, some.missings ,
 		ipr , attr.patt.c, resp.patt, item.patt.split, data )
@@ -22,11 +22,7 @@ gdina_calc_expected_counts <- function( G , J , L , item.patt.freq, p.aj.xi, som
 	if (G > 1){ 					 
 		R.lj.gg <- I.lj.gg <- array( 0 , c( J, L , G ) )
 		for (gg in 1:G){ 	
-			if ( some.missings ){
-				I.lj.gg[,,gg] <- crossprod( item.patt.freq[,gg]*resp.patt , p.aj.xi[,,gg] )
-			} else {
-				I.lj.gg[,,gg] <- crossprod( item.patt.freq[,gg]*resp.patt , p.aj.xi[,,gg] )
-			}
+			I.lj.gg[,,gg] <- crossprod( item.patt.freq[,gg]*resp.patt , p.aj.xi[,,gg] )
 			R.lj.gg[,,gg] <- crossprod( item.patt.split  * item.patt.freq[,gg] * resp.patt , p.aj.xi[,,gg] )
 			colnames(I.lj.gg) <- colnames(R.lj.gg) <- attr.patt.c
 			rownames(I.lj.gg) <- rownames(R.lj.gg) <- colnames(data)

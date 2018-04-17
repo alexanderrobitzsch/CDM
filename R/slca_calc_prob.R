@@ -1,12 +1,12 @@
 ## File Name: slca_calc_prob.R
-## File Version: 0.03
+## File Version: 0.04
 
 
 #############################################################
 # Rcpp function for calculating probabilities
 slca_calc_prob <- function( XdesM, dimXdes, Xlambda )
 {
-	res <- calc_slca_probs( XdesM=XdesM, dimXdes=dimXdes, Xlambda=Xlambda )
+	res <- cdm_rcpp_slca_calc_probs( XdesM=XdesM, dimXdes=dimXdes, Xlambda=Xlambda )
 	I <- dimXdes[1]
 	maxK <- dimXdes[2]
 	TP <- dimXdes[3]

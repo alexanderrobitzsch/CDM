@@ -1,5 +1,5 @@
 %% File Name: IRT.RMSD.Rd
-%% File Version: 0.16
+%% File Version: 0.17
 
 \name{IRT.RMSD}
 \alias{IRT.RMSD}
@@ -65,7 +65,7 @@ List with entries
 Oliveri, M. E., & von Davier, M. (2011).	
 Investigation of model fit and score scale comparability in 
 international assessments. 
-\emph{Psychological Test and Assessment Modeling}, \bold{53}, 315-333.
+\emph{Psychological Test and Assessment Modeling, 53}, 315-333.
 
 von Davier, M., Weeks, J., Chen, H., Allen, J., & van der Velden, R. (2013).
 Creating simple and complex derived variables and validation of background

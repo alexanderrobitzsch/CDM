@@ -1,5 +1,5 @@
 %% File Name: data.hr.Rd
-%% File Version: 0.13
+%% File Version: 0.14
 
 \name{data.hr}
 \alias{data.hr}
@@ -47,7 +47,7 @@ Simulated data according to Ravand et al. (2013).
 \references{
 Ravand, H., Barati, H., & Widhiarso, W. (2013). Exploring diagnostic capacity
 of a high stakes reading comprehension test: A pedagogical demonstration. 
-\emph{Iranian Journal of Language Testing}, \bold{3}(1), 1-27.
+\emph{Iranian Journal of Language Testing, 3}(1), 1-27.
 }
 
 

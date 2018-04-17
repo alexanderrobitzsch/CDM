@@ -9,7 +9,7 @@ CDM package
                         |C|D|M|
                         +-+-+-+
 
-        A. Robitzsch [aut, cre], T. Kiefer[aut], 
+        A. Robitzsch [aut, cre], T. Kiefer [aut], 
          A. C. George [aut], & A. Uenlue [aut]
 
 mailto:
@@ -24,12 +24,15 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 6.2  |  2018-04-10  |  Last: CDM 6.2-18
+VERSIONS CDM 6.2  |  2018-04-17  |  Last: CDM 6.2-47
 --------------------------------------------------------------
 
 FIXED * fixed a bug in IRT.RMSD() function for models fitted in
         the CDM package
 NOTE  * speeded parts of the IRT.modelfit() function
+ADDED * included item discrimination indices in discrim.index()
+        function (Henson, DiBello & Stout, 2018)
+
 
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: IRT.RMSD (3)

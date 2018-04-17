@@ -1,5 +1,5 @@
-//// File Name: slca_cfunctions.cpp
-//// File Version: 3.03
+//// File Name: cdm_rcpp_slca.cpp
+//// File Version: 3.07
 
 // #include <RcppArmadillo.h>
 #include <Rcpp.h>
@@ -7,12 +7,11 @@
 using namespace Rcpp;
 
 ///********************************************************************
-///**  calc_slca_probs
+///**  cdm_rcpp_slca_calc_probs
 // [[Rcpp::export]]
-Rcpp::NumericVector calc_slca_probs( Rcpp::NumericMatrix XdesM , 
+Rcpp::NumericVector cdm_rcpp_slca_calc_probs( Rcpp::NumericMatrix XdesM , 
 		Rcpp::NumericVector dimXdes , Rcpp::NumericVector Xlambda )
 {
-
 	int I= dimXdes[0] ;  
 	int maxK= dimXdes[1] ;  
 	int TP= dimXdes[2] ;  
@@ -51,13 +50,10 @@ Rcpp::NumericVector calc_slca_probs( Rcpp::NumericMatrix XdesM ,
 ///********************************************************************
 
 
-	// Rcpp::Rcout << "pp = " << pp << " XdesM(rr,3) = " << XdesM(rr,3) << std::endl;  
-
-
 ///********************************************************************
-///**  calc_slca_deriv
+///**  cdm_rcpp_slca_calc_deriv
 // [[Rcpp::export]]
-Rcpp::List calc_slca_deriv( Rcpp::NumericMatrix XdesM , Rcpp::NumericVector dimXdes, 
+Rcpp::List cdm_rcpp_slca_calc_deriv( Rcpp::NumericMatrix XdesM , Rcpp::NumericVector dimXdes, 
 		Rcpp::NumericVector Xlambda, Rcpp::NumericVector probs, Rcpp::NumericVector nik, 
 		Rcpp::NumericVector Nik )
 {
@@ -154,9 +150,9 @@ Rcpp::List calc_slca_deriv( Rcpp::NumericMatrix XdesM , Rcpp::NumericVector dimX
 
 
 ///********************************************************************
-///**  calc_Xdes
+///**  cdm_rcpp_slca_calc_Xdes
 // [[Rcpp::export]]
-Rcpp::List calc_Xdes( Rcpp::NumericVector XDES , Rcpp::NumericVector dimXdes )
+Rcpp::List cdm_rcpp_slca_calc_Xdes( Rcpp::NumericVector XDES , Rcpp::NumericVector dimXdes )
 {
 	// $dimXdes  
 	// [1]  6  4 21 19         

@@ -1,5 +1,5 @@
-//// File Name: din.deterministic.devcrit_c.cpp
-//// File Version: 3.13
+//// File Name: cdm_rcpp_din_deterministic_devcrit.cpp
+//// File Version: 3.16
 
 
 // #include <RcppArmadillo.h>
@@ -9,10 +9,9 @@ using namespace Rcpp;
 
 
 ///********************************************************************
-///** din_deterministic_devcrit_C
-
+///** cdm_rcpp_din_deterministic_devcrit
 // [[Rcpp::export]]
-Rcpp::List din_deterministic_devcrit_C( Rcpp::NumericMatrix DAT, Rcpp::NumericMatrix DATRESP,
+Rcpp::List cdm_rcpp_din_deterministic_devcrit( Rcpp::NumericMatrix DAT, Rcpp::NumericMatrix DATRESP,
 		Rcpp::NumericMatrix LATRESP, Rcpp::NumericVector GUESS, Rcpp::NumericVector SLIP )
 {
 	// define row and column numbers  
@@ -64,12 +63,10 @@ Rcpp::List din_deterministic_devcrit_C( Rcpp::NumericMatrix DAT, Rcpp::NumericMa
 }
 ///********************************************************************
 
-
 ///********************************************************************
-///** din_jml_devcrit_C
-
+///** cdm_rcpp_din_jml_devcrit
 // [[Rcpp::export]]
-Rcpp::List din_jml_devcrit_C( Rcpp::NumericMatrix DAT, Rcpp::NumericMatrix DATRESP,
+Rcpp::List cdm_rcpp_din_jml_devcrit( Rcpp::NumericMatrix DAT, Rcpp::NumericMatrix DATRESP,
 		Rcpp::NumericMatrix LATRESP, Rcpp::NumericVector GUESS, Rcpp::NumericVector SLIP )
 {
 

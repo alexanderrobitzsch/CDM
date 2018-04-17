@@ -1,8 +1,7 @@
 ## File Name: cdm_gini.R
-## File Version: 0.01
+## File Version: 0.02
 
 
-#********************
 # Gini coefficient, function simply copied from the R ineq package
 cdm_gini <- function(x) 
 {

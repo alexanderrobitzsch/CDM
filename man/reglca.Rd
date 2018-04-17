@@ -1,5 +1,5 @@
 %% File Name: reglca.Rd
-%% File Version: 0.13
+%% File Version: 0.14
 
 \name{reglca}
 \alias{reglca}
@@ -116,11 +116,11 @@ A list containing following elements (selection):
 \references{
 Chen, Y., Liu, J., Xu, G., & Ying, Z. (2015). Statistical analysis of Q-matrix 
 based diagnostic classification models. 
-\emph{Journal of the American Statistical Association}, \bold{110}, 850-866.
+\emph{Journal of the American Statistical Association, 110}, 850-866.
 
 Chen, Y., Li, X., Liu, J., & Ying, Z. (2017). 
 Regularized latent class analysis with application in cognitive diagnosis. 
-\emph{Psychometrika}, \bold{82}, 660-692.
+\emph{Psychometrika, 82}, 660-692.
 }
 
 %\author{

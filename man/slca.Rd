@@ -1,5 +1,5 @@
 %% File Name: slca.Rd
-%% File Version: 1.803
+%% File Version: 1.805
 
 \name{slca}
 \alias{slca}
@@ -224,22 +224,22 @@ following entries:
 \references{
 Berlinet, A. F., & Roland, C. (2012). 
 Acceleration of the EM algorithm: P-EM versus epsilon algorithm.
-\emph{Computational Statistics & Data Analysis}, \bold{56}(12), 4122-4137.		
+\emph{Computational Statistics & Data Analysis, 56}(12), 4122-4137.		
 
 Chen, Y., Liu, J., Xu, G., & Ying, Z. (2015). 
 Statistical analysis of Q-matrix based diagnostic classification models. 
-\emph{Journal of the American Statistical Association}, \bold{110}, 850-866.
+\emph{Journal of the American Statistical Association, 110}, 850-866.
 
 Chen, Y., Li, X., Liu, J., & Ying, Z. (2017). Regularized latent class analysis 
-with application in cognitive diagnosis. \emph{Psychometrika}, 
-\bold{82}, 660-692.
+with application in cognitive diagnosis. \emph{Psychometrika, 
+82}, 660-692.
 
 Formann, A. K. (1985). Constrained latent class models: Theory and applications.
-\emph{British Journal of Mathematical and Statistical Psychology},
-\bold{38}, 87-111.
+\emph{British Journal of Mathematical and Statistical Psychology,
+38}, 87-111.
 
 Formann, A. K. (1992). Linear logistic latent class analysis for polytomous data. 
-\emph{Journal of the American Statistical Association}, \bold{87}, 476-486.	
+\emph{Journal of the American Statistical Association, 87}, 476-486.	
 
 Formann, A. K. (2007). (Almost) Equivalence between conditional and mixture maximum
 likelihood estimates for some models of the Rasch type. In M. von Davier & C. H. Carstensen
@@ -247,14 +247,14 @@ likelihood estimates for some models of the Rasch type. In M. von Davier & C. H.
 New York: Springer.
 
 Formann, A. K., & Kohlmann, T. (1998). Structural latent class models. 
-\emph{Sociological Methods & Research}, \bold{26}, 530-565.
+\emph{Sociological Methods & Research, 26}, 530-565.
 
 Neuhaus, W. (1996). Optimal estimation under
-linear constraints. \emph{Astin Bulletin}, \bold{26}, 233-245. 
+linear constraints. \emph{Astin Bulletin, 26}, 233-245. 
 
 Sun, J., Chen, Y., Liu, J., Ying, Z., & Xin, T. (2016).
 Latent variable selection for multidimensional item response theory models 
-via \eqn{L_1} regularization. \emph{Psychometrika}, \bold{81}(4), 921-939.
+via \eqn{L_1} regularization. \emph{Psychometrika, 81}(4), 921-939.
 
 Xu, X., & von Davier, M. (2008). \emph{Fitting the structured general diagnostic
 model to NAEP data}. ETS Research Report ETS RR-08-27. Princeton, ETS.

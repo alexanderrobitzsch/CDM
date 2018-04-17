@@ -1,5 +1,5 @@
 %% File Name: mcdina.Rd
-%% File Version: 0.25
+%% File Version: 0.26
 
 \name{mcdina}
 \alias{mcdina}
@@ -143,8 +143,7 @@ A list with following entries
 
 \references{
 de la Torre, J. (2009). A cognitive diagnosis model for cognitively based 
-multiple-choice options. \emph{Applied Psychological Measurement}, 
-\bold{33}, 163-183.
+multiple-choice options. \emph{Applied Psychological Measurement, 33}, 163-183.
 
   Xu, X., & von Davier, M. (2008). \emph{Fitting the structured general diagnostic
   model to NAEP data}. ETS Research Report ETS RR-08-27. Princeton, ETS.

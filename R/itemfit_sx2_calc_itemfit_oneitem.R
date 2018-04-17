@@ -1,17 +1,17 @@
-## File Name: itemfit.sx2_aux.R
-## File Version: 3.08
+## File Name: itemfit_sx2_calc_itemfit_oneitem.R
+## File Version: 0.01
 
 
 #################################################
 # calculation of item fit for one item
-.calc.itemfit.oneitem <- function( ii , pjk , pi.k , P1 , I , Eik_min ,
-         sumscore.distribution , scoredistribution , data , sumscore ){
-#    scored.ii <- .calc.scoredistribution.cdm( pjk[,-ii,] )
+itemfit_sx2_calc_itemfit_oneitem <- function( ii , pjk , pi.k , P1 , I , Eik_min ,
+         sumscore.distribution , scoredistribution , data , sumscore )
+{
     eps <- 1E-10
 	pjk.ii <- pjk[,-ii,]	
     P1ii <- pjk.ii[,,2]
     Q1ii <- pjk.ii[,,1]
-	scored.ii <- calc_scoredistribution_cdm( P1ii , Q1ii )
+	scored.ii <- cdm_rcpp_itemfit_sx2_calc_scoredistribution( P1=P1ii, Q1=Q1ii )
     eik_t2 <- colSums( scoredistribution * pi.k )
     eik_t1 <- c(0,colSums( P1[,ii] * scored.ii * pi.k  ) )
 	# P1 is the probability of passing the item
@@ -87,29 +87,5 @@
 }
 ##########################################################################
                 
-
-
-##########################################################################
-# calculate distribution of sum score
-.calc.scoredistribution.cdm <- function( pjk ){
-    # pjk .... [ TP , I , 2 ]   ... [ theta points , items , 2 categories ]    
-    P1 <- pjk[,,2]
-    Q1 <- pjk[,,1]
-    TP <- nrow(P1)
-    I <- ncol(P1)
-    score <- seq( 0 , I , 1 )
-    scoredistribution <- matrix(NA , TP , I+1 )
-    scoredistribution[,1] <- Q1[,1]
-    scoredistribution[,2] <- P1[,1]	
-    for (ii in 2:I){
-        scoredistribution0 <- scoredistribution
-        scoredistribution[,ii+1] <- P1[,ii] * scoredistribution0[,ii]
-        for (kk in seq( 0 , ii - 2 , 1 ) ){
-            scoredistribution[,ii-kk] <- Q1[,ii] * scoredistribution0[,ii-kk] + 
-					P1[,ii] * scoredistribution0[,ii-kk-1]
-        }
-        scoredistribution[,1] <- Q1[,ii] * scoredistribution0[,1]
-    }			
-    return(scoredistribution)
-}
-##############################################################################
+.calc.itemfit.oneitem <- itemfit_sx2_calc_itemfit_oneitem
+				

@@ -1,5 +1,5 @@
 %% File Name: CDM-package.Rd
-%% File Version: 2.77
+%% File Version: 2.79
 
 \name{CDM-package}
 
@@ -117,25 +117,25 @@
         
 \references{
   Bartolucci, F. (2007). A class of multidimensional IRT models for testing 
-  unidimensionality and clustering items. \emph{Psychometrika}, \bold{72}, 141-157.
+  unidimensionality and clustering items. \emph{Psychometrika, 72}, 141-157.
 
   Chen, J., & de la Torre, J. (2013). 
   A general cognitive diagnosis model for expert-defined polytomous attributes.
-  \emph{Applied Psychological Measurement}, \bold{37}, 419-437.  
+  \emph{Applied Psychological Measurement, 37}, 419-437.  
   
 Chen, Y., Li, X., Liu, J., & Ying, Z. (2017). 
 Regularized latent class analysis with application in cognitive diagnosis. 
-\emph{Psychometrika}, \bold{82}, 660-692.  
+\emph{Psychometrika, 82}, 660-692.  
   
   de la Torre, J., & Douglas, J. (2004). Higher-order latent trait models 
-  for cognitive diagnosis. \emph{Psychometrika}, \bold{69}, 333--353.
+  for cognitive diagnosis. \emph{Psychometrika, 69}, 333--353.
 
 de la Torre, J. (2009). A cognitive diagnosis model for cognitively based 
-multiple-choice options. \emph{Applied Psychological Measurement}, 
-\bold{33}, 163-183.
+multiple-choice options. \emph{Applied Psychological Measurement, 
+33}, 163-183.
 
   de la Torre, J. (2011). The generalized {DINA} model framework. 
-  \emph{Psychometrika}, \bold{76}, 179--199.    
+  \emph{Psychometrika, 76}, 179--199.    
 
   DiBello, L. V., Roussos, L. A., & Stout, W. F. (2007). Review of
   cognitively diagnostic assessment and a summary of psychometric models.
@@ -143,10 +143,10 @@ multiple-choice options. \emph{Applied Psychological Measurement},
   Vol. 26 (pp. 979--1030). Amsterdam: Elsevier.
 
 Formann, A. K. (1992). Linear logistic latent class analysis for polytomous data. 
-\emph{Journal of the American Statistical Association}, \bold{87}, 476-486.  
+\emph{Journal of the American Statistical Association, 87}, 476-486.  
   
 George, A. C., & Robitzsch, A. (2015) Cognitive diagnosis models in R: A didactic. 
-\emph{The Quantitative Methods for Psychology}, \bold{11}, 189-205.
+\emph{The Quantitative Methods for Psychology, 11}, 189-205.
   
 George, A. C., Robitzsch, A., Kiefer, T., Gross, J., & Uenlue, A. (2016).
 The R package CDM for cognitive diagnosis models.
@@ -154,16 +154,16 @@ The R package CDM for cognitive diagnosis models.
   
 Junker, B. W., & Sijtsma, K. (2001). Cognitive assessment models with few  
   assumptions, and connections with nonparametric item response theory.
-  \emph{Applied Psychological Measurement}, \bold{25}, 258--272.
+  \emph{Applied Psychological Measurement, 25}, 258--272.
     
 Ravand, H., & Robitzsch, A.(2015). Cognitive diagnostic modeling using R.
-\emph{Practical Assessment, Research & Evaluation}, \bold{20}(11). 
+\emph{Practical Assessment, Research & Evaluation, 20}(11). 
 Available online: http://pareonline.net/getvn.asp?v=20&n=11    
     
   Rupp, A. A., & Templin, J. (2008). Unique characteristics of
   diagnostic classification models: A comprehensive review of the current
   state-of-the-art. \emph{Measurement: Interdisciplinary Research and
-  Perspectives}, \bold{6}, 219--262.
+  Perspectives, 6}, 219--262.
   
   Rupp, A. A., Templin, J., & Henson, R. A. (2010). \emph{Diagnostic
   Measurement: Theory, Methods, and Applications}. New York: The Guilford
@@ -171,11 +171,11 @@ Available online: http://pareonline.net/getvn.asp?v=20&n=11
   
   Templin, J., & Henson, R. (2006). Measurement of
   psychological disorders using cognitive diagnosis
-  models. \emph{Psychological Methods}, \bold{11}, 287--305.
+  models. \emph{Psychological Methods, 11}, 287--305.
 
   von Davier, M. (2008). A general diagnostic model applied to 
   language testing data. \emph{British Journal
-  of Mathematical and Statistical Psychology}, \bold{61}, 287-307.
+  of Mathematical and Statistical Psychology, 61}, 287-307.
 }
 
 \examples{

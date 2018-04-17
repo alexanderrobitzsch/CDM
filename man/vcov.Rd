@@ -1,5 +1,5 @@
 %% File Name: vcov.Rd
-%% File Version: 0.29
+%% File Version: 0.31
 
 \name{vcov}
 \alias{vcov.din}
@@ -75,7 +75,7 @@ parameters a confidence interval is calculated.}
 \references{
 Paek, I., & Cai, L. (2014). A comparison of item parameter standard error 
 estimation procedures for unidimensional and multidimensional item response 
-theory modeling. \emph{Educational and Psychological Measurement}, \bold{74(1)},
+theory modeling. \emph{Educational and Psychological Measurement, 74}(1),
 58-76.
 }
 

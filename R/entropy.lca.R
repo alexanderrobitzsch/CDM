@@ -1,5 +1,5 @@
 ## File Name: entropy.lca.R
-## File Version: 0.11
+## File Version: 0.12
 
 ####################################################
 # entropy for din, gdina and mcdina objects
@@ -14,7 +14,7 @@ entropy.lca <- function( object )
 		data <- object$dat
 		data <- data - 1
 		pjk <- object$pik[,,,1]
-			}
+	}
 	
 	skillspace <- object$attribute.patt.splitted
 
@@ -41,10 +41,10 @@ entropy.lca <- function( object )
 	for (kk in 1:K){
 		# kk <- 1
 		Nkk <- maxskill[kk]
-		posterior.kk <- matrix(NA , nrow=N , ncol= Nkk+1 )		
+		posterior.kk <- matrix(NA , nrow=N , ncol= Nkk+1 )
 		for (vv in 0:Nkk){
 			posterior.kk[,vv+1] <- rowSums( posterior[ , skillspace[,kk] == vv ]  )
-		}		
+		}
 		entropy.skill[kk] <- 1 +  sum( weights * posterior.kk * log( posterior.kk + eps) ) / N / log(Nkk+1)
 	}
 
@@ -53,7 +53,7 @@ entropy.lca <- function( object )
 	entropyM[1,] <- c( entropy.total , entropy.skill )
 	for (ii in 1:I){
 		weights.ii <- weights * data.resp[,ii]
-		N.ii <- sum(weights.ii)		
+		N.ii <- sum(weights.ii)
 		pjk.ii <- pjk[ii,,]
 		pjkM <- pjk.ii[ data[,ii] +1 , ]
 		posterior.ii <- pjkM 
@@ -62,7 +62,7 @@ entropy.lca <- function( object )
 		for (kk in 1:K){    
 			# skill kk and item ii
 			Nkk <- maxskill[kk]
-			posterior.kk <- matrix(NA , nrow=N , ncol= Nkk+1 )		
+			posterior.kk <- matrix(NA , nrow=N , ncol= Nkk+1 )
 			for (vv in 0:Nkk){
 				posterior.kk[,vv+1] <- rowSums( posterior.ii[ , skillspace[,kk] == vv ]  )
 			}
@@ -76,16 +76,3 @@ entropy.lca <- function( object )
 	class(res2) <- "entropy.lca"
 	return(res2)
 }
-#################################################################################		
-# summary S3 method
-summary.entropy.lca <- function( object , digits=2, ...)
-{
-	obji <- object$entropy
-	V <- ncol(obji)
-	for (vv in 2:V){
-		obji[,vv] <- round( obji[,vv] , digits)
-	}
-	rownames(obji) <- NULL
-	print(obji)
-}
-#####################################################################################

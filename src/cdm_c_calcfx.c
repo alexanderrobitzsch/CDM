@@ -1,5 +1,5 @@
-//// File Name: calc_posterior.c
-//// File Version: 1.04
+//// File Name: cdm_c_calcfx.c
+//// File Version: 1.05
 
 
 #include <Rinternals.h>

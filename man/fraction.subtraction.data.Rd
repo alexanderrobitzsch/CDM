@@ -1,5 +1,5 @@
 %% File Name: fraction.subtraction.data.Rd
-%% File Version: 2.03
+%% File Version: 2.04
 
 \name{fraction.subtraction.data}
 
@@ -49,11 +49,11 @@
 \references{
   DeCarlo, L. T. (2011). On the analysis of fraction subtraction data:  
   The DINA Model, classification, latent class sizes, and the Q-Matrix.
-  \emph{Applied Psychological Measurement}, \bold{35}, 8--26.
+  \emph{Applied Psychological Measurement, 35}, 8--26.
   
   Tatsuoka, C. (2002). Data analytic methods for latent partially ordered classification 
-  models. \emph{Journal of the Royal Statistical Society, Series C, Applied Statistics}, 
-  \bold{51}, 337--350.
+  models. \emph{Journal of the Royal Statistical Society, Series C, Applied Statistics, 
+  51}, 337--350.
   
   Tatsuoka, K. (1984). \emph{Analysis of errors in fraction addition and subtraction 
   problems}. Final Report for NIE-G-81-0002, University of Illinois, Urbana-Champaign.

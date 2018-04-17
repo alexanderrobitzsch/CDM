@@ -1,5 +1,5 @@
 %% File Name: data.pgdina.Rd
-%% File Version: 0.14
+%% File Version: 0.15
 
 \name{data.pgdina}
 \alias{data.pgdina}
@@ -84,7 +84,7 @@ The dataset was simulated by the following \R code:
 \references{
 Chen, J., & de la Torre, J. (2013). 
 A general cognitive diagnosis model for expert-defined polytomous attributes.
-\emph{Applied Psychological Measurement}, \bold{37}, 419-437.
+\emph{Applied Psychological Measurement, 37}, 419-437.
 }
 
 %\examples{

@@ -1,11 +1,11 @@
 ## File Name: modelfit.cor2.R
-## File Version: 3.71
+## File Version: 3.73
 
 
 
 modelfit.cor2 <- function( data , posterior , probs )
 {
- z0 <- Sys.time()
+# z0 <- Sys.time()
 	K <- max( apply( data , 2 , max , na.rm=TRUE ) )
 	if ( K>1 ){ 
 		stop("modelfit.cor only allows for dichotomous data\n") 
@@ -22,7 +22,7 @@ modelfit.cor2 <- function( data , posterior , probs )
 	data1[ data_na ] <- 0
 	data_resp_bool <- ! data_na	
 
-	res <- cdm_modelfit_cor_counts( data=data, data_resp_bool=data_resp_bool)	
+	res <- cdm_rcpp_modelfit_cor_counts( data=data, data_resp_bool=data_resp_bool)	
 	n11 <- res$n11
 	n01 <- res$n01
 	n10 <- res$n10
@@ -41,10 +41,11 @@ modelfit.cor2 <- function( data , posterior , probs )
 	#---- calculate expected score for every person and every item
 	exp.ii.jj <- posterior %*% t( probs[,2,] )
 	probs1 <- as.matrix(probs[ , 2, ])
-	probs0 <- as.matrix(probs[ , 1, ])			
-	res <- modelfit_cor2_rcpp(posterior=posterior, data=data, 
-				data_resp_bool=data_resp_bool, 
-				probs1=probs1, probs0=probs0, ip=as.matrix(ip-1), expiijj=exp.ii.jj) 
+	probs0 <- as.matrix(probs[ , 1, ])
+	ip1 <- as.matrix(ip-1)
+	res <- cdm_rcpp_modelfit_cor2( posterior=posterior, data=data, 
+				data_resp_bool=data_resp_bool, probs1=probs1, probs0=probs0, ip=ip1, 
+				expiijj=exp.ii.jj ) 				
 	r1 <- res$itempair_stat
 
 	itempairs$Exp11 <- r1[,1]

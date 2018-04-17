@@ -1,5 +1,5 @@
 %% File Name: personfit.appropriateness.Rd
-%% File Version: 0.17
+%% File Version: 0.19
 
 \name{personfit.appropriateness}
 \alias{personfit.appropriateness}
@@ -80,10 +80,10 @@ List with following entries
 
 \references{
 Levine, M. V., & Drasgow, F. (1988). Optimal appropriateness measurement. 
-\emph{Psychometrika}, \bold{53}, 161-176.
+\emph{Psychometrika, 53}, 161-176.
 
 Liu, Y., Douglas, J. A., & Henson, R. A. (2009). Testing person fit in cognitive 
-diagnosis. \emph{Applied Psychological Measurement}, \bold{33(8)}, 579-598.
+diagnosis. \emph{Applied Psychological Measurement, 33}(8), 579-598.
 }
 
 

@@ -1,5 +1,5 @@
 %% File Name: modelfit.cor.Rd
-%% File Version: 1.53
+%% File Version: 1.54
 
 \name{modelfit.cor}
 \alias{modelfit.cor}
@@ -155,11 +155,11 @@ A list with following entries
 \references{
 Chen, J., de la Torre, J., & Zhang, Z. (2013). 
 Relative and absolute fit evaluation in cognitive diagnosis modeling. 
-\emph{Journal of Educational Measurement}, \bold{50}, 123-140.	
+\emph{Journal of Educational Measurement, 50}, 123-140.	
 
 Chen, W., & Thissen, D. (1997). Local dependence indexes for item pairs 
-using item response theory. \emph{Journal of Educational and Behavioral Statistics},
-\bold{22}, 265-289.
+using item response theory. \emph{Journal of Educational and Behavioral Statistics,
+22}, 265-289.
 
 DiBello, L. V., Roussos, L. A., & Stout, W. F. (2007). Review of
 cognitively diagnostic assessment and a summary of psychometric models.
@@ -168,19 +168,19 @@ Vol. 26 (pp. 979--1030). Amsterdam: Elsevier.
 
 Maydeu-Olivares, A. (2013). Goodness-of-fit assessment of item response
 theory models (with discussion). 
-\emph{Measurement: Interdisciplinary Research and Perspectives},
-\bold{11}, 71-137.
+\emph{Measurement: Interdisciplinary Research and Perspectives,
+11}, 71-137.
 
 Maydeu-Olivares, A., & Joe, H. (2014). Assessing approximate fit in categorical 
-data analysis. \emph{Multivariate Behavioral Research}, \bold{49}, 305-328.
+data analysis. \emph{Multivariate Behavioral Research, 49}, 305-328.
 
 
 McDonald, R. P., & Mok, M. M.-C. (1995). Goodness of fit in item response models.
-\emph{Multivariate Behavioral Research}, \bold{30}, 23-40.
+\emph{Multivariate Behavioral Research, 30}, 23-40.
 
 Yen, W. M. (1984). Effects of local item dependence on the fit and equating 
 performance of the three-parameter logistic model. 
-\emph{Applied Psychological Measurement}, \bold{8}, 125-145.
+\emph{Applied Psychological Measurement, 8}, 125-145.
 }
 %\author{
 %Alexander Robitzsch

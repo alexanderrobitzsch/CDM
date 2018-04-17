@@ -1,5 +1,5 @@
 %% File Name: cdm.est.class.accuracy.Rd
-%% File Version: 1.15
+%% File Version: 1.16
 
 \name{cdm.est.class.accuracy}
 \alias{cdm.est.class.accuracy}
@@ -57,7 +57,7 @@ marginal skill classification with following columns:
 Cui, Y., Gierl, M. J., & Chang, H.-H. (2012). 
 Estimating classification consistency and accuracy for cognitive 
 diagnostic assessment.  
-\emph{Journal of Educational Measurement}, \bold{49}, 19-38.
+\emph{Journal of Educational Measurement, 49}, 19-38.
 }
 %\author{
 %Alexander Robitzsch

@@ -1,5 +1,5 @@
 %% File Name: data.fraction.Rd
-%% File Version: 0.19
+%% File Version: 0.21
 
 
 \name{data.fraction}
@@ -219,33 +219,33 @@ about the data source.
 \references{
   Chen, Y., Liu, J., Xu, G. and Ying, Z. (2015). 
   Statistical analysis of Q-matrix based diagnostic classification models. 
-  \emph{Journal of the American Statistical Association}, \bold{110}(510), 
+  \emph{Journal of the American Statistical Association, 110}(510), 
   850-866.	
 	
   de la Torre, J. (2009). DINA model parameter estimation:
   A didactic. \emph{Journal of Educational and Behavioral
-  Statistics}, \bold{34}, 115-130.
+  Statistics, 34}, 115-130.
 
   de la Torre, J. (2011). The generalized DINA model framework. 
-  \emph{Psychometrika}, \bold{76}, 179-199.
+  \emph{Psychometrika, 76}, 179-199.
 
   de la Torre, J., & Douglas, J. A. (2004). 
   Higher-order latent trait models for cognitive diagnosis. 
-  \emph{Psychometrika}, \bold{69}, 333-353.
+  \emph{Psychometrika, 69}, 333-353.
 
   de la Torre, J., & Douglas, J. A. (2008). 
   Model evaluation and multiple strategies in cognitive diagnosis: 
   An analysis of fraction subtraction data.
-  \emph{Psychometrika}, \bold{73}, 595-624.
+  \emph{Psychometrika, 73}, 595-624.
   
   Henson, R. A., Templin, J. T., & Willse, J. T. (2009).
   Defining a family of cognitive diagnosis models using
   log-linear models with latent variables.
-  \emph{Psychometrika}, \bold{74}, 191-210.  
+  \emph{Psychometrika, 74}, 191-210.  
   
   Huo, Y., & de la Torre, J. (2014). Estimating a cognitive diagnostic model for 
   multiple strategies via the EM algorithm. 
-  \emph{Applied Psychological Measurement}, \bold{38}, 464-485.  
+  \emph{Applied Psychological Measurement, 38}, 464-485.  
   
 }
 %\examples{

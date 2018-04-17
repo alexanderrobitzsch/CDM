@@ -1,5 +1,5 @@
 %% File Name: gdd.Rd
-%% File Version: 0.13
+%% File Version: 0.14
 
 \name{gdd}
 \alias{gdd}
@@ -60,7 +60,7 @@ A list with following entries
 \references{
 Sun, J., Xin, T., Zhang, S., & de la Torre, J. (2013). 
 A polytomous extension of the generalized distance discriminating method. 
-\emph{Applied Psychological Measurement}, \bold{37}, 503-521.
+\emph{Applied Psychological Measurement, 37}, 503-521.
 }
 
 %\author{

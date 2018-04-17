@@ -1,5 +1,5 @@
 %% File Name: data.timss07.G4.lee.Rd
-%% File Version: 0.07
+%% File Version: 0.08
 
 \name{data.timss07.G4.lee}
 \alias{data.timss07.G4.lee}
@@ -82,7 +82,7 @@ TIMSS 2007 study, 4th Grade, Austrian sample on booklets 4 and 5
 Lee, Y. S., Park, Y. S., & Taylan, D. (2011). 
 A cognitive diagnostic modeling of attribute mastery in Massachusetts, 
 Minnesota, and the US national sample using the TIMSS 2007. 
-\emph{International Journal of Testing}, \bold{11}, 144-177.
+\emph{International Journal of Testing, 11}, 144-177.
 }
 
 

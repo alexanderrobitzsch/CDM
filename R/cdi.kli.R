@@ -1,5 +1,5 @@
 ## File Name: cdi.kli.R
-## File Version: 0.12
+## File Version: 0.13
 
 #######################################################
 # cognitive diagnostic indices
@@ -23,7 +23,7 @@ cdi.kli <- function( object )
 	pjk <- ( pjk + eps ) / ( 1 + 2*eps )
 
 	#-- apply Rcpp function for calculation
-	res0 <- cdm_kli_id_C( pjk=pjk, sc=skillclasses )
+	res0 <- cdm_rcpp_kli_id( pjk=pjk, sc=skillclasses )
 	
 	#-- arrange Kullback Leibler information
 	kli <- array( res0$kli , dim=c( res0$TP , res0$TP , res0$I ) )

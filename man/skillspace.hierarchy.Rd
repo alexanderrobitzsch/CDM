@@ -1,5 +1,5 @@
 %% File Name: skillspace.hierarchy.Rd
-%% File Version: 0.16
+%% File Version: 0.17
 
 \name{skillspace.hierarchy}
 \alias{skillspace.hierarchy}
@@ -60,7 +60,7 @@ hierarchy}
 Leighton, J. P., Gierl, M. J., & Hunka, S. M. (2004). 
 The attribute hierarchy method for cognitive assessment: 
 A variation on Tatsuoka's rule space approach. 
-\emph{Journal of Educational Measurement}, \bold{41}, 205-237.
+\emph{Journal of Educational Measurement, 41}, 205-237.
 }
 
 %\author{

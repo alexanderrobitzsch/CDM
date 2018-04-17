@@ -1,5 +1,5 @@
 %% File Name: din.equivalent.class.Rd
-%% File Version: 0.21
+%% File Version: 0.23
 
 \name{din.equivalent.class}
 \alias{din.equivalent.class}
@@ -42,7 +42,7 @@ A list with following entries:
 \references{
 Gross, J. & George, A. C. (2014). On prerequisite relations between 
 attributes in noncompensatory diagnostic classification.
-\emph{Methodology}, \bold{10(3)}, 100-107.
+\emph{Methodology, 10}(3), 100-107.
 
 Zhang, S. S., DeCarlo, L. T., & Ying, Z. (2013). 
 Non-identifiability, equivalence classes, and attribute-specific classification 

@@ -1,5 +1,5 @@
 %% File Name: din.Rd
-%% File Version: 2.35
+%% File Version: 2.37
 
 \name{din}
 
@@ -215,14 +215,14 @@ zero to random initial values with \code{set.seed(seed)}.}
 \references{
   de la Torre, J. (2009). DINA model parameter estimation:
   A didactic. \emph{Journal of Educational and Behavioral
-  Statistics}, \bold{34}, 115--130.
+  Statistics, 34}, 115--130.
   
   de la Torre, J., & Douglas, J. (2004). Higher-order latent trait models 
-  for cognitive diagnosis. \emph{Psychometrika}, \bold{69}, 333--353.    
+  for cognitive diagnosis. \emph{Psychometrika, 69}, 333--353.    
 
   Lee, Y.-S., de la Torre, J., & Park, Y. S. (2012). 
   Relationships between cognitive diagnosis, CTT, and IRT indices: 
-  An empirical investigation. \emph{Asia Pacific Educational Research}, \bold{13}, 333-345.
+  An empirical investigation. \emph{Asia Pacific Educational Research, 13}, 333-345.
 
   Rupp, A. A., Templin, J., & Henson, R. A. (2010). \emph{Diagnostic
   Measurement: Theory, Methods, and Applications}.  New York: The Guilford
@@ -230,7 +230,7 @@ zero to random initial values with \code{set.seed(seed)}.}
   
   Templin, J., & Henson, R. (2006). Measurement of
   psychological disorders using cognitive diagnosis
-  models. \emph{Psychological Methods}, \bold{11}, 287--305.
+  models. \emph{Psychological Methods, 11}, 287--305.
 }
 
 %\author{
@@ -263,6 +263,8 @@ zero to random initial values with \code{set.seed(seed)}.}
   \code{\link{anova.din}}.
   
   See \code{\link{itemfit.sx2}} for item fit statistics.  
+  
+    See \code{\link{discrim.index}} for computing discrimination indices.  
   
   See also \code{\link{CDM-package}} for general
   information about this package.  

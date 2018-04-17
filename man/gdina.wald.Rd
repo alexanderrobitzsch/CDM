@@ -1,5 +1,5 @@
 %% File Name: gdina.wald.Rd
-%% File Version: 0.24
+%% File Version: 0.25
 
 \name{gdina.wald}
 \alias{gdina.wald}
@@ -55,11 +55,11 @@ skill classes
 \references{
 de la Torre, J., & Lee, Y. S. (2013). Evaluating the Wald test for 
 item-level comparison of saturated and reduced models in cognitive diagnosis. 
-\emph{Journal of Educational Measurement}, \bold{50}, 355-373.
+\emph{Journal of Educational Measurement, 50}, 355-373.
 
 Ma, W., Iaconangelo, C., & de la Torre, J. (2016). Model similarity, 
 model selection, and attribute classification. 
-\emph{Applied Psychological Measurement}, \bold{40}(3), 200-217.
+\emph{Applied Psychological Measurement, 40}(3), 200-217.
 }
 
 %\author{

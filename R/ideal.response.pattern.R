@@ -1,5 +1,5 @@
 ## File Name: ideal.response.pattern.R
-## File Version: 0.06
+## File Version: 0.07
 
 
 #########################################################################
@@ -16,19 +16,11 @@ ideal.response.pattern <- function( q.matrix , skillspace=NULL )
 		}
 	}
 	# compute ideal response pattern
-	idealresp <- ideal_resp_pattern__Cpp( q.matrix , skillspace )    
+	skillspace <- as.matrix(skillspace)
+	q.matrix <- as.matrix(q.matrix)
+	idealresp <- cdm_rcpp_ideal_resp_pattern( qmatrix=q.matrix, skillspace=skillspace )
 	res <- list( "idealresp"= idealresp , "skillspace" = skillspace )
 	return(res)
 }
 #########################################################################		
 
-
-###############################################################################
-ideal_resp_pattern__Cpp <- function( q.matrix , skillspace )
-{
-	skillspace <- as.matrix(skillspace)
-	q.matrix <- as.matrix(q.matrix)
-	res <- ideal_resp_pattern__C( q.matrix , skillspace )
-	return(res)	
-}
-###############################################################################

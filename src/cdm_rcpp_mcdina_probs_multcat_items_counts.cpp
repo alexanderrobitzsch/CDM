@@ -1,5 +1,5 @@
-//// File Name: probs_multcat_items_counts_c.cpp
-//// File Version: 3.04
+//// File Name: cdm_rcpp_mcdina_probs_multcat_items_counts.cpp
+//// File Version: 3.08
 
 // #include <RcppArmadillo.h>
 #include <Rcpp.h>
@@ -8,10 +8,11 @@ using namespace Rcpp;
 
 
 ///********************************************************************
-///**  probs_pcm_groups_C
+///**  cdm_rcpp_mcdina_probs_pcm_groups
 // [[Rcpp::export]]
-Rcpp::List probs_pcm_groups_C( Rcpp::NumericMatrix dat, Rcpp::NumericMatrix dat_resp, 
-		Rcpp::NumericVector group , Rcpp::NumericMatrix probs , int CC, int TP )
+Rcpp::List cdm_rcpp_mcdina_probs_pcm_groups( Rcpp::NumericMatrix dat, 
+		Rcpp::LogicalMatrix dat_resp_bool, Rcpp::NumericVector group , 
+		Rcpp::NumericMatrix probs , int CC, int TP )
 {
 	int I = dat.ncol();  // number of items  
 	int N = dat.nrow() ; // number of subjects  
@@ -21,7 +22,7 @@ Rcpp::List probs_pcm_groups_C( Rcpp::NumericMatrix dat, Rcpp::NumericMatrix dat_
 
 	for (int nn=0;nn<N;nn++){  
 		for (int ii=0;ii<I;ii++){  
-			if (dat_resp(nn,ii)==1){  
+			if (dat_resp_bool(nn,ii) ){  
 				for (int tt=0;tt<TP;tt++){  
 					// probs ( ii , cc , tt , gg ) =   
 					// probs_C(ii ,  cc + tt*CC + gg * CC*TP )  
@@ -41,10 +42,10 @@ Rcpp::List probs_pcm_groups_C( Rcpp::NumericMatrix dat, Rcpp::NumericMatrix dat_
 
 
 ///********************************************************************
-///**  calccounts_pcm_groups_C
+///**  cdm_rcpp_mcdina_calccounts_pcm_groups
 // [[Rcpp::export]]
-Rcpp::List calccounts_pcm_groups_C( Rcpp::NumericMatrix dat, 
-		Rcpp::NumericMatrix dat_resp , Rcpp::NumericVector group, Rcpp::NumericMatrix fyiqk, 
+Rcpp::List cdm_rcpp_mcdina_calccounts_pcm_groups( Rcpp::NumericMatrix dat, 
+		Rcpp::LogicalMatrix dat_resp_bool , Rcpp::NumericVector group, Rcpp::NumericMatrix fyiqk, 
 		Rcpp::NumericMatrix pik, int CC , Rcpp::NumericVector weights )
 {
 
@@ -73,7 +74,7 @@ Rcpp::List calccounts_pcm_groups_C( Rcpp::NumericMatrix dat,
 	Rcpp::NumericMatrix nik(I,CC*TP*G);  
 	for (int ii=0;ii<I;ii++){  
 		for (int nn=0;nn<N;nn++){  
-			if (dat_resp(nn,ii) ==1){  
+			if (dat_resp_bool(nn,ii)){  
 				for(int tt=0;tt<TP;tt++){           
 					nik(ii,dat(nn,ii)+tt*CC+group[nn]*CC*TP ) +=  fqkyi(nn,tt) * weights[nn] ;  
 				} // end tt 

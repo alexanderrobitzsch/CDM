@@ -1,5 +1,5 @@
 %% File Name: summary.din.Rd
-%% File Version: 2.06
+%% File Version: 2.07
 
 \name{summary.din}
 
@@ -77,7 +77,7 @@
 \references{
 Lee, Y.-S., de la Torre, J., & Park, Y. S. (2012). Relationships between 
 cognitive diagnosis, CTT, and IRT indices: An empirical investigation.
-\emph{Asia Pacific Educational Research}, \bold{13}, 333-345.
+\emph{Asia Pacific Educational Research, 13}, 333-345.
 
 Rupp, A. A., Templin, J. L., & Henson, R. A. (2010) \emph{Diagnostic
 Measurement: Theory, Methods, and Applications}.  New York: The Guilford

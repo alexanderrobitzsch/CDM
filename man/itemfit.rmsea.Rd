@@ -1,5 +1,5 @@
 %% File Name: itemfit.rmsea.Rd
-%% File Version: 1.10
+%% File Version: 1.11
 
 \name{itemfit.rmsea}
 \alias{itemfit.rmsea}
@@ -62,7 +62,7 @@ Kunina-Habenicht, O., Rupp, A. A., & Wilhelm, O. (2009).
 A practical illustration of multidimensional diagnostic skills profiling: 
 Comparing results from confirmatory factor analysis and diagnostic 
 classification models. 
-\emph{Studies in Educational Evaluation}, \bold{35}, 64--70.
+\emph{Studies in Educational Evaluation, 35}, 64--70.
 
 von Davier, M. (2005). \emph{A general diagnostic model applied to language 
 testing data}. ETS Research Report RR-05-16. ETS, Princeton, NJ: ETS.

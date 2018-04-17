@@ -1,5 +1,5 @@
 %% File Name: data.dtmr.Rd
-%% File Version: 0.13
+%% File Version: 0.14
 
 \name{data.dtmr}
 \alias{data.dtmr}
@@ -56,7 +56,7 @@ Simulated dataset according to Bradshaw et al. (2014).
 Bradshaw, L., Izsak, A., Templin, J., & Jacobson, E. (2014). 
 Diagnosing teachers' understandings of rational numbers: Building a 
 multidimensional test within the diagnostic classification framework. 
-\emph{Educational Measurement: Issues and Practice}, \bold{33}, 2-14.
+\emph{Educational Measurement: Issues and Practice, 33}, 2-14.
 }
 
 \examples{

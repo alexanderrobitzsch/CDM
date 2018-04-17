@@ -1,5 +1,5 @@
-//// File Name: cdm_kli_id_c.cpp
-//// File Version: 3.14
+//// File Name: cdm_rcpp_kli.cpp
+//// File Version: 3.17
 
 
 #include <Rcpp.h>
@@ -11,12 +11,10 @@ using namespace Rcpp;
 
 
 ///********************************************************************
-///** cdm_kli_id_C
-
+///** cdm_rcpp_kli_id
 // [[Rcpp::export]]
-Rcpp::List cdm_kli_id_C( Rcpp::NumericMatrix pjk, Rcpp::NumericMatrix sc )
+Rcpp::List cdm_rcpp_kli_id( Rcpp::NumericMatrix pjk, Rcpp::NumericMatrix sc )
 { 
-
 	int I= pjk.nrow();  // number of items  
 	int TP = sc.nrow() ; // number of skill classes  
 	double K = sc.ncol() ; // number of attributes   
@@ -44,9 +42,9 @@ Rcpp::List cdm_kli_id_C( Rcpp::NumericMatrix pjk, Rcpp::NumericMatrix sc )
 					tmp1 ++ ;  
 				}  
 			}
-		hdist(tt,uu) = tmp1 ;  
-		hdist(uu,tt) = tmp1 ;  
-		sum_hdist += 2 * tmp1 ;  
+			hdist(tt,uu) = tmp1 ;  
+			hdist(uu,tt) = tmp1 ;  
+			sum_hdist += 2 * tmp1 ;  
 		}  
 	}
 
@@ -54,13 +52,13 @@ Rcpp::List cdm_kli_id_C( Rcpp::NumericMatrix pjk, Rcpp::NumericMatrix sc )
 	// [ii , jj , kk ] ~ [ ii , jj + J*kk ]   
 	// [ I , J , K ]  
 
-	/// compute entries of the Kullback Leibler information matrix	  
+	/// compute entries of the Kullback Leibler information	  
 	for (int ii=0;ii<I;ii++){  
 		tmp2 = 0;
 		for (int tt=0;tt<TP;tt++){  
 			for (int uu=0;uu<TP;uu++){  
 				kli( tt , uu + TP * ii ) = pjk( ii , tt ) * log( pjk( ii , tt ) / pjk( ii , uu ) ) +   
-				pjk( ii , tt+TP ) * log( pjk( ii , tt+TP ) / pjk( ii , uu+TP ) ) ;  
+						pjk( ii , tt+TP ) * log( pjk( ii , tt+TP ) / pjk( ii , uu+TP ) ) ;  
 				tmp2 += kli( tt , uu + TP*ii ) * hdist( tt , uu ) ;  
 				for (int aa=0;aa<K;aa++){  
 					if ( ( sc(uu,aa) != sc(tt,aa) ) & ( hdist(uu,tt) == 1)  ){  
@@ -68,7 +66,7 @@ Rcpp::List cdm_kli_id_C( Rcpp::NumericMatrix pjk, Rcpp::NumericMatrix sc )
 						attr_item_count(ii,aa) ++ ;
 					}  
 				} // end aa  
-			}   // end uu  
+			} // end uu  
 		}  // end tt  
 
 		glob_item[ii] = tmp2 / sum_hdist ;   
@@ -79,7 +77,6 @@ Rcpp::List cdm_kli_id_C( Rcpp::NumericMatrix pjk, Rcpp::NumericMatrix sc )
 
 	///////////////////////////////////////  
 	/// OUTPUT                  
-
 	return Rcpp::List::create(
 				Rcpp::Named("pjk")=pjk ,   
 				Rcpp::Named("skillclasses")= sc ,  

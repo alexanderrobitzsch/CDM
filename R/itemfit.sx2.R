@@ -1,5 +1,5 @@
 ## File Name: itemfit.sx2.R
-## File Version: 3.13
+## File Version: 3.16
 
 ############################################################
 # Item fit according to the S-X^2 statistic 
@@ -107,7 +107,7 @@ itemfit.sx2 <- function( object , Eik_min=1 , progress=TRUE )
 	# distribution sum scores
 	sumscore.distribution <- sapply( 0:I , FUN = function(ss){ sum( sumscore == ss)  } )
 	# score distribution
-	scoredistribution <- .calc.scoredistribution.cdm( pjk )
+	scoredistribution <- itemfit_sx2_calc_scoredistribution_R( pjk=pjk )
 	itemtable <- NULL
 	itemfit.stat <- data.frame( "item" = colnames(data) , "itemindex" = 1:I  )
 
@@ -118,14 +118,15 @@ itemfit.sx2 <- function( object , Eik_min=1 , progress=TRUE )
 	# calculate fit for item ii
 	eps <- 1E-10
 	for (ii in 1:I){
-		res <- .calc.itemfit.oneitem( ii , pjk , pi.k , P1 , I , 
-				Eik_min , sumscore.distribution,  scoredistribution , data , sumscore )		
+		res <- itemfit_sx2_calc_itemfit_oneitem( ii=ii, pjk=pjk, pi.k=pi.k, P1=P1, I=I, 
+					Eik_min=Eik_min, sumscore.distribution=sumscore.distribution, 
+					scoredistribution=scoredistribution, data=data, sumscore=sumscore ) 
 		itemtable <- rbind( itemtable , res$table2.ii )
 		r1 <- res$table2.ii
 		itemfit.stat[ ii , "S-X2" ] <- sum( r1$Nik * ( r1$oik - r1$eik )^2 / ( r1$eik * ( 1 - r1$eik)  + eps ) )
 		itemfit.stat[ ii , "df" ] <- nrow(r1) - npars[ii]
 		itemfit.stat[ii,"p"] <- 1 - stats::pchisq( itemfit.stat[ ii , "S-X2" ] , df= itemfit.stat[ ii , "df" ] )		
-		itemfit.stat[ ii , "S-X2_df" ] <- itemfit.stat[ ii , "S-X2" ] /     itemfit.stat[ ii , "df" ]    
+		itemfit.stat[ ii , "S-X2_df" ] <- itemfit.stat[ ii , "S-X2" ] / itemfit.stat[ ii , "df" ]    
 		xg <-  itemfit.stat[ ii , "S-X2" ] - itemfit.stat[ ii , "df" ]    
 		itemfit.stat[ ii , "RMSEA" ] <- sqrt( (  ifelse( xg > 0 , xg , 0 )    ) / ( N - 1) / itemfit.stat[ ii , "df" ]  )
 		itemfit.stat[ii,"Nscgr"] <- nrow(r1)

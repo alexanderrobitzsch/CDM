@@ -1,5 +1,5 @@
 %% File Name: equivalent.dina.Rd
-%% File Version: 1.14
+%% File Version: 1.15
 
 \name{equivalent.dina}
 \alias{equivalent.dina}
@@ -44,8 +44,7 @@ A list with following entries
 \references{
 von Davier, M. (2014). The DINA model as a constrained general
 diagnostic model: Two variants of a model equivalency.
-\emph{British Journal of Mathematical and Statistical Psychology},
-\bold{67}, 49-71.
+\emph{British Journal of Mathematical and Statistical Psychology, 67}, 49-71.
 }
 
 

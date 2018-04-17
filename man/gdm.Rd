@@ -1,5 +1,5 @@
 %% File Name: gdm.Rd
-%% File Version: 4.35
+%% File Version: 4.36
 
 \name{gdm}
 \alias{gdm}
@@ -326,7 +326,7 @@ A class of multidimensional latent class IRT models for ordinal
 polytomous item responses. \emph{arXiv preprint}, \emph{arXiv:1201.4667}.
 
 Bartolucci, F. (2007). A class of multidimensional IRT models for testing 
-unidimensionality and clustering items. \emph{Psychometrika}, \bold{72}, 141-157.
+unidimensionality and clustering items. \emph{Psychometrika, 72}, 141-157.
 
 Berlinet, A. F., & Roland, C. (2012). 
 Acceleration of the EM algorithm: P-EM versus epsilon algorithm.
@@ -334,11 +334,11 @@ Acceleration of the EM algorithm: P-EM versus epsilon algorithm.
 
 von Davier, M. (2008). A general diagnostic model applied to 
 language testing data. \emph{British Journal
-of Mathematical and Statistical Psychology}, \bold{61}, 287-307.
+of Mathematical and Statistical Psychology, 61}, 287-307.
 
 von Davier, M., & Yamamoto, K. (2004). Partially observed mixtures of IRT models: 
 An extension of the generalized partial-credit model. 
-\emph{Applied Psychological Measurement}, \bold{28}, 389-406.
+\emph{Applied Psychological Measurement, 28}, 389-406.
 
 Xu, X., & von Davier, M. (2008). \emph{Fitting the structured general diagnostic
 model to NAEP data}. ETS Research Report ETS RR-08-27. Princeton, ETS.

@@ -1,5 +1,5 @@
 %% File Name: gdina.dif.Rd
-%% File Version: 0.14
+%% File Version: 0.15
 
 \name{gdina.dif}
 \alias{gdina.dif}
@@ -58,13 +58,13 @@ A list with following entries
 
 \references{
   de la Torre, J. (2011). The generalized {DINA} model framework. 
-  \emph{Psychometrika}, \bold{76}, 179-199.
+  \emph{Psychometrika, 76}, 179-199.
   
   Hou, L., de la Torre, J., & Nandakumar, R. (2014).
   Differential item functioning assessment in cognitive
   diagnostic modeling: Application of the Wald test to
   investigate DIF in the DINA model.
-  \emph{Journal of Educational Measurement}, \bold{51}, 98-125.
+  \emph{Journal of Educational Measurement, 51}, 98-125.
 }
 %\author{
 %%  ~~who you are~~

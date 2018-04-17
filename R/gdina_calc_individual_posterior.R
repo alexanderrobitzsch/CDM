@@ -1,5 +1,5 @@
 ## File Name: gdina_calc_individual_posterior.R
-## File Version: 0.12
+## File Version: 0.13
 
 gdina_calc_individual_posterior <- function(G, IP, attr.prob, p.xi.aj, L, I,
 		zeroprob.skillclasses, reduced.skillspace, item.patt.freq)
@@ -21,7 +21,7 @@ gdina_calc_individual_posterior <- function(G, IP, attr.prob, p.xi.aj, L, I,
 		p.aj.xi <- p.aj.xi / rowSums( p.aj.xi )
 		# calculate marginal probability P(\alpha_l) for attribute alpha_l
 		if ( ! reduced.skillspace ){
-			attr.prob <- colSums( p.aj.xi * item.patt.freq / I )
+			attr.prob <- colSums( p.aj.xi * item.patt.freq ) / I
 		}
 	}
 	if ( G > 1 ){
@@ -33,7 +33,7 @@ gdina_calc_individual_posterior <- function(G, IP, attr.prob, p.xi.aj, L, I,
 		for( gg in 1:G){
 			p.aj.xi[,,gg] <- p.aj.xi[,,gg] / rowSums( p.aj.xi[,,gg] )
 			Igg <- sum( item.patt.freq[,gg] )
-			attr.prob[,gg] <- colSums( p.aj.xi[,,gg] * item.patt.freq[,gg] / Igg )
+			attr.prob[,gg] <- colSums( p.aj.xi[,,gg] * item.patt.freq[,gg] ) / Igg
 		}
 	}
 	#---- OUTPUT

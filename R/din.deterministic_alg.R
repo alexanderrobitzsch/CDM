@@ -1,18 +1,18 @@
 ## File Name: din.deterministic_alg.R
-## File Version: 0.11
+## File Version: 0.12
 
 ##############################################################
 # link to Rcpp functions
 din.deterministic.devcrit <- function( dat , datresp , latresp , guess , slip )
 {
-	res <- din_deterministic_devcrit_C(	dat , datresp , latresp , guess , slip ) 
+	res <- cdm_rcpp_din_deterministic_devcrit(	dat , datresp , latresp , guess , slip ) 
 	return(res)
 }
 #**********			
 # JML estimation function			
 din.jml.devcrit <- function( dat , datresp , latresp , guess , slip )
 {
-	res <- din_jml_devcrit_C(dat , datresp , latresp , guess , slip )
+	res <- cdm_rcpp_din_jml_devcrit(dat , datresp , latresp , guess , slip )
 	return(res)
 }
 #################################################################

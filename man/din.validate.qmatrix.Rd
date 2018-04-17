@@ -1,5 +1,5 @@
 %% File Name: din.validate.qmatrix.Rd
-%% File Version: 1.22
+%% File Version: 1.23
 
 \name{din.validate.qmatrix}
 \alias{din.validate.qmatrix}
@@ -55,11 +55,11 @@ A list with following entries:
 
 \references{
 Chiu, C. Y. (2013). Statistical refinement of the Q-matrix in cognitive 
-diagnosis. \emph{Applied Psychological Measurement}, \bold{37}, 598-618.	
+diagnosis. \emph{Applied Psychological Measurement, 37}, 598-618.	
 	
 de la Torre, J. (2008). An empirically based method of Q-matrix 
 validation for the DINA model: Development and applications. 
-\emph{Journal of Educational Measurement}, \bold{45}, 343-362.
+\emph{Journal of Educational Measurement, 45}, 343-362.
 }
 
 %\author{
@@ -77,7 +77,7 @@ The mixed DINA/DINO model can be estimated with \code{\link{din}}.
 See also the \code{NPCD::Qrefine} function in the \pkg{NPCD} package.
 
 See the \code{\link[GDINA:Qval]{GDINA::Qval}} function in the
-\pkg{GDINA} package for more extended functionality.
+\pkg{GDINA} package for extended functionality.
 }
 
 

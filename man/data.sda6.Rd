@@ -1,5 +1,5 @@
 %% File Name: data.sda6.Rd
-%% File Version: 0.09
+%% File Version: 0.11
 
 \name{data.sda6}
 \alias{data.sda6}
@@ -60,7 +60,7 @@ Simulated data
 \references{
 Jurich, D. P., & Bradshaw, L. P. (2014). An illustration of diagnostic 
 classification modeling in student learning outcomes assessment. 
-\emph{International Journal of Testing}, \bold{14}, 49-72.
+\emph{International Journal of Testing, 14}, 49-72.
 }
 
 

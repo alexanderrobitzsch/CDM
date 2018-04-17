@@ -1,5 +1,5 @@
-//// File Name: modelfit_cor2_rcpp.cpp
-//// File Version: 3.15
+//// File Name: cdm_rcpp_modelfit_cor.cpp
+//// File Version: 3.17
 
 // #include <RcppArmadillo.h>
 #include <Rcpp.h>
@@ -9,9 +9,9 @@ using namespace Rcpp;
 
 
 ///********************************************************************
-///**  modelfit_cor2_rcpp
+///**  cdm_rcpp_modelfit_cor2
 // [[Rcpp::export]]
-Rcpp::List modelfit_cor2_rcpp( Rcpp::NumericMatrix posterior, 
+Rcpp::List cdm_rcpp_modelfit_cor2( Rcpp::NumericMatrix posterior, 
 		Rcpp::NumericMatrix data, Rcpp::LogicalMatrix data_resp_bool, 
 		Rcpp::NumericMatrix probs1, Rcpp::NumericMatrix probs0, Rcpp::NumericMatrix ip, 
 		Rcpp::NumericMatrix expiijj )
@@ -99,9 +99,9 @@ Rcpp::List modelfit_cor2_rcpp( Rcpp::NumericMatrix posterior,
 
 ///********************************************************************
 //** frequencies for model fit function
-///** cdm_modelfit_cor_counts
+///** cdm_rcpp_modelfit_cor_counts
 // [[Rcpp::export]]    
-Rcpp::List cdm_modelfit_cor_counts( Rcpp::IntegerMatrix data, 
+Rcpp::List cdm_rcpp_modelfit_cor_counts( Rcpp::IntegerMatrix data, 
 			Rcpp::LogicalMatrix data_resp_bool )
 {
 

@@ -1,5 +1,5 @@
 %% File Name: discrim.index.Rd
-%% File Version: 0.08
+%% File Version: 0.09
 
 \name{discrim.index}
 \alias{discrim.index}
@@ -48,8 +48,8 @@ output should be sunk}
 \value{
 A list with following entries
 
-\item{discrim_item}{Disrimination indices at item level}
-\item{discrim_test}{Disrimination index at test level}
+\item{discrim_item}{Discrimination indices at item level}
+\item{discrim_test}{Discrimination index at test level}
 }
 
 \references{

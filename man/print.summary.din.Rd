@@ -1,5 +1,5 @@
 %% File Name: print.summary.din.Rd
-%% File Version: 1.06
+%% File Version: 1.07
 
 \name{print.summary.din}
 
@@ -38,7 +38,7 @@
 
 \value{
   If the argument \code{x} is of required type,
-  \code{print.summary.din} prints the afore mentioned summary
+  \code{print.summary.din} prints the summary
   information in \sQuote{Details}, and invisibly returns \code{x}.  
 }
 

@@ -1,5 +1,5 @@
 %% File Name: din.Rd
-%% File Version: 2.37
+%% File Version: 2.39
 
 \name{din}
 
@@ -36,8 +36,8 @@ din(data, q.matrix, skillclasses = NULL ,
 \arguments{
   \item{data}{A required \eqn{N \times J} data matrix 
     containing the binary responses, 0 or 1, of \eqn{N} respondents to \eqn{J}
-    test items, where 1 denotes a correct anwer and 0 an incorrect one. The 
-    nth row of the matrix represents the binary response pattern of respondant
+    test items, where 1 denotes a correct response and 0 an incorrect one. The 
+    nth row of the matrix represents the binary response pattern of respondent
     n.  \code{NA} values are allowed.  }
     
   \item{q.matrix}{A required binary \eqn{J \times K} containing the 

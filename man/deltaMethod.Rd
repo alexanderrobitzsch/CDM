@@ -1,5 +1,5 @@
 %% File Name: deltaMethod.Rd
-%% File Version: 0.05
+%% File Version: 0.07
 
 \name{deltaMethod}
 \alias{deltaMethod}
@@ -24,7 +24,7 @@ Vector of derived parameters written in \R formula framework
 Vector of parameter estimates
 }
   \item{Sigma}{
-Covariance matrrix of parameters
+Covariance matrix of parameters
 }
   \item{h}{
 Numerical differentiation parameter
@@ -40,7 +40,7 @@ Numerical differentiation parameter
   \item{A}{First derivative of nonlinear transformation}
   \item{univarTest}{Data frame containing univariate summary of
   nonlinear parameters}
-  \item{WaldTest}{Multivariate parameter test for nonlinear paramter}
+  \item{WaldTest}{Multivariate parameter test for nonlinear parameter}
 }
 
 %\references{

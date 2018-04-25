@@ -1,5 +1,5 @@
 %% File Name: gdm.Rd
-%% File Version: 4.36
+%% File Version: 4.37
 
 \name{gdm}
 \alias{gdm}
@@ -183,7 +183,7 @@ applied.}
 \item{file}{Optional file name for a file in which \code{summary}
 should be sinked.}        
   \item{x}{A required object of class \code{gdm}}
-\item{perstype}{Person paramter estimate type. Can be either
+\item{perstype}{Person parameter estimate type. Can be either
 \code{"EAP"}, \code{"MAP"} or \code{"MLE"}.} 
 \item{barwidth}{Bar width in \code{plot.gdm}}
 \item{histcol}{Color of histogram bars in \code{plot.gdm}}

@@ -1,5 +1,5 @@
 %% File Name: IRT.modelfit.Rd
-%% File Version: 0.15
+%% File Version: 0.16
 
 \name{IRT.modelfit}
 \alias{IRT.modelfit}
@@ -16,7 +16,7 @@ S3 Methods for Assessing Model Fit
 }
 
 \description{
-This S3 method asesses global (absolute) model fit using
+This S3 method assesses global (absolute) model fit using
 the methods described in \code{\link{modelfit.cor.din}}.
 }
 

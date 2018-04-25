@@ -1,12 +1,12 @@
 %% File Name: abs_approx.Rd
-%% File Version: 0.04
+%% File Version: 0.05
 
 \name{abs_approx}
 \alias{abs_approx}
 \alias{abs_approx_D1}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Differentiable Aproximation of the Absolute Value Function
+Differentiable Approximation of the Absolute Value Function
 }
 \description{
 Approximation of absolute value function which is defined

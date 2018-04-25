@@ -1,5 +1,5 @@
 %% File Name: entropy.lca.Rd
-%% File Version: 0.21
+%% File Version: 0.22
 
 \name{entropy.lca}
 \alias{entropy.lca}
@@ -11,7 +11,7 @@ Test-specific and Item-specific Entropy for Latent Class Models
 }
 
 \description{
-Computes test-specific and item-specific entropies as test-diagnostic
+Computes test-specific and item-specific entropy as test-diagnostic
 criteria of cognitive diagnostic models (Asparouhov & Muthen, 2014).
 }
 

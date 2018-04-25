@@ -1,5 +1,5 @@
 %% File Name: skillspace.approximation.Rd
-%% File Version: 0.08
+%% File Version: 0.09
 
 \name{skillspace.approximation}
 \alias{skillspace.approximation}
@@ -10,7 +10,7 @@ Skill Space Approximation
 }
 
 \description{
-This function appoximates the skill space with \eqn{K} skills to
+This function approximates the skill space with \eqn{K} skills to
 approximate a (typically high-dimensional) skill space of \eqn{2^K} classes by
 \eqn{L} classes \eqn{(L < 2^K)}. 
 }

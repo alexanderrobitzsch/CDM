@@ -24,7 +24,7 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 6.2  |  2018-04-17  |  Last: CDM 6.2-47
+VERSIONS CDM 6.2  |  2018-04-25  |  Last: CDM 6.2-53
 --------------------------------------------------------------
 
 FIXED * fixed a bug in IRT.RMSD() function for models fitted in
@@ -32,7 +32,9 @@ FIXED * fixed a bug in IRT.RMSD() function for models fitted in
 NOTE  * speeded parts of the IRT.modelfit() function
 ADDED * included item discrimination indices in discrim.index()
         function (Henson, DiBello & Stout, 2018)
-
+NOTE  * included argument 'IDI_diff' in the din.validate.qmatrix()
+        function. Speeded this function due to referring most
+        of the computations to Rcpp. 
 
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: IRT.RMSD (3)

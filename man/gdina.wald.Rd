@@ -1,5 +1,5 @@
 %% File Name: gdina.wald.Rd
-%% File Version: 0.25
+%% File Version: 0.26
 
 \name{gdina.wald}
 \alias{gdina.wald}
@@ -49,7 +49,7 @@ skill classes
 
 \value{
   \item{stats}{Data frame with Wald statistic for every item,
-  correponding p values and a RMSEA fit statistic}
+  corresponding p values and a RMSEA fit statistic}
 }
 
 \references{

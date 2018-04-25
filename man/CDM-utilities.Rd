@@ -1,5 +1,5 @@
 %% File Name: CDM-utilities.Rd
-%% File Version: 0.41
+%% File Version: 0.43
 
 \name{CDM-utilities}
 \alias{CDM-utilities}
@@ -95,7 +95,7 @@ cdm_pem_acceleration_assign_output_parameters(res_ll_fct, vars, envir, update)
 \item{pkg}{An \R package}
 \item{obji}{Object}
 \item{from}{Integer}
-\item{to}{Intger}
+\item{to}{Integer}
 \item{digits}{Number of digits used for printing}
 \item{rownames_null}{Logical}
 \item{object}{Object}

@@ -1,5 +1,5 @@
 %% File Name: modelfit.cor.Rd
-%% File Version: 1.54
+%% File Version: 1.56
 
 \name{modelfit.cor}
 \alias{modelfit.cor}
@@ -90,7 +90,7 @@ observed correlations \eqn{r_{ij}} and model predicted correlations
 \deqn{ MADcor = \frac{1}{ J(J-1)/2 } \sum_{i < j} | r_{ij} - \hat{r}_{ij} |}
 
 The SRMSR (standardized root mean square root of squared residuals,
-Maydeu-Olivaras, 2013) is also based on comparing these correlations
+Maydeu-Olivares, 2013) is also based on comparing these correlations
 \deqn{ SRMSR = \sqrt{ \frac{1}{ J(J-1)/2 } \sum_{i < j} 
 	( r_{ij} - \hat{r}_{ij} )^2 } }
 
@@ -121,7 +121,7 @@ A list with following entries
    \code{MADcor}: mean of absolute deviations in observed and expected correlations 
         (DiBello et al., 2007) 
 
-   \code{SRMSR}: standardized mean square rooot of squared residuals 
+   \code{SRMSR}: standardized mean square root of squared residuals 
         (Maydeu-Olivares, 2013; Maydeu-Olivares & Joe, 2014) 
                 
 %    \code{MX2}: Mean of \eqn{\chi^2} statistics of all item pairs 

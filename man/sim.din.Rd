@@ -1,5 +1,5 @@
 %% File Name: sim.din.Rd
-%% File Version: 2.06
+%% File Version: 2.08
 
 \name{sim.din}
 \alias{sim.din}
@@ -51,7 +51,7 @@
   \item{rule}{An optional character string or vector of character strings 
   	specifying the model rule that is used.  The character strings must be 
   	of \code{"DINA"} or \code{"DINO"}.  If a vector of character strings is 
-  	specified, implying an itemwise condensation rule, the vectore must 
+  	specified, implying an itemwise condensation rule, the vector must 
   	be of length \eqn{J}, which is the number of used items.  The default is
     the condensation rule \code{"DINA"} for all items.  }
   \item{alpha}{A matrix of attribute patterns which can be given as an input
@@ -61,7 +61,7 @@
 }
 
 \value{A list with following entries
-    \item{dat}{A matrix of simulated dichotomuos response data 
+    \item{dat}{A matrix of simulated dichotomous response data 
     	    according to the specified CDM model. 
                 }
     \item{alpha}{Simulated attributes}

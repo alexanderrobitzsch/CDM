@@ -1,5 +1,5 @@
 %% File Name: data.Students.Rd
-%% File Version: 0.15
+%% File Version: 0.16
 
 \name{data.Students}
 \alias{data.Students}
@@ -21,7 +21,7 @@ mathematics joyment (\code{mj}).
     \item{\code{female}}{A dummy variable for female student}
     \item{\code{act1}}{Visit a museum (0=never, 1=once or twice a year, 
           2=more than twice a year)}
-    \item{\code{act2}}{Visit a theatre or classical concert (0,1,2)}
+    \item{\code{act2}}{Visit a theater or classical concert (0,1,2)}
     \item{\code{act3}}{Visit a rock or pop concert (0,1,2)}
     \item{\code{act4}}{Visit a cinema (0,1,2)}
     \item{\code{act5}}{Visit a public library (0,1,2)}    

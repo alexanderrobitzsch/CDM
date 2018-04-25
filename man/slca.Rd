@@ -1,5 +1,5 @@
 %% File Name: slca.Rd
-%% File Version: 1.805
+%% File Version: 1.807
 
 \name{slca}
 \alias{slca}
@@ -69,7 +69,7 @@ Fixed value.
 \eqn{V_x \lambda_x = c_x} of the \eqn{\lambda_x} parameter.}
   \item{delta.designmatrix}{
 Design matrix for delta parameters \eqn{\delta} 
-parametrizing the latent class distribution by log-linear smoothing
+parameterizing the latent class distribution by log-linear smoothing
 (Xu & von Davier, 2008)
 }
   \item{delta.init}{
@@ -88,7 +88,7 @@ Fixed \eqn{\delta} parameters. This must be a matrix with three columns:
 positive.}
 \item{regular_type}{Regularization method which can be \code{lasso},
 \code{scad} or \code{mcp}. See \code{\link{gdina}} for more 
-ionformation and references.}
+information and references.}
 \item{regular_lam}{Numeric. Regularization parameter}
 \item{regular_w}{Vector for weighting the regularization penalty}
 \item{regular_n}{Vector of regularization factor. This will be 

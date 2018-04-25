@@ -1,5 +1,5 @@
 %% File Name: sequential.items.Rd
-%% File Version: 0.14
+%% File Version: 0.16
 
 \name{sequential.items}
 \alias{sequential.items}
@@ -47,7 +47,7 @@ The first pseudo item response \eqn{Y_{nj1}} is defined as 1 iff
 \eqn{X_{nj} \geq 1}. The second item responses \eqn{Y_{nj2}} is 1 iff
 \eqn{X_{nj} \geq 2}, it is 0 iff \eqn{X_{nj} = 1} and it is missing 
 (\code{NA} in the dataset) iff \eqn{X_{nj} = 0}. The construction proceeds
-in the same manner for other catgeories (see Tutz, 1997). The pseudo items can be
+in the same manner for other categories (see Tutz, 1997). The pseudo items can be
 recognized as 'hurdles' a participant has to master to get a score of \eqn{k}
 for the original item.
 

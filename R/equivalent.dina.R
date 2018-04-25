@@ -1,7 +1,8 @@
 ## File Name: equivalent.dina.R
-## File Version: 2.14
-equivalent.dina <- function (q.matrix, reparametrization = "B") 
+## File Version: 2.15
+equivalent.dina <- function (q.matrix, reparameterization = "B") 
 {
+	reparametrization <- reparameterization
 	K <- ncol(q.matrix)
 	I <- nrow(q.matrix)
 	if (is.null(colnames(q.matrix))) {

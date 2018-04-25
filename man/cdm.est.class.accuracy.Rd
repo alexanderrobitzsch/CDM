@@ -1,5 +1,5 @@
 %% File Name: cdm.est.class.accuracy.Rd
-%% File Version: 1.16
+%% File Version: 1.17
 
 \name{cdm.est.class.accuracy}
 \alias{cdm.est.class.accuracy}
@@ -26,7 +26,7 @@ Object of class \code{din} or \code{gdina}
   \item{n.sims}{
 Number of simulated persons. If \code{n.sims=0}, then the number
 of persons in the original data is used as the sample size.
-In case of missing item responses, everytime this sample
+In case of missing item responses, for every simulated dataset this sample
 size is used.
 Note that the simulation does (up to now) only work for 
 CDMs of class \code{din}.

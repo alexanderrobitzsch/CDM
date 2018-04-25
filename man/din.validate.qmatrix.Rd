@@ -1,5 +1,5 @@
 %% File Name: din.validate.qmatrix.Rd
-%% File Version: 1.23
+%% File Version: 1.26
 
 \name{din.validate.qmatrix}
 \alias{din.validate.qmatrix}
@@ -21,7 +21,7 @@ package.
 }
 
 \usage{
-din.validate.qmatrix(object, digits = 3, print = TRUE)
+din.validate.qmatrix(object, IDI_diff = .02, print = TRUE)
 }
 
 
@@ -30,8 +30,8 @@ din.validate.qmatrix(object, digits = 3, print = TRUE)
   \item{object}{
 Object of class \code{din}
 }
-  \item{digits}{
-Number of digits for rounding the output matrix
+  \item{IDI_diff}{
+Minimum difference in IDI values for choosing a new Q-matrix vector
 }
 \item{print}{An optional logical indicating whether the function
     should print the progress of iteration in the estimation process.  } 

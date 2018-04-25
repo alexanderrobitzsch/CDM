@@ -1,5 +1,5 @@
 %% File Name: gdina.Rd
-%% File Version: 3.406
+%% File Version: 3.416
 
 \name{gdina}
 \alias{gdina}
@@ -78,10 +78,10 @@ gdina(data, q.matrix, skillclasses=NULL, conv.crit=0.0001, dev.crit=.1 ,  maxit=
 %    required (coded by 1) to master item \eqn{j}.  
   
 \item{conv.crit}{
-    Convergence criterion for maximum absolut change in item parameters
+    Convergence criterion for maximum absolute change in item parameters
         }
 \item{dev.crit}{
-    Convergence criterion for maximum absolut change in deviance
+    Convergence criterion for maximum absolute change in deviance
         }        
 \item{maxit}{
     Maximum number of iterations
@@ -105,7 +105,7 @@ default analysis. See Example 3.
         }
 \item{invariance}{Logical indicating whether invariance of item parameters
 is assumed for multiple group models. If a subset of items should
-be treated as nonivariant, then \code{invariance} can be a vector
+be treated as noninvariant, then \code{invariance} can be a vector
 of item names.
 }     
 \item{method}{Estimation method for item parameters (see) 
@@ -143,8 +143,8 @@ For free estimated parameters \code{NA} must be declared.}
     (no skill classes with zero probability).}
 \item{attr.prob.init}{Initial probabilities of skill distribution.}    
 
-\item{reduced.skillspace}{A logical which indicates if the latent class skill space should be
-        dimensionally reduced (see Xu & von Davier, 2008). The default is \code{NULL}
+\item{reduced.skillspace}{A logical which indicates if the latent class skill space dimension
+        should be reduced (see Xu & von Davier, 2008). The default is \code{NULL}
         which applies skill space reduction for more than four skills.
         The dimensional reduction is only well defined for more than three skills.
         If the argument \code{zeroprob.skillclasses} is not \code{NULL}, then
@@ -200,7 +200,7 @@ Shen, Pan, & Zhu, 2012), \code{mcp} (MCP penalty; Zhang, 2010)
 or \code{none} (no regularization).}
 \item{regular_alpha}{Regularization parameter \eqn{\alpha} 
 (applicable for elastic net or SCAD-L2.}
-\item{regular_tau}{Regularization paramezer \eqn{\tau} for truncated
+\item{regular_tau}{Regularization parameter \eqn{\tau} for truncated
 \eqn{L_1} penalty.}
 \item{mono.constr}{Logical indicating whether monotonicity constraints
 should be fulfilled in estimation.}
@@ -303,7 +303,7 @@ this model is equivalent to an additive model (\code{rule="ACDM"}) with
 a logarithmic link function (\code{linkfct="log"}).
 
 If a reduced skillspace (\code{reduced.skillspace=TRUE}) is employed, then the
-logarithm of probability distribution of the attributes is modelled as a
+logarithm of probability distribution of the attributes is modeled as a
 log-linear model:
 \deqn{ \log P[ ( \alpha_{n1} , \alpha_{n2} , \ldots , \alpha_{nK} ) ]
 	= \gamma_0 + \sum_k \gamma_k \alpha_{nk} +
@@ -386,7 +386,7 @@ An object of class \code{gdina} with following entries
 	if \code{rule="RRUM"}.}
 \item{group.stat}{Group statistics (sample sizes, group labels)}                
 \item{HOGDINA}{The used value of \code{HOGDINA}}
-\item{mono.constr}{Monotonocity constraint}
+\item{mono.constr}{Monotonicity constraint}
 \item{regularization}{Logical indicating whether regularization is used}
 \item{regular_lam}{Regularization parameter}
 \item{numb_bound_mono}{Number of items with parameters at boundary of
@@ -449,7 +449,7 @@ In W. van der Linden & R. K. Hambleton.
 \emph{Handbook of modern item response theory} (pp. 139-152). 
 New York: Springer.  
 
-Xu, G., & Shang, Z. (xxxx). Identying latent structures in 
+Xu, G., & Shang, Z. (xxxx). Identifying latent structures in 
 restricted latent class models.
 \emph{Journal of the American Statistical Association, xxx}, xxx-xxx.
 
@@ -584,7 +584,7 @@ mod8 <- CDM::gdina( data = dat, q.matrix = Q, HOGDINA=0)
 summary(mod8)
 
 #***
-# Model 9: Estimating the GDINA model with monotonocity constraints
+# Model 9: Estimating the GDINA model with monotonicity constraints
 mod9 <- CDM::gdina( data = dat, q.matrix = Q, rule="GDINA", 
               mono.constr=TRUE, linkfct="logit")
 summary(mod9)

@@ -1,5 +1,5 @@
 %% File Name: vcov.Rd
-%% File Version: 0.31
+%% File Version: 0.33
 
 \name{vcov}
 \alias{vcov.din}
@@ -50,7 +50,7 @@ to be zero.}
 item parameters between different items are zero.}
 \item{diagcov}{Optional logical indicating whether all covariances
 between estimated parameters are set to zero.}
-\item{h}{Parameter used for numerical differiation for computing
+\item{h}{Parameter used for numerical differentiation for computing
 the derivative of the log-likelihood function.}
 \item{parm}{Vector of parameters. If it is missing, then for all estimated
 parameters a confidence interval is calculated.}
@@ -63,7 +63,7 @@ parameters a confidence interval is calculated.}
 %%}
 
 \value{
-   \code{coef}: A vector of paramters.
+   \code{coef}: A vector of parameters.
    
    \code{vcov}: A covariance matrix. The corresponding coefficients can be extracted
    as the attribute \code{coef} from this object.

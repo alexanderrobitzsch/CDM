@@ -1,5 +1,5 @@
 %% File Name: IRT.frequencies.Rd
-%% File Version: 0.09
+%% File Version: 0.11
 
 \name{IRT.frequencies}
 \alias{IRT.frequencies}
@@ -18,7 +18,7 @@ Bivariate Marginals
 }
 
 \description{
-This S3 method computes observed and expected frequences for univariate and
+This S3 method computes observed and expected frequencies for univariate and
 bivariate distributions.
 }
 

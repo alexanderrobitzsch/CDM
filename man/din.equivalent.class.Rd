@@ -1,5 +1,5 @@
 %% File Name: din.equivalent.class.Rd
-%% File Version: 0.23
+%% File Version: 0.24
 
 \name{din.equivalent.class}
 \alias{din.equivalent.class}
@@ -8,8 +8,8 @@
 Calculation of Equivalent Skill Classes in the DINA/DINO Model
 }
 \description{
-This function computes nondistinguishable skill classes for the DINA and
-DINO model (Gross & George, in press; Zhang, DeCarlo & Ying, 2013).
+This function computes indistinguishable skill classes for the DINA and
+DINO model (Gross & George, 2014; Zhang, DeCarlo & Ying, 2013).
 }
 \usage{
 din.equivalent.class(q.matrix, rule = "DINA")

@@ -1,5 +1,5 @@
 %% File Name: cdm.est.class.accuracy.Rd
-%% File Version: 1.17
+%% File Version: 1.19
 
 \name{cdm.est.class.accuracy}
 \alias{cdm.est.class.accuracy}
@@ -10,7 +10,7 @@ Classification Reliability in a CDM
 \description{
 This function computes the classification accuracy and
 consistency by the method of Cui, Gierl and Chang (2012)
-and by simulation. The simulation function now only works 
+and by simulation. The simulation function now only works
 for models of class \code{din} (i.e. the mixed DINA and
 DINO model) while the analytical method also works for
 objects of class \code{gdina}.
@@ -28,7 +28,7 @@ Number of simulated persons. If \code{n.sims=0}, then the number
 of persons in the original data is used as the sample size.
 In case of missing item responses, for every simulated dataset this sample
 size is used.
-Note that the simulation does (up to now) only work for 
+Note that the simulation does (up to now) only work for
 CDMs of class \code{din}.
 }
   \item{seed}{
@@ -37,26 +37,26 @@ An integer which indicates the simulation seed.
 }
 \details{
 The item parameters and the probability distribution of
-latent classes is used as the basis of the simulation. 
+latent classes is used as the basis of the simulation.
 Accuracy and consistency is estimated for both MLE and MAP
-classification estimators. In addition, classification accuracy measures 
-are available for the separate classification of all skills. 
+classification estimators. In addition, classification accuracy measures
+are available for the separate classification of all skills.
 }
 \value{
-A data frame for MLE, MAP and MAP (Skill 1, ... , Skill \eqn{K}) 
-classification reliability for the whole latent class pattern and 
+A data frame for MLE, MAP and MAP (Skill 1, ... , Skill \eqn{K})
+classification reliability for the whole latent class pattern and
 marginal skill classification with following columns:
-  \item{P_a}{Classification accuracy (Gierl et al., 2012)}
-  \item{P_a_sim}{Classification accuracy based on simulated data 
-  (only for \code{din} models)}  
-  \item{P_c}{Classification consistency (Gierl et al., 2012)}
+  \item{P_a}{Classification accuracy (Cui et al., 2012)}
+  \item{P_a_sim}{Classification accuracy based on simulated data
+  (only for \code{din} models)}
+  \item{P_c}{Classification consistency (Cui et al., 2012)}
   \item{P_c_sim}{Classification consistency based on simulated data
-  (only for \code{din} models)}  
+  (only for \code{din} models)}
 }
 \references{
-Cui, Y., Gierl, M. J., & Chang, H.-H. (2012). 
-Estimating classification consistency and accuracy for cognitive 
-diagnostic assessment.  
+Cui, Y., Gierl, M. J., & Chang, H.-H. (2012).
+Estimating classification consistency and accuracy for cognitive
+diagnostic assessment.
 \emph{Journal of Educational Measurement, 49}, 19-38.
 }
 %\author{
@@ -106,7 +106,7 @@ cdm.est.class.accuracy(  mod2 )
 
 m1 <- mod1$coef[ , c("guess" , "slip" ) ]
 m2 <- mod2$coef
-m2 <- cbind( m1 , m2[ seq(1,18,2) , "est" ]  , 
+m2 <- cbind( m1 , m2[ seq(1,18,2) , "est" ]  ,
           1 - m2[ seq(1,18,2) , "est" ]  - m2[ seq(2,18,2) , "est" ]  )
 colnames(m2) <- c("g.M1" , "s.M1" , "g.M2" , "s.M2" )
   ##   > round( m2 , 3 )
@@ -120,7 +120,7 @@ colnames(m2) <- c("g.M1" , "s.M1" , "g.M2" , "s.M2" )
   ##   Item7 0.193 0.514 0.192 0.514
   ##   Item8 0.246 0.100 0.246 0.100
   ##   Item9 0.201 0.032 0.195 0.032
-# Note that s (the slipping parameter) substantially differs for Item4 
+# Note that s (the slipping parameter) substantially differs for Item4
 # for DINO estimation in 'din' and 'gdina'
 }
 }

@@ -1,5 +1,5 @@
 %% File Name: reglca.Rd
-%% File Version: 0.14
+%% File Version: 0.15
 
 \name{reglca}
 \alias{reglca}
@@ -11,18 +11,18 @@ Regularized Latent Class Analysis
 }
 \description{
 Estimates the regularized latent class model for dichotomous
-responses based on regularization methods 
+responses based on regularization methods
 (Chen, Liu, Xu, & Ying, 2015; Chen, Li, Liu, & Ying, 2017).
 The SCAD and MCP penalty functions are available.
 }
 
 \usage{
-reglca(dat, nclasses, weights = NULL, group = NULL, regular_type = "scad", 
-   regular_lam = 0, sd_noise_init = 1, item_probs_init = NULL, class_probs_init = NULL, 
-   random_starts = 1, random_iter = 20, conv = 1e-05, h = 1e-04, mstep_iter = 10, 
+reglca(dat, nclasses, weights = NULL, group = NULL, regular_type = "scad",
+   regular_lam = 0, sd_noise_init = 1, item_probs_init = NULL, class_probs_init = NULL,
+   random_starts = 1, random_iter = 20, conv = 1e-05, h = 1e-04, mstep_iter = 10,
    maxit = 1000, verbose = TRUE)
-   
-\method{summary}{reglca}(object, digits = 4 , file = NULL ,  \dots)   
+
+\method{summary}{reglca}(object, digits = 4 , file = NULL ,  \dots)
 }
 
 %- maybe also 'usage' for other objects documented here.
@@ -71,7 +71,7 @@ Numerical differentiation parameter
 Number of iterations in the M-step
 }
   \item{maxit}{
-Maximum number of iterations 
+Maximum number of iterations
 }
   \item{verbose}{
 Logical indicating whether convergence progress should be displayed
@@ -80,14 +80,14 @@ Logical indicating whether convergence progress should be displayed
     from a call to the function \code{\link{gdina}}.  }
   \item{digits}{Number of digits after decimal separator to display.  }
 \item{file}{Optional file name for a file in which \code{summary}
-should be sinked.}      
+should be sinked.}
 \item{\dots}{Further arguments to be passed.}
 }
 
 \details{
 The regularized latent class model for dichotomous item responses assumes \eqn{C}
 latent classes. The item response probabilities \eqn{P(X_i=1|c)=p_{ic}} are estimated
-in such a way such that the number of different \eqn{p_{ic}} values per item is 
+in such a way such that the number of different \eqn{p_{ic}} values per item is
 minimized. This approach eases interpretability and enables to recover the
 structure of a true (but unknown) cognitive diagnostic model.
 }
@@ -114,12 +114,12 @@ A list containing following elements (selection):
 }
 
 \references{
-Chen, Y., Liu, J., Xu, G., & Ying, Z. (2015). Statistical analysis of Q-matrix 
-based diagnostic classification models. 
+Chen, Y., Liu, J., Xu, G., & Ying, Z. (2015). Statistical analysis of Q-matrix
+based diagnostic classification models.
 \emph{Journal of the American Statistical Association, 110}, 850-866.
 
-Chen, Y., Li, X., Liu, J., & Ying, Z. (2017). 
-Regularized latent class analysis with application in cognitive diagnosis. 
+Chen, Y., Li, X., Liu, J., & Ying, Z. (2017).
+Regularized latent class analysis with application in cognitive diagnosis.
 \emph{Psychometrika, 82}, 660-692.
 }
 
@@ -133,15 +133,15 @@ Regularized latent class analysis with application in cognitive diagnosis.
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-See also the \code{\link{gdina}} and \code{\link{slca}} functions 
+See also the \code{\link{gdina}} and \code{\link{slca}} functions
 for regularized estimation.
 }
 \examples{
 \dontrun{
 #############################################################################
-# EXAMPLE 1: Estimating a regularized LCA for DINA data 
+# EXAMPLE 1: Estimating a regularized LCA for DINA data
 #############################################################################
-	
+
 #---- simulate data
 I <- 12  # number of items
 # define Q-matrix
@@ -154,12 +154,12 @@ guess <- rep(seq(.1,.3,length=I/3) , 3)
 slip <- .1
 rho <- 0.3  # skill correlation
 set.seed(987)
-dat <- CDM::sim.din( N=N , q.matrix=q.matrix , guess = guess , slip=slip , 
+dat <- CDM::sim.din( N=N , q.matrix=q.matrix , guess = guess , slip=slip ,
     mean = 0*c( .2 , -.2 ) , Sigma = matrix( c( 1 , rho,rho,1) , 2 , 2 ) )
 dat <- dat$dat
 
 #--- Model 1: Four latent classes without regularization
-mod1 <- CDM::reglca(dat=dat, nclasses=4, regular_lam = 0, random_starts=3, 
+mod1 <- CDM::reglca(dat=dat, nclasses=4, regular_lam = 0, random_starts=3,
                random_iter=10, conv=1E-4)
 summary(mod1)
 

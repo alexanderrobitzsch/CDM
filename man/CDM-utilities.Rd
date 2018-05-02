@@ -1,5 +1,5 @@
 %% File Name: CDM-utilities.Rd
-%% File Version: 0.43
+%% File Version: 0.47
 
 \name{CDM-utilities}
 \alias{CDM-utilities}
@@ -9,7 +9,7 @@
 \alias{cdm_pem_inits_assign_parmlist}
 \alias{cdm_pem_acceleration}
 \alias{cdm_pem_acceleration_assign_output_parameters}
-\alias{cdm_print_summary_data_frame}   
+\alias{cdm_print_summary_data_frame}
 \alias{cdm_fa1}
 \alias{cdm_print_summary_call}
 \alias{cdm_print_summary_computation_time}
@@ -26,18 +26,20 @@
 \alias{CDM_rbind_fill}
 \alias{cdm_matrix2}
 \alias{cdm_matrix1}
+\alias{abs_approx}
+\alias{abs_approx_D1}
 
 
 \title{Utility Functions in \pkg{CDM}}
 
 
 \description{
-Utility functions in \pkg{CDM}. 
+Utility functions in \pkg{CDM}.
 }
 
 \usage{
 ## requireNamespace with package message for needed installation
-CDM_require_namespace(pkg)    
+CDM_require_namespace(pkg)
 
 ## print function in summary
 cdm_print_summary_data_frame(obji, from=NULL, to=NULL, digits=3, rownames_null=FALSE)
@@ -51,7 +53,7 @@ CDM_rmvnorm(n, mean=NULL, sigma, ...)
 ## fit univariate and multivariate normal distribution
 cdm_fit_normal(x, w)
 
-## fit unidimensional factor analysis by unweighted least squares 
+## fit unidimensional factor analysis by unweighted least squares
 cdm_fa1(Sigma, method=1, maxit=50, conv=1E-5)
 
 ## another rbind.fill implementation
@@ -71,13 +73,13 @@ cdm_ridge_threshold(beta, lambda)
 cdm_elnet_threshold( beta, lambda, alpha )
 ## SCAD-L2 thresholding operator
 cdm_scadL2_threshold(beta, lambda, alpha, a=3.7)
-## truncated L1 penalty thresholding operator 
+## truncated L1 penalty thresholding operator
 cdm_tlp_threshold( beta, tau, lambda )
 ## MCP thresholding operator
 cdm_mcp_threshold(beta, lambda, a=3.7)
 
 ## general thresholding operator for regularization
-cdm_parameter_regularization(x, regular_type, regular_lam, regular_alpha=NULL, 
+cdm_parameter_regularization(x, regular_type, regular_lam, regular_alpha=NULL,
          regular_tau=NULL )
 ## values of penalty function
 cdm_penalty_values(x, regular_type, regular_lam, regular_tau=NULL,
@@ -86,9 +88,13 @@ cdm_penalty_values(x, regular_type, regular_lam, regular_tau=NULL,
 ## utility functions for P-EM acceleration
 cdm_pem_inits(parmlist)
 cdm_pem_inits_assign_parmlist(pem_pars, envir)
-cdm_pem_acceleration( iter, pem_parameter_index, pem_parameter_sequence, pem_pars, 
+cdm_pem_acceleration( iter, pem_parameter_index, pem_parameter_sequence, pem_pars,
       PEM_itermax, parmlist, ll_fct, ll_args, deviance.history = NULL )
-cdm_pem_acceleration_assign_output_parameters(res_ll_fct, vars, envir, update)     
+cdm_pem_acceleration_assign_output_parameters(res_ll_fct, vars, envir, update)
+
+## approximation of absolute value function and its derivative
+abs_approx(x, eps = 1e-05)
+abs_approx_D1(x, eps = 1e-05)
 }
 
 \arguments{
@@ -138,6 +144,7 @@ item loadings, method \code{2} estimation of same item loadings.}
 \item{deviance.history}{Deviance history, a data frame.}
 \item{res_ll_fct}{Result of maximized log-likelihood function}
 \item{vars}{Vector containing parameter names}
+\item{eps}{Numeric}
 }
 
 %\details{

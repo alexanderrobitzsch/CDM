@@ -1,5 +1,5 @@
 %% File Name: data.timss03.G8.su.Rd
-%% File Version: 0.07
+%% File Version: 0.16
 
 \name{data.timss03.G8.su}
 \alias{data.timss03.G8.su}
@@ -10,8 +10,8 @@ TIMSS 2003 Mathematics 8th Grade (Su et al., 2013)
 }
 
 \description{
-This is a dataset with a subset of 23 mathematics items from TIMSS 2003 items 
-used in Su et al. (2013).
+This is a dataset with a subset of 23 Mathematics items from TIMSS 2003 items
+used in Su, Choi, Lee, Choi and McAninch (2013).
 }
 
 
@@ -47,22 +47,31 @@ The format is
 \code{  ..- attr(*, "dimnames")=List of 2} \cr
 \code{  .. ..$ : NULL} \cr
 \code{  .. ..$ : chr [1:9] "item" "ItemType" "reporting_category" "content" ...} \cr
- 
+
 For a detailed description of skills \code{S1}, \code{S2}, ..., \code{S15}
 see Su et al. (2013, Table 2).
 
 }
 
 
+\seealso{
+The TIMSS 2003 dataset for 8th graders (with a larger number of items)
+was also analyzed in Skaggs, Wilkins and Hein (2016).
+}
+
 %\details{
 %%  ~~ If necessary, more details than the __description__ above ~~
 %}
 
 \source{
-Subset of US 8th graders (Booklet 1) in the TIMSS 2003 mathematics study 
+Subset of US 8th graders (Booklet 1) in the TIMSS 2003 mathematics study
 }
 
 \references{
+Skaggs, G., Wilkins, J. L. M., & Hein, S. F. (2016).
+Grain size and parameter recovery with TIMSS and the general diagnostic model.
+\emph{International Journal of Testing, 16}(4), 310-330.
+
 Su, Y.-L., Choi, K. M., Lee, W.-C., Choi, T., & McAninch, M. (2013).
 \emph{Hierarchical cognitive diagnostic analysis for TIMSS 2003 mathematics}.
 CASMA Research Report 35. Center for Advanced Studies in
@@ -72,8 +81,11 @@ Measurement and Assessment (CASMA), University of Iowa.
 
 \examples{
 \dontrun{
-data(data.timss03.G8.su, package="CDM")
+#############################################################################
+# EXAMPLE 1: Data Su et al. (2013)
+#############################################################################
 
+data(data.timss03.G8.su, package="CDM")
 data <- data.timss03.G8.su$data[,-c(1,2)]
 q.matrix <- data.timss03.G8.su$q.matrix
 

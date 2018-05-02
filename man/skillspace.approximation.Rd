@@ -1,5 +1,5 @@
 %% File Name: skillspace.approximation.Rd
-%% File Version: 0.09
+%% File Version: 0.14
 
 \name{skillspace.approximation}
 \alias{skillspace.approximation}
@@ -12,7 +12,9 @@ Skill Space Approximation
 \description{
 This function approximates the skill space with \eqn{K} skills to
 approximate a (typically high-dimensional) skill space of \eqn{2^K} classes by
-\eqn{L} classes \eqn{(L < 2^K)}. 
+\eqn{L} classes \eqn{(L < 2^K)}. The large number of latent classes are
+represented by underlying continuous latent variables for the
+dichotomous skills (see George & Robitzsch, 2014, for more details).
 }
 \usage{
 skillspace.approximation(L, K, nmax = 5000)
@@ -41,12 +43,11 @@ function in \pkg{sfsmisc}
 A matrix containing skill classes in rows
 }
 
-%\references{
-%% ~put references to the literature/web site here ~
-%}
-%\author{
-%%  ~~who you are~~
-%}
+\references{
+George, A. C., & Robitzsch, A. (2014). Multiple group cognitive diagnosis models,
+with an emphasis on differential item functioning.
+\emph{Psychological Test and Assessment Modeling, 56}(4), 405-432.
+}
 
 \note{
 This function uses the \code{QUnif} function from the \pkg{sfsmisc}

@@ -1,77 +1,77 @@
 ## File Name: gdm_est_a_cat.R
-## File Version: 0.07
+## File Version: 0.08
 
 ###########################################
 # estimation of a
 gdm_est_a_cat <- function(probs, n.ik, N.ik, I, K, G,a,a.constraint,TD,
-				Qmatrix,thetaDes,TP, max.increment ,
-				b , msteps , convM, decrease.increments=TRUE  ){
-	iter <- 1
-	parchange <- 1
-	a00 <- a
-	eps <- 1E-10
-	max.increment0 <- max.increment
-	
-	while( ( iter <= msteps ) & ( parchange > convM )  ){
-		a0 <- a
-		probs <- gdm_calc_prob( a=a, b=b, thetaDes=thetaDes, Qmatrix=Qmatrix, I=I, K=K, TP=TP, TD=TD ) 
-		# 1st derivative
-		d2.b <- d1.b <- array( 0 , dim=c(I , TD , K ) )
-		for (td in 1:TD){
-			for (kk in 2:(K+1)){	
-				for (gg in 1:G){
-					QM <- matrix( Qmatrix[,td,kk-1] , nrow=TP , ncol=I, byrow=TRUE)
-					v1 <- colSums( n.ik[,,kk,gg] * QM * thetaDes[ , td ] )
-					v2 <- N.ik[,,gg] * QM * thetaDes[,td] *  t( probs[,kk,] )
-					v2 <- colSums(v2)
-					d1.b[  , td , kk-1] <- d1.b[  , td , kk-1] + v1 - v2
-				}
-			}	
-		}	
-		# 2nd derivative
-		for (td in 1:TD){
-			for (ii in 1:I){
-				v1 <- l0 <- 0
-				for (kk in 2:(K+1) ){		# kk <- 2
-					v1 <- l0 <- 0
-					for (gg in 1:G){			
-						v1 <- N.ik[,ii,gg] * as.vector( ( Qmatrix[ii,td,kk-1] * 
-									thetaDes[ , td ] )^2 * t( probs[ii,kk,] ) )
-						l0 <- as.vector ( Qmatrix[ii,td,kk-1] * thetaDes[ , td ]  * t( probs[ii,kk,] ) )
-						d2.b[ii,td,kk-1] <- d2.b[ii,td,kk-1] + sum(v1) - sum( l0^2 * N.ik[,ii,gg] )				
-					}
-				}				
-			}
-		}				
-		#--- calc increments
-		res <- cdm_calc_increment( d1=d1.b, d2=d2.b, max.increment=max.increment )
-		increment <- res$increment
-		max.increment <- res$max.increment	
-														
-		a <- a + increment
-		se.a <- sqrt( 1 / abs( d2.b + eps ) )
-		if ( ! is.null( a.constraint) ){
-			a[ a.constraint[,1:3,drop=FALSE] ] <- a.constraint[,4,drop=FALSE]
-			se.a[ a.constraint[,1:3,drop=FALSE] ] <- 0		
-			increment[ a.constraint[,1:3,drop=FALSE] ] <- 0						
-		}
-		iter <- iter + 1
-		parchange <- max( abs( a - a0 ))
-	} # iter
-	#-------------
-	
-	#-- final trimming of the increment
-	res <- cdm_increment_trimming_after_mstep( parm=a, parm0=a00, max.increment0=max.increment0, type=2 )	
-	a <- res$parm
-	max.increment.a <- res$max.increment0
-	
-	if (decrease.increments){ 	
-		max.increment.a <- max.increment.a / 1.01				
-	}	
-	#---- OUTPUT
-	res <- list( a = a , se.a = se.a , max.increment.a = max.increment.a)
-	return(res)
-}	
+                Qmatrix,thetaDes,TP, max.increment ,
+                b , msteps , convM, decrease.increments=TRUE  ){
+    iter <- 1
+    parchange <- 1
+    a00 <- a
+    eps <- 1E-10
+    max.increment0 <- max.increment
+
+    while( ( iter <= msteps ) & ( parchange > convM )  ){
+        a0 <- a
+        probs <- gdm_calc_prob( a=a, b=b, thetaDes=thetaDes, Qmatrix=Qmatrix, I=I, K=K, TP=TP, TD=TD )
+        # 1st derivative
+        d2.b <- d1.b <- array( 0 , dim=c(I , TD , K ) )
+        for (td in 1:TD){
+            for (kk in 2:(K+1)){
+                for (gg in 1:G){
+                    QM <- matrix( Qmatrix[,td,kk-1] , nrow=TP , ncol=I, byrow=TRUE)
+                    v1 <- colSums( n.ik[,,kk,gg] * QM * thetaDes[ , td ] )
+                    v2 <- N.ik[,,gg] * QM * thetaDes[,td] *  t( probs[,kk,] )
+                    v2 <- colSums(v2)
+                    d1.b[  , td , kk-1] <- d1.b[  , td , kk-1] + v1 - v2
+                }
+            }
+        }
+        # 2nd derivative
+        for (td in 1:TD){
+            for (ii in 1:I){
+                v1 <- l0 <- 0
+                for (kk in 2:(K+1) ){        # kk <- 2
+                    v1 <- l0 <- 0
+                    for (gg in 1:G){
+                        v1 <- N.ik[,ii,gg] * as.vector( ( Qmatrix[ii,td,kk-1] *
+                                    thetaDes[ , td ] )^2 * t( probs[ii,kk,] ) )
+                        l0 <- as.vector ( Qmatrix[ii,td,kk-1] * thetaDes[ , td ]  * t( probs[ii,kk,] ) )
+                        d2.b[ii,td,kk-1] <- d2.b[ii,td,kk-1] + sum(v1) - sum( l0^2 * N.ik[,ii,gg] )
+                    }
+                }
+            }
+        }
+        #--- calc increments
+        res <- cdm_calc_increment( d1=d1.b, d2=d2.b, max.increment=max.increment )
+        increment <- res$increment
+        max.increment <- res$max.increment
+
+        a <- a + increment
+        se.a <- sqrt( 1 / abs( d2.b + eps ) )
+        if ( ! is.null( a.constraint) ){
+            a[ a.constraint[,1:3,drop=FALSE] ] <- a.constraint[,4,drop=FALSE]
+            se.a[ a.constraint[,1:3,drop=FALSE] ] <- 0
+            increment[ a.constraint[,1:3,drop=FALSE] ] <- 0
+        }
+        iter <- iter + 1
+        parchange <- max( abs( a - a0 ))
+    } # iter
+    #-------------
+
+    #-- final trimming of the increment
+    res <- cdm_increment_trimming_after_mstep( parm=a, parm0=a00, max.increment0=max.increment0, type=2 )
+    a <- res$parm
+    max.increment.a <- res$max.increment0
+
+    if (decrease.increments){
+        max.increment.a <- max.increment.a / 1.01
+    }
+    #---- OUTPUT
+    res <- list( a = a , se.a = se.a , max.increment.a = max.increment.a)
+    return(res)
+}
 
 
 .gdm.est.a.cat <- gdm_est_a_cat

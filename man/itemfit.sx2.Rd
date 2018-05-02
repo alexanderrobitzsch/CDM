@@ -1,5 +1,5 @@
 %% File Name: itemfit.sx2.Rd
-%% File Version: 1.31
+%% File Version: 1.32
 
 \name{itemfit.sx2}
 \alias{itemfit.sx2}
@@ -26,13 +26,13 @@ itemfit.sx2(object, Eik_min = 1, progress = TRUE)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
 \item{object}{
-Object of class \code{\link{din}}, \code{\link{gdina}}, \code{\link{gdm}},  
+Object of class \code{\link{din}}, \code{\link{gdina}}, \code{\link{gdm}},
 \code{\link[sirt:rasch.mml]{sirt::rasch.mml}},
 \code{\link[sirt:smirt]{sirt::smirt}} or
 \code{\link[TAM:tam.mml]{TAM::tam.mml}}
 }
 \item{x}{
-Object of class \code{\link{din}}, \code{\link{gdina}}, \code{\link{gdm}},  
+Object of class \code{\link{din}}, \code{\link{gdina}}, \code{\link{gdm}},
 \code{\link[sirt:rasch.mml]{sirt::rasch.mml}},
 \code{\link[sirt:smirt]{sirt::smirt}} or
 \code{\link[TAM:tam.mml]{TAM::tam.mml}}
@@ -44,16 +44,16 @@ The minimum expected cell size for merging score groups.
 An optional logical indicating whether progress should be displayed.
 }
 \item{ask}{An optional logical indicating whether every item should be
-separately displayed.} 
+separately displayed.}
 \item{\dots}{Further arguments to be passed}
 }
 
 \details{
 The S-X2 item fit statistic compares observed and expected proportions
-\eqn{O_{jk}} and \eqn{E_{jk}} for item \eqn{j} and 
+\eqn{O_{jk}} and \eqn{E_{jk}} for item \eqn{j} and
 each score group \eqn{k} and forms a chi-square distributed statistic
 \deqn{S-X_j^2 = \sum_{k=1}^{J-1} N_k \frac{ ( O_{jk} - E_{jk} )^2 }
-	{ E_{jk} ( 1 - E_{jk} ) } }
+    { E_{jk} ( 1 - E_{jk} ) } }
 The degrees of freedom are \eqn{J-1-P_j} where \eqn{P_j} denotes
 the number of estimated item parameters.
 }
@@ -71,20 +71,20 @@ is provided (\code{p.holm}, see
 }
 
 \references{
-Li, Y., & Rupp, A. A. (2011). Performance of the S-X2 statistic for 
-full-information bifactor models. 
-\emph{Educational and Psychological Measurement, 71}, 986-1005.	
-	
-Orlando, M., & Thissen, D. (2000). Likelihood-based item-fit indices for 
-dichotomous item response theory models. 
+Li, Y., & Rupp, A. A. (2011). Performance of the S-X2 statistic for
+full-information bifactor models.
+\emph{Educational and Psychological Measurement, 71}, 986-1005.
+
+Orlando, M., & Thissen, D. (2000). Likelihood-based item-fit indices for
+dichotomous item response theory models.
 \emph{Applied Psychological Measurement, 24}, 50-64.
-	
-Orlando, M., & Thissen, D. (2003). Further investigation of the performance of 
-S-X2: An item fit index for use with dichotomous item response theory models. 
+
+Orlando, M., & Thissen, D. (2003). Further investigation of the performance of
+S-X2: An item fit index for use with dichotomous item response theory models.
 \emph{Applied Psychological Measurement, 27}, 289-298.
 
-Zhang, B., & Stone, C. A. (2008). Evaluating item fit for multidimensional 
-item response models. \emph{Educational and Psychological Measurement, 
+Zhang, B., & Stone, C. A. (2008). Evaluating item fit for multidimensional
+item response models. \emph{Educational and Psychological Measurement,
 68}, 181-196.
 }
 
@@ -135,9 +135,9 @@ summary(fitmod1)
   ##   9  I0009         9  8.471  9 0.487   0.941 0.000    10     1  1.000
   ##   10 I0010        10  8.330  9 0.501   0.926 0.000    10     1  1.000
   ##   11 I0011        11 12.351  9 0.194   1.372 0.019    10     1  1.000
-  ##   
+  ##
   ##   -- Average Item Fit Statistics --
-  ##   S-X2 = 13.768 | S-X2_df = 1.53 
+  ##   S-X2 = 13.768 | S-X2_df = 1.53
 # -> 4th item does not fit to the 1PL model
 
 # plot item fit
@@ -159,9 +159,9 @@ summary(fitmod2)
   ##   6  I0006         6 14.397  8 0.072   1.800 0.028    10     2  0.648
   ##   7  I0007         7 15.046  8 0.058   1.881 0.030    10     2  0.639
   ##   [...]
-  ##   
+  ##
   ##   -- Average Item Fit Statistics --
-  ##   S-X2 = 10.22 | S-X2_df = 1.277 
+  ##   S-X2 = 10.22 | S-X2_df = 1.277
 
 #*** 1PL model estimation in smirt (sirt package)
 Qmatrix <- matrix(1, nrow=I, ncol=1 )
@@ -209,7 +209,7 @@ mirt::itemfit( cmod2c$mirt )
 
 # estimation in mirt
 mod1d <- mirt::mirt( dat , 1 , itemtype="Rasch" )
-mirt::itemfit( mod1d )	# compute item fit
+mirt::itemfit( mod1d )    # compute item fit
 
 #############################################################################
 # EXAMPLE 2: Item fit statistics sim.dina dataset
@@ -224,7 +224,7 @@ summary(mod1)
 # item fit statistic
 summary( CDM::itemfit.sx2( mod1 ) )
   ##   -- Average Item Fit Statistics --
-  ##   S-X2 = 7.397 | S-X2_df = 1.233 
+  ##   S-X2 = 7.397 | S-X2_df = 1.233
 
 #*** Model 2: Mixed DINA/DINO model
 #***  1th item is misspecified according to DINO rule
@@ -236,7 +236,7 @@ summary(mod2)
 # item fit statistic
 summary( CDM::itemfit.sx2( mod2 ) )
   ##   -- Average Item Fit Statistics --
-  ##   S-X2 = 9.925 | S-X2_df = 1.654 
+  ##   S-X2 = 9.925 | S-X2_df = 1.654
 
 #*** Model 3: Additive GDINA model
 mod3 <- CDM::gdina( data=CDM::sim.dina , q.matrix = CDM::sim.qmatrix , rule="ACDM")
@@ -244,7 +244,7 @@ summary(mod3)
 # item fit statistic
 summary( CDM::itemfit.sx2( mod3 ) )
   ##   -- Average Item Fit Statistics --
-  ##   S-X2 = 8.416 | S-X2_df = 1.678 
+  ##   S-X2 = 8.416 | S-X2_df = 1.678
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

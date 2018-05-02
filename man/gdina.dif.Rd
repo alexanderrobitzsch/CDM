@@ -1,5 +1,5 @@
 %% File Name: gdina.dif.Rd
-%% File Version: 0.15
+%% File Version: 0.16
 
 \name{gdina.dif}
 \alias{gdina.dif}
@@ -10,7 +10,7 @@ Differential Item Functioning in the GDINA Model
 }
 \description{
 This function assesses item-wise differential item functioning
-in the GDINA model by using the Wald test (de la Torre, 2011; 
+in the GDINA model by using the Wald test (de la Torre, 2011;
 Hou, de la Torre & Nandakumar, 2014).
 It is necessary that a multiple group GDINA model is previously
 fitted.
@@ -37,9 +37,9 @@ In the case of two groups, an effect size of differential item functioning
 (labeled as \code{UA} (unsigned area) in \code{difstats} value) is defined as
 the weighted absolute difference of item response functions. The DIF measure
 for item \eqn{j} is defined as
-\deqn{UA_j = \sum_l w( \alpha_l ) | P( X_j=1 | \alpha_l , G=1 ) - 
-	 P( X_j=1 | \alpha_l , G=2 ) | }
-where \eqn{w( \alpha_l ) = [ P( \alpha_l | G=1 ) + P( \alpha_l | G=2 ) ]/2}. 
+\deqn{UA_j = \sum_l w( \alpha_l ) | P( X_j=1 | \alpha_l , G=1 ) -
+     P( X_j=1 | \alpha_l , G=2 ) | }
+where \eqn{w( \alpha_l ) = [ P( \alpha_l | G=1 ) + P( \alpha_l | G=2 ) ]/2}.
 }
 \value{
 A list with following entries
@@ -50,16 +50,16 @@ A list with following entries
  \item{varmat_all}{List of covariance matrices of all
  \eqn{\delta} item parameters}
  \item{prob.exp.group}{List with groups and items containing expected latent class
- 	 sizes and expected probabilities for each group and each item.
- 	 Based on this information, effect sizes of differential item
+      sizes and expected probabilities for each group and each item.
+      Based on this information, effect sizes of differential item
  functioning can be calculated.}
 
 }
 
 \references{
-  de la Torre, J. (2011). The generalized {DINA} model framework. 
+  de la Torre, J. (2011). The generalized {DINA} model framework.
   \emph{Psychometrika, 76}, 179-199.
-  
+
   Hou, L., de la Torre, J., & Nandakumar, R. (2014).
   Differential item functioning assessment in cognitive
   diagnostic modeling: Application of the Wald test to
@@ -84,7 +84,7 @@ See the \code{\link[GDINA:dif]{GDINA::dif}} function in the
 \dontrun{
 #############################################################################
 # EXAMPLE 1: DIF for DINA simulated data
-#############################################################################		
+#############################################################################
 
 # simulate some data
 set.seed(976)
@@ -97,12 +97,12 @@ q.matrix[7:9,c(1,2)] <- 1
 # simulate first group
 guess <- rep( .2 , I )
 slip <- rep(.1, I)
-dat1 <- CDM::sim.din( N=N , q.matrix=q.matrix, guess=guess, slip=slip, 
+dat1 <- CDM::sim.din( N=N , q.matrix=q.matrix, guess=guess, slip=slip,
                mean=c(0,0) )$dat
 # simulate second group with some DIF items (items 1, 7 and 8)
 guess[ c(1,7)] <- c(.3 , .35 )
 slip[8] <- .25
-dat2 <- CDM::sim.din( N=N , q.matrix=q.matrix, guess=guess, slip=slip, 
+dat2 <- CDM::sim.din( N=N , q.matrix=q.matrix, guess=guess, slip=slip,
                mean=c(0.4,.25) )$dat
 group <- rep(1:2 , each=N )
 dat <- rbind( dat1 , dat2 )

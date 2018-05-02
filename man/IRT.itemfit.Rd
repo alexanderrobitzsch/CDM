@@ -1,5 +1,5 @@
 %% File Name: IRT.itemfit.Rd
-%% File Version: 0.07
+%% File Version: 0.08
 
 \name{IRT.itemfit}
 \alias{IRT.itemfit}
@@ -40,9 +40,9 @@ Object of classes \code{\link{din}}, \code{\link{gdina}},
 \code{\link{gdm}}, \code{\link{slca}}, \code{\link{reglca}}.
 }
 \item{method}{Method for computing item fit statistic. Until now,
-	only \code{method="RMSEA"} (see \code{\link{itemfit.rmsea}})
-	can be used.
-		}	
+    only \code{method="RMSEA"} (see \code{\link{itemfit.rmsea}})
+    can be used.
+        }
   \item{\dots}{
 More arguments to be passed.
 }
@@ -81,7 +81,7 @@ For extracting the individual likelihood or posterior see
 %%% TAM, sirt and mirt links
 
 \examples{
-\dontrun{	
+\dontrun{
 #############################################################################
 # EXAMPLE 1: DINA model item fit
 #############################################################################

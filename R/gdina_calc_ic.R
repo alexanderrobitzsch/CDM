@@ -1,29 +1,29 @@
 ## File Name: gdina_calc_ic.R
-## File Version: 0.03
+## File Version: 0.04
 
 gdina_calc_ic <- function( delta, delta.designmatrix, delta.fixed, G, ncolZ, K, HOGDINA,
-		item.patt.freq, zeroprob.skillclasses, loglike, numb_regular_pars )
+        item.patt.freq, zeroprob.skillclasses, loglike, numb_regular_pars )
 {
-	bb <- 0	
-	Nipar <- length( unlist(delta) )
-	if ( ! is.null( delta.designmatrix ) ){ 
-		Nipar <- ncol(delta.designmatrix ) 
-	}
-	if ( ! is.null( delta.fixed) ){
-		Nipar <- Nipar - sum(1 - is.na( unlist( delta.fixed )) )										
-	}				
-	if ( ! is.na(numb_regular_pars) ){
-		Nipar <- Nipar - numb_regular_pars
-	}	
-	Nskillpar <- G*ncolZ - length( zeroprob.skillclasses )			
-	if (HOGDINA==1){ Nskillpar <- 2*K*G }
-	if (HOGDINA==0){ Nskillpar <- K*G }
-	Npars <- Nipar  - bb + Nskillpar
-	II <- sum( item.patt.freq )
-	aic <- -2*loglike + 2 * Npars  
-	bic <- -2*loglike + Npars*log(II)
-	caic <- -2*loglike + ( log(II) + 1 ) * Npars
-	#---- OUTPUT
-	res <- list(Npars=Npars, aic=aic, bic=bic, caic=caic, Nskillpar=Nskillpar, Nipar=Nipar)
-	return(res)
+    bb <- 0
+    Nipar <- length( unlist(delta) )
+    if ( ! is.null( delta.designmatrix ) ){
+        Nipar <- ncol(delta.designmatrix )
+    }
+    if ( ! is.null( delta.fixed) ){
+        Nipar <- Nipar - sum(1 - is.na( unlist( delta.fixed )) )
+    }
+    if ( ! is.na(numb_regular_pars) ){
+        Nipar <- Nipar - numb_regular_pars
+    }
+    Nskillpar <- G*ncolZ - length( zeroprob.skillclasses )
+    if (HOGDINA==1){ Nskillpar <- 2*K*G }
+    if (HOGDINA==0){ Nskillpar <- K*G }
+    Npars <- Nipar  - bb + Nskillpar
+    II <- sum( item.patt.freq )
+    aic <- -2*loglike + 2 * Npars
+    bic <- -2*loglike + Npars*log(II)
+    caic <- -2*loglike + ( log(II) + 1 ) * Npars
+    #---- OUTPUT
+    res <- list(Npars=Npars, aic=aic, bic=bic, caic=caic, Nskillpar=Nskillpar, Nipar=Nipar)
+    return(res)
 }

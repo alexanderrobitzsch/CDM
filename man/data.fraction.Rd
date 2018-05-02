@@ -1,5 +1,5 @@
 %% File Name: data.fraction.Rd
-%% File Version: 0.21
+%% File Version: 0.23
 
 
 \name{data.fraction}
@@ -35,12 +35,12 @@ data(data.fraction5)
 \format{
 \itemize{
 
-\item The dataset \code{data.fraction1} is the fraction subtraction data set with 
+\item The dataset \code{data.fraction1} is the fraction subtraction data set with
 536 students and 15 items. The Q-matrix was defined in de la Torre (2009).
 This dataset is a list with the dataset (\code{data}) and
-the Q-matrix as entries. 
+the Q-matrix as entries.
 
-The format is: 
+The format is:
 
 \code{List of 2} \cr
 \code{ $ data    :'data.frame':} \cr
@@ -65,8 +65,8 @@ The format is:
 \code{  .. ..$ : chr [1:5] "QT1" "QT2" "QT3" "QT4" ...} \cr
 
 
-\item The dataset \code{data.fraction2} is the fraction subtraction data set 
-with 536 students and 11 items. For this data set, several \eqn{Q} matrices are 
+\item The dataset \code{data.fraction2} is the fraction subtraction data set
+with 536 students and 11 items. For this data set, several \eqn{Q} matrices are
 available. The data is a list. The first entry \code{data}
 contains the data frame. The entry \code{q.matrix1} contains
 the Q-matrix of Henson, Templin and Willse (2009).
@@ -126,7 +126,7 @@ used in de la Torre (2011).
 \code{  ..$ QA4 : int [1:12] 0 1 0 0 1 1 0 0 0 1 ...} \cr
 
 \item The dataset \code{data.fraction4} contains 17 items and was
-used in de la Torre and Douglas (2004) and Chen et al. (2015).
+used in de la Torre and Douglas (2004) and Chen, Liu, Xu and Ying (2015).
 
 \code{List of 2} \cr
 \code{ $ data    :'data.frame':       536 obs. of  17 variables:} \cr
@@ -160,10 +160,10 @@ used in de la Torre and Douglas (2004) and Chen et al. (2015).
 
 
 \item The dataset \code{data.fraction5} contains 15 items and was
-used as an example for the multiple strategy DINA model in 
+used as an example for the multiple strategy DINA model in
 de la Torre and Douglas (2008) and Hou and de la Torre (2014).
 The two Q-matrices for coding the multiple strategies are contained
-in one matrix \code{q.matrix} by joining the columns of both matrices. 
+in one matrix \code{q.matrix} by joining the columns of both matrices.
 
 \code{List of 2} \cr
 \code{ $ data    :'data.frame':       536 obs. of  15 variables:} \cr
@@ -217,36 +217,36 @@ about the data source.
 
 
 \references{
-  Chen, Y., Liu, J., Xu, G. and Ying, Z. (2015). 
-  Statistical analysis of Q-matrix based diagnostic classification models. 
-  \emph{Journal of the American Statistical Association, 110}(510), 
-  850-866.	
-	
+  Chen, Y., Liu, J., Xu, G. and Ying, Z. (2015).
+  Statistical analysis of Q-matrix based diagnostic classification models.
+  \emph{Journal of the American Statistical Association, 110}(510),
+  850-866.
+
   de la Torre, J. (2009). DINA model parameter estimation:
   A didactic. \emph{Journal of Educational and Behavioral
   Statistics, 34}, 115-130.
 
-  de la Torre, J. (2011). The generalized DINA model framework. 
+  de la Torre, J. (2011). The generalized DINA model framework.
   \emph{Psychometrika, 76}, 179-199.
 
-  de la Torre, J., & Douglas, J. A. (2004). 
-  Higher-order latent trait models for cognitive diagnosis. 
+  de la Torre, J., & Douglas, J. A. (2004).
+  Higher-order latent trait models for cognitive diagnosis.
   \emph{Psychometrika, 69}, 333-353.
 
-  de la Torre, J., & Douglas, J. A. (2008). 
-  Model evaluation and multiple strategies in cognitive diagnosis: 
+  de la Torre, J., & Douglas, J. A. (2008).
+  Model evaluation and multiple strategies in cognitive diagnosis:
   An analysis of fraction subtraction data.
   \emph{Psychometrika, 73}, 595-624.
-  
+
   Henson, R. A., Templin, J. T., & Willse, J. T. (2009).
   Defining a family of cognitive diagnosis models using
   log-linear models with latent variables.
-  \emph{Psychometrika, 74}, 191-210.  
-  
-  Huo, Y., & de la Torre, J. (2014). Estimating a cognitive diagnostic model for 
-  multiple strategies via the EM algorithm. 
-  \emph{Applied Psychological Measurement, 38}, 464-485.  
-  
+  \emph{Psychometrika, 74}, 191-210.
+
+  Huo, Y., & de la Torre, J. (2014). Estimating a cognitive diagnostic model for
+  multiple strategies via the EM algorithm.
+  \emph{Applied Psychological Measurement, 38}, 464-485.
+
 }
 %\examples{
 %% data(data.fraction1)

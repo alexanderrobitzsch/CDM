@@ -1,5 +1,5 @@
 %% File Name: data.melab.Rd
-%% File Version: 0.13
+%% File Version: 0.14
 
 \name{data.melab}
 \alias{data.melab}
@@ -49,17 +49,17 @@ Simulated data according to Li (2011).
 }
 
 \references{
-Li, H. (2011). A cognitive diagnostic analysis of the MELAB reading test. 
+Li, H. (2011). A cognitive diagnostic analysis of the MELAB reading test.
 \emph{Spaan Fellow, 9}, 17-46.
-	
-Li, H., & Suen, H. K. (2013). Constructing and validating a Q-matrix for 
-cognitive diagnostic analyses of a reading test. 
+
+Li, H., & Suen, H. K. (2013). Constructing and validating a Q-matrix for
+cognitive diagnostic analyses of a reading test.
 \emph{Educational Assessment, 18}, 1-25.
 }
 
 
 \examples{
-\dontrun{	
+\dontrun{
 data(data.melab, package="CDM")
 
 data <- data.melab$data
@@ -118,7 +118,7 @@ summary(fmod1)
   ##          type    value       p
   ##   1   max(X2) 10.10408 0.28109
   ##   2 abs(fcor)  0.06726 0.24023
-  ##   
+  ##
   ##   Fit Statistics
   ##                       est
   ##   MADcor          0.01708
@@ -136,7 +136,7 @@ summary(fmod2)
   ##          type    value       p
   ##   1   max(X2) 10.40294 0.23905
   ##   2 abs(fcor)  0.06817 0.20964
-  ##   
+  ##
   ##   Fit Statistics
   ##                       est
   ##   MADcor          0.01703

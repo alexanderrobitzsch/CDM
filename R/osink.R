@@ -4,9 +4,9 @@
 
 osink <- function( file , suffix, append = FALSE)
 {
-	if ( ! is.null( file ) ){
-		sink( paste0( file , suffix) , split=TRUE , append = append )
-	}
+    if ( ! is.null( file ) ){
+        sink( paste0( file , suffix) , split=TRUE , append = append )
+    }
 }
 
 

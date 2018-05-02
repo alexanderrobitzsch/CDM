@@ -1,5 +1,5 @@
 %% File Name: gdina.wald.Rd
-%% File Version: 0.26
+%% File Version: 0.27
 
 \name{gdina.wald}
 \alias{gdina.wald}
@@ -19,7 +19,7 @@ distance measures (\code{wgtdist}, \code{uwgtdist}), see Details
 \usage{
 gdina.wald(object)
 
-\method{summary}{gdina.wald}(object, digits=3, 
+\method{summary}{gdina.wald}(object, digits=3,
     vars = c("X2" , "p" , "sig" , "RMSEA" , "wgtdist"),  \dots)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -31,7 +31,7 @@ A fitted \code{\link{gdina}} model
    for rounding.}
 \item{vars}{Vector including variables which should
   be displayed in \code{summary}. See the output \code{stats}.
-}   
+}
 \item{\dots}{Further arguments to be passed}
 }
 
@@ -41,10 +41,10 @@ GDINA model and \eqn{\hat{P}_j( \alpha _l)} the item response
 model for the approximated model (DINA, DINO or ACDM).
 The unweighted distance \code{uwgtdist} as a measure of misfit is defined as
 \deqn{uwgtdist = \frac{1}{2^K} \sum_l ( P_j( \alpha _l) - \hat{P}_j( \alpha _l) )^2}
-The weighted distance	\code{wgtdist} measures the discrepancy
+The weighted distance    \code{wgtdist} measures the discrepancy
 with respected to the probabilities \eqn{w_l=P( \alpha_l)} of estimated
 skill classes
-\deqn{wgtdist = \sum_l w_l (P_j( \alpha _l) - \hat{P}_j( \alpha _l) )^2}	
+\deqn{wgtdist = \sum_l w_l (P_j( \alpha _l) - \hat{P}_j( \alpha _l) )^2}
 }
 
 \value{
@@ -53,12 +53,12 @@ skill classes
 }
 
 \references{
-de la Torre, J., & Lee, Y. S. (2013). Evaluating the Wald test for 
-item-level comparison of saturated and reduced models in cognitive diagnosis. 
+de la Torre, J., & Lee, Y. S. (2013). Evaluating the Wald test for
+item-level comparison of saturated and reduced models in cognitive diagnosis.
 \emph{Journal of Educational Measurement, 50}, 355-373.
 
-Ma, W., Iaconangelo, C., & de la Torre, J. (2016). Model similarity, 
-model selection, and attribute classification. 
+Ma, W., Iaconangelo, C., & de la Torre, J. (2016). Model similarity,
+model selection, and attribute classification.
 \emph{Applied Psychological Measurement, 40}(3), 200-217.
 }
 
@@ -80,7 +80,7 @@ See the \code{\link[GDINA:modelcomp]{GDINA::modelcomp}} function in the
 \dontrun{
 #############################################################################
 # EXAMPLE 1: Wald test for DINA simulated data sim.dina
-#############################################################################		
+#############################################################################
 
 data(sim.dina, package="CDM")
 data(sim.qmatrix, package="CDM")

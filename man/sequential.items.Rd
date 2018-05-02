@@ -1,5 +1,5 @@
 %% File Name: sequential.items.Rd
-%% File Version: 0.16
+%% File Version: 0.17
 
 \name{sequential.items}
 \alias{sequential.items}
@@ -43,9 +43,9 @@ categories as \eqn{k=0,1,\ldots,K-1}. The original item responses \eqn{X_{nj}}
 for person \eqn{n} at item \eqn{j} is then transformed into \eqn{K-1} pseudo
 items \eqn{Y_{j1}, \ldots , Y_{j,K-1}}.
 
-The first pseudo item response \eqn{Y_{nj1}} is defined as 1 iff 
+The first pseudo item response \eqn{Y_{nj1}} is defined as 1 iff
 \eqn{X_{nj} \geq 1}. The second item responses \eqn{Y_{nj2}} is 1 iff
-\eqn{X_{nj} \geq 2}, it is 0 iff \eqn{X_{nj} = 1} and it is missing 
+\eqn{X_{nj} \geq 2}, it is 0 iff \eqn{X_{nj} = 1} and it is missing
 (\code{NA} in the dataset) iff \eqn{X_{nj} = 0}. The construction proceeds
 in the same manner for other categories (see Tutz, 1997). The pseudo items can be
 recognized as 'hurdles' a participant has to master to get a score of \eqn{k}
@@ -61,7 +61,7 @@ probabilities of the pseudo items see Tutz (1997, p. 141ff.).
 
 \value{
 A list with following entries
-	
+
  \item{dat.expand}{A data frame with dichotomous pseudo items}
  \item{iteminfo}{A data frame containing some item information}
  \item{maxK}{Vector with maximum number of categories per item}
@@ -73,10 +73,10 @@ Ma, W., & de la Torre, J. (2016).
 A sequential cognitive diagnosis model for polytomous responses.
 \emph{British Journal of Mathematical and Statistical Psychology, 69}(3),
 253-275.
-	
-Tutz, G. (1997). Sequential models for ordered responses. 
+
+Tutz, G. (1997). Sequential models for ordered responses.
 In W. van der Linden & R. K. Hambleton.
-\emph{Handbook of modern item response theory} (pp. 139-152). 
+\emph{Handbook of modern item response theory} (pp. 139-152).
 New York: Springer.
 }
 
@@ -124,8 +124,8 @@ res$iteminfo
 # extract dataset with pseudo items
 dat.expand <- res$dat.expand
 colnames(dat.expand)
-  ##    [1] "I1"       "I2"       "I3"       "I4_Cat1"  "I4_Cat2"  "I5_Cat1" 
-  ##    [7] "I5_Cat2"  "I6_Cat1"  "I6_Cat2"  "I7_Cat1"  "I7_Cat2"  "I7_Cat3" 
+  ##    [1] "I1"       "I2"       "I3"       "I4_Cat1"  "I4_Cat2"  "I5_Cat1"
+  ##    [7] "I5_Cat2"  "I6_Cat1"  "I6_Cat2"  "I7_Cat1"  "I7_Cat2"  "I7_Cat3"
   ##   [13] "I8"       "I9"       "I10"      "I11_Cat1" "I11_Cat2" "I11_Cat3"
 
 # compare original items and pseudoitems

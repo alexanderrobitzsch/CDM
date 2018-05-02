@@ -1,5 +1,5 @@
 %% File Name: personfit.appropriateness.Rd
-%% File Version: 0.19
+%% File Version: 0.20
 
 \name{personfit.appropriateness}
 \alias{personfit.appropriateness}
@@ -20,9 +20,9 @@ spuriously low scorers (\code{attr.type=0}).
 }
 
 \usage{
-personfit.appropriateness(data, probs, skillclassprobs, h = 0.001, eps = 1e-10, 
+personfit.appropriateness(data, probs, skillclassprobs, h = 0.001, eps = 1e-10,
     maxiter=30 , conv = 1e-05, max.increment = 0.1, progress = TRUE)
-    
+
 \method{summary}{personfit.appropriateness}(object, digits = 3 ,  \dots)
 
 \method{plot}{personfit.appropriateness}(x, cexpch=.65 ,  \dots)
@@ -73,16 +73,16 @@ be displayed.
 List with following entries
   \item{summary}{Summaries of person fit statistic}
   \item{personfit.appr.type1}{Statistic for spuriously high scorers
-    (\code{appr.type=1}) evaluated for every person.}  
+    (\code{appr.type=1}) evaluated for every person.}
   \item{personfit.appr.type0}{Statistic for spuriously low scorers
     (\code{appr.type=0}) evaluated for every person.}
 }
 
 \references{
-Levine, M. V., & Drasgow, F. (1988). Optimal appropriateness measurement. 
+Levine, M. V., & Drasgow, F. (1988). Optimal appropriateness measurement.
 \emph{Psychometrika, 53}, 161-176.
 
-Liu, Y., Douglas, J. A., & Henson, R. A. (2009). Testing person fit in cognitive 
+Liu, Y., Douglas, J. A., & Henson, R. A. (2009). Testing person fit in cognitive
 diagnosis. \emph{Applied Psychological Measurement, 33}(8), 579-598.
 }
 
@@ -109,7 +109,7 @@ diagnosis. \emph{Applied Psychological Measurement, 33}(8), 579-598.
 
 data(data.ecpe, package="CDM")
 
-# fit DINA model 
+# fit DINA model
 mod1 <- CDM::din( CDM::data.ecpe$data[,-1] , q.matrix=CDM::data.ecpe$q.matrix )
 summary(mod1)
 

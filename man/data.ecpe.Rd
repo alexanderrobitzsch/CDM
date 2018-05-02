@@ -1,5 +1,5 @@
 %% File Name: data.ecpe.Rd
-%% File Version: 0.21
+%% File Version: 0.22
 
 \name{data.ecpe}
 \alias{data.ecpe}
@@ -18,7 +18,7 @@ data(data.ecpe)
 
 \format{
 The format of the data is a list containing the dichotomous item
-response data \code{data} (2922 persons at 28 items) 
+response data \code{data} (2922 persons at 28 items)
 and the Q-matrix \code{q.matrix} (28 items and 3 skills):
 
 \code{List of 2} \cr
@@ -62,9 +62,9 @@ The dataset was downloaded from
 Templin, J., & Bradshaw, L. (2014). Hierarchical diagnostic classification
 models: A family of models for estimating and testing attribute
 hierarchies. \emph{Psychometrika, 79}, 317-339.
-	
-Templin, J., & Hoffman, L. (2013). 
-Obtaining diagnostic classification model estimates using Mplus. 
+
+Templin, J., & Hoffman, L. (2013).
+Obtaining diagnostic classification model estimates using Mplus.
 \emph{Educational Measurement: Issues and Practice, 32}, 37-50.
 }
 
@@ -75,15 +75,15 @@ Obtaining diagnostic classification model estimates using Mplus.
 \examples{
 \dontrun{
 data(data.ecpe, package="CDM")
-	
+
 dat <- data.ecpe$data[,-1]
 Q <- data.ecpe$q.matrix
-	
-#*** Model 1: LCDM model 
+
+#*** Model 1: LCDM model
 mod1 <- CDM::gdina( dat, q.matrix=Q, link="logit")
 summary(mod1)
 
-#*** Model 2: DINA model 
+#*** Model 2: DINA model
 mod2 <- CDM::gdina( dat, q.matrix=Q, rule="DINA")
 summary(mod2)
 
@@ -120,8 +120,8 @@ for (ii in items){
 
 # estimate model
 #    note that avoid.zeroprobs is set to TRUE to avoid algorithmic instabilities
-mod3 <- CDM::gdina( dat, q.matrix=Q, link="logit", 
-            zeroprob.skillclasses=zeroprob.skillclasses, Mj=Mj.user, 
+mod3 <- CDM::gdina( dat, q.matrix=Q, link="logit",
+            zeroprob.skillclasses=zeroprob.skillclasses, Mj=Mj.user,
             avoid.zeroprobs=TRUE )
 summary(mod3)
 

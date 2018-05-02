@@ -1,16 +1,16 @@
 %% File Name: skillspace.hierarchy.Rd
-%% File Version: 0.17
+%% File Version: 0.18
 
 \name{skillspace.hierarchy}
 \alias{skillspace.hierarchy}
 \alias{skillspace.full}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Creation of a Hierarchical Skill Space 
+Creation of a Hierarchical Skill Space
 }
 
 \description{
-The function \code{skillspace.hierarchy} defines a reduced skill space 
+The function \code{skillspace.hierarchy} defines a reduced skill space
 for hierarchies in skills (see e.g. Leighton, Gierl, & Hunka, 2004).
 The function \code{skillspace.full} defines a full skill space
 for dichotomous skills.
@@ -51,15 +51,15 @@ A list with following entries
 hierarchy}
 \item{skillspace.complete}{Complete skill space}
 \item{zeroprob.skillclasses}{Indices of skill patterns in
-	\code{skillspace.complete} which were removed for defining
-	\code{skillspace.reduced}
+    \code{skillspace.complete} which were removed for defining
+    \code{skillspace.reduced}
 }
 }
 
 \references{
-Leighton, J. P., Gierl, M. J., & Hunka, S. M. (2004). 
-The attribute hierarchy method for cognitive assessment: 
-A variation on Tatsuoka's rule space approach. 
+Leighton, J. P., Gierl, M. J., & Hunka, S. M. (2004).
+The attribute hierarchy method for cognitive assessment:
+A variation on Tatsuoka's rule space approach.
 \emph{Journal of Educational Measurement, 41}, 205-237.
 }
 
@@ -73,7 +73,7 @@ A variation on Tatsuoka's rule space approach.
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-See \code{\link{din}} (Example 6) for an application of 
+See \code{\link{din}} (Example 6) for an application of
 \code{skillspace.hierarchy} for model comparisons.
 
 See the \code{\link[GDINA:att.structure]{GDINA::att.structure}} function in the
@@ -148,7 +148,7 @@ sp1b$skillspace.reduced
 
 #*** Model 2:  A1 > A2 and A1 > A3
 B <- "A1 > A2
-      A1 > A3"      
+      A1 > A3"
 sp2 <- CDM::skillspace.hierarchy( B=B , skill.names=skill.names )
 sp2$skillspace.reduced
 
@@ -180,7 +180,7 @@ sp2$skillspace.reduced
 #*** Model 3: Divergent hierarchy (C)
 B <- "A1 > A2 > A3
       A1 > A4 > A5
-      A1 > A4 > A6"            
+      A1 > A4 > A6"
 sp3 <- CDM::skillspace.hierarchy( B=B , skill.names=skill.names )
 sp3$skillspace.reduced
 

@@ -1,5 +1,5 @@
 %% File Name: IRT.jackknife.Rd
-%% File Version: 0.17
+%% File Version: 0.18
 
 \name{IRT.jackknife}
 \alias{IRT.jackknife}
@@ -17,7 +17,7 @@ Jackknifing an Item Response Model
 \description{
 This function performs a Jackknife procedure for estimating
 standard errors for an item response model. The replication
-design must be defined by \code{\link{IRT.repDesign}}.	
+design must be defined by \code{\link{IRT.repDesign}}.
 Model fit is also assessed via Jackknife.
 
 Statistical inference for derived parameters is performed
@@ -76,15 +76,15 @@ List with following entries
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 %\seealso{
-%See also \code{\link{anova.din}} for model comparisons. 
+%See also \code{\link{anova.din}} for model comparisons.
 %A general method is defined in \code{\link{IRT.compareModels}}.
 %}
 
 
 \examples{
 \dontrun{
-library(BIFIEsurvey)	
-	
+library(BIFIEsurvey)
+
 #############################################################################
 # EXAMPLE 1: Multiple group DINA model with TIMSS data | Cluster sample
 #############################################################################
@@ -97,11 +97,11 @@ q.matrix <- data.timss11.G4.AUT.part$q.matrix2
 items <- paste(q.matrix$item)
 
 # generate replicate design
-rdes <- CDM::IRT.repDesign( data= dat,  wgt = "TOTWGT" , jktype="JK_TIMSS" , 
+rdes <- CDM::IRT.repDesign( data= dat,  wgt = "TOTWGT" , jktype="JK_TIMSS" ,
                    jkzone = "JKCZONE" , jkrep = "JKCREP" )
 
 #--- Model 1: fit multiple group GDINA model
-mod1 <- CDM::gdina( dat[,items] , q.matrix =q.matrix[,-1] ,  
+mod1 <- CDM::gdina( dat[,items] , q.matrix =q.matrix[,-1] ,
             weights=dat$TOTWGT , group=dat$female +1  )
 # jackknife Model 1
 jmod1 <- CDM::IRT.jackknife( object = mod1 , repDesign = rdes )
@@ -137,10 +137,10 @@ summary(jmod2)
 IRT.compareModels( mod1 , mod2 )
 
 # statistical inference for derived parameters
-derived.parameters <- list( "skill1" = ~ 0 + I(prob_skillV1_lev1_group1) ,    
+derived.parameters <- list( "skill1" = ~ 0 + I(prob_skillV1_lev1_group1) ,
     "skilldiff12" = ~ 0 + I( prob_skillV2_lev1_group1 - prob_skillV1_lev1_group1 ) ,
-    "skilldiff13" = ~ 0 + I( prob_skillV3_lev1_group1 - prob_skillV1_lev1_group1 )    
-                    )                    
+    "skilldiff13" = ~ 0 + I( prob_skillV3_lev1_group1 - prob_skillV1_lev1_group1 )
+                    )
 jmod2a <- CDM::IRT.derivedParameters( jmod2 , derived.parameters=derived.parameters )
 summary(jmod2a)
 coef(jmod2a)

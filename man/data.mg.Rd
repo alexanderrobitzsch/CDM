@@ -1,5 +1,5 @@
 %% File Name: data.mg.Rd
-%% File Version: 0.22
+%% File Version: 0.23
 
 \name{data.mg}
 \alias{data.mg}
@@ -8,7 +8,7 @@
 Large-Scale Dataset with Multiple Groups
 }
 \description{
-Large-scale dataset with multiple groups, survey weights and 11 polytomous 
+Large-scale dataset with multiple groups, survey weights and 11 polytomous
 items.
 }
 \usage{data(data.mg)}

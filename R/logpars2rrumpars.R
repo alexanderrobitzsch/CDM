@@ -1,5 +1,5 @@
 ## File Name: logpars2rrumpars.R
-## File Version: 0.02
+## File Version: 0.03
 
 
 ###############################################
@@ -7,10 +7,10 @@
 #   pi * r1^(1-a1) * r2^(1-a2)
 # = pi * r1 * r2 * (1/r1)^a1 * (1/r2)^a2
 logpars2rrumpars <- function(delta_jj){
-	v1 <- delta_jj
-	N <- length(v1)
-	v1 <- 1 / exp( delta_jj )
-	v1[1] <- exp(sum( delta_jj))
-	return(v1)
-		}
-###############################################	
+    v1 <- delta_jj
+    N <- length(v1)
+    v1 <- 1 / exp( delta_jj )
+    v1[1] <- exp(sum( delta_jj))
+    return(v1)
+        }
+###############################################

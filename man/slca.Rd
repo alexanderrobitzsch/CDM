@@ -1,5 +1,5 @@
 %% File Name: slca.Rd
-%% File Version: 1.807
+%% File Version: 1.813
 
 \name{slca}
 \alias{slca}
@@ -16,23 +16,25 @@ Structured Latent Class Analysis (SLCA)
 \description{
 This function implements a structured latent class model for
 polytomous item responses (Formann, 1985, 1992). Lasso estimation for the
-item parameters is included (Chen et al., 2015; Chen et al., 2017;
-Sun et al., 2016).
+item parameters is included (Chen, Liu, Xu & Ying, 2015;
+Chen, Li, Liu & Ying, 2017; Sun, Chen, Liu, Ying & Xin,  2016).
 }
 
+
+
 \usage{
-slca(data, group = NULL, weights = rep(1, nrow(data)), Xdes, 
-  Xlambda.init = NULL, Xlambda.fixed = NULL, Xlambda.constr.V=NULL , 
-  Xlambda.constr.c=NULL ,  delta.designmatrix = NULL, 
+slca(data, group = NULL, weights = rep(1, nrow(data)), Xdes,
+  Xlambda.init = NULL, Xlambda.fixed = NULL, Xlambda.constr.V=NULL ,
+  Xlambda.constr.c=NULL ,  delta.designmatrix = NULL,
   delta.init = NULL, delta.fixed = NULL, delta.linkfct = "log" ,
   Xlambda_positive=NULL, regular_type = "lasso", regular_lam = 0, regular_w = NULL,
-  regular_n = nrow(data), maxiter = 1000, conv = 1e-5, globconv = 1e-5, msteps = 10, 
-  convM = 5e-04, decrease.increments = FALSE, oldfac=0, dampening_factor=1.01, 
+  regular_n = nrow(data), maxiter = 1000, conv = 1e-5, globconv = 1e-5, msteps = 10,
+  convM = 5e-04, decrease.increments = FALSE, oldfac=0, dampening_factor=1.01,
   seed=NULL, progress=TRUE, PEM=TRUE, PEM_itermax=maxiter, ...)
-  
+
 \method{summary}{slca}(object, file = NULL , \dots)
 
-\method{print}{slca}(x, \dots)    
+\method{print}{slca}(x, \dots)
 
 \method{plot}{slca}(x, group=1 , ... )
 }
@@ -50,25 +52,25 @@ a single integer group identified.
 Optional vector of sample weights
 }
   \item{Xdes}{
-Design matrix for \eqn{x_{ijh}} with \eqn{ q_{ihjv}} entries. 
+Design matrix for \eqn{x_{ijh}} with \eqn{ q_{ihjv}} entries.
 Therefore, it must be an array with four dimensions referring to
 items (\eqn{i}), categories (\eqn{h}), latent classes (\eqn{j}) and
 \eqn{\lambda} parameters (\eqn{v}).
 }
   \item{Xlambda.init}{
-Initial \eqn{\lambda_x} parameters 
+Initial \eqn{\lambda_x} parameters
 }
   \item{Xlambda.fixed}{
 Fixed \eqn{\lambda_x} parameters. These must be provided by a matrix
-with two columns: 1st column -- Parameter index, 2nd column: 
+with two columns: 1st column -- Parameter index, 2nd column:
 Fixed value.
 }
-\item{Xlambda.constr.V}{A design matrix for linear restrictions of the 
-	form \eqn{V_x \lambda_x = c_x} for the \eqn{\lambda_x} parameter.}
+\item{Xlambda.constr.V}{A design matrix for linear restrictions of the
+    form \eqn{V_x \lambda_x = c_x} for the \eqn{\lambda_x} parameter.}
 \item{Xlambda.constr.c}{A vector for the linear restriction
 \eqn{V_x \lambda_x = c_x} of the \eqn{\lambda_x} parameter.}
   \item{delta.designmatrix}{
-Design matrix for delta parameters \eqn{\delta} 
+Design matrix for delta parameters \eqn{\delta}
 parameterizing the latent class distribution by log-linear smoothing
 (Xu & von Davier, 2008)
 }
@@ -80,18 +82,18 @@ Fixed \eqn{\delta} parameters. This must be a matrix with three columns:
 1st column: Parameter index, 2nd column: Group index, 3rd column: Fixed value
 }
 \item{delta.linkfct}{Link function for skill space reduction.
-	This can be the log-linear link (\code{log}) or the
-	logistic link function (\code{logit}).
+    This can be the log-linear link (\code{log}) or the
+    logistic link function (\code{logit}).
 }
 \item{Xlambda_positive}{Optional vector of logical indicating which
-	elements of \eqn{\bold{\lambda}_x} should be constrained to be
+    elements of \eqn{\bold{\lambda}_x} should be constrained to be
 positive.}
 \item{regular_type}{Regularization method which can be \code{lasso},
-\code{scad} or \code{mcp}. See \code{\link{gdina}} for more 
+\code{scad} or \code{mcp}. See \code{\link{gdina}} for more
 information and references.}
 \item{regular_lam}{Numeric. Regularization parameter}
 \item{regular_w}{Vector for weighting the regularization penalty}
-\item{regular_n}{Vector of regularization factor. This will be 
+\item{regular_n}{Vector of regularization factor. This will be
 typically the sample size.}
   \item{maxiter}{
 Maximum number of iterations
@@ -104,12 +106,12 @@ distribution parameters
 Global deviance convergence criterion
 }
 \item{msteps}{
-	Maximum number of M steps in estimating \eqn{b} and
-	\eqn{a} item parameters. The default is to use 4 M steps.
+    Maximum number of M steps in estimating \eqn{b} and
+    \eqn{a} item parameters. The default is to use 4 M steps.
 }
 \item{convM}{
-	Convergence criterion in M step
-		}
+    Convergence criterion in M step
+        }
 \item{decrease.increments}{Should in the M step the increments
     of \eqn{a} and \eqn{b} parameters decrease during iterations?
     The default is \code{FALSE}. If there is an increase in deviance
@@ -117,13 +119,13 @@ Global deviance convergence criterion
     is recommended.
 }
 \item{oldfac}{Factor \eqn{f} between 0 and 1 to control convergence behavior.
-	If \eqn{x_t} denotes the estimated parameter in iteration \eqn{t},
-	then the regularized estimate \eqn{x_t^{\ast}} is obtained by
-	\eqn{x_t^{\ast} = f x_{t-1} + (1-f) x_t}. Therefore, values of
-	\code{oldfac} near to one only allow for small changes in estimated
-	parameters from in succeeding iterations.}
+    If \eqn{x_t} denotes the estimated parameter in iteration \eqn{t},
+    then the regularized estimate \eqn{x_t^{\ast}} is obtained by
+    \eqn{x_t^{\ast} = f x_{t-1} + (1-f) x_t}. Therefore, values of
+    \code{oldfac} near to one only allow for small changes in estimated
+    parameters from in succeeding iterations.}
 \item{dampening_factor}{Factor larger than one defining the specified decrease in
-   decrements in iterations.}    	
+   decrements in iterations.}
 \item{seed}{Simulation seed for initial parameters. The default
 of \code{NULL} corresponds to a random seed.}
 \item{progress}{An optional logical indicating whether the function
@@ -131,13 +133,13 @@ of \code{NULL} corresponds to a random seed.}
 \item{PEM}{Logical indicating whether the P-EM acceleration should be
 applied (Berlinet & Roland, 2012).}
 \item{PEM_itermax}{Number of iterations in which the P-EM method should be
-applied.}    
+applied.}
   \item{object}{A required object of class \code{slca}}
 \item{file}{Optional file name for a file in which \code{summary}
-should be sinked.}        
+should be sinked.}
   \item{x}{A required object of class \code{slca}}
   \item{\dots}{Optional parameters to be passed to or from other
-    methods will be ignored.  }  
+    methods will be ignored.  }
 }
 
 
@@ -163,12 +165,12 @@ where group-specific distributions are allowed. The values
 
 This model contains classical uni- and multidimensional latent trait models,
 latent class analysis, located latent class analysis, cognitive diagnostic
-models, the general diagnostic model and mixture item response models as 
+models, the general diagnostic model and mixture item response models as
 special cases (see Formann & Kohlmann, 1998; Formann, 2007).
 
 The function also allows for regularization of \eqn{\lambda_{xv}} parameters
 using the lasso approach (Sun et al., 2016).
-More formally, the penalty function can be written as 
+More formally, the penalty function can be written as
 \deqn{pen( \bold{\lambda}_x ) =  p_\lambda \sum_v n_v w_v | \lambda_{xv} | }
 where \eqn{p_\lambda} can be specified with \code{regular_lam},
 \eqn{w_v} can be specified with \code{regular_w}, and
@@ -185,7 +187,7 @@ following entries:
 \item{deviance}{Deviance}
 \item{ic}{Information criteria, number of estimated parameters}
 \item{Xlambda}{Estimated \eqn{\lambda_x} parameters }
-\item{se.Xlambda}{Standard error of \eqn{\lambda_x} parameters 
+\item{se.Xlambda}{Standard error of \eqn{\lambda_x} parameters
 }
 \item{pi.k}{Trait distribution}
 \item{pjk}{Item response probabilities evaluated for all classes}
@@ -198,7 +200,7 @@ following entries:
 \item{covdelta}{Covariance matrix of parameter estimates for
       skillspace representation}
 \item{MLE.class}{Classified skills for each student (MLE)}
-\item{MAP.class}{Classified skills for each student (MAP)}      
+\item{MAP.class}{Classified skills for each student (MAP)}
 \item{data}{Original data frame}
 \item{group.stat}{Group statistics (sample sizes, group labels)}
 \item{p.xi.aj}{Individual likelihood}
@@ -215,45 +217,45 @@ following entries:
 
 % \item{object}{Object of class \code{slca}}
 % \item{\dots}{Optional parameters to be passed to or from other
-%    methods will be ignored.  }  
+%    methods will be ignored.  }
 
 
 
 
 
 \references{
-Berlinet, A. F., & Roland, C. (2012). 
+Berlinet, A. F., & Roland, C. (2012).
 Acceleration of the EM algorithm: P-EM versus epsilon algorithm.
-\emph{Computational Statistics & Data Analysis, 56}(12), 4122-4137.		
+\emph{Computational Statistics & Data Analysis, 56}(12), 4122-4137.
 
-Chen, Y., Liu, J., Xu, G., & Ying, Z. (2015). 
-Statistical analysis of Q-matrix based diagnostic classification models. 
+Chen, Y., Liu, J., Xu, G., & Ying, Z. (2015).
+Statistical analysis of Q-matrix based diagnostic classification models.
 \emph{Journal of the American Statistical Association, 110}, 850-866.
 
-Chen, Y., Li, X., Liu, J., & Ying, Z. (2017). Regularized latent class analysis 
-with application in cognitive diagnosis. \emph{Psychometrika, 
+Chen, Y., Li, X., Liu, J., & Ying, Z. (2017). Regularized latent class analysis
+with application in cognitive diagnosis. \emph{Psychometrika,
 82}, 660-692.
 
 Formann, A. K. (1985). Constrained latent class models: Theory and applications.
 \emph{British Journal of Mathematical and Statistical Psychology,
 38}, 87-111.
 
-Formann, A. K. (1992). Linear logistic latent class analysis for polytomous data. 
-\emph{Journal of the American Statistical Association, 87}, 476-486.	
+Formann, A. K. (1992). Linear logistic latent class analysis for polytomous data.
+\emph{Journal of the American Statistical Association, 87}, 476-486.
 
 Formann, A. K. (2007). (Almost) Equivalence between conditional and mixture maximum
 likelihood estimates for some models of the Rasch type. In M. von Davier & C. H. Carstensen
-(Eds.), \emph{Multivariate and mixture distribution Rasch models} (pp. 177-189). 
+(Eds.), \emph{Multivariate and mixture distribution Rasch models} (pp. 177-189).
 New York: Springer.
 
-Formann, A. K., & Kohlmann, T. (1998). Structural latent class models. 
+Formann, A. K., & Kohlmann, T. (1998). Structural latent class models.
 \emph{Sociological Methods & Research, 26}, 530-565.
 
 Neuhaus, W. (1996). Optimal estimation under
-linear constraints. \emph{Astin Bulletin, 26}, 233-245. 
+linear constraints. \emph{Astin Bulletin, 26}, 233-245.
 
 Sun, J., Chen, Y., Liu, J., Ying, Z., & Xin, T. (2016).
-Latent variable selection for multidimensional item response theory models 
+Latent variable selection for multidimensional item response theory models
 via \eqn{L_1} regularization. \emph{Psychometrika, 81}(4), 921-939.
 
 Xu, X., & von Davier, M. (2008). \emph{Fitting the structured general diagnostic
@@ -266,7 +268,7 @@ model to NAEP data}. ETS Research Report ETS RR-08-27. Princeton, ETS.
 %}
 \note{
 If some items have differing number of categories, appropriate
-class probabilities in non-existing categories per items can be 
+class probabilities in non-existing categories per items can be
 practically set to zero by loading an item for all skill classes
 on a fixed \eqn{\lambda_x} parameter of a small number, e.g. \code{-999}.
 
@@ -279,7 +281,7 @@ See \url{http://www.antonformann.at/} for more information.
 \seealso{
 For latent trait models with continuous latent variables see the
 \pkg{mirt} or \pkg{TAM} packages. For a discrete trait distribution see
-the \pkg{MultiLCIRT} package. 
+the \pkg{MultiLCIRT} package.
 
 For latent class models see the \pkg{poLCA}, \pkg{covLCA} or \pkg{randomLCA}
 package.
@@ -309,32 +311,32 @@ TP <- length(theta.k)
 NXlam <- I*(maxK-1) + 1       # number of estimated parameters
        # last parameter is joint slope parameter
 Xdes <- array( 0 , dim=c(I , maxK , TP ,  NXlam ) )
-# Item1Cat1 , ... , Item1Cat3, Item2Cat1, ..., 
+# Item1Cat1 , ... , Item1Cat3, Item2Cat1, ...,
 dimnames(Xdes)[[1]] <- colnames(dat)
 dimnames(Xdes)[[2]] <- paste0("Cat" , 1:(maxK) )
 dimnames(Xdes)[[3]] <- paste0("Class" , 1:TP )
 v2 <- unlist( sapply( 1:I , FUN = function(ii){ # ii
     paste0( paste0( colnames(dat)[ii]  , "_b"  ) , "Cat" , 1:(maxK-1) )
-                } , simplify=FALSE) )                
+                } , simplify=FALSE) )
 dimnames(Xdes)[[4]] <- c( v2 , "a" )
 # define theta design and item discriminations
 for (ii in 1:I){
-	for (hh in 1:(maxK-1) ){
-	    Xdes[ii , hh + 1 , , NXlam ] <- hh * theta.k
-	}
+    for (hh in 1:(maxK-1) ){
+        Xdes[ii , hh + 1 , , NXlam ] <- hh * theta.k
+    }
 }
 # item intercepts
 for (ii in 1:I){
-	for (hh in 1:(maxK-1) ){
-	    # ii <- 1  # Item    # hh <- 1  # category
-	    Xdes[ii,hh+1,, ( ii - 1)*(maxK-1) + hh] <- 1
-	}
+    for (hh in 1:(maxK-1) ){
+        # ii <- 1  # Item    # hh <- 1  # category
+        Xdes[ii,hh+1,, ( ii - 1)*(maxK-1) + hh] <- 1
+    }
 }
 #****
 # skill space designmatrix
 TP <- length(theta.k)
 w1 <- stats::dnorm(theta.k)
-w1 <- w1 / sum(w1)  
+w1 <- w1 / sum(w1)
 delta.designmatrix <- matrix( 1 , nrow=TP , ncol=1 )
 delta.designmatrix[,1] <- log(w1)
 
@@ -344,7 +346,7 @@ Xlambda.init <- c( stats::rnorm( dim(Xdes)[[4]] - 1 ) , 1 )
 delta.fixed <- cbind( 1 , 1 ,1 )
 
 # estimate model
-mod1 <- CDM::slca( dat , Xdes=Xdes , delta.designmatrix=delta.designmatrix , 
+mod1 <- CDM::slca( dat , Xdes=Xdes , delta.designmatrix=delta.designmatrix ,
             Xlambda.init=Xlambda.init , delta.fixed = delta.fixed )
 summary(mod1)
 plot(mod1, cex.names=.7 )
@@ -355,21 +357,21 @@ plot(mod1, cex.names=.7 )
 Xlambda.fixed <- cbind( c(1,19) , c(3.2,1.52 ) )
 # 1st parameter = 3.2
 # 19th parameter = 1.52 (joint item slope)
-mod2 <- CDM::slca( dat , Xdes=Xdes , delta.designmatrix=delta.designmatrix , 
+mod2 <- CDM::slca( dat , Xdes=Xdes , delta.designmatrix=delta.designmatrix ,
             delta.init=delta.init, Xlambda.init=Xlambda.init, delta.fixed=delta.fixed,
             Xlambda.fixed=Xlambda.fixed , maxiter = 70 )
 
 #*** Model 3: Partial credit model with non-normal distribution
 Xlambda.fixed <- cbind(  c(1,19) , c(3.2,1) ) # fix item slope to one
 delta.designmatrix <- cbind( 1 , theta.k , theta.k^2 , theta.k^3 )
-mod3 <- CDM::slca( dat , Xdes=Xdes,  delta.designmatrix=delta.designmatrix ,          
+mod3 <- CDM::slca( dat , Xdes=Xdes,  delta.designmatrix=delta.designmatrix ,
             Xlambda.fixed=Xlambda.fixed ,  maxiter = 200 )
-summary(mod3)  
+summary(mod3)
 
 # non-normal distribution with convergence regularizing factor oldfac
-mod3a <- CDM::slca( dat , Xdes=Xdes,  delta.designmatrix=delta.designmatrix ,          
+mod3a <- CDM::slca( dat , Xdes=Xdes,  delta.designmatrix=delta.designmatrix ,
             Xlambda.fixed=Xlambda.fixed, maxiter = 500 , oldfac=.95 )
-summary(mod3a)  
+summary(mod3a)
 
 #*** Model 4: Generalized Partial Credit Model
 
@@ -385,50 +387,50 @@ maxK <- 4
 TP <- length(theta.k)
 NXlam <- I*(maxK-1) + I       # number of estimated parameters
 Xdes <- array( 0 , dim=c(I , maxK , TP ,  NXlam ) )
-# Item1Cat1 , ... , Item1Cat3, Item2Cat1, ..., 
+# Item1Cat1 , ... , Item1Cat3, Item2Cat1, ...,
 dimnames(Xdes)[[1]] <- colnames(dat)
 dimnames(Xdes)[[2]] <- paste0("Cat" , 1:(maxK) )
 dimnames(Xdes)[[3]] <- paste0("Class" , 1:TP )
 v2 <- unlist( sapply( 1:I , FUN = function(ii){ # ii
     paste0( paste0( colnames(dat)[ii]  , "_b"  ) , "Cat" , 1:(maxK-1) )
-                } , simplify=FALSE) )                
+                } , simplify=FALSE) )
 dimnames(Xdes)[[4]] <- c( v2 , paste0( colnames(dat),"_a") )
 dimnames(Xdes)
 # define theta design and item discriminations
 for (ii in 1:I){
-	for (hh in 1:(maxK-1) ){
-	    Xdes[ii , hh + 1 , , I*(maxK-1) + ii ] <- hh * theta.k
-	}
+    for (hh in 1:(maxK-1) ){
+        Xdes[ii , hh + 1 , , I*(maxK-1) + ii ] <- hh * theta.k
+    }
 }
 # item intercepts
 for (ii in 1:I){
-	for (hh in 1:(maxK-1) ){
-	    Xdes[ii,hh+1,, ( ii - 1)*(maxK-1) + hh] <- 1
-	}
+    for (hh in 1:(maxK-1) ){
+        Xdes[ii,hh+1,, ( ii - 1)*(maxK-1) + hh] <- 1
+    }
 }
 #****
 # skill space designmatrix
 delta.designmatrix <- cbind( 1, theta.k,theta.k^2 )
 # initial lambda parameters from partial credit model
 Xlambda.init <- mod1$Xlambda
-Xlambda.init <- c( mod1$Xlambda[ - length(Xlambda.init) ] , 
+Xlambda.init <- c( mod1$Xlambda[ - length(Xlambda.init) ] ,
          rep( Xlambda.init[ length(Xlambda.init)  ] ,I) )
 
 # estimate model
-mod4 <- CDM::slca( dat , Xdes=Xdes , Xlambda.init=Xlambda.init , 
-             delta.designmatrix=delta.designmatrix , decrease.increments=TRUE ,         
-             maxiter = 300 )           
+mod4 <- CDM::slca( dat , Xdes=Xdes , Xlambda.init=Xlambda.init ,
+             delta.designmatrix=delta.designmatrix , decrease.increments=TRUE ,
+             maxiter = 300 )
 
 #############################################################################
 # EXAMPLE 2: Latent class model with two classes
 #############################################################################
 
 set.seed(9876)
-I <- 7	# number of items
+I <- 7    # number of items
 # simulate response probabilities
 a1 <- stats::runif(I, 0 , .4 )
 a2 <- stats::runif(I, .6 , 1 )
-N <- 1000	# sample size
+N <- 1000    # sample size
 # simulate data in two classes of proportions .3 and .7
 N1 <- round(.3*N)
 dat1 <- 1 * ( matrix(a1,N1,I,byrow=TRUE) > matrix( stats::runif( N1 * I) , N1 , I ) )
@@ -452,7 +454,7 @@ for (ii in 1:I){
     Xdes[ ii , 2 , 2 , ii+I ] <- 1  # probabilities class 2
 }
 # estimate model
-mod1 <- CDM::slca( dat , Xdes=Xdes )            
+mod1 <- CDM::slca( dat , Xdes=Xdes )
 summary(mod1)
 
 #############################################################################
@@ -485,12 +487,12 @@ dimnames(Xdes)[[1]] <- colnames(dat)
 dimnames(Xdes)[[2]] <- paste0("Cat" , 1:(maxK) )
 dimnames(Xdes)[[4]] <- c( paste0( "b_" , colnames(dat)[1:I] ) , "a" )
 # define item difficulties
-for (ii in 1:I){  
-	Xdes[ii , 2 , , ii ] <- -1        
+for (ii in 1:I){
+    Xdes[ii , 2 , , ii ] <- -1
 }
 # theta design
-for (tt in 1:TP){  
-	Xdes[1:I , 2 , tt , I + 1] <- theta.k[tt]       
+for (tt in 1:TP){
+    Xdes[1:I , 2 , tt , I + 1] <- theta.k[tt]
 }
 
 # skill space definition
@@ -499,8 +501,8 @@ delta.fixed <- NULL
 Xlambda.init <- c( stats::runif( I  , -.8 , .8 ) , 1 )
 Xlambda.fixed <- cbind( I+1 , 1 )
 # estimate model
-mod1 <- CDM::slca( dat , Xdes=Xdes , delta.designmatrix=delta.designmatrix , 
-            delta.fixed=delta.fixed , Xlambda.fixed=Xlambda.fixed , 
+mod1 <- CDM::slca( dat , Xdes=Xdes , delta.designmatrix=delta.designmatrix ,
+            delta.fixed=delta.fixed , Xlambda.fixed=Xlambda.fixed ,
             Xlambda.init=Xlambda.init, decrease.increments=TRUE , maxiter = 200 )
 summary(mod1)
 
@@ -514,7 +516,7 @@ Xlambda.constr.V <- matrix( 1 , nrow=I+1 , ncol=1 )
 Xlambda.constr.V[I+1,1] <- 0
 Xlambda.constr.c <- c(0)
 # estimate model
-mod1b <- CDM::slca( dat , Xdes=Xdes , delta.designmatrix=delta.designmatrix ,         
+mod1b <- CDM::slca( dat , Xdes=Xdes , delta.designmatrix=delta.designmatrix ,
             Xlambda.fixed=Xlambda.fixed , Xlambda.constr.V=Xlambda.constr.V ,
             Xlambda.constr.c=Xlambda.constr.c  )
 summary(mod1b)
@@ -524,13 +526,13 @@ NXlam <- 2*I +2
 Xdes <- array( 0 , dim=c(I , maxK , 2*TP ,  NXlam ) )
 dimnames(Xdes)[[1]] <- colnames(dat)
 dimnames(Xdes)[[2]] <- paste0("Cat" , 1:(maxK) )
-dimnames(Xdes)[[4]] <- c( paste0( "bClass1_" , colnames(dat)[1:I] ) , 
+dimnames(Xdes)[[4]] <- c( paste0( "bClass1_" , colnames(dat)[1:I] ) ,
         paste0( "bClass2_" , colnames(dat)[1:I] ) , "aClass1" , "aClass2" )
 # define item difficulties
 for (ii in 1:I){
     Xdes[ii , 2 , 1:TP , ii ] <- -1  # first class
-    Xdes[ii , 2 , TP + 1:TP , I+ii ] <- -1  # second class    
-}                                                                               
+    Xdes[ii , 2 , TP + 1:TP , I+ii ] <- -1  # second class
+}
 # theta design
 for (tt in 1:TP){
     Xdes[1:I , 2 , tt , 2*I+1 ] <- theta.k[tt]
@@ -546,7 +548,7 @@ b1 <- stats::qnorm( colMeans(dat) )
 Xlambda.init <- c( stats::runif( 2*I  , -1.8 , 1.8 ) , 1 ,1 )
 Xlambda.fixed <- cbind( c(2*I+1 , 2*I+2) , 1 )
 # estimate model
-mod2 <- CDM::slca( dat, Xdes=Xdes,  delta.designmatrix=delta.designmatrix ,          
+mod2 <- CDM::slca( dat, Xdes=Xdes,  delta.designmatrix=delta.designmatrix ,
             Xlambda.fixed=Xlambda.fixed, decrease.increments=TRUE ,
             Xlambda.init=Xlambda.init, maxiter = 1000 )
 summary(mod2)
@@ -573,9 +575,9 @@ Xlambda.constr.V[1:I , 1 ] <- 1
 Xlambda.constr.V[I + 1:I , 2 ] <- 1
 Xlambda.constr.c <- c(0,0)
 # estimate model
-mod2b <- CDM::slca( dat, Xdes=Xdes, delta.designmatrix=delta.designmatrix ,          
-            Xlambda.fixed=Xlambda.fixed ,  Xlambda.init=Xlambda.init ,  
-            Xlambda.constr.V=Xlambda.constr.V , Xlambda.constr.c=Xlambda.constr.c , 
+mod2b <- CDM::slca( dat, Xdes=Xdes, delta.designmatrix=delta.designmatrix ,
+            Xlambda.fixed=Xlambda.fixed ,  Xlambda.init=Xlambda.init ,
+            Xlambda.constr.V=Xlambda.constr.V , Xlambda.constr.c=Xlambda.constr.c ,
             decrease.increments=TRUE , maxiter = 1000 )
 summary(mod2b)
 stats::aggregate( mod2b$pi.k , list( rep(1:2, each=TP)) , sum )
@@ -617,12 +619,12 @@ dimnames(Xdes)[[2]] <- paste0("Cat" , 1:(maxK) )
 dimnames(Xdes)[[3]] <- paste0("Class" , 1:TP )
 dimnames(Xdes)[[4]] <- c( paste0( "b_" , colnames(dat)[1:I] ) , paste0("theta" , 1:TP) )
 # define item difficulties
-for (ii in 1:I){  
-	Xdes[ii , 2 , , ii ] <- -1        
+for (ii in 1:I){
+    Xdes[ii , 2 , , ii ] <- -1
 }
 # theta design
-for (tt in 1:TP){  
-	Xdes[1:I , 2 , tt , I + tt] <- 1       
+for (tt in 1:TP){
+    Xdes[1:I , 2 , tt , I + tt] <- 1
 }
 
 # skill space definition
@@ -634,9 +636,9 @@ Xlambda.constr.V[1:I,1] <- 1
 Xlambda.constr.c <- c(0)
 delta.init <- matrix( c(1,1,1,1) , TP , 1 )
 # estimate model
-mod1 <- CDM::slca( dat , Xdes=Xdes, delta.designmatrix=delta.designmatrix, 
-            delta.init=delta.init, Xlambda.init=Xlambda.init , 
-            Xlambda.constr.V=Xlambda.constr.V , Xlambda.constr.c=Xlambda.constr.c , 
+mod1 <- CDM::slca( dat , Xdes=Xdes, delta.designmatrix=delta.designmatrix,
+            delta.init=delta.init, Xlambda.init=Xlambda.init ,
+            Xlambda.constr.V=Xlambda.constr.V , Xlambda.constr.c=Xlambda.constr.c ,
             decrease.increments=TRUE,  maxiter = 400 )
 summary(mod1)
 # compare estimated and simulated theta class locations
@@ -652,7 +654,7 @@ set.seed(487)
 N <- 3000   # number of persons
 # define Q-matrix
 I <- 9  # 9 items
-NS <- 2 # 2 skills 
+NS <- 2 # 2 skills
 TP <- 4 # number of skill classes
 Q <- scan( nlines=3)
   1 0   1 0   1 0
@@ -679,13 +681,13 @@ dimnames(Xdes)[[3]] <- c("S00","S10","S01","S11")
 dimnames(Xdes)[[4]] <- c( paste0("guess",1:I ) , paste0( "antislip" , 1:I ) )
 dimnames(Xdes)
 # define item difficulties
-for (ii in 1:I){  
+for (ii in 1:I){
         # define latent responses
         latresp <- 1*( alpha0 \%*\% Q[ii,]  == sum(Q[ii,]) )[,1]
         # model slipping parameters
         Xdes[ii , 2 , latresp == 1, I+ii ] <- 1
         # guessing parameters
-        Xdes[ii , 2 , latresp == 0, ii ] <- 1        
+        Xdes[ii , 2 , latresp == 0, ii ] <- 1
 }
 Xdes[1,2,,]
 Xdes[7,2,,]
@@ -694,7 +696,7 @@ delta.designmatrix <- diag(TP)
 Xlambda.init <- c( rep( stats::qlogis( .2 ) , I ) , rep( stats::qlogis( .8 ) , I ) )
 
 # estimate DINA model with slca function
-mod1 <- CDM::slca( dat , Xdes=Xdes, delta.designmatrix=delta.designmatrix , 
+mod1 <- CDM::slca( dat , Xdes=Xdes, delta.designmatrix=delta.designmatrix ,
             Xlambda.init=Xlambda.init, decrease.increments=TRUE, maxiter=400 )
 summary(mod1)
 
@@ -745,7 +747,7 @@ dimnames(Xdes)[[1]] <- colnames(dat)[-1]
 dimnames(Xdes)[[2]] <- paste0("Cat" , 0:(maxK-1) )
 dimnames(Xdes)[[3]] <- paste0("Theta" , 1:TP )
 dimnames(Xdes)[[4]] <- c( paste0("b" , 1:I ), paste0("dif" , 1:I ), "const" )
-# define theta design 
+# define theta design
 for (ii in 1:nitems){
     Xdes[ii,2,,NXlam ] <- theta.k
 }
@@ -753,12 +755,12 @@ for (ii in 1:nitems){
 for (ii in 1:I){
     Xdes[c(ii,ii+I) ,2,, ii ] <- -1
     Xdes[ii,2,,ii+I] <- - 1/2
-    Xdes[ii+I,2,,ii+I] <- 1/2    
+    Xdes[ii+I,2,,ii+I] <- 1/2
 }
 #--- skill space designmatrix
 TP <- length(theta.k)
 w1 <- stats::dnorm(theta.k)
-w1 <- w1 / sum(w1)  
+w1 <- w1 / sum(w1)
 delta.designmatrix <- matrix( 1 , nrow=TP , ncol=2 )
 delta.designmatrix[,2] <- log(w1)
 
@@ -768,7 +770,7 @@ Xlambda.fixed <- cbind(NXlam, 1 )
 dif_sim <- 0*stats::rnorm(I, sd=.2)
 Xlambda.init <- c( - stats::qnorm( colMeans(dat1) )  , dif_sim , 1 )
 
-# delta.fixed 
+# delta.fixed
 delta.fixed <- cbind( 1 , 1 , 0 )
 # regularization parameter
 regular_lam <- .2
@@ -776,8 +778,8 @@ regular_lam <- .2
 regular_w <- c( rep(0,I), rep(1,I) , 0 )
 
 #--- estimation model with scad penalty
-mod1 <- CDM::slca( dat[,-1] , group=dat$group, Xdes=Xdes, 
-            delta.designmatrix=delta.designmatrix, regular_type = "scad", 
+mod1 <- CDM::slca( dat[,-1] , group=dat$group, Xdes=Xdes,
+            delta.designmatrix=delta.designmatrix, regular_type = "scad",
             Xlambda.init=Xlambda.init, delta.fixed=delta.fixed, Xlambda.fixed=Xlambda.fixed,
             regular_lam=regular_lam, regular_w=regular_w )
 # compare true and estimated DIF effects

@@ -3,6 +3,6 @@
 
 
 abs_approx_D1 <- function( x , eps = 1E-5){
-	res <-  x / sqrt( x^2 + eps )
-	return(res)
+    res <-  x / sqrt( x^2 + eps )
+    return(res)
 }

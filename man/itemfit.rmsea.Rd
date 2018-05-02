@@ -1,5 +1,5 @@
 %% File Name: itemfit.rmsea.Rd
-%% File Version: 1.11
+%% File Version: 1.12
 
 \name{itemfit.rmsea}
 \alias{itemfit.rmsea}
@@ -9,7 +9,7 @@ RMSEA Item Fit
 }
 \description{
 This function estimates a chi squared based measure of item fit
-in cognitive diagnosis models similar to the RMSEA itemfit 
+in cognitive diagnosis models similar to the RMSEA itemfit
 implemented in mdltm (von Davier, 2005;
 cited in Kunina-Habenicht, Rupp & Wilhelm, 2009).
 
@@ -40,14 +40,14 @@ as follows:
 \deqn{ RMSEA_j = \sqrt{ \sum_k \sum_c \pi ( \bold{\theta}_c)
     \left( P_j ( \bold{\theta}_c ) -
 \frac{n_{jkc}}{N_{jc}} \right)^2 } }
-where \eqn{c} denotes the class of the skill vector 
+where \eqn{c} denotes the class of the skill vector
 \eqn{\bold{\theta}}, \eqn{k} is the item category,
-\eqn{\pi ( \bold{\theta}_c)} is the estimated class probability 
-of \eqn{\bold{\theta}_c}, 
+\eqn{\pi ( \bold{\theta}_c)} is the estimated class probability
+of \eqn{\bold{\theta}_c},
 \eqn{P_j} is the estimated item response function,
 \eqn{n_{jkc}} is the expected number of students with
 skill \eqn{\bold{\theta}_c} on
-item \eqn{j} in category \eqn{k} and 
+item \eqn{j} in category \eqn{k} and
 \eqn{N_{jc}} is the expected number of students with
 skill \eqn{\bold{\theta}_c} on
 item \eqn{j}.
@@ -58,13 +58,13 @@ A list with two entries:
 \item{rmsea.groups}{Matrix of group-wise RMSEA item statistics}
 }
 \references{
-Kunina-Habenicht, O., Rupp, A. A., & Wilhelm, O. (2009). 
-A practical illustration of multidimensional diagnostic skills profiling: 
-Comparing results from confirmatory factor analysis and diagnostic 
-classification models. 
+Kunina-Habenicht, O., Rupp, A. A., & Wilhelm, O. (2009).
+A practical illustration of multidimensional diagnostic skills profiling:
+Comparing results from confirmatory factor analysis and diagnostic
+classification models.
 \emph{Studies in Educational Evaluation, 35}, 64--70.
 
-von Davier, M. (2005). \emph{A general diagnostic model applied to language 
+von Davier, M. (2005). \emph{A general diagnostic model applied to language
 testing data}. ETS Research Report RR-05-16. ETS, Princeton, NJ: ETS.
 }
 %\author{

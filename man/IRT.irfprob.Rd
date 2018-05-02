@@ -1,5 +1,5 @@
 %% File Name: IRT.irfprob.Rd
-%% File Version: 0.15
+%% File Version: 0.16
 
 \name{IRT.irfprob}
 \alias{IRT.irfprob}
@@ -86,14 +86,14 @@ categories \eqn{\times} skill classes [\eqn{\times} group]) and attributes
 
 \seealso{
 Plot functions for item response curves: \code{\link{IRT.irfprobPlot}}.
-	
+
 For extracting the individual likelihood or posterior see
 \code{\link{IRT.likelihood}} or \code{\link{IRT.posterior}}.
 }
 %%% TAM, sirt and mirt links
 
 \examples{
-\dontrun{	
+\dontrun{
 #############################################################################
 # EXAMPLE 1: Extracting item response functions mcdina model
 #############################################################################

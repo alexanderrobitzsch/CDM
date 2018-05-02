@@ -1,5 +1,5 @@
 %% File Name: IRT.anova.Rd
-%% File Version: 0.03
+%% File Version: 0.04
 
 \name{IRT.anova}
 \alias{IRT.anova}
@@ -10,8 +10,8 @@ Helper Function for Conducting Likelihood Ratio Tests
 }
 
 \description{
-This is a helper function for conducting likelihood ratio tests 
-and can be generally used for objects for which the 
+This is a helper function for conducting likelihood ratio tests
+and can be generally used for objects for which the
 \code{\link[stats:logLik]{logLik}} method is defined.
 }
 

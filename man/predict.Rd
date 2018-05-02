@@ -1,5 +1,5 @@
 %% File Name: predict.Rd
-%% File Version: 0.14
+%% File Version: 0.15
 
 \name{predict}
 
@@ -19,7 +19,7 @@ Expected Values and Predicted Probabilities from Item Response Response Models
 
 
 \description{
-This function computes expected values for each person and each 
+This function computes expected values for each person and each
 item based on the individual posterior distribution. The output
 of this function can be the basis of creating item and
 person fit statistics.
@@ -44,7 +44,7 @@ IRT.predict(object, dat, group=1)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
 \item{object}{
-Object for the S3 methods \code{\link{IRT.irfprob}} and 
+Object for the S3 methods \code{\link{IRT.irfprob}} and
 \code{\link{IRT.posterior}} are defined. In the \pkg{CDM} packages,
 these are the objects of class \code{din}, \code{gdina}, \code{mcdina},
 \code{slca} or \code{gdm}.
@@ -62,10 +62,10 @@ Dataset with item responses
 
 \value{
 A list with following entries
-\item{expected}{Array with expected values (persons \eqn{\times} 
+\item{expected}{Array with expected values (persons \eqn{\times}
 classes \eqn{\times} items)}
 \item{probs.categ}{Array with expected probabilities for
-  each category (persons \eqn{\times} categories \eqn{\times} 
+  each category (persons \eqn{\times} categories \eqn{\times}
 classes \eqn{\times} items)}
 \item{variance}{Array with variance in predicted values for each
   person and each item.}
@@ -75,7 +75,7 @@ person and each item}
 }
 
 %
-%  res <- list( "expected" = pred , "probs.categ" = pred.categ , 
+%  res <- list( "expected" = pred , "probs.categ" = pred.categ ,
 %   "variance" = var1 , "residuals" = resid1 , "stand.resid" = sresid1 )
 
 
@@ -104,7 +104,7 @@ person and each item}
 
 #--- Model 1: Rasch model
 library(TAM)
-mod1 <- TAM::tam.mml(resp=TAM::sim.rasch) 
+mod1 <- TAM::tam.mml(resp=TAM::sim.rasch)
 # apply IRT.predict function
 prmod1 <- CDM::IRT.predict(mod1, mod1$resp )
 str(prmod1)

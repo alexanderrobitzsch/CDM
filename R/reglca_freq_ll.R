@@ -3,6 +3,6 @@
 
 reglca_freq_ll <- function(x,C,W)
 {
-	eps <- 1E-20
-	sum( C * log(x+eps) + W * log( 1 - x + eps) )
+    eps <- 1E-20
+    sum( C * log(x+eps) + W * log( 1 - x + eps) )
 }

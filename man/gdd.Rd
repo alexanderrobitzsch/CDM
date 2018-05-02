@@ -1,5 +1,5 @@
 %% File Name: gdd.Rd
-%% File Version: 0.14
+%% File Version: 0.15
 
 \name{gdd}
 \alias{gdd}
@@ -9,7 +9,7 @@ Generalized Distance Discriminating Method
 }
 
 \description{
-Performs the generalized distance discriminating method 
+Performs the generalized distance discriminating method
 (GDD; Sun, Xin, Zhang, & de la Torre, 2013) for
 dichotomous data which is a method for classifying students into
 skill profiles based on a preliminary unidimensional calibration.
@@ -58,8 +58,8 @@ A list with following entries
 
 
 \references{
-Sun, J., Xin, T., Zhang, S., & de la Torre, J. (2013). 
-A polytomous extension of the generalized distance discriminating method. 
+Sun, J., Xin, T., Zhang, S., & de la Torre, J. (2013).
+A polytomous extension of the generalized distance discriminating method.
 \emph{Applied Psychological Measurement, 37}, 503-521.
 }
 
@@ -80,7 +80,7 @@ A polytomous extension of the generalized distance discriminating method.
 \examples{
 #############################################################################
 # EXAMPLE 1: GDD for sim.dina
-#############################################################################	
+#############################################################################
 
 data(sim.dina, package="CDM")
 data(sim.qmatrix, package="CDM")
@@ -89,7 +89,7 @@ data <- sim.dina
 q.matrix <- sim.qmatrix
 
 # estimate 1PL (use irtmodel="2PL" for 2PL estimation)
-mod <- CDM::gdm( data , irtmodel="1PL" , theta.k=seq(-6,6,len=21) , 
+mod <- CDM::gdm( data , irtmodel="1PL" , theta.k=seq(-6,6,len=21) ,
                     decrease.increments=TRUE , conv=.001 , globconv=.001)
 # extract item parameters in parametrization b + a*theta
 b <- mod$b[,1]

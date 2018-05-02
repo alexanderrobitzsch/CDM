@@ -1,5 +1,5 @@
 %% File Name: sim.gdina.Rd
-%% File Version: 1.19
+%% File Version: 1.20
 
 \name{sim.gdina}
 \alias{sim.gdina}
@@ -10,11 +10,11 @@ Simulation of the GDINA model
 }
 \description{
 The function \code{sim.gdina.prepare} creates necessary design matrices
-\code{Mj}, \code{Aj} and \code{necc.attr}. In most cases, only the list 
+\code{Mj}, \code{Aj} and \code{necc.attr}. In most cases, only the list
 of item parameters \code{delta} must be modified by the user when
 applying the simulation function \code{sim.gdina}. The distribution of latent
 classes \eqn{\alpha} is represented by an underlying multivariate normal distribution
-\eqn{\alpha^\ast} for which a mean vector \code{thresh.alpha} and a 
+\eqn{\alpha^\ast} for which a mean vector \code{thresh.alpha} and a
 covariance matrix \code{cov.alpha} must be specified.
 Alternatively, a matrix of skill classes \code{alpha}
 can be given as an input.
@@ -22,9 +22,9 @@ can be given as an input.
 Note that this version of \code{sim.gdina} only works for dichotomous attributes.
 }
 \usage{
-sim.gdina(n, q.matrix, delta, link = "identity",  thresh.alpha=NULL, 
+sim.gdina(n, q.matrix, delta, link = "identity",  thresh.alpha=NULL,
     cov.alpha=NULL, alpha=NULL, Mj, Aj, necc.attr)
-    
+
 sim.gdina.prepare( q.matrix )
 }
 %- maybe also 'usage' for other objects documented here.
@@ -36,7 +36,7 @@ Number of persons
 Q-matrix (see \code{\link{sim.din}})
 }
   \item{delta}{
-List with \eqn{J} entries where \eqn{J} is the number of items. 
+List with \eqn{J} entries where \eqn{J} is the number of items.
 Every list element corresponds to the parameter of an item.
 }
   \item{link}{
@@ -79,8 +79,8 @@ The function \code{sim.gdina.prepare} possesses the following values as output
 in a list: \code{delta}, \code{necc.attr}, \code{Aj} and \code{Mj}.
 }
 \references{
-  de la Torre, J. (2011). The generalized {DINA} model framework. 
-  \emph{Psychometrika, 76}, 179--199.    
+  de la Torre, J. (2011). The generalized {DINA} model framework.
+  \emph{Psychometrika, 76}, 179--199.
 }
 %\author{
 %Alexander Robitzsch, ...
@@ -145,7 +145,7 @@ delta[[9]] <- c( .2 , .2 , 0 , .3 )
 
 #******************************************
 # Now, the "real simulation" starts
-sim.res <- CDM::sim.gdina( n=n, q.matrix =q.matrix, delta=delta, link = "identity", 
+sim.res <- CDM::sim.gdina( n=n, q.matrix =q.matrix, delta=delta, link = "identity",
                 thresh.alpha=thresh.alpha , cov.alpha=cov.alpha ,
                 Mj=Mj , Aj=Aj , necc.attr =necc.attr)
 # sim.res$data      # simulated data
@@ -180,8 +180,8 @@ patt <- mod$attribute.patt.splitted      # response patterns
 alpha <- patt[ sample( 1:(length(probs) ) , n , prob=probs , replace=TRUE) , ]
 
 # simulate data using estimated item parameters
-sim.res <- CDM::sim.gdina( n=n, q.matrix =q.matrix, delta=mod$delta, link="identity", 
-                alpha=alpha, Mj=mod$Mj, Aj= mod$Aj, necc.attr=rp$necc.attr)               
+sim.res <- CDM::sim.gdina( n=n, q.matrix =q.matrix, delta=mod$delta, link="identity",
+                alpha=alpha, Mj=mod$Mj, Aj= mod$Aj, necc.attr=rp$necc.attr)
 # extract data
 dat <- sim.res$data
 
@@ -213,8 +213,8 @@ patt <- mod$attribute.patt.splitted      # response patterns
 alpha <- patt[ sample( 1:(length(probs) ) , n , prob=probs , replace=TRUE) , ]
 
 # simulate data using estimated item parameters
-sim.res <- CDM::sim.gdina( n=n, q.matrix =q.matrix, delta=mod$delta, link=mod$link, 
-                alpha=alpha, Mj=mod$Mj, Aj=mod$Aj, necc.attr = rp$necc.attr)            
+sim.res <- CDM::sim.gdina( n=n, q.matrix =q.matrix, delta=mod$delta, link=mod$link,
+                alpha=alpha, Mj=mod$Mj, Aj=mod$Aj, necc.attr = rp$necc.attr)
 # extract data
 dat <- sim.res$data
 }

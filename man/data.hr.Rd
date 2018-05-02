@@ -1,5 +1,5 @@
 %% File Name: data.hr.Rd
-%% File Version: 0.14
+%% File Version: 0.15
 
 \name{data.hr}
 \alias{data.hr}
@@ -22,7 +22,7 @@ data(data.hr)
 
 \format{
 The format of the dataset is:
-  
+
 \code{List of 2} \cr
 \code{ $ data    : num [1:1550, 1:35] 1 0 1 1 1 0 1 1 1 0 ...} \cr
 \code{ $ q.matrix:'data.frame':} \cr
@@ -46,7 +46,7 @@ Simulated data according to Ravand et al. (2013).
 
 \references{
 Ravand, H., Barati, H., & Widhiarso, W. (2013). Exploring diagnostic capacity
-of a high stakes reading comprehension test: A pedagogical demonstration. 
+of a high stakes reading comprehension test: A pedagogical demonstration.
 \emph{Iranian Journal of Language Testing, 3}(1), 1-27.
 }
 
@@ -54,8 +54,8 @@ of a high stakes reading comprehension test: A pedagogical demonstration.
 \examples{
 \dontrun{
 data(data.hr, package="CDM")
-	
-dat <- data.hr$data	
+
+dat <- data.hr$data
 Q <- data.hr$q.matrix
 
 #*************
@@ -82,12 +82,12 @@ mod1$pattern[1:5,]   # first 5 entries
 #*************
 # Model 2: GDINA model
 mod2 <- CDM::gdina( dat, q.matrix = Q)
-summary(mod2)  
+summary(mod2)
 
 #*************
 # Model 3: Reduced RUM model
 mod3 <- CDM::gdina( dat, q.matrix = Q, rule="RRUM" )
-summary(mod3)  
+summary(mod3)
 
 #--------
 # model comparisons
@@ -120,7 +120,7 @@ summary(fmod1)
   ##          type    value       p
   ##   1   max(X2) 16.35495 0.03125
   ##   2 abs(fcor)  0.10341 0.01416
-  ##   
+  ##
   ##   Fit Statistics
   ##                       est
   ##   MADcor          0.01911
@@ -136,7 +136,7 @@ summary(fmod2)
   ##          type   value p
   ##   1   max(X2) 7.73670 1
   ##   2 abs(fcor) 0.07215 1
-  ##   
+  ##
   ##   Fit Statistics
   ##                       est
   ##   MADcor          0.01830
@@ -152,7 +152,7 @@ summary(fmod3)
   ##          type    value       p
   ##   1   max(X2) 15.49369 0.04925
   ##   2 abs(fcor)  0.10076 0.02201
-  ##   
+  ##
   ##   Fit Statistics
   ##                       est
   ##   MADcor          0.01868

@@ -1,5 +1,5 @@
 %% File Name: entropy.lca.Rd
-%% File Version: 0.22
+%% File Version: 0.23
 
 \name{entropy.lca}
 \alias{entropy.lca}
@@ -7,7 +7,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 
 \title{
-Test-specific and Item-specific Entropy for Latent Class Models 
+Test-specific and Item-specific Entropy for Latent Class Models
 }
 
 \description{
@@ -24,7 +24,7 @@ entropy.lca(object)
 
 \arguments{
   \item{object}{
-Object of class \code{\link{din}}, \code{\link{gdina}} or \code{\link{mcdina}}. 
+Object of class \code{\link{din}}, \code{\link{gdina}} or \code{\link{mcdina}}.
 For the \code{summary} method, it is the result of \code{entropy.lca}.
 }
 \item{digits}{Number of digits to round}
@@ -36,7 +36,7 @@ For the \code{summary} method, it is the result of \code{entropy.lca}.
 %}
 
 \value{
-A list with the data frame \code{entropy} as an entry. 
+A list with the data frame \code{entropy} as an entry.
 }
 
 
@@ -56,15 +56,15 @@ contribution}. Technical Appendix. \url{http://www.statmodel.com/7_3_papers.shtm
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-See \code{\link{cdi.kli}} for test diagnostic indices based on the 
+See \code{\link{cdi.kli}} for test diagnostic indices based on the
 Kullback-Leibler information and \code{\link{cdm.est.class.accuracy}}
 for calculating the classification accuracy.
 }
 
 \examples{
 #############################################################################
-# EXAMPLE 1: Entropy for DINA model 
-#############################################################################	
+# EXAMPLE 1: Entropy for DINA model
+#############################################################################
 
 data(sim.dina, package="CDM")
 data(sim.qmatrix, package="CDM")
@@ -74,7 +74,7 @@ mod1 <- CDM::din( sim.dina, q.matrix=sim.qmatrix, rule = "DINA")
 summary(mod1)
 # compute entropy for test and items
 emod1 <- CDM::entropy.lca( mod1 )
-summary(emod1)	
+summary(emod1)
 
 \dontrun{
 #############################################################################

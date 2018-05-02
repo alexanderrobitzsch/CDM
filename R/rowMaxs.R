@@ -1,5 +1,5 @@
 ## File Name: rowMaxs.R
-## File Version: 1.08
+## File Version: 1.09
 ################################################################################
 # utility method for computing intermediate information                        #
 ################################################################################
@@ -16,42 +16,42 @@
 #########################################################
 rowMaxs <- function(mat)
 {
-	n <- nrow(mat)
-	p <- ncol(mat)
-	maxval <- mat[,1]
-	for ( cc in 2:p){
-		maxval <- ifelse( mat[,cc] > maxval  , mat[,cc] , maxval )
-	}
-	return(maxval)
+    n <- nrow(mat)
+    p <- ncol(mat)
+    maxval <- mat[,1]
+    for ( cc in 2:p){
+        maxval <- ifelse( mat[,cc] > maxval  , mat[,cc] , maxval )
+    }
+    return(maxval)
 }
 ###########################################################
 rowMaxs2 <- function(mat)
 {
-	n <- nrow(mat)
-	p <- ncol(mat)
-	maxval <- mat[,1]
-	maxind <- 1
-	for ( cc in 2:p){
-		ind <- ( mat[,cc] > maxval )
-		maxval <- ifelse( ind , mat[,cc] , maxval )
-		maxind <- ifelse( ind , cc , maxind)
-	}
-	res <- list( "maxval" = maxval , "maxind" = maxind )
-	return(res)
+    n <- nrow(mat)
+    p <- ncol(mat)
+    maxval <- mat[,1]
+    maxind <- 1
+    for ( cc in 2:p){
+        ind <- ( mat[,cc] > maxval )
+        maxval <- ifelse( ind , mat[,cc] , maxval )
+        maxind <- ifelse( ind , cc , maxind)
+    }
+    res <- list( "maxval" = maxval , "maxind" = maxind )
+    return(res)
 }
 #############################################################
 rowMaxs3 <- function(mat)
 {
-	n <- nrow(mat)
-	p <- ncol(mat)
-	maxval <- mat[,1]
-	maxind <- 1
-	for ( cc in 2:p){
-		maxval <- ifelse( mat[,cc] > maxval , mat[,cc] , maxval )
-		maxind <- maxind + ( cc - maxind ) * (mat[,cc] ==maxval )		
-	}
-	res <- list( "maxval" = maxval , "maxind" = maxind )
-	return(res)
+    n <- nrow(mat)
+    p <- ncol(mat)
+    maxval <- mat[,1]
+    maxind <- 1
+    for ( cc in 2:p){
+        maxval <- ifelse( mat[,cc] > maxval , mat[,cc] , maxval )
+        maxind <- maxind + ( cc - maxind ) * (mat[,cc] ==maxval )
+    }
+    res <- list( "maxval" = maxval , "maxind" = maxind )
+    return(res)
 }
 # rowMaxs3 is faster than rowMaxs2!
 

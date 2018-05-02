@@ -1,5 +1,5 @@
 %% File Name: IRT.IC.Rd
-%% File Version: 0.09
+%% File Version: 0.10
 
 \name{IRT.IC}
 \alias{IRT.IC}
@@ -47,7 +47,7 @@ A vector with deviance and several information criteria.
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-See also \code{\link{anova.din}} for model comparisons. 
+See also \code{\link{anova.din}} for model comparisons.
 A general method is defined in \code{\link{IRT.compareModels}}.
 }
 
@@ -63,7 +63,7 @@ data(sim.qmatrix, package="CDM")
 #*** Model 1: DINA model
 mod1 <- CDM::din( sim.dina, q.matrix=sim.qmatrix )
 summary(mod1)
-IRT.IC(mod1)	
+IRT.IC(mod1)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

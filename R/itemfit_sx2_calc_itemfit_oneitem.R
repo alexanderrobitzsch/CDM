@@ -1,5 +1,5 @@
 ## File Name: itemfit_sx2_calc_itemfit_oneitem.R
-## File Version: 0.01
+## File Version: 0.02
 
 
 #################################################
@@ -8,18 +8,18 @@ itemfit_sx2_calc_itemfit_oneitem <- function( ii , pjk , pi.k , P1 , I , Eik_min
          sumscore.distribution , scoredistribution , data , sumscore )
 {
     eps <- 1E-10
-	pjk.ii <- pjk[,-ii,]	
+    pjk.ii <- pjk[,-ii,]
     P1ii <- pjk.ii[,,2]
     Q1ii <- pjk.ii[,,1]
-	scored.ii <- cdm_rcpp_itemfit_sx2_calc_scoredistribution( P1=P1ii, Q1=Q1ii )
+    scored.ii <- cdm_rcpp_itemfit_sx2_calc_scoredistribution( P1=P1ii, Q1=Q1ii )
     eik_t2 <- colSums( scoredistribution * pi.k )
     eik_t1 <- c(0,colSums( P1[,ii] * scored.ii * pi.k  ) )
-	# P1 is the probability of passing the item
+    # P1 is the probability of passing the item
     eik <- eik_t1 / eik_t2
-	N <- nrow(data)
+    N <- nrow(data)
     oik <- sapply( 0:I , FUN = function(ss){ mean( data[ sumscore == ss , ii ] ) } )
-    dfr.ii <- data.frame( "item" = colnames(data)[ii] , "itemindex" = ii , 
-                "score" = 0:I , 
+    dfr.ii <- data.frame( "item" = colnames(data)[ii] , "itemindex" = ii ,
+                "score" = 0:I ,
                 "Nik" = sumscore.distribution ,
                 "oik" = oik , "eik" = eik )
     dfr.ii$eik_t1 <- eik_t1
@@ -32,8 +32,8 @@ itemfit_sx2_calc_itemfit_oneitem <- function( ii , pjk , pi.k , P1 , I , Eik_min
     x1 <- floor( I/2 )
     dfr2.ii <- NULL
     mm1 <- 2
-	
-	#** from below
+
+    #** from below
     while( mm1 <= x1 ){
         t1 <- 0
         ss <- mm1-1
@@ -52,11 +52,11 @@ itemfit_sx2_calc_itemfit_oneitem <- function( ii , pjk , pi.k , P1 , I , Eik_min
         dfr2.iivv$eik <- sum( dfr2vv$eik_t1 ) / sum( dfr2vv$eik_t2 + eps )
         dfr2.iivv$Eik <- sum( dfr2vv$Eik )
         dfr2.ii <- rbind( dfr2.ii , dfr2.iivv )
-        mm1 <- mm2 + 1 
+        mm1 <- mm2 + 1
                 }
     dfr2a.ii <- dfr2.ii
 
-	#*** from above
+    #*** from above
     dfr2.ii <- NULL
     mm1 <- I
     while( mm1 > x1 ){
@@ -66,7 +66,7 @@ itemfit_sx2_calc_itemfit_oneitem <- function( ii , pjk , pi.k , P1 , I , Eik_min
             ss <- ss - 1
             t1 <- t1 + dfr.ii[ ss , "Eik" ]
                 }
-    
+
         mm2 <- ss
         dfr2vv <- dfr.ii[ mm2:mm1 , ]
         dfr2.iivv <- data.frame(  "item" = colnames(data)[ii] , "itemindex" = ii )
@@ -78,7 +78,7 @@ itemfit_sx2_calc_itemfit_oneitem <- function( ii , pjk , pi.k , P1 , I , Eik_min
         dfr2.iivv$eik <- sum( dfr2vv$eik_t1 ) / sum( dfr2vv$eik_t2 + eps )
         dfr2.iivv$Eik <- sum( dfr2vv$Eik )
         dfr2.ii <- rbind( dfr2.ii , dfr2.iivv )
-        mm1 <- mm2 - 1 
+        mm1 <- mm2 - 1
                 }
     dfr2.ii <- rbind( dfr2a.ii , dfr2.ii )
     dfr2.ii <- dfr2.ii[ order( dfr2.ii$score) , ]
@@ -86,6 +86,6 @@ itemfit_sx2_calc_itemfit_oneitem <- function( ii , pjk , pi.k , P1 , I , Eik_min
     return(res)
 }
 ##########################################################################
-                
+
 .calc.itemfit.oneitem <- itemfit_sx2_calc_itemfit_oneitem
-				
+

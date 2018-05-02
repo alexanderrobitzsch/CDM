@@ -4,6 +4,6 @@
 ###########################################################
 IRT.jackknife <- function (object, repDesign , ...)
 {
-	UseMethod("IRT.jackknife")
+    UseMethod("IRT.jackknife")
 }
 ###########################################################

@@ -1,5 +1,5 @@
 %% File Name: numerical_Hessian.Rd
-%% File Version: 0.25
+%% File Version: 0.26
 
 \name{numerical_Hessian}
 \alias{numerical_Hessian}
@@ -9,16 +9,16 @@
 Numerical Computation of the Hessian Matrix
 }
 \description{
-Computes numerically the Hessian matrix of a given function for 
+Computes numerically the Hessian matrix of a given function for
 all coordinates (\code{numerical_Hessian}) or for a selected
 direction (\code{numerical_Hessian_partial}).
 }
 
 \usage{
-numerical_Hessian(par, FUN, h = 1e-05, gradient = FALSE, 
+numerical_Hessian(par, FUN, h = 1e-05, gradient = FALSE,
        hessian = TRUE, diag_only = FALSE, ...)
-       
-numerical_Hessian_partial(par , FUN , h = 1e-05, coordinate = 1, ... )       
+
+numerical_Hessian_partial(par , FUN , h = 1e-05, coordinate = 1, ... )
 }
 
 %- maybe also 'usage' for other objects documented here.
@@ -67,7 +67,7 @@ Gradient vector or Hessian matrix or a list of both elements
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-See the \pkg{numDeriv} package and the 
+See the \pkg{numDeriv} package and the
 \code{\link[mirt:numerical_deriv]{mirt::numerical_deriv}}
 function from the \pkg{mirt} package.
 }
@@ -76,15 +76,15 @@ function from the \pkg{mirt} package.
 #############################################################################
 # EXAMPLE 1: Toy example for Hessian matrix
 #############################################################################
-	
+
 # define function
 f <- function(x){
      3*x[1]^3 - 4*x[2]^2 - 5*x[1]*x[2] + 10 * x[1] * x[3]^2 + 6*x[2]*sqrt(x[3])
 }
-# define point for evaluating partial derivatives            
+# define point for evaluating partial derivatives
 par <- c(3,8,4)
 
-#--- compute gradient 
+#--- compute gradient
 CDM::numerical_Hessian( par = par , FUN = f , gradient=TRUE , hessian = FALSE)
 \dontrun{
 mirt::numerical_deriv(par = par , f = f, gradient=TRUE)

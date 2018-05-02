@@ -1,5 +1,5 @@
 %% File Name: vcov.Rd
-%% File Version: 0.33
+%% File Version: 0.34
 
 \name{vcov}
 \alias{vcov.din}
@@ -10,39 +10,39 @@
 \title{Asymptotic Covariance Matrix, Standard Errors and Confidence Intervals}
 
 \description{
-  Computes the asymptotic covariance matrix for 
+  Computes the asymptotic covariance matrix for
   \code{din} objects. The covariance matrix is computed using the
   empirical cross-product approach (see Paek & Cai, 2014).
-  
-  In addition, an S3 method \code{IRT.se} is defined which produces 
+
+  In addition, an S3 method \code{IRT.se} is defined which produces
   an extended output including \code{vcov} and \code{confint}.
 }
 
 
 \usage{
-\method{vcov}{din}(object, extended=FALSE, infomat=FALSE ,ind.item.skillprobs=TRUE, 
+\method{vcov}{din}(object, extended=FALSE, infomat=FALSE ,ind.item.skillprobs=TRUE,
        ind.item= FALSE, diagcov = FALSE , h=.001 ,\dots)
-       
-\method{confint}{din}(object, parm , level=.95 , extended=FALSE, 
-      ind.item.skillprobs=TRUE, ind.item= FALSE, diagcov = FALSE , h=.001 , \dots ) 
+
+\method{confint}{din}(object, parm , level=.95 , extended=FALSE,
+      ind.item.skillprobs=TRUE, ind.item= FALSE, diagcov = FALSE , h=.001 , \dots )
 
 IRT.se(object, \dots)
 
-\method{IRT.se}{din}( object , extended = FALSE , parm=NULL , level = .95 , 
-      infomat=FALSE , ind.item.skillprobs = TRUE , ind.item= FALSE , 
+\method{IRT.se}{din}( object , extended = FALSE , parm=NULL , level = .95 ,
+      infomat=FALSE , ind.item.skillprobs = TRUE , ind.item= FALSE ,
       diagcov = FALSE , h=.001 , ... )
 }
 
 \arguments{
   \item{object}{An object inheriting from class \code{din}.
-  			}
+              }
 \item{extended}{An optional logical indicating whether the covariance
-	matrix should be calculated for an extended set of parameters
-	(estimated and derived parameters).
-		}
+    matrix should be calculated for an extended set of parameters
+    (estimated and derived parameters).
+        }
 \item{infomat}{An optional logical indicating whether the
-	information matrix instead of the covariance matrix should be
-	the output.}
+    information matrix instead of the covariance matrix should be
+    the output.}
 \item{ind.item.skillprobs}{Optional logical indicating whether the covariance
 between item parameters and skill class probabilities are assumed
 to be zero.}
@@ -54,7 +54,7 @@ between estimated parameters are set to zero.}
 the derivative of the log-likelihood function.}
 \item{parm}{Vector of parameters. If it is missing, then for all estimated
 parameters a confidence interval is calculated.}
-\item{level}{Confidence level}	
+\item{level}{Confidence level}
   \item{\dots}{Additional arguments to be passed.}
 }
 
@@ -64,26 +64,26 @@ parameters a confidence interval is calculated.}
 
 \value{
    \code{coef}: A vector of parameters.
-   
+
    \code{vcov}: A covariance matrix. The corresponding coefficients can be extracted
    as the attribute \code{coef} from this object.
-     
+
    \code{IRT.se}: A data frame containing coefficients, standard errors
      and confidence intervals for all parameters.
-	}
+    }
 
 \references{
-Paek, I., & Cai, L. (2014). A comparison of item parameter standard error 
-estimation procedures for unidimensional and multidimensional item response 
+Paek, I., & Cai, L. (2014). A comparison of item parameter standard error
+estimation procedures for unidimensional and multidimensional item response
 theory modeling. \emph{Educational and Psychological Measurement, 74}(1),
 58-76.
 }
 
 %\note{
 %Because \code{coef} and \code{vcov} are defined for objects of class
-%\code{din}, asymptotic confidence intervals can be computed using 
+%\code{din}, asymptotic confidence intervals can be computed using
 %\code{\link[stats:confint]{confint}}.
-%}	
+%}
 
 %%\author{
 %% CDM authors
@@ -94,13 +94,13 @@ theory modeling. \emph{Educational and Psychological Measurement, 74}(1),
 }
 
 %% \code{\link{gdina}}, \code{\link{gdm}},
-%%	\code{\link{mcdina}}, \code{\link{slca}}
+%%    \code{\link{mcdina}}, \code{\link{slca}}
 
 \examples{
 \dontrun{
 #############################################################################
 # EXAMPLE 1: DINA model sim.dina
-#############################################################################	
+#############################################################################
 
 data(sim.dina, package="CDM")
 data(sim.qmatrix, package="CDM")
@@ -130,7 +130,7 @@ constraint.slip <- cbind( c(2,3,5) , c(.15,.20,.25) )
 # set some skill class probabilities to zero
 zeroprob.skillclasses <- c(2,4)
 # estimate model
-mod2 <- CDM::din( dat , q.matrix = q.matrix, guess.equal=TRUE , 
+mod2 <- CDM::din( dat , q.matrix = q.matrix, guess.equal=TRUE ,
      constraint.slip=constraint.slip, zeroprob.skillclasses=zeroprob.skillclasses)
 # parameter table
 mod2$partable
@@ -138,9 +138,9 @@ mod2$partable
 coef(mod2)
 # covariance matrix (estimated parameters)
 vmod2a <- vcov(mod2)
-sqrt( diag( vmod2a))		# standard errors
+sqrt( diag( vmod2a))        # standard errors
 colnames( vmod2a )
-names( attr( vmod2a , "coef") )	# extract coefficients
+names( attr( vmod2a , "coef") )    # extract coefficients
 
 # covariance matrix (more parameters, extended=TRUE)
 vmod2b <- vcov(mod2 , extended=TRUE)
@@ -160,7 +160,7 @@ confint(mod2 , parm=paste0("prob_skill" , 1:3 ) )
 
 # compute only information matrix
 infomod2 <- vcov(mod2 , infomat=TRUE)
-}	
+}
 }
 
 \keyword{methods}

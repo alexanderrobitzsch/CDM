@@ -1,5 +1,5 @@
 %% File Name: modelfit.cor.Rd
-%% File Version: 1.56
+%% File Version: 1.58
 
 \name{modelfit.cor}
 \alias{modelfit.cor}
@@ -9,13 +9,13 @@
 
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Assessing Model Fit and Local Dependence by Comparing Observed and Expected 
+Assessing Model Fit and Local Dependence by Comparing Observed and Expected
 Item Pair Correlations
 }
 
 \description{
 This function computes several measures of absolute model fit and local
-dependence indices for dichotomous item responses which are 
+dependence indices for dichotomous item responses which are
 based on comparing observed and expected frequencies of item pairs
 (Chen, de la Torre & Zhang, 2013; see Details).
 }
@@ -52,8 +52,8 @@ containing probabilities
  \code{\link{gdm}} (only for dichotomous item responses)
 }
 \item{jkunits}{Number of Jackknife units. The default is to use 0 units
-	(no use of jackknifing). If jackknife estimation should be
-	employed, use (say) at least 20 jackknife units. 
+    (no use of jackknifing). If jackknife estimation should be
+    employed, use (say) at least 20 jackknife units.
 The input \code{jkunits} can be also a vector of jackknife unit identifiers.
 }
 \item{\dots}{Further arguments to be passed}
@@ -62,7 +62,7 @@ The input \code{jkunits} can be also a vector of jackknife unit identifiers.
 
 \details{
 The fit statistics are based on predictions of the pairwise table
-\eqn{(X_i , X_j)} of item responses. The \eqn{\chi^2} statistic \code{X2} for 
+\eqn{(X_i , X_j)} of item responses. The \eqn{\chi^2} statistic \code{X2} for
 item pairs \eqn{i} and \eqn{j} is defined as
 \deqn{ \chi^2_{ij} = \sum_{k=0}^1 \sum_{l=0}^1 \frac{ (n_{ij,kl}-e_{ij,kl}) ^2 }{ e_{ij,kl} }}
 where \eqn{n_{ij,kl}} is the absolute frequency of \eqn{\{ X_{i}=k,X_j=l\}}
@@ -73,32 +73,32 @@ degree of freedom and can be used for testing whether items \eqn{i} and
 \eqn{j} are locally dependent. To control for multiple comparisons,
 p-value adjustments according to the Holm and FDR method are conducted
 (see \code{\link[stats:p.adjust]{stats::p.adjust}}).
-	
+
 % The mean \eqn{\chi^2} statistic \code{MX2} is just the average
 % of all \eqn{ \chi^2_{ij}} statistics across all item pairs.
 
 The residual covariance \code{RESIDCOV} of item pairs \eqn{(i,j)} is calculated
-as \deqn{ RESIDCOV_{ij} = 
-	\frac{ n_{ij,11} n_{ij,00} - n_{ij,10} n_{ij,01} }{n^2 } -
-		\frac{ e_{ij,11} e_{ij,00} - e_{ij,10} e_{ij,01} }{n^2 } }
+as \deqn{ RESIDCOV_{ij} =
+    \frac{ n_{ij,11} n_{ij,00} - n_{ij,10} n_{ij,01} }{n^2 } -
+        \frac{ e_{ij,11} e_{ij,00} - e_{ij,10} e_{ij,01} }{n^2 } }
 where \code{MRESIDCOV} is the average of all \code{RESIDCOV} statistics
 and is the total sample size.
 
 The statistic \code{MADcor} denotes the average absolute deviation between
-observed correlations \eqn{r_{ij}} and model predicted correlations 
+observed correlations \eqn{r_{ij}} and model predicted correlations
 \eqn{\hat{r}_{ij}} of item pairs \eqn{(i,j)}:
 \deqn{ MADcor = \frac{1}{ J(J-1)/2 } \sum_{i < j} | r_{ij} - \hat{r}_{ij} |}
 
 The SRMSR (standardized root mean square root of squared residuals,
 Maydeu-Olivares, 2013) is also based on comparing these correlations
-\deqn{ SRMSR = \sqrt{ \frac{1}{ J(J-1)/2 } \sum_{i < j} 
-	( r_{ij} - \hat{r}_{ij} )^2 } }
+\deqn{ SRMSR = \sqrt{ \frac{1}{ J(J-1)/2 } \sum_{i < j}
+    ( r_{ij} - \hat{r}_{ij} )^2 } }
 
-For calculating \code{MADQ3} and \code{MADaQ3}, 
+For calculating \code{MADQ3} and \code{MADaQ3},
 residuals \eqn{\varepsilon_{ni} = X_{ni} - e_{ni}} of
 observed and expected responses for respondents \eqn{n} and items \eqn{i} are
 constructed. Then, the average of the absolute values of pairwise correlations
-of these residuals is computed for \code{MADQ3}. For \code{MADaQ3}, the average 
+of these residuals is computed for \code{MADQ3}. For \code{MADaQ3}, the average
 of the centered pairwise values (i.e. by subtracting the average Q3 statistic)
 is calculated.
 
@@ -106,7 +106,7 @@ The difference of Fisher transformed correlations (Chen et al., 2013) is also
 computed and used for assessing statistical inference.
 
 For every of the fit statistics \code{MADcor}, \code{MADacor}, \code{SRMSR}, \code{MX2},
-\code{100*MADRESIDCOV} and \code{MADQ3} it holds that smaller values 
+\code{100*MADRESIDCOV} and \code{MADQ3} it holds that smaller values
 (values near to zero) indicate better fit.
 
 Standard errors and confidence intervals of fit statistics are obtained
@@ -117,47 +117,47 @@ by Jackknife estimation.
 \value{
 A list with following entries
   \item{modelfit.stat}{Model fit statistics:
-  	  
-   \code{MADcor}: mean of absolute deviations in observed and expected correlations 
-        (DiBello et al., 2007) 
 
-   \code{SRMSR}: standardized mean square root of squared residuals 
-        (Maydeu-Olivares, 2013; Maydeu-Olivares & Joe, 2014) 
-                
-%    \code{MX2}: Mean of \eqn{\chi^2} statistics of all item pairs 
+   \code{MADcor}: mean of absolute deviations in observed and expected correlations
+        (DiBello, Roussos & Stout, 2007)
+
+   \code{SRMSR}: standardized mean square root of squared residuals
+        (Maydeu-Olivares, 2013; Maydeu-Olivares & Joe, 2014)
+
+%    \code{MX2}: Mean of \eqn{\chi^2} statistics of all item pairs
 %    (Chen & Thissen, 1997)
-    
+
     \code{MADRESIDCOV}: Mean of absolute deviations of residual covariances
-    (McDonald & Mok, 1995) 
-    
+    (McDonald & Mok, 1995)
+
     \code{MADQ3}: Mean of absolute values of \eqn{Q_3} statistic (Yen, 1984)
 
     \code{MADaQ3}: Mean of absolute values of centered \eqn{Q_3} statistic
-    
+
             }
 \item{modelfit.test}{Test of global absolute model fit using test
-	statistics of all item pairs. The statistic \code{max(X2)} is the
-	maximum of all \eqn{\chi^2_{ij}} statistics accompanied with a p value
-	obtained by the Holm procedure. A similar statistic \code{abs(fcor)}
-	is created as the absolute value of the deviations of Fisher
-	transformed correlations as used in Chen et al. (2013).
-}           
+    statistics of all item pairs. The statistic \code{max(X2)} is the
+    maximum of all \eqn{\chi^2_{ij}} statistics accompanied with a p value
+    obtained by the Holm procedure. A similar statistic \code{abs(fcor)}
+    is created as the absolute value of the deviations of Fisher
+    transformed correlations as used in Chen et al. (2013).
+}
   \item{itempairs}{
-  	  Fit of itempairs which can be used for inspection of local
-  	  dependence. The \eqn{\chi^2_{ij}} statistic is denoted by \code{X2}
-  	  (Chen & Thissen, 1997), the statistic \eqn{r_{ij}} based on absolute 
-  	  deviations of observed and predicted correlations is \code{fcor}
-  	  (Chen et al., 2013).
+        Fit of itempairs which can be used for inspection of local
+        dependence. The \eqn{\chi^2_{ij}} statistic is denoted by \code{X2}
+        (Chen & Thissen, 1997), the statistic \eqn{r_{ij}} based on absolute
+        deviations of observed and predicted correlations is \code{fcor}
+        (Chen et al., 2013).
   }
-   
+
 }
 
 \references{
-Chen, J., de la Torre, J., & Zhang, Z. (2013). 
-Relative and absolute fit evaluation in cognitive diagnosis modeling. 
-\emph{Journal of Educational Measurement, 50}, 123-140.	
+Chen, J., de la Torre, J., & Zhang, Z. (2013).
+Relative and absolute fit evaluation in cognitive diagnosis modeling.
+\emph{Journal of Educational Measurement, 50}, 123-140.
 
-Chen, W., & Thissen, D. (1997). Local dependence indexes for item pairs 
+Chen, W., & Thissen, D. (1997). Local dependence indexes for item pairs
 using item response theory. \emph{Journal of Educational and Behavioral Statistics,
 22}, 265-289.
 
@@ -167,27 +167,27 @@ In C. R. Rao and S. Sinharay (Eds.), \emph{Handbook of Statistics},
 Vol. 26 (pp. 979--1030). Amsterdam: Elsevier.
 
 Maydeu-Olivares, A. (2013). Goodness-of-fit assessment of item response
-theory models (with discussion). 
+theory models (with discussion).
 \emph{Measurement: Interdisciplinary Research and Perspectives,
 11}, 71-137.
 
-Maydeu-Olivares, A., & Joe, H. (2014). Assessing approximate fit in categorical 
+Maydeu-Olivares, A., & Joe, H. (2014). Assessing approximate fit in categorical
 data analysis. \emph{Multivariate Behavioral Research, 49}, 305-328.
 
 
 McDonald, R. P., & Mok, M. M.-C. (1995). Goodness of fit in item response models.
 \emph{Multivariate Behavioral Research, 30}, 23-40.
 
-Yen, W. M. (1984). Effects of local item dependence on the fit and equating 
-performance of the three-parameter logistic model. 
+Yen, W. M. (1984). Effects of local item dependence on the fit and equating
+performance of the three-parameter logistic model.
 \emph{Applied Psychological Measurement, 8}, 125-145.
 }
 %\author{
 %Alexander Robitzsch
 %}
 \note{
-The function does not handle sample weights properly.	
-		
+The function does not handle sample weights properly.
+
 The function \code{modelfit.cor2} has the same functionality as
 \code{modelfit.cor} but it is much faster because it is based on
 \pkg{Rcpp} code.
@@ -199,7 +199,7 @@ The function \code{modelfit.cor2} has the same functionality as
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 %}
 \examples{
-\dontrun{	
+\dontrun{
 #############################################################################
 # EXAMPLE 1: Model fit for sim.dina
 #############################################################################
@@ -217,7 +217,7 @@ summary(fmod1)
   ##          type value     p
   ##   1   max(X2) 8.728 0.113
   ##   2 abs(fcor) 0.143 0.080
-  ##   
+  ##
   ##   Fit Statistics
   ##                     est jkunits jk_est jk_se est_low est_upp
   ##   MADcor          0.030      10  0.020 0.005   0.010   0.030
@@ -245,7 +245,7 @@ summary(fmod2)
   ##          type  value     p
   ##   1   max(X2) 13.139 0.010
   ##   2 abs(fcor)  0.199 0.001
-  ##   
+  ##
   ##   Fit Statistics
   ##                     est jkunits jk_est jk_se est_low est_upp
   ##   MADcor          0.056      10  0.041 0.007   0.026   0.055
@@ -262,7 +262,7 @@ summary(fmod3)
   ##          type value     p
   ##   1   max(X2) 8.756 0.111
   ##   2 abs(fcor) 0.143 0.078
-  ##   
+  ##
   ##   Fit Statistics
   ##                     est
   ##   MADcor          0.030
@@ -271,7 +271,7 @@ summary(fmod3)
   ##   100*MADRESIDCOV 0.668
   ##   MADQ3           0.062
   ##   MADaQ3          0.059
-  
+
 #############################################################################
 # EXAMPLE 2: Simulated Example DINA model
 #############################################################################
@@ -296,14 +296,14 @@ summary(fmod1)
   ##         type  value     p
   ##  1   max(X2) 10.697 0.071
   ##  2 abs(fcor)  0.277 0.026
-  ##  
+  ##
   ##  Fit Statistics
   ##                    est jkunits jk_est jk_se est_low est_upp
   ##  MADcor          0.052      10  0.026 0.010   0.006   0.045
   ##  SRMSR           0.074      10  0.048 0.013   0.022   0.074
   ##  100*MADRESIDCOV 1.259      10  0.646 0.213   0.228   1.063
   ##  MADQ3           0.080      10  0.047 0.010   0.027   0.068
-  ##  MADaQ3          0.079      10  0.046 0.010   0.027   0.065  
+  ##  MADaQ3          0.079      10  0.046 0.010   0.027   0.065
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

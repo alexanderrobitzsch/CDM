@@ -64,8 +64,8 @@ This function is based on \code{\link{IRT.anova}}.
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-	\code{\link{din}}, \code{\link{gdina}}, \code{\link{gdm}},
-	\code{\link{mcdina}}, \code{\link{slca}}
+    \code{\link{din}}, \code{\link{gdina}}, \code{\link{gdm}},
+    \code{\link{mcdina}}, \code{\link{slca}}
 }
 \examples{
 #############################################################################

@@ -1,5 +1,5 @@
 %% File Name: din.deterministic.Rd
-%% File Version: 0.19
+%% File Version: 0.20
 
 \name{din.deterministic}
 \alias{din.deterministic}
@@ -17,7 +17,7 @@ on ideal latent responses.
 }
 
 \usage{
-din.deterministic(dat, q.matrix, rule="DINA" , method = "JML", conv = 0.001, 
+din.deterministic(dat, q.matrix, rule="DINA" , method = "JML", conv = 0.001,
     maxiter = 300, increment.factor = 1.05, progress = TRUE)
 }
 
@@ -34,8 +34,8 @@ Q-matrix with binary entries (see \code{\link{din}}).
 }
 \item{method}{
 Estimation method. The default is joint maximum likelihood estimation
-(\code{JML}). Other options include an adaptive estimation of guessing and 
-slipping parameters (\code{adaptive}) while using these estimated parameters 
+(\code{JML}). Other options include an adaptive estimation of guessing and
+slipping parameters (\code{adaptive}) while using these estimated parameters
 as weights in the individual deviation function and classification based on
 the Hamming distance (\code{hamming}) and the weighted Hamming
 distance (\code{weighted.hamming}) (see Chiu & Douglas, 2013).
@@ -47,12 +47,12 @@ Convergence criterion for guessing and slipping parameters
 Maximum number of iterations
 }
   \item{increment.factor}{
-A numeric value of at least one which could help to improve convergence 
+A numeric value of at least one which could help to improve convergence
 behavior and decreases parameter increments in every iteration. This option is
 disabled by setting this argument to 1.
 }
 \item{progress}{An optional logical indicating whether the function
-    should print the progress of iteration in the estimation process.  } 
+    should print the progress of iteration in the estimation process.  }
 }
 
 %\details{
@@ -61,7 +61,7 @@ disabled by setting this argument to 1.
 \value{
 A list with following entries
 \item{attr.est}{Estimated attribute patterns}
-\item{criterion}{Criterion of the classification function. 
+\item{criterion}{Criterion of the classification function.
     For joint maximum likelihood it is the deviance.}
 \item{guess}{Estimated guessing parameters}
 \item{slip}{Estimated slipping parameters}
@@ -71,8 +71,8 @@ A list with following entries
 }
 
 \references{
-Chiu, C. Y., & Douglas, J. (2013). A nonparametric approach to 
-cognitive diagnosis by proximity to ideal response patterns. 
+Chiu, C. Y., & Douglas, J. (2013). A nonparametric approach to
+cognitive diagnosis by proximity to ideal response patterns.
 \emph{Journal of Classification, 30}, 225-250.
 }
 
@@ -89,7 +89,7 @@ cognitive diagnosis by proximity to ideal response patterns.
 For estimating the mixed DINA/DINO model using marginal maximum
 likelihood estimation see \code{\link{din}}.
 
-See also the \code{NPCD::JMLE} function in the \pkg{NPCD} package for 
+See also the \code{NPCD::JMLE} function in the \pkg{NPCD} package for
 joint maximum likelihood estimation of the DINA or the DINO model.
 }
 

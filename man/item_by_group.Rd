@@ -25,7 +25,7 @@ Dataset with item responses
 Vector of group identifiers
 }
 \item{invariant}{
-	Optional vector of variables which should
+    Optional vector of variables which should
 not be made group-specific, i.e. which should be treated
 as invariant across groups.
 }

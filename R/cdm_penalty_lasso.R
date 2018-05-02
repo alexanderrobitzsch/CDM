@@ -3,6 +3,6 @@
 
 cdm_penalty_lasso <- function( x, lambda )
 {
-	y <- lambda * abs(x)
-	return(y)
+    y <- lambda * abs(x)
+    return(y)
 }

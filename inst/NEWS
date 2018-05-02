@@ -24,7 +24,7 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 6.2  |  2018-04-25  |  Last: CDM 6.2-53
+VERSIONS CDM 6.2  |  2018-05-02  |  Last: CDM 6.2-91
 --------------------------------------------------------------
 
 FIXED * fixed a bug in IRT.RMSD() function for models fitted in
@@ -35,11 +35,18 @@ ADDED * included item discrimination indices in discrim.index()
 NOTE  * included argument 'IDI_diff' in the din.validate.qmatrix()
         function. Speeded this function due to referring most
         of the computations to Rcpp. 
-
-DATA  * included/modified datasets: ---
-EXAMP * included/modified examples: IRT.RMSD (3)
-
-
+ADDED * included cognitive diagnosis model for simultaneous 
+        identification for skills and misconceptions (Kuo et al.,
+        2018, APM). The model is included in the gdina() function
+        using the argument rule='SISM'.
+      
+DATA  * included/modified datasets: data.timss07.G4.py,
+        data.timss07.G4.Qdomains, data.timss11.G4.sa, data.cdm05,
+        data.cdm06, data.cdm07, data.pisa00R.ct, data.pisa00R.cc,
+        data.cdm08
+EXAMP * included/modified examples: IRT.RMSD (3),
+        data.timss07.G4.lee (2), data.cdm (2), data.pisa00R (1),
+        gdina (12)
 
 --------------------------------------------------------------
 VERSIONS CDM 6.1  |  2018-02-26  |  Last: CDM 6.1-10

@@ -1,5 +1,5 @@
 %% File Name: IRT.factor.scores.Rd
-%% File Version: 0.09
+%% File Version: 0.10
 
 \name{IRT.factor.scores}
 \alias{IRT.factor.scores}
@@ -39,10 +39,10 @@ IRT.factor.scores(object, \dots)
 Object of classes \code{\link{din}}, \code{\link{gdina}},
 \code{\link{mcdina}}, \code{\link{gdm}} or \code{\link{slca}}.
 }
-\item{type}{Type of estimated factor score. This can be 
-	\code{"MLE"}, \code{"MAP"} or \code{"EAP"}.
-	The type \code{EAP} cannot be used for objects of class \code{slca}.
-		}
+\item{type}{Type of estimated factor score. This can be
+    \code{"MLE"}, \code{"MAP"} or \code{"EAP"}.
+    The type \code{EAP} cannot be used for objects of class \code{slca}.
+        }
   \item{\dots}{
 More arguments to be passed.
 }

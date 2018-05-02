@@ -1,5 +1,5 @@
 %% File Name: IRT.data.Rd
-%% File Version: 0.12
+%% File Version: 0.13
 
 \name{IRT.data}
 \alias{IRT.data}
@@ -124,7 +124,7 @@ for (ii in 1:I){
     Xdes[ ii , 2 , 2 , ii+I ] <- 1  # probabilities class 2
 }
 # estimate model
-mod4 <- CDM::slca( dat, Xdes=Xdes)            
+mod4 <- CDM::slca( dat, Xdes=Xdes)
 summary(mod4)
 dmod4 <- CDM::IRT.data(mod4)
 }

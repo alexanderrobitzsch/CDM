@@ -1,5 +1,5 @@
 %% File Name: gdm.Rd
-%% File Version: 4.37
+%% File Version: 4.38
 
 \name{gdm}
 \alias{gdm}
@@ -13,28 +13,28 @@ General Diagnostic Model
 }
 \description{
 This function estimates the general diagnostic model
-(von Davier, 2008; Xu & von Davier, 2008) which handles 
+(von Davier, 2008; Xu & von Davier, 2008) which handles
 multidimensional item response models with ordered discrete
 or continuous latent variables for polytomous item
 responses.
 }
 \usage{
-gdm( data, theta.k, irtmodel="2PL", group=NULL, weights=rep(1, nrow(data)), 
-    Qmatrix=NULL , thetaDes = NULL , skillspace="loglinear",  
-    b.constraint=NULL, a.constraint=NULL, 
-    mean.constraint=NULL , Sigma.constraint=NULL , delta.designmatrix=NULL, 
-    standardized.latent=FALSE , centered.latent=FALSE , 
+gdm( data, theta.k, irtmodel="2PL", group=NULL, weights=rep(1, nrow(data)),
+    Qmatrix=NULL , thetaDes = NULL , skillspace="loglinear",
+    b.constraint=NULL, a.constraint=NULL,
+    mean.constraint=NULL , Sigma.constraint=NULL , delta.designmatrix=NULL,
+    standardized.latent=FALSE , centered.latent=FALSE ,
     centerintercepts=FALSE , centerslopes=FALSE ,
     maxiter=1000,  conv=1e-5, globconv=1e-5, msteps=4 , convM=.0005 ,
-    decrease.increments = FALSE , use.freqpatt=FALSE , progress=TRUE , 
-    PEM=FALSE, PEM_itermax=maxiter, ...) 
+    decrease.increments = FALSE , use.freqpatt=FALSE , progress=TRUE ,
+    PEM=FALSE, PEM_itermax=maxiter, ...)
 
 \method{summary}{gdm}(object, file = NULL , \dots)
 
 \method{print}{gdm}(x, \dots)
 
 \method{plot}{gdm}(x , perstype="EAP" , group=1 , barwidth=.1 , histcol=1 ,
-       cexcor=3 , pchpers=16 , cexpers=.7 , \dots ) 
+       cexcor=3 , pchpers=16 , cexpers=.7 , \dots )
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -52,8 +52,8 @@ In the one-dimensional case it must be a vector.
 For multidimensional models it has to be a list
 of skill vectors if the theta grid differs between
 dimensions. If not, a vector input can be supplied.
-If an estimated skillspace (\code{skillspace="est"} should be estimated, 
-a vector or a matrix \code{theta.k} will be used as initial values of the estimated 
+If an estimated skillspace (\code{skillspace="est"} should be estimated,
+a vector or a matrix \code{theta.k} will be used as initial values of the estimated
 \eqn{\bold{\theta}} grid.
 }
   \item{irtmodel}{
@@ -62,11 +62,11 @@ where item slopes on dimensions are equal for all
 item categories. If item-category slopes should
 be estimated, use \code{2PLcat}. If no item slopes
 should be estimated then \code{1PL} can be selected.
-Note that fixed item slopes can be specified in 
+Note that fixed item slopes can be specified in
 the Q-matrix (argument \code{Qmatrix}).
 }
   \item{group}{
-An optional vector of group identifiers for 
+An optional vector of group identifiers for
 multiple group estimation.
 For \code{plot.gdm} it is an integer indicating which
   group should be used for plotting.
@@ -75,7 +75,7 @@ For \code{plot.gdm} it is an integer indicating which
 An optional vector of sample weights
 }
   \item{Qmatrix}{
-An optional array of dimension \eqn{I \times D \times K} 
+An optional array of dimension \eqn{I \times D \times K}
 which indicates pre-specified item loadings
 on dimensions. The default for category \eqn{k} is the score \eqn{k}, i.e.
 the scoring in the (generalized) partial credit model.
@@ -85,13 +85,13 @@ A design matrix for specifying nonlinear item response
 functions (see Example 1, Models 4 and 5)
 }
   \item{skillspace}{
-The parametric assumption of the skillspace. 
+The parametric assumption of the skillspace.
 If \code{skillspace="normal"} then a univariate or
-multivariate normal distribution is assumed. 
+multivariate normal distribution is assumed.
 The default \code{"loglinear"} corresponds to log-linear
 smoothing of the skillspace distribution (Xu & von Davier, 2008).
 If \code{skillspace="full"}, then all probabilities of the skill space
-are nonparametrically estimated. If \code{skillspace="est"}, then the 
+are nonparametrically estimated. If \code{skillspace="est"}, then the
 \eqn{\bold{\theta}} distribution vectors will be estimated
 (see Details and Examples 4 and 5; Bartolucci, 2007).
 }
@@ -107,15 +107,15 @@ In this optional matrix with \eqn{C_a} rows and four columns,
 1st column: item index, 2nd column: dimension index,
 3rd column: category index, 4th column: fixed item slopes \cr
 }
-\item{mean.constraint}{A \eqn{C \times 3} matrix for 
+\item{mean.constraint}{A \eqn{C \times 3} matrix for
   constraining \eqn{C} means in the
   normal distribution assumption (\code{skillspace="normal"}).
   1st column: Dimension, 2nd column: Group, 3rd column: Value
         }
-\item{Sigma.constraint}{A \eqn{C \times 4} matrix for 
+\item{Sigma.constraint}{A \eqn{C \times 4} matrix for
   constraining \eqn{C} covariances in the
   normal distribution assumption (\code{skillspace="normal"}).
-  1st column: Dimension 1, 2nd column: Dimension 2, 
+  1st column: Dimension 1, 2nd column: Dimension 2,
   3rd column: Group, 4th column: Value
         }
   \item{delta.designmatrix}{
@@ -124,23 +124,23 @@ for the reduced skillspace estimation (see Xu &
 von Davier, 2008)
 }
 \item{standardized.latent}{A logical indicating whether in a uni- or multidimensional
-model all latent variables of the first group should be normally distributed 
+model all latent variables of the first group should be normally distributed
 and standardized. The default is \code{FALSE}.}
 \item{centered.latent}{
-	A logical indicating whether in a uni- or multidimensional
-	model all latent variables of the first group should be normally 
-	distributed and do have zero means? The default is \code{FALSE}.
-		}
+    A logical indicating whether in a uni- or multidimensional
+    model all latent variables of the first group should be normally
+    distributed and do have zero means? The default is \code{FALSE}.
+        }
 \item{centerintercepts}{
-	A logical indicating whether intercepts should be centered to have a 
-	mean of 0 for all dimensions. This argument does not (yet) work properly
-	for varying numbers of item categories.
-		}
+    A logical indicating whether intercepts should be centered to have a
+    mean of 0 for all dimensions. This argument does not (yet) work properly
+    for varying numbers of item categories.
+        }
 \item{centerslopes}{
-	A logical indicating whether item slopes should be centered to have 
-	a mean of 1 for all dimensions. This argument only works for 
-	\code{irtmodel="2PL"}. The default is \code{FALSE}.
-		}
+    A logical indicating whether item slopes should be centered to have
+    a mean of 1 for all dimensions. This argument only works for
+    \code{irtmodel="2PL"}. The default is \code{FALSE}.
+        }
   \item{maxiter}{
 Maximum number of iterations
 }
@@ -152,12 +152,12 @@ distribution parameters
 Global deviance convergence criterion
 }
 \item{msteps}{
-	Maximum number of M steps in estimating \eqn{b} and
-	\eqn{a} item parameters. The default is to use 4 M steps.
+    Maximum number of M steps in estimating \eqn{b} and
+    \eqn{a} item parameters. The default is to use 4 M steps.
 }
 \item{convM}{
-	Convergence criterion in M step
-		}
+    Convergence criterion in M step
+        }
 \item{decrease.increments}{Should in the M step the increments
     of \eqn{a} and \eqn{b} parameters decrease during iterations?
     The default is \code{FALSE}. If there is an increase in deviance
@@ -165,35 +165,35 @@ Global deviance convergence criterion
     is recommended.
 }
 \item{use.freqpatt}{
-	A logical indicating whether frequencies of unique item response patterns
-	should be used. In case of large data set \code{use.freqpatt=TRUE}
-	can speed calculations (depending on the problem). 
-	Note that in this case, not all person parameters are calculated 
-	as usual in the output.
-		}
+    A logical indicating whether frequencies of unique item response patterns
+    should be used. In case of large data set \code{use.freqpatt=TRUE}
+    can speed calculations (depending on the problem).
+    Note that in this case, not all person parameters are calculated
+    as usual in the output.
+        }
   \item{progress}{
- 	An optional logical indicating whether the function should print the 
- 	progress of iteration in the estimation process. 
-}		
+     An optional logical indicating whether the function should print the
+     progress of iteration in the estimation process.
+}
 \item{PEM}{Logical indicating whether the P-EM acceleration should be
 applied (Berlinet & Roland, 2012).}
 \item{PEM_itermax}{Number of iterations in which the P-EM method should be
-applied.} 
+applied.}
   \item{object}{A required object of class \code{gdm}}
 \item{file}{Optional file name for a file in which \code{summary}
-should be sinked.}        
+should be sinked.}
   \item{x}{A required object of class \code{gdm}}
 \item{perstype}{Person parameter estimate type. Can be either
-\code{"EAP"}, \code{"MAP"} or \code{"MLE"}.} 
+\code{"EAP"}, \code{"MAP"} or \code{"MLE"}.}
 \item{barwidth}{Bar width in \code{plot.gdm}}
 \item{histcol}{Color of histogram bars in \code{plot.gdm}}
 \item{cexcor}{Font size for print of correlation in \code{plot.gdm}}
 \item{pchpers}{Point type for scatter plot of person
 parameters in \code{plot.gdm}}
 \item{cexpers}{Point size for scatter plot of person
-parameters in \code{plot.gdm}}  
+parameters in \code{plot.gdm}}
   \item{\dots}{Optional parameters to be passed to or from other
-    methods will be ignored.  }  		
+    methods will be ignored.  }
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -214,24 +214,24 @@ are estimated:
 \deqn{logit P( X_{nj} = k | \theta_n ) = b_{j0} +
     \sum_d a_{jd} q_{jdk} \theta_{nd} }
 Case \code{irtmodel="2PLcat"}: \cr
-For each item, each dimension and each category, 
+For each item, each dimension and each category,
 different item slopes \eqn{a_{jdk}}
 are estimated:
 \deqn{logit P( X_{nj} = k | \theta_n ) = b_{j0} +
     \sum_d a_{jdk} q_{jdk} \theta_{nd} }
 
-Note that this model can be generalized to include terms of 
+Note that this model can be generalized to include terms of
 any transformation \eqn{t_h} of the \eqn{\theta_n} vector (e.g. quadratic terms,
 step functions or interaction) such that the model can be formulated as
 \deqn{logit P( X_{nj} = k | \theta_n ) = b_{j0} +
     \sum_h a_{jhk} q_{jhk} t_h( \theta_{n} ) }
-In general, the number of functions \eqn{t_1 , ... , t_H} will be 
+In general, the number of functions \eqn{t_1 , ... , t_H} will be
 larger than the \eqn{\theta} dimension of \eqn{D}.
 
 The estimation follows an EM algorithm as described in von Davier and
 Yamamoto (2004) and von Davier (2008).
 
-In case of \code{skillspace="est"}, the \eqn{\bold{\theta}} vectors 
+In case of \code{skillspace="est"}, the \eqn{\bold{\theta}} vectors
 (the grid of the theta distribution) are estimated (Bartolucci, 2007;
 Bacci, Bartolucci & Gnaldi, 2012). This model is called a multidimensional
 latent class item response model.
@@ -247,7 +247,7 @@ following entries:
 \item{item}{Data frame with item parameters}
 \item{person}{Data frame with person parameters:
     \code{EAP} denotes the mean of the individual posterior distribution,
-    \code{SE.EAP} the corresponding standard error, 
+    \code{SE.EAP} the corresponding standard error,
     \code{MLE} the maximum likelihood estimate at \code{theta.k}
     and \code{MAP} the mode of the posterior distribution
 }
@@ -259,17 +259,17 @@ following entries:
 \item{a}{Item slopes \eqn{a_{jd}} resp. \eqn{a_{jdk}}}
 \item{se.a}{Standard error of item slopes \eqn{a_{jd}} resp. \eqn{a_{jdk}}}
 \item{itemfit.rmsea}{The RMSEA item fit index (see \code{\link{itemfit.rmsea}}).
-	This entry comes as a list with total and group-wise item fit
-	statistics.
+    This entry comes as a list with total and group-wise item fit
+    statistics.
             }
 \item{mean.rmsea}{Mean of RMSEA item fit indexes.
-            }            
+            }
 \item{Qmatrix}{Used Q-matrix}
 \item{pi.k}{Trait distribution}
 \item{mean.trait}{Means of trait distribution}
 \item{sd.trait}{Standard deviations of trait distribution}
 \item{skewness.trait}{Skewnesses of trait distribution}
-\item{correlation.trait}{List of correlation matrices of trait distribution 
+\item{correlation.trait}{List of correlation matrices of trait distribution
       corresponding to each group}
 \item{pjk}{Item response probabilities evaluated at grid \code{theta.k}}
 \item{n.ik}{An array of expected counts \eqn{n_{cikg}} of ability class \eqn{c}
@@ -288,10 +288,10 @@ following entries:
 \item{skill.levels}{Number of skill levels per dimension}
 \item{K.item}{Maximal category per item}
 \item{theta.k}{Used theta design or estimated theta trait distribution
-	in case of \code{skillspace="est"} }
+    in case of \code{skillspace="est"} }
 \item{thetaDes}{Used theta design for item responses}
 \item{se.theta.k}{Estimated standard errors of \code{theta.k} if it is
-	estimated}
+    estimated}
 \item{time}{Info about computation time}
 \item{skillspace}{Used skillspace parametrization}
 \item{iter}{Number of iterations}
@@ -299,7 +299,7 @@ following entries:
 \item{object}{Object of class \code{gdm}}
 \item{x}{Object of class \code{gdm}}
 \item{perstype}{Person paramter estimate type. Can be either
-\code{"EAP"}, \code{"MAP"} or \code{"MLE"}.} 
+\code{"EAP"}, \code{"MAP"} or \code{"MLE"}.}
 \item{group}{Group which should be used for \code{plot.gdm}}
 \item{barwidth}{Bar width in \code{plot.gdm}}
 \item{histcol}{Color of histogram bars in \code{plot.gdm}}
@@ -309,11 +309,11 @@ parameters in \code{plot.gdm}}
 \item{cexpers}{Point size for scatter plot of person
 parameters in \code{plot.gdm}}
 \item{\dots}{Optional parameters to be passed to or from other
-    methods will be ignored.  }  
+    methods will be ignored.  }
 }
 
 % \method{plot}{gdm}(x , perstype="EAP" , group=1 , barwidth=.1 , histcol=1 ,
-%       cexcor=3 , pchpers=16 , cexpers=.7 , \dots ) 
+%       cexcor=3 , pchpers=16 , cexpers=.7 , \dots )
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -321,23 +321,23 @@ parameters in \code{plot.gdm}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \references{
-Bacci, S., Bartolucci, F., & Gnaldi, M. (2012). 
-A class of multidimensional latent class IRT models for ordinal 
+Bacci, S., Bartolucci, F., & Gnaldi, M. (2012).
+A class of multidimensional latent class IRT models for ordinal
 polytomous item responses. \emph{arXiv preprint}, \emph{arXiv:1201.4667}.
 
-Bartolucci, F. (2007). A class of multidimensional IRT models for testing 
+Bartolucci, F. (2007). A class of multidimensional IRT models for testing
 unidimensionality and clustering items. \emph{Psychometrika, 72}, 141-157.
 
-Berlinet, A. F., & Roland, C. (2012). 
+Berlinet, A. F., & Roland, C. (2012).
 Acceleration of the EM algorithm: P-EM versus epsilon algorithm.
 \emph{Computational Statistics & Data Analysis}, \bold{56}(12), 4122-4137.
 
-von Davier, M. (2008). A general diagnostic model applied to 
+von Davier, M. (2008). A general diagnostic model applied to
 language testing data. \emph{British Journal
 of Mathematical and Statistical Psychology, 61}, 287-307.
 
-von Davier, M., & Yamamoto, K. (2004). Partially observed mixtures of IRT models: 
-An extension of the generalized partial-credit model. 
+von Davier, M., & Yamamoto, K. (2004). Partially observed mixtures of IRT models:
+An extension of the generalized partial-credit model.
 \emph{Applied Psychological Measurement, 28}, 389-406.
 
 Xu, X., & von Davier, M. (2008). \emph{Fitting the structured general diagnostic
@@ -354,13 +354,13 @@ model to NAEP data}. ETS Research Report ETS RR-08-27. Princeton, ETS.
 
 \seealso{
 Cognitive diagnostic models for dichotomous data can be estimated
-with \code{\link{din}} (DINA or DINO model) or \code{\link{gdina}} 
+with \code{\link{din}} (DINA or DINO model) or \code{\link{gdina}}
 (GDINA model, which contains many CDMs as special cases).
 
-For assessment of model fit see \code{\link{modelfit.cor.din}} and 
+For assessment of model fit see \code{\link{modelfit.cor.din}} and
 \code{\link{anova.gdm}}.
 
-See \code{\link{itemfit.sx2}} for item fit statistics.  
+See \code{\link{itemfit.sx2}} for item fit statistics.
 
 For the estimation of the multidimensional
 latent class item response model see the \pkg{MultiLCIRT} package
@@ -391,14 +391,14 @@ plot(mod1)
 #***
 # Model 2: Rasch model (log-linear smoothing)
 # set the item difficulty of the 8th item to zero
-b.constraint <- matrix( c(8,1,0) , 1 , 3 )  
-mod2 <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k , 
+b.constraint <- matrix( c(8,1,0) , 1 , 3 )
+mod2 <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k ,
                skillspace="loglinear" , b.constraint=b.constraint  )
 summary(mod2)
 
 #***
 # Model 3: 2PL model
-mod3 <- CDM::gdm( dat , irtmodel="2PL" , theta.k=theta.k , 
+mod3 <- CDM::gdm( dat , irtmodel="2PL" , theta.k=theta.k ,
                skillspace="normal" , standardized.latent=TRUE  )
 summary(mod3)
 
@@ -409,7 +409,7 @@ summary(mod3)
 #   stable estimate
 thetaDes <- cbind( theta.k , theta.k^2 )
 colnames(thetaDes) <- c( "F1" , "F1q" )
-mod4 <- CDM::gdm( dat , irtmodel="2PL" , theta.k=theta.k , 
+mod4 <- CDM::gdm( dat , irtmodel="2PL" , theta.k=theta.k ,
           thetaDes = thetaDes , skillspace="normal" ,
           standardized.latent=TRUE , decrease.increments=TRUE)
 summary(mod4)
@@ -419,7 +419,7 @@ summary(mod4)
 #          two different probabilities theta < 0 and theta > 0
 thetaDes <- matrix( 1*(theta.k>0) , ncol=1 )
 colnames(thetaDes) <- c( "Fgrm1" )
-mod5 <- CDM::gdm( dat , irtmodel="2PL" , theta.k=theta.k , 
+mod5 <- CDM::gdm( dat , irtmodel="2PL" , theta.k=theta.k ,
           thetaDes = thetaDes , skillspace="normal" )
 summary(mod5)
 
@@ -460,7 +460,7 @@ summary(mod1b)
 
 #***
 # Model 2: PCM with two groups
-mod2 <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k , 
+mod2 <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k ,
             group= CDM::data.Students$urban + 1 , skillspace="normal" ,
             centered.latent=TRUE)
 summary(mod2)
@@ -468,14 +468,14 @@ summary(mod2)
 #***
 # Model 3: PCM with loglinear smoothing
 b.constraint <- matrix( c(1,2,0) , ncol=3 )
-mod3 <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k , 
+mod3 <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k ,
     skillspace="loglinear" , b.constraint=b.constraint )
 summary(mod3)
 
 #***
 # Model 4: Model with pre-specified item weights in Q-matrix
 Qmatrix <- array( 1 , dim=c(5,1,2) )
-Qmatrix[,1,2] <- 2 	# default is score 2 for category 2
+Qmatrix[,1,2] <- 2     # default is score 2 for category 2
 # now change the scoring of category 2:
 Qmatrix[c(2,4),1,1] <- .74
 Qmatrix[c(2,4),1,2] <- 2.3
@@ -486,14 +486,14 @@ summary(mod4)
 
 #***
 # Model 5: Generalized partial credit model
-mod5 <- CDM::gdm( dat , irtmodel="2PL" , theta.k=theta.k ,  
+mod5 <- CDM::gdm( dat , irtmodel="2PL" , theta.k=theta.k ,
           skillspace="normal" , standardized.latent=TRUE )
 summary(mod5)
 
 #***
 # Model 6: Item-category slope estimation
-mod6 <- CDM::gdm( dat , irtmodel="2PLcat" , theta.k=theta.k ,  skillspace="normal" , 
-                 standardized.latent=TRUE , decrease.increments=TRUE)        
+mod6 <- CDM::gdm( dat , irtmodel="2PLcat" , theta.k=theta.k ,  skillspace="normal" ,
+                 standardized.latent=TRUE , decrease.increments=TRUE)
 summary(mod6)
 
 #***
@@ -503,12 +503,12 @@ dat0[ paste(dat0[,1]) == 2 , 1 ] <- 1 # 1st item has only two categories
 dat0[ paste(dat0[,3]) == 2 , 3 ] <- 1 # 3rd item has only two categories
 
 # Model 7a: PCM
-mod7a <- CDM::gdm( dat0 , irtmodel="1PL" , theta.k=theta.k ,  centered.latent=TRUE )        
+mod7a <- CDM::gdm( dat0 , irtmodel="1PL" , theta.k=theta.k ,  centered.latent=TRUE )
 summary(mod7a)
 
 # Model 7b: Item category slopes
-mod7b <- CDM::gdm( dat0 , irtmodel="2PLcat" , theta.k=theta.k ,  
-                 standardized.latent=TRUE , decrease.increments=TRUE )        
+mod7b <- CDM::gdm( dat0 , irtmodel="2PLcat" , theta.k=theta.k ,
+                 standardized.latent=TRUE , decrease.increments=TRUE )
 summary(mod7b)
 
 #############################################################################
@@ -523,54 +523,54 @@ Qmatrix <- data.fraction2$q.matrix3
 #***
 # Model 1: One-dimensional Rasch model
 theta.k <- seq( -4 , 4 , len=11 )   # discretized ability
-mod1 <- CDM::gdm( dat , irtmodel = "1PL" , theta.k=theta.k ,  centered.latent=TRUE) 
+mod1 <- CDM::gdm( dat , irtmodel = "1PL" , theta.k=theta.k ,  centered.latent=TRUE)
 summary(mod1)
 plot(mod1)
 
 #***
 # Model 2: One-dimensional 2PL model
-mod2 <- CDM::gdm( dat , irtmodel = "2PL" , theta.k=theta.k , standardized.latent=TRUE) 
+mod2 <- CDM::gdm( dat , irtmodel = "2PL" , theta.k=theta.k , standardized.latent=TRUE)
 summary(mod2)
 plot(mod2)
 
 #***
 # Model 3: 3-dimensional Rasch Model (normal distribution)
-mod3 <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k, Qmatrix=Qmatrix, 
+mod3 <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k, Qmatrix=Qmatrix,
             centered.latent=TRUE,  globconv=5*1E-3 , conv=1E-4 )
-summary(mod3)            
+summary(mod3)
 
 #***
 # Model 4: 3-dimensional Rasch model (loglinear smoothing)
 # set some item parameters of items 4,1 and 2 to zero
 b.constraint <- cbind( c(4,1,2) , 1 , 0 )
-mod4 <- CDM::gdm( dat , irtmodel="1PL", theta.k=theta.k, Qmatrix=Qmatrix, 
+mod4 <- CDM::gdm( dat , irtmodel="1PL", theta.k=theta.k, Qmatrix=Qmatrix,
               b.constraint=b.constraint, skillspace="loglinear" )
-summary(mod4)            
+summary(mod4)
 
 #***
 # Model 5: define a different theta grid for each dimension
-theta.k <- list( "Dim1"= seq( -5 , 5 , len=11 ) , 
-                 "Dim2"= seq(-5,5,len=8) , 
+theta.k <- list( "Dim1"= seq( -5 , 5 , len=11 ) ,
+                 "Dim2"= seq(-5,5,len=8) ,
                  "Dim3"=seq( -3,3,len=6) )
-mod5 <- CDM::gdm( dat , irtmodel="1PL", theta.k=theta.k, Qmatrix=Qmatrix, 
+mod5 <- CDM::gdm( dat , irtmodel="1PL", theta.k=theta.k, Qmatrix=Qmatrix,
                  b.constraint=b.constraint,  skillspace="loglinear")
-summary(mod5)            
+summary(mod5)
 
 #***
 # Model 6: multdimensional 2PL model (normal distribution)
 theta.k <- seq( -5 , 5 , len=13 )
 a.constraint <- cbind( c(8,1,3) , 1:3 , 1 , 1 ) # fix some slopes to 1
-mod6 <- CDM::gdm( dat , irtmodel="2PL", theta.k=theta.k,  Qmatrix=Qmatrix, 
-            centered.latent=TRUE, a.constraint=a.constraint, decrease.increments=TRUE, 
+mod6 <- CDM::gdm( dat , irtmodel="2PL", theta.k=theta.k,  Qmatrix=Qmatrix,
+            centered.latent=TRUE, a.constraint=a.constraint, decrease.increments=TRUE,
             skillspace="normal")
 summary(mod6)
-           
+
 #***
 # Model 7: multdimensional 2PL model (loglinear distribution)
 a.constraint <- cbind( c(8,1,3) , 1:3 , 1 , 1 )
 b.constraint <- cbind( c(8,1,3) , 1 , 0 )
-mod7 <- CDM::gdm( dat , irtmodel="2PL", theta.k=theta.k,  Qmatrix=Qmatrix, 
-               b.constraint=b.constraint,  a.constraint=a.constraint, 
+mod7 <- CDM::gdm( dat , irtmodel="2PL", theta.k=theta.k,  Qmatrix=Qmatrix,
+               b.constraint=b.constraint,  a.constraint=a.constraint,
                decrease.increments=FALSE, skillspace="loglinear")
 summary(mod7)
 
@@ -583,7 +583,7 @@ set.seed(754)
 I <- 20     # number of items
 N <- 2000   # number of persons
 theta <- c( -2 , 0 , 1 , 2 )
-theta <- rep( theta , c(N/4,N/4 , 3*N/8 , N/8)  ) 
+theta <- rep( theta , c(N/4,N/4 , 3*N/8 , N/8)  )
 b <- seq(-2,2,len=I)
 library(sirt)   # use function sim.raschtype from sirt package
 dat <- sirt::sim.raschtype( theta=theta , b=b )
@@ -614,7 +614,7 @@ N <- 2400   # number of persons
 
 # simulate Dimension 1 at 4 discrete theta points
 theta <- c( -2 , 0 , 1 , 2 )
-theta <- rep( theta , c(N/4,N/4 , 3*N/8 , N/8)  ) 
+theta <- rep( theta , c(N/4,N/4 , 3*N/8 , N/8)  )
 b <- seq(-2,2,len=I)
 library(sirt)  # use simulation function from sirt package
 dat1 <- sirt::sim.raschtype( theta=theta , b=b )
@@ -654,7 +654,7 @@ theta.k <- seq(-6,6,len=21)
 
 #***
 # Model 1: Generalized partial credit model with multiple groups
-mod1 <- CDM::gdm( dat , irtmodel="2PL" , theta.k=theta.k, group=CDM::data.mg$group, 
+mod1 <- CDM::gdm( dat , irtmodel="2PL" , theta.k=theta.k, group=CDM::data.mg$group,
               skillspace="normal" , standardized.latent=TRUE ,)
 summary(mod1)
 }

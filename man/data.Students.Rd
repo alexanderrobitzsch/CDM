@@ -1,5 +1,5 @@
 %% File Name: data.Students.Rd
-%% File Version: 0.16
+%% File Version: 0.17
 
 \name{data.Students}
 \alias{data.Students}
@@ -10,7 +10,7 @@ Dataset Student Questionnaire
 \description{
 This dataset contains item responses of students at
 a scale of cultural activities (\code{act}),
-mathematics self concept (\code{sc}) and 
+mathematics self concept (\code{sc}) and
 mathematics joyment (\code{mj}).
 }
 \usage{data(data.Students)}
@@ -19,12 +19,12 @@ mathematics joyment (\code{mj}).
   \describe{
    \item{\code{urban}}{Urbanization level: 1=town, 0=otherwise}
     \item{\code{female}}{A dummy variable for female student}
-    \item{\code{act1}}{Visit a museum (0=never, 1=once or twice a year, 
+    \item{\code{act1}}{Visit a museum (0=never, 1=once or twice a year,
           2=more than twice a year)}
     \item{\code{act2}}{Visit a theater or classical concert (0,1,2)}
     \item{\code{act3}}{Visit a rock or pop concert (0,1,2)}
     \item{\code{act4}}{Visit a cinema (0,1,2)}
-    \item{\code{act5}}{Visit a public library (0,1,2)}    
+    \item{\code{act5}}{Visit a public library (0,1,2)}
     \item{\code{sc1}}{Item 1 self concept (0-low, 1,2,3-high)}
     \item{\code{sc2}}{Item 2 self concept (0,1,2,3)}
     \item{\code{sc3}}{Item 3 self concept (0,1,2,3)}

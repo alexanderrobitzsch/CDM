@@ -1,5 +1,5 @@
 %% File Name: cdi.kli.Rd
-%% File Version: 0.15
+%% File Version: 0.18
 
 \name{cdi.kli}
 \alias{cdi.kli}
@@ -12,7 +12,8 @@ Cognitive Diagnostic Indices based on Kullback-Leibler Information
 This function computes several cognitive diagnostic indices grounded
 on the Kullback-Leibler information (Rupp, Henson
 & Templin, 2009, Ch. 13) at the test, item, attribute and item-attribute level.
-See Henson and Douglas (2005) and Henson et al. (2008) for more details.
+See Henson and Douglas (2005) and Henson, Roussos, Douglas and He (2008)
+for more details.
 }
 
 \usage{
@@ -55,11 +56,11 @@ discrimination statistics}
 }
 
 \references{
-Henson, R., & Douglas, J. (2005). Test construction for cognitive diagnosis. 
+Henson, R., & Douglas, J. (2005). Test construction for cognitive diagnosis.
 \emph{Applied Psychological Measurement, 29}, 262-277.
 
-Henson, R., Roussos, L., Douglas, J., & He, X. (2008). 
-Cognitive diagnostic attribute-level discrimination indices. 
+Henson, R., Roussos, L., Douglas, J., & He, X. (2008).
+Cognitive diagnostic attribute-level discrimination indices.
 \emph{Applied Psychological Measurement, 32}, 275-288.
 
 Rupp, A. A., Templin, J., & Henson, R. A. (2010). \emph{Diagnostic
@@ -85,7 +86,7 @@ probability metric.
 \examples{
 #############################################################################
 # EXAMPLE 1: Examples based on CDM::sim.dina
-#############################################################################	
+#############################################################################
 
 data(sim.dina, package="CDM")
 data(sim.qmatrix, package="CDM")
@@ -108,21 +109,21 @@ cmod <- CDM::cdi.kli( mod )
 
 # attribute discrimination indices
 round( cmod$attr_disc , 3 )
-  ##      V1     V2     V3 
-  ##   1.966  2.506 11.169 
+  ##      V1     V2     V3
+  ##   1.966  2.506 11.169
 
 # look at global item discrimination indices
 round( cmod$glob_item_disc , 3 )
   ##  > round( cmod$glob_item_disc , 3 )
-  ##  Item1 Item2 Item3 Item4 Item5 Item6 Item7 Item8 Item9 
-  ##  0.594 0.486 0.533 0.465 5.913 0.093 0.040 0.397 0.656 
+  ##  Item1 Item2 Item3 Item4 Item5 Item6 Item7 Item8 Item9
+  ##  0.594 0.486 0.533 0.465 5.913 0.093 0.040 0.397 0.656
 
 # correlation of IDI and global item discrimination
 stats::cor( cmod$glob_item_disc , mod$IDI )
   ##  [1] 0.6927274
 
 # attribute-specific item indices
-round( cmod$attr_item_disc , 3 )            
+round( cmod$attr_item_disc , 3 )
   ##           V1    V2    V3
   ##  Item1 0.648 0.648 0.000
   ##  Item2 0.000 0.530 0.530
@@ -133,7 +134,7 @@ round( cmod$attr_item_disc , 3 )
   ##  Item7 0.040 0.040 0.040
   ##  Item8 0.000 0.433 0.433
   ##  Item9 0.000 0.715 0.715
-            
+
 ## Note that attributes with a zero entry for an item
 ## do not differ from zero for the attribute specific item index
 }

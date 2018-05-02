@@ -1,5 +1,5 @@
 %% File Name: equivalent.dina.Rd
-%% File Version: 1.18
+%% File Version: 1.19
 
 \name{equivalent.dina}
 \alias{equivalent.dina}
@@ -35,9 +35,9 @@ are possible reparameterizations.
 A list with following entries
 
   \item{q.matrix}{Original Q-matrix}
-  \item{q.matrix.ast}{Reparameterized Q-matrix}  
+  \item{q.matrix.ast}{Reparameterized Q-matrix}
   \item{alpha}{Original skill space}
-  \item{alpha.ast}{Reparameterized skill space}  
+  \item{alpha.ast}{Reparameterized skill space}
 }
 
 
@@ -62,11 +62,11 @@ diagnostic model: Two variants of a model equivalency.
 %}
 \examples{
 #############################################################################
-# EXAMPLE 1: Toy example 
+# EXAMPLE 1: Toy example
 #############################################################################
 
 # define a Q-matrix
-Q <- matrix( c( 1,0,0 ,  0,1,0 , 
+Q <- matrix( c( 1,0,0 ,  0,1,0 ,
         0,0,1,   1,0,1 ,  1,1,1 ) , byrow=TRUE , ncol=3 )
 Q <- Q[ rep(1:(nrow(Q)),each=2) , ]
 
@@ -80,7 +80,7 @@ res2
 
 \dontrun{
 #############################################################################
-# EXAMPLE 2: Estimation with two equivalent DINA models 
+# EXAMPLE 2: Estimation with two equivalent DINA models
 #############################################################################
 
 # simulate data
@@ -110,7 +110,7 @@ round( cbind( mod2$attribute.patt, mod1$attribute.patt ) , 4 )
 
 
 #############################################################################
-# EXAMPLE 3: Examples from von Davier (2014) 
+# EXAMPLE 3: Examples from von Davier (2014)
 #############################################################################
 
 # define Q-matrix

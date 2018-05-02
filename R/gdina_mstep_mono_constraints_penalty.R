@@ -3,6 +3,6 @@
 
 gdina_mstep_mono_constraints_penalty <- function(x)
 {
-	y <- ifelse( x < 0, x^2 , 0 )
-	return(y)
+    y <- ifelse( x < 0, x^2 , 0 )
+    return(y)
 }

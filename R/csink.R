@@ -1,10 +1,10 @@
 ## File Name: csink.R
-## File Version: 1.01
+## File Version: 1.02
 
 
 csink <- function( file)
 {
-	if ( ! is.null( file ) ){  
-		sink()	
-	}	
+    if ( ! is.null( file ) ){
+        sink()
+    }
 }

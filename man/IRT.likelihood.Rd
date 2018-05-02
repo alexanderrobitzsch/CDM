@@ -1,5 +1,5 @@
 %% File Name: IRT.likelihood.Rd
-%% File Version: 0.17
+%% File Version: 0.18
 
 \name{IRT.likelihood}
 \alias{IRT.likelihood}
@@ -21,7 +21,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 
 \title{
-S3 Methods for Extracting of the Individual Likelihood and the Individual Posterior 
+S3 Methods for Extracting of the Individual Likelihood and the Individual Posterior
 }
 
 \description{

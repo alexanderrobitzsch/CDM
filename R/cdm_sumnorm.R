@@ -3,7 +3,7 @@
 
 cdm_sumnorm <- function(vec, norm=1)
 {
-	vec <- as.vector(vec)
-	res <- vec / sum(vec) * norm
-	return(res)
+    vec <- as.vector(vec)
+    res <- vec / sum(vec) * norm
+    return(res)
 }

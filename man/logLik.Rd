@@ -1,5 +1,5 @@
 %% File Name: logLik.Rd
-%% File Version: 0.16
+%% File Version: 0.17
 
 \name{logLik}
 \alias{logLik.din}
@@ -29,15 +29,15 @@
 }
 
 \arguments{
-  \item{object}{ An object inheriting from either class \code{din}, 
-  \code{gdina}, \code{slca}, \code{reglca} or \code{gdm}. 
-  	}
+  \item{object}{ An object inheriting from either class \code{din},
+  \code{gdina}, \code{slca}, \code{reglca} or \code{gdm}.
+      }
   \item{\dots}{Additional arguments}
 }
 
 \seealso{
-	\code{\link{din}}, \code{\link{gdina}}, \code{\link{gdm}},
-	\code{\link{mcdina}}, \code{\link{slca}}, \code{\link{reglca}}
+    \code{\link{din}}, \code{\link{gdina}}, \code{\link{gdm}},
+    \code{\link{mcdina}}, \code{\link{slca}}, \code{\link{reglca}}
 }
 
 \examples{
@@ -53,13 +53,13 @@ lld1 <- logLik(d1)
   ##   > attr(lld1,"df")
   ##   [1] 25
   ##   > attr(lld1,"nobs")
-  ##   [1] 400	
-nobs(lld1)  
+  ##   [1] 400
+nobs(lld1)
 
 # AIC and BIC
 AIC(lld1)
 BIC(lld1)
-}	
+}
 
 \keyword{methods}
 \keyword{logLik}

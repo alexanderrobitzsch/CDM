@@ -1,5 +1,5 @@
 %% File Name: IRT.RMSD.Rd
-%% File Version: 0.17
+%% File Version: 0.19
 
 \name{IRT.RMSD}
 \alias{IRT.RMSD}
@@ -12,18 +12,18 @@ Root Mean Square Deviation (RMSD) Item Fit Statistic
 
 \description{
 Computed the item fit statistics root mean square deviation (RMSD),
-mean absolute deviation (MAD) and mean deviation (MD). 
-See Oliveri and von Davier (2011)
-for details.
+mean absolute deviation (MAD) and mean deviation (MD).
+See Oliveri and von Davier (2011) for details.
 
 The RMSD statistics was denoted as the RMSEA statistic in older
 publications, see \code{\link{itemfit.rmsea}}.
 
 If multiple groups are defined in the model object, a weighted item fit
 statistic (WRMSD; Yamamoto, Khorramdel, & von Davier, 2013;
-von Davier et al., 2013) is 
+von Davier, Weeks, Chen, Allen & van der Velden, 2013) is
 additionally computed.
 }
+
 
 \usage{
 IRT.RMSD(object)
@@ -40,8 +40,8 @@ Object for which the methods \code{IRT.expectedCounts} and
 }
   \item{digits}{Number of digits used for rounding}
 \item{file}{Optional file name for a file in which \code{summary}
-should be sinked.}        
-    \item{\dots}{Optional parameters to be passed.  }  
+should be sinked.}
+    \item{\dots}{Optional parameters to be passed.  }
 }
 
 \details{
@@ -54,7 +54,7 @@ uniform and nonuniform differential item functioning.
 List with entries
  \item{RMSD}{Item-wise and group-wise RMSD statistic}
  \item{RMSD_bc}{Item-wise and group-wise RMSD statistic with analytical
-      bias correction} 
+      bias correction}
  \item{MAD}{Item-wise and group-wise MAD statistic}
  \item{MD}{Item-wise and group-wise MD statistic}
  \item{chisquare_stat}{Item-wise and group-wise \eqn{\chi^2} statistic}
@@ -62,19 +62,19 @@ List with entries
 }
 
 \references{
-Oliveri, M. E., & von Davier, M. (2011).	
-Investigation of model fit and score scale comparability in 
-international assessments. 
+Oliveri, M. E., & von Davier, M. (2011).
+Investigation of model fit and score scale comparability in
+international assessments.
 \emph{Psychological Test and Assessment Modeling, 53}, 315-333.
 
 von Davier, M., Weeks, J., Chen, H., Allen, J., & van der Velden, R. (2013).
 Creating simple and complex derived variables and validation of background
-questionnaire data. 
+questionnaire data.
 In OECD (Eds.). \emph{Technical Report of the Survey of Adults Skills (PIAAC)}
 (Ch. 20). Paris: OECD.
 
 Yamamoto, K., Khorramdel, L., & von Davier, M. (2013).
-Scaling PIAAC cognitive data. 
+Scaling PIAAC cognitive data.
 In OECD (Eds.). \emph{Technical Report of the Survey of Adults Skills (PIAAC)}
 (Ch. 17). Paris: OECD.
 }
@@ -117,7 +117,7 @@ data(data.math, package="sirt")
 dat <- data.math$data
 items <- grep("M[A-Z]", colnames(dat) , value=TRUE )
 
-#-- fit multiple group Rasch model 
+#-- fit multiple group Rasch model
 mod <- TAM::tam.mml( dat[,items], group= dat$female )
 summary(mod)
 

@@ -4,7 +4,7 @@
 
 cdm_print_summary_call <- function(object)
 {
-	cat("Call:\n")
-	print(object$call)
-	cat("\n")
+    cat("Call:\n")
+    print(object$call)
+    cat("\n")
 }

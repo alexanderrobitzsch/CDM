@@ -1,5 +1,5 @@
 %% File Name: IRT.repDesign.Rd
-%% File Version: 0.16
+%% File Version: 0.17
 
 \name{IRT.repDesign}
 \alias{IRT.repDesign}
@@ -9,13 +9,13 @@ Generation of a Replicate Design for \code{IRT.jackknife}
 }
 
 \description{
-This function generates a Jackknife replicate design which is 
+This function generates a Jackknife replicate design which is
 necessary to use the \code{IRT.jackknife} function. The function
 is a wrapper to \code{BIFIE.data.jack} in the \pkg{BIFIEsurvey} package.
 }
 
 \usage{
-IRT.repDesign(data, wgt = NULL, jktype = "JK_TIMSS", jkzone = NULL, jkrep = NULL, 
+IRT.repDesign(data, wgt = NULL, jktype = "JK_TIMSS", jkzone = NULL, jkrep = NULL,
    jkfac = NULL, fayfac = 1, wgtrep = "W_FSTR", ngr = 100, Nboot=200, seed = .Random.seed)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -27,13 +27,13 @@ Dataset which must contain weights and item responses
 Vector with sample weights
 }
   \item{jktype}{
-Type of jackknife procedure for creating the BIFIE.data object. 
-\code{jktype="JK_TIMSS"} refers to TIMSS/PIRLS datasets. 
-The type \code{"JK_GROUP"} creates jackknife weights based on a user defined grouping, 
-the type \code{"JK_RANDOM"} creates random groups. 
-The number of random groups can be defined in ngr. 
+Type of jackknife procedure for creating the BIFIE.data object.
+\code{jktype="JK_TIMSS"} refers to TIMSS/PIRLS datasets.
+The type \code{"JK_GROUP"} creates jackknife weights based on a user defined grouping,
+the type \code{"JK_RANDOM"} creates random groups.
+The number of random groups can be defined in ngr.
 The argument \code{type="RW_PISA"} extracts the replicated design with
-balanced repeated replicate weights from PISA datasets into objects of 
+balanced repeated replicate weights from PISA datasets into objects of
 class \code{IRT.repDesign}.
 Bootstrap samples can be obtained by \code{type="BOOT"}.
 }
@@ -46,8 +46,8 @@ this default can be overwritten.
 Variable name containing Jackknife replicates
 }
   \item{jkfac}{
-Factor for multiplying jackknife replicate weights. 
-If \code{jktype="JK_TIMSS"}, then \code{jkfac=2}. 
+Factor for multiplying jackknife replicate weights.
+If \code{jktype="JK_TIMSS"}, then \code{jkfac=2}.
 }
   \item{fayfac}{
 Fay factor. For Jackknife, the default is 1. For a Bootstrap with
@@ -89,17 +89,17 @@ A list with following entries
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-See \code{\link{IRT.jackknife}} for further examples.	
-	
+See \code{\link{IRT.jackknife}} for further examples.
+
 See the \code{BIFIE.data.jack} function in the \pkg{BIFIEsurvey} package.
 }
 
 
 \examples{
-\dontrun{	
-# load the BIFIEsurvey package	
-library(BIFIEsurvey)	
-	
+\dontrun{
+# load the BIFIEsurvey package
+library(BIFIEsurvey)
+
 #############################################################################
 # EXAMPLE 1: Design with Jackknife replicate weights in TIMSS
 #############################################################################
@@ -107,7 +107,7 @@ library(BIFIEsurvey)
 data(data.timss11.G4.AUT, package="CDM")
 dat <- CDM::data.timss11.G4.AUT$data
 # generate design
-rdes <- CDM::IRT.repDesign( data= dat,  wgt = "TOTWGT" , jktype="JK_TIMSS" , 
+rdes <- CDM::IRT.repDesign( data= dat,  wgt = "TOTWGT" , jktype="JK_TIMSS" ,
              jkzone = "JKCZONE" , jkrep = "JKCREP" )
 str(rdes)
 

@@ -3,6 +3,6 @@
 
 cdm_sumnorm_squeeze <- function(vec, bounds)
 {
-	y <- cdm_sumnorm( vec=cdm_squeeze(x=vec, bounds=bounds) )
-	return(y)
+    y <- cdm_sumnorm( vec=cdm_squeeze(x=vec, bounds=bounds) )
+    return(y)
 }

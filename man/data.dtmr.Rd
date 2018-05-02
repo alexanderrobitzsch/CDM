@@ -1,5 +1,5 @@
 %% File Name: data.dtmr.Rd
-%% File Version: 0.14
+%% File Version: 0.15
 
 \name{data.dtmr}
 \alias{data.dtmr}
@@ -53,9 +53,9 @@ Simulated dataset according to Bradshaw et al. (2014).
 }
 
 \references{
-Bradshaw, L., Izsak, A., Templin, J., & Jacobson, E. (2014). 
-Diagnosing teachers' understandings of rational numbers: Building a 
-multidimensional test within the diagnostic classification framework. 
+Bradshaw, L., Izsak, A., Templin, J., & Jacobson, E. (2014).
+Diagnosing teachers' understandings of rational numbers: Building a
+multidimensional test within the diagnostic classification framework.
 \emph{Educational Measurement: Issues and Practice, 33}, 2-14.
 }
 
@@ -73,15 +73,15 @@ rule <- rep( "ACDM" , I )
 names(rule) <- colnames(data)
 rule[ c("M14","M17") ] <- "GDINA2"
 # estimate model
-mod1 <- CDM::gdina( data , q.matrix , linkfct="logit" , rule= rule)  
+mod1 <- CDM::gdina( data , q.matrix , linkfct="logit" , rule= rule)
 summary(mod1)
 
 #*** Model 2: DINA model
-mod2 <- CDM::gdina( data , q.matrix , rule="DINA" )  
+mod2 <- CDM::gdina( data , q.matrix , rule="DINA" )
 summary(mod2)
 
 #*** Model 3: RRUM model
-mod3 <- CDM::gdina( data , q.matrix , rule="RRUM" )  
+mod3 <- CDM::gdina( data , q.matrix , rule="RRUM" )
 summary(mod3)
 
 #--- model comparisons
@@ -104,7 +104,7 @@ summary( CDM::modelfit.cor.din( mod1 ) )
   ##          type   value       p
   ##   1   max(X2) 7.74382 1.00000
   ##   2 abs(fcor) 0.04056 0.72707
-  ##   
+  ##
   ##   Fit Statistics
   ##                       est
   ##   MADcor          0.00959

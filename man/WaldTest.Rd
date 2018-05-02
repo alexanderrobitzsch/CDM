@@ -1,5 +1,5 @@
 %% File Name: WaldTest.Rd
-%% File Version: 0.07
+%% File Version: 0.08
 
 \name{WaldTest}
 \alias{WaldTest}
@@ -11,7 +11,7 @@ Wald Test for a Linear Hypothesis
 
 \description{
 Computes a Wald Test for a parameter \eqn{\bold{\theta}}
-with respect to a linear hypothesis 
+with respect to a linear hypothesis
 \eqn{ \bold{R} \bold{\theta} = \bold{c}}.
 }
 
@@ -39,7 +39,7 @@ the covariance matrix}
 %}
 
 \value{
-A vector containing the \eqn{\chi^2} statistic (\code{X2}), 
+A vector containing the \eqn{\chi^2} statistic (\code{X2}),
 degrees of freedom (\code{df}),
 p value (\code{p}) and RMSEA statistic (\code{RMSEA}).
 }

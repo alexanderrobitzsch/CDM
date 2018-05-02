@@ -1,5 +1,5 @@
 %% File Name: data.jang.Rd
-%% File Version: 0.13
+%% File Version: 0.14
 
 \name{data.jang}
 \alias{data.jang}
@@ -48,14 +48,14 @@ Simulated dataset.
 
 
 \references{
-Jang, E. E. (2009). Cognitive diagnostic assessment of L2 reading comprehension 
-ability: Validity arguments for Fusion Model application to LanguEdge assessment. 
+Jang, E. E. (2009). Cognitive diagnostic assessment of L2 reading comprehension
+ability: Validity arguments for Fusion Model application to LanguEdge assessment.
 \emph{Language Testing, 26}, 31-73.
 }
 
 
 \examples{
-\dontrun{	
+\dontrun{
 data(data.jang, package="CDM")
 
 data <- data.jang$data

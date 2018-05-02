@@ -3,7 +3,7 @@
 
 cdm_penalty_mcp <- function( x, lambda, a = 3.7 )
 {
-	y <- lambda * abs(x) - x^2 / ( 2 * a )
-	y <- ifelse(  abs(x) > a*lambda ,  a * lambda^2 / 2 , y )
-	return(y)
+    y <- lambda * abs(x) - x^2 / ( 2 * a )
+    y <- ifelse(  abs(x) > a*lambda ,  a * lambda^2 / 2 , y )
+    return(y)
 }

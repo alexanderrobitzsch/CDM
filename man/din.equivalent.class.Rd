@@ -1,5 +1,5 @@
 %% File Name: din.equivalent.class.Rd
-%% File Version: 0.24
+%% File Version: 0.27
 
 \name{din.equivalent.class}
 \alias{din.equivalent.class}
@@ -31,7 +31,7 @@ A list with following entries:
   \item{latent.responseM}{Matrix of latent responses}
   \item{latent.response}{Latent responses represented as a string}
   \item{S}{Matrix containing all skill classes}
-  \item{gini}{Gini coefficient of the frequency distribution of 
+  \item{gini}{Gini coefficient of the frequency distribution of
     identifiable skill classes which result in the same latent response
     }
   \item{skillclasses}{Data frame with skill class (\code{skillclass}),
@@ -40,13 +40,13 @@ A list with following entries:
     }
 }
 \references{
-Gross, J. & George, A. C. (2014). On prerequisite relations between 
+Gross, J. & George, A. C. (2014). On prerequisite relations between
 attributes in noncompensatory diagnostic classification.
 \emph{Methodology, 10}(3), 100-107.
 
-Zhang, S. S., DeCarlo, L. T., & Ying, Z. (2013). 
-Non-identifiability, equivalence classes, and attribute-specific classification 
-in Q-matrix based cognitive diagnosis models. 
+Zhang, S. S., DeCarlo, L. T., & Ying, Z. (2013).
+Non-identifiability, equivalence classes, and attribute-specific classification
+in Q-matrix based cognitive diagnosis models.
 \emph{arXiv preprint}, \emph{arXiv:1303.0426}.
 }
 %\author{
@@ -62,6 +62,10 @@ in Q-matrix based cognitive diagnosis models.
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 %}
 \examples{
+#############################################################################
+# EXAMPLE 1: Equivalency classes for DINA model for fraction subtraction data
+#############################################################################
+
 #-- DINA models
 
 data(data.fraction2, package="CDM")
@@ -69,17 +73,17 @@ data(data.fraction2, package="CDM")
 # first Q-matrix
 Q1 <- data.fraction2$q.matrix1
 m1 <- CDM::din.equivalent.class( q.matrix = Q1 , rule="DINA" )
-  ## 8 Skill classes | 5  distinguishable skill classes | Gini coefficient = 0.3 
+  ## 8 Skill classes | 5  distinguishable skill classes | Gini coefficient = 0.3
 
 # second Q-matrix
 Q1 <- data.fraction2$q.matrix2
 m1 <- CDM::din.equivalent.class( q.matrix = Q1 , rule="DINA" )
-  ## 32 Skill classes | 9  distinguishable skill classes | Gini coefficient = 0.5 
+  ## 32 Skill classes | 9  distinguishable skill classes | Gini coefficient = 0.5
 
 # third Q-matrix
 Q1 <- data.fraction2$q.matrix3
 m1 <- CDM::din.equivalent.class( q.matrix = Q1 , rule="DINA" )
-  ## 8 Skill classes | 8  distinguishable skill classes | Gini coefficient = 0 
+  ## 8 Skill classes | 8  distinguishable skill classes | Gini coefficient = 0
 
 # original fraction subtraction data
 m1 <- CDM::din.equivalent.class( q.matrix=CDM::fraction.subtraction.qmatrix, rule="DINA")

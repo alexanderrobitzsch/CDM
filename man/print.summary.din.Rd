@@ -1,5 +1,5 @@
 %% File Name: print.summary.din.Rd
-%% File Version: 1.07
+%% File Version: 1.08
 
 \name{print.summary.din}
 
@@ -10,7 +10,7 @@
 }
 
 \description{
-  S3 method to print objects of the class \code{summary.din}.  
+  S3 method to print objects of the class \code{summary.din}.
 }
 
 \usage{
@@ -21,25 +21,25 @@
   \item{x}{A required object of class \code{summary.din}, obtained
     from a call to the function \code{\link{summary.din}} (through
     generic function \code{\link[base]{summary}}).  }
-    
+
   \item{\dots}{Optional parameters to be passed to or from other
     methods will be ignored.  }
 }
 
 \details{
   The \code{print} method prints the summary information about objects
-  of the class \code{din} computed by \code{\link{summary.din}}, 
-  which are the item discriminations indices, the most frequent 
-  skill classes and the model information criteria AIC and BIC.  
+  of the class \code{din} computed by \code{\link{summary.din}},
+  which are the item discriminations indices, the most frequent
+  skill classes and the model information criteria AIC and BIC.
   Specific summary information details such as
   individual items with their discrimination index can be accessed through
-  assignment (see \sQuote{Examples}).  
+  assignment (see \sQuote{Examples}).
 }
 
 \value{
   If the argument \code{x} is of required type,
   \code{print.summary.din} prints the summary
-  information in \sQuote{Details}, and invisibly returns \code{x}.  
+  information in \sQuote{Details}, and invisibly returns \code{x}.
 }
 
 
@@ -62,7 +62,7 @@
 ##
 
 ## In particular, accessing detailed summary through assignment
-mod <- din(data = CDM::fraction.subtraction.data, 
+mod <- din(data = CDM::fraction.subtraction.data,
           q.matrix = CDM::fraction.subtraction.qmatrix, rule = "DINA")
 smod <- summary(mod)
 str(smod)

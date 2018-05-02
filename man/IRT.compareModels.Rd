@@ -1,5 +1,5 @@
 %% File Name: IRT.compareModels.Rd
-%% File Version: 0.14
+%% File Version: 0.15
 
 \name{IRT.compareModels}
 \alias{IRT.compareModels}
@@ -65,14 +65,14 @@ The function is based on \code{\link{IRT.IC}}.
 
 For comparing two models see \code{\link{anova.din}}.
 
-For computing absolute model fit see \code{\link{IRT.modelfit}}. 
+For computing absolute model fit see \code{\link{IRT.modelfit}}.
 }
 
 \examples{
 \dontrun{
 #############################################################################
 # EXAMPLE 1: Model comparison sim.dina dataset
-#############################################################################	
+#############################################################################
 
 data(sim.dina, package="CDM")
 data(sim.qmatrix, package="CDM")
@@ -111,8 +111,8 @@ res
   ##   3  mod2 -2086.805 4173.610    25  400 4223.610 4323.396 4248.610 4227.086 4348.396
   ##   4  mod3 -2048.233 4096.466    32  400 4160.466 4288.193 4192.466 4166.221 4320.193
   ##   5  mod4 -2026.633 4053.266    41  400 4135.266 4298.917 4176.266 4144.887 4339.917
-  ##   
-# -> The DINA model (mod1) performed best in terms of AIC.  
+  ##
+# -> The DINA model (mod1) performed best in terms of AIC.
   ##   $LRtest
   ##     Model1 Model2      Chi2 df            p
   ##   1   mod0   mod1 268.20713 16 0.000000e+00
@@ -124,7 +124,7 @@ res
   ##   7   mod2   mod3  77.14383  7 5.262457e-14
   ##   8   mod2   mod4 120.34309 16 0.000000e+00
   ##   9   mod3   mod4  43.19926  9 1.981445e-06
-  ##   
+  ##
 # -> The GDINA model (mod4) was superior to the other models in terms
 #    of the likelihood ratio test.
 
@@ -156,13 +156,13 @@ res
   ##   mod0        1.9749936 0.08840892 0.08353917
   ##   mod1        0.6713952 0.06184332 0.05923058
   ##   mod4        0.5148707 0.07477337 0.07145600
-  ##   
+  ##
   ##   $LRtest
   ##     Model1 Model2      Chi2 df          p
   ##   1   mod0   mod1 268.20713 16 0.00000000
   ##   2   mod0   mod4 299.69671 32 0.00000000
   ##   3   mod1   mod4  31.48959 16 0.01164415
-}	
+}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

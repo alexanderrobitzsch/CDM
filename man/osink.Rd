@@ -1,5 +1,5 @@
 %% File Name: osink.Rd
-%% File Version: 0.07
+%% File Version: 0.08
 
 \name{osink}
 \alias{osink}
@@ -30,7 +30,7 @@ File name. No \code{sink} is done if it has the value \code{NULL}.
   Suffix which should be put next to the file name
 }
 \item{append}{Optional logical indicating whether console output should
-be appended to an already existing file. See argument \code{append} in 
+be appended to an already existing file. See argument \code{append} in
 \code{\link[base:sink]{base::sink}}.}
 }
 
@@ -77,7 +77,7 @@ function (file){
     if (!is.null(file)) {
         base::sink()
         }
-  }    
+  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

@@ -1,5 +1,5 @@
 %% File Name: IRT.modelfit.Rd
-%% File Version: 0.16
+%% File Version: 0.17
 
 \name{IRT.modelfit}
 \alias{IRT.modelfit}
@@ -71,14 +71,14 @@ For extracting the individual likelihood or posterior see
 \code{\link{IRT.likelihood}} or \code{\link{IRT.posterior}}.
 
 The model fit of objects of class \code{\link{gdm}} can be obtained
-by using the 
+by using the
 \code{\link[TAM:tam.modelfit.IRT]{TAM::tam.modelfit.IRT}}
 function in the \pkg{TAM} package.
 }
 %%% TAM, sirt and mirt links
 
 \examples{
-\dontrun{	
+\dontrun{
 #############################################################################
 # EXAMPLE 1: Absolute model fit
 #############################################################################
@@ -94,7 +94,7 @@ summary(fmod1)
   ##         type value     p
   ##  1   max(X2) 8.728 0.113
   ##  2 abs(fcor) 0.143 0.080
-  ##  
+  ##
   ##  Fit Statistics
   ##                    est
   ##  MADcor          0.030
@@ -111,7 +111,7 @@ summary(fmod2)
   ##         type value p
   ##  1   max(X2) 2.397 1
   ##  2 abs(fcor) 0.078 1
-  ##  
+  ##
   ##  Fit Statistics
   ##                    est
   ##  MADcor          0.023

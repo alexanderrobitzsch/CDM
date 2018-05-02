@@ -3,6 +3,6 @@
 
 cdm_positivity_restriction <- function(x, positive)
 {
-	x <- ifelse( ( x < 0 ) & positive , 0 , x )
-	return(x)
+    x <- ifelse( ( x < 0 ) & positive , 0 , x )
+    return(x)
 }

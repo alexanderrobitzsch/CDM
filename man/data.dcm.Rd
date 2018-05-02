@@ -1,5 +1,5 @@
 %% File Name: data.dcm.Rd
-%% File Version: 0.23
+%% File Version: 0.24
 
 \name{data.dcm}
 \alias{data.dcm}
@@ -23,7 +23,7 @@ data(data.dcm)
 
 \format{
 The format of the data is a list containing the dichotomous item
-response data \code{data} (10000 persons at 7 items) 
+response data \code{data} (10000 persons at 7 items)
 and the Q-matrix \code{q.matrix} (7 items and 3 skills):
 
 \code{List of 2} \cr
@@ -50,7 +50,7 @@ and the Q-matrix \code{q.matrix} (7 items and 3 skills):
 For supplementary material of the Rupp, Templin and Henson book (2010)
 see \url{http://dcm.coe.uga.edu/}.
 
-The dataset was downloaded from 
+The dataset was downloaded from
 \url{http://dcm.coe.uga.edu/supplemental/chapter9.html}.
 }
 
@@ -100,26 +100,26 @@ ind <- which( mod.pars$name == "d" )
 mod.pars[ind,"value"] <- stats::qlogis(.20) # guessing parameter on the logit metric
   # use starting values of .80 for anti-slipping parameter
 ind <- which( ( mod.pars$name \%in\% paste0("a",1:20 ) ) & (mod.pars$est) )
-mod.pars[ind,"value"] <- stats::qlogis(.80) - stats::qlogis(.20) 
+mod.pars[ind,"value"] <- stats::qlogis(.80) - stats::qlogis(.20)
 mod.pars
   #** prior for the skill space distribution
-I <- ncol(dat)  
+I <- ncol(dat)
 lca_prior <- function(Theta,Etable){
   TP <- nrow(Theta)
-  if ( is.null(Etable) ){ prior <- rep( 1/TP , TP ) }    
-  if ( ! is.null(Etable) ){  
+  if ( is.null(Etable) ){ prior <- rep( 1/TP , TP ) }
+  if ( ! is.null(Etable) ){
     prior <- ( rowSums(Etable[ , seq(1,2*I,2)]) + rowSums(Etable[,seq(2,2*I,2)]) )/I
   }
-  prior <- prior / sum(prior)  
+  prior <- prior / sum(prior)
   return(prior)
  }
 
  #** estimate model in mirt
-mod1m <- mirt::mirt(dat, mirtmodel , pars = mod.pars , verbose=TRUE , 
+mod1m <- mirt::mirt(dat, mirtmodel , pars = mod.pars , verbose=TRUE ,
             technical = list( customTheta=Theta , customPriorFun = lca_prior) )
   # The number of estimated parameters is incorrect because mirt does not correctly count
   # estimated parameters from the user customized  prior distribution.
-mod1m@nest <- as.integer(sum(mod.pars$est) + nrow(Theta) - 1) 
+mod1m@nest <- as.integer(sum(mod.pars$est) + nrow(Theta) - 1)
   # extract log-likelihood
 mod1m@logLik
   # compute AIC and BIC
@@ -150,10 +150,10 @@ round(t(dfr),3)
 #** extract estimated classifications
 fsc1m <- sirt::mirt.wrapper.fscores( mod1m )
 #- estimated reliabilities
-fsc1m$EAP.rel      
-  ##      skill1    skill2    skill3 
-  ##   0.5479942 0.5362595 0.5357961 
-#- estimated classfications: EAPs, MLEs and MAPs  
+fsc1m$EAP.rel
+  ##      skill1    skill2    skill3
+  ##   0.5479942 0.5362595 0.5357961
+#- estimated classfications: EAPs, MLEs and MAPs
 head( round(fsc1m$person,3) )
   ##     case     M EAP.skill1 SE.EAP.skill1 EAP.skill2 SE.EAP.skill2 EAP.skill3 SE.EAP.skill3
   ##   1    1 0.286      0.508         0.500      0.067         0.251      0.820         0.384
@@ -172,7 +172,7 @@ head( round(fsc1m$person,3) )
 
 #** estimate model fit in mirt
 ( fit1m <- mirt::M2( mod1m ) )
-  
+
 #*****************************************************
 # Model 2: DINO model
 #*****************************************************
@@ -217,9 +217,9 @@ mirtmodel <- mirt::mirt.model("
 mod.pars <- mirt::mirt( dat , mirtmodel , pars="values")
  #** estimate model in mirt
  # Theta and lca_prior as defined as in Model 1m
-mod6m <- mirt::mirt(dat, mirtmodel , pars = mod.pars , verbose=TRUE , 
+mod6m <- mirt::mirt(dat, mirtmodel , pars = mod.pars , verbose=TRUE ,
             technical = list( customTheta=Theta , customPriorFun = lca_prior) )
-mod6m@nest <- as.integer(sum(mod.pars$est) + nrow(Theta) - 1) 
+mod6m@nest <- as.integer(sum(mod.pars$est) + nrow(Theta) - 1)
   # extract log-likelihood
 mod6m@logLik
   # compute AIC and BIC

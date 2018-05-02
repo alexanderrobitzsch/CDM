@@ -1,5 +1,5 @@
 %% File Name: summary_sink.Rd
-%% File Version: 0.04
+%% File Version: 0.05
 
 \name{summary_sink}
 \alias{summary_sink}
@@ -23,7 +23,7 @@ Object for which a \code{summary} method is defined
 File name
 }
 \item{append}{Optional logical indicating whether console output should
-be appended to an already existing file. See argument \code{append} in 
+be appended to an already existing file. See argument \code{append} in
 \code{\link[base:sink]{base::sink}}.}
 \item{\dots}{Further arguments passed to \code{summary}.}
 }
@@ -59,7 +59,7 @@ be appended to an already existing file. See argument \code{append} in
 \examples{
 #############################################################################
 # EXAMPLE 1: summary_sink example for lm function
-#############################################################################	
+#############################################################################
 
 #--- simulate some data
 set.seed(997)

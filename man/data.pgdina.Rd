@@ -1,5 +1,5 @@
 %% File Name: data.pgdina.Rd
-%% File Version: 0.15
+%% File Version: 0.16
 
 \name{data.pgdina}
 \alias{data.pgdina}
@@ -14,7 +14,7 @@ Dataset for the estimation of the polytomous GDINA model.
 \usage{data(data.pgdina)}
 
 \format{
-The dataset is a list with the item response data and the Q-matrix.	
+The dataset is a list with the item response data and the Q-matrix.
 The format is:
 
 \code{List of 2} \cr
@@ -77,12 +77,12 @@ The dataset was simulated by the following \R code:
 %}
 
 %\seealso{
-%See Example 7 in \code{\link{gdina}}. 
+%See Example 7 in \code{\link{gdina}}.
 %}
 
 
 \references{
-Chen, J., & de la Torre, J. (2013). 
+Chen, J., & de la Torre, J. (2013).
 A general cognitive diagnosis model for expert-defined polytomous attributes.
 \emph{Applied Psychological Measurement, 37}, 419-437.
 }

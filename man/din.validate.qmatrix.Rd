@@ -1,5 +1,5 @@
 %% File Name: din.validate.qmatrix.Rd
-%% File Version: 1.26
+%% File Version: 1.27
 
 \name{din.validate.qmatrix}
 \alias{din.validate.qmatrix}
@@ -15,7 +15,7 @@ discrimination parameters \eqn{IDI_j} are recalculated. Q-matrix rows
 are determined by maximizing the estimated item discrimination index
 \eqn{IDI_j = 1-s_j -g_j}.
 
-See Chiu (2013) for an alternative estimation approach based on 
+See Chiu (2013) for an alternative estimation approach based on
 residual sum of squares which is implemented in the \pkg{NPCD}
 package.
 }
@@ -34,7 +34,7 @@ Object of class \code{din}
 Minimum difference in IDI values for choosing a new Q-matrix vector
 }
 \item{print}{An optional logical indicating whether the function
-    should print the progress of iteration in the estimation process.  } 
+    should print the progress of iteration in the estimation process.  }
 }
 
 %\details{
@@ -47,18 +47,18 @@ A list with following entries:
 \item{coef.modified}{Estimated parameters by applying Q-matrix
    modifications}
 \item{coef.modified.short}{A shortened matrix of \code{coef.modified}.
-	Only Q-matrix rows which increase the \eqn{IDI} are displayed.
-	}
+    Only Q-matrix rows which increase the \eqn{IDI} are displayed.
+    }
 \item{q.matrix.prop}{The proposed Q-matrix by Q-matrix validation.}
 }
 
 
 \references{
-Chiu, C. Y. (2013). Statistical refinement of the Q-matrix in cognitive 
-diagnosis. \emph{Applied Psychological Measurement, 37}, 598-618.	
-	
-de la Torre, J. (2008). An empirically based method of Q-matrix 
-validation for the DINA model: Development and applications. 
+Chiu, C. Y. (2013). Statistical refinement of the Q-matrix in cognitive
+diagnosis. \emph{Applied Psychological Measurement, 37}, 598-618.
+
+de la Torre, J. (2008). An empirically based method of Q-matrix
+validation for the DINA model: Development and applications.
 \emph{Journal of Educational Measurement, 45}, 343-362.
 }
 
@@ -104,14 +104,14 @@ Q1[10,] <- c(1,0,0)
 # estimate DINA model
 mod <- CDM::din( dat , q.matr = Q1, rule = "DINA")
 # apply Q-matrix validation
-res <- CDM::din.validate.qmatrix( mod )  
+res <- CDM::din.validate.qmatrix( mod )
   ## item itemindex Skill1 Skill2 Skill3 guess  slip   IDI qmatrix.orig IDI.orig delta.IDI max.IDI
   ## I001         1      1      0      0 0.309 0.251 0.440            0    0.431     0.009   0.440
   ## I010        10      1      1      0 0.235 0.329 0.437            0    0.320     0.117   0.437
   ## I010        10      1      1      1 0.296 0.301 0.403            0    0.320     0.083   0.437
-  ##   
+  ##
   ##   Proposed Q-matrix:
-  ##   
+  ##
   ##          Skill1 Skill2 Skill3
   ##   Item1       1      0      0
   ##   Item2       1      0      0
@@ -149,7 +149,7 @@ print(Qrefine.out)
   ##   Item 10           1           1           0
   ##   Item 11           1           0           1
   ##   Item 12           0           1           1
-  ##   
+  ##
   ##   The modified entries
   ##        Item Attribute
   ##   [1,]    1         2

@@ -1,5 +1,5 @@
 %% File Name: IRT.irfprobPlot.Rd
-%% File Version: 0.12
+%% File Version: 0.13
 
 \name{IRT.irfprobPlot}
 \alias{IRT.irfprobPlot}
@@ -30,15 +30,15 @@ method is defined
 \item{items}{Vector of indices of selected items.}
 \item{min.theta}{Minimum theta to be displayed.}
 \item{max.theta}{Maximum theta to be displayed.}
-\item{cumul}{Optional logical indicating whether cumulated 
-	item response functions \eqn{P( X \ge k | \theta )}
+\item{cumul}{Optional logical indicating whether cumulated
+    item response functions \eqn{P( X \ge k | \theta )}
 should be displayed.}
 \item{smooth}{Optional logical indicating whether item response
 functions should be smoothed for plotting.}
 \item{ask}{Logical for asking for a new plot.}
 \item{n.theta}{Number of theta points if \code{smooth=TRUE} is chosen.}
 \item{package}{String indicating which package should be used for plotting
-	the item response curves. Options are \code{"lattice"}
+    the item response curves. Options are \code{"lattice"}
         or \code{"graphics"}.}
   \item{\dots}{
 More arguments to be passed for the plot in \pkg{lattice}.
@@ -78,7 +78,7 @@ More arguments to be passed for the plot in \pkg{lattice}.
 %%% TAM, sirt and mirt links
 
 \examples{
-\dontrun{	
+\dontrun{
 #############################################################################
 # EXAMPLE 1: Plot item response functions from a unidimensional model
 #############################################################################
@@ -115,9 +115,9 @@ Qmatrix <- CDM::data.fraction2$q.matrix3
 
 # Model 1: 3-dimensional Rasch Model (normal distribution)
 theta.k <- seq( -4 , 4 , len=11 )   # discretized ability
-mod1 <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k , Qmatrix=Qmatrix , 
+mod1 <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k , Qmatrix=Qmatrix ,
               centered.latent=TRUE , maxiter=10 )
-summary(mod1)            
+summary(mod1)
 
 # unsmoothed curves
 IRT.irfprobPlot(mod1 , smooth=FALSE)

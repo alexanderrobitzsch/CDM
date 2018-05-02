@@ -1,9 +1,10 @@
 %% File Name: data.timss11.G4.AUT.Rd
-%% File Version: 0.07
+%% File Version: 0.18
 
 \name{data.timss11.G4.AUT}
 \alias{data.timss11.G4.AUT}
 \alias{data.timss11.G4.AUT.part}
+\alias{data.timss11.G4.sa}
 
 \docType{data}
 
@@ -14,20 +15,24 @@ TIMSS 2011 Mathematics 4th Grade Austrian Students
 
 \description{
 This is the TIMSS 2011 dataset of 4668 Austrian fourth-graders.
+See George and Robitzsch (2014, 2015, 2018) for publications using the
+TIMSS 2011 dataset for cognitive diagnosis modeling. The dataset has
+also been analyzed by Sedat and Arican (2015).
 }
 
 
 \usage{
 data(data.timss11.G4.AUT)
 data(data.timss11.G4.AUT.part)
+data(data.timss11.G4.sa)
 }
 
 
 \format{
 \itemize{
-	
+
 \item The format of the dataset \code{data.timss11.G4.AUT} is:
-   
+
 \code{List of 4} \cr
 \code{ $ data     :'data.frame':} \cr
 \code{  ..$ uidschool: int [1:4668] 10040001 10040001 10040001 10040001 10040001 10040001 10040001 10040001 10040001 10040001 ...} \cr
@@ -76,19 +81,19 @@ data(data.timss11.G4.AUT.part)
 \code{  ..$ COGN_K: int [1:174] 0 0 0 0 0 0 1 1 0 0 ...} \cr
 \code{  ..$ COGN_R: int [1:174] 0 1 1 1 1 0 0 0 1 0 ...} \cr
 
-\item The dataset \code{data.timss11.G4.AUT.part} is a part of 
+\item The dataset \code{data.timss11.G4.AUT.part} is a part of
 \code{data.timss11.G4.AUT} and contains only the first
 three booklets (with N=1010 students). The format is
 
 \code{List of 4} \cr
 \code{ $ data     :'data.frame':      1010 obs. of  109 variables:} \cr
-\code{  ..$ uidschool: int [1:1010] 10040001 10040001 10040001 10040001 10040001 10040002 10040002 10040002 10040003 10040003 ...} \cr
+\code{  ..$ uidschool: int [1:1010] 10040001 10040001 10040001 10040001  ...} \cr
 \code{  ..$ uidstud  : num [1:1010] 1e+13 1e+13 1e+13 1e+13 1e+13 ...} \cr
 \code{  ..$ IDCNTRY  : int [1:1010] 40 40 40 40 40 40 40 40 40 40 ...} \cr
 \code{  ..$ IDBOOK   : int [1:1010] 1 2 3 1 2 1 2 3 1 2 ...} \cr
 \code{  ..$ IDSCHOOL : int [1:1010] 1 1 1 1 1 2 2 2 3 3 ...} \cr
-\code{  ..$ IDCLASS  : int [1:1010] 102 102 102 102 102 201 201 201 301 301 ...} \cr
-\code{  ..$ IDSTUD   : int [1:1010] 10206 10207 10208 10220 10221 20101 20102 20103 30106 30107 ...} \cr
+\code{  ..$ IDCLASS  : int [1:1010] 102 102 102 102 102 ...} \cr
+\code{  ..$ IDSTUD   : int [1:1010] 10206 10207 10208 10220 ...} \cr
 \code{  ..$ TOTWGT   : num [1:1010] 17.5 17.5 17.5 17.5 17.5 ...} \cr
 \code{  ..$ HOUWGT   : num [1:1010] 1.04 1.04 1.04 1.04 1.04 ...} \cr
 \code{  ..$ SENWGT   : num [1:1010] 0.111 0.111 0.111 0.111 0.111 ...} \cr
@@ -132,6 +137,29 @@ three booklets (with N=1010 students). The format is
 \code{  ..$ COGN_A: int [1:47] 1 0 0 0 0 1 0 0 0 1 ...} \cr
 \code{  ..$ COGN_K: int [1:47] 0 0 0 0 0 0 1 1 0 0 ...} \cr
 \code{  ..$ COGN_R: int [1:47] 0 1 1 1 1 0 0 0 1 0 ...} \cr
+
+\item The dataset \code{data.timss11.G4.sa} contains the Q-matrix
+used in Sedat and Arican (2015).
+
+\code{List of 2} \cr
+\code{ $ q.matrix:'data.frame':       31 obs. of  13 variables:} \cr
+\code{  ..$ N1 : num [1:31] 1 0 0 1 1 0 0 0 0 0 ...} \cr
+\code{  ..$ N2 : num [1:31] 1 1 0 0 1 0 0 0 0 0 ...} \cr
+\code{  ..$ N3 : num [1:31] 0 0 0 0 1 0 0 0 0 0 ...} \cr
+\code{  ..$ A4 : num [1:31] 0 0 1 0 0 1 1 1 0 0 ...} \cr
+\code{  ..$ A5 : num [1:31] 0 0 0 0 0 1 0 1 0 0 ...} \cr
+\code{  ..$ A6 : num [1:31] 0 0 0 0 0 0 0 0 0 0 ...} \cr
+\code{  ..$ A7 : num [1:31] 0 0 1 0 0 0 0 0 0 0 ...} \cr
+\code{  ..$ G8 : num [1:31] 0 0 0 0 0 0 0 0 1 1 ...} \cr
+\code{  ..$ G9 : num [1:31] 0 0 0 0 0 0 0 0 1 1 ...} \cr
+\code{  ..$ G10: num [1:31] 0 0 0 0 0 0 0 0 1 1 ...} \cr
+\code{  ..$ G11: num [1:31] 0 0 0 0 0 1 0 0 0 0 ...} \cr
+\code{  ..$ D12: num [1:31] 0 0 0 0 0 0 0 0 0 0 ...} \cr
+\code{  ..$ D13: num [1:31] 0 0 0 0 0 0 0 0 0 0 ...} \cr
+\code{ $ skills  : Named chr [1:13] "Possesses understanding of"  __truncated__ ...} \cr
+\code{  ..- attr(*, "names")= chr [1:13] "N1" "N2" "N3" "A4" ...} \cr
+
+
 }
 
 }
@@ -146,9 +174,23 @@ three booklets (with N=1010 students). The format is
 %%  ~~ reference to a publication or URL from which the data were obtained ~~
 %}
 
-%\references{
-%%  ~~ possibly secondary sources and usages ~~
-%}
+\references{
+George, A. C., & Robitzsch, A. (2014). Multiple group cognitive diagnosis models,
+with an emphasis on differential item functioning.
+\emph{Psychological Test and Assessment Modeling, 56}(4), 405-432.
+
+George, A. C., & Robitzsch, A. (2015) Cognitive diagnosis models in R: A didactic.
+\emph{The Quantitative Methods for Psychology, 11}, 189-205.
+
+George, A. C., & Robitzsch, A. (2018). Focusing on interactions between content
+and cognition: A new perspective on gender differences in mathematical
+sub-competencies. \emph{Applied Measurement in Education, 31}(1), 79-97.
+
+Sedat, S. E. N., & Arican, M. (2015). A diagnostic comparison of Turkish and
+Korean students' Mathematics performances on the TIMSS 2011 assessment.
+\emph{Journal of Measurement and Evaluation in Education and Psychology, 6}(2),
+238-253.
+}
 
 %\examples{
 %data(data.timss11.G4.AUT)

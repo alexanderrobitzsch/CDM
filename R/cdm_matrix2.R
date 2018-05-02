@@ -3,7 +3,7 @@
 
 cdm_matrix2 <- function( x , nrow )
 {
-	x <- as.vector(x)
-	y <- matrix( x , nrow=nrow, ncol=length(x), byrow=TRUE )
-	return(y)
+    x <- as.vector(x)
+    y <- matrix( x , nrow=nrow, ncol=length(x), byrow=TRUE )
+    return(y)
 }

@@ -1,5 +1,5 @@
 %% File Name: coef.Rd
-%% File Version: 0.19
+%% File Version: 0.20
 
 \name{coef}
 \alias{coef.din}
@@ -12,7 +12,7 @@
 \title{Extract Estimated Item Parameters and Skill Class Distribution
 Parameters}
 \description{
-  Extracts the estimated parameters from either 
+  Extracts the estimated parameters from either
   \code{din}, \code{gdina},  \code{gdina} or \code{gdm} objects.
 }
 \usage{
@@ -28,10 +28,10 @@ Parameters}
 }
 
 \arguments{
-  \item{object}{An object inheriting from either class \code{din}, 
+  \item{object}{An object inheriting from either class \code{din},
   class \code{gdina}, class \code{mcdina}, class \code{slca}
-  or class \code{gdm}. 
-  			}
+  or class \code{gdm}.
+              }
   \item{\dots}{Additional arguments to be passed.}
 }
 
@@ -41,7 +41,7 @@ Parameters}
 
 \value{
    A vector, a matrix or a data frame of the estimated parameters for the fitted model.
-	}
+    }
 
 %%\references{
 %% include something here
@@ -52,8 +52,8 @@ Parameters}
 %%}
 
 \seealso{
-	\code{\link{din}}, \code{\link{gdina}}, \code{\link{gdm}},
-	\code{\link{mcdina}}, \code{\link{slca}}
+    \code{\link{din}}, \code{\link{gdina}}, \code{\link{gdm}},
+    \code{\link{mcdina}}, \code{\link{slca}}
 }
 
 \examples{
@@ -71,9 +71,9 @@ coef(d2)
 
 # GDM model
 theta.k <- seq(-4,4,len=11)
-d3 <- CDM::gdm( sim.dina, irtmodel="2PL", theta.k=theta.k, 
+d3 <- CDM::gdm( sim.dina, irtmodel="2PL", theta.k=theta.k,
             Qmatrix=as.matrix(sim.qmatrix),  centered.latent=TRUE)
-coef(d3) 
+coef(d3)
 }
 }
 

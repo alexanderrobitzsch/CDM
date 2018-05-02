@@ -1,5 +1,5 @@
 %% File Name: skill.cor.Rd
-%% File Version: 2.11
+%% File Version: 2.12
 
 \name{skill.cor}
 \alias{skill.cor}
@@ -10,15 +10,15 @@ Tetrachoric or Polychoric Correlations between Attributes
 }
 \description{
 This function takes the results of \code{din} or \code{gdina} and
-computes tetrachoric or polychoric correlations between attributes (see e.g. 
+computes tetrachoric or polychoric correlations between attributes (see e.g.
 Templin & Henson, 2006).
 }
 \usage{
 # tetrachoric correlations
-skill.cor(object)     
+skill.cor(object)
 
 # polychoric correlations
-skill.polychor(object, colindex=1) 
+skill.polychor(object, colindex=1)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -38,7 +38,7 @@ A list with following entries:
     distribution}
 }
 \references{
-Templin, J., & Henson, R. (2006). Measurement of psychological disorders 
+Templin, J., & Henson, R. (2006). Measurement of psychological disorders
 using cognitive diagnosis models. \emph{Psychological Methods, 11}, 287-305.
 }
 %\author{

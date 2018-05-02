@@ -3,6 +3,6 @@
 
 cdm_ridge_threshold <- function(beta, lambda)
 {
-	y <- beta / ( 1 + 2*lambda )
-	return(y)
+    y <- beta / ( 1 + 2*lambda )
+    return(y)
 }

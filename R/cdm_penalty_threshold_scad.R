@@ -1,7 +1,7 @@
-## File Name: cdm_scad_threshold.R
-## File Version: 0.03
+## File Name: cdm_penalty_threshold_scad.R
+## File Version: 0.04
 
-cdm_scad_threshold <- function(beta, lambda, a=3.7)
+cdm_penalty_threshold_scad <- function(beta, lambda, a=3.7)
 {
     sign_beta <- sign(beta)
     #-- 2*lambda < abs(beta) < a*lambda

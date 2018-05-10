@@ -6,6 +6,7 @@ If you use `CDM` and have suggestions for improvement or have found bugs, please
 
 #### CRAN version `CDM` 6.2-91 (2018-05-02)
 
+
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/CDM)](https://cran.r-project.org/package=CDM)
 &#160;&#160;
 
@@ -17,9 +18,9 @@ The CRAN version can be installed from within R using:
 utils::install.packages("CDM")
 ```
 
-#### GitHub version `CDM` 6.3-1 (2018-05-03)
+#### GitHub version `CDM` 6.3-13 (2018-05-10)
 
-[![](https://img.shields.io/badge/github%20version-6.3--1-orange.svg)](https://github.com/alexanderrobitzsch/CDM)&#160;&#160;
+[![](https://img.shields.io/badge/github%20version-6.3--13-orange.svg)](https://github.com/alexanderrobitzsch/CDM)&#160;&#160;
 
 The version hosted [here](https://github.com/alexanderrobitzsch/CDM) is the development version of `CDM`. 
 The GitHub version can be installed using `devtools` as:

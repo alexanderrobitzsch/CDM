@@ -1,7 +1,7 @@
-## File Name: cdm_elnet_threshold.R
-## File Version: 0.04
+## File Name: cdm_penalty_threshold_elnet.R
+## File Version: 0.05
 
-cdm_elnet_threshold <- function( beta, lambda, alpha )
+cdm_penalty_threshold_elnet <- function( beta, lambda, alpha )
 {
     lam1 <- lambda * alpha
     lam2 <- lambda * ( 1 - alpha )

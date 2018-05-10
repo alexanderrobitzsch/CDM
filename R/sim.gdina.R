@@ -1,5 +1,5 @@
 ## File Name: sim.gdina.R
-## File Version: 2.10
+## File Version: 2.13
 
 
 
@@ -7,7 +7,8 @@
 # Simulation of the GDINA model
 sim.gdina <- function( n , q.matrix , delta , link = "identity" ,
                 thresh.alpha=NULL , cov.alpha=NULL , alpha=NULL ,
-                Mj , Aj , necc.attr ){
+                Mj , Aj , necc.attr )
+{
     I <- length(delta)
     # simulate alpha
     if ( is.null(alpha) ){
@@ -15,7 +16,6 @@ sim.gdina <- function( n , q.matrix , delta , link = "identity" ,
     }
     dat <- matrix( NA , n , I )
     for (ii in 1:I){
-        # ii <- 1
         na.ii <- necc.attr[[ii]]
         Aj.ii <- Aj[[ii]]
         Mj.ii <- Mj[[ii]][[1]]
@@ -37,20 +37,4 @@ sim.gdina <- function( n , q.matrix , delta , link = "identity" ,
     res <- list( "data" = dat , "alpha" = alpha , "q.matrix" = q.matrix ,
                         "delta" = delta , "Aj" = Aj , "Mj" = Mj , "link" = link )
     return(res)
-    }
-######################################################################################
-# Function for preparation of GDINA simulation
-sim.gdina.prepare <- function( q.matrix ){
-    I <- nrow(q.matrix)             # number of items
-    rsqm <- rowSums(q.matrix)       # row sums in Q matrix
-    necc.attr <- delta <- Mj <- Aj <- as.list( rep(1,I) )
-    for (ii in 1:I){
-        # ii <- 1
-        necc.attr[[ii]] <- which( q.matrix[ii,] > 0 )
-        Aj[[ii]] <- .create.Aj( nq = rsqm[ii] )
-        Mj[[ii]] <- .create.Mj( Aj = Aj[[ii]] , rule = "GDINA" )
-        delta[[ii]] <- rep( 0 , ncol( Mj[[ii]][[1]] ) )
-                    }
-    res <- list( delta=delta , necc.attr = necc.attr , Aj = Aj ,  Mj = Mj )
-                                        }
-######################################################################################
+}

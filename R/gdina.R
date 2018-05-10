@@ -1,5 +1,5 @@
 ## File Name: gdina.R
-## File Version: 9.253
+## File Version: 9.259
 
 
 ################################################################################
@@ -79,7 +79,8 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 # progress: an optional logical indicating whether the function should print the progress of iteration.
 
     CALL <- match.call()
-
+    s1 <- Sys.time()
+    
     if (progress){
         cat("---------------------------------------------------------------------------------\n")
         d1 <- packageDescription("CDM")
@@ -166,7 +167,6 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
     ################################################################################
 
     disp <- r1
-    s1 <- Sys.time()
     #--- display progress
     res <- gdina_progress_start_estimation( progress=progress, linkfct=linkfct, disp=disp,
                 G=G, groupre=groupre, s1=s1 )
@@ -261,7 +261,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
     aggr.patt.designmatrix <- res$aggr.patt.designmatrix
     Mj.index <- res$Mj.index
     Aj_mono_constraints <- res$Aj_mono_constraints
-
+    
     ###############################################################################
     # initial item parameters
     ###############################################################################
@@ -675,8 +675,8 @@ gdina <- function( data, q.matrix, skillclasses=NULL , conv.crit = 0.0001,
 
     #---- calculate model implied probabilities
     probitem <- gdina_probitem( Mj=Mj, Aj=Aj, delta=delta, rule=rule, linkfct=linkfct,
-                    delta.summary=delta.summary )
-
+                    delta.summary=delta.summary, necc.attr=necc.attr )
+                    
     #***************************** OUTPUT **********************************
     if (progress){
         cat("---------------------------------------------------------------------------------\n")

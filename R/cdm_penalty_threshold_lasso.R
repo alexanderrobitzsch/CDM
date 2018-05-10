@@ -1,7 +1,7 @@
-## File Name: cdm_lasso_threshold.R
-## File Version: 0.02
+## File Name: cdm_penalty_threshold_lasso.R
+## File Version: 0.04
 
-cdm_lasso_threshold <- function( val, eta )
+cdm_penalty_threshold_lasso <- function( val, eta )
 {
     res <- val
     res <- ifelse( abs(val) < eta , 0 , res )
@@ -10,4 +10,4 @@ cdm_lasso_threshold <- function( val, eta )
     return(res)
 }
 
-cdm_soft_threshold <- cdm_lasso_threshold
+cdm_soft_threshold <- cdm_penalty_threshold_lasso

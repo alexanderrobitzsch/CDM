@@ -1,9 +1,10 @@
 ## File Name: gdina_probitem.R
-## File Version: 0.13
+## File Version: 0.16
 
 #################################################################################
 # calculate model implied probabilities in GDINA models
-gdina_probitem <- function( Mj, Aj , delta , rule , linkfct , delta.summary )
+gdina_probitem <- function( Mj, Aj , delta , rule , linkfct , delta.summary,
+        necc.attr=NULL)
 {
     I <- length(delta)
     pjj <- as.list( 1:I )
@@ -22,10 +23,14 @@ gdina_probitem <- function( Mj, Aj , delta , rule , linkfct , delta.summary )
     dres <- NULL
     for (ii in 1:I){
         dii <- delta.summary[ delta.summary$itemno == ii , ]
-        dii <- dii[ nrow(dii) , c("item" , "rule" , "partype.attr" ) ]
+        dii <- dii[ nrow(dii) , c("item" , "rule" , "partype.attr" ) ]                
+        necc_ii <- necc.attr[[ii]]
+        dii$partype.attr <- paste0( names(necc_ii), collapse="-")
+        colnames(dii)[3] <- "nessskill"
         dres <- rbind( dres , dii )
     }
     res <- cbind( dres[ res$itemno , ] , res )
+    
     rownames(res) <- NULL
     return(res)
 }

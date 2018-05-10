@@ -1,5 +1,5 @@
 ## File Name: gdina_create_designmatrices.R
-## File Version: 0.15
+## File Version: 0.16
 
 gdina_create_designmatrices <- function( J, Mj, Aj, q.matrix, rule, L, attr.patt, mono.constr,
     bugs = NULL )
@@ -31,13 +31,13 @@ gdina_create_designmatrices <- function( J, Mj, Aj, q.matrix, rule, L, attr.patt
         if ( length(nj1)==0 ){
             stop( paste("Q matrix row " , jj , " has only zero entries\n" , sep="") )
         }
-        Aj1 <- Aj[[jj]] <- .create.Aj( Nattr.items[jj] )
+        Aj1 <- Aj[[jj]] <- gdina_designmatrices_create_Aj( Nattr.items[jj] )
         #--- define monotonicity constraints
         if (mono.constr){
             Aj_mono_constraints[[jj]] <- gdina_create_designmatrices_monotonicity_constraints(Ajjj=Aj[[jj]] )
         }
         if ( ! Mj.userdefined ){
-            Mj[[jj]] <- .create.Mj( Aj[[jj]] , rule = rule[jj], q_jj = q_jj,
+            Mj[[jj]] <- gdina_designmatrices_create_Mj( Aj[[jj]] , rule = rule[jj], q_jj = q_jj,
                                 bugs=bugs)            
         }
         l1 <- as.list( 1 )

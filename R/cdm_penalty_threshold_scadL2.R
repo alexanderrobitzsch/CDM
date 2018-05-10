@@ -1,7 +1,7 @@
-## File Name: cdm_scadL2_threshold.R
-## File Version: 0.03
+## File Name: cdm_penalty_threshold_scadL2.R
+## File Version: 0.04
 
-cdm_scadL2_threshold <- function(beta, lambda, alpha, a=3.7)
+cdm_penalty_threshold_scadL2 <- function(beta, lambda, alpha, a=3.7)
 {
     lam1 <- lambda*alpha
     lam2 <- lambda*(1-alpha)

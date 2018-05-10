@@ -1,9 +1,8 @@
 ## File Name: reglca_calc_probs.R
-## File Version: 0.06
+## File Version: 0.07
 
-reglca_calc_probs <- function(parm)
+reglca_calc_probs <- function(parm, eps=1E-10)
 {
-    eps <- 1E-10
     probs <- cumsum(parm)
     M1 <- max(probs)
     M0 <- min(probs)

@@ -1,5 +1,5 @@
 ## File Name: gdina_se_itemwise.R
-## File Version: 0.17
+## File Version: 0.26
 
 gdina_se_itemwise <- function( R.lj_jj , I.lj_jj , apjj ,
         Mjjj , Mjj2 , PAJXI , IP , item.patt.split_jj , resp.patt_jj ,
@@ -7,9 +7,9 @@ gdina_se_itemwise <- function( R.lj_jj , I.lj_jj , apjj ,
         method , linkfct , delta_jj , se_version )
 {
     eps2 <- 1E-10
-    Rlj.ast <- stats::aggregate( R.lj_jj , list(apjj) , sum )
-    Ilj.ast <- stats::aggregate( I.lj_jj , list(apjj) , sum )
-    pjjj <- Rlj.ast[,2] / Ilj.ast[,2]
+    Rlj.ast <- rowsum( R.lj_jj , apjj)[,1]
+    Ilj.ast <- rowsum( I.lj_jj , apjj)[,1]
+    pjjj <- Rlj.ast / Ilj.ast
     varmat.palj_jj  <- NULL
     infomat.jj <- NULL
 
@@ -17,18 +17,11 @@ gdina_se_itemwise <- function( R.lj_jj , I.lj_jj , apjj ,
     if (se_version==1){
         loglike_item_jj <- function(x){
             pjjj_model <- ( Mjjj %*% x )[,1]
-            if ( linkfct == "logit"){
-                pjjj_model <- stats::plogis(pjjj_model)
-            }
-            if ( linkfct == "log"){
-                pjjj_model <- exp( pjjj_model)
-            }
-            pjjj_ <- cdm_squeeze(pjjj_model , c(eps2, Inf) )
-            ll1 <- Rlj.ast[,2] * log(pjjj_)
-            pjjj_ <- cdm_squeeze(1-pjjj_model , c(eps2, Inf) )
-            ll2 <- (Ilj.ast-Rlj.ast)[,2] * log( pjjj_ )
+            pjjj_model <- gdina_probs_invlink(probs=pjjj_model, linkfct=linkfct)            
+            ll1 <- Rlj.ast * cdm_log(x=pjjj_model, eps=eps2)
+            ll2 <- (Ilj.ast-Rlj.ast) * cdm_log(x=1-pjjj_model, eps=eps2)
             ll <- sum(ll1 + ll2)
-            return( ll )
+            return(ll)
         }
         res_jj <- loglike_item_jj(x=delta_jj)
         hess_jj <- numerical_Hessian( par = delta_jj , FUN = loglike_item_jj )

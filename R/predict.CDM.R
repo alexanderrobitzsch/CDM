@@ -1,12 +1,12 @@
 ## File Name: predict.CDM.R
-## File Version: 0.04
+## File Version: 0.07
 
 
 ################################################
 # predict method in CDM package
-predict.din <- function( object , group=1 , ... ){
+predict.din <- function( object, group=1, ... ){
     dat <- as.matrix( object$dat )
-    res <- IRT.predict( object , dat = dat , group=group )
+    res <- IRT.predict( object, dat=dat, group=group )
     return(res)
             }
 #################################################

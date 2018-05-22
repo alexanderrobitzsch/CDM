@@ -1,5 +1,5 @@
 %% File Name: IRT.irfprobPlot.Rd
-%% File Version: 0.13
+%% File Version: 0.17
 
 \name{IRT.irfprobPlot}
 \alias{IRT.irfprobPlot}
@@ -17,8 +17,8 @@ method is defined.
 }
 
 \usage{
-IRT.irfprobPlot( object , items=NULL , min.theta=-4 , max.theta=4 , cumul=FALSE ,
-     smooth=TRUE , ask=TRUE ,  n.theta = 40 , package="lattice" ,... )
+IRT.irfprobPlot( object, items=NULL, min.theta=-4, max.theta=4, cumul=FALSE,
+     smooth=TRUE, ask=TRUE,  n.theta=40, package="lattice",... )
 }
 
 %- maybe also 'usage' for other objects documented here.
@@ -86,25 +86,25 @@ More arguments to be passed for the plot in \pkg{lattice}.
 data(data.Students, package="CDM")
 
 dat <- data.Students
-resp <- dat[ , paste0("sc",1:4) ]
-resp[ paste(resp[,1]) == 3 ,1] <-  2
+resp <- dat[, paste0("sc",1:4) ]
+resp[ paste(resp[,1])==3,1] <-  2
 psych::describe(resp)
 
 #--- Model 1: PCM in CDM::gdm
-theta.k <- seq( -5 , 5 , len=21 )
-mod1 <- CDM::gdm( dat = resp , irtmodel="1PL" , theta.k=theta.k , skillspace="normal" ,
+theta.k <- seq( -5, 5, len=21 )
+mod1 <- CDM::gdm( dat=resp, irtmodel="1PL", theta.k=theta.k, skillspace="normal",
            centered.latent=TRUE)
 summary(mod1)
 
 # plot
 IRT.irfprobPlot( mod1 )
 # plot in graphics package (which comes with R base version)
-IRT.irfprobPlot( mod1 , package="graphics")
+IRT.irfprobPlot( mod1, package="graphics")
 # plot first and third item and do not smooth discretized item response
 # functions in IRT.irfprob
-IRT.irfprobPlot( mod1 , items = c(1,3) , smooth=FALSE )
+IRT.irfprobPlot( mod1, items=c(1,3), smooth=FALSE )
 # cumulated IRF
-IRT.irfprobPlot( mod1 , cumul=TRUE )
+IRT.irfprobPlot( mod1, cumul=TRUE )
 
 #############################################################################
 # EXAMPLE 2: Fitted mutidimensional model with gdm
@@ -114,13 +114,13 @@ dat <- CDM::data.fraction2$data
 Qmatrix <- CDM::data.fraction2$q.matrix3
 
 # Model 1: 3-dimensional Rasch Model (normal distribution)
-theta.k <- seq( -4 , 4 , len=11 )   # discretized ability
-mod1 <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k , Qmatrix=Qmatrix ,
-              centered.latent=TRUE , maxiter=10 )
+theta.k <- seq( -4, 4, len=11 )   # discretized ability
+mod1 <- CDM::gdm( dat, irtmodel="1PL", theta.k=theta.k, Qmatrix=Qmatrix,
+              centered.latent=TRUE, maxiter=10 )
 summary(mod1)
 
 # unsmoothed curves
-IRT.irfprobPlot(mod1 , smooth=FALSE)
+IRT.irfprobPlot(mod1, smooth=FALSE)
 # smoothed curves
 IRT.irfprobPlot(mod1)
 }

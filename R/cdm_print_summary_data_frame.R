@@ -1,5 +1,5 @@
 ## File Name: cdm_print_summary_data_frame.R
-## File Version: 0.05
+## File Version: 0.06
 
 
 cdm_print_summary_data_frame <- function(obji, from=NULL, to=NULL, digits=3, rownames_null=FALSE)
@@ -17,7 +17,7 @@ cdm_print_summary_data_frame <- function(obji, from=NULL, to=NULL, digits=3, row
         for (vv in ind){
             obji_vv <- obji[,vv]
             if ( is.numeric(obji_vv) ){
-                obji[ , vv ] <- round( obji_vv, digits )
+                obji[, vv ] <- round( obji_vv, digits )
             }
         }
     }

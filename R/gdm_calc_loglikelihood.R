@@ -1,5 +1,5 @@
 ## File Name: gdm_calc_loglikelihood.R
-## File Version: 0.07
+## File Version: 0.09
 
 gdm_calc_loglikelihood <- function(irtmodel, skillspace, b, a, centerintercepts, centerslopes, TD, Qmatrix,
         Ngroup, pi.k, delta.designmatrix, delta, G, theta.k, D, mean.constraint, Sigma.constraint,
@@ -15,12 +15,12 @@ gdm_calc_loglikelihood <- function(irtmodel, skillspace, b, a, centerintercepts,
 
     #----------------------------------
     #--- constraints on skill space
-    if ( skillspace == "loglinear" ){
+    if ( skillspace=="loglinear" ){
         res <- gdm_est_skillspace( Ngroup=Ngroup, pi.k=pi.k, Z=delta.designmatrix, G=G, delta=delta, estimate=FALSE )
         pi.k <- res$pi.k
         delta <- res$delta
     }
-    if ( skillspace == "normal" ){
+    if ( skillspace=="normal" ){
         res <- gdm_est_normalskills( pi.k=pi.k, theta.k=theta.k, irtmodel=irtmodel, G=G, D=D,
                         mean.constraint=mean.constraint, Sigma.constraint=Sigma.constraint,
                         standardized.latent=standardized.latent, p.aj.xi=p.aj.xi, group=group, ind.group=ind.group,
@@ -29,7 +29,7 @@ gdm_calc_loglikelihood <- function(irtmodel, skillspace, b, a, centerintercepts,
         b <- res$b
         a <- res$a
     }
-    if ( skillspace == "est" ){
+    if ( skillspace=="est" ){
         thetaDes <- theta.k
     }
     #--- probabilities

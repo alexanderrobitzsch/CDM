@@ -1,5 +1,5 @@
 %% File Name: data.cdm.Rd
-%% File Version: 0.41
+%% File Version: 0.44
 
 \name{data.cdm}
 
@@ -158,7 +158,7 @@ the \pkg{pks} package (Heller & Wickelmaier, 2013).
 \code{  ..$ un: num [1:12] 0 0 1 0 0 0 1 1 0 0 ...} \cr
 \code{  ..$ id: num [1:12] 0 0 0 1 0 0 0 0 1 1 ...} \cr
 \code{ $ skills  : Named chr [1:4] "how to calculate the classic probability "} \cr
-\code{  ..- attr(*, "names")= chr [1:4] "pb" "cp" "un" "id"} \cr
+\code{  ..- attr(*, "names")=chr [1:4] "pb" "cp" "un" "id"} \cr
 
 
 \item Dataset \code{data.cdm06}:
@@ -211,7 +211,7 @@ and Ying (2017).
 \code{  .. ..$ : chr [1:13] "I1" "I2" "I3" "I4" ...} \cr
 \code{  .. ..$ : chr [1:3] "A1" "A2" "A3"} \cr
 \code{ $ items   : atomic [1:13] 1 speaking in front of other people? ...} \cr
-\code{  ..- attr(*, "stem")= chr "Have you ever had a strong fear or avoidance of ..."} \cr
+\code{  ..- attr(*, "stem")=chr "Have you ever had a strong fear or avoidance of ..."} \cr
 
 \item Dataset \code{data.cdm08}:
 
@@ -301,15 +301,15 @@ dat <- data.cdm03$data
 qmatrix <- data.cdm03$qmatrix
 
 #*** Model 1: Reduced RUM
-mod1 <- CDM::gdina( dat , q.matrix = qmatrix[,-1], rule="RRUM" )
+mod1 <- CDM::gdina( dat, q.matrix=qmatrix[,-1], rule="RRUM" )
 summary(mod1)
 
 #*** Model 2: Additive model with identity link function
-mod2 <- CDM::gdina( dat , q.matrix = qmatrix[,-1], rule="ACDM" )
+mod2 <- CDM::gdina( dat, q.matrix=qmatrix[,-1], rule="ACDM" )
 summary(mod2)
 
 #*** Model 3: Additive model with logit link function
-mod3 <- CDM::gdina( dat , q.matrix = qmatrix[,-1], rule="ACDM", linkfct="logit")
+mod3 <- CDM::gdina( dat, q.matrix=qmatrix[,-1], rule="ACDM", linkfct="logit")
 summary(mod3)
 
 #############################################################################

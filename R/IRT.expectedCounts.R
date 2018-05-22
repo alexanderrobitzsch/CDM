@@ -1,5 +1,5 @@
 ## File Name: IRT.expectedCounts.R
-## File Version: 0.16
+## File Version: 0.21
 
 ###########################################################
 # extracts expected counts
@@ -11,9 +11,9 @@ IRT.expectedCounts <- function(object, ...)
 
 ###########################################################
 # object of class gdm
-IRT.expectedCounts.gdm <- function( object , ... )
+IRT.expectedCounts.gdm <- function( object, ... )
 {
-    ll <- aperm( object$n.ik , c(2,3,1,4) )
+    ll <- aperm( object$n.ik, c(2,3,1,4) )
     attr(ll,"theta") <- object$theta.k
     attr(ll,"prob.theta") <- object$pi.k
     attr(ll,"G") <- object$G
@@ -23,11 +23,11 @@ IRT.expectedCounts.gdm <- function( object , ... )
 
 ###########################################################
 # object of class din
-IRT.expectedCounts.din <- function( object , ... )
+IRT.expectedCounts.din <- function( object, ... )
 {
     Ilj <- object$I.lj
     D1 <- dim(Ilj)
-    ll <- array( 0 , dim=c( D1[1] , 2 , D1[2] , 1) )
+    ll <- array( 0, dim=c( D1[1], 2, D1[2], 1) )
     ll[,2,,1] <- object$R.lj
     ll[,1,,1] <- object$I.lj - object$R.lj
     attr(ll,"theta") <- object$attribute.patt.splitted
@@ -40,12 +40,12 @@ IRT.expectedCounts.din <- function( object , ... )
 
 ###########################################################
 # object of class gdina
-IRT.expectedCounts.gdina <- function( object , ... )
+IRT.expectedCounts.gdina <- function( object, ... )
 {
     G <- object$G
     Ilj <- object$control$I.lj
     D1 <- dim(Ilj)
-    ll <- array( 0 , dim=c( D1[1] , 2 , D1[2] , G ) )
+    ll <- array( 0, dim=c( D1[1], 2, D1[2], G ) )
     if (G==1){
         ll[,2,,1] <- object$control$R.lj
         ll[,1,,1] <- Ilj - object$control$R.lj
@@ -55,7 +55,7 @@ IRT.expectedCounts.gdina <- function( object , ... )
         ll[,1,,] <- object$control$I.lj.gg - object$control$R.lj.gg
     }
     attr(ll,"theta") <- object$attribute.patt.splitted
-    attr(ll,"prob.theta") <- object$attribute.patt[ , 1:object$G ]
+    attr(ll,"prob.theta") <- object$attribute.patt[, 1:object$G ]
     attr(ll,"G") <- object$G
     attr(ll,"dimnames")[[1]] <- colnames(object$dat)
     return(ll)
@@ -64,11 +64,11 @@ IRT.expectedCounts.gdina <- function( object , ... )
 
 ###########################################################
 # object of class slca
-IRT.expectedCounts.slca <- function( object , ... )
+IRT.expectedCounts.slca <- function( object, ... )
 {
-    ll <- aperm( object$n.ik , c(2,3,1,4) )
-    res <- list( "delta" = object$delta ,
-                "delta.designmatrix" = object$delta.designmatrix )
+    ll <- aperm( object$n.ik, c(2,3,1,4) )
+    res <- list( "delta"=object$delta,
+                "delta.designmatrix"=object$delta.designmatrix )
     attr(ll,"skillspace") <- res
     attr(ll,"prob.theta") <- object$pi.k
     attr(ll,"G") <- object$G
@@ -78,7 +78,7 @@ IRT.expectedCounts.slca <- function( object , ... )
 
 ###########################################################
 # object of class mcdina
-IRT.expectedCounts.mcdina <- function( object , ... )
+IRT.expectedCounts.mcdina <- function( object, ... )
 {
     ll <- object$n.ik
     attr(ll,"theta") <- object$attribute.patt.splitted
@@ -90,9 +90,9 @@ IRT.expectedCounts.mcdina <- function( object , ... )
 
 ###########################################################
 # object of class reglca
-IRT.expectedCounts.reglca <- function( object , ... )
+IRT.expectedCounts.reglca <- function( object, ... )
 {
-    ll <- aperm( object$n.ik , c(2,3,1,4) )
+    ll <- aperm( object$n.ik, c(2,3,1,4) )
     attr(ll,"theta") <- NA
     attr(ll,"prob.theta") <- object$class_probs
     attr(ll,"G") <- object$G

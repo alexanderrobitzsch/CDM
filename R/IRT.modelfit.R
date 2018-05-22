@@ -1,5 +1,5 @@
 ## File Name: IRT.modelfit.R
-## File Version: 0.18
+## File Version: 0.21
 
 ###########################################################
 IRT.modelfit <- function (object, ...)
@@ -8,12 +8,12 @@ IRT.modelfit <- function (object, ...)
 }
 ###########################################################
 # general model fit function for CDM objects
-IRT.modelfit.CDM <- function( object , mod )
+IRT.modelfit.CDM <- function( object, mod )
 {
-    res <- modelfit.cor.din( dinobj = object)
+    res <- modelfit.cor.din( dinobj=object)
     res$IRT.IC <- IRT.IC(object)
     res$objname <- mod
-    class(res) <- paste0("IRT.modelfit." , class(object) )
+    class(res) <- paste0("IRT.modelfit.", class(object) )
     return(res)
 }
 ###########################################################
@@ -21,35 +21,35 @@ IRT.modelfit.CDM <- function( object , mod )
 
 ###########################################################
 # IRT.modelfit for objects of class din, gdina
-IRT.modelfit.din <- function( object , ... )
+IRT.modelfit.din <- function( object, ... )
 {
     cl <- paste(match.call())[2]
-    res <- IRT.modelfit.CDM( object , mod=cl )
+    res <- IRT.modelfit.CDM( object, mod=cl )
     return(res)
 }
 #####################################################
 # IRT.modelfit for gdina objects
-IRT.modelfit.gdina <- function( object , ... )
+IRT.modelfit.gdina <- function( object, ... )
 {
     cl <- paste(match.call())[2]
-    res <- IRT.modelfit.CDM( object , mod=cl )
+    res <- IRT.modelfit.CDM( object, mod=cl )
     return(res)
 }
 #############################################################
 
 #####################################################
 # IRT.modelfit for gdm objects
-IRT.modelfit.gdm <- function( object , ... )
+IRT.modelfit.gdm <- function( object, ... )
 {
     cl <- paste(match.call())[2]
-    res <- IRT.modelfit.CDM( object , mod=cl )
+    res <- IRT.modelfit.CDM( object, mod=cl )
     return(res)
 }
 #############################################################
 
 ############################################################
 # summary
-summary.IRT.modelfit.helper <- function( object , ... )
+summary.IRT.modelfit.helper <- function( object, ... )
 {
     cat("Test of Global Model Fit\n")
     obji <- object$modelfit.test

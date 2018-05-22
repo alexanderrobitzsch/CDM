@@ -1,5 +1,5 @@
 ## File Name: gdm_est_b.R
-## File Version: 0.39
+## File Version: 0.41
 
 ###########################################################################
 # estimation of b parameters
@@ -13,10 +13,10 @@ gdm_est_b <- function(probs, n.ik, N.ik, I, K, G, b, b.constraint,
     parchange <- 1
     eps <- 1E-10
     b00 <- b
-    while( ( iter <= msteps ) & ( parchange > convM)  ){
+    while( ( iter <=msteps ) & ( parchange > convM)  ){
         b0 <- b
         probs <- gdm_calc_prob( a=a, b=b, thetaDes=thetaDes, Qmatrix=Qmatrix, I=I, K=K, TP=TP, TD=TD )
-        d2.b <- d1.b <- matrix( 0 , nrow=I,ncol=K)
+        d2.b <- d1.b <- matrix( 0, nrow=I,ncol=K)
         for (kk in 2:(K+1)){
             probs_kk <- probs[,kk,]
             for (gg in 1:G){
@@ -55,7 +55,7 @@ gdm_est_b <- function(probs, n.ik, N.ik, I, K, G, b, b.constraint,
         max.increment.b <- max.increment.b/1.01
     }
     #--- OUTPUT
-    res <- list( b=b, se.b=se.b , max.increment.b=max.increment.b)
+    res <- list( b=b, se.b=se.b, max.increment.b=max.increment.b)
     return(res)
 }
 

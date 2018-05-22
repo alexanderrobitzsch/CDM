@@ -1,5 +1,5 @@
 %% File Name: cdm.est.class.accuracy.Rd
-%% File Version: 1.19
+%% File Version: 1.27
 
 \name{cdm.est.class.accuracy}
 \alias{cdm.est.class.accuracy}
@@ -16,7 +16,7 @@ DINO model) while the analytical method also works for
 objects of class \code{gdina}.
 }
 \usage{
-cdm.est.class.accuracy(cdmobj, n.sims = 0, seed = 987)
+cdm.est.class.accuracy(cdmobj, n.sims=0)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -31,9 +31,7 @@ size is used.
 Note that the simulation does (up to now) only work for
 CDMs of class \code{din}.
 }
-  \item{seed}{
-An integer which indicates the simulation seed.
-}
+
 }
 \details{
 The item parameters and the probability distribution of
@@ -43,7 +41,7 @@ classification estimators. In addition, classification accuracy measures
 are available for the separate classification of all skills.
 }
 \value{
-A data frame for MLE, MAP and MAP (Skill 1, ... , Skill \eqn{K})
+A data frame for MLE, MAP and MAP (Skill 1, ..., Skill \eqn{K})
 classification reliability for the whole latent class pattern and
 marginal skill classification with following columns:
   \item{P_a}{Classification accuracy (Cui et al., 2012)}
@@ -82,9 +80,9 @@ data(sim.qmatrix, package="CDM")
 
 #***
 # Model 1: estimate DINO model with din
-mod1 <- CDM::din( sim.dino , q.matrix = sim.qmatrix , rule="DINO")
+mod1 <- CDM::din( sim.dino, q.matrix=sim.qmatrix, rule="DINO")
 # estimate classification reliability
-cdm.est.class.accuracy(  mod1 , n.sims=5000)
+cdm.est.class.accuracy( mod1, n.sims=5000)
   ##                P_a P_a_sim   P_c P_c_sim
   ##   MLE        0.668   0.661 0.583   0.541
   ##   MAP        0.807   0.785 0.717   0.670
@@ -94,9 +92,9 @@ cdm.est.class.accuracy(  mod1 , n.sims=5000)
 
 #***
 # Model 2: estimate DINO model with gdina
-mod2 <- CDM::gdina( sim.dino , q.matrix = sim.qmatrix , rule="DINO")
+mod2 <- CDM::gdina( sim.dino, q.matrix=sim.qmatrix, rule="DINO")
 # estimate classification reliability
-cdm.est.class.accuracy(  mod2 )
+cdm.est.class.accuracy( mod2 )
   ##                P_a   P_c
   ##   MLE        0.675 0.598
   ##   MAP        0.832 0.739
@@ -104,12 +102,12 @@ cdm.est.class.accuracy(  mod2 )
   ##   MAP_Skill2 0.629 0.618
   ##   MAP_Skill3 0.823 0.729
 
-m1 <- mod1$coef[ , c("guess" , "slip" ) ]
+m1 <- mod1$coef[, c("guess", "slip" ) ]
 m2 <- mod2$coef
-m2 <- cbind( m1 , m2[ seq(1,18,2) , "est" ]  ,
-          1 - m2[ seq(1,18,2) , "est" ]  - m2[ seq(2,18,2) , "est" ]  )
-colnames(m2) <- c("g.M1" , "s.M1" , "g.M2" , "s.M2" )
-  ##   > round( m2 , 3 )
+m2 <- cbind( m1, m2[ seq(1,18,2), "est" ],
+          1 - m2[ seq(1,18,2), "est" ]  - m2[ seq(2,18,2), "est" ]  )
+colnames(m2) <- c("g.M1", "s.M1", "g.M2", "s.M2" )
+  ##   > round( m2, 3 )
   ##          g.M1  s.M1  g.M2  s.M2
   ##   Item1 0.109 0.192 0.109 0.191
   ##   Item2 0.073 0.234 0.072 0.234

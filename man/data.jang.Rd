@@ -1,5 +1,5 @@
 %% File Name: data.jang.Rd
-%% File Version: 0.14
+%% File Version: 0.17
 
 \name{data.jang}
 \alias{data.jang}
@@ -62,15 +62,15 @@ data <- data.jang$data
 q.matrix <- data.jang$q.matrix
 
 #*** Model 1: Reduced RUM model
-mod1 <- CDM::gdina( data, q.matrix, rule="RRUM", conv.crit = .001, increment.factor=1.025 )
+mod1 <- CDM::gdina( data, q.matrix, rule="RRUM", conv.crit=.001, increment.factor=1.025 )
 summary(mod1)
 
 #*** Model 2: Additive model (identity link)
-mod2 <- CDM::gdina( data, q.matrix, rule="ACDM", conv.crit = .001, linkfct="identity" )
+mod2 <- CDM::gdina( data, q.matrix, rule="ACDM", conv.crit=.001, linkfct="identity" )
 summary(mod2)
 
 #*** Model 3: DINA model
-mod3 <- CDM::gdina( data, q.matrix, rule="DINA", conv.crit = .001 )
+mod3 <- CDM::gdina( data, q.matrix, rule="DINA", conv.crit=.001 )
 summary(mod3)
 
 anova(mod1,mod2)
@@ -83,7 +83,7 @@ anova(mod1,mod3)
   ##   1 Model 1 -30315.03 60630.06   153 60936.06 61748.98       NA NA NA
 
 # RRUM
-summary( CDM::modelfit.cor.din( mod1 , jkunits=0) )
+summary( CDM::modelfit.cor.din( mod1, jkunits=0) )
   ##          type    value       p
   ##   1   max(X2) 11.79073 0.39645
   ##   2 abs(fcor)  0.09541 0.07422
@@ -95,7 +95,7 @@ summary( CDM::modelfit.cor.din( mod1 , jkunits=0) )
   ##   MADQ3           0.02413
 
 # additive model (identity)
-summary( CDM::modelfit.cor.din( mod2 , jkunits=0) )
+summary( CDM::modelfit.cor.din( mod2, jkunits=0) )
   ##          type   value       p
   ##   1   max(X2) 9.78958 1.00000
   ##   2 abs(fcor) 0.08770 0.22993
@@ -107,7 +107,7 @@ summary( CDM::modelfit.cor.din( mod2 , jkunits=0) )
   ##   MADQ3           0.02423
 
 # DINA model
-summary( CDM::modelfit.cor.din( mod3 , jkunits=0) )
+summary( CDM::modelfit.cor.din( mod3, jkunits=0) )
   ##          type    value       p
   ##   1   max(X2) 13.48449 0.16020
   ##   2 abs(fcor)  0.10651 0.01256

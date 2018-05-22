@@ -1,5 +1,5 @@
 %% File Name: coef.Rd
-%% File Version: 0.20
+%% File Version: 0.22
 
 \name{coef}
 \alias{coef.din}
@@ -61,12 +61,12 @@ data(sim.dina, package="CDM")
 data(sim.qmatrix, package="CDM")
 
 # DINA model
-d1 <- CDM::din( sim.dina, q.matrix = sim.qmatrix)
+d1 <- CDM::din( sim.dina, q.matrix=sim.qmatrix)
 coef(d1)
 
 \dontrun{
 # GDINA model
-d2 <- CDM::gdina( sim.dina, q.matrix = sim.qmatrix)
+d2 <- CDM::gdina( sim.dina, q.matrix=sim.qmatrix)
 coef(d2)
 
 # GDM model

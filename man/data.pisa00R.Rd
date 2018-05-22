@@ -1,5 +1,5 @@
 %% File Name: data.pisa00R.Rd
-%% File Version: 0.09
+%% File Version: 0.11
 
 \name{data.pisa00R}
 \alias{data.pisa00R.ct}
@@ -50,7 +50,7 @@ data(data.pisa00R.cc)
 \code{  ..$ A4: num [1:20] 0 1 1 1 0 0 0 0 0 0 ...} \cr
 \code{  ..$ A5: num [1:20] 0 0 1 0 0 0 0 1 0 1 ...} \cr
 \code{ $ skills  : Named chr [1:5] "Identifying Explicit Information"  ...} \cr
-\code{  ..- attr(*, "names")= chr [1:5] "A1" "A2" "A3" "A4" ...} \cr
+\code{  ..- attr(*, "names")=chr [1:5] "A1" "A2" "A3" "A4" ...} \cr
 
 }
 
@@ -92,7 +92,7 @@ maxK <- apply( resp, 2, max, na.rm=TRUE )
 #** dichotomize response data
 resp1 <- resp
 for (ii in seq(1,ncol(resp)) ){
-    resp1[,ii] <- 1 * ( resp[,ii] == maxK[ii] )
+    resp1[,ii] <- 1 * ( resp[,ii]==maxK[ii] )
 }
 }
 

@@ -1,5 +1,5 @@
 %% File Name: sequential.items.Rd
-%% File Version: 0.17
+%% File Version: 0.21
 
 \name{sequential.items}
 \alias{sequential.items}
@@ -41,12 +41,12 @@ A data frame with item responses
 Assume that item \eqn{j} possesses \eqn{K \geq 3} categories. We label these
 categories as \eqn{k=0,1,\ldots,K-1}. The original item responses \eqn{X_{nj}}
 for person \eqn{n} at item \eqn{j} is then transformed into \eqn{K-1} pseudo
-items \eqn{Y_{j1}, \ldots , Y_{j,K-1}}.
+items \eqn{Y_{j1}, \ldots, Y_{j,K-1}}.
 
 The first pseudo item response \eqn{Y_{nj1}} is defined as 1 iff
 \eqn{X_{nj} \geq 1}. The second item responses \eqn{Y_{nj2}} is 1 iff
-\eqn{X_{nj} \geq 2}, it is 0 iff \eqn{X_{nj} = 1} and it is missing
-(\code{NA} in the dataset) iff \eqn{X_{nj} = 0}. The construction proceeds
+\eqn{X_{nj} \geq 2}, it is 0 iff \eqn{X_{nj}=1} and it is missing
+(\code{NA} in the dataset) iff \eqn{X_{nj}=0}. The construction proceeds
 in the same manner for other categories (see Tutz, 1997). The pseudo items can be
 recognized as 'hurdles' a participant has to master to get a score of \eqn{k}
 for the original item.
@@ -102,7 +102,7 @@ New York: Springer.
 
 data(data.mg, package="CDM")
 dat <- data.mg
-items <- colnames(dat)[ which( substring( colnames(dat) ,1,1)=="I" ) ]
+items <- colnames(dat)[ which( substring( colnames(dat),1,1)=="I" ) ]
 ##    [1] "I1"  "I2"  "I3"  "I4"  "I5"  "I6"  "I7"  "I8"  "I9"  "I10" "I11"
 data <- dat[,items]
 
@@ -169,8 +169,8 @@ stats::xtabs( ~ paste(data$I7) + paste(dat.expand$I7_Cat3) )
 
 \dontrun{
 #*** Model 1: Rasch model for sequentially created pseudo items
-mod <- CDM::gdm( dat.expand, irtmodel="1PL" , theta.k=seq(-5,5,len=21) ,
-             skillspace="normal" , decrease.increments=TRUE)
+mod <- CDM::gdm( dat.expand, irtmodel="1PL", theta.k=seq(-5,5,len=21),
+             skillspace="normal", decrease.increments=TRUE)
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

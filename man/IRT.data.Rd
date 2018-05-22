@@ -1,5 +1,5 @@
 %% File Name: IRT.data.Rd
-%% File Version: 0.13
+%% File Version: 0.17
 
 \name{IRT.data}
 \alias{IRT.data}
@@ -88,18 +88,18 @@ dat <- sim.dina
 q.matrix <- sim.qmatrix
 
 #--- Model 1: GDINA model
-mod1 <- CDM::gdina( data = dat, q.matrix = q.matrix)
+mod1 <- CDM::gdina( data=dat, q.matrix=q.matrix)
 summary(mod1)
 dmod1 <- CDM::IRT.data(mod1)
 str(dmod1)
 
 #--- Model 2: DINA model
-mod2 <- CDM::din( data = dat, q.matrix = q.matrix)
+mod2 <- CDM::din( data=dat, q.matrix=q.matrix)
 summary(mod2)
 dmod2 <- CDM::IRT.data(mod2)
 
 #--- Model 3: Rasch model with gdm function
-mod3 <- CDM::gdm( data = dat, irtmodel="1PL" , theta.k=seq(-4,4,length=11) ,
+mod3 <- CDM::gdm( data=dat, irtmodel="1PL", theta.k=seq(-4,4,length=11),
                 centered.latent=TRUE )
 summary(mod3)
 dmod3 <- CDM::IRT.data(mod3)
@@ -113,15 +113,15 @@ I <- ncol(dat)
 TP <- 2     # two classes
 # The idea is that latent classes refer to two different "dimensions".
 # Items load on latent class indicators 1 and 2, see below.
-Xdes <- array(0 , dim=c(I,2,2,2*I) )
+Xdes <- array(0, dim=c(I,2,2,2*I) )
 items <- colnames(dat)
-dimnames(Xdes)[[4]] <- c(paste0( colnames(dat) , "Class" , 1),
-          paste0( colnames(dat) , "Class" , 2) )
-    # items, categories , classes , parameters
+dimnames(Xdes)[[4]] <- c(paste0( colnames(dat), "Class", 1),
+          paste0( colnames(dat), "Class", 2) )
+    # items, categories, classes, parameters
 # probabilities for correct solution
 for (ii in 1:I){
-    Xdes[ ii , 2 , 1 , ii ] <- 1    # probabilities class 1
-    Xdes[ ii , 2 , 2 , ii+I ] <- 1  # probabilities class 2
+    Xdes[ ii, 2, 1, ii ] <- 1    # probabilities class 1
+    Xdes[ ii, 2, 2, ii+I ] <- 1  # probabilities class 2
 }
 # estimate model
 mod4 <- CDM::slca( dat, Xdes=Xdes)

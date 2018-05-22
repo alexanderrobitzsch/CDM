@@ -1,5 +1,5 @@
 %% File Name: itemfit.rmsea.Rd
-%% File Version: 1.12
+%% File Version: 1.14
 
 \name{itemfit.rmsea}
 \alias{itemfit.rmsea}
@@ -37,7 +37,7 @@ An optional vector of item names. Default is \code{NULL}.
 \details{
 For item \eqn{j}, the RMSEA itemfit in this function is calculated
 as follows:
-\deqn{ RMSEA_j = \sqrt{ \sum_k \sum_c \pi ( \bold{\theta}_c)
+\deqn{ RMSEA_j=\sqrt{ \sum_k \sum_c \pi ( \bold{\theta}_c)
     \left( P_j ( \bold{\theta}_c ) -
 \frac{n_{jkc}}{N_{jc}} \right)^2 } }
 where \eqn{c} denotes the class of the skill vector

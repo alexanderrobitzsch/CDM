@@ -1,5 +1,5 @@
 ## File Name: gdina_proc_spec_rrum.R
-## File Version: 0.06
+## File Version: 0.09
 
 gdina_proc_spec_rrum <- function(rule, method, linkfct)
 {
@@ -7,7 +7,7 @@ gdina_proc_spec_rrum <- function(rule, method, linkfct)
     rrum.params <- FALSE
     rrum.model <- FALSE
 
-    if ( any( rule  == "RRUM" ) ){
+    if ( any( rule=="RRUM" ) ){
         rule <- "ACDM"
         linkfct <- "log"
         if ( is.null(method) ){

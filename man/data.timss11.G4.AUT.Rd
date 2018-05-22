@@ -1,5 +1,5 @@
 %% File Name: data.timss11.G4.AUT.Rd
-%% File Version: 0.18
+%% File Version: 0.19
 
 \name{data.timss11.G4.AUT}
 \alias{data.timss11.G4.AUT}
@@ -157,7 +157,7 @@ used in Sedat and Arican (2015).
 \code{  ..$ D12: num [1:31] 0 0 0 0 0 0 0 0 0 0 ...} \cr
 \code{  ..$ D13: num [1:31] 0 0 0 0 0 0 0 0 0 0 ...} \cr
 \code{ $ skills  : Named chr [1:13] "Possesses understanding of"  __truncated__ ...} \cr
-\code{  ..- attr(*, "names")= chr [1:13] "N1" "N2" "N3" "A4" ...} \cr
+\code{  ..- attr(*, "names")=chr [1:13] "N1" "N2" "N3" "A4" ...} \cr
 
 
 }

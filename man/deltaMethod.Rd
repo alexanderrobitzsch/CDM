@@ -1,5 +1,5 @@
 %% File Name: deltaMethod.Rd
-%% File Version: 0.08
+%% File Version: 0.12
 
 \name{deltaMethod}
 \alias{deltaMethod}
@@ -12,7 +12,7 @@ Computes the variance of a nonlinear parameter using the
 delta method.
 }
 \usage{
-deltaMethod(derived.pars, est, Sigma, h = 1e-05)
+deltaMethod(derived.pars, est, Sigma, h=1e-05)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -68,17 +68,17 @@ See \code{\link[car:deltaMethod]{car::deltaMethod}} or
 #############################################################################
 
 #-- parameter estimate
-est <- c( 510.67 , 102.57)
-names(est) <- c("mu" , "sigma")
+est <- c( 510.67, 102.57)
+names(est) <- c("mu", "sigma")
 #-- covariance matrix
-Sigma <- matrix( c(5.83 , 0.45 , 0.45 , 3.21 ) , nrow=2 , ncol=2 )
+Sigma <- matrix( c(5.83, 0.45, 0.45, 3.21 ), nrow=2, ncol=2 )
 colnames(Sigma) <- rownames(Sigma) <- names(est)
 #-- define derived nonlinear parameters
-derived.pars <- list( "d" = ~ I( ( mu - 508 ) / sigma ) ,
-                      "dsig" = ~ I( sigma / 100 - 1) )
+derived.pars <- list( "d"=~ I( ( mu - 508 ) / sigma ),
+                      "dsig"=~ I( sigma / 100 - 1) )
 
 #*** apply delta method
-res <- CDM::deltaMethod( derived.pars , est , Sigma )
+res <- CDM::deltaMethod( derived.pars, est, Sigma )
 res
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

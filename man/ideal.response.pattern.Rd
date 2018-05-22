@@ -1,5 +1,5 @@
 %% File Name: ideal.response.pattern.Rd
-%% File Version: 0.08
+%% File Version: 0.12
 
 \name{ideal.response.pattern}
 \alias{ideal.response.pattern}
@@ -9,12 +9,12 @@ Ideal Response Pattern
 }
 \description{
 This function computes the ideal response pattern which is the latent
-item response \eqn{\eta_{lj} = \prod_{k=1}^K \alpha_{lk}} for a person
+item response \eqn{\eta_{lj}=\prod_{k=1}^K \alpha_{lk}} for a person
 with skill profile \eqn{l} at item \eqn{j}.
 }
 
 \usage{
-ideal.response.pattern(q.matrix, skillspace = NULL)
+ideal.response.pattern(q.matrix, skillspace=NULL)
 }
 
 %- maybe also 'usage' for other objects documented here.
@@ -68,9 +68,9 @@ q.matrix <- sim.qmatrix
 CDM::ideal.response.pattern( q.matrix )
 
 # compute ideal responses for a reduced skill space
-skillspace <- matrix( c( 0,1,0 ,
-                         1,1,0 ) , 2 ,3 , byrow=TRUE )
-CDM::ideal.response.pattern( q.matrix , skillspace=skillspace)
+skillspace <- matrix( c( 0,1,0,
+                         1,1,0 ), 2,3, byrow=TRUE )
+CDM::ideal.response.pattern( q.matrix, skillspace=skillspace)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

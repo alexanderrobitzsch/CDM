@@ -1,14 +1,14 @@
 ## File Name: check.input.R
-## File Version: 1.09
+## File Version: 1.13
 ################################################################################
 # check consistency of input to din-method (data, q.matrix, ...)               #
 ################################################################################
 
-check.input <- function( data , q.matrix , conv.crit = 0.001 , maxit = 100 ,
-                    constraint.guess = NULL , constraint.slip = NULL ,
-                    guess.init = rep(.2 , ncol(data) ) , slip.init = guess.init ,
-                    weights = rep( 1 , nrow( data ) ) ,  rule = "DINA" ,
-                    progress = TRUE ){
+check.input <- function( data, q.matrix, conv.crit=0.001, maxit=100,
+                    constraint.guess=NULL, constraint.slip=NULL,
+                    guess.init=rep(.2, ncol(data) ), slip.init=guess.init,
+                    weights=rep( 1, nrow( data ) ),  rule="DINA",
+                    progress=TRUE ){
 
 # Call: from din()
 # Input: cf. din()
@@ -20,22 +20,22 @@ check.input <- function( data , q.matrix , conv.crit = 0.001 , maxit = 100 ,
 ################################################################################
 
     # check for data classes matrix and data.frame
-    if ((data.class(data) != "matrix") && (data.class(data) != "data.frame"))
+    if ((data.class(data) !="matrix") && (data.class(data) !="data.frame"))
            return(warning("data must be matrix or data frame"))
     data <- as.matrix(data)
 
     # check for data entries being dichotomous or missing
-    gt <- data[ is.na( data ) == F ]
+    gt <- data[ is.na( data )==F ]
     # gt <- data[ ! is.na( data) ]
 
-#    if(any(gt == 9||gt == 99||gt == .99)){
-    if( sum(gt == 9 ) + sum(gt == 99 ) + sum(gt == .99) > 0 ){
+#    if(any(gt==9||gt==99||gt==.99)){
+    if( sum(gt==9 ) + sum(gt==99 ) + sum(gt==.99) > 0 ){
       return(warning("Recode your data! Only responses with values 0 or 1 (or NA) are valid.",
       "\nMaybe missing values coded as 9, 99, .99.\n"))
       }
 
   # return all response pattern not containing NA
-    gt <- unique( gt[ gt %in% c(0,1) == F ] )
+    gt <- unique( gt[ gt %in% c(0,1)==F ] )
     if(length(gt) > 0){
         return(warning("Recode your data! Only responses with values 0 or 1 (or NA) are valid.\n"))
                     }
@@ -49,18 +49,18 @@ check.input <- function( data , q.matrix , conv.crit = 0.001 , maxit = 100 ,
 ################################################################################
 
     # check for data classes matrix and data.frame
-    if ((data.class(q.matrix) != "matrix") && (data.class(q.matrix) != "data.frame"))
+    if ((data.class(q.matrix) !="matrix") && (data.class(q.matrix) !="data.frame"))
            return(warning("data must be matrix or data frame"))
     att.lbl <- attributes(q.matrix)$skill.labels
   q.matrix <- as.matrix(q.matrix)
 
 
     # return all response pattern not containing NA
-    # gt_q <- data[ is.na( q.matrix ) == F ]
+    # gt_q <- data[ is.na( q.matrix )==F ]
     gt_q <- q.matrix[ ! is.na( q.matrix ) ]
 
-    # gt_q <- unique( gt_q[ gt_q %in% c(0,1) == F ] )
-    gt_q <- setdiff( unique( gt_q ) , c(0,1) )
+    # gt_q <- unique( gt_q[ gt_q %in% c(0,1)==F ] )
+    gt_q <- setdiff( unique( gt_q ), c(0,1) )
     if(length(gt) > 0){ return(warning("Check your Q-matrix! Only values 0 or 1 are valid.\n")) }
 
      # check if q.matrix obtains same number of items as the data set
@@ -69,9 +69,9 @@ check.input <- function( data , q.matrix , conv.crit = 0.001 , maxit = 100 ,
 
     # return warning message if there is a Zero-Row in the q.matrix
     rq <- rowSums(q.matrix)
-    if (min(rq) == 0){
+    if (min(rq)==0){
         return(warning("Check your Q-matrix! The following items are not related to attributes:"
-              , "\n" , "Items " , paste( (1:(nrow(q.matrix)))[ rq == 0] , collapse=" , " ) , "\n" ))}
+              , "\n", "Items ", paste( (1:(nrow(q.matrix)))[ rq==0], collapse=", " ), "\n" ))}
 
     # check for provision of row- and colnames
     if(is.null(rownames(q.matrix))) rownames(q.matrix) <- paste("Item",1:nrow(q.matrix),sep="")
@@ -79,7 +79,7 @@ check.input <- function( data , q.matrix , conv.crit = 0.001 , maxit = 100 ,
 
   # check for provision of skill labels
   if(is.null(att.lbl)) attr(q.matrix, "skill.labels") <- colnames(q.matrix)
-  if(length(att.lbl) != ncol(q.matrix) & length(att.lbl) != 0){
+  if(length(att.lbl) !=ncol(q.matrix) & length(att.lbl) !=0){
     attr(q.matrix, "skill.labels") <- colnames(q.matrix)
     warning("Unreasonable number of skill labels; skill labels replaced by colnames of q.matrix")
   }else{
@@ -103,14 +103,14 @@ if(conv.crit<=0||maxit<1) return(warning("Check your routine criteria"))
     if(!is.null(constraint.slip)){                                                  #NULL permitted
 
       if (any(is.na(constraint.slip))||any(!is.numeric(constraint.slip))||         #numeric values only
-        (!is.vector(constraint.slip) && (data.class(constraint.slip) != "matrix") &&
-        (data.class(constraint.slip) != "data.frame"))||                            #object typ
-        (length(constraint.slip %% 2 != 0) && ncol(constraint.slip)!=2)){                #two columns!
+        (!is.vector(constraint.slip) && (data.class(constraint.slip) !="matrix") &&
+        (data.class(constraint.slip) !="data.frame"))||                            #object typ
+        (length(constraint.slip %% 2 !=0) && ncol(constraint.slip)!=2)){                #two columns!
            return(warning("check your error parameter constraints. See Help-files."))
         }
         if(is.vector(constraint.slip))
 #          try(constraint.slip <- matrix(constraint.slip, ncol=2, byrow=T))
-        if(data.class(constraint.slip) == "data.frame"){
+        if(data.class(constraint.slip)=="data.frame"){
             onstraint.slip <- as.matrix(constraint.slip) }
 
         if(any(duplicated(constraint.slip[,1]))||                                   #no duplicates
@@ -123,14 +123,14 @@ if(conv.crit<=0||maxit<1) return(warning("Check your routine criteria"))
     # guessing constraints see help files
     if(!is.null(constraint.guess)){                                                 #NULL permitted
       if(any(is.na(constraint.guess))||any(!is.numeric(constraint.guess))||         #numeric values only
-        (!is.vector(constraint.guess) && (data.class(constraint.guess) != "matrix")
-        && (data.class(constraint.guess) != "data.frame"))||                          #object typ
+        (!is.vector(constraint.guess) && (data.class(constraint.guess) !="matrix")
+        && (data.class(constraint.guess) !="data.frame"))||                          #object typ
         (length(constraint.guess)%%2!=0 && ncol(constraint.guess)!=2)){                #two columns!
            return(warning("check your error parameter constraints. See Help-files."))
         }
 #        if(is.vector(constraint.guess))
 #          try(constraint.guess <- matrix(constraint.guess, ncol=2, byrow=T))
-        if(data.class(constraint.guess) == "data.frame"){
+        if(data.class(constraint.guess)=="data.frame"){
             constraint.guess <- as.matrix(constraint.guess)
                                     }
 

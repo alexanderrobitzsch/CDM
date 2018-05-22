@@ -1,5 +1,5 @@
 %% File Name: skillspace.approximation.Rd
-%% File Version: 0.14
+%% File Version: 0.18
 
 \name{skillspace.approximation}
 \alias{skillspace.approximation}
@@ -17,7 +17,7 @@ represented by underlying continuous latent variables for the
 dichotomous skills (see George & Robitzsch, 2014, for more details).
 }
 \usage{
-skillspace.approximation(L, K, nmax = 5000)
+skillspace.approximation(L, K, nmax=5000)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -65,8 +65,8 @@ See also \code{\link{gdina}} (Example 9).
 # EXAMPLE 1: Approximate a skill space of K=8 eight skills by 20 classes
 #############################################################################
 
-# => 2^8 = 256 latent classes if all latent classes would be used
-CDM::skillspace.approximation( L=20  , K=8 )
+#=> 2^8=256 latent classes if all latent classes would be used
+CDM::skillspace.approximation( L=20, K=8 )
   ##             [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
   ##   P00000000    0    0    0    0    0    0    0    0
   ##   P00000001    0    0    0    0    0    0    0    1

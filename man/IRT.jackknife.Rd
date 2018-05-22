@@ -1,5 +1,5 @@
 %% File Name: IRT.jackknife.Rd
-%% File Version: 0.18
+%% File Version: 0.22
 
 \name{IRT.jackknife}
 \alias{IRT.jackknife}
@@ -26,7 +26,7 @@ class \code{IRT.jackknife} and a list with defining formulas.
 }
 
 \usage{
-IRT.jackknife(object,repDesign , ... )
+IRT.jackknife(object,repDesign, ... )
 
 IRT.derivedParameters(jkobject, derived.parameters )
 
@@ -97,14 +97,14 @@ q.matrix <- data.timss11.G4.AUT.part$q.matrix2
 items <- paste(q.matrix$item)
 
 # generate replicate design
-rdes <- CDM::IRT.repDesign( data= dat,  wgt = "TOTWGT" , jktype="JK_TIMSS" ,
-                   jkzone = "JKCZONE" , jkrep = "JKCREP" )
+rdes <- CDM::IRT.repDesign( data=dat,  wgt="TOTWGT", jktype="JK_TIMSS",
+                   jkzone="JKCZONE", jkrep="JKCREP" )
 
 #--- Model 1: fit multiple group GDINA model
-mod1 <- CDM::gdina( dat[,items] , q.matrix =q.matrix[,-1] ,
-            weights=dat$TOTWGT , group=dat$female +1  )
+mod1 <- CDM::gdina( dat[,items], q.matrix=q.matrix[,-1],
+            weights=dat$TOTWGT, group=dat$female +1  )
 # jackknife Model 1
-jmod1 <- CDM::IRT.jackknife( object = mod1 , repDesign = rdes )
+jmod1 <- CDM::IRT.jackknife( object=mod1, repDesign=rdes )
 summary(jmod1)
 coef(jmod1)
 vcov(jmod1)
@@ -119,29 +119,29 @@ dat <- sim.dina
 q.matrix <- sim.qmatrix
 
 # generate replicate design with 50 jackknife zones (50 random groups)
-rdes <- CDM::IRT.repDesign( data= dat ,  jktype="JK_RANDOM" , ngr=50 )
+rdes <- CDM::IRT.repDesign( data=dat,  jktype="JK_RANDOM", ngr=50 )
 
 #--- Model 1: DINA model
-mod1 <- CDM::gdina( dat, q.matrix =q.matrix , rule="DINA")
+mod1 <- CDM::gdina( dat, q.matrix=q.matrix, rule="DINA")
 summary(mod1)
 # jackknife DINA model
-jmod1 <- CDM::IRT.jackknife( object = mod1 , repDesign = rdes )
+jmod1 <- CDM::IRT.jackknife( object=mod1, repDesign=rdes )
 summary(jmod1)
 
 #--- Model 2: DINO model
-mod2 <- CDM::gdina( dat, q.matrix =q.matrix , rule="DINO")
+mod2 <- CDM::gdina( dat, q.matrix=q.matrix, rule="DINO")
 summary(mod2)
 # jackknife DINA model
-jmod2 <- CDM::IRT.jackknife( object = mod2 , repDesign = rdes )
+jmod2 <- CDM::IRT.jackknife( object=mod2, repDesign=rdes )
 summary(jmod2)
-IRT.compareModels( mod1 , mod2 )
+IRT.compareModels( mod1, mod2 )
 
 # statistical inference for derived parameters
-derived.parameters <- list( "skill1" = ~ 0 + I(prob_skillV1_lev1_group1) ,
-    "skilldiff12" = ~ 0 + I( prob_skillV2_lev1_group1 - prob_skillV1_lev1_group1 ) ,
-    "skilldiff13" = ~ 0 + I( prob_skillV3_lev1_group1 - prob_skillV1_lev1_group1 )
+derived.parameters <- list( "skill1"=~ 0 + I(prob_skillV1_lev1_group1),
+    "skilldiff12"=~ 0 + I( prob_skillV2_lev1_group1 - prob_skillV1_lev1_group1 ),
+    "skilldiff13"=~ 0 + I( prob_skillV3_lev1_group1 - prob_skillV1_lev1_group1 )
                     )
-jmod2a <- CDM::IRT.derivedParameters( jmod2 , derived.parameters=derived.parameters )
+jmod2a <- CDM::IRT.derivedParameters( jmod2, derived.parameters=derived.parameters )
 summary(jmod2a)
 coef(jmod2a)
 }

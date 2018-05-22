@@ -1,5 +1,5 @@
 %% File Name: modelfit.cor.Rd
-%% File Version: 1.58
+%% File Version: 1.61
 
 \name{modelfit.cor}
 \alias{modelfit.cor}
@@ -24,7 +24,7 @@ based on comparing observed and expected frequencies of item pairs
 modelfit.cor(data, posterior, probs)
 modelfit.cor2(data, posterior, probs)
 
-modelfit.cor.din( dinobj , jkunits=0 )
+modelfit.cor.din( dinobj, jkunits=0 )
 
 \method{summary}{modelfit.cor.din}(object, \dots)
 }
@@ -62,9 +62,9 @@ The input \code{jkunits} can be also a vector of jackknife unit identifiers.
 
 \details{
 The fit statistics are based on predictions of the pairwise table
-\eqn{(X_i , X_j)} of item responses. The \eqn{\chi^2} statistic \code{X2} for
+\eqn{(X_i, X_j)} of item responses. The \eqn{\chi^2} statistic \code{X2} for
 item pairs \eqn{i} and \eqn{j} is defined as
-\deqn{ \chi^2_{ij} = \sum_{k=0}^1 \sum_{l=0}^1 \frac{ (n_{ij,kl}-e_{ij,kl}) ^2 }{ e_{ij,kl} }}
+\deqn{ \chi^2_{ij}=\sum_{k=0}^1 \sum_{l=0}^1 \frac{ (n_{ij,kl}-e_{ij,kl}) ^2 }{ e_{ij,kl} }}
 where \eqn{n_{ij,kl}} is the absolute frequency of \eqn{\{ X_{i}=k,X_j=l\}}
 and \eqn{e_{ij,kl}} is the expected frequency using the estimated model.
 Note that for calculating \eqn{e_{ij,kl}}, individual posterior distributions
@@ -78,7 +78,7 @@ p-value adjustments according to the Holm and FDR method are conducted
 % of all \eqn{ \chi^2_{ij}} statistics across all item pairs.
 
 The residual covariance \code{RESIDCOV} of item pairs \eqn{(i,j)} is calculated
-as \deqn{ RESIDCOV_{ij} =
+as \deqn{ RESIDCOV_{ij}=
     \frac{ n_{ij,11} n_{ij,00} - n_{ij,10} n_{ij,01} }{n^2 } -
         \frac{ e_{ij,11} e_{ij,00} - e_{ij,10} e_{ij,01} }{n^2 } }
 where \code{MRESIDCOV} is the average of all \code{RESIDCOV} statistics
@@ -87,15 +87,15 @@ and is the total sample size.
 The statistic \code{MADcor} denotes the average absolute deviation between
 observed correlations \eqn{r_{ij}} and model predicted correlations
 \eqn{\hat{r}_{ij}} of item pairs \eqn{(i,j)}:
-\deqn{ MADcor = \frac{1}{ J(J-1)/2 } \sum_{i < j} | r_{ij} - \hat{r}_{ij} |}
+\deqn{ MADcor=\frac{1}{ J(J-1)/2 } \sum_{i < j} | r_{ij} - \hat{r}_{ij} |}
 
 The SRMSR (standardized root mean square root of squared residuals,
 Maydeu-Olivares, 2013) is also based on comparing these correlations
-\deqn{ SRMSR = \sqrt{ \frac{1}{ J(J-1)/2 } \sum_{i < j}
+\deqn{ SRMSR=\sqrt{ \frac{1}{ J(J-1)/2 } \sum_{i < j}
     ( r_{ij} - \hat{r}_{ij} )^2 } }
 
 For calculating \code{MADQ3} and \code{MADaQ3},
-residuals \eqn{\varepsilon_{ni} = X_{ni} - e_{ni}} of
+residuals \eqn{\varepsilon_{ni}=X_{ni} - e_{ni}} of
 observed and expected responses for respondents \eqn{n} and items \eqn{i} are
 constructed. Then, the average of the absolute values of pairwise correlations
 of these residuals is computed for \code{MADQ3}. For \code{MADaQ3}, the average
@@ -210,8 +210,8 @@ dat <- sim.dina
 q.matrix <- sim.qmatrix
 
 #*** Model 1: DINA model for DINA simulated data
-mod1 <- CDM::din(dat, q.matrix = q.matrix, rule = "DINA" )
-fmod1 <- CDM::modelfit.cor.din(mod1 , jkunits=10)
+mod1 <- CDM::din(dat, q.matrix=q.matrix, rule="DINA" )
+fmod1 <- CDM::modelfit.cor.din(mod1, jkunits=10)
 summary(fmod1)
   ##   Test of Global Model Fit
   ##          type value     p
@@ -228,8 +228,8 @@ summary(fmod1)
 
 # look at first five item pairs with highest degree of local dependence
 itempairs <- fmod1$itempairs
-itempairs <- itempairs[ order( itempairs$X2 , decreasing=TRUE ) , ]
-itempairs[ 1:5 , c("item1","item2" , "X2" , "X2_p" , "X2_p.holm" , "Q3") ]
+itempairs <- itempairs[ order( itempairs$X2, decreasing=TRUE ), ]
+itempairs[ 1:5, c("item1","item2", "X2", "X2_p", "X2_p.holm", "Q3") ]
   ##      item1 item2       X2        X2_p X2_p.holm          Q3
   ##   29 Item5 Item8 8.728248 0.003133174 0.1127943 -0.26616414
   ##   32 Item6 Item8 2.644912 0.103881881 1.0000000  0.04873154
@@ -238,8 +238,8 @@ itempairs[ 1:5 , c("item1","item2" , "X2" , "X2_p" , "X2_p.holm" , "Q3") ]
   ##   30 Item5 Item9 1.393583 0.237800911 1.0000000 -0.01934420
 
 #*** Model 2: DINO model for DINA simulated data
-mod2 <- CDM::din(dat, q.matrix = q.matrix, rule = "DINO" )
-fmod2 <- CDM::modelfit.cor.din(mod2 , jkunits=10 )   # 10 jackknife units
+mod2 <- CDM::din(dat, q.matrix=q.matrix, rule="DINO" )
+fmod2 <- CDM::modelfit.cor.din(mod2, jkunits=10 )   # 10 jackknife units
 summary(fmod2)
   ##   Test of Global Model Fit
   ##          type  value     p
@@ -255,8 +255,8 @@ summary(fmod2)
   ##   MADaQ3          0.073      10  0.066 0.012   0.042   0.089
 
 #*** Model 3: estimate DINA model with gdina function
-mod3 <- CDM::gdina( dat , q.matrix = q.matrix , rule="DINA" )
-fmod3 <- CDM::modelfit.cor.din( mod3 , jkunits=0 )  # no Jackknife estimation
+mod3 <- CDM::gdina( dat, q.matrix=q.matrix, rule="DINA" )
+fmod3 <- CDM::modelfit.cor.din( mod3, jkunits=0 )  # no Jackknife estimation
 summary(fmod3)
   ##   Test of Global Model Fit
   ##          type value     p
@@ -278,19 +278,19 @@ summary(fmod3)
 
 set.seed(9765)
 # specify Q-matrix
-Q <- matrix( c(1,0, 0,1 , 1,1 ) , nrow=3 , ncol=2 , byrow=TRUE )
-q.matrix <- Q[ rep(1:3,4) , ]
+Q <- matrix( c(1,0, 0,1, 1,1 ), nrow=3, ncol=2, byrow=TRUE )
+q.matrix <- Q[ rep(1:3,4), ]
 I <- nrow(q.matrix)
 
 # simulate data
-guess <- stats::runif(I, 0 , .3 )
-slip <- stats::runif( I , 0 , .4 )
+guess <- stats::runif(I, 0, .3 )
+slip <- stats::runif( I, 0, .4 )
 N <- 150   # number of persons
-dat <- CDM::sim.din( N=N, q.matrix=q.matrix , slip=slip , guess=guess )$dat
+dat <- CDM::sim.din( N=N, q.matrix=q.matrix, slip=slip, guess=guess )$dat
 
 #*** estmate DINA model
-mod1 <- CDM::din( dat, q.matrix = q.matrix, rule = "DINA" )
-fmod1 <- CDM::modelfit.cor.din(mod1 , jkunits=10)
+mod1 <- CDM::din( dat, q.matrix=q.matrix, rule="DINA" )
+fmod1 <- CDM::modelfit.cor.din(mod1, jkunits=10)
 summary(fmod1)
   ##  Test of Global Model Fit
   ##         type  value     p

@@ -1,5 +1,5 @@
 %% File Name: numerical_Hessian.Rd
-%% File Version: 0.26
+%% File Version: 0.29
 
 \name{numerical_Hessian}
 \alias{numerical_Hessian}
@@ -15,10 +15,10 @@ direction (\code{numerical_Hessian_partial}).
 }
 
 \usage{
-numerical_Hessian(par, FUN, h = 1e-05, gradient = FALSE,
-       hessian = TRUE, diag_only = FALSE, ...)
+numerical_Hessian(par, FUN, h=1e-05, gradient=FALSE,
+       hessian=TRUE, diag_only=FALSE, ...)
 
-numerical_Hessian_partial(par , FUN , h = 1e-05, coordinate = 1, ... )
+numerical_Hessian_partial(par, FUN, h=1e-05, coordinate=1, ... )
 }
 
 %- maybe also 'usage' for other objects documented here.
@@ -32,7 +32,7 @@ Specified function with argument vector \code{x}
   \item{h}{
 Numerical differentiation parameter. Can be also a vector.
 The increment in the numerical approximation of the derivative is
-defined as \eqn{h_i \max ( 1 , \theta_i)} where \eqn{\theta_i}
+defined as \eqn{h_i \max ( 1, \theta_i)} where \eqn{\theta_i}
   denotes the \eqn{i}th parameter.
 }
   \item{gradient}{
@@ -85,17 +85,17 @@ f <- function(x){
 par <- c(3,8,4)
 
 #--- compute gradient
-CDM::numerical_Hessian( par = par , FUN = f , gradient=TRUE , hessian = FALSE)
+CDM::numerical_Hessian( par=par, FUN=f, gradient=TRUE, hessian=FALSE)
 \dontrun{
-mirt::numerical_deriv(par = par , f = f, gradient=TRUE)
+mirt::numerical_deriv(par=par, f=f, gradient=TRUE)
 
 #--- compute Hessian matrix
-CDM::numerical_Hessian( par = par , FUN = f )
-mirt::numerical_deriv(par = par , f = f, gradient=FALSE)
-numerical_Hessian( par = par , FUN = f , h = 1E-4 )
+CDM::numerical_Hessian( par=par, FUN=f )
+mirt::numerical_deriv(par=par, f=f, gradient=FALSE)
+numerical_Hessian( par=par, FUN=f, h=1E-4 )
 
 #--- compute gradient and Hessian matrix
-CDM::numerical_Hessian( par = par , FUN = f , gradient=TRUE , hessian=TRUE)
+CDM::numerical_Hessian( par=par, FUN=f, gradient=TRUE, hessian=TRUE)
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

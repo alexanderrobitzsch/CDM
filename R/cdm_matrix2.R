@@ -1,9 +1,9 @@
 ## File Name: cdm_matrix2.R
-## File Version: 0.02
+## File Version: 0.03
 
-cdm_matrix2 <- function( x , nrow )
+cdm_matrix2 <- function( x, nrow )
 {
     x <- as.vector(x)
-    y <- matrix( x , nrow=nrow, ncol=length(x), byrow=TRUE )
+    y <- matrix( x, nrow=nrow, ncol=length(x), byrow=TRUE )
     return(y)
 }

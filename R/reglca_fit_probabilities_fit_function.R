@@ -1,8 +1,8 @@
 ## File Name: reglca_fit_probabilities_fit_function.R
-## File Version: 0.06
+## File Version: 0.07
 
 
-reglca_fit_probabilities_fit_function <- function( parm, lambda , C, W, regular_type="scad")
+reglca_fit_probabilities_fit_function <- function( parm, lambda, C, W, regular_type="scad")
 {
     probs0 <- reglca_calc_probs(parm=parm)
     ll0 <- reglca_freq_ll( x=probs0, C=C, W=W )

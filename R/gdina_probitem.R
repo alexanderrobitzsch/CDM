@@ -1,9 +1,9 @@
 ## File Name: gdina_probitem.R
-## File Version: 0.16
+## File Version: 0.22
 
 #################################################################################
 # calculate model implied probabilities in GDINA models
-gdina_probitem <- function( Mj, Aj , delta , rule , linkfct , delta.summary,
+gdina_probitem <- function( Mj, Aj, delta, rule, linkfct, delta.summary,
         necc.attr=NULL)
 {
     I <- length(delta)
@@ -11,26 +11,26 @@ gdina_probitem <- function( Mj, Aj , delta , rule , linkfct , delta.summary,
     ljjj <- rep(0,I)
     for (ii in 1:I){
         pjjt <- ( Mj[[ii]][[1]] %*% delta[[ii]] )[,1]
-        names(pjjt) <- paste0("A",apply( Aj[[ii]]   , 1 , FUN = function(ll){ paste(ll , collapse="") } ) )
-        if (linkfct == "logit"){ pjjt <- stats::plogis( pjjt ) }
-        if (linkfct == "log"){ pjjt <- exp( pjjt ) }
+        names(pjjt) <- paste0("A",apply( Aj[[ii]], 1, FUN=function(ll){ paste(ll, collapse="") } ) )
+        if (linkfct=="logit"){ pjjt <- stats::plogis( pjjt ) }
+        if (linkfct=="log"){ pjjt <- exp( pjjt ) }
         pjj[[ii]] <- pjjt
         ljjj[ii] <- length(pjjt)
     }
 
     pjj <- unlist( pjj )
-    res <- data.frame( "itemno" = rep(1:I , ljjj) , "skillcomb"= names(pjj) , "prob" = pjj )
+    res <- data.frame( "itemno"=rep(1:I, ljjj), "skillcomb"=names(pjj), "prob"=pjj )
     dres <- NULL
     for (ii in 1:I){
-        dii <- delta.summary[ delta.summary$itemno == ii , ]
-        dii <- dii[ nrow(dii) , c("item" , "rule" , "partype.attr" ) ]                
+        dii <- delta.summary[ delta.summary$itemno==ii, ]
+        dii <- dii[ nrow(dii), c("item", "rule", "partype.attr" ) ]
         necc_ii <- necc.attr[[ii]]
         dii$partype.attr <- paste0( names(necc_ii), collapse="-")
         colnames(dii)[3] <- "nessskill"
-        dres <- rbind( dres , dii )
+        dres <- rbind( dres, dii )
     }
-    res <- cbind( dres[ res$itemno , ] , res )
-    
+    res <- cbind( dres[ res$itemno, ], res )
+
     rownames(res) <- NULL
     return(res)
 }

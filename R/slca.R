@@ -1,22 +1,22 @@
 ## File Name: slca.R
-## File Version: 1.853
+## File Version: 1.854
 
 
 ###########################################
 # Structured latent class analysis
 ###########################################
 
-slca <- function( data , group=NULL,
+slca <- function( data, group=NULL,
             weights=rep(1, nrow(data)),
-            Xdes, Xlambda.init=NULL , Xlambda.fixed=NULL ,
-            Xlambda.constr.V=NULL , Xlambda.constr.c=NULL ,
-            delta.designmatrix =NULL ,  delta.init = NULL ,
-            delta.fixed = NULL , delta.linkfct = "log" ,
+            Xdes, Xlambda.init=NULL, Xlambda.fixed=NULL ,
+            Xlambda.constr.V=NULL, Xlambda.constr.c=NULL ,
+            delta.designmatrix =NULL,  delta.init = NULL ,
+            delta.fixed = NULL, delta.linkfct = "log" ,
             Xlambda_positive = NULL,
-            regular_type = "lasso", regular_lam = 0 , regular_w = NULL , regular_n = nrow(data) ,
+            regular_type = "lasso", regular_lam = 0, regular_w = NULL, regular_n = nrow(data) ,
             maxiter=1000, conv=1E-5, globconv=1E-5, msteps=10 ,
-            convM=.0005 , decrease.increments = FALSE , oldfac = 0 , dampening_factor=1.01,
-            seed=NULL , progress = TRUE , PEM=TRUE, PEM_itermax=maxiter, ...)
+            convM=.0005, decrease.increments = FALSE, oldfac = 0, dampening_factor=1.01,
+            seed=NULL, progress = TRUE, PEM=TRUE, PEM_itermax=maxiter, ...)
 {
     #************************************************************
     cl <- match.call()
@@ -103,7 +103,7 @@ slca <- function( data , group=NULL,
     V <- e2 <- V1 <- NULL
     if ( ! is.null(Xlambda.constr.V) ){
         V <- Xlambda.constr.V
-        e2 <- matrix( Xlambda.constr.c , nrow=ncol(V) , ncol=1 )
+        e2 <- matrix( Xlambda.constr.c, nrow=ncol(V), ncol=1 )
         V1 <- solve( crossprod(V) )
     }
 
@@ -131,14 +131,14 @@ slca <- function( data , group=NULL,
     }
 
     #- for posterior calculation
-    gwt0 <- matrix( 1 , nrow=n , ncol=TP )
+    gwt0 <- matrix( 1, nrow=n, ncol=TP )
 
     #---
     # initial values algorithm
     max.increment <- 1
     dev <- 0    ; iter <- 0
     globconv1 <- conv1 <- 1000
-    disp <- paste( paste( rep(".", 70 ) , collapse="") ,"\n", sep="")
+    disp <- paste( paste( rep(".", 70 ), collapse="") ,"\n", sep="")
     mindev <- Inf
     iterate <- TRUE
 
@@ -169,7 +169,7 @@ slca <- function( data , group=NULL,
 
         #*****
         #4 calculate expected counts
-        # n.ik [ 1:TP , 1:I , 1:(K+1) , 1:G ]
+        # n.ik [ 1:TP, 1:I, 1:(K+1), 1:G ]
         res <- slca_calc_counts( G=G, weights=weights, dat.ind=dat.ind, dat=dat, dat.resp=dat.resp, p.aj.xi=p.aj.xi, K=K,
                     n.ik=n.ik, TP=TP, I=I, group=group, dat.ind2=dat.ind2, ind.group=ind.group,
                     use.freqpatt=use.freqpatt )
@@ -226,14 +226,14 @@ slca <- function( data , group=NULL,
             PEM <- res$PEM
             pem_parameter_sequence <- res$pem_parameter_sequence
             cdm_pem_acceleration_assign_output_parameters( res_ll_fct=res$res_ll_fct,
-                            vars=pem_output_vars , envir=envir, update=res$pem_update )
+                            vars=pem_output_vars, envir=envir, update=res$pem_update )
         }
 
         #*****
         #8 calculate likelihood
-        # n.ik [ TP , I , K+1 , G ]
-        # N.ik [ TP , I , G ]
-        # probs [I , K+1 , TP ]
+        # n.ik [ TP, I, K+1, G ]
+        # N.ik [ TP, I, G ]
+        # probs [I, K+1, TP ]
         ll <- slca_calc_likelihood( G=G, use.freqpatt=use.freqpatt, ind.group=ind.group,
                     p.xi.aj=p.xi.aj, pi.k=pi.k, weights=weights )
         dev <- -2*ll
@@ -290,22 +290,22 @@ slca <- function( data , group=NULL,
 
     # names
     if ( is.null(dimnames(Xdes)[[4]] ) ){
-        dimnames(Xdes)[[4]] <- paste0("lam" , 1:Nlam )
+        dimnames(Xdes)[[4]] <- paste0("lam", 1:Nlam )
     }
     if ( is.null(dimnames(Xdes)[[3]] ) ){
-        dimnames(Xdes)[[3]] <- paste0("Class" , 1:TP )
+        dimnames(Xdes)[[3]] <- paste0("Class", 1:TP )
     }
 
     names(Xlambda) <- dimnames(Xdes)[[4]]
-    colnames(pi.k) <- paste0("Group" , 1:G )
+    colnames(pi.k) <- paste0("Group", 1:G )
     rownames(pi.k) <- dimnames(Xdes)[[3]]
 
     #  collect item parameters
-    item1 <- array( aperm( probs , c(2,1,3)) , dim= c(I*maxK , TP) )
+    item1 <- array( aperm( probs, c(2,1,3)), dim= c(I*maxK, TP) )
     colnames(item1) <- dimnames(Xdes)[[3]]
-    item <- data.frame("item" = rep(colnames(dat) , each=maxK) ,
-                        "Cat" = rep(0:K , I) , item1 )
-    rownames(item) <- paste0( rep(colnames(dat) , each=maxK) , "_Cat" , rep(0:K , I) )
+    item <- data.frame("item" = rep(colnames(dat), each=maxK) ,
+                        "Cat" = rep(0:K, I), item1 )
+    rownames(item) <- paste0( rep(colnames(dat), each=maxK), "_Cat", rep(0:K, I) )
 
     #-- Information criteria
     ic <- slca_calc_ic( dev=dev, dat=dat, G=G, K=K, TP=TP, I=I, delta.designmatrix=delta.designmatrix,
@@ -314,9 +314,9 @@ slca <- function( data , group=NULL,
                         regularization=regularization, regular_indicator_parameters=regular_indicator_parameters,
                         Xlambda_positive=Xlambda_positive )
     #########################################
-    # item fit [ items , theta , categories ]
-    # # n.ik [ 1:TP , 1:I , 1:(K+1) , 1:G ]
-    probs <- aperm( probs , c(3,1,2) )
+    # item fit [ items, theta, categories ]
+    # # n.ik [ 1:TP, 1:I, 1:(K+1), 1:G ]
+    probs <- aperm( probs, c(3,1,2) )
 
     # person parameters
     # ...
@@ -328,7 +328,7 @@ slca <- function( data , group=NULL,
     #*************************
     # collect output
     s2 <- Sys.time()
-    time <- list( s1=s1,s2=s2 , timediff=s2-s1)
+    time <- list( s1=s1,s2=s2, timediff=s2-s1)
     control <- list()
     control$weights <- weights
     control$group <- group

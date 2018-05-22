@@ -1,5 +1,5 @@
 %% File Name: reglca.Rd
-%% File Version: 0.15
+%% File Version: 0.19
 
 \name{reglca}
 \alias{reglca}
@@ -17,12 +17,12 @@ The SCAD and MCP penalty functions are available.
 }
 
 \usage{
-reglca(dat, nclasses, weights = NULL, group = NULL, regular_type = "scad",
-   regular_lam = 0, sd_noise_init = 1, item_probs_init = NULL, class_probs_init = NULL,
-   random_starts = 1, random_iter = 20, conv = 1e-05, h = 1e-04, mstep_iter = 10,
-   maxit = 1000, verbose = TRUE)
+reglca(dat, nclasses, weights=NULL, group=NULL, regular_type="scad",
+   regular_lam=0, sd_noise_init=1, item_probs_init=NULL, class_probs_init=NULL,
+   random_starts=1, random_iter=20, conv=1e-05, h=1e-04, mstep_iter=10,
+   maxit=1000, verbose=TRUE)
 
-\method{summary}{reglca}(object, digits = 4 , file = NULL ,  \dots)
+\method{summary}{reglca}(object, digits=4, file=NULL,  \dots)
 }
 
 %- maybe also 'usage' for other objects documented here.
@@ -146,25 +146,25 @@ for regularized estimation.
 I <- 12  # number of items
 # define Q-matrix
 q.matrix <- matrix(0,I,2)
-q.matrix[ 1:(I/3) , 1 ] <- 1
-q.matrix[ I/3 + 1:(I/3) , 2 ] <- 1
-q.matrix[ 2*I/3 + 1:(I/3) , c(1,2) ] <- 1
+q.matrix[ 1:(I/3), 1 ] <- 1
+q.matrix[ I/3 + 1:(I/3), 2 ] <- 1
+q.matrix[ 2*I/3 + 1:(I/3), c(1,2) ] <- 1
 N <- 1000  # number of persons
-guess <- rep(seq(.1,.3,length=I/3) , 3)
+guess <- rep(seq(.1,.3,length=I/3), 3)
 slip <- .1
 rho <- 0.3  # skill correlation
 set.seed(987)
-dat <- CDM::sim.din( N=N , q.matrix=q.matrix , guess = guess , slip=slip ,
-    mean = 0*c( .2 , -.2 ) , Sigma = matrix( c( 1 , rho,rho,1) , 2 , 2 ) )
+dat <- CDM::sim.din( N=N, q.matrix=q.matrix, guess=guess, slip=slip,
+    mean=0*c( .2, -.2 ), Sigma=matrix( c( 1, rho,rho,1), 2, 2 ) )
 dat <- dat$dat
 
 #--- Model 1: Four latent classes without regularization
-mod1 <- CDM::reglca(dat=dat, nclasses=4, regular_lam = 0, random_starts=3,
+mod1 <- CDM::reglca(dat=dat, nclasses=4, regular_lam=0, random_starts=3,
                random_iter=10, conv=1E-4)
 summary(mod1)
 
 #--- Model 2: Four latent classes with regularization
-mod2 <- CDM::reglca(dat=dat, nclasses=4, regular_lam = 0.03, regular_type="scad",
+mod2 <- CDM::reglca(dat=dat, nclasses=4, regular_lam=0.03, regular_type="scad",
                random_starts=3, random_iter=10, conv=1E-4)
 summary(mod2)
 }

@@ -1,5 +1,5 @@
 %% File Name: itemfit.sx2.Rd
-%% File Version: 1.32
+%% File Version: 1.35
 
 \name{itemfit.sx2}
 \alias{itemfit.sx2}
@@ -17,7 +17,7 @@ for dichotomous data. Note that completely observed data is
 necessary for applying this function.
 }
 \usage{
-itemfit.sx2(object, Eik_min = 1, progress = TRUE)
+itemfit.sx2(object, Eik_min=1, progress=TRUE)
 
 \method{summary}{itemfit.sx2}(object, \dots)
 
@@ -52,7 +52,7 @@ separately displayed.}
 The S-X2 item fit statistic compares observed and expected proportions
 \eqn{O_{jk}} and \eqn{E_{jk}} for item \eqn{j} and
 each score group \eqn{k} and forms a chi-square distributed statistic
-\deqn{S-X_j^2 = \sum_{k=1}^{J-1} N_k \frac{ ( O_{jk} - E_{jk} )^2 }
+\deqn{S-X_j^2=\sum_{k=1}^{J-1} N_k \frac{ ( O_{jk} - E_{jk} )^2 }
     { E_{jk} ( 1 - E_{jk} ) } }
 The degrees of freedom are \eqn{J-1-P_j} where \eqn{P_j} denotes
 the number of estimated item parameters.
@@ -110,12 +110,12 @@ This function does not work properly for multiple groups.
 # simulate data
 set.seed(9871)
 I <- 11
-b <- seq( -1.5, 1.5 , length=I)
+b <- seq( -1.5, 1.5, length=I)
 a <- rep(1,I)
 a[4] <- .4
 N <- 1000
 library(sirt)
-dat <- sirt::sim.raschtype( theta= stats::rnorm(N) , b=b , fixed.a=a)
+dat <- sirt::sim.raschtype( theta=stats::rnorm(N), b=b, fixed.a=a)
 
 #*** 1PL model estimated with gdm
 mod1 <- CDM::gdm( dat, theta.k=seq(-6,6,len=21), irtmodel="1PL" )
@@ -137,7 +137,7 @@ summary(fitmod1)
   ##   11 I0011        11 12.351  9 0.194   1.372 0.019    10     1  1.000
   ##
   ##   -- Average Item Fit Statistics --
-  ##   S-X2 = 13.768 | S-X2_df = 1.53
+  ##   S-X2=13.768 | S-X2_df=1.53
 # -> 4th item does not fit to the 1PL model
 
 # plot item fit
@@ -145,7 +145,7 @@ plot(fitmod1)
 
 \dontrun{
 #*** 2PL model estimated with gdm
-mod2 <- CDM::gdm( dat , theta.k=seq(-6,6,len=21) , irtmodel="2PL" , maxiter=100 )
+mod2 <- CDM::gdm( dat, theta.k=seq(-6,6,len=21), irtmodel="2PL", maxiter=100 )
 summary(mod2)
 # estimate item fit statistic
 fitmod2 <- CDM::itemfit.sx2(mod2)
@@ -161,7 +161,7 @@ summary(fitmod2)
   ##   [...]
   ##
   ##   -- Average Item Fit Statistics --
-  ##   S-X2 = 10.22 | S-X2_df = 1.277
+  ##   S-X2=10.22 | S-X2_df=1.277
 
 #*** 1PL model estimation in smirt (sirt package)
 Qmatrix <- matrix(1, nrow=I, ncol=1 )
@@ -172,7 +172,7 @@ fitmod1a <- CDM::itemfit.sx2(mod1a)
 summary(fitmod1a)
 
 #*** 2PL model estimation in smirt (sirt package)
-mod2a <- sirt::smirt( dat , Qmatrix=Qmatrix , est.a="2PL")
+mod2a <- sirt::smirt( dat, Qmatrix=Qmatrix, est.a="2PL")
 summary(mod2a)
 # item fit statistic
 fitmod2a <- CDM::itemfit.sx2(mod2a)
@@ -208,7 +208,7 @@ cmod2c <- sirt::tam2mirt( mod2c )
 mirt::itemfit( cmod2c$mirt )
 
 # estimation in mirt
-mod1d <- mirt::mirt( dat , 1 , itemtype="Rasch" )
+mod1d <- mirt::mirt( dat, 1, itemtype="Rasch" )
 mirt::itemfit( mod1d )    # compute item fit
 
 #############################################################################
@@ -219,32 +219,32 @@ data(sim.dina, package="CDM")
 data(sim.qmatrix, package="CDM")
 
 #*** Model 1: DINA model (correctly specified model)
-mod1 <- CDM::din( data=sim.dina , q.matrix=sim.qmatrix )
+mod1 <- CDM::din( data=sim.dina, q.matrix=sim.qmatrix )
 summary(mod1)
 # item fit statistic
 summary( CDM::itemfit.sx2( mod1 ) )
   ##   -- Average Item Fit Statistics --
-  ##   S-X2 = 7.397 | S-X2_df = 1.233
+  ##   S-X2=7.397 | S-X2_df=1.233
 
 #*** Model 2: Mixed DINA/DINO model
 #***  1th item is misspecified according to DINO rule
 I <- ncol(CDM::sim.dina)
-rule <- rep("DINA" , I )
+rule <- rep("DINA", I )
 rule[1] <- "DINO"
-mod2 <- CDM::din( data=CDM::sim.dina , q.matrix = CDM::sim.qmatrix , rule=rule)
+mod2 <- CDM::din( data=CDM::sim.dina, q.matrix=CDM::sim.qmatrix, rule=rule)
 summary(mod2)
 # item fit statistic
 summary( CDM::itemfit.sx2( mod2 ) )
   ##   -- Average Item Fit Statistics --
-  ##   S-X2 = 9.925 | S-X2_df = 1.654
+  ##   S-X2=9.925 | S-X2_df=1.654
 
 #*** Model 3: Additive GDINA model
-mod3 <- CDM::gdina( data=CDM::sim.dina , q.matrix = CDM::sim.qmatrix , rule="ACDM")
+mod3 <- CDM::gdina( data=CDM::sim.dina, q.matrix=CDM::sim.qmatrix, rule="ACDM")
 summary(mod3)
 # item fit statistic
 summary( CDM::itemfit.sx2( mod3 ) )
   ##   -- Average Item Fit Statistics --
-  ##   S-X2 = 8.416 | S-X2_df = 1.678
+  ##   S-X2=8.416 | S-X2_df=1.678
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

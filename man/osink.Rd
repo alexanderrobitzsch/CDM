@@ -1,5 +1,5 @@
 %% File Name: osink.Rd
-%% File Version: 0.08
+%% File Version: 0.10
 
 \name{osink}
 \alias{osink}
@@ -17,7 +17,7 @@ Opens and closes a \code{sink} connection.
 }
 
 \usage{
-osink(file, suffix, append = FALSE)
+osink(file, suffix, append=FALSE)
 
 csink(file)
 }
@@ -68,7 +68,7 @@ be appended to an already existing file. See argument \code{append} in
 ## The function 'osink' is currently defined as
 function (file, suffix){
     if (!is.null(file)) {
-        base::sink(paste0(file, suffix), split = TRUE)
+        base::sink(paste0(file, suffix), split=TRUE)
        }
   }
 

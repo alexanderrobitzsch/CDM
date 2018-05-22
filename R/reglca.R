@@ -1,5 +1,5 @@
 ## File Name: reglca.R
-## File Version: 0.804
+## File Version: 0.806
 
 reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad", regular_lam=0,
                 sd_noise_init = 1, item_probs_init=NULL, class_probs_init=NULL, random_starts=1,
@@ -60,27 +60,27 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
     while (iterate){
 
 # z0 <- Sys.time()
-    
+
         item_probs0 <- item_probs
         class_probs0 <- class_probs
         loglikeold <- like.new
 
         #--- arrange probabilities
-        pjM <- array( 0 , dim=c(I,2,nclasses) )
+        pjM <- array( 0, dim=c(I,2,nclasses) )
         pjM[,2,] <- item_probs
         pjM[,1,] <- 1 - item_probs
 
         #--- calculate individual likelihood
         p.xi.aj <- reglca_calc_individual_likelihood( N=N, nclasses=nclasses, pjM=pjM, dat=dat, I=I,
                             resp.ind.list=resp.ind.list )
-                                                        
+
         #--- calculate posterior
         res <- reglca_calc_individual_posterior( class_probs=class_probs, p.xi.aj=p.xi.aj, N=N,
                         nclasses=nclasses, weights=weights, W=W, G=G, ind_groups=ind_groups,
                         N_groups=N_groups )
         p.aj.xi <- res$p.aj.xi
         class_probs <- res$class_probs
-        
+
         #--- smoothing with Dirichlet process mixture
         if (use_dpm){
             res <- reglca_dpm_smoothing( p.aj.xi=p.aj.xi, weights=weights, nclasses=nclasses, alpha=alpha )
@@ -93,7 +93,7 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
                             n.ik=n.ik, TP=TP, I=I, dat.ind2=dat.ind2, ind_groups=ind_groups, G=G )
         n.ik <- res$n.ik
         N.ik <- res$N.ik
-        
+
         #--- item parameter estimation
         res <- reglca_mstep_item_parameters( I=I, n.ik=n.ik, N.ik=N.ik, h=h, mstep_iter=mstep_iter,
                     conv=conv, regular_lam=regular_lam, regular_type=regular_type, cd_steps=cd_steps,
@@ -105,7 +105,7 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
         max_increment <- res$max_increment
         n_reg_item <- res$n_reg_item
         max.par.change <- max( max( abs(item_probs - item_probs0) ), max( abs( class_probs - class_probs0) ) )
-        
+
         #--- calculate deviance
         res <- reglca_calc_deviance( p.xi.aj=p.xi.aj, class_probs=class_probs, weights=weights,
                     loglike=loglike, penalty=penalty, opt_fct=opt_fct, ind_groups=ind_groups, G=G,
@@ -158,7 +158,7 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
         rownames(class_probs) <- colnames(item_probs)
         colnames(class_probs) <- paste0("Group_", groups_unique)
     }
-    item <- data.frame("item" = colnames(dat) , "n_reg" = n_reg_item , item_probs )
+    item <- data.frame("item" = colnames(dat), "n_reg" = n_reg_item, item_probs )
 
     nd <- dim(n.ik)
     if (G==1){
@@ -177,7 +177,7 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
 
     #--- output
     time <- list(s1=s1, s2 = Sys.time() )
-    res <- list( item_probs=item_probs , class_probs=class_probs, p.aj.xi=p.aj.xi, p.xi.aj=p.xi.aj,
+    res <- list( item_probs=item_probs, class_probs=class_probs, p.aj.xi=p.aj.xi, p.xi.aj=p.xi.aj,
                     loglike=-deviance/2, deviance=deviance, AIC=AIC, BIC=BIC, CAIC=CAIC,
                     Npars=Npars, Nskillpar=Nskillpar, G=G, group=group, groups_unique=groups_unique,
                     N_groups=N_groups, n.ik=n.ik, Nipar=Nipar, n_reg=n_reg, n_reg_item=n_reg_item, item=item, pjk=pjM,

@@ -1,5 +1,5 @@
 %% File Name: sim.gdina.Rd
-%% File Version: 1.20
+%% File Version: 1.24
 
 \name{sim.gdina}
 \alias{sim.gdina}
@@ -22,7 +22,7 @@ can be given as an input.
 Note that this version of \code{sim.gdina} only works for dichotomous attributes.
 }
 \usage{
-sim.gdina(n, q.matrix, delta, link = "identity",  thresh.alpha=NULL,
+sim.gdina(n, q.matrix, delta, link="identity",  thresh.alpha=NULL,
     cov.alpha=NULL, alpha=NULL, Mj, Aj, necc.attr)
 
 sim.gdina.prepare( q.matrix )
@@ -104,10 +104,10 @@ See the \code{\link[GDINA:simGDINA]{GDINA::simGDINA}} function in the
 
 n <- 50             # number of persons
 # define Q-matrix
-q.matrix <- matrix(  c(1,1,0 , 0,1,1, 1,0,1, 1,0,0,
-    0,0,1, 0,1,0,  1,1,1,  0,1,1, 0,1,1) , ncol=3 , byrow=TRUE)
+q.matrix <- matrix(  c(1,1,0, 0,1,1, 1,0,1, 1,0,0,
+    0,0,1, 0,1,0,  1,1,1,  0,1,1, 0,1,1), ncol=3, byrow=TRUE)
 # thresholds for attributes alpha^\ast
-thresh.alpha <- c( .65 , 0 , -.30 )
+thresh.alpha <- c( .65, 0, -.30 )
 # covariance matrix for alpha^\ast
 cov.alpha <- matrix(1,3,3)
 cov.alpha[1,2] <- cov.alpha[2,1] <- .4
@@ -122,7 +122,7 @@ Aj <- rp$Aj
 Mj <- rp$Mj
 # define delta parameters
 # intercept - main effects - second order interactions - ...
-str(delta)  # => modify the delta parameter list which contains only zeroes as default
+str(delta)  #=> modify the delta parameter list which contains only zeroes as default
 ##   List of 9
 ##    $ : num [1:4] 0 0 0 0
 ##    $ : num [1:4] 0 0 0 0
@@ -133,21 +133,21 @@ str(delta)  # => modify the delta parameter list which contains only zeroes as d
 ##    $ : num [1:8] 0 0 0 0 0 0 0 0
 ##    $ : num [1:4] 0 0 0 0
 ##    $ : num [1:4] 0 0 0 0
-delta[[1]] <- c( .2 , .1 , .15 , .4 )
-delta[[2]] <- c( .2 , .3 , .3 , -.2 )
-delta[[3]] <- c( .2 , .2 , .2 , 0 )
-delta[[4]] <- c( .15 , .6 )
-delta[[5]] <- c( .1 , .7 )
-delta[[6]] <- c( .25 , .65 )
-delta[[7]] <- c( .25 , .1 , .1 , .1 , 0 , 0 , 0 , .25 )
-delta[[8]] <- c( .2 , 0 , .3 , -.1 )
-delta[[9]] <- c( .2 , .2 , 0 , .3 )
+delta[[1]] <- c( .2, .1, .15, .4 )
+delta[[2]] <- c( .2, .3, .3, -.2 )
+delta[[3]] <- c( .2, .2, .2, 0 )
+delta[[4]] <- c( .15, .6 )
+delta[[5]] <- c( .1, .7 )
+delta[[6]] <- c( .25, .65 )
+delta[[7]] <- c( .25, .1, .1, .1, 0, 0, 0, .25 )
+delta[[8]] <- c( .2, 0, .3, -.1 )
+delta[[9]] <- c( .2, .2, 0, .3 )
 
 #******************************************
 # Now, the "real simulation" starts
-sim.res <- CDM::sim.gdina( n=n, q.matrix =q.matrix, delta=delta, link = "identity",
-                thresh.alpha=thresh.alpha , cov.alpha=cov.alpha ,
-                Mj=Mj , Aj=Aj , necc.attr =necc.attr)
+sim.res <- CDM::sim.gdina( n=n, q.matrix=q.matrix, delta=delta, link="identity",
+                thresh.alpha=thresh.alpha, cov.alpha=cov.alpha,
+                Mj=Mj, Aj=Aj, necc.attr=necc.attr)
 # sim.res$data      # simulated data
 # sim.res$alpha     # simulated alpha
 
@@ -162,7 +162,7 @@ q.matrix <- data.ecpe$q.matrix
 
 #***
 # (1) estimate GDINA model
-mod <- CDM::gdina( data=dat[,-1] , q.matrix=q.matrix )
+mod <- CDM::gdina( data=dat[,-1], q.matrix=q.matrix )
 
 #***
 # (2) simulate data according to GDINA model
@@ -177,11 +177,11 @@ n <- 3000
 # simulate attribute patterns
 probs <- mod$attribute.patt$class.prob   # probabilities
 patt <- mod$attribute.patt.splitted      # response patterns
-alpha <- patt[ sample( 1:(length(probs) ) , n , prob=probs , replace=TRUE) , ]
+alpha <- patt[ sample( 1:(length(probs) ), n, prob=probs, replace=TRUE), ]
 
 # simulate data using estimated item parameters
-sim.res <- CDM::sim.gdina( n=n, q.matrix =q.matrix, delta=mod$delta, link="identity",
-                alpha=alpha, Mj=mod$Mj, Aj= mod$Aj, necc.attr=rp$necc.attr)
+sim.res <- CDM::sim.gdina( n=n, q.matrix=q.matrix, delta=mod$delta, link="identity",
+                alpha=alpha, Mj=mod$Mj, Aj=mod$Aj, necc.attr=rp$necc.attr)
 # extract data
 dat <- sim.res$data
 
@@ -194,7 +194,7 @@ q.matrix <- CDM::data.ecpe$q.matrix
 
 #***
 # (1) estimate reduced RUM model
-mod <- CDM::gdina( data=dat[,-1] , q.matrix=q.matrix , rule="RRUM" )
+mod <- CDM::gdina( data=dat[,-1], q.matrix=q.matrix, rule="RRUM" )
 summary(mod)
 
 #***
@@ -210,11 +210,11 @@ n <- 5000
 # simulate attribute patterns
 probs <- mod$attribute.patt$class.prob   # probabilities
 patt <- mod$attribute.patt.splitted      # response patterns
-alpha <- patt[ sample( 1:(length(probs) ) , n , prob=probs , replace=TRUE) , ]
+alpha <- patt[ sample( 1:(length(probs) ), n, prob=probs, replace=TRUE), ]
 
 # simulate data using estimated item parameters
-sim.res <- CDM::sim.gdina( n=n, q.matrix =q.matrix, delta=mod$delta, link=mod$link,
-                alpha=alpha, Mj=mod$Mj, Aj=mod$Aj, necc.attr = rp$necc.attr)
+sim.res <- CDM::sim.gdina( n=n, q.matrix=q.matrix, delta=mod$delta, link=mod$link,
+                alpha=alpha, Mj=mod$Mj, Aj=mod$Aj, necc.attr=rp$necc.attr)
 # extract data
 dat <- sim.res$data
 }

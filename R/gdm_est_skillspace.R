@@ -1,11 +1,11 @@
 ## File Name: gdm_est_skillspace.R
-## File Version: 0.06
+## File Version: 0.09
 
 
 
 ###########################################################################
 # reduced skillspace estimation
-gdm_est_skillspace <- function(Ngroup, pi.k , Z, G , delta , eps=1E-10, estimate=TRUE )
+gdm_est_skillspace <- function(Ngroup, pi.k, Z, G, delta, eps=1E-10, estimate=TRUE )
 {
     covdelta <- as.list(1:G)
     covbeta <- NULL
@@ -13,7 +13,7 @@ gdm_est_skillspace <- function(Ngroup, pi.k , Z, G , delta , eps=1E-10, estimate
         if (estimate){
             ntheta <- cdm_sumnorm( Ngroup[gg] * pi.k[,gg] )
             lntheta <- log(ntheta+eps)
-            mod <- stats::lm( lntheta ~ 0 + Z , weights = ntheta )
+            mod <- stats::lm( lntheta ~ 0 + Z, weights=ntheta )
             covbeta <- vcov(mod)
             beta <- coef(mod)
             delta[,gg] <- beta
@@ -22,7 +22,7 @@ gdm_est_skillspace <- function(Ngroup, pi.k , Z, G , delta , eps=1E-10, estimate
         covdelta[[gg]] <- covbeta
     }
     #--- OUTPUT
-    res <- list( pi.k=pi.k , delta=delta , covdelta = covdelta )
+    res <- list( pi.k=pi.k, delta=delta, covdelta=covdelta )
     return(res)
 }
 

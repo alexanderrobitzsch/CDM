@@ -1,5 +1,5 @@
 %% File Name: mcdina.Rd
-%% File Version: 0.32
+%% File Version: 0.36
 
 \name{mcdina}
 \alias{mcdina}
@@ -16,7 +16,7 @@ Multiple Choice DINA Model
 The function \code{mcdina} implements the multiple choice DINA model
 (de la Torre, 2009; see also Ozaki, 2015; Chen & Zhou, 2017)
 for multiple groups. Note that the dataset must contain
-integer values \eqn{1,\ldots , K_j} for each item. The multiple choice
+integer values \eqn{1,\ldots, K_j} for each item. The multiple choice
 DINA model assumes that each item category possesses different diagnostic capacity.
 Using this modeling approach, different distractors of a
 multiple choice item can be of different diagnostic value. The Q-matrix can also
@@ -24,12 +24,12 @@ contain integer values which allows the definition of polytomous attributes.
 
 }
 \usage{
-mcdina(dat, q.matrix, group = NULL, itempars = "gr", weights = NULL,
-    skillclasses = NULL, zeroprob.skillclasses = NULL,
-    reduced.skillspace=TRUE , conv.crit = 1e-04,
-    dev.crit = 0.1, maxit = 1000, progress = TRUE)
+mcdina(dat, q.matrix, group=NULL, itempars="gr", weights=NULL,
+    skillclasses=NULL, zeroprob.skillclasses=NULL,
+    reduced.skillspace=TRUE, conv.crit=1e-04,
+    dev.crit=0.1, maxit=1000, progress=TRUE)
 
-\method{summary}{mcdina}(object, digits=4 , file = NULL ,  \dots)
+\method{summary}{mcdina}(object, digits=4, file=NULL,  \dots)
 
 \method{print}{mcdina}(x, \dots)
 }
@@ -107,8 +107,8 @@ necessary skills to master this attribute. Therefore, the vector of skills
 then there exist at most \eqn{K_j} values of the latent response \eqn{\eta_j}.
 
 The multiple choice DINA model estimates the item response function as
-\deqn{ P( X_{nj} = k | \eta_{nj} = l ) = p_{jkl}  }
-with the constraint \eqn{\sum_k p_{jkl} = 1 }.
+\deqn{ P( X_{nj}=k | \eta_{nj}=l )=p_{jkl}  }
+with the constraint \eqn{\sum_k p_{jkl}=1 }.
 
 }
 
@@ -201,7 +201,7 @@ mod3 <- CDM::mcdina( dat=dat, q.matrix=q.matrix, group=group, itempars="gr")
 summary(mod3)
 
 #*** Model 4: Multiple group model with some group-specific item parameters
-itempars <- rep("jo" , ncol(dat))
+itempars <- rep("jo", ncol(dat))
 itempars[ c( 2, 7, 9) ] <- "gr" # set items 2,7 and 9 group specific
 mod4 <- CDM::mcdina( dat=dat, q.matrix=q.matrix, group=group, itempars=itempars)
 summary(mod4)
@@ -211,7 +211,7 @@ summary(mod4)
 # define skill classes
 skillclasses <- scan(nlines=1)  # read only one line
     0 0 0    1 0 0    0 1 0    0 0 1    1 1 0     1 1 1
-skillclasses <- matrix( skillclasses  , ncol=3 , byrow=TRUE )
+skillclasses <- matrix( skillclasses, ncol=3, byrow=TRUE )
 mod5 <- CDM::mcdina( dat, q.matrix=q.matrix, group=group0,  skillclasses=skillclasses )
 summary(mod5)
 
@@ -231,7 +231,7 @@ data(sim.dina, package="CDM")
 data(sim.qmatrix, package="CDM")
 
 # estimate the DINA model
-mod <- CDM::mcdina( sim.dina , q.matrix=sim.qmatrix )
+mod <- CDM::mcdina( sim.dina, q.matrix=sim.qmatrix )
 summary(mod)
 
 #############################################################################
@@ -243,7 +243,7 @@ dat <- data.cdm02$data
 q.matrix <- data.cdm02$q.matrix
 
 # estimate model with polytomous attribute B1
-mod1 <- CDM::mcdina( dat , q.matrix=q.matrix )
+mod1 <- CDM::mcdina( dat, q.matrix=q.matrix )
 summary(mod1)
 }
 }

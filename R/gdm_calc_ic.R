@@ -1,21 +1,21 @@
 ## File Name: gdm_calc_ic.R
-## File Version: 0.06
+## File Version: 0.11
 
 
 #############################################################
 # calculation of information criteria and number of parameters
-gdm_calc_ic <- function( dev , dat , G ,  skillspace , irtmodel ,
-            K,D,TD,I,b.constraint,a.constraint , mean.constraint ,
-            Sigma.constraint , delta.designmatrix , standardized.latent ,
-            data0 , centerslopes , TP , centerintercepts, centered.latent )
+gdm_calc_ic <- function( dev, dat, G,  skillspace, irtmodel,
+            K,D,TD,I,b.constraint,a.constraint, mean.constraint,
+            Sigma.constraint, delta.designmatrix, standardized.latent,
+            data0, centerslopes, TP, centerintercepts, centered.latent )
 {
-    ic <- list( "deviance" = dev , "n" = nrow(data0) )
+    ic <- list( "deviance"=dev, "n"=nrow(data0) )
     ic$traitpars <- 0
     ic$itempars <- 0
     #******
     # Until now this works in one dimension
     # trait parameters: normal skillspace
-    if ( skillspace == "normal" ){
+    if ( skillspace=="normal" ){
         if (irtmodel=="1PL" & ( D==1 )){
             ic$traitpars <- 2*(G-1)    + 1
         }
@@ -38,13 +38,13 @@ gdm_calc_ic <- function( dev , dat , G ,  skillspace , irtmodel ,
 
     #******
     # trait parameters: loglinear skillspace
-    if ( skillspace == "loglinear" ){
+    if ( skillspace=="loglinear" ){
         ic$traitpars <- G*(ncol(delta.designmatrix) - 1)
     }
-    if ( skillspace == "full" ){
+    if ( skillspace=="full" ){
         ic$traitpars <- G*(TP-1)
     }
-    if ( skillspace == "est" ){
+    if ( skillspace=="est" ){
         ic$traitpars <- G*(TP-1) + TP*TD
     }
     #************************************************
@@ -57,16 +57,16 @@ gdm_calc_ic <- function( dev , dat , G ,  skillspace , irtmodel ,
     #************************************************
     # item parameters a
     ic$itempars.a <- 0
-    if ( irtmodel == "2PL"){
+    if ( irtmodel=="2PL"){
         ic$itempars.a <- I*TD
         if ( ! is.null(a.constraint)){
-            a.constraint2 <- a.constraint[ a.constraint[,3] == 1 , , drop=FALSE]
+            a.constraint2 <- a.constraint[ a.constraint[,3]==1,, drop=FALSE]
             ic$itempars.a <- ic$itempars.a - nrow(a.constraint2)
         }
     }
     ic$centeredintercepts <- (centerintercepts)*D
     ic$centeredslopes <- (centerslopes)*D
-    if ( irtmodel == "2PLcat"){
+    if ( irtmodel=="2PLcat"){
         ic$itempars.a <- I*TD*K
         if ( ! is.null(a.constraint)){
             ic$itempars.a <- ic$itempars.a - nrow(a.constraint)

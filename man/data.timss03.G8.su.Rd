@@ -1,5 +1,5 @@
 %% File Name: data.timss03.G8.su.Rd
-%% File Version: 0.16
+%% File Version: 0.19
 
 \name{data.timss03.G8.su}
 \alias{data.timss03.G8.su}
@@ -90,12 +90,12 @@ data <- data.timss03.G8.su$data[,-c(1,2)]
 q.matrix <- data.timss03.G8.su$q.matrix
 
 #*** Model 1: DINA model with complete skill space of 2^13=8192 skill classes
-mod1 <- CDM::din( data , q.matrix )
+mod1 <- CDM::din( data, q.matrix )
 
 #*** Model 2: Skill space approximation with 3000 skill classes instead of
-#    2^13 = 8192 classes as in Model 1
-ss2 <- CDM::skillspace.approximation( L = 3000 , K = ncol(q.matrix) )
-mod2 <- CDM::din( data , q.matrix , skillclasses = ss2 )
+#    2^13=8192 classes as in Model 1
+ss2 <- CDM::skillspace.approximation( L=3000, K=ncol(q.matrix) )
+mod2 <- CDM::din( data, q.matrix, skillclasses=ss2 )
 
 #*** Model 3: DINA model with a hierarchical skill space
 #   see Su et al. (2013): Fig. 6
@@ -106,9 +106,9 @@ B <- "S1 > S2 > S7 > S8
       S14 > S5 > S6 > S11"
 # Note that S10 and S12 are not included in the dataset contained in this package
 skill.names <- colnames(q.matrix)
-ss3 <- CDM::skillspace.hierarchy(B=B , skill.names=skill.names)
+ss3 <- CDM::skillspace.hierarchy(B=B, skill.names=skill.names)
 # The reduced skill space "only" contains 325 skill classes
-mod3 <- CDM::din( data , q.matrix , skillclasses = ss3$skillspace.reduced )
+mod3 <- CDM::din( data, q.matrix, skillclasses=ss3$skillspace.reduced )
 }
 }
 \keyword{datasets}

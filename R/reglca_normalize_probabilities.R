@@ -1,5 +1,5 @@
 ## File Name: reglca_normalize_probabilities.R
-## File Version: 0.03
+## File Version: 0.04
 
 reglca_normalize_probabilities <- function(parm)
 {
@@ -8,7 +8,7 @@ reglca_normalize_probabilities <- function(parm)
     M <- max(probs)
     if (M > 1){
         probs <- probs / ( M + eps )
-        parm <- c( probs[1] , diff(probs) )
+        parm <- c( probs[1], diff(probs) )
     }
     return(parm)
 }

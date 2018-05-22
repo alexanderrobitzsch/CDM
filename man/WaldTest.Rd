@@ -1,5 +1,5 @@
 %% File Name: WaldTest.Rd
-%% File Version: 0.08
+%% File Version: 0.11
 
 \name{WaldTest}
 \alias{WaldTest}
@@ -12,11 +12,11 @@ Wald Test for a Linear Hypothesis
 \description{
 Computes a Wald Test for a parameter \eqn{\bold{\theta}}
 with respect to a linear hypothesis
-\eqn{ \bold{R} \bold{\theta} = \bold{c}}.
+\eqn{ \bold{R} \bold{\theta}=\bold{c}}.
 }
 
 \usage{
-WaldTest( delta , vcov , R , nobs , cvec = NULL , eps=1E-10 )
+WaldTest( delta, vcov, R, nobs, cvec=NULL, eps=1E-10 )
 }
 
 

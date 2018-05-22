@@ -1,5 +1,5 @@
 %% File Name: cdi.kli.Rd
-%% File Version: 0.18
+%% File Version: 0.21
 
 \name{cdi.kli}
 \alias{cdi.kli}
@@ -19,7 +19,7 @@ for more details.
 \usage{
 cdi.kli(object)
 
-\method{summary}{cdi.kli}(object, digits = 2 ,  \dots)
+\method{summary}{cdi.kli}(object, digits=2,  \dots)
 }
 
 %- maybe also 'usage' for other objects documented here.
@@ -91,7 +91,7 @@ probability metric.
 data(sim.dina, package="CDM")
 data(sim.qmatrix, package="CDM")
 
-mod <- CDM::din( sim.dina, q.matrix = sim.qmatrix )
+mod <- CDM::din( sim.dina, q.matrix=sim.qmatrix )
 summary(mod)
   ##  Item parameters
   ##         item guess  slip   IDI rmsea
@@ -108,22 +108,22 @@ summary(mod)
 cmod <- CDM::cdi.kli( mod )
 
 # attribute discrimination indices
-round( cmod$attr_disc , 3 )
+round( cmod$attr_disc, 3 )
   ##      V1     V2     V3
   ##   1.966  2.506 11.169
 
 # look at global item discrimination indices
-round( cmod$glob_item_disc , 3 )
-  ##  > round( cmod$glob_item_disc , 3 )
+round( cmod$glob_item_disc, 3 )
+  ##  > round( cmod$glob_item_disc, 3 )
   ##  Item1 Item2 Item3 Item4 Item5 Item6 Item7 Item8 Item9
   ##  0.594 0.486 0.533 0.465 5.913 0.093 0.040 0.397 0.656
 
 # correlation of IDI and global item discrimination
-stats::cor( cmod$glob_item_disc , mod$IDI )
+stats::cor( cmod$glob_item_disc, mod$IDI )
   ##  [1] 0.6927274
 
 # attribute-specific item indices
-round( cmod$attr_item_disc , 3 )
+round( cmod$attr_item_disc, 3 )
   ##           V1    V2    V3
   ##  Item1 0.648 0.648 0.000
   ##  Item2 0.000 0.530 0.530

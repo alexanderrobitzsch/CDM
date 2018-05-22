@@ -1,5 +1,5 @@
 %% File Name: IRT.repDesign.Rd
-%% File Version: 0.17
+%% File Version: 0.21
 
 \name{IRT.repDesign}
 \alias{IRT.repDesign}
@@ -15,8 +15,8 @@ is a wrapper to \code{BIFIE.data.jack} in the \pkg{BIFIEsurvey} package.
 }
 
 \usage{
-IRT.repDesign(data, wgt = NULL, jktype = "JK_TIMSS", jkzone = NULL, jkrep = NULL,
-   jkfac = NULL, fayfac = 1, wgtrep = "W_FSTR", ngr = 100, Nboot=200, seed = .Random.seed)
+IRT.repDesign(data, wgt=NULL, jktype="JK_TIMSS", jkzone=NULL, jkrep=NULL,
+   jkfac=NULL, fayfac=1, wgtrep="W_FSTR", ngr=100, Nboot=200, seed=.Random.seed)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -107,8 +107,8 @@ library(BIFIEsurvey)
 data(data.timss11.G4.AUT, package="CDM")
 dat <- CDM::data.timss11.G4.AUT$data
 # generate design
-rdes <- CDM::IRT.repDesign( data= dat,  wgt = "TOTWGT" , jktype="JK_TIMSS" ,
-             jkzone = "JKCZONE" , jkrep = "JKCREP" )
+rdes <- CDM::IRT.repDesign( data=dat,  wgt="TOTWGT", jktype="JK_TIMSS",
+             jkzone="JKCZONE", jkrep="JKCREP" )
 str(rdes)
 
 #############################################################################
@@ -122,7 +122,7 @@ q.matrix <- CDM::sim.qmatrix
 dat <- CDM::sim.din(N=2000, q.matrix=q.matrix )$dat
 
 # bootstrap with 300 random samples
-rdes <- CDM::IRT.repDesign( data= dat, jktype="BOOT", Nboot=300 )
+rdes <- CDM::IRT.repDesign( data=dat, jktype="BOOT", Nboot=300 )
 }
 }
 

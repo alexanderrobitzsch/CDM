@@ -1,5 +1,5 @@
 ## File Name: reglca_dpm_smoothing.R
-## File Version: 0.03
+## File Version: 0.06
 
 reglca_dpm_smoothing <- function( p.aj.xi, weights, nclasses, alpha, dpm_maxit=10, dpm_conv=1E-4 )
 {
@@ -22,8 +22,8 @@ reglca_dpm_smoothing <- function( p.aj.xi, weights, nclasses, alpha, dpm_maxit=1
         # update alpha
         alpha <- ( 1 - nclasses ) / sum( log( 1 - vh[ seq(1, nclasses - 1 ) ] ) )
         iter <- iter + 1
-        parm_change <- max( c( abs( alpha - alpha0 ) , abs( vh - vh0 ) ))
-        if ( iter == dpm_maxit ){ iterate <- FALSE }
+        parm_change <- max( c( abs( alpha - alpha0 ), abs( vh - vh0 ) ))
+        if ( iter==dpm_maxit ){ iterate <- FALSE }
         if ( parm_change < dpm_conv ){ iterate <- FALSE }
     }
     class_probs <- dpm_calc_probs( vh=vh )

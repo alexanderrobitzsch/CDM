@@ -1,5 +1,5 @@
 ## File Name: gdina_create_designmatrices_monotonicity_constraints.R
-## File Version: 0.02
+## File Version: 0.05
 
 gdina_create_designmatrices_monotonicity_constraints <- function(Ajjj)
 {
@@ -15,12 +15,12 @@ gdina_create_designmatrices_monotonicity_constraints <- function(Ajjj)
         }
     }
     # define matrix for testing monotonicity constraints
-    NC <- sum( dist_Ajjj == 1 )
-    Ajjj_mono <- matrix( 0 , nrow=NC, ncol=N_Ajjj)
+    NC <- sum( dist_Ajjj==1 )
+    Ajjj_mono <- matrix( 0, nrow=NC, ncol=N_Ajjj)
     uu <- 1
     for (ii in 1:N_Ajjj ){
         for (hh in 1:N_Ajjj){
-            if ( dist_Ajjj[hh,ii] == 1 ){
+            if ( dist_Ajjj[hh,ii]==1 ){
                 Ajjj_mono[uu,c(hh,ii) ] <- c(1,-1)
                 uu <- uu + 1
             }

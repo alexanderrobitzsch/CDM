@@ -1,5 +1,5 @@
 %% File Name: gdd.Rd
-%% File Version: 0.15
+%% File Version: 0.19
 
 \name{gdd}
 \alias{gdd}
@@ -16,7 +16,7 @@ skill profiles based on a preliminary unidimensional calibration.
 }
 
 \usage{
-gdd(data, q.matrix, theta, b, a, skillclasses = NULL)
+gdd(data, q.matrix, theta, b, a, skillclasses=NULL)
 }
 
 
@@ -43,7 +43,7 @@ Optional matrix of skill classes used for estimation
 
 \details{
 Note that the parameters in the arguments follow the item response model
-\deqn{ logit P( X_{nj} = 1 | \theta_n ) = b_j + a_j \theta_n }
+\deqn{ logit P( X_{nj}=1 | \theta_n )=b_j + a_j \theta_n }
 which is employed in the \code{gdm} function.
 }
 
@@ -89,8 +89,8 @@ data <- sim.dina
 q.matrix <- sim.qmatrix
 
 # estimate 1PL (use irtmodel="2PL" for 2PL estimation)
-mod <- CDM::gdm( data , irtmodel="1PL" , theta.k=seq(-6,6,len=21) ,
-                    decrease.increments=TRUE , conv=.001 , globconv=.001)
+mod <- CDM::gdm( data, irtmodel="1PL", theta.k=seq(-6,6,len=21),
+                    decrease.increments=TRUE, conv=.001, globconv=.001)
 # extract item parameters in parametrization b + a*theta
 b <- mod$b[,1]
 a <- mod$a[,,1]
@@ -98,7 +98,7 @@ a <- mod$a[,,1]
 theta <- mod$person$EAP.F1
 
 # generalized distance discriminating method
-res <- CDM::gdd( data , q.matrix , theta=theta , b=b, a=a )
+res <- CDM::gdd( data, q.matrix, theta=theta, b=b, a=a )
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

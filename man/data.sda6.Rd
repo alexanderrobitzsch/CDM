@@ -1,5 +1,5 @@
 %% File Name: data.sda6.Rd
-%% File Version: 0.12
+%% File Version: 0.16
 
 \name{data.sda6}
 \alias{data.sda6}
@@ -72,28 +72,28 @@ data <- data.sda6$data
 q.matrix <- data.sda6$q.matrix
 
 #*** Model 1a: LCDM with gdina
-mod1a <- CDM::gdina( data , q.matrix , rule="ACDM" , linkfct="logit" ,
+mod1a <- CDM::gdina( data, q.matrix, rule="ACDM", linkfct="logit",
                   reduced.skillspace=FALSE )
 summary(mod1a)
 
 #*** Model 1b: estimate LCDM with gdm
-mod1b <- CDM::gdm( data , q.matrix=q.matrix , theta.k=c(0,1) )
+mod1b <- CDM::gdm( data, q.matrix=q.matrix, theta.k=c(0,1) )
 summary(mod1b)
 
 #*** Model 2: LCDM with hierarchy II > CM
 B <- "II > CM"
-ss2 <- CDM::skillspace.hierarchy(B=B , skill.names= colnames(q.matrix ) )
-mod2 <- CDM::gdina( data , q.matrix , rule="ACDM" , linkfct="logit" ,
-                skillclasses = ss2$skillspace.reduced ,
+ss2 <- CDM::skillspace.hierarchy(B=B, skill.names=colnames(q.matrix ) )
+mod2 <- CDM::gdina( data, q.matrix, rule="ACDM", linkfct="logit",
+                skillclasses=ss2$skillspace.reduced,
                 reduced.skillspace=FALSE )
 summary(mod2)
 
 #*** Model 3: LCDM with hierarchy II > CM and DG > CM
 B <- "II > CM
       DG > CM"
-ss2 <- CDM::skillspace.hierarchy(B=B , skill.names= colnames(q.matrix ) )
-mod3 <- CDM::gdina( data , q.matrix , rule="ACDM" , linkfct="logit" ,
-               skillclasses = ss2$skillspace.reduced ,
+ss2 <- CDM::skillspace.hierarchy(B=B, skill.names=colnames(q.matrix ) )
+mod3 <- CDM::gdina( data, q.matrix, rule="ACDM", linkfct="logit",
+               skillclasses=ss2$skillspace.reduced,
                reduced.skillspace=FALSE )
 summary(mod3)
 

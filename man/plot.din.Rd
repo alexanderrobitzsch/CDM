@@ -1,5 +1,5 @@
 %% File Name: plot.din.Rd
-%% File Version: 2.10
+%% File Version: 2.14
 
 \name{plot.din}
 
@@ -14,9 +14,9 @@
 }
 
 \usage{
-  \method{plot}{din}(x, items = c(1:ncol(x$data)), pattern = "",
-    uncertainty = 0.1, top.n.skill.classes = 6, pdf.file = "",
-    hide.obs = FALSE, display.nr = 1:4, ask=TRUE , \dots)
+  \method{plot}{din}(x, items=c(1:ncol(x$data)), pattern="",
+    uncertainty=0.1, top.n.skill.classes=6, pdf.file="",
+    hide.obs=FALSE, display.nr=1:4, ask=TRUE, \dots)
 }
 
 \arguments{
@@ -25,7 +25,7 @@
 
   \item{items}{An index vector giving the items to be visualized in the first
     plot, see \sQuote{Details}.  The default is
-    \code{items = c(1:ncol(x$data))}, which is all items.  }
+    \code{items=c(1:ncol(x$data))}, which is all items.  }
 
   \item{pattern}{An optional character or a numeric vector specifying a response pattern
     of an respondent, whose attributes are analyzed in a separate
@@ -51,7 +51,7 @@
     second graphic is not displayed.  }
 
   \item{display.nr}{An optional numeric or numeric vector. If specified, only the plots in
-    \code{display.nr} are displayed. Default is \code{display.nr = 1:4} causing the display of
+    \code{display.nr} are displayed. Default is \code{display.nr=1:4} causing the display of
     all four plots.   }
 
   \item{ask}{An optional logical indicating whether a request for a user input
@@ -132,9 +132,9 @@ data(fraction.subtraction.qmatrix)
 
 ## Fix the guessing parameters of items 5, 8 and 9 equal to .20
 # define a constraint.guess matrix
-constraint.guess <-  matrix(c(5,8,9, rep(0.2, 3)), ncol = 2)
-fractions.dina.fixed <- CDM::din(data = fraction.subtraction.data,
-  q.matrix = fraction.subtraction.qmatrix,
+constraint.guess <-  matrix(c(5,8,9, rep(0.2, 3)), ncol=2)
+fractions.dina.fixed <- CDM::din(data=fraction.subtraction.data,
+  q.matrix=fraction.subtraction.qmatrix,
   constraint.guess=constraint.guess)
 
 ## The second plot shows the expected (MAP) and observed skill
@@ -151,15 +151,15 @@ fractions.dina.fixed <- CDM::din(data = fraction.subtraction.data,
 ## not mastered (below .5-'uncertainty'). In this case, the
 ## 527th respondent was chosen; if no response pattern is
 ## specified, the plot will not be shown (of course)
-pattern <- paste(fraction.subtraction.data[527, ], collapse = "")
-plot(fractions.dina.fixed, pattern = pattern, display.nr = 4)
+pattern <- paste(fraction.subtraction.data[527, ], collapse="")
+plot(fractions.dina.fixed, pattern=pattern, display.nr=4)
 
 # It is also possible to input a vector of item responses
-plot(fractions.dina.fixed, pattern=fraction.subtraction.data[527, ] ,display.nr = 4)
+plot(fractions.dina.fixed, pattern=fraction.subtraction.data[527, ],display.nr=4)
 
-#uncertainty = 0.1, top.n.skill.classes = 6 are default
-plot(fractions.dina.fixed, uncertainty = 0.1, top.n.skill.classes = 6,
-  pattern = pattern)
+#uncertainty=0.1, top.n.skill.classes=6 are default
+plot(fractions.dina.fixed, uncertainty=0.1, top.n.skill.classes=6,
+  pattern=pattern)
 }
 
 \keyword{methods}

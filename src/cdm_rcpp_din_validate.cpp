@@ -1,5 +1,5 @@
 //// File Name: cdm_rcpp_din_validate.cpp
-//// File Version: 0.50
+//// File Version: 0.52
 
 
 #include <Rcpp.h>
@@ -14,7 +14,7 @@ using namespace Rcpp;
 Rcpp::NumericMatrix cdm_rcpp_din_validate_aggregate_max( Rcpp::NumericVector IDI,
     Rcpp::IntegerVector itemindex, int I)
 {
-    // a1 <- stats::aggregate( coef.modified$IDI , list( coef.modified$itemindex ) , max )
+    // a1 <- stats::aggregate( coef.modified$IDI, list( coef.modified$itemindex ), max )
     Rcpp::NumericMatrix idi_max(I,2);
     int NR = IDI.size();
     int hh=0;
@@ -95,7 +95,7 @@ Rcpp::List cdm_rcpp_din_validate_update_qmatrix_one_pattern(
     return Rcpp::List::create(
                 Rcpp::Named("guess") = guess,
                 Rcpp::Named("slip") = slip
-            ) ;
+            );
 }
 ///********************************************************************
 
@@ -123,6 +123,6 @@ Rcpp::List cdm_rcpp_din_validate_update_qmatrix(
     return Rcpp::List::create(
                 Rcpp::Named("guess_M") = guess_M,
                 Rcpp::Named("slip_M") = slip_M
-            ) ;
+            );
 }
 ///********************************************************************

@@ -1,9 +1,9 @@
 ## File Name: cdm_pem_acceleration.R
-## File Version: 0.09
+## File Version: 0.12
 
 
 cdm_pem_acceleration <- function( iter, pem_parameter_index, pem_parameter_sequence,
-        pem_pars, PEM_itermax , parmlist , ll_fct , ll_args, deviance.history=NULL )
+        pem_pars, PEM_itermax, parmlist, ll_fct, ll_args, deviance.history=NULL )
 {
     res0 <- ll <- NULL
     PEM <- TRUE
@@ -15,7 +15,7 @@ cdm_pem_acceleration <- function( iter, pem_parameter_index, pem_parameter_seque
                                             pem_parameter_sequence=pem_parameter_sequence, iter=iter )
     pem_update <- FALSE
 
-    if ( ( iter %% 2 == 0 ) & ( iter > 0 ) & ( iter < PEM_itermax ) ){
+    if ( ( iter %% 2==0 ) & ( iter > 0 ) & ( iter < PEM_itermax ) ){
 
         pem_update <- TRUE
         pem_parameter_sequence$P2 <- pem_parm
@@ -23,7 +23,7 @@ cdm_pem_acceleration <- function( iter, pem_parameter_index, pem_parameter_seque
         #** baseline likelihood
         ll_args <- cdm_pem_include_ll_args( ll_args=ll_args, pem_parm=pem_parm, pem_pars=pem_pars,
                             pem_parameter_index=pem_parameter_index )
-        res0 <- res <- do.call( what=ll_fct, args = ll_args )
+        res0 <- res <- do.call( what=ll_fct, args=ll_args )
         ll0 <- ll <- res$ll
 
         P0 <- pem_parameter_sequence$P0
@@ -41,7 +41,7 @@ cdm_pem_acceleration <- function( iter, pem_parameter_index, pem_parameter_seque
             Pnew <- cdm_pem_algorithm_compute_Pnew( tt=tt, P0=P0, P1=P1, P2=P2 )
             ll_args <- cdm_pem_include_ll_args( ll_args=ll_args, pem_parm=Pnew, pem_pars=pem_pars,
                             pem_parameter_index=pem_parameter_index )
-            res <- do.call( what=ll_fct, args = ll_args )
+            res <- do.call( what=ll_fct, args=ll_args )
             ll <- res$ll
             if ( is.na(ll) ){
                 ll <- -Inf
@@ -62,9 +62,9 @@ cdm_pem_acceleration <- function( iter, pem_parameter_index, pem_parameter_seque
     if ( ! is.null( deviance.history) ){
         diff_history <- diff( deviance.history[ 1:iter ] )
         NL0 <- 15
-        NL <- min( NL0 , iter )   # number of lags
+        NL <- min( NL0, iter )   # number of lags
         if ( iter > NL0 ){
-            diff2 <- diff_history[ seq( iter - 1 , iter - NL , -1 ) ]
+            diff2 <- diff_history[ seq( iter - 1, iter - NL, -1 ) ]
             PEM <- ! ( sum( ( diff2 < 0 ) ) > ( .35 * NL0 ) )
         }
 
@@ -72,7 +72,7 @@ cdm_pem_acceleration <- function( iter, pem_parameter_index, pem_parameter_seque
 
     #--- output
     res <- list(ll=ll, pem_parameter_sequence=pem_parameter_sequence, PEM=PEM,
-                    res_ll_fct = res0, pem_update=pem_update )
+                    res_ll_fct=res0, pem_update=pem_update )
     return(res)
 }
 

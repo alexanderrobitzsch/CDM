@@ -1,5 +1,5 @@
 %% File Name: Data-sim.Rd
-%% File Version: 1.14
+%% File Version: 1.15
 
 \name{Data-sim}
 
@@ -41,7 +41,7 @@
   data sets are \code{0.20, 0.20, 0.20, 0.20, 0.00, 0.50, 0.50, 0.10, 0.03}
   and the guessing errors are \code{0.10, 0.125, 0.15, 0.175, 0.2, 0.225,
   0.25, 0.275, 0.3}.  The attributes are assumed to be mastered with expected
-  probabilities of \code{-0.4 , 0.2, 0.6}, respectively.  The correlation of
+  probabilities of \code{-0.4, 0.2, 0.6}, respectively.  The correlation of
   the attributes is \code{0.3} for attributes 1 and 2, \code{0.4} for
   attributes 1 and 3 and \code{0.1} for attributes 2 and 3.
 }

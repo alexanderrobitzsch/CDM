@@ -1,9 +1,9 @@
 ## File Name: IRT_se_gdina_calc_individual_likelihood.R
-## File Version: 0.16
+## File Version: 0.19
 
 IRT_se_gdina_calc_individual_likelihood <- function(J, L, aggr.attr.patt, Mj, delta, linkfct,
         IP, item.patt.split, resp.ind.list, zeroprob.skillclasses, G, item.patt.freq,
-        Z.skillspace, beta, reduced.skillspace, return_all = FALSE )
+        Z.skillspace, beta, reduced.skillspace, return_all=FALSE )
 {
     pjM <- gdina_calc_prob( progress=FALSE, iter=100, disp="", J=J, L=L,
                     aggr.attr.patt=aggr.attr.patt, Mj=Mj, delta=delta, linkfct=linkfct )
@@ -18,16 +18,16 @@ IRT_se_gdina_calc_individual_likelihood <- function(J, L, aggr.attr.patt, Mj, de
     p.xi.aj[ p.xi.aj < 0 ] <- eps
 
     if (G==1){
-        l1 <- rowSums( p.xi.aj * cdm_matrix2( attr.prob , nrow=IP ) ) + eps
+        l1 <- rowSums( p.xi.aj * cdm_matrix2( attr.prob, nrow=IP ) ) + eps
         l1[ l1 < 0 ] <- eps
         like_ind <- l1
         loglike <- sum( log(l1) * item.patt.freq )
     }
     if (G>1){
-        like_ind <- array( 0 , dim=c(IP, L, G) )
+        like_ind <- array( 0, dim=c(IP, L, G) )
         loglike <- 0
         for (gg in 1:G){
-            l1 <- rowSums( p.xi.aj * cdm_matrix2( attr.prob[,gg] , nrow=IP ) ) + eps
+            l1 <- rowSums( p.xi.aj * cdm_matrix2( attr.prob[,gg], nrow=IP ) ) + eps
             l1[ l1 < 0 ] <- eps
             like_ind[,,gg] <- l1
             loglike <- loglike + sum( log(l1) * item.patt.freq[,gg] )
@@ -44,7 +44,7 @@ IRT_se_gdina_calc_individual_likelihood <- function(J, L, aggr.attr.patt, Mj, de
     #--- output
     res <- loglike
     if (return_all){
-        res <- list( loglike=loglike, p.xi.aj=p.xi.aj, p.aj.xi=p.aj.xi, like_ind = like_ind  )
+        res <- list( loglike=loglike, p.xi.aj=p.xi.aj, p.aj.xi=p.aj.xi, like_ind=like_ind  )
     }
 
     return(res)

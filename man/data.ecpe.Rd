@@ -1,5 +1,5 @@
 %% File Name: data.ecpe.Rd
-%% File Version: 0.22
+%% File Version: 0.24
 
 \name{data.ecpe}
 \alias{data.ecpe}
@@ -98,7 +98,7 @@ anova(mod1,mod2)
 hier <- "skill3 > skill2 > skill1"
 skill.names <- colnames(Q)
 # define skill space with hierarchy
-skillspace <- CDM::skillspace.hierarchy( hier, skill.names= skill.names )
+skillspace <- CDM::skillspace.hierarchy( hier, skill.names=skill.names )
 skillspace$skillspace.reduced
   ##        skill1 skill2 skill3
   ##   A000      0      0      0
@@ -132,7 +132,7 @@ summary(mod3)
 mod4 <- CDM::gdina( dat, q.matrix=Q, rule="RRUM")
 summary(mod4)
 # compare some models
-IRT.compareModels(mod1 , mod2, mod3, mod4 )
+IRT.compareModels(mod1, mod2, mod3, mod4 )
 
 #*** Model 5a: GDINA model with identity link
 mod5a <- CDM::gdina( dat, q.matrix=Q, link="identity")

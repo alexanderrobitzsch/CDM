@@ -1,5 +1,5 @@
 ## File Name: IRT.posterior.R
-## File Version: 0.10
+## File Version: 0.15
 
 ###########################################################
 # extracts the individual posterior
@@ -13,7 +13,7 @@ IRT.posterior <- function (object, ...)
 
 ###########################################################
 # object of class din
-IRT.posterior.din <- function( object , ... )
+IRT.posterior.din <- function( object, ... )
 {
     ll <- object$posterior
     attr(ll,"theta") <- object$attribute.patt.splitted
@@ -25,11 +25,11 @@ IRT.posterior.din <- function( object , ... )
 
 ###########################################################
 # object of class gdina
-IRT.posterior.gdina <- function( object , ... )
+IRT.posterior.gdina <- function( object, ... )
 {
     ll <- object$posterior
     attr(ll,"theta") <- object$attribute.patt.splitted
-    attr(ll,"prob.theta") <- object$attribute.patt[ , 1:object$G ]
+    attr(ll,"prob.theta") <- object$attribute.patt[, 1:object$G ]
     attr(ll,"G") <- object$G
     return(ll)
 }
@@ -37,7 +37,7 @@ IRT.posterior.gdina <- function( object , ... )
 
 ###########################################################
 # object of class mcdina
-IRT.posterior.mcdina <- function( object , ... )
+IRT.posterior.mcdina <- function( object, ... )
 {
     ll <- object$posterior
     attr(ll,"theta") <- object$attribute.patt.splitted
@@ -49,7 +49,7 @@ IRT.posterior.mcdina <- function( object , ... )
 
 ###########################################################
 # object of class gdm
-IRT.posterior.gdm <- function( object , ... )
+IRT.posterior.gdm <- function( object, ... )
 {
     ll <- object$posterior
     attr(ll,"theta") <- object$theta.k
@@ -61,12 +61,12 @@ IRT.posterior.gdm <- function( object , ... )
 
 ###########################################################
 # object of class slca
-IRT.posterior.slca <- function( object , ... )
+IRT.posterior.slca <- function( object, ... )
 {
     ll <- object$posterior
     attr(ll,"theta") <- NA
-    res <- list( "delta" = object$delta ,
-                "delta.designmatrix" = object$delta.designmatrix )
+    res <- list( "delta"=object$delta,
+                "delta.designmatrix"=object$delta.designmatrix )
     attr(ll,"skillspace") <- res
     attr(ll,"prob.theta") <- object$pi.k
     attr(ll,"G") <- object$G
@@ -76,7 +76,7 @@ IRT.posterior.slca <- function( object , ... )
 
 ###########################################################
 # object of class reglca
-IRT.posterior.reglca <- function( object , ... )
+IRT.posterior.reglca <- function( object, ... )
 {
     ll <- object$p.aj.xi
     attr(ll,"theta") <- NA

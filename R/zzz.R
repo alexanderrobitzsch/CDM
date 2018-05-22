@@ -1,5 +1,5 @@
 ## File Name: zzz.R
-## File Version: 2.05
+## File Version: 2.09
 #  zzz.R
 #
 # This function is simply copied from mice package.
@@ -8,13 +8,13 @@
 #.onLoad <- function(...){
 #  d <- packageDescription("CDM")
 #  cat("\n#############################\n")
-#  packageStartupMessage(paste(d$Package," " , d$Version," (",d$Date,")",sep=""))
+#  packageStartupMessage(paste(d$Package," ", d$Version," (",d$Date,")",sep=""))
 #  cat("#############################\n")
 #  return()
 #}
 version <- function(pkg="CDM")
 {
-    lib <- dirname(system.file(package = pkg))
+    lib <- dirname(system.file(package=pkg))
     d <- utils::packageDescription(pkg)
     return(paste(d$Package,d$Version,d$Date,lib))
 }
@@ -23,10 +23,10 @@ version <- function(pkg="CDM")
 {
     d <- utils::packageDescription("CDM")
     dc <- nchar(d$Version)
-    m1 <- paste(rep( " " , 12-dc ), collapse="")
+    m1 <- paste(rep( " ", 12-dc ), collapse="")
     packageStartupMessage("**********************************\n",
-        paste("** ", d$Package," " , d$Version," (",d$Date,")" ,
-            m1 , "\n",sep="") ,
-        paste("** Cognitive Diagnostic Models  **",sep="") ,
+        paste("** ", d$Package," ", d$Version," (",d$Date,")",
+            m1, "\n",sep=""),
+        paste("** Cognitive Diagnostic Models  **",sep=""),
         "\n**********************************\n" )
 }

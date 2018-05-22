@@ -1,7 +1,7 @@
 ## File Name: reglca_calc_deviance.R
-## File Version: 0.06
+## File Version: 0.09
 
-reglca_calc_deviance <- function( p.xi.aj , class_probs, weights, loglike,
+reglca_calc_deviance <- function( p.xi.aj, class_probs, weights, loglike,
             penalty=0, opt_fct=0, ind_groups, G, N_groups )
 {
     eps <- 1E-30
@@ -10,12 +10,12 @@ reglca_calc_deviance <- function( p.xi.aj , class_probs, weights, loglike,
     N <- nrow(p.xi.aj)
 
     if (G==1){
-        class_probs_mat <- cdm_matrix2( class_probs , nrow=N )
+        class_probs_mat <- cdm_matrix2( class_probs, nrow=N )
     } else {
-        class_probs_mat <- matrix(NA, nrow=N, ncol= nrow(class_probs) )
+        class_probs_mat <- matrix(NA, nrow=N, ncol=nrow(class_probs) )
         for (gg in 1:G){
             ind_gg <- ind_groups[[gg]]
-            class_probs_mat[ ind_gg, ] <- cdm_matrix2( class_probs[,gg] , nrow=N_groups[gg] )
+            class_probs_mat[ ind_gg, ] <- cdm_matrix2( class_probs[,gg], nrow=N_groups[gg] )
         }
     }
 
@@ -31,7 +31,7 @@ reglca_calc_deviance <- function( p.xi.aj , class_probs, weights, loglike,
     opt_fct_change <- - opt_fct + opt_fct_old
 
     #--- OUTPUT
-    res <- list( like.new=like.new, likediff=likediff, opt_fct = opt_fct,
+    res <- list( like.new=like.new, likediff=likediff, opt_fct=opt_fct,
                     opt_fct_change=opt_fct_change)
     return(res)
 }

@@ -1,17 +1,17 @@
 ## File Name: gdm_calc_distributionmoments.R
-## File Version: 0.04
+## File Version: 0.09
 
 
 #######################################################################
 # moments of distribution
-gdm_calc_distributionmoments <- function( D , G , pi.k , theta.k )
+gdm_calc_distributionmoments <- function( D, G, pi.k, theta.k )
 {
-    mean.trait <- sd.trait <- skewness.trait <- matrix( 0 , nrow=D , ncol=G )
+    mean.trait <- sd.trait <- skewness.trait <- matrix( 0, nrow=D, ncol=G )
     for (dd in 1:D){
         for (gg in 1:G){
-            mean.trait[dd,gg] <- sum( theta.k[,dd] * pi.k[ , gg ] )
-            sd.trait[dd,gg] <- sqrt( sum( theta.k[,dd]^2 * pi.k[ , gg ] ) - mean.trait[dd,gg]^2 )
-            skewness.trait[dd,gg] <- sum( ( theta.k[,dd] - mean.trait[dd,gg] )^3 * pi.k[ , gg ] ) / sd.trait[dd,gg]^3
+            mean.trait[dd,gg] <- sum( theta.k[,dd] * pi.k[, gg ] )
+            sd.trait[dd,gg] <- sqrt( sum( theta.k[,dd]^2 * pi.k[, gg ] ) - mean.trait[dd,gg]^2 )
+            skewness.trait[dd,gg] <- sum( ( theta.k[,dd] - mean.trait[dd,gg] )^3 * pi.k[, gg ] ) / sd.trait[dd,gg]^3
         }
     }
     rownames(skewness.trait) <- rownames(sd.trait) <- rownames(mean.trait) <- colnames(theta.k)
@@ -36,8 +36,8 @@ gdm_calc_distributionmoments <- function( D , G , pi.k , theta.k )
         correlation.trait[[gg]] <- stats::cov2cor(Sigma.gg + diag(10^(-5),D) )
     }
     #--- OUTPUT
-    res <- list( mean.trait=mean.trait , sd.trait = sd.trait ,
-                skewness.trait = skewness.trait , correlation.trait=correlation.trait)
+    res <- list( mean.trait=mean.trait, sd.trait=sd.trait,
+                skewness.trait=skewness.trait, correlation.trait=correlation.trait)
     return(res)
 }
 

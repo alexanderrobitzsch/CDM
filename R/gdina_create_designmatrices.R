@@ -1,22 +1,22 @@
 ## File Name: gdina_create_designmatrices.R
-## File Version: 0.16
+## File Version: 0.22
 
 gdina_create_designmatrices <- function( J, Mj, Aj, q.matrix, rule, L, attr.patt, mono.constr,
-    bugs = NULL )
+    bugs=NULL )
 {
     Mj.userdefined <- TRUE
     if ( is.null(Mj) ){
         Mj.userdefined <- FALSE
-        Mj <- as.list( rep("noe" , J ) )
+        Mj <- as.list( rep("noe", J ) )
     }
     if ( ! is.null(bugs) ){
         bugs <- which( colnames(q.matrix) %in% bugs )
     }
-    
+
     # Notation for Mj and Aj follows De La Torre (2011)
     Aj <- NULL
     Aj_mono_constraints <- NULL
-    Nattr.items <- rowSums(q.matrix >= 1)
+    Nattr.items <- rowSums(q.matrix >=1)
     # list of necessary attributes per item
     necc.attr <- as.list( rep(NA,J) )
     # list of rows in attr.patt which correspond to attribute classes for one item
@@ -24,12 +24,12 @@ gdina_create_designmatrices <- function( J, Mj, Aj, q.matrix, rule, L, attr.patt
     # list of indices of attribute patterns which should be aggregated for each item
     aggr.attr.patt <- NULL
     for (jj in 1:J){     # loop over items jj
-    
+
         q_jj <- as.numeric(q.matrix[jj,])
-        
+
         nj1 <- necc.attr[[jj]] <- which( q.matrix[jj,] > 0 )
         if ( length(nj1)==0 ){
-            stop( paste("Q matrix row " , jj , " has only zero entries\n" , sep="") )
+            stop( paste("Q matrix row ", jj, " has only zero entries\n", sep="") )
         }
         Aj1 <- Aj[[jj]] <- gdina_designmatrices_create_Aj( Nattr.items[jj] )
         #--- define monotonicity constraints
@@ -37,16 +37,16 @@ gdina_create_designmatrices <- function( J, Mj, Aj, q.matrix, rule, L, attr.patt
             Aj_mono_constraints[[jj]] <- gdina_create_designmatrices_monotonicity_constraints(Ajjj=Aj[[jj]] )
         }
         if ( ! Mj.userdefined ){
-            Mj[[jj]] <- gdina_designmatrices_create_Mj( Aj[[jj]] , rule = rule[jj], q_jj = q_jj,
-                                bugs=bugs)            
+            Mj[[jj]] <- gdina_designmatrices_create_Mj( Aj[[jj]], rule=rule[jj], q_jj=q_jj,
+                                bugs=bugs)
         }
         l1 <- as.list( 1 )
         l2 <- rep(0,L)
         for (zz in seq(1,nrow(Aj1)) ){  # begin row zz
-            Aj1zz <- outer( rep(1,nrow(attr.patt)) , Aj1[zz,] )
-            apzz <- attr.patt[ , nj1 ]
-            apzz <- 1 * ( apzz >= q.matrix[ rep(jj,L) ,nj1] )
-            l1[[zz]] <- which( rowMeans( apzz == Aj1zz  ) == 1)
+            Aj1zz <- outer( rep(1,nrow(attr.patt)), Aj1[zz,] )
+            apzz <- attr.patt[, nj1 ]
+            apzz <- 1 * ( apzz >=q.matrix[ rep(jj,L),nj1] )
+            l1[[zz]] <- which( rowMeans( apzz==Aj1zz  )==1)
             l2[ l1[[zz]] ] <- zz
         }   # end row zz
         attr.items[[jj]] <- l1
@@ -55,7 +55,7 @@ gdina_create_designmatrices <- function( J, Mj, Aj, q.matrix, rule, L, attr.patt
 
     #******
     # indices for Mj
-    Mj.index <- matrix( 0 , J , 6 )
+    Mj.index <- matrix( 0, J, 6 )
     for (jj in 1:J){
         Mj.index[jj,1] <- ncol( Mj[[jj]][[1]] )
         Mj.index[jj,4] <- nrow( Aj[[jj]])
@@ -65,15 +65,15 @@ gdina_create_designmatrices <- function( J, Mj, Aj, q.matrix, rule, L, attr.patt
     Mj.index[,6] <- cumsum( Mj.index[,4] )
     Mj.index[,5] <- c(1,Mj.index[-J,6] + 1 )
     # compute designmatrix of aggregation of pattern
-    aggr.patt.designmatrix <- matrix( 0 , L , max(Mj.index[,6]) )
+    aggr.patt.designmatrix <- matrix( 0, L, max(Mj.index[,6]) )
     for (jj in 1:J){
         Mj.index.jj <- Mj.index[jj,]
         for (vv in seq(1,Mj.index.jj[4]) ){
-            aggr.patt.designmatrix[ , Mj.index.jj[5] - 1 + vv ] <- 1  * ( aggr.attr.patt[[jj]] == vv )
+            aggr.patt.designmatrix[, Mj.index.jj[5] - 1 + vv ] <- 1  * ( aggr.attr.patt[[jj]]==vv )
         }
     }
 
-    
+
     #--- OUTPUT
     res <- list(Mj=Mj, Mj.userdefined=Mj.userdefined, Aj=Aj, Nattr.items=Nattr.items, necc.attr=necc.attr,
                 aggr.attr.patt=aggr.attr.patt, attr.items=attr.items, aggr.patt.designmatrix=aggr.patt.designmatrix,

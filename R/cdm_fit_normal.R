@@ -1,12 +1,12 @@
 ## File Name: cdm_fit_normal.R
-## File Version: 0.03
+## File Version: 0.04
 
 
 cdm_fit_normal <- function(x, w)
 {
     theta.k <- x
     if ( is.vector(theta.k) ){
-        theta.k <- matrix( theta.k, ncol= 1 )
+        theta.k <- matrix( theta.k, ncol=1 )
     }
     D <- ncol(theta.k)
     #---- unidimensional model

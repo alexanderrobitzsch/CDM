@@ -1,5 +1,5 @@
 %% File Name: summary_sink.Rd
-%% File Version: 0.05
+%% File Version: 0.08
 
 \name{summary_sink}
 \alias{summary_sink}
@@ -12,7 +12,7 @@ Prints \code{summary} and \code{sink} Output in a File
 Prints \code{summary} and \code{sink} output in a File
 }
 \usage{
-summary_sink( object , file , append=FALSE , ...)
+summary_sink( object, file, append=FALSE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -65,15 +65,15 @@ be appended to an already existing file. See argument \code{append} in
 set.seed(997)
 N <- 200
 x <- stats::rnorm( N )
-y <- .4 * x + stats::rnorm(N , sd =.5 )
+y <- .4 * x + stats::rnorm(N, sd=.5 )
 
 #--- fit a linear model and sink summary into a file
 mod1 <- stats::lm( y ~ x )
-summary_sink(mod1 , file = "my_model")
+summary_sink(mod1, file="my_model")
 
 #--- fit a second model and append it to file
 mod2 <- stats::lm( y ~ x + I(x^2) )
-summary_sink(mod2 , file = "my_model" , append = TRUE )
+summary_sink(mod2, file="my_model", append=TRUE )
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

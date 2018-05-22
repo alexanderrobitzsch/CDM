@@ -1,16 +1,16 @@
 ## File Name: gdina_calc_expected_counts.R
-## File Version: 0.10
+## File Version: 0.14
 
-gdina_calc_expected_counts <- function( G , J , L , item.patt.freq, p.aj.xi, some.missings ,
-        ipr , attr.patt.c, resp.patt, item.patt.split, data )
+gdina_calc_expected_counts <- function( G, J, L, item.patt.freq, p.aj.xi, some.missings,
+        ipr, attr.patt.c, resp.patt, item.patt.split, data )
 {
     R.lj.gg <- I.lj.gg <- NULL
     #---------------------- single groups ------------------------------------------
-    if (G == 1){
+    if (G==1){
         if ( some.missings ){
             I.lj <- crossprod( item.patt.freq*resp.patt    , p.aj.xi )
         } else {
-            I.lj <- matrix( crossprod( item.patt.freq , p.aj.xi ) , nrow=J , ncol=L , byrow=TRUE )
+            I.lj <- matrix( crossprod( item.patt.freq, p.aj.xi ), nrow=J, ncol=L, byrow=TRUE )
         }
         R.lj <- crossprod(ipr, p.aj.xi )
         colnames(I.lj) <- colnames(R.lj) <- attr.patt.c
@@ -19,10 +19,10 @@ gdina_calc_expected_counts <- function( G , J , L , item.patt.freq, p.aj.xi, som
 
     #---------------------- multiple groups ------------------------------------------
     if (G > 1){
-        R.lj.gg <- I.lj.gg <- array( 0 , c( J, L , G ) )
+        R.lj.gg <- I.lj.gg <- array( 0, c( J, L, G ) )
         for (gg in 1:G){
-            I.lj.gg[,,gg] <- crossprod( item.patt.freq[,gg]*resp.patt , p.aj.xi[,,gg] )
-            R.lj.gg[,,gg] <- crossprod( item.patt.split  * item.patt.freq[,gg] * resp.patt , p.aj.xi[,,gg] )
+            I.lj.gg[,,gg] <- crossprod( item.patt.freq[,gg]*resp.patt, p.aj.xi[,,gg] )
+            R.lj.gg[,,gg] <- crossprod( item.patt.split  * item.patt.freq[,gg] * resp.patt, p.aj.xi[,,gg] )
             colnames(I.lj.gg) <- colnames(R.lj.gg) <- attr.patt.c
             rownames(I.lj.gg) <- rownames(R.lj.gg) <- colnames(data)
         }
@@ -35,6 +35,6 @@ gdina_calc_expected_counts <- function( G , J , L , item.patt.freq, p.aj.xi, som
         }
     }
     #--- OUTPUT
-    res <- list( I.lj=I.lj, R.lj=R.lj , I.lj.gg=I.lj.gg, R.lj.gg=R.lj.gg)
+    res <- list( I.lj=I.lj, R.lj=R.lj, I.lj.gg=I.lj.gg, R.lj.gg=R.lj.gg)
     return(res)
 }

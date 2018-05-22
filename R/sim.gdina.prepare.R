@@ -1,5 +1,5 @@
 ## File Name: sim.gdina.prepare.R
-## File Version: 0.01
+## File Version: 0.04
 
 
 ######################################################################################
@@ -11,11 +11,11 @@ sim.gdina.prepare <- function( q.matrix )
     necc.attr <- delta <- Mj <- Aj <- as.list( rep(1,I) )
     for (ii in 1:I){
         necc.attr[[ii]] <- which( q.matrix[ii,] > 0 )
-        Aj[[ii]] <- gdina_designmatrices_create_Aj( nq = rsqm[ii] )
-        Mj[[ii]] <- gdina_designmatrices_create_Mj( Aj = Aj[[ii]] , rule = "GDINA" )
-        delta[[ii]] <- rep( 0 , ncol( Mj[[ii]][[1]] ) )
+        Aj[[ii]] <- gdina_designmatrices_create_Aj( nq=rsqm[ii] )
+        Mj[[ii]] <- gdina_designmatrices_create_Mj( Aj=Aj[[ii]], rule="GDINA" )
+        delta[[ii]] <- rep( 0, ncol( Mj[[ii]][[1]] ) )
     }
-    res <- list( delta=delta , necc.attr = necc.attr , Aj = Aj ,  Mj = Mj )
+    res <- list( delta=delta, necc.attr=necc.attr, Aj=Aj,  Mj=Mj )
     return(res)
 }
 ######################################################################################

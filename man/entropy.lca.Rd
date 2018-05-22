@@ -1,5 +1,5 @@
 %% File Name: entropy.lca.Rd
-%% File Version: 0.23
+%% File Version: 0.26
 
 \name{entropy.lca}
 \alias{entropy.lca}
@@ -18,7 +18,7 @@ criteria of cognitive diagnostic models (Asparouhov & Muthen, 2014).
 \usage{
 entropy.lca(object)
 
-\method{summary}{entropy.lca}(object, digits = 2 ,  \dots)
+\method{summary}{entropy.lca}(object, digits=2,  \dots)
 }
 %- maybe also 'usage' for other objects documented here.
 
@@ -70,7 +70,7 @@ data(sim.dina, package="CDM")
 data(sim.qmatrix, package="CDM")
 
 # fit DINA Model
-mod1 <- CDM::din( sim.dina, q.matrix=sim.qmatrix, rule = "DINA")
+mod1 <- CDM::din( sim.dina, q.matrix=sim.qmatrix, rule="DINA")
 summary(mod1)
 # compute entropy for test and items
 emod1 <- CDM::entropy.lca( mod1 )

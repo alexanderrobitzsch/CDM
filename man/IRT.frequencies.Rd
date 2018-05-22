@@ -1,5 +1,5 @@
 %% File Name: IRT.frequencies.Rd
-%% File Version: 0.12
+%% File Version: 0.15
 
 \name{IRT.frequencies}
 \alias{IRT.frequencies}
@@ -108,7 +108,7 @@ data(sim.dina, package="CDM")
 data(sim.qmatrix, package="CDM")
 
 # estimate GDINA model
-mod1 <- CDM::gdina( data = sim.dina ,  q.matrix = sim.qmatrix)
+mod1 <- CDM::gdina( data=sim.dina,  q.matrix=sim.qmatrix)
 summary(mod1)
 
 # direct usage of IRT.frequencies

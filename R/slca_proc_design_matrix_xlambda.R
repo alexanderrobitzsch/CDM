@@ -1,5 +1,5 @@
 ## File Name: slca_proc_design_matrix_xlambda.R
-## File Version: 0.03
+## File Version: 0.04
 
 slca_proc_design_matrix_xlambda <- function(Xdes)
 {
@@ -8,7 +8,7 @@ slca_proc_design_matrix_xlambda <- function(Xdes)
     # XdesM     [ii,kk,tt,ll, value ]
     NX <- res$NXdesM
     XdesM <- res$XdesM[1:NX,]
-    XdesM <- XdesM[ order( XdesM[,1]*NX + XdesM[,3] ) , ]
+    XdesM <- XdesM[ order( XdesM[,1]*NX + XdesM[,3] ), ]
     #--- output
     res <- list(XdesM=XdesM, NX=NX, dimXdes=dimXdes )
     return(res)

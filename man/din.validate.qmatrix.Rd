@@ -1,5 +1,5 @@
 %% File Name: din.validate.qmatrix.Rd
-%% File Version: 1.27
+%% File Version: 1.30
 
 \name{din.validate.qmatrix}
 \alias{din.validate.qmatrix}
@@ -13,7 +13,7 @@ of de la Torre (2008). After estimating a mixed DINA/DINO model
 using the \code{\link{din}} function, item parameters and the item
 discrimination parameters \eqn{IDI_j} are recalculated. Q-matrix rows
 are determined by maximizing the estimated item discrimination index
-\eqn{IDI_j = 1-s_j -g_j}.
+\eqn{IDI_j=1-s_j -g_j}.
 
 See Chiu (2013) for an alternative estimation approach based on
 residual sum of squares which is implemented in the \pkg{NPCD}
@@ -21,7 +21,7 @@ package.
 }
 
 \usage{
-din.validate.qmatrix(object, IDI_diff = .02, print = TRUE)
+din.validate.qmatrix(object, IDI_diff=.02, print=TRUE)
 }
 
 
@@ -88,7 +88,7 @@ See the \code{\link[GDINA:Qval]{GDINA::Qval}} function in the
 
 set.seed(679)
 # specify true Q-matrix
-q.matrix <- matrix( 0 , 12 , 3 )
+q.matrix <- matrix( 0, 12, 3 )
 q.matrix[1:3,1] <- 1
 q.matrix[4:6,2] <- 1
 q.matrix[7:9,3] <- 1
@@ -96,13 +96,13 @@ q.matrix[10,] <- c(1,1,0)
 q.matrix[11,] <- c(1,0,1)
 q.matrix[12,] <- c(0,1,1)
 # simulate data
-dat <- CDM::sim.din( N=4000 , q.matrix)$dat
+dat <- CDM::sim.din( N=4000, q.matrix)$dat
 # incorrectly modify Q-matrix rows 1 and 10
 Q1 <- q.matrix
 Q1[1,] <- c(1,1,0)
 Q1[10,] <- c(1,0,0)
 # estimate DINA model
-mod <- CDM::din( dat , q.matr = Q1, rule = "DINA")
+mod <- CDM::din( dat, q.matr=Q1, rule="DINA")
 # apply Q-matrix validation
 res <- CDM::din.validate.qmatrix( mod )
   ## item itemindex Skill1 Skill2 Skill3 guess  slip   IDI qmatrix.orig IDI.orig delta.IDI max.IDI

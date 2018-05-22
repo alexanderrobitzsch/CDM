@@ -1,5 +1,5 @@
 %% File Name: print.summary.din.Rd
-%% File Version: 1.08
+%% File Version: 1.11
 
 \name{print.summary.din}
 
@@ -62,8 +62,8 @@
 ##
 
 ## In particular, accessing detailed summary through assignment
-mod <- din(data = CDM::fraction.subtraction.data,
-          q.matrix = CDM::fraction.subtraction.qmatrix, rule = "DINA")
+mod <- CDM::din(data=CDM::fraction.subtraction.data,
+          q.matrix=CDM::fraction.subtraction.qmatrix, rule="DINA")
 smod <- summary(mod)
 str(smod)
 }

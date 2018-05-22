@@ -1,5 +1,5 @@
 %% File Name: din.deterministic.Rd
-%% File Version: 0.20
+%% File Version: 0.23
 
 \name{din.deterministic}
 \alias{din.deterministic}
@@ -17,8 +17,8 @@ on ideal latent responses.
 }
 
 \usage{
-din.deterministic(dat, q.matrix, rule="DINA" , method = "JML", conv = 0.001,
-    maxiter = 300, increment.factor = 1.05, progress = TRUE)
+din.deterministic(dat, q.matrix, rule="DINA", method="JML", conv=0.001,
+    maxiter=300, increment.factor=1.05, progress=TRUE)
 }
 
 %- maybe also 'usage' for other objects documented here.
@@ -101,7 +101,7 @@ joint maximum likelihood estimation of the DINA or the DINO model.
 set.seed(679)
 N <- 3000
 # specify true Q-matrix
-q.matrix <- matrix( 0 , 13 , 3 )
+q.matrix <- matrix( 0, 13, 3 )
 q.matrix[1:3,1] <- 1
 q.matrix[4:6,2] <- 1
 q.matrix[7:9,3] <- 1
@@ -109,35 +109,35 @@ q.matrix[10,] <- c(1,1,0)
 q.matrix[11,] <- c(1,0,1)
 q.matrix[12,] <- c(0,1,1)
 q.matrix[13,] <- c(1,1,1)
-q.matrix <- rbind( q.matrix , q.matrix )
+q.matrix <- rbind( q.matrix, q.matrix )
 colnames(q.matrix) <- paste0("Attr",1:ncol(q.matrix))
 
 # simulate data according to the DINA model
-dat <- CDM::sim.din( N=N , q.matrix)$dat
+dat <- CDM::sim.din( N=N, q.matrix)$dat
 
 # Joint maximum likelihood estimation (the default: method="JML")
-res1 <- CDM::din.deterministic( dat , q.matrix )
+res1 <- CDM::din.deterministic( dat, q.matrix )
 
 # Adaptive estimation of guessing and slipping parameters
-res <- CDM::din.deterministic( dat , q.matrix , method="adaptive" )
+res <- CDM::din.deterministic( dat, q.matrix, method="adaptive" )
 
 # Classification using Hamming distance
-res <- CDM::din.deterministic( dat , q.matrix , method="hamming" )
+res <- CDM::din.deterministic( dat, q.matrix, method="hamming" )
 
 # Classification using weighted Hamming distance
-res <- CDM::din.deterministic( dat , q.matrix , method="weighted.hamming" )
+res <- CDM::din.deterministic( dat, q.matrix, method="weighted.hamming" )
 
 \dontrun{
 #********* load NPCD library for JML estimation
 library(NPCD)
 
 # DINA model
-res <- NPCD::JMLE( Y=dat[1:100,] , Q=q.matrix , model="DINA" )
+res <- NPCD::JMLE( Y=dat[1:100,], Q=q.matrix, model="DINA" )
 as.data.frame(res$par.est )   # item parameters
 res$alpha.est                 # skill classifications
 
 # RRUM model
-res <- NPCD::JMLE( Y=dat[1:100,] , Q=q.matrix , model="RRUM" )
+res <- NPCD::JMLE( Y=dat[1:100,], Q=q.matrix, model="RRUM" )
 as.data.frame(res$par.est )
 }
 }

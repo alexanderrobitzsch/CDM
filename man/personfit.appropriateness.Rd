@@ -1,5 +1,5 @@
 %% File Name: personfit.appropriateness.Rd
-%% File Version: 0.20
+%% File Version: 0.23
 
 \name{personfit.appropriateness}
 \alias{personfit.appropriateness}
@@ -20,12 +20,12 @@ spuriously low scorers (\code{attr.type=0}).
 }
 
 \usage{
-personfit.appropriateness(data, probs, skillclassprobs, h = 0.001, eps = 1e-10,
-    maxiter=30 , conv = 1e-05, max.increment = 0.1, progress = TRUE)
+personfit.appropriateness(data, probs, skillclassprobs, h=0.001, eps=1e-10,
+    maxiter=30, conv=1e-05, max.increment=0.1, progress=TRUE)
 
-\method{summary}{personfit.appropriateness}(object, digits = 3 ,  \dots)
+\method{summary}{personfit.appropriateness}(object, digits=3,  \dots)
 
-\method{plot}{personfit.appropriateness}(x, cexpch=.65 ,  \dots)
+\method{plot}{personfit.appropriateness}(x, cexpch=.65,  \dots)
 }
 
 %- maybe also 'usage' for other objects documented here.
@@ -110,14 +110,14 @@ diagnosis. \emph{Applied Psychological Measurement, 33}(8), 579-598.
 data(data.ecpe, package="CDM")
 
 # fit DINA model
-mod1 <- CDM::din( CDM::data.ecpe$data[,-1] , q.matrix=CDM::data.ecpe$q.matrix )
+mod1 <- CDM::din( CDM::data.ecpe$data[,-1], q.matrix=CDM::data.ecpe$q.matrix )
 summary(mod1)
 
 # person fit appropriateness statistic
 data <- mod1$data
 probs <- mod1$pjk
 skillclassprobs <- mod1$attribute.patt[,1]
-res <- CDM::personfit.appropriateness( data , probs , skillclassprobs , maxiter=8)
+res <- CDM::personfit.appropriateness( data, probs, skillclassprobs, maxiter=8)
                  # only few iterations
 summary(res)
 plot(res)
@@ -132,15 +132,15 @@ dat <- data.read
 I <- ncol(dat)
 
 # fit 2PL model
-mod1 <- sirt::rasch.mml2( dat , est.a= 1:I)
+mod1 <- sirt::rasch.mml2( dat, est.a=1:I)
 # person fit statistic
 data <- mod1$dat
 probs0 <- t(mod1$pjk)
-probs <- array( 0 , dim=c( I, 2, dim(probs0)[2] ) )
+probs <- array( 0, dim=c( I, 2, dim(probs0)[2] ) )
 probs[,2,] <- probs0
 probs[,1,] <- 1 - probs0
 skillclassprobs <- mod1$trait.distr$pi.k
-res <- CDM::personfit.appropriateness( data , probs , skillclassprobs )
+res <- CDM::personfit.appropriateness( data, probs, skillclassprobs )
 summary(res)
 plot(res)
 }

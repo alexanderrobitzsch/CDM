@@ -1,5 +1,5 @@
 ## File Name: IRT.data.R
-## File Version: 0.10
+## File Version: 0.11
 
 
 ###########################################################
@@ -9,7 +9,7 @@ IRT.data <- function(object, ...)
     UseMethod("IRT.data")
 }
 ###########################################################
-IRT.data.din <- function( object , ... ){
+IRT.data.din <- function( object, ... ){
     dat <- object$dat
     attr(dat,"weights") <- object$control$weights
     attr(dat,"group") <- object$control$group
@@ -22,7 +22,7 @@ IRT.data.mcdina <- IRT.data.din
 IRT.data.slca <- IRT.data.din
 #############################################################
 
-IRT.data.reglca <- function( object , ... )
+IRT.data.reglca <- function( object, ... )
 {
     dat <- object$dat0
     attr(dat,"weights") <- object$weights

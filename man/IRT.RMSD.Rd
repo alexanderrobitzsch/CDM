@@ -1,5 +1,5 @@
 %% File Name: IRT.RMSD.Rd
-%% File Version: 0.19
+%% File Version: 0.22
 
 \name{IRT.RMSD}
 \alias{IRT.RMSD}
@@ -28,7 +28,7 @@ additionally computed.
 \usage{
 IRT.RMSD(object)
 
-\method{summary}{IRT.RMSD}(object, file = NULL , digits = 3 , \dots)
+\method{summary}{IRT.RMSD}(object, file=NULL, digits=3, \dots)
 }
 
 
@@ -102,7 +102,7 @@ data(data.read, package="sirt")
 dat <- data.read
 
 #*** Model 1: 1PL model
-mod1 <- TAM::tam.mml( resp = dat )
+mod1 <- TAM::tam.mml( resp=dat )
 summary(mod1)
 
 # item fit statistics
@@ -115,10 +115,10 @@ summary(imod1)
 
 data(data.math, package="sirt")
 dat <- data.math$data
-items <- grep("M[A-Z]", colnames(dat) , value=TRUE )
+items <- grep("M[A-Z]", colnames(dat), value=TRUE )
 
 #-- fit multiple group Rasch model
-mod <- TAM::tam.mml( dat[,items], group= dat$female )
+mod <- TAM::tam.mml( dat[,items], group=dat$female )
 summary(mod)
 
 #-- fit statistics
@@ -135,7 +135,7 @@ dat <- sim.dina
 Q <- sim.qmatrix
 
 #-- fit DINA model
-mod1 <- CDM::gdina( dat , q.matrix = Q, rule="DINA" )
+mod1 <- CDM::gdina( dat, q.matrix=Q, rule="DINA" )
 summary(mod1)
 
 #-- compute RMSD fit statistic

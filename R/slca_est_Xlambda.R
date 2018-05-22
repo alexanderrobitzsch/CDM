@@ -1,12 +1,12 @@
 ## File Name: slca_est_Xlambda.R
-## File Version: 0.26
+## File Version: 0.30
 
 
 ###########################################################################
 # estimation of Xlambda parameters
-slca_est_Xlambda <- function(Xlambda , Xdes , probs, n.ik1, N.ik1, I, K, G,
-    max.increment, TP ,msteps, convM , Xlambda.fixed , XdesM , dimXdes , oldfac,
-    decrease.increments, dampening_factor = 1.01, Xlambda.constr.V, e2, V1,
+slca_est_Xlambda <- function(Xlambda, Xdes, probs, n.ik1, N.ik1, I, K, G,
+    max.increment, TP,msteps, convM, Xlambda.fixed, XdesM, dimXdes, oldfac,
+    decrease.increments, dampening_factor=1.01, Xlambda.constr.V, e2, V1,
     regularization, regular_lam_used, regular_n, Xlambda_positive, regular_type )
 {
     max.increment0 <- max.increment
@@ -15,12 +15,12 @@ slca_est_Xlambda <- function(Xlambda , Xdes , probs, n.ik1, N.ik1, I, K, G,
     parchange <- 1
     Xlambda00 <- Xlambda
     Nlam <- length(Xlambda)
-    n.ik <- aperm( n.ik1 , c(2,3,1) )
-    N.ik <- aperm( N.ik1 , c(2,1) )
+    n.ik <- aperm( n.ik1, c(2,3,1) )
+    N.ik <- aperm( N.ik1, c(2,1) )
     maxK <- K+1
     #--------------------------------
     # begin M-steps
-    while( ( iter <= msteps ) & ( parchange > convM)  ){
+    while( ( iter <=msteps ) & ( parchange > convM)  ){
         Xlambda0 <- Xlambda
         probs <- slca_calc_prob( XdesM=XdesM, dimXdes=dimXdes, Xlambda=Xlambda )
         d2.b <- d1.b <- rep(eps,Nlam)
@@ -60,9 +60,9 @@ slca_est_Xlambda <- function(Xlambda , Xdes , probs, n.ik1, N.ik1, I, K, G,
             # linear constraints: Let e be the vector of error
             # correlations, V a design matrix and c a vector.
             # The constraints can be written in the form
-            # c = V * e . Then V*e - c = 0.
+            # c=V * e . Then V*e - c=0.
             # See the Neuhaus paper:
-            # e_cons = e + V * (V'V)^(-1) * ( c - V * e )
+            # e_cons=e + V * (V'V)^(-1) * ( c - V * e )
     if ( ! is.null(Xlambda.constr.V) ){
         Xlambda <- slca_est_xlambda_constraint( Xlambda.constr.V=Xlambda.constr.V, V1=V1, e2=e2 )
     }
@@ -77,7 +77,7 @@ slca_est_Xlambda <- function(Xlambda , Xdes , probs, n.ik1, N.ik1, I, K, G,
     penalty <- cdm_penalty_values(x=Xlambda, regular_type=regular_type, regular_lam=regular_lam_used)
     regular_penalty <- regular_n * sum( penalty )
     #----- output
-    res <- list(Xlambda = Xlambda , se.Xlambda = se.Xlambda , max.increment=max.increment0, regular_penalty=regular_penalty)
+    res <- list(Xlambda=Xlambda, se.Xlambda=se.Xlambda, max.increment=max.increment0, regular_penalty=regular_penalty)
     return(res)
 }
 

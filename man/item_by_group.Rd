@@ -1,5 +1,5 @@
 %% File Name: item_by_group.Rd
-%% File Version: 0.15
+%% File Version: 0.19
 
 \name{item_by_group}
 \alias{item_by_group}
@@ -14,7 +14,7 @@ group comparisons.
 }
 
 \usage{
-item_by_group(dat, group, invariant = NULL, rm.empty = TRUE)
+item_by_group(dat, group, invariant=NULL, rm.empty=TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -67,7 +67,7 @@ data(data.mg, package="CDM")
 dat <- data.mg
 
 #-- create dataset with group-specific item responses
-dat0 <- CDM::item_by_group( dat = dat[,paste0("I",1:5)] , group=dat$group )
+dat0 <- CDM::item_by_group( dat=dat[,paste0("I",1:5)], group=dat$group )
 
 #-- summary statistics
 summary(dat0)
@@ -75,7 +75,7 @@ colnames(dat0)
 
 #-- set some items to invariant
 invariant_items <- c("I1","I4")
-dat1 <- CDM::item_by_group( dat = dat[,paste0("I",1:5)] , group=dat$group ,
+dat1 <- CDM::item_by_group( dat=dat[,paste0("I",1:5)], group=dat$group,
             invariant=invariant_items)
 colnames(dat1)
 }

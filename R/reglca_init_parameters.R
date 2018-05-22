@@ -1,11 +1,11 @@
 ## File Name: reglca_init_parameters.R
-## File Version: 0.14
+## File Version: 0.15
 
 reglca_init_parameters <- function( nclasses, dat0, sd_noise_init, item_probs_init, class_probs_init,
         random_starts, G)
 {
     use_random_starts <- FALSE
-    means <- colMeans(dat0 , na.rm=TRUE )
+    means <- colMeans(dat0, na.rm=TRUE )
     I <- ncol(dat0)
     #--- initial class probabilities
     if ( is.null(class_probs_init) ){
@@ -29,7 +29,7 @@ reglca_init_parameters <- function( nclasses, dat0, sd_noise_init, item_probs_in
     #--- item probabilities in case of random starts
     if (random_starts > 1){
         item_probs <- list()
-        sd_noise_init <- max( sd_noise_init , .01 )
+        sd_noise_init <- max( sd_noise_init, .01 )
         for (rr in 1:random_starts){
             item_probs[[rr]] <- reglca_init_parameters_item_probs( qmeans=qmeans, I=I, nclasses=nclasses,
                                         sd_noise_init=sd_noise_init, parm_range=1 )

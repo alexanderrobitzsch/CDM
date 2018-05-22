@@ -1,5 +1,5 @@
 ## File Name: gdina_proc_regularization.R
-## File Version: 0.14
+## File Version: 0.16
 
 gdina_proc_regularization <- function( regular_type, cd, mono.constr, linkfct,
     method, PEM, regular_alpha, regular_tau, rule )
@@ -8,7 +8,7 @@ gdina_proc_regularization <- function( regular_type, cd, mono.constr, linkfct,
     regularization <- FALSE
     cd_algorithm <- FALSE
     regularization_types <- c("lasso","scad", "elnet","ridge", "scadL2", "tlp", "mcp")
-    if ( sum(rule == "SISM") > 0 ){
+    if ( sum(rule=="SISM") > 0 ){
         method <- "ML"
     }
     if (regular_type %in% regularization_types ){

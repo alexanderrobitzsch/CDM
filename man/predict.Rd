@@ -1,5 +1,5 @@
 %% File Name: predict.Rd
-%% File Version: 0.15
+%% File Version: 0.19
 
 \name{predict}
 
@@ -75,8 +75,8 @@ person and each item}
 }
 
 %
-%  res <- list( "expected" = pred , "probs.categ" = pred.categ ,
-%   "variance" = var1 , "residuals" = resid1 , "stand.resid" = sresid1 )
+%  res <- list( "expected"=pred, "probs.categ"=pred.categ,
+%   "variance"=var1, "residuals"=resid1, "stand.resid"=sresid1 )
 
 
 %\references{
@@ -115,7 +115,7 @@ str(prmod1)
 #############################################################################
 
 # DINA Model
-mod1 <- CDM::din( CDM::sim.dina, q.matr = CDM::sim.qmatrix, rule = "DINA" )
+mod1 <- CDM::din( CDM::sim.dina, q.matr=CDM::sim.qmatrix, rule="DINA" )
 summary(mod1)
 # apply predict method
 prmod1 <- CDM::IRT.predict( mod1, sim.dina )

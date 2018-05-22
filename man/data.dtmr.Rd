@@ -1,5 +1,5 @@
 %% File Name: data.dtmr.Rd
-%% File Version: 0.15
+%% File Version: 0.17
 
 \name{data.dtmr}
 \alias{data.dtmr}
@@ -69,19 +69,19 @@ I <- ncol(data)
 
 #*** Model 1: LCDM
 # define item wise rules
-rule <- rep( "ACDM" , I )
+rule <- rep( "ACDM", I )
 names(rule) <- colnames(data)
 rule[ c("M14","M17") ] <- "GDINA2"
 # estimate model
-mod1 <- CDM::gdina( data , q.matrix , linkfct="logit" , rule= rule)
+mod1 <- CDM::gdina( data, q.matrix, linkfct="logit", rule=rule)
 summary(mod1)
 
 #*** Model 2: DINA model
-mod2 <- CDM::gdina( data , q.matrix , rule="DINA" )
+mod2 <- CDM::gdina( data, q.matrix, rule="DINA" )
 summary(mod2)
 
 #*** Model 3: RRUM model
-mod3 <- CDM::gdina( data , q.matrix , rule="RRUM" )
+mod3 <- CDM::gdina( data, q.matrix, rule="RRUM" )
 summary(mod3)
 
 #--- model comparisons

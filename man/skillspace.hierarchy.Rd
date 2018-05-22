@@ -1,5 +1,5 @@
 %% File Name: skillspace.hierarchy.Rd
-%% File Version: 0.18
+%% File Version: 0.19
 
 \name{skillspace.hierarchy}
 \alias{skillspace.hierarchy}
@@ -86,7 +86,7 @@ See the \code{\link[GDINA:att.structure]{GDINA::att.structure}} function in the
 #############################################################################
 
 K <- 3 # number of skills
-skill.names <- paste0("A" , 1:K )  # names of skills
+skill.names <- paste0("A", 1:K )  # names of skills
 
 # create a zero matrix for hierarchy definition
 B0 <- 0*diag(K)
@@ -97,7 +97,7 @@ B <- B0
 B[1,2] <- 1     # A1 > A2
 B[2,3] <- 1     # A2 > A3
 
-sp1 <- CDM::skillspace.hierarchy( B=B , skill.names=skill.names )
+sp1 <- CDM::skillspace.hierarchy( B=B, skill.names=skill.names )
 sp1$skillspace.reduced
   ##     A1 A2 A3
   ##   1  0  0  0
@@ -110,7 +110,7 @@ B <- B0
 B[1,2] <- 1     # A1 > A2
 B[1,3] <- 1     # A1 > A3
 
-sp2 <- CDM::skillspace.hierarchy( B=B , skill.names=skill.names )
+sp2 <- CDM::skillspace.hierarchy( B=B, skill.names=skill.names )
 sp2$skillspace.reduced
   ##     A1 A2 A3
   ##   1  0  0  0
@@ -119,11 +119,11 @@ sp2$skillspace.reduced
   ##   6  1  0  1
   ##   8  1  1  1
 
-#*** Model 3: A1 > A3 , A2 is not included in a hierarchical way
+#*** Model 3: A1 > A3, A2 is not included in a hierarchical way
 B <- B0
 B[1,3] <- 1     # A1 > A3
 
-sp3 <- CDM::skillspace.hierarchy( B=B , skill.names=skill.names )
+sp3 <- CDM::skillspace.hierarchy( B=B, skill.names=skill.names )
 sp3$skillspace.reduced
   ##     A1 A2 A3
   ##   1  0  0  0
@@ -138,23 +138,23 @@ sp3$skillspace.reduced
 #*** Model 1: A1 > A2 > A3
 B <- "A1 > A2
       A2 > A3"
-sp1 <- CDM::skillspace.hierarchy( B=B , skill.names=skill.names )
+sp1 <- CDM::skillspace.hierarchy( B=B, skill.names=skill.names )
 sp1$skillspace.reduced
 
 # Model 1 can be also written in one line for B
 B <- "A1 > A2 > A3"
-sp1b <- CDM::skillspace.hierarchy( B=B , skill.names=skill.names )
+sp1b <- CDM::skillspace.hierarchy( B=B, skill.names=skill.names )
 sp1b$skillspace.reduced
 
 #*** Model 2:  A1 > A2 and A1 > A3
 B <- "A1 > A2
       A1 > A3"
-sp2 <- CDM::skillspace.hierarchy( B=B , skill.names=skill.names )
+sp2 <- CDM::skillspace.hierarchy( B=B, skill.names=skill.names )
 sp2$skillspace.reduced
 
 #*** Model 3: A1 > A3
 B <- "A1 > A3"
-sp3 <- CDM::skillspace.hierarchy( B=B , skill.names=skill.names )
+sp3 <- CDM::skillspace.hierarchy( B=B, skill.names=skill.names )
 sp3$skillspace.reduced
 
 \dontrun{
@@ -166,7 +166,7 @@ skill.names <- paste0("A",1:6) # 6 skills
 
 #*** Model 1: Linear hierarchy (A)
 B <- "A1 > A2 > A3 > A4 > A5 > A6"
-sp1 <- CDM::skillspace.hierarchy( B=B , skill.names=skill.names )
+sp1 <- CDM::skillspace.hierarchy( B=B, skill.names=skill.names )
 sp1$skillspace.reduced
 
 #*** Model 2: Convergent hierarchy (B)
@@ -174,14 +174,14 @@ B <- "A1 > A2 > A3
       A2 > A4
       A3 > A5 > A6
       A4 > A5 > A6"
-sp2 <- CDM::skillspace.hierarchy( B=B , skill.names=skill.names )
+sp2 <- CDM::skillspace.hierarchy( B=B, skill.names=skill.names )
 sp2$skillspace.reduced
 
 #*** Model 3: Divergent hierarchy (C)
 B <- "A1 > A2 > A3
       A1 > A4 > A5
       A1 > A4 > A6"
-sp3 <- CDM::skillspace.hierarchy( B=B , skill.names=skill.names )
+sp3 <- CDM::skillspace.hierarchy( B=B, skill.names=skill.names )
 sp3$skillspace.reduced
 
 #*** Model 4: Unstructured hierarchy (D)
@@ -192,7 +192,7 @@ B <- "A1 > A2 \n A1 > A3 \n A1 > A4 \n A1 > A5 \n A1 > A6"
 #       A1 > A4
 #       A1 > A5
 #       A1 > A6"
-sp4 <- CDM::skillspace.hierarchy( B=B , skill.names=skill.names )
+sp4 <- CDM::skillspace.hierarchy( B=B, skill.names=skill.names )
 sp4$skillspace.reduced
 }
 }

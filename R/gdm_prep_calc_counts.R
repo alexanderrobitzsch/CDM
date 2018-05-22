@@ -1,5 +1,5 @@
 ## File Name: gdm_prep_calc_counts.R
-## File Version: 0.03
+## File Version: 0.06
 
 gdm_prep_calc_counts <- function(K, G, group, weights, dat.resp, dat.ind, use.freqpatt)
 {
@@ -9,9 +9,9 @@ gdm_prep_calc_counts <- function(K, G, group, weights, dat.resp, dat.ind, use.fr
         l1 <- as.list(1:G)
         for (gg in 1:G){
             if ( ! use.freqpatt ){
-                ind.gg <- which( group == gg )
+                ind.gg <- which( group==gg )
                 ind.group[[gg]] <- ind.gg
-                dkk <- (dat.ind[[kk]])[ ind.gg , ]
+                dkk <- (dat.ind[[kk]])[ ind.gg, ]
                 l1[[gg]] <- dkk * dat.resp[ind.gg,] * weights[ind.gg]
             }
             if ( use.freqpatt ){

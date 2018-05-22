@@ -1,5 +1,5 @@
 ## File Name: IRT_se_gdina.R
-## File Version: 0.16
+## File Version: 0.19
 
 IRT_se_gdina <- function(object, h=1E-4)
 {
@@ -47,7 +47,7 @@ IRT_se_gdina <- function(object, h=1E-4)
     # no reduced skillspace
     if (! reduced.skillspace){
         eps <- 2*h
-        beta <- matrix( 0 , nrow=L-1, ncol=G)
+        beta <- matrix( 0, nrow=L-1, ncol=G)
         bounds <- c(eps, 1E3)
         if (G==1){
             beta[,1] <- cdm_sumnorm_squeeze( vec=attr.prob, bounds=bounds )[-L]
@@ -88,24 +88,24 @@ IRT_se_gdina <- function(object, h=1E-4)
 
     eps <- 1E-20
 
-    prob_args <- list( J=J , jj=jj, L=L, aggr.attr.patt=aggr.attr.patt, Mj=Mj, delta=delta, linkfct=linkfct)
-    pj0 <- do.call( gdina_calc_prob_one_item , args = prob_args )
+    prob_args <- list( J=J, jj=jj, L=L, aggr.attr.patt=aggr.attr.patt, Mj=Mj, delta=delta, linkfct=linkfct)
+    pj0 <- do.call( gdina_calc_prob_one_item, args=prob_args )
 
     prob_args1 <- prob_args
     delta1 <- delta
     delta1[[jj]][[pp]] <- delta[[jj]][[pp]] + h
     prob_args1$delta <- delta1
-    pj1 <- do.call( gdina_calc_prob_one_item , args = prob_args1 )
+    pj1 <- do.call( gdina_calc_prob_one_item, args=prob_args1 )
 
     delta1 <- delta
     delta1[[jj]][[pp]] <- delta[[jj]][[pp]] - h
     prob_args1$delta <- delta1
-    pj2 <- do.call( gdina_calc_prob_one_item , args = prob_args1 )
+    pj2 <- do.call( gdina_calc_prob_one_item, args=prob_args1 )
 
     like_der <- matrix( 0, nrow=IP, ncol=L)
     resp_jj <- resp.ind.list[[jj]]
-    data_jj <- item.patt.split[ resp_jj , jj ] + 1
-    like_der[ resp_jj , ] <- ( pj1[ data_jj , ] - pj2[ data_jj , ] ) / (2*h) / pj0[ data_jj , ]
+    data_jj <- item.patt.split[ resp_jj, jj ] + 1
+    like_der[ resp_jj, ] <- ( pj1[ data_jj, ] - pj2[ data_jj, ] ) / (2*h) / pj0[ data_jj, ]
 
     if (G==1){
         d1a <- sum( rowSums( p.aj.xi * like_der ) * item.patt.freq )
@@ -161,7 +161,7 @@ IRT_se_gdina <- function(object, h=1E-4)
         post <- p.aj.xi[,,gg]
         freq <- item.patt.freq[,gg]
     }
-    M1 <- cdm_matrix2( ( attr_prob1 - attr_prob2 ) / (2*h) / ( attr_prob + eps ) , nrow=IP)
+    M1 <- cdm_matrix2( ( attr_prob1 - attr_prob2 ) / (2*h) / ( attr_prob + eps ), nrow=IP)
     d1a <- sum( rowSums( post * M1 ) * freq )
 
 

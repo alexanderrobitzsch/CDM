@@ -1,5 +1,5 @@
 ## File Name: slca_calc_prob.R
-## File Version: 0.05
+## File Version: 0.06
 
 
 #############################################################
@@ -10,7 +10,7 @@ slca_calc_prob <- function( XdesM, dimXdes, Xlambda )
     I <- dimXdes[1]
     maxK <- dimXdes[2]
     TP <- dimXdes[3]
-    probs <- array( res , dim=c( I , maxK , TP ))
+    probs <- array( res, dim=c( I, maxK, TP ))
     return(probs)
 }
 

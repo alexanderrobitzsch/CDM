@@ -1,5 +1,5 @@
 ## File Name: gdina.dif.R
-## File Version: 1.17
+## File Version: 1.18
 ##########################################################
 # differential item functioning in the GDINA model
 # a Wald test is used for testing item-wise DIF
@@ -11,10 +11,10 @@ gdina.dif <- function( object )
     delta.group <- as.list(1:G)
     varmat.group <- as.list(1:G)
     prob.exp.group <- varmat.group <- as.list(1:G)
-    names(varmat.group) <- names(prob.exp.group) <- paste0("Group" , 1:G )
+    names(varmat.group) <- names(prob.exp.group) <- paste0("Group", 1:G )
     ocoef <- object$coef
     for (gg in 1:G){  # gg <- 1
-        res.gg <- gdina.dif.aux( ocontrol , gg=gg , data = object$data)
+        res.gg <- gdina.dif.aux( ocontrol, gg=gg, data = object$data)
         prob.exp.group[[gg]] <- res.gg$prob_exp
         names(prob.exp.group[[gg]]) <- colnames(object$data)
         delta.group[[gg]] <- res.gg$delta
@@ -23,24 +23,24 @@ gdina.dif <- function( object )
     ndj <- res.gg$ndj
     # expanded delta vectors and design matrix
     Rdesign <- varmat_all <- delta_all <- as.list(1:J)
-    difstats <- data.frame( "item" = colnames(object$data) , "X2" = NA , "df" = NA)
+    difstats <- data.frame( "item" = colnames(object$data), "X2" = NA, "df" = NA)
     dif_es <- rep(NA,J)
     for (jj in 1:J){
         nj <- ndj[[jj]]
-        delta.jj <- rep(NA , nj*G )
-        varmat.jj <- matrix(0 , nj*G , nj*G )
-        Rdesign.jj <- matrix(0,nj*(G-1) , nj*G )
+        delta.jj <- rep(NA, nj*G )
+        varmat.jj <- matrix(0, nj*G, nj*G )
+        Rdesign.jj <- matrix(0,nj*(G-1), nj*G )
         for (gg in 1:G){
             delta.jj[  1:nj + nj*(gg-1)  ] <- delta.group[[gg]][[jj]]
-            varmat.jj[ 1:nj + nj*(gg-1) , 1:nj + nj*(gg-1) ] <- varmat.group[[gg]][[jj]]
+            varmat.jj[ 1:nj + nj*(gg-1), 1:nj + nj*(gg-1) ] <- varmat.group[[gg]][[jj]]
             if (gg <G){
                 for (vv in 1:nj){
-                        Rdesign.jj[ vv + nj*(gg-1) , vv + nj*(gg-1) ] <- 1
-                        Rdesign.jj[ vv + nj*(gg-1) , vv + nj*(gg) ] <- -1
+                        Rdesign.jj[ vv + nj*(gg-1), vv + nj*(gg-1) ] <- 1
+                        Rdesign.jj[ vv + nj*(gg-1), vv + nj*(gg) ] <- -1
                 }
             }
-        ocoef[ ocoef$itemno ==    jj , paste0("est_Group",gg    ) ] <- delta.group[[gg]][[jj]]
-        ocoef[ ocoef$itemno ==    jj , paste0("se_Group",gg    ) ] <- sqrt( diag(varmat.group[[gg]][[jj]] ))
+        ocoef[ ocoef$itemno ==    jj, paste0("est_Group",gg    ) ] <- delta.group[[gg]][[jj]]
+        ocoef[ ocoef$itemno ==    jj, paste0("se_Group",gg    ) ] <- sqrt( diag(varmat.group[[gg]][[jj]] ))
         }
         varmat_all[[jj]] <- varmat.jj
         delta_all[[jj]] <- delta.jj
@@ -61,12 +61,12 @@ gdina.dif <- function( object )
         }
     }
     rownames(ocoef) <- paste0(ocoef$item,"_", ocoef$partype)
-    difstats$p <- 1 - stats::pchisq( difstats$X2 , df=difstats$df )
+    difstats$p <- 1 - stats::pchisq( difstats$X2, df=difstats$df )
     difstats$p.holm <- stats::p.adjust( difstats$p )
     if (G==2){ difstats$UA <- dif_es }
-    res <- list("difstats"=difstats , "coef" = ocoef ,
+    res <- list("difstats"=difstats, "coef" = ocoef ,
             "delta_all" = delta_all ,
-            "varmat_all" = varmat_all , "prob.exp.group" = prob.exp.group)
+            "varmat_all" = varmat_all, "prob.exp.group" = prob.exp.group)
     class(res) <- "gdina.dif"
     return(res)
 }

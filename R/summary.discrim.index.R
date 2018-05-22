@@ -1,14 +1,14 @@
 ## File Name: summary.discrim.index.R
-## File Version: 0.04
+## File Version: 0.08
 
 
-summary.discrim.index <- function( object , file = NULL , digits = 3 , ... )
+summary.discrim.index <- function( object, file=NULL, digits=3, ... )
 {
-    osink( file = file , suffix = paste0( "__SUMMARY.Rout") )
+    osink( file=file, suffix=paste0( "__SUMMARY.Rout") )
 
     cat("-----------------------------------------------------------------------------\n")
     d1 <- utils::packageDescription("CDM")
-    cat( paste( d1$Package , " " , d1$Version , " (" , d1$Date , ")" , sep="") , "\n\n" )
+    cat( paste( d1$Package, " ", d1$Version, " (", d1$Date, ")", sep=""), "\n\n" )
 
     cat("-----------------------------------------------------------------------------\n")
     cat("Test-level discrimination index \n\n")
@@ -19,13 +19,13 @@ summary.discrim.index <- function( object , file = NULL , digits = 3 , ... )
     cat("Item discrimination index (IDI) \n\n")
     obji <- object$idi
     cdm_print_summary_data_frame(obji, digits=digits)
-    
-    
+
+
     cat("-----------------------------------------------------------------------------\n")
     cat("Item-attribute discrimination index \n\n")
     obji <- object$discrim_item_attribute
     cdm_print_summary_data_frame(obji, from=2, digits=digits)
 
-    csink( file = file )
+    csink( file=file )
 }
 #*******************************************************

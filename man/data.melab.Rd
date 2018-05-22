@@ -1,5 +1,5 @@
 %% File Name: data.melab.Rd
-%% File Version: 0.14
+%% File Version: 0.15
 
 \name{data.melab}
 \alias{data.melab}
@@ -66,19 +66,19 @@ data <- data.melab$data
 q.matrix <- data.melab$q.matrix
 
 #*** Model 1: Reduced RUM model
-mod1 <- CDM::gdina( data , q.matrix , rule="RRUM" )
+mod1 <- CDM::gdina( data, q.matrix, rule="RRUM" )
 summary(mod1)
 
 #*** Model 2: GDINA model
-mod2 <- CDM::gdina( data , q.matrix , rule="GDINA" )
+mod2 <- CDM::gdina( data, q.matrix, rule="GDINA" )
 summary(mod2)
 
 #*** Model 3: DINA model
-mod3 <- CDM::gdina( data , q.matrix , rule="DINA" )
+mod3 <- CDM::gdina( data, q.matrix, rule="DINA" )
 summary(mod3)
 
 #*** Model 4: 2PL model
-mod4 <- CDM::gdm( data , theta.k=seq(-6,6,len=21) , center )
+mod4 <- CDM::gdm( data, theta.k=seq(-6,6,len=21), center )
 summary(mod4)
 
 #----
@@ -112,7 +112,7 @@ anova(mod1,mod4)
 # Model fit statistics
 
 # RRUM
-fmod1 <- CDM::modelfit.cor.din( mod1 , jkunits=0)
+fmod1 <- CDM::modelfit.cor.din( mod1, jkunits=0)
 summary(fmod1)
   ##   Test of Global Model Fit
   ##          type    value       p
@@ -130,7 +130,7 @@ summary(fmod1)
   ##  -> not a significant misfit of the RRUM model
 
 # GDINA
-fmod2 <- CDM::modelfit.cor.din( mod2 , jkunits=0)
+fmod2 <- CDM::modelfit.cor.din( mod2, jkunits=0)
 summary(fmod2)
   ##   Test of Global Model Fit
   ##          type    value       p

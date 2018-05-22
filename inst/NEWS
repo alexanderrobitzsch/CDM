@@ -23,10 +23,12 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 6.3  |  2018-05-10  |  Last: CDM 6.3-13
+VERSIONS CDM 6.3  |  2018-05-22  |  Last: CDM 6.3-29
 --------------------------------------------------------------
 
 NOTE  * renamed thresholding penalty functions 
+NOTE  * deleted seed argument from cdm.est.class.accuracy()
+        function
 
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: ---

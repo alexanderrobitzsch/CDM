@@ -1,8 +1,8 @@
 ## File Name: gdd.R
-## File Version: 0.14
+## File Version: 0.19
 #################################################################
 # generalized distance discriminating method
-gdd <- function( data , q.matrix , theta , b , a  , skillclasses=NULL)
+gdd <- function( data, q.matrix, theta, b, a, skillclasses=NULL)
 {
     data <- as.matrix(data)
     data_isna <- is.na(data)
@@ -11,7 +11,7 @@ gdd <- function( data , q.matrix , theta , b , a  , skillclasses=NULL)
     q.matrix <- as.matrix(q.matrix)
     skillspace <- skillclasses
     # compute ideal response pattern
-    res <- ideal.response.pattern( q.matrix , skillspace )
+    res <- ideal.response.pattern( q.matrix, skillspace )
     idealresp <- res$idealresp
     skillspace <- res$skillspace
     # apply generalized distance discriminating method written in Rcpp
@@ -19,9 +19,9 @@ gdd <- function( data , q.matrix , theta , b , a  , skillclasses=NULL)
             dataresp=dataresp, idealresp=idealresp, theta=theta, a=a, b=b )
     # extract results
     distmatrix <- res$dist
-    skillclass.est <- skillspace[ res$est_skill , ]
-    res <- list( skillclass.est = skillspace , distmatrix = distmatrix ,
-                    skillspace = skillspace , theta = theta )
+    skillclass.est <- skillspace[ res$est_skill, ]
+    res <- list( skillclass.est=skillspace, distmatrix=distmatrix,
+                    skillspace=skillspace, theta=theta )
     return(res)
 }
 ###############################################################################

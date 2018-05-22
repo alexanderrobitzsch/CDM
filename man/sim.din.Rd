@@ -1,5 +1,5 @@
 %% File Name: sim.din.Rd
-%% File Version: 2.12
+%% File Version: 2.16
 
 \name{sim.din}
 \alias{sim.din}
@@ -16,9 +16,9 @@
 }
 
 \usage{
-  sim.din(N=0, q.matrix, guess = rep(0.2, nrow(q.matrix)),
-    slip = guess, mean = rep(0, ncol(q.matrix)), Sigma = diag(ncol(q.matrix)),
-    rule = "DINA", alpha=NULL)
+  sim.din(N=0, q.matrix, guess=rep(0.2, nrow(q.matrix)),
+    slip=guess, mean=rep(0, ncol(q.matrix)), Sigma=diag(ncol(q.matrix)),
+    rule="DINA", alpha=NULL)
 }
 
 \arguments{
@@ -38,7 +38,7 @@
 
   \item{mean}{A numeric vector of length \code{ncol(q.matrix)} indicating
     the mean vector of the continuous version of the dichotomous skill vector.
-    Default is \code{rep(0, length = ncol(q.matrix))}.
+    Default is \code{rep(0, length=ncol(q.matrix))}.
     That is, having a probability of \code{0.5} for possessing each of the
     attributes.  }
 
@@ -92,7 +92,7 @@
 #############################################################################
 
 # define Q-matrix for 4 items and 2 attributes
-q.matrix <- matrix(c(1,0,0,1,1,1,1,1), ncol = 2, nrow = 4)
+q.matrix <- matrix(c(1,0,0,1,1,1,1,1), ncol=2, nrow=4)
 
 # Slipping parameters
 slip <- c(0.2,0.3,0.4,0.3)
@@ -101,16 +101,16 @@ slip <- c(0.2,0.3,0.4,0.3)
 guess <- c(0,0.1,0.05,0.2)
 
 set.seed(1567) # fix random numbers
-dat1 <- CDM::sim.din(N = 200, q.matrix, slip=slip, guess=guess,
+dat1 <- CDM::sim.din(N=200, q.matrix, slip=slip, guess=guess,
   # Possession of the attributes with high probability
-  mean = c(0.5,0.2),
+  mean=c(0.5,0.2),
   # Possession of the attributes is weakly correlated
-  Sigma = matrix(c(1,0.2,0.2,1), ncol=2), rule = "DINA")$dat
+  Sigma=matrix(c(1,0.2,0.2,1), ncol=2), rule="DINA")$dat
 head(dat1)
 
 set.seed(15367) # fix random numbers
-res <- CDM::sim.din(N = 200, q.matrix, slip=slip, guess=guess, mean = c(0.5,0.2),
-         Sigma = matrix(c(1,0.2,0.2,1), ncol=2), rule = "DINO")
+res <- CDM::sim.din(N=200, q.matrix, slip=slip, guess=guess, mean=c(0.5,0.2),
+         Sigma=matrix(c(1,0.2,0.2,1), ncol=2), rule="DINO")
 
 # extract simulated data
 dat2 <- res$dat
@@ -126,9 +126,9 @@ head( res$alpha )
 
 #  simulate data based on given attributes
 #          -> 5 persons with 2 attributes -> see the Q-matrix above
-alpha <- matrix( c(1,0,1,0,1,1,0,1,1,1) ,
+alpha <- matrix( c(1,0,1,0,1,1,0,1,1,1),
     nrow=5,ncol=2, byrow=TRUE )
-CDM::sim.din(  q.matrix = q.matrix, alpha = alpha )
+CDM::sim.din(  q.matrix=q.matrix, alpha=alpha )
 
 \dontrun{
 #############################################################################
@@ -136,29 +136,29 @@ CDM::sim.din(  q.matrix = q.matrix, alpha = alpha )
 #############################################################################
 set.seed(76)
 # define Q-matrix
-Qmatrix <- matrix(c(1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1) , 8 , 2 , byrow=TRUE)
+Qmatrix <- matrix(c(1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1), 8, 2, byrow=TRUE)
 colnames(Qmatrix) <- c("Attr1","Attr2")
 # define skill patterns
-alpha.patt <- matrix(c(0,0,1,0,0,1,1,1) , 4 ,2,byrow=TRUE )
+alpha.patt <- matrix(c(0,0,1,0,0,1,1,1), 4,2,byrow=TRUE )
 AP <- nrow(alpha.patt)
 # define pattern probabilities
-alpha.prob <- c( .20 , .40 , .10 , .30 )
+alpha.prob <- c( .20, .40, .10, .30 )
 # simulate alpha latent responses
 N <- 1000     # number of persons
-ind <- sample( x=1:AP , size=N, replace = TRUE , prob=alpha.prob)
-alpha <- alpha.patt[ ind , ]    # (true) latent responses
+ind <- sample( x=1:AP, size=N, replace=TRUE, prob=alpha.prob)
+alpha <- alpha.patt[ ind, ]    # (true) latent responses
 # define guessing and slipping parameters
 guess <- c(.26,.3,.07,.23,.24,.34,.05,.1)
 slip <- c(.05,.16,.19,.03,.03,.19,.15,.05)
 # simulation of the DINA model
-dat <- CDM::sim.din(N=0, q.matrix= Qmatrix, guess = guess,
-              slip = slip, alpha=alpha)$dat
+dat <- CDM::sim.din(N=0, q.matrix=Qmatrix, guess=guess,
+              slip=slip, alpha=alpha)$dat
 # estimate model
-res <- CDM::din( dat , q.matrix=Qmatrix )
+res <- CDM::din( dat, q.matrix=Qmatrix )
 # extract maximum likelihood estimates for individual classifications
 est <- paste( res$pattern$mle.est )
 # calculate classification accuracy
-mean( est == apply( alpha , 1 , FUN = function(ll){ paste0(ll[1],ll[2] ) } ) )
+mean( est==apply( alpha, 1, FUN=function(ll){ paste0(ll[1],ll[2] ) } ) )
   ##   [1] 0.935
 
 #############################################################################
@@ -170,7 +170,7 @@ q.matrix <- CDM::data.ecpe$q.matrix
 
 #***
 # (1) estimate DINA model
-mod <- CDM::din( data=dat[,-1] , q.matrix=q.matrix , rule="DINA")
+mod <- CDM::din( data=dat[,-1], q.matrix=q.matrix, rule="DINA")
 
 #***
 # (2) simulate data according to DINA model
@@ -180,10 +180,10 @@ n <- 3000
 # simulate attribute patterns
 probs <- mod$attribute.patt$class.prob   # probabilities
 patt <- mod$attribute.patt.splitted      # response patterns
-alpha <- patt[ sample( 1:(length(probs) ) , n , prob=probs , replace=TRUE) , ]
+alpha <- patt[ sample( 1:(length(probs) ), n, prob=probs, replace=TRUE), ]
 # simulate data using estimated item parameters
-res <- CDM::sim.din(N=n, q.matrix=q.matrix, guess = mod$guess$est , slip=mod$slip$est ,
-              rule = "DINA", alpha=alpha)
+res <- CDM::sim.din(N=n, q.matrix=q.matrix, guess=mod$guess$est, slip=mod$slip$est,
+              rule="DINA", alpha=alpha)
 # extract data
 dat <- res$dat
 }

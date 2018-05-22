@@ -1,5 +1,5 @@
 ## File Name: gdm.R
-## File Version: 8.642
+## File Version: 8.643
 
 
 ###########################################
@@ -14,7 +14,7 @@
 # ------
 # data ... polytomous responses
 #     I Items with categories 0,1,...,K
-# group ... 1, ... , G
+# group ... 1, ..., G
 #     covariates and groups. Up to now, only use groups
 # theta.k ... Multidimensional ability design vector
 #            as input. It is of dimension D and therefore a
@@ -67,19 +67,19 @@
 #################################################################
 # GDM function
 #
-gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
+gdm <- function( data, theta.k, irtmodel="2PL", group=NULL,
             weights=rep(1, nrow(data)),
-            Qmatrix=NULL ,thetaDes = NULL , skillspace="loglinear",
+            Qmatrix=NULL ,thetaDes = NULL, skillspace="loglinear",
             b.constraint=NULL, a.constraint=NULL,
-            mean.constraint=NULL , Sigma.constraint=NULL ,
+            mean.constraint=NULL, Sigma.constraint=NULL ,
             delta.designmatrix=NULL, standardized.latent=FALSE ,
-            centered.latent=FALSE , centerintercepts=FALSE , centerslopes=FALSE ,
+            centered.latent=FALSE, centerintercepts=FALSE, centerslopes=FALSE ,
             maxiter=1000, conv=1E-5, globconv=1E-5, msteps=4 ,
-            convM=.0005 , decrease.increments = FALSE , use.freqpatt=FALSE ,
-            progress=TRUE , PEM=FALSE, PEM_itermax=maxiter, ...)
+            convM=.0005, decrease.increments = FALSE, use.freqpatt=FALSE ,
+            progress=TRUE, PEM=FALSE, PEM_itermax=maxiter, ...)
 {
-    # mean.constraint [ dimension , group , value ]
-    # Sigma.constraint [ dimension1 , dimension2 , group , value ]
+    # mean.constraint [ dimension, group, value ]
+    # Sigma.constraint [ dimension1, dimension2, group, value ]
     #*************************
     # data preparation
     s1 <- Sys.time()
@@ -143,10 +143,10 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
     #****
     # item slope matrix
     # a[1:I,1:TD] ... Items x theta dimension
-    # a <- matrix( 1 , nrow=I , ncol=TD )
+    # a <- matrix( 1, nrow=I, ncol=TD )
     # item x category slopes are in principle also possible
     KK <- K    # if KK == 1 then a slope parameter for all items is estimated
-    a <- array( 1 , dim=c(I,TD,KK) )
+    a <- array( 1, dim=c(I,TD,KK) )
     # define Q matrix
     res <- gdm_Qmatrix( Qmatrix=Qmatrix, irtmodel=irtmodel, I=I, TD=TD, K=K, a=a )
     Qmatrix <- res$Qmatrix
@@ -161,8 +161,8 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
 
     #--- starting values for distributions
     Sigma <- diag(1,D)
-    pik <- mvtnorm::dmvnorm( matrix( theta.k ,ncol=D) , mean=rep(0,D) , sigma = Sigma )
-    pi.k <- matrix( 0 , nrow=TP, ncol=G )
+    pik <- mvtnorm::dmvnorm( matrix( theta.k ,ncol=D), mean=rep(0,D), sigma = Sigma )
+    pi.k <- matrix( 0, nrow=TP, ncol=G )
     for (gg in 1:G){
         pi.k[,gg] <- cdm_sumnorm( pik )
     }
@@ -188,12 +188,12 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
     max.increment.b <- 3
 
     if ( standardized.latent ){
-        mean.constraint <- rbind( mean.constraint , cbind( 1:D , 1 , 0 )  )
-        Sigma.constraint <- rbind( Sigma.constraint , cbind( 1:D , 1:D , 1 , 1 ) )
+        mean.constraint <- rbind( mean.constraint, cbind( 1:D, 1, 0 )  )
+        Sigma.constraint <- rbind( Sigma.constraint, cbind( 1:D, 1:D, 1, 1 ) )
         skillspace <- "normal"
     }
     if ( centered.latent ){
-        mean.constraint <- rbind( mean.constraint , cbind( 1:D , 1 , 0 )  )
+        mean.constraint <- rbind( mean.constraint, cbind( 1:D, 1, 0 )  )
         skillspace <- "normal"
     }
 
@@ -230,14 +230,14 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
     }
 
     deviance.history <- rep(NA, maxiter )
-    gwt0 <- matrix( 1 , nrow=n , ncol=TP )
+    gwt0 <- matrix( 1, nrow=n, ncol=TP )
 
     #---
     # initial values algorithm
     dev <- 0
     iter <- 0
     globconv1 <- conv1 <- 1000
-    disp <- paste( paste( rep(".", 70 ) , collapse="") ,"\n", sep="")
+    disp <- paste( paste( rep(".", 70 ), collapse="") ,"\n", sep="")
 
     ############################################
     # BEGIN MML Algorithm
@@ -271,7 +271,7 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
 
         #*****
         #4 calculate expected counts
-        # n.ik [ 1:TP , 1:I , 1:(K+1) , 1:G ]
+        # n.ik [ 1:TP, 1:I, 1:(K+1), 1:G ]
         res <- gdm_calc_counts( G=G, weights=weights, dat.ind=dat.ind, dat=dat, dat.resp=dat.resp,
                     p.aj.xi=p.aj.xi, K=K, n.ik=n.ik, TP=TP, I=I, group=group, dat.ind2=dat.ind2,
                     ind.group=ind.group, use.freqpatt=use.freqpatt )
@@ -360,7 +360,7 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
             PEM <- res$PEM
             pem_parameter_sequence <- res$pem_parameter_sequence
             cdm_pem_acceleration_assign_output_parameters( res_ll_fct=res$res_ll_fct,
-                            vars=pem_output_vars , envir=envir, update=res$pem_update )
+                            vars=pem_output_vars, envir=envir, update=res$pem_update )
         }
 
         #*****
@@ -375,7 +375,7 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
         # display progress
         a_change <- gg0 <- max(abs( a - a0 ))
         b_change <- gg1 <- max(abs( b - b0 ))
-        pardiff <- max( b_change , a_change )
+        pardiff <- max( b_change, a_change )
         deltadiff <- max( abs( pi.k - pi.k0 ))
         conv1 <- max( c(pardiff,deltadiff))
         globconv1 <- abs( dev - dev0)
@@ -411,10 +411,10 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
                 centerintercepts=centerintercepts, centered.latent=centered.latent )
 
     #########################################
-    # item fit [ items , theta , categories ]
-    # # n.ik [ 1:TP , 1:I , 1:(K+1) , 1:G ]
-    probs <- aperm( probs , c(3,1,2) )
-    itemfit.rmsea <- itemfit.rmsea( n.ik , pi.k , probs , itemnames = colnames(data) )
+    # item fit [ items, theta, categories ]
+    # # n.ik [ 1:TP, 1:I, 1:(K+1), 1:G ]
+    probs <- aperm( probs, c(3,1,2) )
+    itemfit.rmsea <- itemfit.rmsea( n.ik, pi.k, probs, itemnames = colnames(data) )
     item$itemfit.rmsea <- itemfit.rmsea$rmsea
     rownames(item) <- NULL
 
@@ -426,17 +426,17 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
     #*************************
     # collect output
     s2 <- Sys.time()
-    res <- list( item = item , person = person , EAP.rel = EAP.rel ,
-                deviance=dev , ic = ic , b = b , se.b = se.b ,
-                a = a ,  se.a = se.a ,
+    res <- list( item = item, person = person, EAP.rel = EAP.rel ,
+                deviance=dev, ic = ic, b = b, se.b = se.b ,
+                a = a,  se.a = se.a ,
                 itemfit.rmsea = itemfit.rmsea ,
                 mean.rmsea = mean(itemfit.rmsea$rmsea) ,
-                Qmatrix=Qmatrix , pi.k=pi.k ,
-                mean.trait=mean.trait , sd.trait = sd.trait ,
-                skewness.trait = skewness.trait , correlation.trait = correlation.trait ,
-                pjk = probs , n.ik = n.ik ,  delta.designmatrix=delta.designmatrix,
-                G=G , D=D , I = ncol(data) , N = nrow(data) ,
-                delta = delta , covdelta=covdelta , data = data ,
+                Qmatrix=Qmatrix, pi.k=pi.k ,
+                mean.trait=mean.trait, sd.trait = sd.trait ,
+                skewness.trait = skewness.trait, correlation.trait = correlation.trait ,
+                pjk = probs, n.ik = n.ik,  delta.designmatrix=delta.designmatrix,
+                G=G, D=D, I = ncol(data), N = nrow(data) ,
+                delta = delta, covdelta=covdelta, data = data ,
                 group.stat=group.stat )
     res$p.xi.aj <- p.xi.aj ; res$posterior <- p.aj.xi
     res$skill.levels <- skill.levels
@@ -445,7 +445,7 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
     res$thetaDes <- thetaDes
     res$se.theta.k <- NULL
     res$group <- group
-    res$time <- list( s1=s1,s2=s2 , timediff=s2-s1)
+    res$time <- list( s1=s1,s2=s2, timediff=s2-s1)
     res$skillspace <- skillspace
     res$iter <- iter
     res$converged <- iter < maxiter
@@ -463,9 +463,9 @@ gdm <- function( data , theta.k, irtmodel="2PL", group=NULL,
 
     if (progress){
         cat("----------------------------------- \n")
-        cat("Start:" , paste( s1) , "\n")
-        cat("End:" , paste(s2) , "\n")
-        cat("Difference:" , print(s2 -s1), "\n")
+        cat("Start:", paste( s1), "\n")
+        cat("End:", paste(s2), "\n")
+        cat("Difference:", print(s2 -s1), "\n")
         cat("----------------------------------- \n")
     }
     class(res) <- "gdm"

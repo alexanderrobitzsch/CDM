@@ -1,5 +1,5 @@
 ## File Name: reglca_fit_probabilities.R
-## File Version: 0.26
+## File Version: 0.29
 
 reglca_fit_probabilities <- function( freq, lambda, parm_init=NULL, regular_type="scad",
     h=1E-4, maxit=100, conv=1E-5, cd_steps=5, max_increment=1, verbose=TRUE)
@@ -7,7 +7,7 @@ reglca_fit_probabilities <- function( freq, lambda, parm_init=NULL, regular_type
 
     #--- order frequencies
     NP <- length(freq)
-    freq_index <- data.frame("index" =1:NP , "freq" = freq )
+    freq_index <- data.frame("index"=1:NP, "freq"=freq )
     freq_index <- freq_index[ order(freq_index$freq), ]
     freq <- freq_index$freq
     C <- freq
@@ -43,8 +43,8 @@ reglca_fit_probabilities <- function( freq, lambda, parm_init=NULL, regular_type
         if (parchange < conv){ iterate <- FALSE }
         iter <- iter + 1
         if (verbose){
-            cat( paste0("Iteration ", iter , " | Max. parm. change=",
-                    round( parchange, 6) , " | Fit function = " , round( fit_fct , 6) , "\n") )
+            cat( paste0("Iteration ", iter, " | Max. parm. change=",
+                    round( parchange, 6), " | Fit function=", round( fit_fct, 6), "\n") )
             utils::flush.console()
         }
     }

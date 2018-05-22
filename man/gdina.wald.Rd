@@ -1,5 +1,5 @@
 %% File Name: gdina.wald.Rd
-%% File Version: 0.27
+%% File Version: 0.30
 
 \name{gdina.wald}
 \alias{gdina.wald}
@@ -20,7 +20,7 @@ distance measures (\code{wgtdist}, \code{uwgtdist}), see Details
 gdina.wald(object)
 
 \method{summary}{gdina.wald}(object, digits=3,
-    vars = c("X2" , "p" , "sig" , "RMSEA" , "wgtdist"),  \dots)
+    vars=c("X2", "p", "sig", "RMSEA", "wgtdist"),  \dots)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -40,11 +40,11 @@ Let \eqn{P_j( \alpha _l)} the estimated item response function for the
 GDINA model and \eqn{\hat{P}_j( \alpha _l)} the item response
 model for the approximated model (DINA, DINO or ACDM).
 The unweighted distance \code{uwgtdist} as a measure of misfit is defined as
-\deqn{uwgtdist = \frac{1}{2^K} \sum_l ( P_j( \alpha _l) - \hat{P}_j( \alpha _l) )^2}
+\deqn{uwgtdist=\frac{1}{2^K} \sum_l ( P_j( \alpha _l) - \hat{P}_j( \alpha _l) )^2}
 The weighted distance    \code{wgtdist} measures the discrepancy
 with respected to the probabilities \eqn{w_l=P( \alpha_l)} of estimated
 skill classes
-\deqn{wgtdist = \sum_l w_l (P_j( \alpha _l) - \hat{P}_j( \alpha _l) )^2}
+\deqn{wgtdist=\sum_l w_l (P_j( \alpha _l) - \hat{P}_j( \alpha _l) )^2}
 }
 
 \value{
@@ -86,7 +86,7 @@ data(sim.dina, package="CDM")
 data(sim.qmatrix, package="CDM")
 
 # Model 1: estimate GDINA model
-mod1 <- CDM::gdina( sim.dina , q.matrix = sim.qmatrix ,  rule = "GDINA")
+mod1 <- CDM::gdina( sim.dina, q.matrix=sim.qmatrix,  rule="GDINA")
 summary(mod1)
 
 # perform Wald test
@@ -95,7 +95,7 @@ summary(res1)
 # -> results show that all but one item fit according to the DINA rule
 
 # select some output
-summary(res1 , vars = c("wgtdist" , "p") )
+summary(res1, vars=c("wgtdist", "p") )
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

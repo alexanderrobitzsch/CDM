@@ -1,5 +1,5 @@
 %% File Name: vcov.Rd
-%% File Version: 0.34
+%% File Version: 0.38
 
 \name{vcov}
 \alias{vcov.din}
@@ -20,17 +20,17 @@
 
 
 \usage{
-\method{vcov}{din}(object, extended=FALSE, infomat=FALSE ,ind.item.skillprobs=TRUE,
-       ind.item= FALSE, diagcov = FALSE , h=.001 ,\dots)
+\method{vcov}{din}(object, extended=FALSE, infomat=FALSE,ind.item.skillprobs=TRUE,
+       ind.item=FALSE, diagcov=FALSE, h=.001,\dots)
 
-\method{confint}{din}(object, parm , level=.95 , extended=FALSE,
-      ind.item.skillprobs=TRUE, ind.item= FALSE, diagcov = FALSE , h=.001 , \dots )
+\method{confint}{din}(object, parm, level=.95, extended=FALSE,
+      ind.item.skillprobs=TRUE, ind.item=FALSE, diagcov=FALSE, h=.001, \dots )
 
 IRT.se(object, \dots)
 
-\method{IRT.se}{din}( object , extended = FALSE , parm=NULL , level = .95 ,
-      infomat=FALSE , ind.item.skillprobs = TRUE , ind.item= FALSE ,
-      diagcov = FALSE , h=.001 , ... )
+\method{IRT.se}{din}( object, extended=FALSE, parm=NULL, level=.95,
+      infomat=FALSE, ind.item.skillprobs=TRUE, ind.item=FALSE,
+      diagcov=FALSE, h=.001, ... )
 }
 
 \arguments{
@@ -109,7 +109,7 @@ dat <- sim.dina
 q.matrix <- sim.qmatrix
 
 #****** Model 1: DINA Model
-mod1 <- CDM::din( dat , q.matrix = q.matrix, rule = "DINA")
+mod1 <- CDM::din( dat, q.matrix=q.matrix, rule="DINA")
 # look into parameter table of the model
 mod1$partable
 # covariance matrix
@@ -119,18 +119,18 @@ coef(mod1)
 # extract standard errors
 sqrt( diag( covmat1))
 # compute confidence intervals
-confint( mod1 , level=.90 )
+confint( mod1, level=.90 )
 # output table with standard errors
-IRT.se( mod1 , extended=TRUE )
+IRT.se( mod1, extended=TRUE )
 
 #****** Model 2: Constrained DINA Model
 
 # fix some slipping parameters
-constraint.slip <- cbind( c(2,3,5) , c(.15,.20,.25) )
+constraint.slip <- cbind( c(2,3,5), c(.15,.20,.25) )
 # set some skill class probabilities to zero
 zeroprob.skillclasses <- c(2,4)
 # estimate model
-mod2 <- CDM::din( dat , q.matrix = q.matrix, guess.equal=TRUE ,
+mod2 <- CDM::din( dat, q.matrix=q.matrix, guess.equal=TRUE,
      constraint.slip=constraint.slip, zeroprob.skillclasses=zeroprob.skillclasses)
 # parameter table
 mod2$partable
@@ -140,26 +140,26 @@ coef(mod2)
 vmod2a <- vcov(mod2)
 sqrt( diag( vmod2a))        # standard errors
 colnames( vmod2a )
-names( attr( vmod2a , "coef") )    # extract coefficients
+names( attr( vmod2a, "coef") )    # extract coefficients
 
 # covariance matrix (more parameters, extended=TRUE)
-vmod2b <- vcov(mod2 , extended=TRUE)
+vmod2b <- vcov(mod2, extended=TRUE)
 sqrt( diag( vmod2b))
-attr( vmod2b , "coef")
+attr( vmod2b, "coef")
 # attach standard errors to parameter table
 partable2 <- mod2$partable
-partable2 <- partable2[ ! duplicated( partable2$parnames ) , ]
-partable2 <- data.frame( partable2 , "se" = sqrt( diag( vmod2b)) )
+partable2 <- partable2[ ! duplicated( partable2$parnames ), ]
+partable2 <- data.frame( partable2, "se"=sqrt( diag( vmod2b)) )
 partable2
 
 # confidence interval for parameter "skill1" which is not in the model
 #   cannot be calculated!
-confint(mod2 , parm= c( "skill1" , "all_guess" ) )
+confint(mod2, parm=c( "skill1", "all_guess" ) )
 # confidence interval for only some parameters
-confint(mod2 , parm=paste0("prob_skill" , 1:3 ) )
+confint(mod2, parm=paste0("prob_skill", 1:3 ) )
 
 # compute only information matrix
-infomod2 <- vcov(mod2 , infomat=TRUE)
+infomod2 <- vcov(mod2, infomat=TRUE)
 }
 }
 

@@ -1,5 +1,5 @@
 %% File Name: data.timss07.G4.lee.Rd
-%% File Version: 0.29
+%% File Version: 0.30
 
 \name{data.timss07.G4.lee}
 \alias{data.timss07.G4.lee}
@@ -93,9 +93,9 @@ This Q-matrix was used in Park and Lee (2014) and Park et al. (xxxx).
 \code{  ..$ G6: num [1:25] 0 0 0 0 0 1 1 0 0 0 ...} \cr
 \code{  ..$ D7: num [1:25] 0 0 0 0 0 0 0 0 0 0 ...} \cr
 \code{ $ domains : Named chr [1:3] "Number" "Geometric Shapes and Measures" "Data Display"} \cr
-\code{  ..- attr(*, "names")= chr [1:3] "N" "G" "D"} \cr
+\code{  ..- attr(*, "names")=chr [1:3] "N" "G" "D"} \cr
 \code{ $ skills  : Named chr [1:7] "Whole Numbers" ...} \cr
-\code{  ..- attr(*, "names")= chr [1:7] "N1" "N2" "N3" "G4" ...} \cr
+\code{  ..- attr(*, "names")=chr [1:7] "N1" "N2" "N3" "G4" ...} \cr
 
 
 \item The Q-matrix \code{data.timss07.G4.Qdomains} is a simplification

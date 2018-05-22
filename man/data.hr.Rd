@@ -1,5 +1,5 @@
 %% File Name: data.hr.Rd
-%% File Version: 0.15
+%% File Version: 0.18
 
 \name{data.hr}
 \alias{data.hr}
@@ -60,7 +60,7 @@ Q <- data.hr$q.matrix
 
 #*************
 # Model 1: DINA model
-mod1 <- CDM::din( dat, q.matrix = Q )
+mod1 <- CDM::din( dat, q.matrix=Q )
 summary(mod1)       # summary
 
 # plot results
@@ -71,7 +71,7 @@ coef(mod1)
 
 # posterior distribution
 posterior <- mod1$posterior
-round( posterior[ 1:5 , ] , 4 )  # first 5 entries
+round( posterior[ 1:5, ], 4 )  # first 5 entries
 
 # estimate class probabilities
 mod1$attribute.patt
@@ -81,25 +81,25 @@ mod1$pattern[1:5,]   # first 5 entries
 
 #*************
 # Model 2: GDINA model
-mod2 <- CDM::gdina( dat, q.matrix = Q)
+mod2 <- CDM::gdina( dat, q.matrix=Q)
 summary(mod2)
 
 #*************
 # Model 3: Reduced RUM model
-mod3 <- CDM::gdina( dat, q.matrix = Q, rule="RRUM" )
+mod3 <- CDM::gdina( dat, q.matrix=Q, rule="RRUM" )
 summary(mod3)
 
 #--------
 # model comparisons
 
 # DINA vs GDINA
-anova( mod1 , mod2 )
+anova( mod1, mod2 )
   ##       Model   loglike Deviance Npars      AIC      BIC    Chisq df  p
   ##   1 Model 1 -31391.27 62782.54   101 62984.54 63524.49 195.9099 20  0
   ##   2 Model 2 -31293.32 62586.63   121 62828.63 63475.50       NA NA NA
 
 # RRUM vs. GDINA
-anova( mod2 , mod3 )
+anova( mod2, mod3 )
   ##       Model   loglike Deviance Npars      AIC      BIC    Chisq df  p
   ##   2 Model 2 -31356.22 62712.43   105 62922.43 63483.76 125.7924 16  0
   ##   1 Model 1 -31293.32 62586.64   121 62828.64 63475.50       NA NA NA
@@ -114,7 +114,7 @@ anova(mod1,mod3)
 # model fit
 
 # DINA
-fmod1 <- CDM::modelfit.cor.din( mod1 , jkunits=0)
+fmod1 <- CDM::modelfit.cor.din( mod1, jkunits=0)
 summary(fmod1)
   ##   Test of Global Model Fit
   ##          type    value       p
@@ -130,7 +130,7 @@ summary(fmod1)
   ##   MADQ3           0.02373
 
 # GDINA
-fmod2 <- CDM::modelfit.cor.din( mod2 , jkunits=0)
+fmod2 <- CDM::modelfit.cor.din( mod2, jkunits=0)
 summary(fmod2)
   ##   Test of Global Model Fit
   ##          type   value p

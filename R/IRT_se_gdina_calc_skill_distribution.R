@@ -1,7 +1,7 @@
 ## File Name: IRT_se_gdina_calc_skill_distribution.R
-## File Version: 0.06
+## File Version: 0.09
 
-IRT_se_gdina_calc_skill_distribution <- function(beta, Z.skillspace, reduced.skillspace, G, eps = 1E-5 )
+IRT_se_gdina_calc_skill_distribution <- function(beta, Z.skillspace, reduced.skillspace, G, eps=1E-5 )
 {
 #--- adapt to multiple group case
 
@@ -21,7 +21,7 @@ IRT_se_gdina_calc_skill_distribution <- function(beta, Z.skillspace, reduced.ski
     if ( ! reduced.skillspace ){
         bounds <- c(eps, 1E2)
         if (G==1){
-            attr.prob <- c( beta , 1 - sum(beta) )
+            attr.prob <- c( beta, 1 - sum(beta) )
             attr.prob <- cdm_sumnorm_squeeze(vec=attr.prob, bounds=bounds)
         } else {
             L <- nrow(beta) + 1

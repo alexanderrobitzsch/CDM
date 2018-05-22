@@ -1,7 +1,7 @@
 ## File Name: cdm_calc_increment.R
-## File Version: 0.10
+## File Version: 0.13
 
-cdm_calc_increment <- function( d1, d2, max.increment , eps = 1E-10, adj_fac = .98, type=1 )
+cdm_calc_increment <- function( d1, d2, max.increment, eps=1E-10, adj_fac=.98, type=1 )
 {
     increment <- d1 / ( abs( d2 + eps ) )
     increment[ is.na(increment) ] <- 0
@@ -13,7 +13,7 @@ cdm_calc_increment <- function( d1, d2, max.increment , eps = 1E-10, adj_fac = .
     if (is.matrix(increment) ){
         K <- ncol(increment)
         for (kk in 1:K){
-            increment[,kk] <- cdm_trim_increment( increment=increment[,kk], max.increment=max.increment , type=type)
+            increment[,kk] <- cdm_trim_increment( increment=increment[,kk], max.increment=max.increment, type=type)
         }
     }
     #--- adjust maximum increment

@@ -1,5 +1,5 @@
 %% File Name: data.dcm.Rd
-%% File Version: 0.24
+%% File Version: 0.28
 
 \name{data.dcm}
 \alias{data.dcm}
@@ -70,7 +70,7 @@ Q <- data.dcm$q.matrix
 #*****************************************************
 # Model 1: DINA model
 #*****************************************************
-mod1 <- CDM::din( dat , q.matrix=Q )
+mod1 <- CDM::din( dat, q.matrix=Q )
 summary(mod1)
 
 #--------
@@ -81,22 +81,22 @@ library(sirt)
   #** define theta grid of skills
   # use the function skillspace.hierarchy just for convenience
 hier <- "skill1 > skill2"
-skillspace <- CDM::skillspace.hierarchy( hier , skill.names= colnames(Q) )
+skillspace <- CDM::skillspace.hierarchy( hier, skill.names=colnames(Q) )
 Theta <- as.matrix(skillspace$skillspace.complete)
   #** create mirt model
 mirtmodel <- mirt::mirt.model("
-      skill1 = 1
-      skill2 = 2
-      skill3 = 3
-      (skill1*skill2) = 4
-      (skill1*skill3) = 5
-      (skill2*skill3) = 6
-      (skill1*skill2*skill3) = 7
+      skill1=1
+      skill2=2
+      skill3=3
+      (skill1*skill2)=4
+      (skill1*skill3)=5
+      (skill2*skill3)=6
+      (skill1*skill2*skill3)=7
           " )
   #** mirt parameter table
-mod.pars <- mirt::mirt( dat , mirtmodel , pars="values")
+mod.pars <- mirt::mirt( dat, mirtmodel, pars="values")
   # use starting values of .20 for guessing parameter
-ind <- which( mod.pars$name == "d" )
+ind <- which( mod.pars$name=="d" )
 mod.pars[ind,"value"] <- stats::qlogis(.20) # guessing parameter on the logit metric
   # use starting values of .80 for anti-slipping parameter
 ind <- which( ( mod.pars$name \%in\% paste0("a",1:20 ) ) & (mod.pars$est) )
@@ -106,17 +106,17 @@ mod.pars
 I <- ncol(dat)
 lca_prior <- function(Theta,Etable){
   TP <- nrow(Theta)
-  if ( is.null(Etable) ){ prior <- rep( 1/TP , TP ) }
+  if ( is.null(Etable) ){ prior <- rep( 1/TP, TP ) }
   if ( ! is.null(Etable) ){
-    prior <- ( rowSums(Etable[ , seq(1,2*I,2)]) + rowSums(Etable[,seq(2,2*I,2)]) )/I
+    prior <- ( rowSums(Etable[, seq(1,2*I,2)]) + rowSums(Etable[,seq(2,2*I,2)]) )/I
   }
   prior <- prior / sum(prior)
   return(prior)
  }
 
  #** estimate model in mirt
-mod1m <- mirt::mirt(dat, mirtmodel , pars = mod.pars , verbose=TRUE ,
-            technical = list( customTheta=Theta , customPriorFun = lca_prior) )
+mod1m <- mirt::mirt(dat, mirtmodel, pars=mod.pars, verbose=TRUE,
+            technical=list( customTheta=Theta, customPriorFun=lca_prior) )
   # The number of estimated parameters is incorrect because mirt does not correctly count
   # estimated parameters from the user customized  prior distribution.
 mod1m@nest <- as.integer(sum(mod.pars$est) + nrow(Theta) - 1)
@@ -128,9 +128,9 @@ mod1m@logLik
   #** extract item parameters
 cmod1m <- sirt::mirt.wrapper.coef(mod1m)$coef
 # compare estimated guessing and slipping parameters
-dfr <- data.frame(    "din.guess"=mod1$guess$est ,
-                  "mirt.guess"=plogis(cmod1m$d), "din.slip"=mod1$slip$est ,
-                  "mirt.slip"= 1-plogis( rowSums( cmod1m[ , c("d", paste0("a",1:7) ) ] ) )
+dfr <- data.frame(    "din.guess"=mod1$guess$est,
+                  "mirt.guess"=plogis(cmod1m$d), "din.slip"=mod1$slip$est,
+                  "mirt.slip"=1-plogis( rowSums( cmod1m[, c("d", paste0("a",1:7) ) ] ) )
                     )
 round(t(dfr),3)
   ##               [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]
@@ -140,8 +140,8 @@ round(t(dfr),3)
   ##   mirt.slip  0.339 0.333 0.336 0.223 0.225 0.214 0.044
 
 # compare estimated skill class distribution
-dfr <- data.frame("din"= mod1$attribute.patt$class.prob ,
-                    "mirt"= mod1m@Prior[[1]] )
+dfr <- data.frame("din"=mod1$attribute.patt$class.prob,
+                    "mirt"=mod1m@Prior[[1]] )
 round(t(dfr),3)
   ##         [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]
   ##   din  0.113 0.083 0.094 0.092 0.064 0.059 0.065 0.429
@@ -209,16 +209,16 @@ summary(mod6)
 # use data specifications from Model 1m)
   #** create mirt model
 mirtmodel <- mirt::mirt.model("
-      skill1 = 1,4,5,7
-      skill2 = 2,4,6,7
-      skill3 = 3,5,6,7
+      skill1=1,4,5,7
+      skill2=2,4,6,7
+      skill3=3,5,6,7
           " )
   #** mirt parameter table
-mod.pars <- mirt::mirt( dat , mirtmodel , pars="values")
+mod.pars <- mirt::mirt( dat, mirtmodel, pars="values")
  #** estimate model in mirt
  # Theta and lca_prior as defined as in Model 1m
-mod6m <- mirt::mirt(dat, mirtmodel , pars = mod.pars , verbose=TRUE ,
-            technical = list( customTheta=Theta , customPriorFun = lca_prior) )
+mod6m <- mirt::mirt(dat, mirtmodel, pars=mod.pars, verbose=TRUE,
+            technical=list( customTheta=Theta, customPriorFun=lca_prior) )
 mod6m@nest <- as.integer(sum(mod.pars$est) + nrow(Theta) - 1)
   # extract log-likelihood
 mod6m@logLik
@@ -251,11 +251,11 @@ summary(mod7)
 
 #-- Model 8a: randomLCA package
 library(randomLCA)
-mod8a <- randomLCA::randomLCA( dat, nclass= 3 , verbose=TRUE , notrials=4)
+mod8a <- randomLCA::randomLCA( dat, nclass=3, verbose=TRUE, notrials=4)
 
 #-- Model8b: rasch.mirtlc function in sirt package
 library(sirt)
-mod8b <- sirt::rasch.mirtlc( dat, Nclasses=3 , nstarts=4 )
+mod8b <- sirt::rasch.mirtlc( dat, Nclasses=3, nstarts=4 )
 summary(mod8a)
 summary(mod8b)
 }

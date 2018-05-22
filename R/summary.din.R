@@ -1,11 +1,11 @@
 ## File Name: summary.din.R
-## File Version: 1.21
+## File Version: 1.25
 
 
 ################################################################################
 # summary method for objects of class "din"                                    #
 ################################################################################
-summary.din <- function(object, top.n.skill.classes = 6, overwrite = FALSE, ...)
+summary.din <- function(object, top.n.skill.classes=6, overwrite=FALSE, ...)
 {
 
 # Call: generic
@@ -32,7 +32,7 @@ summary.din <- function(object, top.n.skill.classes = 6, overwrite = FALSE, ...)
 ################################################################################
 
     log.file <- NULL
-#    osink( file = file , suffix = paste0( "__SUMMARY.Rout") )
+#    osink( file=file, suffix=paste0( "__SUMMARY.Rout") )
 
     CALL <- paste(object$display,"on", ncol(object$data), "items for", nrow(object$skill.patt),"attributes")
 
@@ -43,11 +43,11 @@ summary.din <- function(object, top.n.skill.classes = 6, overwrite = FALSE, ...)
     rownames(IDI) <- ""
     colnames(IDI) <- rownames(object$item)
     # item parameters
-    item <- data.frame( "item" = colnames(object$data) , "guess" = object$guess[,1] ,
-                "slip" = object$slip[,1] , "IDI" = object$IDI , "rmsea" = object$itemfit.rmsea )
-    for (vv in 2:5){ item[,vv] <- round( item[,vv] , 3 ) }
+    item <- data.frame( "item"=colnames(object$data), "guess"=object$guess[,1],
+                "slip"=object$slip[,1], "IDI"=object$IDI, "rmsea"=object$itemfit.rmsea )
+    for (vv in 2:5){ item[,vv] <- round( item[,vv], 3 ) }
 
-#    SKILL.CLASSES <- object$attribute.patt[order(object$attribute.patt[,1], decreasing = TRUE),][
+#    SKILL.CLASSES <- object$attribute.patt[order(object$attribute.patt[,1], decreasing=TRUE),][
 #    1:min(top.n.skill.classes, 2^length(object$skill.patt)),]
 #    SKILL.CLASSES <- round(t(SKILL.CLASSES)[1, ], 4)
 
@@ -63,11 +63,11 @@ summary.din <- function(object, top.n.skill.classes = 6, overwrite = FALSE, ...)
     if(file.exists(log.file)){
       if(!overwrite){
         cat("Press 'y' to overwrite existing file: ")
-        conf <- readLines(con = stdin(), n = 1)
+        conf <- readLines(con=stdin(), n=1)
         if(conf %in% c("y", "Y")){
-          wrn <- getOption("warn"); options(warn = -1)
-          err <- try({ff <- file(log.file); open(ff, "w"); close(ff)}, silent = TRUE)
-          options("warn" = wrn)
+          wrn <- getOption("warn"); options(warn=-1)
+          err <- try({ff <- file(log.file); open(ff, "w"); close(ff)}, silent=TRUE)
+          options("warn"=wrn)
           if(!is.null(err)){
             warning("'log.file' argument ignored due to ", err)
             log.file <- NULL
@@ -75,9 +75,9 @@ summary.din <- function(object, top.n.skill.classes = 6, overwrite = FALSE, ...)
         }
       }
     }else{
-      wrn <- getOption("warn"); options(warn = -1)
-      err <- try({ff <- file(log.file); open(ff, "w"); close(ff)}, silent = TRUE)
-      options("warn" = wrn)
+      wrn <- getOption("warn"); options(warn=-1)
+      err <- try({ff <- file(log.file); open(ff, "w"); close(ff)}, silent=TRUE)
+      options("warn"=wrn)
       if(!is.null(err)){
         warning("'log.file' argument ignored due to ", err)
         log.file <- NULL
@@ -92,12 +92,12 @@ summary.din <- function(object, top.n.skill.classes = 6, overwrite = FALSE, ...)
 # print(object)
 
   out <- list("CALL"=CALL,"IDI"=IDI,
-            "call" = deparse(object$call) ,
-            "deviance" = -2*object$loglike,
-            "AIC"=AIC, "BIC"=BIC, "item" = item ,
-            "Npars" = object$Npars ,
-            "log.file" = file, "din.object" = object,
-            "start.analysis"=object$start.analysis ,
+            "call"=deparse(object$call),
+            "deviance"=-2*object$loglike,
+            "AIC"=AIC, "BIC"=BIC, "item"=item,
+            "Npars"=object$Npars,
+            "log.file"=file, "din.object"=object,
+            "start.analysis"=object$start.analysis,
             "end.analysis"=object$end.analysis
             )
     class(out) <- "summary.din"

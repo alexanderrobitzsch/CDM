@@ -1,5 +1,5 @@
 //// File Name: cdm_rcpp_din_em.cpp
-//// File Version: 0.555
+//// File Version: 0.557
 
 
 
@@ -15,8 +15,8 @@ Rcpp::NumericVector cdm_rcpp_din_calc_prob( Rcpp::LogicalMatrix latresp1,
             Rcpp::NumericVector guess, Rcpp::NumericVector slip, int J, int L)
 {
     Rcpp::NumericVector pj(J*L*2);
-    //    slipM <- matrix( slip , nrow= nrow(latresp) , ncol=ncol(latresp))
-    //    guessM <- matrix( guess , nrow= nrow(latresp) , ncol=ncol(latresp))
+    //    slipM <- matrix( slip, nrow= nrow(latresp), ncol=ncol(latresp))
+    //    guessM <- matrix( guess, nrow= nrow(latresp), ncol=ncol(latresp))
     //    pj <- (1 - slipM )*latresp + guessM * ( 1 - latresp )
     Rcpp::NumericVector slip1(J);
     Rcpp::NumericVector guess1(J);
@@ -41,7 +41,7 @@ Rcpp::NumericVector cdm_rcpp_din_calc_prob( Rcpp::LogicalMatrix latresp1,
         }
     }
     //---- OUTPUT:
-    return pj ;
+    return pj;
 }
 ///********************************************************************
 
@@ -54,7 +54,7 @@ Rcpp::NumericMatrix cdm_rcpp_din_calc_counts( Rcpp::NumericMatrix p_aj_xi, Rcpp:
 {
     Rcpp::NumericMatrix Rlj(J,L);
     // Rcpp::NumericMatrix Ilj(J,L);
-    // R.lj <- crossprod(ipr , p.aj.xi    )
+    // R.lj <- crossprod(ipr, p.aj.xi    )
     int N = item_patt_freq.size();
     for (int jj=0; jj<J; jj++){
         for (int nn=0; nn<N; nn++){
@@ -70,4 +70,4 @@ Rcpp::NumericMatrix cdm_rcpp_din_calc_counts( Rcpp::NumericMatrix p_aj_xi, Rcpp:
 }
 ///********************************************************************
 
-// return Rcpp::List::create(  Rcpp::Named("dist") = dist ,  Rcpp::Named("est_skill") = est_skill  ) ;
+// return Rcpp::List::create(  Rcpp::Named("dist") = dist,  Rcpp::Named("est_skill") = est_skill  );

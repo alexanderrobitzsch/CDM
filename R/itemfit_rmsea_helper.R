@@ -1,13 +1,13 @@
 ## File Name: itemfit_rmsea_helper.R
-## File Version: 0.02
+## File Version: 0.04
 
 
 ##########################################
 # auxiliary function itemfit.rmsea
-itemfit_rmsea_helper <- function( n.ik , pi.k , probs ){
-    # probs ... [ classes , items , categories ]
-    # n.ik ... [ classes , items , categories , groups ]
-    # N.ik ... [ classes , items , categories]
+itemfit_rmsea_helper <- function( n.ik, pi.k, probs ){
+    # probs ... [ classes, items, categories ]
+    # n.ik ... [ classes, items, categories, groups ]
+    # N.ik ... [ classes, items, categories]
     N.ik <- n.ik[,,,1]
     G <- dim(n.ik)[4]
     pitot <- pi.k[,1]
@@ -19,7 +19,7 @@ itemfit_rmsea_helper <- function( n.ik , pi.k , probs ){
         }
     }
     # calculate summed counts
-    N.ik_tot <- array( 0 , dim=dim(N.ik) )
+    N.ik_tot <- array( 0, dim=dim(N.ik) )
     N.ik_tot[,,1] <- N.ik[,,1,drop=FALSE]
     K <- dim(N.ik)[3]
     for (kk in 2:K){
@@ -34,9 +34,9 @@ itemfit_rmsea_helper <- function( n.ik , pi.k , probs ){
     p.ik_observed <- N.ik / ( N.ik_tot + eps )
     p.ik_observed[ is.na( p.ik_observed ) ] <- 0
     # define class weights
-    pi.k_tot <- array( 0 , dim=dim(p.ik_observed) )
+    pi.k_tot <- array( 0, dim=dim(p.ik_observed) )
     for (kk in 1:K){
-        pi.k_tot[,,kk] <- matrix( pitot , nrow= dim(pi.k_tot)[1] , ncol=dim(pi.k_tot)[2] , byrow=FALSE )
+        pi.k_tot[,,kk] <- matrix( pitot, nrow=dim(pi.k_tot)[1], ncol=dim(pi.k_tot)[2], byrow=FALSE )
     }
     # calculate statistics
     dist.item <- pi.k_tot * ( p.ik_observed - probs )^2

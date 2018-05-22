@@ -1,12 +1,12 @@
 ## File Name: plot.din.R
-## File Version: 2.16
+## File Version: 2.20
 ################################################################################
 # summary method for objects of class "din"                                    #
 ################################################################################
 plot.din <-
 function(x, items=c(1:ncol(x$data)), pattern="",
   uncertainty=0.1, top.n.skill.classes=6, pdf.file="",
-  hide.obs = FALSE, display.nr=1:4, ask = TRUE, ...){
+  hide.obs=FALSE, display.nr=1:4, ask=TRUE, ...){
 
 # Call: generic
 # Input:
@@ -38,19 +38,19 @@ function(x, items=c(1:ncol(x$data)), pattern="",
 hide.idi <- FALSE
 
     # define pattern in case of vector inputz
-    if ( ( pattern[1] != "" ) & ( length( pattern) > 1 ) ){
-        pattern <- paste( pattern , collapse="")
+    if ( ( pattern[1] !="" ) & ( length( pattern) > 1 ) ){
+        pattern <- paste( pattern, collapse="")
         }
 
 
-    suc <- which(unique(x$pattern[,"pattern"]) == pattern) #subject under control
+    suc <- which(unique(x$pattern[,"pattern"])==pattern) #subject under control
     if(pdf.file!="") try(pdf(file=pdf.file, ...))
 
-    try(if(uncertainty<0||uncertainty>.5|| #uncertainty >= 0, <= .5
-      top.n.skill.classes<0||top.n.skill.classes>2^length(x$skill.patt) )  #top.n.skill.classes >= 0, <=2^K
+    try(if(uncertainty<0||uncertainty>.5|| #uncertainty >=0, <=.5
+      top.n.skill.classes<0||top.n.skill.classes>2^length(x$skill.patt) )  #top.n.skill.classes >=0, <=2^K
         warning("check your plot parameter specifications. See Help-files."))
 
-    old.par <- graphics::par(no.readonly = TRUE)
+    old.par <- graphics::par(no.readonly=TRUE)
     on.exit( graphics::par(old.par))
 
 ################################################################################
@@ -80,19 +80,19 @@ if(1 %in% display.nr){
 #                which(apply(errors, 2,  function(x) 1-x[1]-x[2] < 0 )),"\n"))
     }else{
       graphics::legend("topright",c("Guessing probability","Non-Slipping probability"),
-             lty=c(1,1), pch=c(NA,NA), lwd=c(2,2), col=c("gray","darkred"), bg = "gray97")
+             lty=c(1,1), pch=c(NA,NA), lwd=c(2,2), col=c("gray","darkred"), bg="gray97")
 #          lines(seq(2,2+3*(ncol(errors)-1),3),apply(errors, 2, function(x) 1-x[1]-x[2] ), lty=1)
 #          points(seq(2,2+3*(ncol(errors)-1),3),apply(errors, 2, function(x) 1-x[1]-x[2] ), pch=19, cex=1.5)
 #           legend("topright",c("guessing parameter","slipping parameter", "item discrimination index"),
-#           lty=c(1,1,1), pch=c(NA,NA,19), lwd=c(2,2,2), col=c("gray","darkred", "black"), bg = "gray97")
+#           lty=c(1,1,1), pch=c(NA,NA,19), lwd=c(2,2,2), col=c("gray","darkred", "black"), bg="gray97")
         }
   }else{
       graphics::legend("topright",c("guessing parameter","slipping parameter"),
-        lty=c(1,1), lwd=c(2,2), col=c("gray","darkred"), bg = "gray97")
+        lty=c(1,1), lwd=c(2,2), col=c("gray","darkred"), bg="gray97")
     }
 
     if(pdf.file=="" & ask) graphics::par(ask=TRUE)
-    if(1 == display.nr[length(display.nr)]) graphics::par(ask=FALSE)
+    if(1==display.nr[length(display.nr)]) graphics::par(ask=FALSE)
 }
 
 ################################################################################
@@ -104,12 +104,12 @@ if(2 %in% display.nr){
   # extract information
     skill.patterns <- x$skill.patt[length(x$skill.patt):1,]
 
-  ind <- match( apply(x$item.patt.split, 1, paste, collapse ="") ,
+  ind <- match( apply(x$item.patt.split, 1, paste, collapse=""),
                 unique(x$pattern)[,"pattern"] )
   EAP <- ifelse( unique(x$pattern)[ ind, grep("post.attr", colnames(x$pattern) ) ] >
     0.5 + uncertainty, 1, NA )
 
-    master <- colSums( apply( EAP , 2, function(y) y*x$item.patt.freq), na.rm=TRUE )
+    master <- colSums( apply( EAP, 2, function(y) y*x$item.patt.freq), na.rm=TRUE )
   master <- ( master/ nrow(x$data) )[length(x$skill.patt):1]
 
     # generate plot
@@ -120,10 +120,10 @@ if(2 %in% display.nr){
             xlim=c(0,1),
             xlab="Skill mastery probability", axes=F, cex.lab=1.3, col="gray")
     graphics::axis(1,at=seq(0,1,0.2))
-    graphics::axis(3 ,at=seq(0,1,0.2))
+    graphics::axis(3,at=seq(0,1,0.2))
 
     if ( is.null( attributes(x$q.matrix)$skill.labels ) ){
-        attr( x$q.matrix , "skill.labels") <- colnames(x$q.matrix )
+        attr( x$q.matrix, "skill.labels") <- colnames(x$q.matrix )
                         }
 
     graphics::text(attributes(x$q.matrix)$skill.labels[length(x$skill.patt):1],
@@ -132,13 +132,13 @@ if(2 %in% display.nr){
 
   if(!hide.obs){
 #            legend("topright",c("Marginal skill probability", "Percentage of masters (EAP)"),
-#           lty=c(1,1), pch=c(NA,19), lwd=c(2,2), col=c("gray", "black"), bg = "gray97")
+#           lty=c(1,1), pch=c(NA,19), lwd=c(2,2), col=c("gray", "black"), bg="gray97")
 #    points(x=master, y=seq(0.7,0.7+1.2*(length(skill.patterns)-1),1.2),pch=19, cex=1.3)
 #    lines(x=master, y=seq(0.7,0.7+1.2*(length(skill.patterns)-1),1.2),lty=1)
   }
 
     if(pdf.file=="" & ask) graphics::par(ask=TRUE)
-    if(2 == display.nr[length(display.nr)]) graphics::par(ask=FALSE)
+    if(2==display.nr[length(display.nr)]) graphics::par(ask=FALSE)
 
     graphics::par(yaxt="s")
 }
@@ -152,7 +152,7 @@ if(3 %in% display.nr){
   # extract information
     patt.fq <- x$attribute.patt[,1]
     main.effects <- which(rownames(x$attribute.patt)%in%
-      rownames(x$attribute.patt[order(x$attribute.patt[,1], decreasing = TRUE),][
+      rownames(x$attribute.patt[order(x$attribute.patt[,1], decreasing=TRUE),][
       1:min(top.n.skill.classes, 2^length(x$skill.patt)), ])
         )
 
@@ -160,7 +160,7 @@ if(3 %in% display.nr){
     graphics::par(xaxt="n"); graphics::par(mar=c(6,4,4,2)+0.1)
     graphics::plot(c(0:(length(patt.fq)+1)),c(0,t(patt.fq),0),type="h",
        ylab="Skill class probability",
-        xlab="", ylim=c(0,max(patt.fq)+.02),cex.lab=1.3, col=c(NA ,rep("black",length(patt.fq)), NA))
+        xlab="", ylim=c(0,max(patt.fq)+.02),cex.lab=1.3, col=c(NA,rep("black",length(patt.fq)), NA))
     graphics::par(xaxt="s")
     graphics::axis(1, at=main.effects, las=2, labels=rownames(x$attribute.patt)[main.effects], cex.axis=.8)
 
@@ -170,12 +170,12 @@ if(3 %in% display.nr){
     if (PP<65){
     for (pp in 1:PP){
 #        pp <- 1
-        graphics::rect( xleft= pp-eps , ybottom=0 , xright=pp+eps , ytop=patt.fq[pp] , col="black" )
+        graphics::rect( xleft=pp-eps, ybottom=0, xright=pp+eps, ytop=patt.fq[pp], col="black" )
                     } }
   graphics::par(mar=c(5,4,4,2)+0.1)
 
     if(pdf.file=="" & ask) graphics::par(ask=TRUE)
-    if(3 == display.nr[length(display.nr)]) graphics::par(ask=FALSE)
+    if(3==display.nr[length(display.nr)]) graphics::par(ask=FALSE)
 
 }
 
@@ -185,11 +185,11 @@ if(3 %in% display.nr){
 
 if(4 %in% display.nr){
     if(pattern!=""){
-    if(length(suc) == 0)
+    if(length(suc)==0)
       warning("The specified pattern was not achieved.")
 
         # if a pattern is specified extract information
-        post.skill <- as.matrix(unique(x$pattern)[suc ,grep("post.attr", colnames(x$pattern))])[nrow(x$skill.patt):1]
+        post.skill <- as.matrix(unique(x$pattern)[suc,grep("post.attr", colnames(x$pattern))])[nrow(x$skill.patt):1]
         names(post.skill) <- colnames(x$q.matrix)[nrow(x$skill.patt):1]
 
         # generate plot
@@ -197,16 +197,16 @@ if(4 %in% display.nr){
     graphics::par(mgp=c(3.5,1,0))
     graphics::par(yaxt="n")
     graphics::barplot(post.skill, horiz=TRUE, xlab=paste("Skill probabilities conditional on response pattern\n",
-            pattern ,sep=""),
+            pattern,sep=""),
             xlim=c(0,1), axes=FALSE, cex.lab=1.3, col="gray")
 
         graphics::axis(1,at=seq(0,1,0.2))
-        graphics::abline(v=c(.5-uncertainty,.5+uncertainty),lty=1,col="darkred" , lwd=2)
+        graphics::abline(v=c(.5-uncertainty,.5+uncertainty),lty=1,col="darkred", lwd=2)
         graphics::axis(3, at=c( (.5-uncertainty)/2, .5, .5+uncertainty+(1-(.5+uncertainty))/2 ), tick=F,
             labels=c("not mastered", "unclassified", "mastered"), cex.axis=1.3, mgp=c(3,0,0))
 
     if ( is.null( attributes(x$q.matrix)$skill.labels ) ){
-        attr( x$q.matrix , "skill.labels") <- colnames(x$q.matrix )
+        attr( x$q.matrix, "skill.labels") <- colnames(x$q.matrix )
                         }
 
         graphics::text(attributes(x$q.matrix)$skill.labels[length(x$skill.patt):1],
@@ -216,7 +216,7 @@ if(4 %in% display.nr){
     graphics::par(mar=c(5,4,4,2)+0.1)
     graphics::par(mgp=c(3,1,0))
 
-    if(4 == display.nr[length(display.nr)]) graphics::par(ask=FALSE)
+    if(4==display.nr[length(display.nr)]) graphics::par(ask=FALSE)
 
     }
 

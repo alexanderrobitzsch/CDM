@@ -1,13 +1,13 @@
 ## File Name: IRT_RMSD_calc_md.R
-## File Version: 2.06
+## File Version: 2.08
 
 
 ##########################################
 # auxiliary function
-IRT_RMSD_calc_md <- function( n.ik , pi.k , probs , eps=10^(-30) ){
-    # probs ... [ classes , items , categories ]
-    # n.ik ... [ classes , items , categories , groups ]
-    # N.ik ... [ classes , items , categories]
+IRT_RMSD_calc_md <- function( n.ik, pi.k, probs, eps=10^(-30) ){
+    # probs ... [ classes, items, categories ]
+    # n.ik ... [ classes, items, categories, groups ]
+    # N.ik ... [ classes, items, categories]
     N.ik <- n.ik[,,,1]
     G <- dim(n.ik)[4]
     pitot <- pi.k[,1]
@@ -20,11 +20,11 @@ IRT_RMSD_calc_md <- function( n.ik , pi.k , probs , eps=10^(-30) ){
     }
 
     #*** extract maximum number of categories
-    maxK <- apply( N.ik , c(2,3) , sum , na.rm=TRUE )
+    maxK <- apply( N.ik, c(2,3), sum, na.rm=TRUE )
     maxK <- rowSums( maxK > eps )
 
     # calculate summed counts
-    N.ik_tot <- array( 0 , dim=dim(N.ik) )
+    N.ik_tot <- array( 0, dim=dim(N.ik) )
     N.ik_tot[,,1] <- N.ik[,,1,drop=FALSE]
     K <- dim(N.ik)[3]
     for (kk in 2:K){
@@ -39,9 +39,9 @@ IRT_RMSD_calc_md <- function( n.ik , pi.k , probs , eps=10^(-30) ){
     p.ik_observed <- N.ik / ( N.ik_tot + eps )
     p.ik_observed[ is.na( p.ik_observed ) ] <- 0
     # define class weights
-    pi.k_tot <- array( 0 , dim=dim(p.ik_observed) )
+    pi.k_tot <- array( 0, dim=dim(p.ik_observed) )
     for (kk in 1:K){
-        pi.k_tot[,,kk] <- matrix( pitot , nrow= dim(pi.k_tot)[1] , ncol=dim(pi.k_tot)[2] , byrow=FALSE )
+        pi.k_tot[,,kk] <- matrix( pitot, nrow=dim(pi.k_tot)[1], ncol=dim(pi.k_tot)[2], byrow=FALSE )
     }
     # calculate statistics
     dist.item <- pi.k_tot * ( p.ik_observed - probs )

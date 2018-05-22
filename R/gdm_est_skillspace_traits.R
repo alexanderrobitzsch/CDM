@@ -1,17 +1,17 @@
 ## File Name: gdm_est_skillspace_traits.R
-## File Version: 0.10
+## File Version: 0.13
 
 #####################################################
 # estimation of skill space
-gdm_est_skillspace_traits <- function( n.ik , a , b , theta.k , Qmatrix , I , K , TP,
-        TD , numdiff.parm , max.increment , msteps , convM )
+gdm_est_skillspace_traits <- function( n.ik, a, b, theta.k, Qmatrix, I, K, TP,
+        TD, numdiff.parm, max.increment, msteps, convM )
 {
-    n.ik0 <- apply( n.ik , c(1,2,3) , sum )
+    n.ik0 <- apply( n.ik, c(1,2,3), sum )
     h <- numdiff.parm
     parchange <- 1000
     iter <- 1
     se.theta.k <- 0 * theta.k
-    Q1 <- matrix( 0 , nrow=TP , ncol=TD)
+    Q1 <- matrix( 0, nrow=TP, ncol=TD)
 
     #-- define likelihood function and list of arguments
     prob_fct <- gdm_calc_prob
@@ -19,7 +19,7 @@ gdm_est_skillspace_traits <- function( n.ik , a , b , theta.k , Qmatrix , I , K 
     parm_args_varname <- "thetaDes"
 
     #--------- begin M-steps
-    while( ( iter <= msteps ) & (parchange > convM ) ){
+    while( ( iter <=msteps ) & (parchange > convM ) ){
         theta.k0 <- theta.k
         for ( dd in 1:TD){
             Q0 <- Q1
@@ -47,7 +47,7 @@ gdm_est_skillspace_traits <- function( n.ik , a , b , theta.k , Qmatrix , I , K 
     }
 
     #--- OUTPUT
-    res <- list( theta.k = theta.k , se.theta.k = se.theta.k )
+    res <- list( theta.k=theta.k, se.theta.k=se.theta.k )
     return(res)
 }
 ##########################################################

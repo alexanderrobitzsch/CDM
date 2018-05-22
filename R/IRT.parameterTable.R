@@ -1,5 +1,5 @@
 ## File Name: IRT.parameterTable.R
-## File Version: 0.05
+## File Version: 0.06
 
 
 ###########################################################
@@ -9,7 +9,7 @@ IRT.parameterTable <- function(object, ...)
     UseMethod("IRT.parameterTable")
 }
 ###########################################################
-# IRT.data.din <- function( object , ... ){
+# IRT.data.din <- function( object, ... ){
 #    dat <- object$dat
 #    attr(dat,"weights") <- object$control$weights
 #    attr(dat,"group") <- object$control$group

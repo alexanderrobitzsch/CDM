@@ -1,5 +1,5 @@
 //// File Name: cdm_rcpp_discrimination_index.cpp
-//// File Version: 0.856
+//// File Version: 0.858
 
 
 #include <Rcpp.h>
@@ -34,7 +34,7 @@ bool cdm_rcpp_discrimination_index_compare_vectors( Rcpp::NumericVector patt0,
     }
 
     /// OUTPUT
-    return comp_vec0 ;
+    return comp_vec0;
 }
 ///********************************************************************
 
@@ -65,7 +65,7 @@ Rcpp::IntegerMatrix cdm_rcpp_discrimination_index_attribute_patterns( Rcpp::Nume
                     comp_matrix(cc,0) = aa;
                     comp_matrix(cc,1) = ii;
                     comp_matrix(cc,2) = jj;
-                    cc ++ ;
+                    cc ++;
                     comp_ii = FALSE;
                 }
                 if ( ! comp_ii){ break; }
@@ -74,7 +74,7 @@ Rcpp::IntegerMatrix cdm_rcpp_discrimination_index_attribute_patterns( Rcpp::Nume
     }  // end skill aa
 
     ///---- OUTPUT
-    return comp_matrix ;
+    return comp_matrix;
 }
 ///********************************************************************
 
@@ -109,8 +109,6 @@ Rcpp::NumericMatrix cdm_rcpp_discrimination_index_calc( Rcpp::IntegerMatrix comp
     int cc2 = 0;
     int ind1 = 0;
     int ind2 = 0;
-    // int hh = 1;  // category hh
-
 
     for (int ac = 0; ac < AC; ac++){
         skill = comp_matrix(ac, 0);
@@ -131,7 +129,7 @@ Rcpp::NumericMatrix cdm_rcpp_discrimination_index_calc( Rcpp::IntegerMatrix comp
         }
     }
     ///---- OUTPUT
-    return discrim_item ;
+    return discrim_item;
 }
 ///********************************************************************
 
@@ -159,7 +157,7 @@ double cdm_rcpp_discrimination_index_test_level( Rcpp::NumericMatrix discrim_ite
     discrim_test = discrim_test / I;
 
     ///---- OUTPUT
-    return discrim_test ;
+    return discrim_test;
 }
 ///********************************************************************
 
@@ -194,11 +192,11 @@ Rcpp::NumericVector cdm_rcpp_discrimination_index_idi( Rcpp::NumericVector probs
             }
             diff = maxval - minval;
             if ( diff > idi[ii] ){
-                idi[ii] = diff ;
+                idi[ii] = diff;
             }
         }
     }
     ///---- OUTPUT
-    return idi ;
+    return idi;
 }
 ///********************************************************************

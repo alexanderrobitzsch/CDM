@@ -1,14 +1,14 @@
 ## File Name: rmsd_chisquare.R
-## File Version: 0.08
+## File Version: 0.09
 
 
 ##########################################
 # auxiliary function
-rmsd_chisquare <- function( n.ik , pi.k , probs , eps=10^(-30) )
+rmsd_chisquare <- function( n.ik, pi.k, probs, eps=10^(-30) )
 {
-    # probs ... [ classes , items , categories ]
-    # n.ik ... [ classes , items , categories , groups ]
-    # N.ik ... [ classes , items , categories]
+    # probs ... [ classes, items, categories ]
+    # n.ik ... [ classes, items, categories, groups ]
+    # N.ik ... [ classes, items, categories]
     N.ik <- n.ik[,,,1]
     G <- dim(n.ik)[4]
     pitot <- pi.k[,1]
@@ -21,11 +21,11 @@ rmsd_chisquare <- function( n.ik , pi.k , probs , eps=10^(-30) )
     }
 
     #*** extract maximum number of categories
-    maxK <- apply( N.ik , c(2,3) , sum , na.rm=TRUE )
+    maxK <- apply( N.ik, c(2,3), sum, na.rm=TRUE )
     maxK <- rowSums( maxK > eps )
 
     # calculate summed counts
-    N.ik_tot <- array( 0 , dim=dim(N.ik) )
+    N.ik_tot <- array( 0, dim=dim(N.ik) )
     N.ik_tot[,,1] <- N.ik[,,1,drop=FALSE]
     K <- dim(N.ik)[3]
     for (kk in 2:K){

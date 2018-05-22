@@ -1,20 +1,20 @@
 ## File Name: summary.gdina.wald.R
-## File Version: 0.03
+## File Version: 0.07
 
 ##############################################################
 # summary method
 summary.gdina.wald <- function(object, digits=3,
-        vars = c("X2" , "p" , "sig" , "RMSEA" , "wgtdist") , ...){
+        vars=c("X2", "p", "sig", "RMSEA", "wgtdist"), ...){
         stats <- object$stats
         cn <- colnames(stats)
         cn <- cn[-1]
         sels <- c("NAttr")
         for ( rule in object$cdm_rules){
-            sels <- c( sels , paste0( rule , "_" , vars ) )
+            sels <- c( sels, paste0( rule, "_", vars ) )
                     }
-        stats <- stats[ , sels ]
+        stats <- stats[, sels ]
         cn <- colnames(stats)
-        cn <- cn[ - c( 1 , grep("_sig" , cn) ) ]
+        cn <- cn[ - c( 1, grep("_sig", cn) ) ]
         for (vv in cn){
                 stats[,vv] <- round(stats[,vv],digits)
                         }

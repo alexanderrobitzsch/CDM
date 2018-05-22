@@ -1,17 +1,17 @@
 ## File Name: cdm_calc_posterior.R
-## File Version: 1.12
+## File Version: 1.16
 
 ###########################################################
 # compute posterior distribution
-cdm_calc_posterior <- function(rprobs , gwt , resp , nitems ,
-    resp.ind.list , normalization = TRUE ,
-    thetasamp.density = NULL , snodes = 0 )
+cdm_calc_posterior <- function(rprobs, gwt, resp, nitems,
+    resp.ind.list, normalization=TRUE,
+    thetasamp.density=NULL, snodes=0 )
 {
-    if ( snodes == 0 ){
+    if ( snodes==0 ){
         fx <- gwt
     } else {
         # calculate individual 'sampling weight'
-        swt <- fx <- gwt / outer( rep(1, nrow(gwt)) , thetasamp.density )
+        swt <- fx <- gwt / outer( rep(1, nrow(gwt)), thetasamp.density )
     }
     nstud <- nrow(fx)
 
@@ -19,7 +19,7 @@ cdm_calc_posterior <- function(rprobs , gwt , resp , nitems ,
     storage.mode(resp) <- "integer"
     fx <- .Call( '_CDM_calcfx', PACKAGE='CDM', fx, rprobs, resp.ind.list, resp)
     # numerical integration
-    if ( snodes == 0 ){
+    if ( snodes==0 ){
         rfx <- rowSums(fx)
         if (normalization ){
             hwt <- fx / rfx
@@ -36,7 +36,7 @@ cdm_calc_posterior <- function(rprobs , gwt , resp , nitems ,
             hwt <- fx
         }
     }
-    res <-  list("hwt" = hwt , "rfx" = rfx )
+    res <-  list("hwt"=hwt, "rfx"=rfx )
     if ( snodes > 0 ){
         res[["swt" ]] <- swt
     }

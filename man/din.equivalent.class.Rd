@@ -1,5 +1,5 @@
 %% File Name: din.equivalent.class.Rd
-%% File Version: 0.27
+%% File Version: 0.30
 
 \name{din.equivalent.class}
 \alias{din.equivalent.class}
@@ -12,7 +12,7 @@ This function computes indistinguishable skill classes for the DINA and
 DINO model (Gross & George, 2014; Zhang, DeCarlo & Ying, 2013).
 }
 \usage{
-din.equivalent.class(q.matrix, rule = "DINA")
+din.equivalent.class(q.matrix, rule="DINA")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -72,22 +72,22 @@ data(data.fraction2, package="CDM")
 
 # first Q-matrix
 Q1 <- data.fraction2$q.matrix1
-m1 <- CDM::din.equivalent.class( q.matrix = Q1 , rule="DINA" )
-  ## 8 Skill classes | 5  distinguishable skill classes | Gini coefficient = 0.3
+m1 <- CDM::din.equivalent.class( q.matrix=Q1, rule="DINA" )
+  ## 8 Skill classes | 5  distinguishable skill classes | Gini coefficient=0.3
 
 # second Q-matrix
 Q1 <- data.fraction2$q.matrix2
-m1 <- CDM::din.equivalent.class( q.matrix = Q1 , rule="DINA" )
-  ## 32 Skill classes | 9  distinguishable skill classes | Gini coefficient = 0.5
+m1 <- CDM::din.equivalent.class( q.matrix=Q1, rule="DINA" )
+  ## 32 Skill classes | 9  distinguishable skill classes | Gini coefficient=0.5
 
 # third Q-matrix
 Q1 <- data.fraction2$q.matrix3
-m1 <- CDM::din.equivalent.class( q.matrix = Q1 , rule="DINA" )
-  ## 8 Skill classes | 8  distinguishable skill classes | Gini coefficient = 0
+m1 <- CDM::din.equivalent.class( q.matrix=Q1, rule="DINA" )
+  ## 8 Skill classes | 8  distinguishable skill classes | Gini coefficient=0
 
 # original fraction subtraction data
 m1 <- CDM::din.equivalent.class( q.matrix=CDM::fraction.subtraction.qmatrix, rule="DINA")
-  ## 256 Skill classes | 58  distinguishable skill classes | Gini coefficient = 0.659
+  ## 256 Skill classes | 58  distinguishable skill classes | Gini coefficient=0.659
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

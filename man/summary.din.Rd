@@ -1,5 +1,5 @@
 %% File Name: summary.din.Rd
-%% File Version: 2.08
+%% File Version: 2.11
 
 \name{summary.din}
 
@@ -14,7 +14,7 @@
 }
 
 \usage{
-\method{summary}{din}(object, top.n.skill.classes = 6, overwrite = FALSE, \dots)
+\method{summary}{din}(object, top.n.skill.classes=6, overwrite=FALSE, \dots)
 }
 
 \arguments{
@@ -54,7 +54,7 @@
 
   \item{IDI}{A matrix giving the item discrimination
     index (IDI; Lee, de la Torre & Park, 2012) for each item \eqn{j}
-    \deqn{ IDI_j = 1 - s_j - g_j , }{ IDI_j = 1 - s_j - g_j , }
+    \deqn{ IDI_j=1 - s_j - g_j, }{ IDI_j=1 - s_j - g_j, }
     where a high IDI corresponds to favorable test items
     which have both low guessing and slipping rates. }
 
@@ -102,9 +102,9 @@ Press.
 ##
 
 ## Parameter estimation of DINA model
-# rule = "DINA" is default
-fractions.dina <- CDM::din(data = CDM::fraction.subtraction.data,
-           q.matrix = CDM::fraction.subtraction.qmatrix, rule = "DINA")
+# rule="DINA" is default
+fractions.dina <- CDM::din(data=CDM::fraction.subtraction.data,
+           q.matrix=CDM::fraction.subtraction.qmatrix, rule="DINA")
 
 ## corresponding summaries, including diagnostic accuracies,
 ## most frequent skill classes and information

@@ -1,5 +1,5 @@
 %% File Name: gdm.Rd
-%% File Version: 4.38
+%% File Version: 4.43
 
 \name{gdm}
 \alias{gdm}
@@ -20,21 +20,21 @@ responses.
 }
 \usage{
 gdm( data, theta.k, irtmodel="2PL", group=NULL, weights=rep(1, nrow(data)),
-    Qmatrix=NULL , thetaDes = NULL , skillspace="loglinear",
+    Qmatrix=NULL, thetaDes=NULL, skillspace="loglinear",
     b.constraint=NULL, a.constraint=NULL,
-    mean.constraint=NULL , Sigma.constraint=NULL , delta.designmatrix=NULL,
-    standardized.latent=FALSE , centered.latent=FALSE ,
-    centerintercepts=FALSE , centerslopes=FALSE ,
-    maxiter=1000,  conv=1e-5, globconv=1e-5, msteps=4 , convM=.0005 ,
-    decrease.increments = FALSE , use.freqpatt=FALSE , progress=TRUE ,
+    mean.constraint=NULL, Sigma.constraint=NULL, delta.designmatrix=NULL,
+    standardized.latent=FALSE, centered.latent=FALSE,
+    centerintercepts=FALSE, centerslopes=FALSE,
+    maxiter=1000,  conv=1e-5, globconv=1e-5, msteps=4, convM=.0005,
+    decrease.increments=FALSE, use.freqpatt=FALSE, progress=TRUE,
     PEM=FALSE, PEM_itermax=maxiter, ...)
 
-\method{summary}{gdm}(object, file = NULL , \dots)
+\method{summary}{gdm}(object, file=NULL, \dots)
 
 \method{print}{gdm}(x, \dots)
 
-\method{plot}{gdm}(x , perstype="EAP" , group=1 , barwidth=.1 , histcol=1 ,
-       cexcor=3 , pchpers=16 , cexpers=.7 , \dots )
+\method{plot}{gdm}(x, perstype="EAP", group=1, barwidth=.1, histcol=1,
+       cexcor=3, pchpers=16, cexpers=.7, \dots )
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -204,28 +204,28 @@ parameters in \code{plot.gdm}}
 Case \code{irtmodel="1PL"}: \cr
 Equal item slopes of 1 are assumed in this model. Therefore,
 it corresponds to a generalized multidimensional Rasch model.
-\deqn{logit P( X_{nj} = k | \theta_n ) = b_{j0} +
+\deqn{logit P( X_{nj}=k | \theta_n )=b_{j0} +
     \sum_d q_{jdk} \theta_{nd} }
 The Q-matrix entries \eqn{q_{jdk}} are pre-specified by the user.
 
 Case \code{irtmodel="2PL"}: \cr
 For each item and each dimension, different item slopes \eqn{a_{jd}}
 are estimated:
-\deqn{logit P( X_{nj} = k | \theta_n ) = b_{j0} +
+\deqn{logit P( X_{nj}=k | \theta_n )=b_{j0} +
     \sum_d a_{jd} q_{jdk} \theta_{nd} }
 Case \code{irtmodel="2PLcat"}: \cr
 For each item, each dimension and each category,
 different item slopes \eqn{a_{jdk}}
 are estimated:
-\deqn{logit P( X_{nj} = k | \theta_n ) = b_{j0} +
+\deqn{logit P( X_{nj}=k | \theta_n )=b_{j0} +
     \sum_d a_{jdk} q_{jdk} \theta_{nd} }
 
 Note that this model can be generalized to include terms of
 any transformation \eqn{t_h} of the \eqn{\theta_n} vector (e.g. quadratic terms,
 step functions or interaction) such that the model can be formulated as
-\deqn{logit P( X_{nj} = k | \theta_n ) = b_{j0} +
+\deqn{logit P( X_{nj}=k | \theta_n )=b_{j0} +
     \sum_h a_{jhk} q_{jhk} t_h( \theta_{n} ) }
-In general, the number of functions \eqn{t_1 , ... , t_H} will be
+In general, the number of functions \eqn{t_1, ..., t_H} will be
 larger than the \eqn{\theta} dimension of \eqn{D}.
 
 The estimation follows an EM algorithm as described in von Davier and
@@ -312,8 +312,8 @@ parameters in \code{plot.gdm}}
     methods will be ignored.  }
 }
 
-% \method{plot}{gdm}(x , perstype="EAP" , group=1 , barwidth=.1 , histcol=1 ,
-%       cexcor=3 , pchpers=16 , cexpers=.7 , \dots )
+% \method{plot}{gdm}(x, perstype="EAP", group=1, barwidth=.1, histcol=1,
+%       cexcor=3, pchpers=16, cexpers=.7, \dots )
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -379,11 +379,11 @@ and \pkg{sirt} package (function \code{rasch.mirtlc}).
 
 data(data.fraction1, package="CDM")
 dat <- data.fraction1$data
-theta.k <- seq( -6 , 6 , len=15 )   # discretized ability
+theta.k <- seq( -6, 6, len=15 )   # discretized ability
 
 #***
 # Model 1: Rasch model (normal distribution)
-mod1 <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k , skillspace="normal" ,
+mod1 <- CDM::gdm( dat, irtmodel="1PL", theta.k=theta.k, skillspace="normal",
                centered.latent=TRUE)
 summary(mod1)
 plot(mod1)
@@ -391,15 +391,15 @@ plot(mod1)
 #***
 # Model 2: Rasch model (log-linear smoothing)
 # set the item difficulty of the 8th item to zero
-b.constraint <- matrix( c(8,1,0) , 1 , 3 )
-mod2 <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k ,
-               skillspace="loglinear" , b.constraint=b.constraint  )
+b.constraint <- matrix( c(8,1,0), 1, 3 )
+mod2 <- CDM::gdm( dat, irtmodel="1PL", theta.k=theta.k,
+               skillspace="loglinear", b.constraint=b.constraint  )
 summary(mod2)
 
 #***
 # Model 3: 2PL model
-mod3 <- CDM::gdm( dat , irtmodel="2PL" , theta.k=theta.k ,
-               skillspace="normal" , standardized.latent=TRUE  )
+mod3 <- CDM::gdm( dat, irtmodel="2PL", theta.k=theta.k,
+               skillspace="normal", standardized.latent=TRUE  )
 summary(mod3)
 
 \dontrun{
@@ -407,31 +407,31 @@ summary(mod3)
 # Model 4: include quadratic term in item response function
 #   using the argument decrease.increments=TRUE leads to a more
 #   stable estimate
-thetaDes <- cbind( theta.k , theta.k^2 )
-colnames(thetaDes) <- c( "F1" , "F1q" )
-mod4 <- CDM::gdm( dat , irtmodel="2PL" , theta.k=theta.k ,
-          thetaDes = thetaDes , skillspace="normal" ,
-          standardized.latent=TRUE , decrease.increments=TRUE)
+thetaDes <- cbind( theta.k, theta.k^2 )
+colnames(thetaDes) <- c( "F1", "F1q" )
+mod4 <- CDM::gdm( dat, irtmodel="2PL", theta.k=theta.k,
+          thetaDes=thetaDes, skillspace="normal",
+          standardized.latent=TRUE, decrease.increments=TRUE)
 summary(mod4)
 
 #***
 # Model 5: step function for ICC
 #          two different probabilities theta < 0 and theta > 0
-thetaDes <- matrix( 1*(theta.k>0) , ncol=1 )
+thetaDes <- matrix( 1*(theta.k>0), ncol=1 )
 colnames(thetaDes) <- c( "Fgrm1" )
-mod5 <- CDM::gdm( dat , irtmodel="2PL" , theta.k=theta.k ,
-          thetaDes = thetaDes , skillspace="normal" )
+mod5 <- CDM::gdm( dat, irtmodel="2PL", theta.k=theta.k,
+          thetaDes=thetaDes, skillspace="normal" )
 summary(mod5)
 
 #***
 # Model 6: DINA model with din function
-mod6 <- CDM::din( dat , q.matrix = matrix( 1 , nrow=ncol(dat),ncol=1 ) )
+mod6 <- CDM::din( dat, q.matrix=matrix( 1, nrow=ncol(dat),ncol=1 ) )
 summary(mod6)
 
 #***
 # Model 7: Estimating a version of the DINA model with gdm
 theta.k <- c(-.5,.5)
-mod7 <- CDM::gdm( dat , irtmodel="2PL" , theta.k=theta.k , skillspace="loglinear" )
+mod7 <- CDM::gdm( dat, irtmodel="2PL", theta.k=theta.k, skillspace="loglinear" )
 summary(mod7)
 
 #############################################################################
@@ -442,73 +442,73 @@ summary(mod7)
 data(data.Students, package="CDM")
 dat <- data.Students
 
-dat <- dat[ , grep( "act" , colnames(dat) ) ]
-theta.k <- seq( -4 , 4 , len=11 )   # discretized ability
+dat <- dat[, grep( "act", colnames(dat) ) ]
+theta.k <- seq( -4, 4, len=11 )   # discretized ability
 
 #***
 # Model 1: Partial Credit Model (PCM)
-mod1 <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k , skillspace="normal" ,
+mod1 <- CDM::gdm( dat, irtmodel="1PL", theta.k=theta.k, skillspace="normal",
            centered.latent=TRUE)
 summary(mod1)
 plot(mod1)
 
 #***
 # Model 1b: PCM using frequency patterns
-mod1b <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k , skillspace="normal" ,
-           centered.latent=TRUE , use.freqpatt=TRUE)
+mod1b <- CDM::gdm( dat, irtmodel="1PL", theta.k=theta.k, skillspace="normal",
+           centered.latent=TRUE, use.freqpatt=TRUE)
 summary(mod1b)
 
 #***
 # Model 2: PCM with two groups
-mod2 <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k ,
-            group= CDM::data.Students$urban + 1 , skillspace="normal" ,
+mod2 <- CDM::gdm( dat, irtmodel="1PL", theta.k=theta.k,
+            group=CDM::data.Students$urban + 1, skillspace="normal",
             centered.latent=TRUE)
 summary(mod2)
 
 #***
 # Model 3: PCM with loglinear smoothing
-b.constraint <- matrix( c(1,2,0) , ncol=3 )
-mod3 <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k ,
-    skillspace="loglinear" , b.constraint=b.constraint )
+b.constraint <- matrix( c(1,2,0), ncol=3 )
+mod3 <- CDM::gdm( dat, irtmodel="1PL", theta.k=theta.k,
+    skillspace="loglinear", b.constraint=b.constraint )
 summary(mod3)
 
 #***
 # Model 4: Model with pre-specified item weights in Q-matrix
-Qmatrix <- array( 1 , dim=c(5,1,2) )
+Qmatrix <- array( 1, dim=c(5,1,2) )
 Qmatrix[,1,2] <- 2     # default is score 2 for category 2
 # now change the scoring of category 2:
 Qmatrix[c(2,4),1,1] <- .74
 Qmatrix[c(2,4),1,2] <- 2.3
 # for items 2 and 4 the score for category 1 is .74 and for category 2 it is 2.3
-mod4 <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k , Qmatrix=Qmatrix ,
-           skillspace="normal"  , centered.latent=TRUE)
+mod4 <- CDM::gdm( dat, irtmodel="1PL", theta.k=theta.k, Qmatrix=Qmatrix,
+           skillspace="normal", centered.latent=TRUE)
 summary(mod4)
 
 #***
 # Model 5: Generalized partial credit model
-mod5 <- CDM::gdm( dat , irtmodel="2PL" , theta.k=theta.k ,
-          skillspace="normal" , standardized.latent=TRUE )
+mod5 <- CDM::gdm( dat, irtmodel="2PL", theta.k=theta.k,
+          skillspace="normal", standardized.latent=TRUE )
 summary(mod5)
 
 #***
 # Model 6: Item-category slope estimation
-mod6 <- CDM::gdm( dat , irtmodel="2PLcat" , theta.k=theta.k ,  skillspace="normal" ,
-                 standardized.latent=TRUE , decrease.increments=TRUE)
+mod6 <- CDM::gdm( dat, irtmodel="2PLcat", theta.k=theta.k,  skillspace="normal",
+                 standardized.latent=TRUE, decrease.increments=TRUE)
 summary(mod6)
 
 #***
 # Models 7: items with different number of categories
 dat0 <- dat
-dat0[ paste(dat0[,1]) == 2 , 1 ] <- 1 # 1st item has only two categories
-dat0[ paste(dat0[,3]) == 2 , 3 ] <- 1 # 3rd item has only two categories
+dat0[ paste(dat0[,1])==2, 1 ] <- 1 # 1st item has only two categories
+dat0[ paste(dat0[,3])==2, 3 ] <- 1 # 3rd item has only two categories
 
 # Model 7a: PCM
-mod7a <- CDM::gdm( dat0 , irtmodel="1PL" , theta.k=theta.k ,  centered.latent=TRUE )
+mod7a <- CDM::gdm( dat0, irtmodel="1PL", theta.k=theta.k,  centered.latent=TRUE )
 summary(mod7a)
 
 # Model 7b: Item category slopes
-mod7b <- CDM::gdm( dat0 , irtmodel="2PLcat" , theta.k=theta.k ,
-                 standardized.latent=TRUE , decrease.increments=TRUE )
+mod7b <- CDM::gdm( dat0, irtmodel="2PLcat", theta.k=theta.k,
+                 standardized.latent=TRUE, decrease.increments=TRUE )
 summary(mod7b)
 
 #############################################################################
@@ -522,54 +522,54 @@ Qmatrix <- data.fraction2$q.matrix3
 
 #***
 # Model 1: One-dimensional Rasch model
-theta.k <- seq( -4 , 4 , len=11 )   # discretized ability
-mod1 <- CDM::gdm( dat , irtmodel = "1PL" , theta.k=theta.k ,  centered.latent=TRUE)
+theta.k <- seq( -4, 4, len=11 )   # discretized ability
+mod1 <- CDM::gdm( dat, irtmodel="1PL", theta.k=theta.k,  centered.latent=TRUE)
 summary(mod1)
 plot(mod1)
 
 #***
 # Model 2: One-dimensional 2PL model
-mod2 <- CDM::gdm( dat , irtmodel = "2PL" , theta.k=theta.k , standardized.latent=TRUE)
+mod2 <- CDM::gdm( dat, irtmodel="2PL", theta.k=theta.k, standardized.latent=TRUE)
 summary(mod2)
 plot(mod2)
 
 #***
 # Model 3: 3-dimensional Rasch Model (normal distribution)
-mod3 <- CDM::gdm( dat , irtmodel="1PL" , theta.k=theta.k, Qmatrix=Qmatrix,
-            centered.latent=TRUE,  globconv=5*1E-3 , conv=1E-4 )
+mod3 <- CDM::gdm( dat, irtmodel="1PL", theta.k=theta.k, Qmatrix=Qmatrix,
+            centered.latent=TRUE,  globconv=5*1E-3, conv=1E-4 )
 summary(mod3)
 
 #***
 # Model 4: 3-dimensional Rasch model (loglinear smoothing)
 # set some item parameters of items 4,1 and 2 to zero
-b.constraint <- cbind( c(4,1,2) , 1 , 0 )
-mod4 <- CDM::gdm( dat , irtmodel="1PL", theta.k=theta.k, Qmatrix=Qmatrix,
+b.constraint <- cbind( c(4,1,2), 1, 0 )
+mod4 <- CDM::gdm( dat, irtmodel="1PL", theta.k=theta.k, Qmatrix=Qmatrix,
               b.constraint=b.constraint, skillspace="loglinear" )
 summary(mod4)
 
 #***
 # Model 5: define a different theta grid for each dimension
-theta.k <- list( "Dim1"= seq( -5 , 5 , len=11 ) ,
-                 "Dim2"= seq(-5,5,len=8) ,
+theta.k <- list( "Dim1"=seq( -5, 5, len=11 ),
+                 "Dim2"=seq(-5,5,len=8),
                  "Dim3"=seq( -3,3,len=6) )
-mod5 <- CDM::gdm( dat , irtmodel="1PL", theta.k=theta.k, Qmatrix=Qmatrix,
+mod5 <- CDM::gdm( dat, irtmodel="1PL", theta.k=theta.k, Qmatrix=Qmatrix,
                  b.constraint=b.constraint,  skillspace="loglinear")
 summary(mod5)
 
 #***
 # Model 6: multdimensional 2PL model (normal distribution)
-theta.k <- seq( -5 , 5 , len=13 )
-a.constraint <- cbind( c(8,1,3) , 1:3 , 1 , 1 ) # fix some slopes to 1
-mod6 <- CDM::gdm( dat , irtmodel="2PL", theta.k=theta.k,  Qmatrix=Qmatrix,
+theta.k <- seq( -5, 5, len=13 )
+a.constraint <- cbind( c(8,1,3), 1:3, 1, 1 ) # fix some slopes to 1
+mod6 <- CDM::gdm( dat, irtmodel="2PL", theta.k=theta.k,  Qmatrix=Qmatrix,
             centered.latent=TRUE, a.constraint=a.constraint, decrease.increments=TRUE,
             skillspace="normal")
 summary(mod6)
 
 #***
 # Model 7: multdimensional 2PL model (loglinear distribution)
-a.constraint <- cbind( c(8,1,3) , 1:3 , 1 , 1 )
-b.constraint <- cbind( c(8,1,3) , 1 , 0 )
-mod7 <- CDM::gdm( dat , irtmodel="2PL", theta.k=theta.k,  Qmatrix=Qmatrix,
+a.constraint <- cbind( c(8,1,3), 1:3, 1, 1 )
+b.constraint <- cbind( c(8,1,3), 1, 0 )
+mod7 <- CDM::gdm( dat, irtmodel="2PL", theta.k=theta.k,  Qmatrix=Qmatrix,
                b.constraint=b.constraint,  a.constraint=a.constraint,
                decrease.increments=FALSE, skillspace="loglinear")
 summary(mod7)
@@ -582,16 +582,16 @@ summary(mod7)
 set.seed(754)
 I <- 20     # number of items
 N <- 2000   # number of persons
-theta <- c( -2 , 0 , 1 , 2 )
-theta <- rep( theta , c(N/4,N/4 , 3*N/8 , N/8)  )
+theta <- c( -2, 0, 1, 2 )
+theta <- rep( theta, c(N/4,N/4, 3*N/8, N/8)  )
 b <- seq(-2,2,len=I)
 library(sirt)   # use function sim.raschtype from sirt package
-dat <- sirt::sim.raschtype( theta=theta , b=b )
+dat <- sirt::sim.raschtype( theta=theta, b=b )
 
-theta.k <- seq(-1 , 1 , len=4)      # initial vector of theta
+theta.k <- seq(-1, 1, len=4)      # initial vector of theta
 # estimate model
-mod1 <- CDM::gdm( dat , theta.k = theta.k , skillspace="est" , irtmodel="1PL",
-            centerintercepts=TRUE , maxiter=200)
+mod1 <- CDM::gdm( dat, theta.k=theta.k, skillspace="est", irtmodel="1PL",
+            centerintercepts=TRUE, maxiter=200)
 summary(mod1)
   ##   Estimated Skill Distribution
   ##         F1    pi.k
@@ -613,29 +613,29 @@ I <- 13     # number of items
 N <- 2400   # number of persons
 
 # simulate Dimension 1 at 4 discrete theta points
-theta <- c( -2 , 0 , 1 , 2 )
-theta <- rep( theta , c(N/4,N/4 , 3*N/8 , N/8)  )
+theta <- c( -2, 0, 1, 2 )
+theta <- rep( theta, c(N/4,N/4, 3*N/8, N/8)  )
 b <- seq(-2,2,len=I)
 library(sirt)  # use simulation function from sirt package
-dat1 <- sirt::sim.raschtype( theta=theta , b=b )
+dat1 <- sirt::sim.raschtype( theta=theta, b=b )
 # simulate Dimension 2 at 4 discrete theta points
-theta <- c( -3 , 0 , 1.5 , 2 )
-theta <- rep( theta , c(N/4,N/4 , 3*N/8 , N/8)  )
-dat2 <- sirt::sim.raschtype( theta=theta , b=b )
-colnames(dat2) <- gsub( "I" , "U" , colnames(dat2))
-dat <- cbind( dat1 , dat2 )
+theta <- c( -3, 0, 1.5, 2 )
+theta <- rep( theta, c(N/4,N/4, 3*N/8, N/8)  )
+dat2 <- sirt::sim.raschtype( theta=theta, b=b )
+colnames(dat2) <- gsub( "I", "U", colnames(dat2))
+dat <- cbind( dat1, dat2 )
 
 # define Q-matrix
 Qmatrix <- matrix(0,2*I,2)
-Qmatrix[ cbind( 1:(2*I) , rep(1:2 , each=I) ) ] <- 1
+Qmatrix[ cbind( 1:(2*I), rep(1:2, each=I) ) ] <- 1
 
-theta.k <- seq(-1 , 1 , len=4)      # initial matrix
-theta.k <- cbind( theta.k , theta.k )
+theta.k <- seq(-1, 1, len=4)      # initial matrix
+theta.k <- cbind( theta.k, theta.k )
 colnames(theta.k) <- c("Dim1","Dim2")
 
 # estimate model
-mod2 <- CDM::gdm( dat , theta.k = theta.k , skillspace="est" , irtmodel="1PL",
-              Qmatrix=Qmatrix , centerintercepts=TRUE)
+mod2 <- CDM::gdm( dat, theta.k=theta.k, skillspace="est", irtmodel="1PL",
+              Qmatrix=Qmatrix, centerintercepts=TRUE)
 summary(mod2)
   ##   Estimated Skill Distribution
   ##     theta.k.Dim1 theta.k.Dim2    pi.k
@@ -649,13 +649,13 @@ summary(mod2)
 #############################################################################
 
 data(data.mg, package="CDM")
-dat <- data.mg[ , paste0("I" , 1:11 ) ]
+dat <- data.mg[, paste0("I", 1:11 ) ]
 theta.k <- seq(-6,6,len=21)
 
 #***
 # Model 1: Generalized partial credit model with multiple groups
-mod1 <- CDM::gdm( dat , irtmodel="2PL" , theta.k=theta.k, group=CDM::data.mg$group,
-              skillspace="normal" , standardized.latent=TRUE ,)
+mod1 <- CDM::gdm( dat, irtmodel="2PL", theta.k=theta.k, group=CDM::data.mg$group,
+              skillspace="normal", standardized.latent=TRUE,)
 summary(mod1)
 }
 }

@@ -1,5 +1,5 @@
 ## File Name: din.R
-## File Version: 2.513
+## File Version: 2.518
 
 
 
@@ -7,17 +7,17 @@
 # Main function for parameter estimation in cognitive diagnosis models         #
 ################################################################################
 
-din <- function( data, q.matrix, skillclasses = NULL, conv.crit = 0.001, dev.crit = 10^(-5), maxit = 500,
-                    constraint.guess = NULL, constraint.slip = NULL,
-                    guess.init = rep(.2, ncol(data) ), slip.init = guess.init,
-                    guess.equal = FALSE, slip.equal = FALSE ,
-                    zeroprob.skillclasses = NULL ,
-                    weights = rep( 1, nrow( data ) ),  rule = "DINA",
-                    wgt.overrelax = 0 ,
-                    wgtest.overrelax = FALSE ,
-                    param.history = FALSE ,
-                    seed = 0 ,
-                    progress = TRUE, guess.min=0, slip.min=0, guess.max=1, slip.max=1)
+din <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.001, dev.crit=10^(-5), maxit=500,
+                    constraint.guess=NULL, constraint.slip=NULL,
+                    guess.init=rep(.2, ncol(data) ), slip.init=guess.init,
+                    guess.equal=FALSE, slip.equal=FALSE,
+                    zeroprob.skillclasses=NULL,
+                    weights=rep( 1, nrow( data ) ),  rule="DINA",
+                    wgt.overrelax=0,
+                    wgtest.overrelax=FALSE,
+                    param.history=FALSE,
+                    seed=0,
+                    progress=TRUE, guess.min=0, slip.min=0, guess.max=1, slip.max=1)
 {
 
 # data: a required matrix of binary response data, whereas the items are in the columns
@@ -56,7 +56,7 @@ din <- function( data, q.matrix, skillclasses = NULL, conv.crit = 0.001, dev.cri
 # weights: an optional vector of weights for the response pattern. Noninteger weights allow for different
 #       sampling schemes.
 #
-# wgt.overrelax ... convergence weight (overrelaxed EM) => w = 0 standard EM
+# wgt.overrelax ... convergence weight (overrelaxed EM)=> w=0 standard EM
 
 # rule: an optional character string or vector of character strings specifying the model rule that is used.
 #       The character strings must be of "DINA" or "DINO". If a vector of character strings is specified,
@@ -103,9 +103,9 @@ z0 <- Sys.time()
 ################################################################################
 # model specification: DINA, DINO or itemwise specification of DINA or DINO    #
 ################################################################################
-    if ( length(rule) == 1){
-        if ( rule == "DINA" ){ r1 <- "DINA MODEL"  }
-        if ( rule == "DINO" ){ r1 <- "DINO MODEL" }
+    if ( length(rule)==1){
+        if ( rule=="DINA" ){ r1 <- "DINA MODEL"  }
+        if ( rule=="DINO" ){ r1 <- "DINO MODEL" }
             } else { r1 <- "Mixed DINA & DINO Model" }
 
 ################################################################################
@@ -141,7 +141,7 @@ z0 <- Sys.time()
 
     # missing data is coded by 9
     resp <- 1 - is.na(dat.items)
-    dat.items[ resp == 0 ] <- 9
+    dat.items[ resp==0 ] <- 9
 
     # standardize weights such that the sum of defined weights is equal to the number of rows in the data frame
     weights <- nrow(dat.items)*weights / sum(weights )
@@ -153,7 +153,7 @@ z0 <- Sys.time()
     # string with item response patterns
     item.patt.subj <- dat.items[,1]
     for (jj in 2:J){
-        item.patt.subj <- paste( item.patt.subj , dat.items[,jj], sep="")
+        item.patt.subj <- paste( item.patt.subj, dat.items[,jj], sep="")
     }
 
     # calculate frequency of each item response pattern
@@ -162,7 +162,7 @@ z0 <- Sys.time()
     # sort item response pattern according to their absolute frequencies
     six <- item.patt
     # define data frame 'item.patt' with item response pattern and its frequency (weight)
-    item.patt <- cbind( "pattern" = names(six), "freq" = as.numeric(as.vector( six ) ) )
+    item.patt <- cbind( "pattern"=names(six), "freq"=as.numeric(as.vector( six ) ) )
 
     # calculate weighted frequency for each item response pattern
     h1 <- rowsum( weights, item.patt.subj )
@@ -175,7 +175,7 @@ z0 <- Sys.time()
 
     attr.patt <- matrix( rep( 0, K*L), ncol=K)
     h1 <- 2
-    if ( K >= 2 ){
+    if ( K >=2 ){
         for(ll in 1:(K-1) ){
             lk <- utils::combn( 1:K, ll )
             for ( jj in 1:( ncol(lk) ) ){
@@ -191,7 +191,7 @@ z0 <- Sys.time()
             }
 
     # combine all attributes in an attribute pattern as a string
-    attr.patt.c <- apply( attr.patt, 1, FUN = function(ll){ paste(ll,collapse="" ) } )
+    attr.patt.c <- apply( attr.patt, 1, FUN=function(ll){ paste(ll,collapse="" ) } )
 
     ################################################################################
     # uniform prior distribution of all latent class patterns                      #
@@ -208,14 +208,14 @@ z0 <- Sys.time()
 ################################################################################
 
     # split item response pattern in a data frame with items as columns
-    spl <- sapply( as.vector(item.patt[,1]), FUN = function(ii){ strsplit( ii, split = NULL) } )
+    spl <- sapply( as.vector(item.patt[,1]), FUN=function(ii){ strsplit( ii, split=NULL) } )
     item.patt.split <- matrix( rep( 0, length(spl) * J ), ncol=J )
     for (ll in 1:length(spl) ){
         item.patt.split[ ll, ] <- as.numeric( spl[[ll]] )
         }
 
     # response pattern matrix: each observed entry corresponds to a 1, each unobserved entry to a 0
-    resp.patt <- 1* ( item.patt.split != 9 )
+    resp.patt <- 1* ( item.patt.split !=9 )
 
     # number of item response patterns
     IP <- nrow(item.patt.split)
@@ -234,20 +234,20 @@ z0 <- Sys.time()
 
     # calculate for each item how many attributes are necessary for solving the items
     # according to the specified DINA or DINO rule
-    comp <- ( rowSums(q.matrix)  )*( rule=="DINA")   + 1* ( rule == "DINO" )
+    comp <- ( rowSums(q.matrix)  )*( rule=="DINA")   + 1* ( rule=="DINO" )
     # need number of components for I.lj ...
     compL <- cdm_matrix1( comp, ncol=L)
 
     attrpatt.qmatr <- tcrossprod( q.matrix, attr.patt )
 
     # compute latent response
-    latresp <- apply( attr.patt, 1, FUN = function(attr.patt.ll){
+    latresp <- apply( attr.patt, 1, FUN=function(attr.patt.ll){
         attr.patt.ll <- cdm_matrix2( attr.patt.ll, nrow=J)
-        ind <- 1*(rowSums(q.matrix * attr.patt.ll)  >= comp )
+        ind <- 1*(rowSums(q.matrix * attr.patt.ll)  >=comp )
         return(ind)
     } )
 
-    latresp1 <- latresp == 1
+    latresp1 <- latresp==1
 
     # response patterns
     cmresp <- colMeans( resp.patt )
@@ -257,14 +257,14 @@ z0 <- Sys.time()
     # this matrix is needed for computing R.lj
     ipr <- item.patt.split*item.patt.freq*resp.patt
     ipfr <- item.patt.freq*resp.patt
-    item_patt_split1 <- item.patt.split == 1
-    resp_patt_bool <- resp.patt == 1
+    item_patt_split1 <- item.patt.split==1
+    resp_patt_bool <- resp.patt==1
 
 
     # response indicator list
     resp.ind.list <- list( 1:J )
     for (i in 1:J){
-        resp.ind.list[[i]] <- which( resp.patt[,i] == 1)
+        resp.ind.list[[i]] <- which( resp.patt[,i]==1)
     }
     # parameter history
     if ( param.history ){
@@ -279,7 +279,7 @@ z0 <- Sys.time()
     # BEGIN OF THE ITERATION LOOP                                                  #
     ################################################################################
 
-    while ( iter <= maxit &
+    while ( iter <=maxit &
             ( ( max.par.change > conv.crit ) | ( dev.change > dev.crit ) )
                                 ){
 
@@ -299,7 +299,7 @@ z0 <- Sys.time()
 
         #-- set likelihood for skill classes with zero probability to zero
         if ( ! is.null(zeroprob.skillclasses) ){
-            p.xi.aj[ , zeroprob.skillclasses ] <- 0
+            p.xi.aj[, zeroprob.skillclasses ] <- 0
         }
 
         ################################################################################
@@ -313,7 +313,7 @@ z0 <- Sys.time()
         attr.prob0 <- attr.prob
 
         if ( ! is.null( zeroprob.skillclasses ) ){
-            p.aj.xi[ , zeroprob.skillclasses ] <- 0
+            p.aj.xi[, zeroprob.skillclasses ] <- 0
         }
         p.aj.xi <- p.aj.xi / rowSums( p.aj.xi )
         #-- calculate marginal probability P(\alpha_l) for attribute alpha_l
@@ -325,7 +325,7 @@ z0 <- Sys.time()
         # for a derivation see De La Torre (2008, Journal of Educational and           #
         # Behavioral Statistics)                                                       #
         # I_{lj} ... expected frequency of persons in attribute class l for item j     #
-        #               (in case of no missing data I_{lj} = I_l for all items j       #
+        #               (in case of no missing data I_{lj}=I_l for all items j       #
         # R_{lj} ... expected frequency of persons in attribute class l for item j     #
         #               which correctly solve item j                                   #
         ################################################################################
@@ -350,7 +350,7 @@ z0 <- Sys.time()
         #                      solve the item                                          #
         ################################################################################
 
-        ness <- attrpatt.qmatr  >= compL
+        ness <- attrpatt.qmatr  >=compL
         ness0 <- ! ness
         I.j0 <- rowSums( ness0 * I.lj )
         I.j1 <- rowSums( ness * I.lj )
@@ -365,8 +365,8 @@ z0 <- Sys.time()
         ################################################################################
 
         pseudo_count <- .05
-        I.j0[ I.j0 == 0] <- pseudo_count
-        I.j1[ I.j1 == 0] <- pseudo_count
+        I.j0[ I.j0==0] <- pseudo_count
+        I.j1[ I.j1==0] <- pseudo_count
         guess.new <- R.j0 / I.j0
         slip.new <- ( I.j1 - R.j1 ) / I.j1
         # equal guessing and slipping parameter
@@ -386,8 +386,8 @@ z0 <- Sys.time()
                 l3 <- c( guess.old, slip.old )
                 lambda <- sum( abs( l1 - l2 ) ) / sum( abs( l3 - l2 ) )
                 wgt.overrelax <- lambda / ( 2 - lambda )
-                wgt.overrelax[ wgt.overrelax <= 0 ] <- eps1
-                wgt.overrelax[ wgt.overrelax >= .98 ] <- .98
+                wgt.overrelax[ wgt.overrelax <=0 ] <- eps1
+                wgt.overrelax[ wgt.overrelax >=.98 ] <- .98
             }
             guess.new <- guess.new + wgt.overrelax * ( guess.new - guess )
             slip.new <- slip.new + wgt.overrelax * ( slip.new - slip )
@@ -431,7 +431,7 @@ z0 <- Sys.time()
         dev.change <- abs( likediff / loglike )
 
         # maximum parameter change
-        max.par.change <- max( abs( guess.new - guess ), abs( slip.new - slip ) ,
+        max.par.change <- max( abs( guess.new - guess ), abs( slip.new - slip ),
                     abs( attr.prob - attr.prob0 ) )
 
         # define estimates which are updated in this iteration
@@ -439,14 +439,14 @@ z0 <- Sys.time()
         slip <- slip.new
         if (progress) {
             cat( "Iter. ",iter, " :",
-                substring( paste(Sys.time()), first=11 ), ", ", " loglike = ",
+                substring( paste(Sys.time()), first=11 ), ", ", " loglike=",
                 round( like.new, 7),
-                " / max. param. ch. : ", round( max.par.change, 6) ,
+                " / max. param. ch. : ", round( max.par.change, 6),
                 " / relative deviance change : ", round( dev.change, 6)
                 )
 
             if( wgt.overrelax > 0){
-                cat(" / overrelax. parameter =", round( wgt.overrelax, 4 ))
+                cat(" / overrelax. parameter=", round( wgt.overrelax, 4 ))
             }
             cat("\n", sep="")
             utils::flush.console() # Output is flushing on the console
@@ -467,14 +467,14 @@ z0 <- Sys.time()
 
     # set likelihood for skill classes with zero probability to zero
     if ( ! is.null(zeroprob.skillclasses) ){
-        p.xi.aj[ , zeroprob.skillclasses ] <- 0
+        p.xi.aj[, zeroprob.skillclasses ] <- 0
     }
     # calculate posterior probability for each attribute pattern
-    pattern <- data.frame( freq = round(as.numeric(item.patt[,-1]),3),
-                    mle.est = attr.patt.c[ max.col( p.xi.aj ) ],
-                    mle.post = rowMaxs( p.xi.aj ) / rowSums( p.xi.aj ),
-                    map.est = attr.patt.c[ max.col( p.aj.xi ) ],
-                    map.post = rowMaxs( p.aj.xi )
+    pattern <- data.frame( freq=round(as.numeric(item.patt[,-1]),3),
+                    mle.est=attr.patt.c[ max.col( p.xi.aj ) ],
+                    mle.post=rowMaxs( p.xi.aj ) / rowSums( p.xi.aj ),
+                    map.est=attr.patt.c[ max.col( p.aj.xi ) ],
+                    map.post=rowMaxs( p.aj.xi )
                 )
 
     # calculate posterior probabilities for all skills separately
@@ -489,7 +489,7 @@ z0 <- Sys.time()
     #   taken into account. Use for example the bootstrap to do some inference.    #
     ################################################################################
 
-    se.guess <- sapply( 1:J, FUN = function(jj){
+    se.guess <- sapply( 1:J, FUN=function(jj){
                 indA0.jj <- rowSums( q.matrix[jj,] * attr.patt ) < comp[jj]
                 l1 <- rowSums( p.aj.xi * outer( resp.patt[,jj], rep(1,L) ) *
                         ( outer( item.patt.split[,jj ], rep(1,L) ) - guess[ jj ] ) * outer( rep(1,IP), indA0.jj )
@@ -501,11 +501,11 @@ z0 <- Sys.time()
 
     # constrained guessing parameter
     if ( ! is.null( constraint.guess )  ){  se.guess[ constraint.guess[,1] ] <- NA }
-    guess <- data.frame( est = guess, se = se.guess )
+    guess <- data.frame( est=guess, se=se.guess )
 
     # slipping parameter (DINA and DINO)
-    se.slip <- sapply( 1:J, FUN = function(jj){
-                indA0.jj <- rowSums( q.matrix[jj,] * attr.patt ) >= comp[jj]
+    se.slip <- sapply( 1:J, FUN=function(jj){
+                indA0.jj <- rowSums( q.matrix[jj,] * attr.patt ) >=comp[jj]
                 l1 <- rowSums( p.aj.xi * outer( resp.patt[,jj], rep(1,L) ) *
                         ( outer( item.patt.split[,jj ], rep(1,L) ) - 1 + slip[ jj ] ) * outer( rep(1,IP), indA0.jj )
                                     )
@@ -517,7 +517,7 @@ z0 <- Sys.time()
 
     # constrained slipping parameter
     if ( ! is.null( constraint.slip ) ){  se.slip[ constraint.slip[,1] ] <- NA }
-    slip <- data.frame( est = slip, se = se.slip )
+    slip <- data.frame( est=slip, se=se.slip )
 
     # attribute pattern
     attr.prob <- matrix( attr.prob, ncol=1)
@@ -537,7 +537,7 @@ z0 <- Sys.time()
     if( guess.equal){ bb <- bb + J - 1 }
     if( slip.equal){ bb <- bb + J - 1 }
     # collect number of parameters
-    pars <- data.frame( "itempars" = 2*J - bb )
+    pars <- data.frame( "itempars"=2*J - bb )
     # number of skill classes
     pars$skillpars <- L - 1 - length(  zeroprob.skillclasses )
     Np <- pars$itempars + pars$skillpars
@@ -551,9 +551,9 @@ z0 <- Sys.time()
 
     # subject pattern
     # changed item.patt.subj$pattern.index (ARb 2012-06-05)
-    item.patt.subj <- data.frame( "case" = 1:(nrow(data) ),
-                                   "pattern" = item.patt.subj,
-                                    "pattern.index" = match( item.patt.subj, item.patt[,1] )
+    item.patt.subj <- data.frame( "case"=1:(nrow(data) ),
+                                   "pattern"=item.patt.subj,
+                                    "pattern.index"=match( item.patt.subj, item.patt[,1] )
                                             )
 
     # attribute pattern (expected frequencies)
@@ -577,8 +577,8 @@ z0 <- Sys.time()
     # item fit [ items, theta, categories ]
     # # n.ik [ 1:TP, 1:I, 1:(K+1), 1:G ]
     n.ik <- array( 0, dim=c(L, J, 2, 1 ) )
-    n.ik[ , , 2, 1 ] <- t(R.lj)
-    n.ik[ , , 1, 1 ] <- t(I.lj-R.lj)
+    n.ik[,, 2, 1 ] <- t(R.lj)
+    n.ik[,, 1, 1 ] <- t(I.lj-R.lj)
     pi.k <- array( 0, dim=c(L,1) )
     pi.k[,1] <- attr.prob$class.prob
     probs <- aperm( pjM, c(3,1,2) )
@@ -589,18 +589,18 @@ z0 <- Sys.time()
     datfr <-  data.frame( round( cbind( guess, slip  ), 3 ) )
     colnames(datfr) <- c("guess", "se.guess", "slip", "se.slip" )
     rownames(datfr) <- colnames( dat.items )
-    datfr <- data.frame( "type" = rule, datfr )
+    datfr <- data.frame( "type"=rule, datfr )
     datfr$rmsea <- itemfit.rmsea
     names(itemfit.rmsea) <- colnames(data)
     s2 <- Sys.time()
 
     #******
     # parameter table for din object
-    res.partable <- din.partable( guess, slip, attribute.patt = attr.prob, data=data ,
-                    rule= paste0(datfr$type) ,
-                    guess.equal, slip.equal, constraint.guess, constraint.slip ,
-                    zeroprob.skillclasses ,
-                    attribute.patt.splitted = attr.patt  )
+    res.partable <- din.partable( guess, slip, attribute.patt=attr.prob, data=data,
+                    rule=paste0(datfr$type),
+                    guess.equal, slip.equal, constraint.guess, constraint.slip,
+                    zeroprob.skillclasses,
+                    attribute.patt.splitted=attr.patt  )
 
     partable <- res.partable$partable
     vcov.derived <- res.partable$vcov.derived
@@ -612,45 +612,45 @@ z0 <- Sys.time()
     p11 <- p1$value
     names(p11) <- p1$parnames
 
-    res <- list( coef=p11 ,
-                item = datfr, guess = guess, slip = slip  ,
-                "IDI" = round(1 - guess[,1] - slip[,1] ,4)  ,
-                "itemfit.rmsea" = itemfit.rmsea ,
-                "mean.rmsea" = mean(itemfit.rmsea) ,
-                loglike = loglike, AIC = aic, BIC = bic,
-                "Npars" = pars ,
-                 posterior = p.aj.xi, "like" = p.xi.aj,
-                 "data" = data, "q.matrix" = q.matrix,
-                 pattern = pattern, attribute.patt = attr.prob, skill.patt = skill.patt,
-                 "subj.pattern" = item.patt.subj, "attribute.patt.splitted" = attr.patt,
-                 "display" = disp, "item.patt.split" = item.patt.split,
-                 "item.patt.freq" = item.patt.freq, "model.type" = r1 ,
-                 "rule" = rule, "zeroprob.skillclasses" = zeroprob.skillclasses ,
-                 "weights" = weights, "pjk" = pjM, "I" = I ,
-                 "I.lj"=I.lj, "R.lj" = R.lj, "partable" = partable ,
-                 "vcov.derived" = vcov.derived ,
-                 "seed" = seed ,
-                 "start.analysis" = s1, "end.analysis" = s2 ,
-                 "iter" = iter     ,
-                 "converged" = iter < maxit
+    res <- list( coef=p11,
+                item=datfr, guess=guess, slip=slip,
+                "IDI"=round(1 - guess[,1] - slip[,1],4),
+                "itemfit.rmsea"=itemfit.rmsea,
+                "mean.rmsea"=mean(itemfit.rmsea),
+                loglike=loglike, AIC=aic, BIC=bic,
+                "Npars"=pars,
+                 posterior=p.aj.xi, "like"=p.xi.aj,
+                 "data"=data, "q.matrix"=q.matrix,
+                 pattern=pattern, attribute.patt=attr.prob, skill.patt=skill.patt,
+                 "subj.pattern"=item.patt.subj, "attribute.patt.splitted"=attr.patt,
+                 "display"=disp, "item.patt.split"=item.patt.split,
+                 "item.patt.freq"=item.patt.freq, "model.type"=r1,
+                 "rule"=rule, "zeroprob.skillclasses"=zeroprob.skillclasses,
+                 "weights"=weights, "pjk"=pjM, "I"=I,
+                 "I.lj"=I.lj, "R.lj"=R.lj, "partable"=partable,
+                 "vcov.derived"=vcov.derived,
+                 "seed"=seed,
+                 "start.analysis"=s1, "end.analysis"=s2,
+                 "iter"=iter     ,
+                 "converged"=iter < maxit
                     )
     res$timediff <- s2 - s1
     if (progress){ print(s2-s1) }
     if (param.history){
-        param.history <- list( "likelihood.history" = likelihood.history ,
-                "slip.history" = slip.history ,
-                "guess.history" = guess.history )
+        param.history <- list( "likelihood.history"=likelihood.history,
+                "slip.history"=slip.history,
+                "guess.history"=guess.history )
         res$param.history <- param.history
                     }
     # control parameters
-    control <- list( q.matrix=q.matrix, skillclasses = skillclasses, conv.crit = conv.crit ,
-                    dev.crit = dev.crit, maxit = maxit ,
-                    constraint.guess = constraint.guess, constraint.slip = constraint.slip ,
-                    guess.init = guess.init, slip.init = slip.init ,
-                    guess.equal = guess.equal, slip.equal = slip.equal ,
-                    zeroprob.skillclasses = zeroprob.skillclasses ,
-                    weights = weights,  rule = rule ,
-                    wgt.overrelax = wgt.overrelax, wgtest.overrelax = wgtest.overrelax ,
+    control <- list( q.matrix=q.matrix, skillclasses=skillclasses, conv.crit=conv.crit,
+                    dev.crit=dev.crit, maxit=maxit,
+                    constraint.guess=constraint.guess, constraint.slip=constraint.slip,
+                    guess.init=guess.init, slip.init=slip.init,
+                    guess.equal=guess.equal, slip.equal=slip.equal,
+                    zeroprob.skillclasses=zeroprob.skillclasses,
+                    weights=weights,  rule=rule,
+                    wgt.overrelax=wgt.overrelax, wgtest.overrelax=wgtest.overrelax,
                     latresp=latresp, resp.ind.list=resp.ind.list
                         )
     res$control <- control

@@ -1,5 +1,5 @@
 %% File Name: sim.gdina.Rd
-%% File Version: 1.24
+%% File Version: 1.25
 
 \name{sim.gdina}
 \alias{sim.gdina}
@@ -96,6 +96,8 @@ For estimating the GDINA model see \code{\link{gdina}}.
 
 See the \code{\link[GDINA:simGDINA]{GDINA::simGDINA}} function in the
 \pkg{GDINA} package for similar functionality.
+
+See \code{\link{sim_model}} for a general simulation function.
 }
 \examples{
 #############################################################################

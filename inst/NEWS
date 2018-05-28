@@ -23,15 +23,25 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 6.3  |  2018-05-22  |  Last: CDM 6.3-29
+VERSIONS CDM 6.3  |  2018-05-28  |  Last: CDM 6.3-44
 --------------------------------------------------------------
 
 NOTE  * renamed thresholding penalty functions 
 NOTE  * deleted seed argument from cdm.est.class.accuracy()
         function
+ADDED * included general simulation function sim_model()
+ADDED * included function IRT.classify() for computing
+        individual classifications
+ADDED * included function eval_likelihood() for evaluating
+        likelihood (and posterior) and prep_data_long_format()
+        for saving item response matrix in long format
+NOTE  * included corrected statistics for classification
+        accuracy and consistency in cdm.est.class.accuracy()
+
 
 DATA  * included/modified datasets: ---
-EXAMP * included/modified examples: ---
+EXAMP * included/modified examples: sim_model (1),
+        IRT.classify (1), eval_likelihood (1)
 
 
 

@@ -1,5 +1,5 @@
 %% File Name: din.Rd
-%% File Version: 2.40
+%% File Version: 2.46
 
 \name{din}
 
@@ -20,16 +20,16 @@ and DINO''.
 }
 
 \usage{
-din(data, q.matrix, skillclasses = NULL ,
-      conv.crit = 0.001, dev.crit= 10^(-5) , maxit = 500,
-      constraint.guess = NULL, constraint.slip = NULL,
-      guess.init = rep(0.2, ncol(data)), slip.init = guess.init,
-      guess.equal = FALSE, slip.equal = FALSE, zeroprob.skillclasses = NULL,
-      weights = rep(1, nrow(data)), rule = "DINA",
-      wgt.overrelax = 0 , wgtest.overrelax = FALSE , param.history=FALSE ,
-      seed=0 , progress = TRUE, guess.min=0, slip.min=0, guess.max=1, slip.max=1)
+din(data, q.matrix, skillclasses=NULL,
+      conv.crit=0.001, dev.crit=10^(-5), maxit=500,
+      constraint.guess=NULL, constraint.slip=NULL,
+      guess.init=rep(0.2, ncol(data)), slip.init=guess.init,
+      guess.equal=FALSE, slip.equal=FALSE, zeroprob.skillclasses=NULL,
+      weights=rep(1, nrow(data)), rule="DINA",
+      wgt.overrelax=0, wgtest.overrelax=FALSE, param.history=FALSE,
+      seed=0, progress=TRUE, guess.min=0, slip.min=0, guess.max=1, slip.max=1)
 
-\method{print}{din}(x , \dots)
+\method{print}{din}(x, \dots)
 }
 
 
@@ -132,10 +132,10 @@ zero to random initial values with \code{set.seed(seed)}.}
   respondent's latent response \eqn{\eta_{nj}}{eta_{nj}}
   and the guessing and slipping rates \eqn{g_j} and \eqn{s_j} for item
   \eqn{j} conditional on the respondent's skill class \eqn{\alpha_n}{alpha_n}:
-   \deqn{ P(X_{nj} = 1 | \alpha_n) = g_j^{(1- \eta_{nj})}(1 - s_j) ^{\eta_{nj}}.  }
+   \deqn{ P(X_{nj}=1 | \alpha_n)=g_j^{(1- \eta_{nj})}(1 - s_j) ^{\eta_{nj}}.  }
   The respondent's latent response (class) \eqn{\eta_{nj}}{eta_{nj}} is a binary number,
-  0 or 1, indicating absence or presence of all (\code{rule = "DINO"})
-  or at least one (\code{rule = "DINO"}) required skill(s) for
+  0 or 1, indicating absence or presence of all (\code{rule="DINO"})
+  or at least one (\code{rule="DINO"}) required skill(s) for
   item \eqn{j}, respectively.
 
   DINA and DINO parameter estimation is performed by
@@ -162,7 +162,7 @@ zero to random initial values with \code{set.seed(seed)}.}
     and their standard errors for each item.  }
   \item{IDI}{A matrix giving the item discrimination
     index (IDI; Lee, de la Torre & Park, 2012) for each item \eqn{j}
-    \deqn{ IDI_j = 1 - s_j - g_j , }{ IDI_j = 1 - s_j - g_j , }
+    \deqn{ IDI_j=1 - s_j - g_j, }{ IDI_j=1 - s_j - g_j, }
     where a high IDI corresponds to good test items
     which have both low guessing and slipping rates.  Note that
     a negative IDI indicates violation of the monotonicity condition
@@ -290,23 +290,23 @@ fraction.subtraction.qmatrix
 ## leads to warnings and terminates estimation procedure. E.g.,
 
 # See Q-Matrix specification
-fractions.dina.warning1 <- CDM::din(data = fraction.subtraction.data,
-  q.matrix = t(fraction.subtraction.qmatrix))
+fractions.dina.warning1 <- CDM::din(data=fraction.subtraction.data,
+  q.matrix=t(fraction.subtraction.qmatrix))
 
 # See guess.init specification
-fractions.dina.warning2 <- CDM::din(data = fraction.subtraction.data,
-  q.matrix = fraction.subtraction.qmatrix, guess.init = rep(1.2,
+fractions.dina.warning2 <- CDM::din(data=fraction.subtraction.data,
+  q.matrix=fraction.subtraction.qmatrix, guess.init=rep(1.2,
   ncol(fraction.subtraction.data)))
 
 # See rule specification
-fractions.dina.warning3 <- CDM::din(data = fraction.subtraction.data,
-  q.matrix = fraction.subtraction.qmatrix, rule = c(rep("DINA",
+fractions.dina.warning3 <- CDM::din(data=fraction.subtraction.data,
+  q.matrix=fraction.subtraction.qmatrix, rule=c(rep("DINA",
   10), rep("DINO", 9)))
 
 ## Parameter estimation of DINA model
-# rule = "DINA" is default
-fractions.dina <- CDM::din(data = fraction.subtraction.data,
-  q.matrix = fraction.subtraction.qmatrix, rule = "DINA")
+# rule="DINA" is default
+fractions.dina <- CDM::din(data=fraction.subtraction.data,
+  q.matrix=fraction.subtraction.qmatrix, rule="DINA")
 attributes(fractions.dina)
 str(fractions.dina)
 
@@ -331,14 +331,14 @@ plot(fractions.dina)
 round(fractions.dina$guess[,1], 2)
 
 ## Estimate DINA model with different random initial parameters using seed=1345
-fractions.dina1 <- CDM::din(data = fraction.subtraction.data,
-  q.matrix = fraction.subtraction.qmatrix, rule = "DINA" , seed=1345)
+fractions.dina1 <- CDM::din(data=fraction.subtraction.data,
+  q.matrix=fraction.subtraction.qmatrix, rule="DINA", seed=1345)
 
 ## Fix the guessing parameters of items 5, 8 and 9 equal to .20
 # define a constraint.guess matrix
-constraint.guess <-  matrix(c(5,8,9, rep(0.2, 3)), ncol = 2)
-fractions.dina.fixed <- CDM::din(data = fraction.subtraction.data,
-  q.matrix = fraction.subtraction.qmatrix,
+constraint.guess <-  matrix(c(5,8,9, rep(0.2, 3)), ncol=2)
+fractions.dina.fixed <- CDM::din(data=fraction.subtraction.data,
+  q.matrix=fraction.subtraction.qmatrix,
   constraint.guess=constraint.guess)
 
 ## The second plot shows the expected (MAP) and observed skill
@@ -355,12 +355,12 @@ fractions.dina.fixed <- CDM::din(data = fraction.subtraction.data,
 ## not mastered (below .5-'uncertainty'). In this case, the
 ## 527th respondent was chosen; if no response pattern is
 ## specified, the plot will not be shown (of course)
-pattern <- paste(fraction.subtraction.data[527, ], collapse = "")
-plot(fractions.dina, pattern = pattern, display.nr = 4)
+pattern <- paste(fraction.subtraction.data[527, ], collapse="")
+plot(fractions.dina, pattern=pattern, display.nr=4)
 
-#uncertainty = 0.1, top.n.skill.classes = 6 are default
-plot(fractions.dina.fixed, uncertainty = 0.1, top.n.skill.classes = 6,
-  pattern = pattern)
+#uncertainty=0.1, top.n.skill.classes=6 are default
+plot(fractions.dina.fixed, uncertainty=0.1, top.n.skill.classes=6,
+  pattern=pattern)
 
 \dontrun{
 #############################################################################
@@ -368,14 +368,14 @@ plot(fractions.dina.fixed, uncertainty = 0.1, top.n.skill.classes = 6,
 #############################################################################
 
 # DINA Model
-d1 <- CDM::din(sim.dina, q.matr = sim.qmatrix, rule = "DINA",
-  conv.crit = 0.01, maxit = 500, progress = TRUE)
+d1 <- CDM::din(sim.dina, q.matr=sim.qmatrix, rule="DINA",
+  conv.crit=0.01, maxit=500, progress=TRUE)
 summary(d1)
 
 # DINA model with hierarchical skill classes (Hierarchical DINA model)
 # 1st step:  estimate an initial full model to look at the indexing
 #    of skill classes
-d0 <- CDM::din(sim.dina, q.matr = sim.qmatrix, maxit=1)
+d0 <- CDM::din(sim.dina, q.matr=sim.qmatrix, maxit=1)
 d0$attribute.patt.splitted
 #      [,1] [,2] [,3]
 # [1,]    0    0    0
@@ -394,25 +394,25 @@ d0$attribute.patt.splitted
 # d0$attribute.patt.splitted above)
 zeroprob.skillclasses <- c(2,3,5,6)     # classes 100, 010, 110, 101
 # estimate the hierarchical DINA model
-d1a <- CDM::din(sim.dina, q.matr = sim.qmatrix,
-          zeroprob.skillclasses =zeroprob.skillclasses )
+d1a <- CDM::din(sim.dina, q.matr=sim.qmatrix,
+          zeroprob.skillclasses=zeroprob.skillclasses )
 summary(d1a)
 
 # Mixed DINA and DINO Model
-d1b <- CDM::din(sim.dina, q.matr = sim.qmatrix, rule =
-          c(rep("DINA", 7), rep("DINO", 2)), conv.crit = 0.01,
-          maxit = 500, progress = FALSE)
+d1b <- CDM::din(sim.dina, q.matr=sim.qmatrix, rule=
+          c(rep("DINA", 7), rep("DINO", 2)), conv.crit=0.01,
+          maxit=500, progress=FALSE)
 summary(d1b)
 
 # DINO Model
-d2 <- CDM::din(sim.dina, q.matr = sim.qmatrix, rule = "DINO",
-  conv.crit = 0.01, maxit = 500, progress = FALSE)
+d2 <- CDM::din(sim.dina, q.matr=sim.qmatrix, rule="DINO",
+  conv.crit=0.01, maxit=500, progress=FALSE)
 summary(d2)
 
 # Comparison of DINA and DINO estimates
-lapply(list("guessing" = rbind("DINA" = d1$guess[,1],
-  "DINO" = d2$guess[,1]), "slipping" = rbind("DINA" =
-  d1$slip[,1], "DINO" = d2$slip[,1])), round, 2)
+lapply(list("guessing"=rbind("DINA"=d1$guess[,1],
+  "DINO"=d2$guess[,1]), "slipping"=rbind("DINA"=
+  d1$slip[,1], "DINO"=d2$slip[,1])), round, 2)
 
 # Comparison of the information criteria
 c("DINA"=d1$AIC, "MIXED"=d1b$AIC, "DINO"=d2$AIC)
@@ -429,13 +429,13 @@ d1$subj.pattern    # pattern per subject
 d1$posterior
 
 # Equal guessing parameters
-d2a <- CDM::din( data = sim.dina , q.matrix = sim.qmatrix ,
-            guess.equal = TRUE , slip.equal = FALSE )
+d2a <- CDM::din( data=sim.dina, q.matrix=sim.qmatrix,
+            guess.equal=TRUE, slip.equal=FALSE )
 d2a$coef
 
 # Equal guessing and slipping parameters
-d2b <- CDM::din( data = sim.dina , q.matrix = sim.qmatrix ,
-            guess.equal = TRUE , slip.equal = TRUE )
+d2b <- CDM::din( data=sim.dina, q.matrix=sim.qmatrix,
+            guess.equal=TRUE, slip.equal=TRUE )
 d2b$coef
 
 #############################################################################
@@ -443,21 +443,21 @@ d2b$coef
 #############################################################################
 
 # DINO Estimation
-d3 <- CDM::din(sim.dino, q.matr = sim.qmatrix, rule = "DINO",
-        conv.crit = 0.005, progress = FALSE)
+d3 <- CDM::din(sim.dino, q.matr=sim.qmatrix, rule="DINO",
+        conv.crit=0.005, progress=FALSE)
 
 # Mixed DINA and DINO Model
-d3b <- CDM::din(sim.dino, q.matr = sim.qmatrix,
-          rule = c(rep("DINA", 4), rep("DINO", 5)), conv.crit = 0.001,
-          progress = FALSE)
+d3b <- CDM::din(sim.dino, q.matr=sim.qmatrix,
+          rule=c(rep("DINA", 4), rep("DINO", 5)), conv.crit=0.001,
+          progress=FALSE)
 
 # DINA Estimation
-d4 <- CDM::din(sim.dino, q.matr = sim.qmatrix, rule = "DINA",
-  conv.crit = 0.005, progress = FALSE)
+d4 <- CDM::din(sim.dino, q.matr=sim.qmatrix, rule="DINA",
+  conv.crit=0.005, progress=FALSE)
 
 # Comparison of DINA and DINO estimates
-lapply(list("guessing" = rbind("DINO" = d3$guess[,1],  "DINA" = d4$guess[,1]),
-       "slipping" = rbind("DINO" =d3$slip[,1], "DINA" = d4$slip[,1])), round, 2)
+lapply(list("guessing"=rbind("DINO"=d3$guess[,1],  "DINA"=d4$guess[,1]),
+       "slipping"=rbind("DINO"=d3$slip[,1], "DINA"=d4$slip[,1])), round, 2)
 
 # Comparison of the information criteria
 c("DINO"=d3$AIC, "MIXED"=d3b$AIC, "DINA"=d4$AIC)
@@ -472,8 +472,8 @@ c("DINO"=d3$AIC, "MIXED"=d3b$AIC, "DINA"=d4$AIC)
 # i.e. first 200 persons have weight 2, the other have weight 1
 (weights <- c(rep(2, 200), rep(1, 200)))
 
-d5 <- CDM::din(sim.dina, sim.qmatrix, rule = "DINA", conv.crit =
-  0.005, weights = weights, progress = FALSE)
+d5 <- CDM::din(sim.dina, sim.qmatrix, rule="DINA", conv.crit=
+  0.005, weights=weights, progress=FALSE)
 
 # Comparison of the information criteria
 c("DINA"=d1$AIC, "WEIGHTS"=d5$AIC)
@@ -494,16 +494,16 @@ sim.dina.bib[1:100, 1:3] <- NA
 sim.dina.bib[101:300, 4:8] <- NA
 sim.dina.bib[301:400, c(1,2,9)] <- NA
 
-d6 <- CDM::din(sim.dina.bib, sim.qmatrix, rule = "DINA",
-         conv.crit = 0.0005, weights = weights, maxit=200)
+d6 <- CDM::din(sim.dina.bib, sim.qmatrix, rule="DINA",
+         conv.crit=0.0005, weights=weights, maxit=200)
 
-d7 <- CDM::din(sim.dina.bib, sim.qmatrix, rule = "DINO",
-         conv.crit = 0.005, weights = weights)
+d7 <- CDM::din(sim.dina.bib, sim.qmatrix, rule="DINO",
+         conv.crit=0.005, weights=weights)
 
 # Comparison of DINA and DINO estimates
-lapply(list("guessing" = rbind("DINA" = d6$guess[,1],
-  "DINO" = d7$guess[,1]), "slipping" = rbind("DINA" =
-  d6$slip[,1], "DINO" = d7$slip[,1])), round, 2)
+lapply(list("guessing"=rbind("DINA"=d6$guess[,1],
+  "DINO"=d7$guess[,1]), "slipping"=rbind("DINA"=
+  d6$slip[,1], "DINO"=d7$slip[,1])), round, 2)
 
 #############################################################################
 # EXAMPLE 6: DINA model with attribute hierarchy
@@ -522,8 +522,8 @@ alpha <- scan()
     1 1 1
     0 1 0
 
-alpha <- matrix( alpha , length(alpha)/K , K  , byrow=TRUE )
-alpha <- alpha[ c( rep(1:4,each=245) , rep(5,20) ),  ]
+alpha <- matrix( alpha, length(alpha)/K, K, byrow=TRUE )
+alpha <- alpha[ c( rep(1:4,each=245), rep(5,20) ),  ]
 
 # define Q-matrix
 q.matrix <- scan()
@@ -532,19 +532,19 @@ q.matrix <- scan()
     0 0 1   0 1 0   0 0 1
     1 1 0   1 0 1   0 1 1
 
-q.matrix <- matrix( q.matrix , nrow=length(q.matrix)/K , ncol=K , byrow=TRUE )
+q.matrix <- matrix( q.matrix, nrow=length(q.matrix)/K, ncol=K, byrow=TRUE )
 
 # simulate DINA data
-dat <- sim.din( alpha=alpha , q.matrix=q.matrix )$dat
+dat <- CDM::sim.din( alpha=alpha, q.matrix=q.matrix )$dat
 
 #*** Model 1: estimate DINA model | no skill space restriction
-mod1 <- CDM::din( dat , q.matrix )
+mod1 <- CDM::din( dat, q.matrix )
 
 #*** Model 2: DINA model | hierarchy A2 > A3
 B <- "A2 > A3"
 skill.names <- paste0("A",1:3)
-skillspace <- CDM::skillspace.hierarchy( B , skill.names )$skillspace.reduced
-mod2 <- CDM::din( dat , q.matrix , skillclasses = skillspace )
+skillspace <- CDM::skillspace.hierarchy( B, skill.names )$skillspace.reduced
+mod2 <- CDM::din( dat, q.matrix, skillclasses=skillspace )
 
 #*** Model 3: DINA model | linear hierarchy A1 > A2 > A3
 #   This is a misspecied model because due to P(010)=.02 the relation A1>A2
@@ -552,12 +552,12 @@ mod2 <- CDM::din( dat , q.matrix , skillclasses = skillspace )
 B <- "A1 > A2
       A2 > A3"
 skill.names <- paste0("A",1:3)
-skillspace <- CDM::skillspace.hierarchy( B , skill.names )$skillspace.reduced
-mod3 <- CDM::din( dat , q.matrix , skillclasses = skillspace )
+skillspace <- CDM::skillspace.hierarchy( B, skill.names )$skillspace.reduced
+mod3 <- CDM::din( dat, q.matrix, skillclasses=skillspace )
 
 #*** Model 4: 2PL model in gdm
-mod4 <- CDM::gdm( dat , theta.k=seq(-5,5,len=21) ,
-           decrease.increments= TRUE , skillspace="normal" )
+mod4 <- CDM::gdm( dat, theta.k=seq(-5,5,len=21),
+           decrease.increments=TRUE, skillspace="normal" )
 summary(mod4)
 
 anova(mod1,mod2)
@@ -584,23 +584,23 @@ summary( CDM::modelfit.cor.din( mod4 ) )
 #############################################################################
 
 library(pks)
-data(DoignonFalmagne7 , package="pks")
+data(DoignonFalmagne7, package="pks")
   ##  str(DoignonFalmagne7)
   ##    $ K  : int [1:9, 1:5] 0 1 0 1 1 1 1 1 1 0 ...
   ##     ..- attr(*, "dimnames")=List of 2
   ##     .. ..$ : chr [1:9] "00000" "10000" "01000" "11000" ...
   ##     .. ..$ : chr [1:5] "a" "b" "c" "d" ...
   ##    $ N.R: Named int [1:32] 80 92 89 3 2 1 89 16 18 10 ...
-  ##     ..- attr(*, "names")= chr [1:32] "00000" "10000" "01000" "00100" ...
+  ##     ..- attr(*, "names")=chr [1:32] "00000" "10000" "01000" "00100" ...
 
 # The idea is to fit the local independence model with the din function.
 # This can be accomplished by specifying a DINO model with
 # prespecified skill classes.
 
 # extract dataset
-dat <- as.numeric( unlist( sapply( names(DoignonFalmagne7$N.R)  ,
-    FUN = function( ll){ strsplit( ll , split="") } ) ) )
-dat <- matrix( dat , ncol=5 , byrow=TRUE )
+dat <- as.numeric( unlist( sapply( names(DoignonFalmagne7$N.R),
+    FUN=function( ll){ strsplit( ll, split="") } ) ) )
+dat <- matrix( dat, ncol=5, byrow=TRUE )
 colnames(dat) <- colnames(DoignonFalmagne7$K)
 rownames(dat) <- names(DoignonFalmagne7$N.R)
 
@@ -609,19 +609,19 @@ weights <- DoignonFalmagne7$N.R
 
 # define Q-matrix
 q.matrix <- t(DoignonFalmagne7$K)
-v1 <- colnames(q.matrix) <- paste0("S" , colnames(q.matrix))
-q.matrix <- q.matrix[ , - 1] # remove S00000
+v1 <- colnames(q.matrix) <- paste0("S", colnames(q.matrix))
+q.matrix <- q.matrix[, - 1] # remove S00000
 
 # define skill classes
 SC <- ncol(q.matrix)
-skillclasses <- matrix( 0 , nrow=SC+1 , ncol=SC)
+skillclasses <- matrix( 0, nrow=SC+1, ncol=SC)
 colnames(skillclasses) <- colnames(q.matrix)
 rownames(skillclasses) <- v1
-skillclasses[ cbind( 2:(SC+1) , 1:SC ) ] <- 1
+skillclasses[ cbind( 2:(SC+1), 1:SC ) ] <- 1
 
 # estimate BLIM with din function
-mod1 <- CDM::din(data= dat, q.matrix=q.matrix, skillclasses = skillclasses ,
-            rule="DINO" , weights=weights   )
+mod1 <- CDM::din(data=dat, q.matrix=q.matrix, skillclasses=skillclasses,
+            rule="DINO", weights=weights   )
 summary(mod1)
   ##   Item parameters
   ##     item guess  slip   IDI rmsea

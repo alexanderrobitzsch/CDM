@@ -1,8 +1,8 @@
 ## File Name: reglca.R
-## File Version: 0.806
+## File Version: 0.808
 
 reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad", regular_lam=0,
-                sd_noise_init = 1, item_probs_init=NULL, class_probs_init=NULL, random_starts=1,
+                sd_noise_init=1, item_probs_init=NULL, class_probs_init=NULL, random_starts=1,
                 random_iter=20,    conv=1E-5,     h=1E-4, mstep_iter=10, maxit=1000, verbose=TRUE )
 {
 
@@ -40,9 +40,9 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
     use_dpm <- FALSE
 
     #--- object random starts
-    control_random_starts <- list( random_starts=random_starts,    opt_fct = rep(NA, random_starts),
-                                item_probs = list(), class_probs = list(), random_iter=random_iter,
-                                random_start_temp = 1, use_random_starts=use_random_starts )
+    control_random_starts <- list( random_starts=random_starts,    opt_fct=rep(NA, random_starts),
+                                item_probs=list(), class_probs=list(), random_iter=random_iter,
+                                random_start_temp=1, use_random_starts=use_random_starts )
     if ( use_random_starts ){
         item_probs <- item_probs_random_starts[[1]]
         class_probs <- class_probs_random_starts[[1]]
@@ -119,7 +119,7 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
         #--- display progress
         res <- reglca_progress_em_algorithm( like.new=like.new, loglikeold=loglikeold,
                     max.par.change=max.par.change, iter=iter, progress=verbose, penalty=penalty,
-                    opt_fct=opt_fct, opt_fct_change=opt_fct_change, n_reg = n_reg,
+                    opt_fct=opt_fct, opt_fct_change=opt_fct_change, n_reg=n_reg,
                     control_random_starts=control_random_starts )
 
         utils::flush.console()
@@ -158,7 +158,7 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
         rownames(class_probs) <- colnames(item_probs)
         colnames(class_probs) <- paste0("Group_", groups_unique)
     }
-    item <- data.frame("item" = colnames(dat), "n_reg" = n_reg_item, item_probs )
+    item <- data.frame("item"=colnames(dat), "n_reg"=n_reg_item, item_probs )
 
     nd <- dim(n.ik)
     if (G==1){
@@ -176,13 +176,13 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
     deviance <- res$deviance
 
     #--- output
-    time <- list(s1=s1, s2 = Sys.time() )
+    time <- list(s1=s1, s2=Sys.time() )
     res <- list( item_probs=item_probs, class_probs=class_probs, p.aj.xi=p.aj.xi, p.xi.aj=p.xi.aj,
                     loglike=-deviance/2, deviance=deviance, AIC=AIC, BIC=BIC, CAIC=CAIC,
                     Npars=Npars, Nskillpar=Nskillpar, G=G, group=group, groups_unique=groups_unique,
                     N_groups=N_groups, n.ik=n.ik, Nipar=Nipar, n_reg=n_reg, n_reg_item=n_reg_item, item=item, pjk=pjM,
                     regular_type=regular_type, regular_lam=regular_lam, alpha=alpha,
-                    penalty= - penalty, opt_fct=opt_fct, dat0=dat0, dat=dat, dat.resp=dat_resp,
+                    penalty=- penalty, opt_fct=opt_fct, dat0=dat0, dat=dat, dat.resp=dat_resp,
                     weights=weights, N=N, W=W, I=I, nclasses=nclasses,
                     iter=iter, maxit=maxit, converged=converged,
                     time=time, call=CALL )

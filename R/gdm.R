@@ -1,5 +1,5 @@
 ## File Name: gdm.R
-## File Version: 8.643
+## File Version: 8.646
 
 
 ###########################################
@@ -23,7 +23,7 @@
 #
 # Model:
 # ------
-# P(X_{pi}=k) = g( b_ik + a_i1 q_i1k theta_i1 + ... + a_iD q_iD*k theta_iD )
+# P(X_{pi}=k)=g( b_ik + a_i1 q_i1k theta_i1 + ... + a_iD q_iD*k theta_iD )
 # b_ik ... item-category difficulty
 # a_id ... item slopes
 # q_ik ... design matrix for slopes
@@ -59,7 +59,7 @@
 #   set b_{ik} to infinity if for item i categeory k
 #   is not observed.
 # o Calculations of probabilities:
-#    P(X_pi=k|\theta) = exp( b_{ik} + a_i1 * q_{i1k} theta_1 +
+#    P(X_pi=k|\theta)=exp( b_{ik} + a_i1 * q_{i1k} theta_1 +
 #                            ... + a_{iD} * q_{i1D} theta_D ) / NN
 #    The normalization constraint NN must be calculated
 #   appropriately .
@@ -69,13 +69,13 @@
 #
 gdm <- function( data, theta.k, irtmodel="2PL", group=NULL,
             weights=rep(1, nrow(data)),
-            Qmatrix=NULL ,thetaDes = NULL, skillspace="loglinear",
+            Qmatrix=NULL,thetaDes=NULL, skillspace="loglinear",
             b.constraint=NULL, a.constraint=NULL,
-            mean.constraint=NULL, Sigma.constraint=NULL ,
-            delta.designmatrix=NULL, standardized.latent=FALSE ,
-            centered.latent=FALSE, centerintercepts=FALSE, centerslopes=FALSE ,
-            maxiter=1000, conv=1E-5, globconv=1E-5, msteps=4 ,
-            convM=.0005, decrease.increments = FALSE, use.freqpatt=FALSE ,
+            mean.constraint=NULL, Sigma.constraint=NULL,
+            delta.designmatrix=NULL, standardized.latent=FALSE,
+            centered.latent=FALSE, centerintercepts=FALSE, centerslopes=FALSE,
+            maxiter=1000, conv=1E-5, globconv=1E-5, msteps=4,
+            convM=.0005, decrease.increments=FALSE, use.freqpatt=FALSE,
             progress=TRUE, PEM=FALSE, PEM_itermax=maxiter, ...)
 {
     # mean.constraint [ dimension, group, value ]
@@ -145,7 +145,7 @@ gdm <- function( data, theta.k, irtmodel="2PL", group=NULL,
     # a[1:I,1:TD] ... Items x theta dimension
     # a <- matrix( 1, nrow=I, ncol=TD )
     # item x category slopes are in principle also possible
-    KK <- K    # if KK == 1 then a slope parameter for all items is estimated
+    KK <- K    # if KK==1 then a slope parameter for all items is estimated
     a <- array( 1, dim=c(I,TD,KK) )
     # define Q matrix
     res <- gdm_Qmatrix( Qmatrix=Qmatrix, irtmodel=irtmodel, I=I, TD=TD, K=K, a=a )
@@ -161,7 +161,7 @@ gdm <- function( data, theta.k, irtmodel="2PL", group=NULL,
 
     #--- starting values for distributions
     Sigma <- diag(1,D)
-    pik <- mvtnorm::dmvnorm( matrix( theta.k ,ncol=D), mean=rep(0,D), sigma = Sigma )
+    pik <- mvtnorm::dmvnorm( matrix( theta.k,ncol=D), mean=rep(0,D), sigma=Sigma )
     pi.k <- matrix( 0, nrow=TP, ncol=G )
     for (gg in 1:G){
         pi.k[,gg] <- cdm_sumnorm( pik )
@@ -237,7 +237,7 @@ gdm <- function( data, theta.k, irtmodel="2PL", group=NULL,
     dev <- 0
     iter <- 0
     globconv1 <- conv1 <- 1000
-    disp <- paste( paste( rep(".", 70 ), collapse="") ,"\n", sep="")
+    disp <- paste( paste( rep(".", 70 ), collapse=""),"\n", sep="")
 
     ############################################
     # BEGIN MML Algorithm
@@ -292,7 +292,7 @@ gdm <- function( data, theta.k, irtmodel="2PL", group=NULL,
 
         #*****
         #6 M step: a parameter estimation
-        if ( irtmodel == "2PL"){
+        if ( irtmodel=="2PL"){
             res <- gdm_est_a( probs=probs, n.ik=n.ik, N.ik=N.ik, I=I, K=K, G=G, a=a, a.constraint=a.constraint,
                         TD=TD, Qmatrix=Qmatrix, thetaDes=thetaDes, TP=TP, max.increment=max.increment.a, b=b,
                         msteps=msteps, convM=convM, centerslopes=centerslopes, decrease.increments=decrease.increments )
@@ -301,7 +301,7 @@ gdm <- function( data, theta.k, irtmodel="2PL", group=NULL,
             max.increment.a <- res$max.increment.a
         }
 
-        if ( irtmodel == "2PLcat"){
+        if ( irtmodel=="2PLcat"){
             res <- gdm_est_a_cat( probs=probs, n.ik=n.ik, N.ik=N.ik, I=I, K=K, G=G, a=a, a.constraint=a.constraint,
                         TD=TD, Qmatrix=Qmatrix, thetaDes=thetaDes, TP=TP, max.increment=max.increment.a, b=b, msteps=msteps,
                         convM=convM, decrease.increments=decrease.increments )
@@ -312,13 +312,13 @@ gdm <- function( data, theta.k, irtmodel="2PL", group=NULL,
 
         #*****
         #7 M step: estimate reduced skillspace
-        if ( skillspace == "loglinear" ){
+        if ( skillspace=="loglinear" ){
             res <- gdm_est_skillspace( Ngroup=Ngroup, pi.k=pi.k, Z=delta.designmatrix, G=G, delta=delta )
             pi.k <- res$pi.k
             delta <- res$delta
             covdelta <- res$covdelta
         }
-        if ( skillspace == "normal" ){
+        if ( skillspace=="normal" ){
             res <- gdm_est_normalskills( pi.k=pi.k, theta.k=theta.k, irtmodel=irtmodel, G=G, D=D,
                         mean.constraint=mean.constraint, Sigma.constraint=Sigma.constraint,
                         standardized.latent=standardized.latent, p.aj.xi=p.aj.xi, group=group, ind.group=ind.group,
@@ -329,7 +329,7 @@ gdm <- function( data, theta.k, irtmodel="2PL", group=NULL,
         }
 
         # estimate skillspace
-        if ( skillspace == "est" ){
+        if ( skillspace=="est" ){
             res <- gdm_est_skillspace_traits( n.ik=n.ik, a=a, b=b, theta.k=theta.k, Qmatrix=Qmatrix, I=I, K=K, TP=TP, TD=TD,
                         numdiff.parm=1E-3, max.increment=1, msteps=msteps, convM=convM )
             theta.k <- res$theta.k
@@ -414,7 +414,7 @@ gdm <- function( data, theta.k, irtmodel="2PL", group=NULL,
     # item fit [ items, theta, categories ]
     # # n.ik [ 1:TP, 1:I, 1:(K+1), 1:G ]
     probs <- aperm( probs, c(3,1,2) )
-    itemfit.rmsea <- itemfit.rmsea( n.ik, pi.k, probs, itemnames = colnames(data) )
+    itemfit.rmsea <- itemfit.rmsea( n.ik, pi.k, probs, itemnames=colnames(data) )
     item$itemfit.rmsea <- itemfit.rmsea$rmsea
     rownames(item) <- NULL
 
@@ -426,17 +426,17 @@ gdm <- function( data, theta.k, irtmodel="2PL", group=NULL,
     #*************************
     # collect output
     s2 <- Sys.time()
-    res <- list( item = item, person = person, EAP.rel = EAP.rel ,
-                deviance=dev, ic = ic, b = b, se.b = se.b ,
-                a = a,  se.a = se.a ,
-                itemfit.rmsea = itemfit.rmsea ,
-                mean.rmsea = mean(itemfit.rmsea$rmsea) ,
-                Qmatrix=Qmatrix, pi.k=pi.k ,
-                mean.trait=mean.trait, sd.trait = sd.trait ,
-                skewness.trait = skewness.trait, correlation.trait = correlation.trait ,
-                pjk = probs, n.ik = n.ik,  delta.designmatrix=delta.designmatrix,
-                G=G, D=D, I = ncol(data), N = nrow(data) ,
-                delta = delta, covdelta=covdelta, data = data ,
+    res <- list( item=item, person=person, EAP.rel=EAP.rel,
+                deviance=dev, ic=ic, b=b, se.b=se.b,
+                a=a,  se.a=se.a,
+                itemfit.rmsea=itemfit.rmsea,
+                mean.rmsea=mean(itemfit.rmsea$rmsea),
+                Qmatrix=Qmatrix, pi.k=pi.k,
+                mean.trait=mean.trait, sd.trait=sd.trait,
+                skewness.trait=skewness.trait, correlation.trait=correlation.trait,
+                pjk=probs, n.ik=n.ik,  delta.designmatrix=delta.designmatrix,
+                G=G, D=D, I=ncol(data), N=nrow(data),
+                delta=delta, covdelta=covdelta, data=data,
                 group.stat=group.stat )
     res$p.xi.aj <- p.xi.aj ; res$posterior <- p.aj.xi
     res$skill.levels <- skill.levels

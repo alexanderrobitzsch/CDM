@@ -1,5 +1,5 @@
 ## File Name: cdi.kli.R
-## File Version: 0.15
+## File Version: 0.17
 
 #######################################################
 # cognitive diagnostic indices
@@ -30,17 +30,17 @@ cdi.kli <- function( object )
     kli <- aperm( kli, c(3,1,2) )
 
     # arrange output
-    res <- list( test_disc = sum(res0$glob_item), attr_disc = colSums(res0$attr_item),
-                glob_item_disc = res0$glob_item, attr_item_disc = res0$attr_item,
-                KLI = kli, skillclasses = res0$skillclasses, hdist = res0$hdist, pjk = pjk0,
-                q.matrix = q.matrix )
+    res <- list( test_disc=sum(res0$glob_item), attr_disc=colSums(res0$attr_item),
+                glob_item_disc=res0$glob_item, attr_item_disc=res0$attr_item,
+                KLI=kli, skillclasses=res0$skillclasses, hdist=res0$hdist, pjk=pjk0,
+                q.matrix=q.matrix )
     # complete summary in a table
     dfr <- cbind( res0$glob_item, res0$attr_item )
     l1 <- c( sum(res0$glob_item), colSums( res0$attr_item ) )
     dfr <- rbind( l1, dfr )
     rownames(dfr) <- NULL
     colnames(dfr) <- c( "cdi_test", paste0( "cdi_skill", 1:( ncol(dfr) -1 ) ) )
-    dfr <- data.frame( "item" = c("test", items ), dfr )
+    dfr <- data.frame( "item"=c("test", items ), dfr )
     # names
     names(res$attr_disc) <- colnames(res$attr_item_disc) <- colnames(q.matrix)
     dimnames(res$KLI)[[1]] <- items

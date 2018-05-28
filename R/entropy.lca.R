@@ -1,5 +1,5 @@
 ## File Name: entropy.lca.R
-## File Version: 0.14
+## File Version: 0.18
 
 ####################################################
 # entropy for din, gdina and mcdina objects
@@ -9,7 +9,7 @@ entropy.lca <- function( object )
     data <- object$data
     weights <- object$control$weights
     pjk <- object$pjk
-    if ( class(object) == "mcdina" ){
+    if ( class(object)=="mcdina" ){
         weights <- object$weights
         data <- object$dat
         data <- data - 1
@@ -41,15 +41,15 @@ entropy.lca <- function( object )
     for (kk in 1:K){
         # kk <- 1
         Nkk <- maxskill[kk]
-        posterior.kk <- matrix(NA, nrow=N, ncol= Nkk+1 )
+        posterior.kk <- matrix(NA, nrow=N, ncol=Nkk+1 )
         for (vv in 0:Nkk){
-            posterior.kk[,vv+1] <- rowSums( posterior[ , skillspace[,kk] == vv ]  )
+            posterior.kk[,vv+1] <- rowSums( posterior[, skillspace[,kk]==vv ]  )
         }
         entropy.skill[kk] <- 1 +  sum( weights * posterior.kk * log( posterior.kk + eps) ) / N / log(Nkk+1)
     }
 
     #******** entropy for each item
-    entropyM <- matrix( NA, nrow= I+1, ncol= K +1 )
+    entropyM <- matrix( NA, nrow=I+1, ncol=K +1 )
     entropyM[1,] <- c( entropy.total, entropy.skill )
     for (ii in 1:I){
         weights.ii <- weights * data.resp[,ii]
@@ -62,17 +62,17 @@ entropy.lca <- function( object )
         for (kk in 1:K){
             # skill kk and item ii
             Nkk <- maxskill[kk]
-            posterior.kk <- matrix(NA, nrow=N, ncol= Nkk+1 )
+            posterior.kk <- matrix(NA, nrow=N, ncol=Nkk+1 )
             for (vv in 0:Nkk){
-                posterior.kk[,vv+1] <- rowSums( posterior.ii[ , skillspace[,kk] == vv ]  )
+                posterior.kk[,vv+1] <- rowSums( posterior.ii[, skillspace[,kk]==vv ]  )
             }
             entropyM[ii+1,kk+1] <- 1 +  sum( weights * posterior.kk * log( posterior.kk + eps) ) / N / log(Nkk+1)
         }
     }
 
-    res <- data.frame( "item" = c("test", colnames(data) ), entropyM )
-    colnames(res)[-1] <- c("entr_test" ,paste0("entr_skill", 1:K ) )
-    res2 <- list( "entropy" = res )
+    res <- data.frame( "item"=c("test", colnames(data) ), entropyM )
+    colnames(res)[-1] <- c("entr_test",paste0("entr_skill", 1:K ) )
+    res2 <- list( "entropy"=res )
     class(res2) <- "entropy.lca"
     return(res2)
 }

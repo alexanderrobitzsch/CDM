@@ -1,5 +1,5 @@
 ## File Name: gdina_calc_individual_likelihood.R
-## File Version: 0.05
+## File Version: 0.06
 
 gdina_calc_individual_likelihood <- function(IP, L, pjM, item.patt.split, J,
         resp.ind.list, zeroprob.skillclasses, ones_matrix=NULL)
@@ -11,7 +11,7 @@ gdina_calc_individual_likelihood <- function(IP, L, pjM, item.patt.split, J,
                     resp.ind.list=resp.ind.list, normalization=FALSE, thetasamp.density=NULL,
                     snodes=0 )$hwt
     if ( ! is.null(zeroprob.skillclasses) ){
-        p.xi.aj[ , zeroprob.skillclasses ] <- 0
+        p.xi.aj[, zeroprob.skillclasses ] <- 0
     }
     #--- OUTPUT
     return(p.xi.aj)

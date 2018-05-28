@@ -1,5 +1,5 @@
 %% File Name: data.ecpe.Rd
-%% File Version: 0.24
+%% File Version: 0.25
 
 \name{data.ecpe}
 \alias{data.ecpe}
@@ -46,13 +46,13 @@ The skills are
 
 }
 
-%\details{
-%%  ~~ If necessary, more details than the __description__ above ~~
-%}
-\source{
-The dataset is used in Templin and Hoffman (2013) and
+\details{
+The dataset has been used in Templin and Hoffman (2013), and
 Templin and Bradshaw (2014).
+}
 
+
+\source{
 The dataset was downloaded from
 \url{http://psych.unl.edu/jtemplin/teaching/dcm/dcm12ncme/}.
 }

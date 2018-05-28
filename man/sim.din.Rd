@@ -1,5 +1,5 @@
 %% File Name: sim.din.Rd
-%% File Version: 2.16
+%% File Version: 2.18
 
 \name{sim.din}
 \alias{sim.din}
@@ -84,6 +84,8 @@
   the main function for DINA and DINO parameter estimation,
   which creates objects of the class \code{din}.  See also
   \code{\link{CDM-package}} for general information about this package.
+
+  See \code{\link{sim_model}} for a general simulation function.
 }
 
 \examples{

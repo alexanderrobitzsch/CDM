@@ -1,47 +1,47 @@
 ## File Name: gdina.R
-## File Version: 9.261
+## File Version: 9.264
 
 
 ################################################################################
 # GDINA Model
 ################################################################################
 
-gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit = 0.0001,
-                    dev.crit = .1, maxit = 1000,
-                    linkfct = "identity", Mj = NULL ,
-                    group = NULL ,
-                    invariance = TRUE ,
-                    method = NULL ,
-                    delta.init = NULL ,
-                    delta.fixed = NULL ,
-                    delta.designmatrix = NULL ,
-                    delta.basispar.lower = NULL ,
-                    delta.basispar.upper = NULL ,
-                    delta.basispar.init = NULL ,
-                    zeroprob.skillclasses = NULL ,
-                    attr.prob.init = NULL ,
-                    reduced.skillspace=NULL ,
-                    reduced.skillspace.method=2 ,
-                    HOGDINA = -1 ,
-                    Z.skillspace = NULL ,
-                    weights = rep( 1, nrow( data ) ),  rule = "GDINA",
-                    bugs = NULL,
-                    regular_lam = 0, regular_type = "none",
-                    regular_alpha = NA, regular_tau=NA,
-                    mono.constr = FALSE,
-                    prior_intercepts = NULL, prior_slopes = NULL,
-                    progress = TRUE ,
-                    progress.item = FALSE ,
-                    mstep_iter = 10 ,
-                    mstep_conv = 1E-4 ,
-                    increment.factor = 1.01 ,
-                    fac.oldxsi = 0 ,
-                    max.increment = .3 ,
-                    avoid.zeroprobs = FALSE ,
-                    seed = 0 ,
-                    save.devmin=TRUE, calc.se = TRUE ,
-                    se_version = 1, PEM = TRUE, PEM_itermax = maxit ,
-                    cd = FALSE, cd_steps = 1, mono_maxiter = 10,
+gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
+                    dev.crit=.1, maxit=1000,
+                    linkfct="identity", Mj=NULL,
+                    group=NULL,
+                    invariance=TRUE,
+                    method=NULL,
+                    delta.init=NULL,
+                    delta.fixed=NULL,
+                    delta.designmatrix=NULL,
+                    delta.basispar.lower=NULL,
+                    delta.basispar.upper=NULL,
+                    delta.basispar.init=NULL,
+                    zeroprob.skillclasses=NULL,
+                    attr.prob.init=NULL,
+                    reduced.skillspace=NULL,
+                    reduced.skillspace.method=2,
+                    HOGDINA=-1,
+                    Z.skillspace=NULL,
+                    weights=rep( 1, nrow( data ) ),  rule="GDINA",
+                    bugs=NULL,
+                    regular_lam=0, regular_type="none",
+                    regular_alpha=NA, regular_tau=NA,
+                    mono.constr=FALSE,
+                    prior_intercepts=NULL, prior_slopes=NULL,
+                    progress=TRUE,
+                    progress.item=FALSE,
+                    mstep_iter=10,
+                    mstep_conv=1E-4,
+                    increment.factor=1.01,
+                    fac.oldxsi=0,
+                    max.increment=.3,
+                    avoid.zeroprobs=FALSE,
+                    seed=0,
+                    save.devmin=TRUE, calc.se=TRUE,
+                    se_version=1, PEM=TRUE, PEM_itermax=maxit,
+                    cd=FALSE, cd_steps=1, mono_maxiter=10,
                     freq_weights=FALSE,
                     ...
                         )
@@ -86,14 +86,14 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit = 0.0001,
         d1 <- packageDescription("CDM")
         cat( paste( d1$Package, " ", d1$Version, " (", d1$Date, ")", sep=""), "\n" )
     }
-    time1 <- list( "s1" = Sys.time() )
+    time1 <- list( "s1"=Sys.time() )
     cl <- match.call()
 
     #########################################################
     # treat sequential items
     #########################################################
 
-    res <- gdina_proc_sequential_items( data=data, q.matrix = q.matrix )
+    res <- gdina_proc_sequential_items( data=data, q.matrix=q.matrix )
     data <- res$data
     sequential <- res$sequential
     q.matrix <- res$q.matrix
@@ -155,7 +155,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit = 0.0001,
 
     #---- parameters for HOGDINA model
     tetrachoric <- NULL
-    if (HOGDINA >= 0){
+    if (HOGDINA >=0){
         res <- gdina_proc_hogdina_theta_distribution(G=G)
         theta.k <- res$theta.k
         reduced.skillspace <- res$reduced.skillspace
@@ -194,7 +194,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit = 0.0001,
 
     # recode missing data by 9
     resp <- 1 - is.na(dat.items)
-    dat.items[ resp == 0 ] <- 9
+    dat.items[ resp==0 ] <- 9
 
     #--- standardize weights such that the sum of defined weights is equal to the number of rows in the data frame
     weights <- gdina_standardize_weights( weights=weights )
@@ -273,7 +273,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit = 0.0001,
     #------ some compute inverse matrices for least squares estimation
     invM.list <- gdina_proc_uls_inverse_matrices(Mj=Mj, J=J)
 
-    if ( fac.oldxsi>= 1){
+    if ( fac.oldxsi>=1){
         fac.oldxsi <- 0
     }
     djj_old <- as.list( 1:J )
@@ -283,7 +283,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit = 0.0001,
     ################################################################################
 
     res <- gdina_proc_split_item_response_patterns( item.patt=item.patt, J=J,
-                    freq_weights = freq_weights, resp=resp, dat.items=dat.items)
+                    freq_weights=freq_weights, resp=resp, dat.items=dat.items)
     IP <- res$IP
     resp.patt <- res$resp.patt
     item.patt.split <- res$item.patt.split
@@ -304,7 +304,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit = 0.0001,
     # response indicator list
     resp.ind.list <- list( 1:J )
     for (i in 1:J){
-        resp.ind.list[[i]] <- which( resp.patt[,i] == 1)
+        resp.ind.list[[i]] <- which( resp.patt[,i]==1)
     }
 
     # this matrix ipr is needed for computing R.lj
@@ -397,7 +397,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit = 0.0001,
     # BEGIN OF THE ITERATION LOOP                                                  #
     ################################################################################
 
-    while ( ( iter <= maxit ) & ( ( max.par.change > conv.crit ) | ( devchange > dev.crit  ) ) )
+    while ( ( iter <=maxit ) & ( ( max.par.change > conv.crit ) | ( devchange > dev.crit  ) ) )
     {
 
         ################################################################################
@@ -431,7 +431,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit = 0.0001,
         # STEP II0: higher order GDINA model
         #######################################################################
 
-        if (HOGDINA >= 0){
+        if (HOGDINA >=0){
             res <- gdina_attribute_structure_hogdina( G=G, attr.prob=attr.prob, attr.patt=attr.patt,
                         wgt.theta=wgt.theta, HOGDINA=HOGDINA, a.attr=a.attr, b.attr=b.attr, theta.k=theta.k,
                         tetrachoric=tetrachoric )
@@ -458,7 +458,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit = 0.0001,
         # for a derivation see De La Torre (2008, Journal of Educational and           #
         # Behavioral Statistics)                                                       #
         # I_{lj} ... expected frequency of persons in attribute class l for item j     #
-        #               (in case of no missing data I_{lj} = I_l for all items j       #
+        #               (in case of no missing data I_{lj}=I_l for all items j       #
         # R_{lj} ... expected frequency of persons in attribute class l for item j     #
         #               which correctly solve item j                                   #
         ################################################################################
@@ -555,7 +555,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit = 0.0001,
                     max.par.change=max.par.change, iter=iter, progress=progress,
                     progress.item=progress.item, regularization=regularization, penalty=penalty,
                     opt_fct=opt_fct, opt_fct_change=opt_fct_change, ll_value=ll_value,
-                    regular_type = regular_type, logprior_value=logprior_value, use_prior=use_prior )
+                    regular_type=regular_type, logprior_value=logprior_value, use_prior=use_prior )
 
         utils::flush.console() # Output is flushing on the console
         iter <- iter + 1 # new iteration number
@@ -686,7 +686,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit = 0.0001,
     res <- list( coef=delta.summary, item=delta.summary, delta=delta, se.delta=se.delta,
                 probitem=probitem, itemfit.rmsea=itemfit.rmsea, mean.rmsea=mean(itemfit.rmsea),
                 loglike=loglike, deviance=-2*loglike, G=G, N=colSums( as.matrix(item.patt.freq) ),
-                AIC=aic, BIC=bic, CAIC=caic, Npars =Npars, Nipar=Nipar, Nskillpar=Nskillpar,
+                AIC=aic, BIC=bic, CAIC=caic, Npars=Npars, Nipar=Nipar, Nskillpar=Nskillpar,
                 Nskillclasses=L, varmat.delta=varmat.delta, varmat.palj=varmat.palj,
                 posterior=posterior, like=p.xi.aj, data=data, q.matrix=q.matrix,
                 pattern=pattern, attribute.patt=attr.prob, skill.patt=skill.patt,
@@ -697,14 +697,14 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit = 0.0001,
                 beta=beta, covbeta=covbeta, display=disp, item.patt.split=item.patt.split,
                 resp.ind.list=resp.ind.list, dat=item.patt.split,
                 item.patt.freq=item.patt.freq, model.type=r1, iter=iter, iterused=iterused, rrum.model=rrum.model,
-                rrum.params= rrum.params, group.stat=group.stat,  NAttr=maxAttr, invariance=invariance,
+                rrum.params=rrum.params, group.stat=group.stat,  NAttr=maxAttr, invariance=invariance,
                 HOGDINA=HOGDINA, mono.constr=mono.constr, regularization=regularization, regular_lam=regular_lam,
-                regular_alpha=regular_alpha, regular_tau=regular_tau ,
+                regular_alpha=regular_alpha, regular_tau=regular_tau,
                 numb_bound_mono=numb_bound_mono, item_bound_mono=item_bound_mono, numb_regular_pars=numb_regular_pars,
                 regular_type=regular_type, cd_algorithm=cd_algorithm, cd_steps=cd_steps,
-                prior_intercepts=prior_intercepts, prior_slopes=prior_slopes, use_prior = use_prior,
+                prior_intercepts=prior_intercepts, prior_slopes=prior_slopes, use_prior=use_prior,
                 logprior_value=logprior_value,
-                seed= seed, iter=iter, converged=iter < maxit, iter.min=iter.min,
+                seed=seed, iter=iter, converged=iter < maxit, iter.min=iter.min,
                 deviance.history=deviance.history, penalty=penalty, opt_fct=opt_fct )
 
     if (HOGDINA>=0) {

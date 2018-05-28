@@ -1,5 +1,5 @@
 ## File Name: gdina.wald.R
-## File Version: 0.26
+## File Version: 0.30
 ######################################################
 # Wald tests at item level
 gdina.wald <- function( object )
@@ -16,14 +16,14 @@ gdina.wald <- function( object )
     q.matrix <- object$q.matrix
     I <- nrow(q.matrix)
     dat <- object$dat
-    stats_vars <- c("_X2", "_df", "_p", "_sig",  "_RMSEA" ,
+    stats_vars <- c("_X2", "_df", "_p", "_sig",  "_RMSEA",
                         "_wgtdist", "_uwgtdist")
     SV <- length(stats_vars)
     # number of rules
     cdm_rules <- c("DINA", "DINO", "ACDM")
     SR <- length(cdm_rules)
 
-    stats <- matrix( NA, nrow= I , ncol=SV*SR)
+    stats <- matrix( NA, nrow=I, ncol=SV*SR)
     v1 <- NULL
     for (ss in 1:SR){
         v1 <- c( v1, paste0( cdm_rules[ss], stats_vars ) )
@@ -49,8 +49,8 @@ gdina.wald <- function( object )
         Mj.ii <- Mj[[ii]][[1]]
         suffstat_probs.ii <- suffstat_probs[[ii]]
         pjj <- suffstat_probs.ii
-        if ( link == "logit"){ pjj <- stats::qlogis(pjj) }
-        if ( link == "log"){ pjj <- log(pjj) }
+        if ( link=="logit"){ pjj <- stats::qlogis(pjj) }
+        if ( link=="log"){ pjj <- log(pjj) }
         aggr.attr.patt.ii <- aggr.attr.patt[[ii]]
         attr.prob.ii <- rowsum( attr.prob, aggr.attr.patt.ii )
         Aj.ii <- Aj[[ii]]
@@ -61,7 +61,7 @@ gdina.wald <- function( object )
             #--------------------------------
             # Tests for different rules
             for (rule in cdm_rules){
-                R <- contraint_matrix( delta.ii, rule= rule, Kii, Mj.ii )
+                R <- contraint_matrix( delta.ii, rule=rule, Kii, Mj.ii )
                 res <- WaldTest( delta.ii, var.delta.ii, R, nobs )
                 stats[ii,paste0(rule,"_X2")] <- res$X2
                 stats[ii,paste0(rule,"_df")] <- res$df
@@ -76,15 +76,15 @@ gdina.wald <- function( object )
         }  # end if Kii > 1
     }  # end item
 
-    stats <- data.frame( "item" = colnames(dat), "NAttr" = rowSums(q.matrix), stats )
+    stats <- data.frame( "item"=colnames(dat), "NAttr"=rowSums(q.matrix), stats )
 
     levels <- c(.01, .05 )
     labels <- c("**", "*")
     for (rule in cdm_rules){
-        stats[ ,paste0(rule,"_sig")] <-
+        stats[,paste0(rule,"_sig")] <-
             label_significance_level( stats[,paste0(rule,"_p")], levels, labels )
     }
-    res <- list("stats"=stats, "cdm_rules" = cdm_rules)
+    res <- list("stats"=stats, "cdm_rules"=cdm_rules)
     class(res) <- "gdina.wald"
     return(res)
     }

@@ -1,5 +1,5 @@
 ## File Name: numerical_Hessian.R
-## File Version: 0.27
+## File Version: 0.30
 
 ##############################################################################
 # numerical computation of the Hessian matrix
@@ -36,7 +36,7 @@ numerical_Hessian <- function(par, FUN, h=1E-5, gradient=FALSE,
     # d F / dx dy
     # dF/dx=g(x,y)=( F(x+h,y) - F(x,y) ) / h
     # (dF/dx)/dy=( g(x,y+h) - g(x,y) ) / h
-    #       =( F(x+h,y+h) - F(x,y+h) - F(x+h,y) + F(x,y+h) ) / h^2
+    #    =( F(x+h,y+h) - F(x,y+h) - F(x+h,y) + F(x,y+h) ) / h^2
 
     #---- hessian
     if ( hessian ){

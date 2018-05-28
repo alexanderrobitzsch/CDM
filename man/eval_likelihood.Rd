@@ -1,5 +1,5 @@
 %% File Name: eval_likelihood.Rd
-%% File Version: 0.13
+%% File Version: 0.14
 
 \name{eval_likelihood}
 \alias{eval_likelihood}
@@ -10,7 +10,7 @@
 Evaluation of Likelihood
 }
 \description{
-The function \code{eval_likelihood} evaluates the likelihood given item 
+The function \code{eval_likelihood} evaluates the likelihood given item
 responses and item response probabilities.
 
 The function \code{prep_data_long_format} stores the matrix of

@@ -22,8 +22,22 @@ R script and (if necessary) a corresponding dataset.
 
 
 
+
 --------------------------------------------------------------
-VERSIONS CDM 6.3  |  2018-05-28  |  Last: CDM 6.3-44
+VERSIONS CDM 6.4  |  2018-05-28  |  Last: CDM 6.4-1
+--------------------------------------------------------------
+
+NOTE  * xxx
+
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
+
+
+
+
+--------------------------------------------------------------
+VERSIONS CDM 6.3  |  2018-05-28  |  Last: CDM 6.3-45
 --------------------------------------------------------------
 
 NOTE  * renamed thresholding penalty functions 
@@ -38,12 +52,9 @@ ADDED * included function eval_likelihood() for evaluating
 NOTE  * included corrected statistics for classification
         accuracy and consistency in cdm.est.class.accuracy()
 
-
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: sim_model (1),
         IRT.classify (1), eval_likelihood (1)
-
-
 
 --------------------------------------------------------------
 VERSIONS CDM 6.2  |  2018-05-02  |  Last: CDM 6.2-91

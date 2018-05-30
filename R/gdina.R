@@ -1,5 +1,5 @@
 ## File Name: gdina.R
-## File Version: 9.264
+## File Version: 9.268
 
 
 ################################################################################
@@ -42,7 +42,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
                     save.devmin=TRUE, calc.se=TRUE,
                     se_version=1, PEM=TRUE, PEM_itermax=maxit,
                     cd=FALSE, cd_steps=1, mono_maxiter=10,
-                    freq_weights=FALSE,
+                    freq_weights=FALSE, use_optim=FALSE, 
                     ...
                         )
 {
@@ -128,12 +128,14 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
     res <- gdina_proc_check_admissible_rules(rule=rule)
 
     #---- RRUM model specifications
-    res <- gdina_proc_spec_rrum( rule=rule, method=method, linkfct=linkfct )
+    res <- gdina_proc_spec_rrum( rule=rule, method=method, linkfct=linkfct,
+                use_optim=use_optim)
     rrum.params <- res$rrum.params
     rrum.model <- res$rrum.model
     method <- res$method
     linkfct <- res$linkfct
     rule <- res$rule
+    use_optim <- res$use_optim
 
     ################################################################################
     # model specification: DINA, DINO or itemwise specification of DINA or DINO    #
@@ -358,7 +360,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
     # choose regularization, coordinate descent and monotonicity constraints
     res <- gdina_proc_regularization( regular_type=regular_type, cd=cd, mono.constr=mono.constr, linkfct=linkfct,
                     method=method, PEM=PEM, regular_alpha=regular_alpha, regular_tau=regular_tau,
-                    rule=rule)
+                    rule=rule, use_optim=use_optim)
     linkfct <- res$linkfct
     save.devmin <- res$save.devmin
     method <- res$method
@@ -368,6 +370,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
     regular_alpha <- res$regular_alpha
     regular_tau <- res$regular_tau
     regularization_types <- res$regularization_types
+    use_optim <- res$use_optim
 
     #--------- process prior distributions
     res <- gdina_proc_prior_distribution( prior_intercepts=prior_intercepts, prior_slopes=prior_slopes, method=method,
@@ -487,14 +490,14 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
                         mono.constr=mono.constr, Aj_mono_constraints=Aj_mono_constraints,
                         mono_maxiter=mono_maxiter, regular_alpha=regular_alpha, regular_tau=regular_tau,
                         regularization_types=regularization_types, prior_intercepts=prior_intercepts,
-                        prior_slopes=prior_slopes, use_prior=use_prior )
+                        prior_slopes=prior_slopes, use_prior=use_prior, use_optim=use_optim )
         delta.new <- res$delta.new
         suffstat_probs <- res$suffstat_probs
         mono_constraints_fitted <- res$mono_constraints_fitted
         penalty <- res$penalty
         ll_value <- res$ll_value
         logprior_value <- res$logprior_value
-
+        
         ##########################################################################
         # estimation with a design matrix for delta parameters
         ##########################################################################

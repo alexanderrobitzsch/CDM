@@ -1,15 +1,15 @@
 ## File Name: gdina_mstep_item_parameters.R
-## File Version: 0.43
+## File Version: 0.52
 
 gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.increment,
         increment.factor, J, Aj, Mj, delta, method, avoid.zeroprobs, invM.list, linkfct,
         rule, iter, fac.oldxsi, rrum.model, delta.fixed, devchange, mstep_iter, mstep_conv,
         Mj.index, suffstat_probs, regular_lam, regular_type, cd_steps,
         mono.constr, Aj_mono_constraints, mono_maxiter, regular_alpha, regular_tau,
-        regularization_types, prior_intercepts, prior_slopes, use_prior )
+        regularization_types, prior_intercepts, prior_slopes, use_prior,
+        use_optim=FALSE )
 {
     mono_constraints_fitted <- NULL
-
     # calculation of expected counts
     R.ljM <- R.lj %*% aggr.patt.designmatrix
     I.ljM <- I.lj %*% aggr.patt.designmatrix
@@ -19,8 +19,8 @@ gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.
 
     eps2 <- eps <- 1E-10
     max.increment <- max.increment / increment.factor
-
     delta.new <- NULL
+    
     #----- loop over items
     for (jj in 1:J){     # begin item
 
@@ -45,7 +45,7 @@ gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.
         rrum <- ( rule[jj]=="ACDM" )    & ( linkfct=="log")
         if ( method %in% c("ML") ){
             arglist$mstep_iter <- mstep_iter
-            arglist$mstep_conv <- mstep_conv
+            arglist$mstep_conv <- mstep_conv            
             if ( ! rrum ){
                 arglist$regular_lam <- regular_lam
                 arglist$regular_type <- regular_type
@@ -58,14 +58,16 @@ gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.
                 arglist$regularization_types <- regularization_types
                 arglist$prior_intercepts <- prior_intercepts
                 arglist$prior_slopes <- prior_slopes
-                arglist$use_prior <- use_prior
+                arglist$use_prior <- use_prior        
+                arglist$use_optim <- use_optim
                 #-- estimation step
                 res_jj <- do.call( what=gdina_mstep_item_ml, args=arglist )
                 penalty <- penalty + res_jj$penalty
                 ll_value <- ll_value + res_jj$ll_value
                 logprior_value <- logprior_value + res_jj$logprior_value
             }
-            if (  rrum ){
+            if ( rrum ){
+                arglist$use_optim <- use_optim
                 res_jj <- do.call( what=gdina_mstep_item_ml_rrum, args=arglist )
             }
         }

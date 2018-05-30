@@ -24,10 +24,15 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 6.4  |  2018-05-28  |  Last: CDM 6.4-1
+VERSIONS CDM 6.4  |  2018-05-30  |  Last: CDM 6.4-5
 --------------------------------------------------------------
 
-NOTE  * xxx
+NOTE  * included argument 'use_optim' in gdina() which allows
+        to use the stats::optim() function for optimization in
+        M-step (default is 'use_optim=FALSE'). 
+        'use_optim=TRUE' is always used for estimation
+        of the RRUM model. This change was motivated by an
+        application of Hamdollah Ravand.
 
 
 DATA  * included/modified datasets: ---

@@ -1,5 +1,5 @@
 ## File Name: gdina_mstep_item_ml.R
-## File Version: 0.861
+## File Version: 0.863
 
 #####################################################
 # GDINA M-step item parameters
@@ -7,7 +7,8 @@ gdina_mstep_item_ml <- function( pjjj, Ilj.ast, Rlj.ast, eps, avoid.zeroprobs,
         Mjjj, invM.list, linkfct, rule, method, iter, delta.new, max.increment, fac.oldxsi,
         jj, delta, rrum.model, delta.fixed, mstep_iter, mstep_conv, devchange,
         regular_type, regular_lam, cd_steps, mono.constr, Aj_mono_constraints_jj, mono_maxiter,
-        regular_alpha, regular_tau, regularization_types, prior_intercepts, prior_slopes, use_prior )
+        regular_alpha, regular_tau, regularization_types, prior_intercepts, prior_slopes, use_prior,
+        use_optim=FALSE )
 {
     eps2 <- eps
     delta_jj <- delta[[jj]]
@@ -20,7 +21,7 @@ gdina_mstep_item_ml <- function( pjjj, Ilj.ast, Rlj.ast, eps, avoid.zeroprobs,
 
     max_increment <- max.increment
 
-    eps_squeeze <- 1E-3
+    eps_squeeze <- 1E-6
 
     Rlj.ast <- Rlj.ast + .005
     Ilj.ast <- Ilj.ast + .05
@@ -65,12 +66,18 @@ gdina_mstep_item_ml <- function( pjjj, Ilj.ast, Rlj.ast, eps, avoid.zeroprobs,
                     return(ll)
                 }
     #------------------
-
     #--- algorithm without monotonicity constraints
+    if ( ! use_optim){
     delta_jj <- gdina_mstep_item_ml_algorithm( delta_jj=delta_jj, max_increment=max_increment, regular_lam=regular_lam,
                         regular_type=regular_type, regularization=regularization, ll_FUN=ll_FUN, h=h,
                         mstep_conv=mstep_conv, cd_steps=cd_steps, mstep_iter=mstep_iter,
                         regular_alpha=regular_alpha, regular_tau=regular_tau )
+    }                    
+    if (use_optim){
+        mod <- stats::optim(par=delta_jj, fn=ll_FUN, method="L-BFGS-B")
+        delta_jj <- mod$par
+    }                        
+                        
     ll_value <- ll_FUN(x=delta_jj)
 
     #--- algorithm with monotonicity constraints

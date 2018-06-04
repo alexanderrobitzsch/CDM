@@ -1,5 +1,5 @@
 ## File Name: gdina_mstep_item_ml_rrum.R
-## File Version: 0.521
+## File Version: 0.527
 
 #####################################################
 # GDINA M-step item parameters
@@ -8,7 +8,7 @@ gdina_mstep_item_ml_rrum <- function(
         Mjjj, invM.list, linkfct, rule, method,
         iter, delta.new, max.increment, fac.oldxsi,
         jj, delta, rrum.model, delta.fixed,
-        mstep_iter, mstep_conv, devchange, use_optim=FALSE )
+        mstep_iter, mstep_conv, devchange, optimizer="optim" )
 {
     eps2 <- eps
     delta_jj <- delta[[jj]]
@@ -17,6 +17,7 @@ gdina_mstep_item_ml_rrum <- function(
     ii <- 0
     max_increment <- max.increment
     eps <- 1E-6
+    eps <- 1E-3
     Rlj.ast <- Rlj.ast + .005
     Ilj.ast <- Ilj.ast + .05
     #*** log-likelihood function
@@ -29,21 +30,21 @@ gdina_mstep_item_ml_rrum <- function(
         ll <- - sum( Rlj.ast * log(abs(irf1)) +
                             ( Ilj.ast - Rlj.ast ) * log( abs(1 - irf1 ) ) )
         return(ll)
-    }    
-    
+    }
+
     ll_new <- ll0 <- ll_FUN(delta_jj)
-    
+
     avoid_increasing_likelihood <- FALSE
-    if (use_optim){
+    if (optimizer!="CDM"){
         converged <- TRUE
     }
-    
-    
+
+
     #*************************************
     #*** optimization in R
-    while ( ! converged ){    
+    while ( ! converged ){
         delta_jj0 <- delta_jj
-        ll0 <- ll_new    
+        ll0 <- ll_new
         #*** Newton step
         res1 <- numerical_Hessian(par=delta_jj, h=1E-4,
                     FUN=ll_FUN, gradient=TRUE, hessian=TRUE )
@@ -56,7 +57,7 @@ gdina_mstep_item_ml_rrum <- function(
                                     delta_change /2, delta_change )
         }
         delta_jj <- delta_jj + delta_change
-        ll_new <- ll_FUN(delta_jj)        
+        ll_new <- ll_FUN(delta_jj)
         if ((ll_new > ll0)&(avoid_increasing_likelihood)){
             tt <- .5
             iterate <- TRUE
@@ -64,10 +65,10 @@ gdina_mstep_item_ml_rrum <- function(
             vv <- 1
             while (iterate){
                 delta_jj <- delta_jj0 + tt*delta_change
-                ll_new <- ll_FUN(delta_jj)    
+                ll_new <- ll_FUN(delta_jj)
                 tt <- tt / 2
-                if ( ll_new <= ll0){
-                    iterate <- FALSE                    
+                if ( ll_new <=ll0){
+                    iterate <- FALSE
                 }
                 vv <- vv + 1
                 if (vv > iter_max){
@@ -82,10 +83,11 @@ gdina_mstep_item_ml_rrum <- function(
         if ( ii >=mstep_iter ){  converged <- TRUE    }
         if ( decr < mstep_conv ){  converged <- TRUE }
     }
-    
-    #******* optimization using optim    
-    if (use_optim){
-        mod <- stats::optim(par=delta_jj, fn=ll_FUN, method="L-BFGS-B")
+
+    #******* optimization using optim
+    if (optimizer=="optim"){
+        mod <- stats::optim(par=delta_jj, fn=ll_FUN, method="L-BFGS-B",
+                    control=list(maxit=mstep_iter))
         delta_jj <- mod$par
     }
 

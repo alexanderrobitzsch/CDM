@@ -1,5 +1,5 @@
 ## File Name: summary.gdina.R
-## File Version: 1.64
+## File Version: 1.77
 
 
 ##################################################################
@@ -38,11 +38,13 @@ summary.gdina <- function( object, digits=4, file=NULL, ... ){
         cat("\n")
     }
 
-    cat( "\nNumber of iterations=", object$iter  )
-    if ( ! object$converged ){ cat("\nMaximum number of iterations was reached.\n") }
-    cat( "\nIteration with minimal deviance=", object$iter.min, "\n\n" )
+    cat( "\nNumber of iterations","=", object$iter  )
+    if ( ! object$converged ){ cat("\nMaximum number of iterations was reached.") }
+    cat( "\nIteration with minimal deviance","=", object$iter.min, "\n\n" )
 
     #-- information about algorithm
+    cat( paste0("Estimation method: ",  object$method, "\n") )
+    cat( paste0("Optimizer: ",  object$optimizer, "\n") )
     cat( paste0("Monotonicity constraints: ",  object$mono.constr, "\n") )
     cat( paste0("Number of items at boundary monotonicity constraint: ",  object$numb_bound_mono, "\n") )
     if ( ! is.na(object$numb_bound_mono) > 0 ){
@@ -61,43 +63,45 @@ summary.gdina <- function( object, digits=4, file=NULL, ... ){
     }
     cat("\n")
 
-    cat( "Deviance=", round( object$deviance, 2 ) )
-    cat( "  | Log likelihood=", round( - object$deviance / 2, 2 ),    "\n" )
+    cat( "Deviance","=", round( object$deviance, 2 ) )
+    cat( "  | Log likelihood","=", round( - object$deviance / 2, 2 ),    "\n" )
     if ( object$regularization | object$use_prior ){
         if ( object$regularization ){
-            cat( "Penalty value=", round( object$penalty, 2 ) )
+            cat( "Penalty value","=", round( object$penalty, 2 ) )
         }
         if ( object$use_prior ){
-            cat( "Log prior value=", round( object$logprior_value, 2 ) )
+            cat( "Log prior value","=", round( object$logprior_value, 2 ) )
         }
-        cat( " | Optimization function=", round( object$opt_fct, 2 ), "\n" )
+        cat( " | Optimization function","=", round( object$opt_fct, 2 ), "\n" )
     }
     cat("\n")
 
-    cat( "Number of persons=", object$N, "\n" )
-    cat( "Number of items=", ncol(object$data), "\n" )
-    cat( "Number of estimated parameters=", object$Npars, "\n" )
-    cat( "Number of estimated item parameters=", object$Nipar, "\n" )
-    cat( "Number of estimated skill class parameters=", object$Nskillpar )
+    cat( "Number of persons","=", object$N, "\n" )
+    cat( "Number of groups","=", object$G, "\n" )
+    cat( "Number of items","=", ncol(object$data), "\n" )
+    cat( "Number of estimated parameters","=", object$Npars, "\n" )
+    cat( "Number of estimated item parameters","=", object$Nipar, "\n" )
+    cat( "Number of estimated skill class parameters","=", object$Nskillpar )
     cat( " (", object$Nskillclasses, "latent skill classes)\n\n")
 
-    cat( "AIC=", round( object$AIC, 2 ), " | penalty=", round( object$AIC - object$deviance,2 ), "\n" )
-    cat( "BIC=", round( object$BIC, 2 ), " | penalty=", round( object$BIC - object$deviance,2 ), "\n" )
-    cat( "CAIC=", round( object$CAIC, 2 )," | penalty=", round( object$CAIC - object$deviance,2 ), "\n\n" )
+    #*** information criteria
+    cdm_print_summary_information_criteria(object=object)
 
-#    cat("Model fit\n")
-#    g1 <- gdina.fit( object, print.output=TRUE )
-    ###########################################################
+    cat("----------------------------------------------------------------------------\n")
+    cat("Used Q-matrix \n\n")
+    print(object$q.matrix)
+    cat("\n")
+
+    cat("----------------------------------------------------------------------------\n")
+    cat("\nItem Parameter Estimates \n\n")
+
     ds <- object$coef
     selvars <- intersect( c("est", "se" ), colnames(ds) )
     ind <- which( colnames(ds) %in% selvars )
-#    if (G>0){ ind <- which( colnames(ds) %in% c("est" ) ) }
     for (ii in ind){
         ds[,ii] <- round( ds[,ii], rdigits )
     }
 
-    cat("----------------------------------------------------------------------------\n")
-    cat("\nItem Parameter Estimates \n\n")
     r1 <- options()
     options(scipen=999)
     print(ds)
@@ -144,8 +148,8 @@ summary.gdina <- function( object, digits=4, file=NULL, ... ){
         xt <- round( object$attribute.patt[,1], rdigits )
         names(xt) <- rownames( object$attribute.patt )
     } else {
-    xt <- round( object$attribute.patt, rdigits )
-    rownames(xt) <- rownames( object$attribute.patt )
+        xt <- round( object$attribute.patt, rdigits )
+        rownames(xt) <- rownames( object$attribute.patt )
     }
     print(xt)
 

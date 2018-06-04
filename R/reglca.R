@@ -1,5 +1,5 @@
 ## File Name: reglca.R
-## File Version: 0.808
+## File Version: 0.810
 
 reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad", regular_lam=0,
                 sd_noise_init=1, item_probs_init=NULL, class_probs_init=NULL, random_starts=1,
@@ -174,6 +174,7 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
     Nskillpar <- res$Nskillpar
     Nipar <- res$Nipar
     deviance <- res$deviance
+    ic <- res$ic
 
     #--- output
     time <- list(s1=s1, s2=Sys.time() )
@@ -185,7 +186,7 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
                     penalty=- penalty, opt_fct=opt_fct, dat0=dat0, dat=dat, dat.resp=dat_resp,
                     weights=weights, N=N, W=W, I=I, nclasses=nclasses,
                     iter=iter, maxit=maxit, converged=converged,
-                    time=time, call=CALL )
+                    time=time, call=CALL, ic=ic )
     class(res) <- "reglca"
     return(res)
 }

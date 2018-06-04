@@ -1,5 +1,5 @@
 %% File Name: CDM-utilities.Rd
-%% File Version: 0.54
+%% File Version: 0.57
 
 \name{CDM-utilities}
 \alias{CDM-utilities}
@@ -48,9 +48,10 @@ CDM_require_namespace(pkg)
 ## print function in summary
 cdm_print_summary_data_frame(obji, from=NULL, to=NULL, digits=3, rownames_null=FALSE)
 ## print summary call
-cdm_print_summary_call(object)
+cdm_print_summary_call(object, call_name="call")
 ## print computation time
-cdm_print_summary_computation_time(object)
+cdm_print_summary_computation_time(object, time_name="time", time_start="s1",
+         time_end="s2")
 
 ## mvtnorm::rmvnorm with vector conversion for n=1
 CDM_rmvnorm(n, mean=NULL, sigma, ...)
@@ -108,6 +109,10 @@ abs_approx_D1(x, eps=1e-05)
 \item{to}{Integer}
 \item{digits}{Number of digits used for printing}
 \item{rownames_null}{Logical}
+\item{call_name}{Character}
+\item{time_name}{Character}
+\item{time_start}{Character}
+\item{time_end}{Character}
 \item{object}{Object}
 \item{n}{Integer}
 \item{mean}{Mean vector or matrix if separate means for cases are provided. In this case,

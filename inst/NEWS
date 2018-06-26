@@ -24,7 +24,7 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 6.4  |  2018-06-04  |  Last: CDM 6.4-11
+VERSIONS CDM 6.4  |  2018-06-26  |  Last: CDM 6.4-18
 --------------------------------------------------------------
 
 NOTE  * included argument 'optimizer' in gdina() which allows
@@ -33,6 +33,10 @@ NOTE  * included argument 'optimizer' in gdina() which allows
         'use_optim=TRUE' is always used for estimation
         of the RRUM model. This change was motivated by an
         application of Hamdollah Ravand.
+NOTE  * included utility function cdm_matrixstring()
+FIXED * allowed items with only zero Q-matrix entries in
+        mcdina() anf fixed a bug in reduced skill space 
+        estimation in mcdina() (thanks to Jeannot Gersner)
 
 
 DATA  * included/modified datasets: ---

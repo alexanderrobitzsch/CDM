@@ -1,10 +1,14 @@
 ## File Name: cdm_print_summary_call.R
-## File Version: 0.02
+## File Version: 0.04
 
 
 cdm_print_summary_call <- function(object, call_name="call")
 {
-    cat("Call:\n")
-    print(object[[ call_name ]] )
-    cat("\n")
+    CALL <- object[[ call_name ]]
+    s3 <- paste0(CALL, collapse=" ")
+    if ( nchar(s3) < 3000 ){    
+        cat("Call:\n")
+        print( CALL )
+        cat("\n")
+    }
 }

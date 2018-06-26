@@ -1,5 +1,5 @@
 %% File Name: mcdina.Rd
-%% File Version: 0.36
+%% File Version: 0.37
 
 \name{mcdina}
 \alias{mcdina}
@@ -37,10 +37,8 @@ mcdina(dat, q.matrix, group=NULL, itempars="gr", weights=NULL,
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{dat}{
-A required \eqn{N \times J} data matrix containing the binary responses, 0 or 1,
-  of \eqn{N} respondents to \eqn{J} test items, where 1 denotes a correct response
-  and 0 an incorrect one. The nth row of the matrix represents the binary
-  response pattern of respondent \eqn{n}. \code{NA} values are allowed.
+A required \eqn{N \times J} data matrix containing integer responses 
+(1, 2, \eqn{\ldots}, \eqn{K}) of \eqn{N} respondents to \eqn{J} test items.
 }
   \item{q.matrix}{
 A required matrix specifying which item category is intended to measure which skill.

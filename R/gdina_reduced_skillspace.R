@@ -1,5 +1,5 @@
 ## File Name: gdina_reduced_skillspace.R
-## File Version: 0.17
+## File Version: 0.18
 ###################################################
 # auxiliary function reduced skill space
 gdina_reduced_skillspace <- function( ntheta, Z,
@@ -28,7 +28,7 @@ gdina_reduced_skillspace <- function( ntheta, Z,
     # calculate attribute probability
     attr.prob <- reduced_skillspace_beta_2_probs( Z=Z, beta=beta )
     #***** output
-    res <- list("beta"=beta, "attr.prob"=attr.prob)
+    res <- list(beta=beta, attr.prob=attr.prob)
     return(res)
 }
 ############################################################

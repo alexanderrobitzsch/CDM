@@ -1,12 +1,11 @@
-## File Name: mcdina.est.item.R
-## File Version: 0.18
+## File Name: mcdina_est_item.R
+## File Version: 0.19
 
 #######################################################
 # mcdina estimate item parameters
-mcdina.est.item <- function( n.ik, lr_list, lc_list, delta, I, G,
+mcdina_est_item <- function( n.ik, lr_list, lc_list, delta, I, G,
         eps, itemstat, itempars, lr_counts )
 {
-
     for (ii in 1:I){
         lr.ii <- lr_list[[ii]]
         lr_index.ii <- lr.ii[, "lr_index"]

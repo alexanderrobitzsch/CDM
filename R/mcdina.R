@@ -1,5 +1,5 @@
 ## File Name: mcdina.R
-## File Version: 0.89
+## File Version: 0.926
 
 #############################################################
 # Multiple Choice DINA Model
@@ -14,13 +14,13 @@ mcdina <- function( dat, q.matrix, group=NULL,
     cl <- match.call()
     dat <- as.matrix(dat)
 
-    # zero/one entries. q.matrix from ordinary DINA model!!
-    res0 <- .mcdina.prepare.qmatrix( dat, q.matrix )
+    # zero/one entries, q.matrix from ordinary DINA model
+    res0 <- mcdina_proc_qmatrix( dat=dat, q.matrix=q.matrix )
     dat <- res0$dat
     q.matrix0 <- q.matrix <- res0$q.matrix
-
+    
     # handle polytomous attributes
-    res1 <- mcdina.modify.qmatrix( q.matrix, skillclasses)
+    res1 <- mcdina_proc_modify_qmatrix( q.matrix=q.matrix, skillclasses=skillclasses ) 
     q.matrix <- res1$q.matrix
     q.matrix0 <- res1$q.matrix0
     skillclasses <- res1$skillclasses
@@ -35,8 +35,8 @@ mcdina <- function( dat, q.matrix, group=NULL,
     dat_ <- dat - 1
     eps <- 1e-10
     I <- ncol(dat)    # number of items
-    CC <- max( q.matrix[,2] )    # maximal number of categories
-    K <- ncol(q.matrix)-2        # number of skills
+    CC <- max( q.matrix[,2] )  # maximal number of categories
+    K <- ncol(q.matrix)-2  # number of skills
     if (K<=3 ){ reduced.skillspace <- FALSE }
     # group identifier
     if ( is.null(group) ){ group <- rep(1,nrow(dat))}
@@ -52,21 +52,21 @@ mcdina <- function( dat, q.matrix, group=NULL,
     if ( is.null(skillclasses) ){
         skillclasses <- as.matrix( expand.grid(
                 as.data.frame( rbind( rep(0,K), rep(1,K)  ) ) ) )
-                                }
-    classes <- .matrixstring( matr=skillclasses, string="P" )
+    }
+    classes <- cdm_matrixstring( matr=skillclasses, string="P" )
     rownames(skillclasses) <- classes
     TP <- nrow(skillclasses)
     # define specification of estimation of item parameters
     if ( mean( itempars=="gr" )==1 ){
-            itempars <- rep( "gr", I )
-            }
+        itempars <- rep( "gr", I )
+    }
     if ( ( mean( itempars=="gr" ) < 1 ) & ( length(itempars) !=I ) ){
-            itempars <- rep( "jo", I )
-            }
+        itempars <- rep( "jo", I )
+    }
 
     # prepare latent responses
-    res <- .mcdina.prep.test.latent.response( q.matrix, K, TP, skillclasses, classes )
-
+    res <- mcdina_proc_test_latent_response( q.matrix=q.matrix, K=K, TP=TP, 
+                skillclasses=skillclasses, classes=classes ) 
     lc <- res$lc
     lr <- res$lr
     itemstat <- res$itemstat
@@ -80,9 +80,10 @@ mcdina <- function( dat, q.matrix, group=NULL,
     for (ii in 1:I){
         lr_list[[ii]] <- lr[ lr$item==ii, ]
         lc_list[[ii]] <- lc[ lc$item==ii, ]
-                    }
+    }
+
     # delta parameter inits
-    res <- .mcdina.init.delta( lc, lr )
+    res <- mcdina_init_delta( lc=lc, lr=lr )
     delta_ideal <- res$delta_ideal
     delta0 <- res$delta
 
@@ -90,9 +91,9 @@ mcdina <- function( dat, q.matrix, group=NULL,
     delta <- array( 0,  dim=c(I,CC,CC,G) )
     for (gg in 1:G){
         delta[,,,gg] <- delta0
-                }
+    }
     # init probabilities
-    probs <- array( 0, dim=c(I, CC, TP, G ) )
+    probs <- array( 0, dim=c(I,CC,TP,G ) )
 
     # init latent class distribution
     pi.k <- rep( 1 / TP, TP )
@@ -100,7 +101,7 @@ mcdina <- function( dat, q.matrix, group=NULL,
 
     # counts latent responses
     lr_counts <- array(0, dim=c(I,CC,G) )
-
+    
     #*****************************
     # define reduced skillspace
     Z <- Z.skillspace <- NULL
@@ -136,22 +137,20 @@ mcdina <- function( dat, q.matrix, group=NULL,
         ncolZ <- ncol(Z)
     }
 
-
     iter <- dev <- 0
     max.par.change <- 1000
     devchange <- 100
     # display for progress
     disp <- "...........................................................\n"
 
-
     #****************************************
     #************ begin algorithm ***********
     while ( ( iter < maxit ) &
                 ( ( max.par.change > conv.crit ) | ( devchange > dev.crit  ) )
-                    ){
+                    )
+    {
 
-# z0 <- Sys.time()
-
+ z0 <- Sys.time()
         #--- (0) collect old parameters
         dev0 <- dev
         delta0 <- delta
@@ -163,7 +162,6 @@ mcdina <- function( dat, q.matrix, group=NULL,
                 probs[ii,,,gg] <- delta[ ii,, lr.ii$lr_index, gg]
             }
         }
-
 # cat("calc probs ") ; z1 <- Sys.time(); print(z1-z0) ; z0 <- z1
 
         #--- (2) calculate likelihood
@@ -171,7 +169,6 @@ mcdina <- function( dat, q.matrix, group=NULL,
         res <- cdm_rcpp_mcdina_probs_pcm_groups( dat=dat_, dat_resp_bool=dat_resp_bool,
                         group=group, probs=probs_, CC=CC, TP=TP )
         f.yi.qk <- res$fyiqk
-
 # cat("calc like ") ; z1 <- Sys.time(); print(z1-z0) ; z0 <- z1
 
         #--- (3) calculate posterior and expected counts
@@ -181,33 +178,28 @@ mcdina <- function( dat, q.matrix, group=NULL,
         count_pik <- res1$count_pik
         for (gg in 1:G){
             pi.k[,gg] <- count_pik[,gg] / sum( count_pik[,gg] )
-                }
+        }
         # set some probabilities of skill classes to zero
         if ( ! is.null(zeroprob.skillclasses ) ){
             pi.k[ zeroprob.skillclasses, ] <- 0
-                    }
+        }
         LL <- res1$LL
         dev <- -2*LL
         f.qk.yi <- res1$fqkyi
 # cat("calc post ") ; z1 <- Sys.time(); print(z1-z0) ; z0 <- z1
 
         #--- (4) log-linear smoothing of skill class distribution
-
-        if (reduced.skillspace){
-            for (gg in 1:G){
-                ntheta <- pi.k[,gg]
-                res <- gdina_reduced_skillspace( ntheta, Z,  reduced.skillspace.method=2 )
-                pi.k[,gg] <- res$pred.ntheta
-            }
+        if (reduced.skillspace){            
+            pi.k <- mcdina_est_reduced_skillspace(pi.k=pi.k, Z=Z)            
         }
 # cat("calc smoothing distribution") ; z1 <- Sys.time(); print(z1-z0) ; z0 <- z1
 
         #--- (5) calculate updated item parameters
-        res1 <- mcdina.est.item( n.ik, lr_list, lc_list, delta, I, G, eps,
-                itemstat, itempars, lr_counts)
+        res1 <- mcdina_est_item( n.ik=n.ik, lr_list=lr_list, lc_list=lc_list, 
+                    delta=delta, I=I, G=G, eps=eps, itemstat=itemstat, 
+                    itempars=itempars, lr_counts=lr_counts ) 
         delta <- res1$delta
         lr_counts <- res1$lr_counts
-
 # cat("calc item parameters") ; z1 <- Sys.time(); print(z1-z0) ; z0 <- z1
 
         #--- (11) convergence
@@ -229,20 +221,20 @@ mcdina <- function( dat, q.matrix, group=NULL,
             cat("\n" )
             cat("Maximum parameter change:", round( max.par.change, 6), "\n")
             utils::flush.console()
-                }
-
         }
-
+    }
     #*************** end algorithm ***********
     #*****************************************
 
     # include information criteria
-    ic <- mcdina.calc.ic( dev, weights, itemstat, pi.k, G, I,
-                zeroprob.skillclasses, reduced.skillspace, Z )
+    ic <- mcdina_calc_ic( dev=dev, weights=weights, itemstat=itemstat, pi.k=pi.k, 
+                G=G, I=I, zeroprob.skillclasses=zeroprob.skillclasses, 
+                reduced.skillspace=reduced.skillspace, Z=Z )
 
     # include standard error
-    se.delta <- mcdina.calc.se.delta( delta, n.ik, probs, lr_list, lc_list,
-                itemstat, I, G, itempars, lr_counts, CC )
+    se.delta <- mcdina_calc_se_delta( delta=delta, n.ik=n.ik, probs=probs, 
+                    lr_list=lr_list, lc_list=lc_list, itemstat=itemstat, I=I, G=G, 
+                    itempars=itempars, lr_counts=lr_counts, CC=CC ) 
 
     # labeling
     rownames(pi.k) <- classes
@@ -251,16 +243,18 @@ mcdina <- function( dat, q.matrix, group=NULL,
     # rename skill classes in case of polytomous attributes
     if (maxmaxattr > 1 ){
         skillclasses <- skillclasses0
-        lc$Q <- .matrixstring(q.matrix0[,-c(1:2) ], "Q" )
+        lc$Q <- cdm_matrixstring(q.matrix0[,-c(1:2) ], "Q" )
         q.matrix <- q.matrix0
-                }
+    }
 
-    # item overview
-    item <- mcdina.collect.itempars( I, lc, itempars, itemstat, dat,
-        G, CC, delta, se.delta, group0_unique  )
+    # item summary table
+    item <- mcdina_collect_itempars( I=I, lc=lc, itempars=itempars, 
+                itemstat=itemstat, dat=dat, G=G, CC=CC, delta=delta, se.delta=se.delta, 
+                group0_unique=group0_unique )
 
     # skill pattern
-    skill.patt <- mcdina.skill.patt( q.matrix, skillclasses, G, pi.k, group0_unique )
+    skill.patt <- mcdina_skill_patt( q.matrix=q.matrix, skillclasses=skillclasses, 
+                            G=G, pi.k=pi.k, group0_unique=group0_unique ) 
 
     # person classification
     mle.class <- skillclasses[ max.col( f.yi.qk ), ]
@@ -272,36 +266,29 @@ mcdina <- function( dat, q.matrix, group=NULL,
     eap.class <- matrix( 0, nrow=N11, ncol=K11 )
     colnames(eap.class) <- colnames(mle.class)
     for (kk in 1:K11){
-        # kk <- 4
         sckk <- matrix( skillclasses[,kk], nrow=N11, ncol=K12, byrow=TRUE )
         eap.class[,kk] <- rowSums( sckk * f.qk.yi )
     }
     #---- OUTPUT
-    res <- list( item=item, posterior=f.qk.yi, like=f.yi.qk, ic=ic,
-                q.matrix=q.matrix, pik=probs,
-                delta=delta, se.delta=se.delta,  itemstat=itemstat,
-                n.ik=n.ik, deviance=dev,
-                attribute.patt=pi.k, attribute.patt.splitted=skillclasses,
-                skill.patt=skill.patt,
-                MLE.class=mle.class, MAP.class=map.class, EAP.class=eap.class,
-                dat=dat0, skillclasses=skillclasses, group=group0,
-                lc=lc, lr=lr, iter=iter, itempars=itempars,
-                weights=weights, I=nrow(dat), G=G, CC=CC,
-                loglike=- dev / 2, AIC=ic$AIC, BIC=ic$BIC,
-                Npars=ic$np )
+    res <- list( item=item, posterior=f.qk.yi, like=f.yi.qk, ic=ic, 
+                q.matrix=q.matrix, pik=probs, delta=delta, se.delta=se.delta, 
+                itemstat=itemstat, n.ik=n.ik, deviance=dev, attribute.patt=pi.k, 
+                attribute.patt.splitted=skillclasses, skill.patt=skill.patt, 
+                MLE.class=mle.class, MAP.class=map.class, EAP.class=eap.class, dat=dat0, 
+                skillclasses=skillclasses, group=group0, lc=lc, lr=lr, iter=iter, 
+                itempars=itempars, weights=weights, I=nrow(dat), G=G, CC=CC, loglike=-dev/2, 
+                AIC=ic$AIC, BIC=ic$BIC, Npars=ic$np )
     res$converged <- iter < maxit
-
     res$control$weights <- weights
     res$control$group <- group
 
     s2 <- Sys.time()
-
-    res$time <- list( "s1"=s1,"s2"=s2, "timediff"=s2-s1)
-        cat("----------------------------------- \n")
-        cat("Start:", paste( s1), "\n")
-        cat("End:", paste(s2), "\n")
-        cat("Difference:", print(s2 -s1), "\n")
-        cat("----------------------------------- \n")
+    res$time <- list( s1=s1, s2=s2, timediff=s2-s1)
+    cat("----------------------------------- \n")
+    cat("Start:", paste( s1), "\n")
+    cat("End:", paste(s2), "\n")
+    cat("Difference:", print(s2 -s1), "\n")
+    cat("----------------------------------- \n")        
     class(res) <- "mcdina"
     res$call <- cl
     return(res)

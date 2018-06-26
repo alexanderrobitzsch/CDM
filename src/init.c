@@ -1,5 +1,5 @@
 //// File Name: init.c
-//// File Version: 6.004011
+//// File Version: 6.004018
 #include <R.h>
 #include <Rinternals.h>
 #include <stdlib.h> // for NULL

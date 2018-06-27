@@ -1,9 +1,10 @@
 %% File Name: IRT.RMSD.Rd
-%% File Version: 0.22
+%% File Version: 0.23
 
 \name{IRT.RMSD}
 \alias{IRT.RMSD}
 \alias{summary.IRT.RMSD}
+\alias{IRT_RMSD_calc_rmsd}
 
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
@@ -29,6 +30,9 @@ additionally computed.
 IRT.RMSD(object)
 
 \method{summary}{IRT.RMSD}(object, file=NULL, digits=3, \dots)
+
+## core computation function
+IRT_RMSD_calc_rmsd( n.ik, pi.k, probs, eps=1E-30 )
 }
 
 
@@ -38,6 +42,10 @@ IRT.RMSD(object)
 Object for which the methods \code{IRT.expectedCounts} and
 \code{IRT.irfprob} can be applied.
 }
+\item{n.ik}{Expected counts}
+\item{pi.k}{Probabilities trait distribution}
+\item{probs}{Item response probabilities}
+\item{eps}{Numerical constant avoiding division by zero}
   \item{digits}{Number of digits used for rounding}
 \item{file}{Optional file name for a file in which \code{summary}
 should be sinked.}

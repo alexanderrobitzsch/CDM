@@ -24,7 +24,7 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 6.4  |  2018-06-26  |  Last: CDM 6.4-18
+VERSIONS CDM 6.4  |  2018-06-27  |  Last: CDM 6.4-19
 --------------------------------------------------------------
 
 NOTE  * included argument 'optimizer' in gdina() which allows
@@ -37,7 +37,8 @@ NOTE  * included utility function cdm_matrixstring()
 FIXED * allowed items with only zero Q-matrix entries in
         mcdina() anf fixed a bug in reduced skill space 
         estimation in mcdina() (thanks to Jeannot Gersner)
-
+NOTE  * exported core computation function IRT_RMSD_calc_rmsd()
+        for RMSD statistic
 
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: ---

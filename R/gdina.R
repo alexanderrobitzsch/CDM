@@ -1,5 +1,5 @@
 ## File Name: gdina.R
-## File Version: 9.276
+## File Version: 9.282
 
 
 ################################################################################
@@ -490,13 +490,15 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
                         mono.constr=mono.constr, Aj_mono_constraints=Aj_mono_constraints,
                         mono_maxiter=mono_maxiter, regular_alpha=regular_alpha, regular_tau=regular_tau,
                         regularization_types=regularization_types, prior_intercepts=prior_intercepts,
-                        prior_slopes=prior_slopes, use_prior=use_prior, optimizer=optimizer )
+                        prior_slopes=prior_slopes, use_prior=use_prior, optimizer=optimizer,
+                        regularization=regularization )
         delta.new <- res$delta.new
         suffstat_probs <- res$suffstat_probs
         mono_constraints_fitted <- res$mono_constraints_fitted
         penalty <- res$penalty
         ll_value <- res$ll_value
         logprior_value <- res$logprior_value
+        numb_regular_pars <- res$numb_regular_pars
 
         ##########################################################################
         # estimation with a design matrix for delta parameters
@@ -558,7 +560,8 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
                     max.par.change=max.par.change, iter=iter, progress=progress,
                     progress.item=progress.item, regularization=regularization, penalty=penalty,
                     opt_fct=opt_fct, opt_fct_change=opt_fct_change, ll_value=ll_value,
-                    regular_type=regular_type, logprior_value=logprior_value, use_prior=use_prior )
+                    regular_type=regular_type, logprior_value=logprior_value, use_prior=use_prior,
+                    numb_regular_pars=numb_regular_pars)
 
         utils::flush.console() # Output is flushing on the console
         iter <- iter + 1 # new iteration number

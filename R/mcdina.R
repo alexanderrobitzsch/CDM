@@ -1,5 +1,5 @@
 ## File Name: mcdina.R
-## File Version: 0.926
+## File Version: 0.928
 
 #############################################################
 # Multiple Choice DINA Model
@@ -18,9 +18,9 @@ mcdina <- function( dat, q.matrix, group=NULL,
     res0 <- mcdina_proc_qmatrix( dat=dat, q.matrix=q.matrix )
     dat <- res0$dat
     q.matrix0 <- q.matrix <- res0$q.matrix
-    
+
     # handle polytomous attributes
-    res1 <- mcdina_proc_modify_qmatrix( q.matrix=q.matrix, skillclasses=skillclasses ) 
+    res1 <- mcdina_proc_modify_qmatrix( q.matrix=q.matrix, skillclasses=skillclasses )
     q.matrix <- res1$q.matrix
     q.matrix0 <- res1$q.matrix0
     skillclasses <- res1$skillclasses
@@ -65,8 +65,8 @@ mcdina <- function( dat, q.matrix, group=NULL,
     }
 
     # prepare latent responses
-    res <- mcdina_proc_test_latent_response( q.matrix=q.matrix, K=K, TP=TP, 
-                skillclasses=skillclasses, classes=classes ) 
+    res <- mcdina_proc_test_latent_response( q.matrix=q.matrix, K=K, TP=TP,
+                skillclasses=skillclasses, classes=classes )
     lc <- res$lc
     lr <- res$lr
     itemstat <- res$itemstat
@@ -101,7 +101,7 @@ mcdina <- function( dat, q.matrix, group=NULL,
 
     # counts latent responses
     lr_counts <- array(0, dim=c(I,CC,G) )
-    
+
     #*****************************
     # define reduced skillspace
     Z <- Z.skillspace <- NULL
@@ -150,7 +150,7 @@ mcdina <- function( dat, q.matrix, group=NULL,
                     )
     {
 
- z0 <- Sys.time()
+    #z0 <- Sys.time()
         #--- (0) collect old parameters
         dev0 <- dev
         delta0 <- delta
@@ -189,15 +189,15 @@ mcdina <- function( dat, q.matrix, group=NULL,
 # cat("calc post ") ; z1 <- Sys.time(); print(z1-z0) ; z0 <- z1
 
         #--- (4) log-linear smoothing of skill class distribution
-        if (reduced.skillspace){            
-            pi.k <- mcdina_est_reduced_skillspace(pi.k=pi.k, Z=Z)            
+        if (reduced.skillspace){
+            pi.k <- mcdina_est_reduced_skillspace(pi.k=pi.k, Z=Z)
         }
 # cat("calc smoothing distribution") ; z1 <- Sys.time(); print(z1-z0) ; z0 <- z1
 
         #--- (5) calculate updated item parameters
-        res1 <- mcdina_est_item( n.ik=n.ik, lr_list=lr_list, lc_list=lc_list, 
-                    delta=delta, I=I, G=G, eps=eps, itemstat=itemstat, 
-                    itempars=itempars, lr_counts=lr_counts ) 
+        res1 <- mcdina_est_item( n.ik=n.ik, lr_list=lr_list, lc_list=lc_list,
+                    delta=delta, I=I, G=G, eps=eps, itemstat=itemstat,
+                    itempars=itempars, lr_counts=lr_counts )
         delta <- res1$delta
         lr_counts <- res1$lr_counts
 # cat("calc item parameters") ; z1 <- Sys.time(); print(z1-z0) ; z0 <- z1
@@ -227,14 +227,14 @@ mcdina <- function( dat, q.matrix, group=NULL,
     #*****************************************
 
     # include information criteria
-    ic <- mcdina_calc_ic( dev=dev, weights=weights, itemstat=itemstat, pi.k=pi.k, 
-                G=G, I=I, zeroprob.skillclasses=zeroprob.skillclasses, 
+    ic <- mcdina_calc_ic( dev=dev, weights=weights, itemstat=itemstat, pi.k=pi.k,
+                G=G, I=I, zeroprob.skillclasses=zeroprob.skillclasses,
                 reduced.skillspace=reduced.skillspace, Z=Z )
 
     # include standard error
-    se.delta <- mcdina_calc_se_delta( delta=delta, n.ik=n.ik, probs=probs, 
-                    lr_list=lr_list, lc_list=lc_list, itemstat=itemstat, I=I, G=G, 
-                    itempars=itempars, lr_counts=lr_counts, CC=CC ) 
+    se.delta <- mcdina_calc_se_delta( delta=delta, n.ik=n.ik, probs=probs,
+                    lr_list=lr_list, lc_list=lc_list, itemstat=itemstat, I=I, G=G,
+                    itempars=itempars, lr_counts=lr_counts, CC=CC )
 
     # labeling
     rownames(pi.k) <- classes
@@ -248,13 +248,13 @@ mcdina <- function( dat, q.matrix, group=NULL,
     }
 
     # item summary table
-    item <- mcdina_collect_itempars( I=I, lc=lc, itempars=itempars, 
-                itemstat=itemstat, dat=dat, G=G, CC=CC, delta=delta, se.delta=se.delta, 
+    item <- mcdina_collect_itempars( I=I, lc=lc, itempars=itempars,
+                itemstat=itemstat, dat=dat, G=G, CC=CC, delta=delta, se.delta=se.delta,
                 group0_unique=group0_unique )
 
     # skill pattern
-    skill.patt <- mcdina_skill_patt( q.matrix=q.matrix, skillclasses=skillclasses, 
-                            G=G, pi.k=pi.k, group0_unique=group0_unique ) 
+    skill.patt <- mcdina_skill_patt( q.matrix=q.matrix, skillclasses=skillclasses,
+                            G=G, pi.k=pi.k, group0_unique=group0_unique )
 
     # person classification
     mle.class <- skillclasses[ max.col( f.yi.qk ), ]
@@ -270,13 +270,13 @@ mcdina <- function( dat, q.matrix, group=NULL,
         eap.class[,kk] <- rowSums( sckk * f.qk.yi )
     }
     #---- OUTPUT
-    res <- list( item=item, posterior=f.qk.yi, like=f.yi.qk, ic=ic, 
-                q.matrix=q.matrix, pik=probs, delta=delta, se.delta=se.delta, 
-                itemstat=itemstat, n.ik=n.ik, deviance=dev, attribute.patt=pi.k, 
-                attribute.patt.splitted=skillclasses, skill.patt=skill.patt, 
-                MLE.class=mle.class, MAP.class=map.class, EAP.class=eap.class, dat=dat0, 
-                skillclasses=skillclasses, group=group0, lc=lc, lr=lr, iter=iter, 
-                itempars=itempars, weights=weights, I=nrow(dat), G=G, CC=CC, loglike=-dev/2, 
+    res <- list( item=item, posterior=f.qk.yi, like=f.yi.qk, ic=ic,
+                q.matrix=q.matrix, pik=probs, delta=delta, se.delta=se.delta,
+                itemstat=itemstat, n.ik=n.ik, deviance=dev, attribute.patt=pi.k,
+                attribute.patt.splitted=skillclasses, skill.patt=skill.patt,
+                MLE.class=mle.class, MAP.class=map.class, EAP.class=eap.class, dat=dat0,
+                skillclasses=skillclasses, group=group0, lc=lc, lr=lr, iter=iter,
+                itempars=itempars, weights=weights, I=nrow(dat), G=G, CC=CC, loglike=-dev/2,
                 AIC=ic$AIC, BIC=ic$BIC, Npars=ic$np )
     res$converged <- iter < maxit
     res$control$weights <- weights
@@ -288,7 +288,7 @@ mcdina <- function( dat, q.matrix, group=NULL,
     cat("Start:", paste( s1), "\n")
     cat("End:", paste(s2), "\n")
     cat("Difference:", print(s2 -s1), "\n")
-    cat("----------------------------------- \n")        
+    cat("----------------------------------- \n")
     class(res) <- "mcdina"
     res$call <- cl
     return(res)

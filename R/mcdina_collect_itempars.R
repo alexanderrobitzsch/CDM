@@ -1,5 +1,5 @@
 ## File Name: mcdina_collect_itempars.R
-## File Version: 0.03
+## File Version: 0.04
 
 
 # collect item parameters
@@ -11,10 +11,10 @@ mcdina_collect_itempars <- function( I, lc, itempars, itemstat, dat,
         lc.ii <- lc[ lc$item==ii, ]
         ip.ii <- itempars[ii]
         itemstat.ii <- itemstat[ii,]
-        if ( ip.ii=="gr" ){ 
-            G1 <- G 
+        if ( ip.ii=="gr" ){
+            G1 <- G
         } else {
-            G1 <- 1 
+            G1 <- 1
         }
         for (gg in 1:G1){  #  gg <- 1
             delta.ii <- delta[ ii,,,gg ]

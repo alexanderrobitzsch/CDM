@@ -1,5 +1,5 @@
 ## File Name: mcdina_proc_item_latent_response.R
-## File Version: 0.05
+## File Version: 0.08
 
 
 ##############################################
@@ -14,8 +14,8 @@ mcdina_proc_item_latent_response <- function( ii, q.matrix, K, TP, skillclasses,
     qsum <- rowSums( q.ii[, 1:K + 2  ]  )
     index.max <- which( qsum==max(qsum) )
     # necessary attributes for item ii
-    attr.ii <- which( q.ii[ index.max[1], 1:K + 2] > 0 )    
-    if ( length(attr.ii) == 0 ){
+    attr.ii <- which( q.ii[ index.max[1], 1:K + 2] > 0 )
+    if ( length(attr.ii)==0 ){
         attr.ii <- 1:K
     }
     q.ii.red <- q.ii[, attr.ii + 2, drop=FALSE]
@@ -24,7 +24,7 @@ mcdina_proc_item_latent_response <- function( ii, q.matrix, K, TP, skillclasses,
     colnames(sk.ii1) <- colnames(sk.ii2) <- paste0("Cat", cats.ii )
     rownames(sk.ii1) <- rownames(sk.ii2) <- rownames(skillclasses)
     for (cc in 1:CC){
-        sk.ii2[, cc] <- 1 * ( rowSums( skillclasses[, attr.ii, drop=FALSE] != q.ii.red[rep(cc,TP),] )==0 )
+        sk.ii2[, cc] <- 1 * ( rowSums( skillclasses[, attr.ii, drop=FALSE] !=q.ii.red[rep(cc,TP),] )==0 )
         tmp1 <- skillclasses[, attr.ii, drop=FALSE] %*% t( q.ii.red[cc,]  )
         sk.ii1[, cc] <- 1 * ( tmp1 >=sum( q.ii.red[cc,] ) )
         sk.ii1[, cc] <-  tmp1*sk.ii1[, cc]

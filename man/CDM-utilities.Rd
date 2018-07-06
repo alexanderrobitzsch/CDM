@@ -1,5 +1,5 @@
 %% File Name: CDM-utilities.Rd
-%% File Version: 0.59
+%% File Version: 0.60
 
 \name{CDM-utilities}
 \alias{CDM-utilities}
@@ -55,7 +55,7 @@ cdm_print_summary_call(object, call_name="call")
 cdm_print_summary_computation_time(object, time_name="time", time_start="s1",
          time_end="s2")
 
-## string vector of matrix entries 
+## string vector of matrix entries
 cdm_matrixstring( matr, string )
 
 ## mvtnorm::rmvnorm with vector conversion for n=1

@@ -1,5 +1,5 @@
 ## File Name: mcdina_proc_test_latent_response.R
-## File Version: 0.04
+## File Version: 0.05
 
 
 ##########################################
@@ -11,12 +11,12 @@ mcdina_proc_test_latent_response <- function( q.matrix, K, TP, skillclasses, cla
     lc <- NULL
     itemstat <- NULL
     for (ii in 1:I){
-        res <- mcdina_proc_item_latent_response( ii=ii, q.matrix=q.matrix, K=K, TP=TP, 
+        res <- mcdina_proc_item_latent_response( ii=ii, q.matrix=q.matrix, K=K, TP=TP,
                     skillclasses=skillclasses, classes=classes )
         lr <- rbind( lr, res$lr )
         lc <- rbind( lc, res$lc )
         itemstat <- rbind( itemstat, res$itemstat )
-    }    
+    }
     res <- list("lr"=lr, "lc"=lc, "itemstat"=itemstat)
     return(res)
 }

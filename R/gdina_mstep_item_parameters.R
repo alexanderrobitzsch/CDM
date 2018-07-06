@@ -1,5 +1,5 @@
 ## File Name: gdina_mstep_item_parameters.R
-## File Version: 0.55
+## File Version: 0.59
 
 gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.increment,
         increment.factor, J, Aj, Mj, delta, method, avoid.zeroprobs, invM.list, linkfct,
@@ -7,7 +7,7 @@ gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.
         Mj.index, suffstat_probs, regular_lam, regular_type, cd_steps,
         mono.constr, Aj_mono_constraints, mono_maxiter, regular_alpha, regular_tau,
         regularization_types, prior_intercepts, prior_slopes, use_prior,
-        optimizer="CDM" )
+        optimizer="CDM", regularization=FALSE )
 {
     mono_constraints_fitted <- NULL
     # calculation of expected counts
@@ -73,8 +73,14 @@ gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.
         delta.new <- res_jj$delta.new
 
     }        # end item
+
+    # number of regularized item parameters
+    numb_regular_pars <- gdina_mstep_item_parameters_number_of_regularized_parameters(
+                        regularization=regularization, delta=delta, J=J)
+
     #----------------- OUTPUT -------------
     res <- list( delta.new=delta.new, suffstat_probs=suffstat_probs, mono_constraints_fitted=mono_constraints_fitted,
-                    penalty=penalty, ll_value=ll_value, logprior_value=logprior_value)
+                    penalty=penalty, ll_value=ll_value, logprior_value=logprior_value,
+                    numb_regular_pars=numb_regular_pars)
     return(res)
 }

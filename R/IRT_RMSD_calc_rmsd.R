@@ -1,5 +1,5 @@
 ## File Name: IRT_RMSD_calc_rmsd.R
-## File Version: 3.26
+## File Version: 3.27
 
 
 ##########################################
@@ -15,7 +15,7 @@ IRT_RMSD_calc_rmsd <- function( n.ik, pi.k, probs, eps=1E-30 )
     N.ik <- res$N.ik
     eps1 <- 1
     #------------------------------------------------
-    #*** RMSD fit statistic    
+    #*** RMSD fit statistic
     dist.item <- pi.k_tot * ( p.ik_observed - probs )^2
     h1 <- IRT_RMSD_proc_dist_item(dist.item=dist.item)
     RMSD <- sqrt( colSums( h1 ) / maxK )

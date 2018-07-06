@@ -1,5 +1,5 @@
 ## File Name: IRT.RMSD.R
-## File Version: 0.39
+## File Version: 0.40
 
 IRT.RMSD <- function( object )
 {
@@ -34,7 +34,7 @@ IRT.RMSD <- function( object )
     for (gg in 1:G){
         pi.k <- attr(mod_irfprob, "prob.theta")[, gg, drop=FALSE ]
         probs <- aperm( mod_irfprob, perm=c(3,1,2) )
-        n.ik <- aperm( mod_counts, perm=c(3,1,2,4) )[,,,gg,drop=FALSE]        
+        n.ik <- aperm( mod_counts, perm=c(3,1,2,4) )[,,,gg,drop=FALSE]
         #*** chi square calculation
         chisquare_stat[,gg+1] <- rmsd_chisquare( n.ik=n.ik, pi.k=pi.k, probs=probs )
         #*** RMSD calculations

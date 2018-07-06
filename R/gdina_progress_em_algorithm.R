@@ -1,9 +1,10 @@
 ## File Name: gdina_progress_em_algorithm.R
-## File Version: 0.32
+## File Version: 0.34
 
 gdina_progress_em_algorithm <- function( delta, data, like.new, loglikeold,
         max.par.change, iter, progress, progress.item, regularization, penalty, opt_fct,
-        opt_fct_change, ll_value, regular_type, logprior_value, use_prior)
+        opt_fct_change, ll_value, regular_type, logprior_value, use_prior,
+        numb_regular_pars=NA)
 {
     digits_par_change <- 6
     digits_opt_fct <- 5
@@ -24,6 +25,7 @@ gdina_progress_em_algorithm <- function( delta, data, like.new, loglikeold,
         if (regularization | use_prior){
             if ( regularization){
                 cat( "Penalty","=", round(  penalty, digits_opt_fct ), "\n")
+                cat( "Number of regularized parameters","=", numb_regular_pars, "\n")
             }
             if ( use_prior){
                 cat( "Log prior","=", round(  logprior_value, digits_opt_fct ), "\n")

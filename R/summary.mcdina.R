@@ -1,5 +1,5 @@
 ## File Name: summary.mcdina.R
-## File Version: 0.33
+## File Version: 0.34
 
 
 ##################################################################
@@ -23,8 +23,8 @@ summary.mcdina <- function( object, digits=4, file=NULL, ... )
     cat("Computation Time:", print(object$time$s2 - object$time$s1), "\n\n")
     cat("Multiple Choice DINA Model (MC-DINA)\n")
     cat( "\nNumber of iterations","=", object$iter )
-    if ( ! object$converged ){ 
-        cat("\nMaximum number of iterations was reached.") 
+    if ( ! object$converged ){
+        cat("\nMaximum number of iterations was reached.")
     }
 
     cat( "\n\nDeviance","=", round( object$ic$dev, 2 ) )

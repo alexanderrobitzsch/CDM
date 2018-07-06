@@ -1,5 +1,5 @@
 %% File Name: gdina.Rd
-%% File Version: 3.452
+%% File Version: 3.454
 
 \name{gdina}
 \alias{gdina}
@@ -997,6 +997,18 @@ q.matrix <- data.cdm08$q.matrix
 
 #*** estimate model
 mod <- CDM::gdina( dat0, q.matrix, rule="SISM", bugs=colnames(q.matrix)[5:7] )
+summary(mod)
+
+#############################################################################
+# EXAMPLE 13: Regularized estimation in GDINA model
+#############################################################################
+
+data(data.ecpe, package="CDM")
+dat <- data.ecpe$data[,-1]
+Q <- data.ecpe$q.matrix
+
+#* LASSO regularization with lambda parameter of .12
+mod <- CDM::gdina(dat, q.matrix=Q, rule="GDINA", regular_lam=.12, regular_type="lasso")
 summary(mod)
 }
 }

@@ -1,5 +1,5 @@
 %% File Name: data.ecpe.Rd
-%% File Version: 0.25
+%% File Version: 0.26
 
 \name{data.ecpe}
 \alias{data.ecpe}
@@ -54,7 +54,7 @@ Templin and Bradshaw (2014).
 
 \source{
 The dataset was downloaded from
-\url{http://psych.unl.edu/jtemplin/teaching/dcm/dcm12ncme/}.
+\emph{http://psych.unl.edu/jtemplin/teaching/dcm/dcm12ncme/}.
 }
 
 

@@ -1,5 +1,5 @@
 ## File Name: reglca_update_parameter.R
-## File Version: 0.24
+## File Version: 0.35
 
 
 reglca_update_parameter <- function(parm, pp, C, W, h, lambda, regular_type, cd_steps, conv, max_increment )
@@ -27,14 +27,13 @@ reglca_update_parameter <- function(parm, pp, C, W, h, lambda, regular_type, cd_
         f1 <- res$d1
         f2 <- res$d2
         incr <- - f1 / f2
-        # incr <- f1 / f2
         incr <- cdm_trim_increment( increment=incr, max.increment=max_increment, type=1)
         max_increment <- min( .10, max( abs(incr) ) / 1.02 )
         parm[pp] <- parm[pp] + incr
-
         #-- apply threshold operator
         if (pp>1){
-            parm[pp] <- cdm_parameter_regularization(x=parm[pp], regular_type=regular_type, regular_lam=lambda)
+            parm[pp] <- reglca_threshold_parameter(x=parm[pp], regular_type=regular_type, 
+                                lambda=lambda, vt=.25 )
         }
         iter <- iter + 1
         if ( iter > cd_steps ){ iterate <- FALSE }

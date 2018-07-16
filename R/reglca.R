@@ -1,5 +1,5 @@
 ## File Name: reglca.R
-## File Version: 0.810
+## File Version: 0.812
 
 reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad", regular_lam=0,
                 sd_noise_init=1, item_probs_init=NULL, class_probs_init=NULL, random_starts=1,

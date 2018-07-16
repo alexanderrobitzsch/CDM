@@ -24,10 +24,11 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 6.5  |  2018-07-06  |  Last: CDM 6.5-1
+VERSIONS CDM 6.5  |  2018-07-16  |  Last: CDM 6.5-3
 --------------------------------------------------------------
 
-NOTE  * xxx
+NOTE  * changed metric of regularization parameter lambda in
+        gdina() which seems to improve estimation stability
 
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: ---

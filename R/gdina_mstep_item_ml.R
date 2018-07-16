@@ -1,5 +1,5 @@
 ## File Name: gdina_mstep_item_ml.R
-## File Version: 0.869
+## File Version: 0.876
 
 #####################################################
 # GDINA M-step item parameters
@@ -25,8 +25,7 @@ gdina_mstep_item_ml <- function( pjjj, Ilj.ast, Rlj.ast, eps, avoid.zeroprobs,
 
     Rlj.ast <- Rlj.ast + .005
     Ilj.ast <- Ilj.ast + .05
-    N <- sum(Ilj.ast)
-
+    N <- sum(Ilj.ast)    
     diag_only <- FALSE
     regularization <- FALSE
 
@@ -68,10 +67,10 @@ gdina_mstep_item_ml <- function( pjjj, Ilj.ast, Rlj.ast, eps, avoid.zeroprobs,
     #------------------
     #--- algorithm without monotonicity constraints
     if (optimizer=="CDM"){
-    delta_jj <- gdina_mstep_item_ml_algorithm( delta_jj=delta_jj, max_increment=max_increment, regular_lam=regular_lam,
+        delta_jj <- gdina_mstep_item_ml_algorithm( delta_jj=delta_jj, max_increment=max_increment, regular_lam=regular_lam,
                         regular_type=regular_type, regularization=regularization, ll_FUN=ll_FUN, h=h,
                         mstep_conv=mstep_conv, cd_steps=cd_steps, mstep_iter=mstep_iter,
-                        regular_alpha=regular_alpha, regular_tau=regular_tau )
+                        regular_alpha=regular_alpha, regular_tau=regular_tau, N=N )
     }
     if (optimizer=="optim"){
         mod <- stats::optim(par=delta_jj, fn=ll_FUN, method="L-BFGS-B",
@@ -166,13 +165,16 @@ gdina_mstep_item_ml <- function( pjjj, Ilj.ast, Rlj.ast, eps, avoid.zeroprobs,
 
     #-- penalty parameter for item
     delta_jj <- delta.new[[jj]]
+
     if (regularization){
         x <- delta_jj[-1]
         penalty1 <- cdm_penalty_values( x=x, regular_type=regular_type, regular_lam=regular_lam,
                             regular_alpha=regular_alpha, regular_tau=regular_tau )
         penalty <- N*sum(penalty1)
-        ll_value <- N*ll_value - penalty
+        # ll_value <- N*ll_value - penalty
+        ll_value <- ll_value - penalty        
     }
+    
     if (use_prior){
         logprior_value <- logprior_FUN(x=delta_jj, p1=prior_intercepts, p2=prior_slopes)
     }

@@ -1,5 +1,5 @@
 //// File Name: cdm_rcpp_mcdina_probs_multcat_items_counts.cpp
-//// File Version: 3.13
+//// File Version: 3.14
 
 // #include <RcppArmadillo.h>
 #include <Rcpp.h>
@@ -48,7 +48,6 @@ Rcpp::List cdm_rcpp_mcdina_calccounts_pcm_groups( Rcpp::NumericMatrix dat,
         Rcpp::LogicalMatrix dat_resp_bool, Rcpp::NumericVector group, Rcpp::NumericMatrix fyiqk,
         Rcpp::NumericMatrix pik, int CC, Rcpp::NumericVector weights )
 {
-
     int TP = fyiqk.ncol();
     int G = pik.ncol();
     int N = dat.nrow();
@@ -90,7 +89,7 @@ Rcpp::List cdm_rcpp_mcdina_calccounts_pcm_groups( Rcpp::NumericMatrix dat,
             total += fyiqk(nn,tt) * pik(tt,group[nn]);
             pik1(tt,group[nn]) += fqkyi(nn,tt)*weights[nn];
         } // end tt
-        LL += log( total+eps ) * weights[nn];
+        LL += std::log( total+eps ) * weights[nn];
     }  // end nn
 
     ///////////////////////////////////////

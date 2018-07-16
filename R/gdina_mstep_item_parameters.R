@@ -1,5 +1,5 @@
 ## File Name: gdina_mstep_item_parameters.R
-## File Version: 0.59
+## File Version: 0.63
 
 gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.increment,
         increment.factor, J, Aj, Mj, delta, method, avoid.zeroprobs, invM.list, linkfct,
@@ -22,7 +22,8 @@ gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.
     delta.new <- NULL
 
     #----- loop over items
-    for (jj in 1:J){     # begin item
+    for (jj in 1:J){     # begin item    
+    
         Ajjj <- Aj[[jj]]
         Mjjj <- Mj[[jj]][[1]]
         Rlj.ast <- R.ljM[ jj, Mj.index[jj,5]:Mj.index[jj,6] ]
@@ -71,7 +72,7 @@ gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.
             }
         }
         delta.new <- res_jj$delta.new
-
+        
     }        # end item
 
     # number of regularized item parameters

@@ -1,9 +1,9 @@
 ## File Name: gdina_mstep_item_ml_update_parameter.R
-## File Version: 0.36
+## File Version: 0.51
 
 gdina_mstep_item_ml_update_parameter <- function( delta_jj, max_increment,
     regular_lam, regular_type, regularization, ll_FUN, h, mstep_conv, cd_steps,
-    regular_alpha, regular_tau )
+    regular_alpha, regular_tau, N=NULL, vt=.25 )
 {
     eps <- 1E-5
     #--- no regularization
@@ -20,7 +20,8 @@ gdina_mstep_item_ml_update_parameter <- function( delta_jj, max_increment,
     if (regularization){
         NP <- length(delta_jj)
         for (pp in 1:NP){
-            iterate_pp <- TRUE
+            iterate_pp <- TRUE            
+# cat("---------- pp =", pp , "----------------\n")        
             vv <- 0
             while (iterate_pp){
                 delta_jj_pp <- delta_jj
@@ -31,10 +32,13 @@ gdina_mstep_item_ml_update_parameter <- function( delta_jj, max_increment,
                 delta_jj[pp] <- delta_jj[pp] - delta_change
                 vv <- vv + 1
                 if (pp >=2 ){
-                    delta_jj[pp] <- gdina_mstep_item_ml_update_parameter_regularization(x=delta_jj[pp],
+                    x0 <- delta_jj[pp]
+                    delta_jj[pp] <- gdina_mstep_item_ml_update_parameter_regularization(x=x0,
                                             regular_type=regular_type, regular_lam=regular_lam,
-                                            regular_alpha=regular_alpha, regular_tau=regular_tau )
+                                            regular_alpha=regular_alpha, regular_tau=regular_tau,
+                                            vt=vt )
                 }
+    
                 parchange_pp <- max( abs( delta_jj_pp - delta_jj ))
                 if ( parchange_pp < mstep_conv ){
                     iterate_pp <- FALSE
@@ -42,8 +46,8 @@ gdina_mstep_item_ml_update_parameter <- function( delta_jj, max_increment,
                 if ( vv > cd_steps ){
                     iterate_pp <- FALSE
                 }
-            }
-        }
+            }  # end while iterate_pp
+        } # end pp
     }
     #--- output
     return(delta_jj)

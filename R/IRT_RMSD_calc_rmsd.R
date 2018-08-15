@@ -1,5 +1,5 @@
 ## File Name: IRT_RMSD_calc_rmsd.R
-## File Version: 3.27
+## File Version: 3.29
 
 
 ##########################################
@@ -14,6 +14,8 @@ IRT_RMSD_calc_rmsd <- function( n.ik, pi.k, probs, eps=1E-30 )
     K <- res$K
     N.ik <- res$N.ik
     eps1 <- 1
+    eps0 <- 1E-20
+    
     #------------------------------------------------
     #*** RMSD fit statistic
     dist.item <- pi.k_tot * ( p.ik_observed - probs )^2
@@ -29,7 +31,7 @@ IRT_RMSD_calc_rmsd <- function( n.ik, pi.k, probs, eps=1E-30 )
         N.it[,, kk] <- N.it[,,1]
     }
     N.it <- N.it #  + 1
-    p.ik_obs_var <- probs * ( 1 - probs ) / N.it
+    p.ik_obs_var <- probs * ( 1 - probs ) / ( N.it + eps0 )
     p.ik_samp_var <- pi.k_tot^2 * p.ik_obs_var
     h2 <- IRT_RMSD_proc_dist_item(dist.item=p.ik_samp_var)
     h2 <- colSums( h2 ) / maxK
@@ -46,9 +48,14 @@ IRT_RMSD_calc_rmsd <- function( n.ik, pi.k, probs, eps=1E-30 )
     dist.item <- pi.k_tot * abs( p.ik_observed - probs )
     h1 <- IRT_RMSD_proc_dist_item(dist.item=dist.item)
     MAD <- colSums( h1 ) / maxK
-
+    
+    RMSD <- cdm_replace_inf(x=RMSD)
+    RMSD_bc <- cdm_replace_inf(x=RMSD_bc)
+    MD <- cdm_replace_inf(x=MD)
+    MAD <- cdm_replace_inf(x=MAD)
+    
     #--- output
-    res <- list( RMSD=RMSD, RMSD_bc=RMSD_bc,  MD=MD, MAD=MAD )
+    res <- list( RMSD=RMSD, RMSD_bc=RMSD_bc, MD=MD, MAD=MAD )
     return(res)
 }
 

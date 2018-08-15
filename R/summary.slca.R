@@ -1,5 +1,5 @@
 ## File Name: summary.slca.R
-## File Version: 1.40
+## File Version: 1.41
 
 #*******************************************************
 # Summary for slca object
@@ -43,7 +43,7 @@ summary.slca <- function( object, file=NULL, ... )
     cat( "Log Likelihood","=", round( -object$deviance/2, 2 ), "\n" )
     cat( "Penalty","=", round( object$regular_penalty, 2 ), "\n" )
 
-    cat( "Number of person","=", object$ic$n, "\n" )
+    cat( "Number of persons","=", object$ic$n, "\n" )
 
     cat( "Number of estimated parameters","=", object$ic$np, "\n" )
     cat( "  Number of estimated lambda parameters","=", object$ic$itempars, "\n" )

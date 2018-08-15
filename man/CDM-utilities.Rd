@@ -1,5 +1,5 @@
 %% File Name: CDM-utilities.Rd
-%% File Version: 0.60
+%% File Version: 0.64
 
 \name{CDM-utilities}
 \alias{CDM-utilities}
@@ -26,6 +26,7 @@
 \alias{cdm_penalty_threshold_scadL2}
 \alias{cdm_penalty_threshold_tlp}
 \alias{cdm_penalty_threshold_mcp}
+\alias{cdm_parameter_regularization}
 
 \alias{CDM_rbind_fill}
 \alias{cdm_matrix2}
@@ -35,6 +36,8 @@
 
 \alias{cdm_matrixstring}
 
+\alias{cdm_calc_information_criteria}
+\alias{cdm_print_summary_information_criteria}
 
 \title{Utility Functions in \pkg{CDM}}
 
@@ -94,7 +97,10 @@ cdm_parameter_regularization(x, regular_type, regular_lam, regular_alpha=NULL,
 ## values of penalty function
 cdm_penalty_values(x, regular_type, regular_lam, regular_tau=NULL,
        regular_alpha=NULL)
-
+## thresholding operators regularization
+cdm_parameter_regularization(x, regular_type, regular_lam, regular_alpha=NULL, 
+       regular_tau=NULL)
+       
 ## utility functions for P-EM acceleration
 cdm_pem_inits(parmlist)
 cdm_pem_inits_assign_parmlist(pem_pars, envir)
@@ -105,6 +111,10 @@ cdm_pem_acceleration_assign_output_parameters(res_ll_fct, vars, envir, update)
 ## approximation of absolute value function and its derivative
 abs_approx(x, eps=1e-05)
 abs_approx_D1(x, eps=1e-05)
+
+## information criteria
+cdm_calc_information_criteria(ic)
+cdm_print_summary_information_criteria(object, digits_crit = 0, digits_penalty = 2) 
 }
 
 \arguments{
@@ -161,7 +171,11 @@ item loadings, method \code{2} estimation of same item loadings.}
 \item{res_ll_fct}{Result of maximized log-likelihood function}
 \item{vars}{Vector containing parameter names}
 \item{eps}{Numeric}
+\item{ic}{List}
+\item{digits_crit}{Integer}
+\item{digits_penalty}{Integer}
 }
+
 
 %\details{
 %xxx

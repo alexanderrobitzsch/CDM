@@ -1,5 +1,5 @@
 ## File Name: IRT.RMSD.R
-## File Version: 0.40
+## File Version: 0.41
 
 IRT.RMSD <- function( object )
 {
@@ -48,9 +48,9 @@ IRT.RMSD <- function( object )
         MAD[,gg+1] <- res0$MAD   # MAD
     }
 
-    M1 <- rowSums( RMSD[,2:(G+1) ]^2 * weight_group )
+    M1 <- rowSums( RMSD[,2:(G+1) ]^2 * weight_group, na.rm=TRUE )
     RMSD$WRMSD <- sqrt( M1 )
-    M1 <- rowSums( RMSD_bc[,2:(G+1) ]^2 * weight_group )
+    M1 <- rowSums( RMSD_bc[,2:(G+1) ]^2 * weight_group, na.rm=TRUE )
     RMSD_bc$WRMSD <- sqrt( M1 )
     if ( G==1 ){
         RMSD$WRMSD <- NULL

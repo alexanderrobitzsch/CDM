@@ -24,11 +24,17 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 6.5  |  2018-07-16  |  Last: CDM 6.5-3
+VERSIONS CDM 6.5  |  2018-08-15  |  Last: CDM 6.5-10
 --------------------------------------------------------------
 
 NOTE  * changed metric of regularization parameter lambda in
         gdina() which seems to improve estimation stability
+NOTE  * exported utility function cdm_parameter_regularization(),
+        cdm_calc_information_criteria(), cdm_penalty_values(),
+        cdm_print_summary_information_criteria()
+FIXED * corrected output with missing entries in case of groups
+        without observations in IRT.RMSD()
+        (thanks to Laura Helbling)
 
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: ---

@@ -24,7 +24,18 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 6.5  |  2018-08-15  |  Last: CDM 6.5-10
+VERSIONS CDM 6.6  |  2018-08-16  |  Last: CDM 6.6-1
+--------------------------------------------------------------
+
+NOTE  * xxx
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
+
+
+
+--------------------------------------------------------------
+VERSIONS CDM 6.5  |  2018-08-16  |  Last: CDM 6.5-12
 --------------------------------------------------------------
 
 NOTE  * changed metric of regularization parameter lambda in
@@ -38,8 +49,6 @@ FIXED * corrected output with missing entries in case of groups
 
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: ---
-
-
 
 --------------------------------------------------------------
 VERSIONS CDM 6.4  |  2018-07-06  |  Last: CDM 6.4-23

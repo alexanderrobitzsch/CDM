@@ -1,5 +1,5 @@
 %% File Name: CDM-utilities.Rd
-%% File Version: 0.64
+%% File Version: 0.67
 
 \name{CDM-utilities}
 \alias{CDM-utilities}
@@ -98,9 +98,9 @@ cdm_parameter_regularization(x, regular_type, regular_lam, regular_alpha=NULL,
 cdm_penalty_values(x, regular_type, regular_lam, regular_tau=NULL,
        regular_alpha=NULL)
 ## thresholding operators regularization
-cdm_parameter_regularization(x, regular_type, regular_lam, regular_alpha=NULL, 
+cdm_parameter_regularization(x, regular_type, regular_lam, regular_alpha=NULL,
        regular_tau=NULL)
-       
+
 ## utility functions for P-EM acceleration
 cdm_pem_inits(parmlist)
 cdm_pem_inits_assign_parmlist(pem_pars, envir)
@@ -114,7 +114,7 @@ abs_approx_D1(x, eps=1e-05)
 
 ## information criteria
 cdm_calc_information_criteria(ic)
-cdm_print_summary_information_criteria(object, digits_crit = 0, digits_penalty = 2) 
+cdm_print_summary_information_criteria(object, digits_crit=0, digits_penalty=2)
 }
 
 \arguments{

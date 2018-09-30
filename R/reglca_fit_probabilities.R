@@ -1,5 +1,5 @@
 ## File Name: reglca_fit_probabilities.R
-## File Version: 0.29
+## File Version: 0.34
 
 reglca_fit_probabilities <- function( freq, lambda, parm_init=NULL, regular_type="scad",
     h=1E-4, maxit=100, conv=1E-5, cd_steps=5, max_increment=1, verbose=TRUE)
@@ -18,13 +18,11 @@ reglca_fit_probabilities <- function( freq, lambda, parm_init=NULL, regular_type
         parm_init <- c( freq[1], diff(freq) )
     }
     parm <- parm_init
-
     iter <- 0
     iterate <- TRUE
 
     #---- begin iterations
     while(iterate){
-
         res <- reglca_fit_probabilities_fit_function( parm=parm, lambda=lambda, C=C, W=W,
                             regular_type=regular_type )
         ll <- res$ll

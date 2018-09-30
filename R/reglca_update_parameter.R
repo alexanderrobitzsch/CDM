@@ -1,13 +1,15 @@
 ## File Name: reglca_update_parameter.R
-## File Version: 0.35
+## File Version: 0.48
 
 
-reglca_update_parameter <- function(parm, pp, C, W, h, lambda, regular_type, cd_steps, conv, max_increment )
+reglca_update_parameter <- function(parm, pp, C, W, h, lambda, regular_type,
+    cd_steps, conv, max_increment, vt=NULL )
 {
 
     iterate <- TRUE
     iter <- 0
     parchange <- 1
+    vt_null <- is.null(vt)
     while (iterate){
         parm_old <- parm
         probs0 <- reglca_calc_probs(parm=parm)
@@ -32,8 +34,13 @@ reglca_update_parameter <- function(parm, pp, C, W, h, lambda, regular_type, cd_
         parm[pp] <- parm[pp] + incr
         #-- apply threshold operator
         if (pp>1){
-            parm[pp] <- reglca_threshold_parameter(x=parm[pp], regular_type=regular_type, 
-                                lambda=lambda, vt=.25 )
+            if ( vt_null ){
+                vt <- abs(f2)
+            } else {
+                vt <- 1
+            }
+            parm[pp] <- reglca_threshold_parameter(x=parm[pp], regular_type=regular_type,
+                                lambda=lambda, vt=vt)
         }
         iter <- iter + 1
         if ( iter > cd_steps ){ iterate <- FALSE }

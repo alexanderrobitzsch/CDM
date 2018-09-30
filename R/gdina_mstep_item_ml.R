@@ -1,5 +1,5 @@
 ## File Name: gdina_mstep_item_ml.R
-## File Version: 0.876
+## File Version: 0.877
 
 #####################################################
 # GDINA M-step item parameters
@@ -25,7 +25,7 @@ gdina_mstep_item_ml <- function( pjjj, Ilj.ast, Rlj.ast, eps, avoid.zeroprobs,
 
     Rlj.ast <- Rlj.ast + .005
     Ilj.ast <- Ilj.ast + .05
-    N <- sum(Ilj.ast)    
+    N <- sum(Ilj.ast)
     diag_only <- FALSE
     regularization <- FALSE
 
@@ -172,9 +172,9 @@ gdina_mstep_item_ml <- function( pjjj, Ilj.ast, Rlj.ast, eps, avoid.zeroprobs,
                             regular_alpha=regular_alpha, regular_tau=regular_tau )
         penalty <- N*sum(penalty1)
         # ll_value <- N*ll_value - penalty
-        ll_value <- ll_value - penalty        
+        ll_value <- ll_value - penalty
     }
-    
+
     if (use_prior){
         logprior_value <- logprior_FUN(x=delta_jj, p1=prior_intercepts, p2=prior_slopes)
     }

@@ -22,9 +22,8 @@ R script and (if necessary) a corresponding dataset.
 
 
 
-
 --------------------------------------------------------------
-VERSIONS CDM 6.6  |  2018-08-16  |  Last: CDM 6.6-1
+VERSIONS CDM 7.0  |  2018-09-30  |  Last: CDM 7.0-1
 --------------------------------------------------------------
 
 NOTE  * xxx
@@ -33,6 +32,18 @@ DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: ---
 
 
+
+
+
+--------------------------------------------------------------
+VERSIONS CDM 6.6  |  2018-09-30  |  Last: CDM 6.6-5
+--------------------------------------------------------------
+
+NOTE  * changes in estimation algorithm in regularized latent 
+        class analysis function reglca() to stabilize estimation
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
 
 --------------------------------------------------------------
 VERSIONS CDM 6.5  |  2018-08-16  |  Last: CDM 6.5-12

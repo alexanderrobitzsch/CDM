@@ -1,9 +1,9 @@
 ## File Name: reglca_progress_em_algorithm.R
-## File Version: 0.16
+## File Version: 0.19
 
 reglca_progress_em_algorithm <- function( like.new, loglikeold,
         max.par.change, iter, progress, penalty, opt_fct,    opt_fct_change, n_reg,
-        control_random_starts )
+        control_random_starts, opt_fct_item_sum )
 {
     digits_par_change <- 6
     digits_opt_fct <- 5
@@ -22,10 +22,12 @@ reglca_progress_em_algorithm <- function( like.new, loglikeold,
         cat("\n" )
         cat( "Penalty","=", round(  - penalty, digits_opt_fct ),
                 " | number of regularized parameters","=", n_reg, "\n")
-        cat( "Optimization function","=", round(  opt_fct, digits_opt_fct ) )
+        cat( "Optimization function","=", round( opt_fct, digits_opt_fct ) )
         if ((iter>1) & print_fct_change){
             cat(" | Function change","=", round( opt_fct_change, digits_opt_fct_change) )
         }
+        cat("\n")
+        cat( "Sum of item-wise optimization function values","=", round( opt_fct_item_sum, digits_opt_fct ) )
         cat("\n")
         cat("Maximum parameter change:", round( max.par.change, digits_par_change), "\n")
     }

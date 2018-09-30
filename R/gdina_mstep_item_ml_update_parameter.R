@@ -1,5 +1,5 @@
 ## File Name: gdina_mstep_item_ml_update_parameter.R
-## File Version: 0.51
+## File Version: 0.54
 
 gdina_mstep_item_ml_update_parameter <- function( delta_jj, max_increment,
     regular_lam, regular_type, regularization, ll_FUN, h, mstep_conv, cd_steps,
@@ -20,8 +20,8 @@ gdina_mstep_item_ml_update_parameter <- function( delta_jj, max_increment,
     if (regularization){
         NP <- length(delta_jj)
         for (pp in 1:NP){
-            iterate_pp <- TRUE            
-# cat("---------- pp =", pp , "----------------\n")        
+            iterate_pp <- TRUE
+# cat("---------- pp=", pp, "----------------\n")
             vv <- 0
             while (iterate_pp){
                 delta_jj_pp <- delta_jj
@@ -38,7 +38,7 @@ gdina_mstep_item_ml_update_parameter <- function( delta_jj, max_increment,
                                             regular_alpha=regular_alpha, regular_tau=regular_tau,
                                             vt=vt )
                 }
-    
+
                 parchange_pp <- max( abs( delta_jj_pp - delta_jj ))
                 if ( parchange_pp < mstep_conv ){
                     iterate_pp <- FALSE

@@ -1,5 +1,5 @@
 ## File Name: gdina.R
-## File Version: 9.285
+## File Version: 9.286
 
 
 ################################################################################
@@ -479,7 +479,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
         # M Step                                                                       #
         # GDINA Model                                                                   #
         ################################################################################
-        
+
         res <- gdina_mstep_item_parameters( R.lj=R.lj, I.lj=I.lj, aggr.patt.designmatrix=aggr.patt.designmatrix,
                         max.increment=max.increment, increment.factor=increment.factor, J=J, Aj=Aj, Mj=Mj,
                         delta=delta, method=method, avoid.zeroprobs=avoid.zeroprobs, invM.list=invM.list,
@@ -499,7 +499,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
         ll_value <- res$ll_value
         logprior_value <- res$logprior_value
         numb_regular_pars <- res$numb_regular_pars
-        
+
         ##########################################################################
         # estimation with a design matrix for delta parameters
         ##########################################################################

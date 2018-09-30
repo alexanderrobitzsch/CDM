@@ -1,5 +1,5 @@
 ## File Name: reglca.R
-## File Version: 0.812
+## File Version: 0.813
 
 reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad", regular_lam=0,
                 sd_noise_init=1, item_probs_init=NULL, class_probs_init=NULL, random_starts=1,
@@ -104,6 +104,7 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
         n_reg <- res$n_reg
         max_increment <- res$max_increment
         n_reg_item <- res$n_reg_item
+        opt_fct_item_sum <- res$opt_fct_item_sum
         max.par.change <- max( max( abs(item_probs - item_probs0) ), max( abs( class_probs - class_probs0) ) )
 
         #--- calculate deviance
@@ -120,7 +121,7 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
         res <- reglca_progress_em_algorithm( like.new=like.new, loglikeold=loglikeold,
                     max.par.change=max.par.change, iter=iter, progress=verbose, penalty=penalty,
                     opt_fct=opt_fct, opt_fct_change=opt_fct_change, n_reg=n_reg,
-                    control_random_starts=control_random_starts )
+                    control_random_starts=control_random_starts, opt_fct_item_sum=opt_fct_item_sum )
 
         utils::flush.console()
         iter <- iter + 1 # new iteration number

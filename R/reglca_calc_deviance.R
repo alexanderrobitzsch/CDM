@@ -1,5 +1,5 @@
 ## File Name: reglca_calc_deviance.R
-## File Version: 0.09
+## File Version: 0.11
 
 reglca_calc_deviance <- function( p.xi.aj, class_probs, weights, loglike,
             penalty=0, opt_fct=0, ind_groups, G, N_groups )
@@ -27,7 +27,7 @@ reglca_calc_deviance <- function( p.xi.aj, class_probs, weights, loglike,
 
     #--- regularization
     opt_fct_old <- opt_fct
-    opt_fct <- -2*like.new + 2* penalty
+    opt_fct <- -2*like.new + 2*penalty
     opt_fct_change <- - opt_fct + opt_fct_old
 
     #--- OUTPUT

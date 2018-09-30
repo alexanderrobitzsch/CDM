@@ -1,5 +1,5 @@
 ## File Name: rrum.param.R
-## File Version: 0.19
+## File Version: 0.21
 
 
 
@@ -13,7 +13,7 @@
     #  RRUM:
     #  P(X=1)=pi * r1^( 1- alpha1) * r2^(1-alpha2)
     #=> log( P(X=1) )=log[ pi * r1 * r2 * r1^(-alpha1) * r2^(-alpha2) ]
-    #       =log( pi ) + log(r1) + log(r2) + -log(r1)*alpha1 + -log(r2) * alpha2
+    #     =log( pi ) + log(r1) + log(r2) + -log(r1)*alpha1 + -log(r2) * alpha2
     #=> b1=-log(r1) and r1=exp( -b1 )
     #=> log(pi)=b0 + b1 + b2 and pi=exp( b0 + b1 + b2 )
     I <- nrow(q.matrix)

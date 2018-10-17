@@ -1,9 +1,12 @@
 ## File Name: reglca_fit_probabilities.R
-## File Version: 0.34
+## File Version: 0.414
 
 reglca_fit_probabilities <- function( freq, lambda, parm_init=NULL, regular_type="scad",
-    h=1E-4, maxit=100, conv=1E-5, cd_steps=5, max_increment=1, verbose=TRUE)
+    h=1E-4, maxit=100, conv=1E-5, cd_steps=5, max_increment=1, verbose=TRUE, prob_min=0 )
 {
+
+    vt <- .25
+    vt <- NULL
 
     #--- order frequencies
     NP <- length(freq)
@@ -32,7 +35,7 @@ reglca_fit_probabilities <- function( freq, lambda, parm_init=NULL, regular_type
         for (pp in 1:NP){
             parm <- reglca_update_parameter( parm=parm, pp=pp, C=C, W=W, h=h, lambda=lambda,
                         regular_type=regular_type, cd_steps=cd_steps, conv=conv,
-                        max_increment=max_increment)
+                        max_increment=max_increment, vt=vt, prob_min=prob_min)
         }
         #-- normalize probabilities
         parm <- reglca_normalize_probabilities(parm=parm)

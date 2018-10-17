@@ -1,9 +1,10 @@
 ## File Name: reglca_mstep_item_parameters.R
-## File Version: 0.42
+## File Version: 0.482
 
 
 reglca_mstep_item_parameters <- function(I, n.ik, N.ik, h, mstep_iter, conv, regular_lam,
-        regular_type, cd_steps, item_probs, max_increment, iter, G, fac=1.02 )
+        regular_type, cd_steps, item_probs, max_increment, iter, G, fac=1.02,
+        prob_min=0)
 {
     penalty <- rep(0,I)
     n_par <- rep(0,I)
@@ -12,7 +13,8 @@ reglca_mstep_item_parameters <- function(I, n.ik, N.ik, h, mstep_iter, conv, reg
     nclasses <- ncol(item_probs)
     expected_loglike <- rep(0,I)
     opt_fct_item_sum <- rep(0,I)
-
+    bounds <- c( prob_min, 1-prob_min)
+    
     #-- sum counts in case of multiple groups
     if (G>1){
         ND <- dim(n.ik)
@@ -31,12 +33,13 @@ reglca_mstep_item_parameters <- function(I, n.ik, N.ik, h, mstep_iter, conv, reg
         freq <- n.ik[,ii,2] / N.ik[,ii]
         res <- reglca_fit_probabilities( freq=freq, h=h, maxit=mstep_iter, conv=conv, verbose=FALSE,
                             parm_init=NULL, lambda=regular_lam, regular_type=regular_type,
-                            cd_steps=cd_steps, max_increment=max_increment)
+                            cd_steps=cd_steps, max_increment=max_increment, prob_min=prob_min)
         expected_loglike[ii] <- res$ll
         opt_fct_item_sum[ii] <- res$ll + res$pen
         incr <- res$probs - item_probs[ii,]
         incr <- cdm_trim_increment( increment=incr, max.increment=max_increment, type=1 )
         item_probs[ii,] <- item_probs[ii,] + incr
+        item_probs[ii,] <- cdm_squeeze( x=item_probs[ii,], bounds=bounds)
         penalty[ii] <- sum(N.ik[,ii]) * res$pen
         n_par[ii] <- res$n_par
         n_reg_item[ii] <- nclasses - res$n_par

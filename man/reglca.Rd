@@ -1,5 +1,5 @@
 %% File Name: reglca.Rd
-%% File Version: 0.19
+%% File Version: 0.21
 
 \name{reglca}
 \alias{reglca}
@@ -20,7 +20,7 @@ The SCAD and MCP penalty functions are available.
 reglca(dat, nclasses, weights=NULL, group=NULL, regular_type="scad",
    regular_lam=0, sd_noise_init=1, item_probs_init=NULL, class_probs_init=NULL,
    random_starts=1, random_iter=20, conv=1e-05, h=1e-04, mstep_iter=10,
-   maxit=1000, verbose=TRUE)
+   maxit=1000, verbose=TRUE, prob_min=.0001)
 
 \method{summary}{reglca}(object, digits=4, file=NULL,  \dots)
 }
@@ -76,6 +76,7 @@ Maximum number of iterations
   \item{verbose}{
 Logical indicating whether convergence progress should be displayed
 }
+\item{prob_min}{Lower bound for probabilities in estimation}
   \item{object}{A required object of class \code{gdina}, obtained
     from a call to the function \code{\link{gdina}}.  }
   \item{digits}{Number of digits after decimal separator to display.  }

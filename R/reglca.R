@@ -1,9 +1,10 @@
 ## File Name: reglca.R
-## File Version: 0.813
+## File Version: 0.816
 
 reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad", regular_lam=0,
                 sd_noise_init=1, item_probs_init=NULL, class_probs_init=NULL, random_starts=1,
-                random_iter=20,    conv=1E-5,     h=1E-4, mstep_iter=10, maxit=1000, verbose=TRUE )
+                random_iter=20,    conv=1E-5,     h=1E-4, mstep_iter=10, maxit=1000, verbose=TRUE,
+                prob_min=.0001)
 {
 
     CALL <- match.call()
@@ -97,8 +98,9 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
         #--- item parameter estimation
         res <- reglca_mstep_item_parameters( I=I, n.ik=n.ik, N.ik=N.ik, h=h, mstep_iter=mstep_iter,
                     conv=conv, regular_lam=regular_lam, regular_type=regular_type, cd_steps=cd_steps,
-                    item_probs=item_probs, max_increment=max_increment, iter=iter, G=G )
-        item_probs <- res$item_probs
+                    item_probs=item_probs, max_increment=max_increment, iter=iter, G=G,
+                    prob_min=prob_min)
+        item_probs <- res$item_probs    
         penalty <- res$penalty
         n_par <- res$n_par
         n_reg <- res$n_reg

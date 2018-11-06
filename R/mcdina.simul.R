@@ -1,5 +1,5 @@
 ## File Name: mcdina.simul.R
-## File Version: 0.17
+## File Version: 0.18
 
 
 #*******************************************************************
@@ -13,7 +13,8 @@
 # sirt package is needed for loading this function
 
 #################################################################
-simul.mcdina <- function( alpha,  pars_lc, pars_lr, skillcl ){
+simul.mcdina <- function( alpha,  pars_lc, pars_lr, skillcl )
+{
     # skills ... alpha vectors
     #   skillcl <- scan.vec( "P000 P100 P010 P110 P001 P101 P011 P111" )
     requireNamespace("sirt")
@@ -25,7 +26,6 @@ simul.mcdina <- function( alpha,  pars_lc, pars_lr, skillcl ){
     colnames(dat) <- paste0("I",1:I)
     # calculate probabilities and simulate
     for (ii in 1:I){
-        # ii <- 4
         lc.ii <- pars_lc[ pars_lc$item==ii, ]
         lc.ii <- lc.ii[ lc.ii$sum==1, ]
         lr.ii <- pars_lr[ pars_lr$item==ii, ]

@@ -1,5 +1,5 @@
 %% File Name: skillspace.hierarchy.Rd
-%% File Version: 0.19
+%% File Version: 0.23
 
 \name{skillspace.hierarchy}
 \alias{skillspace.hierarchy}

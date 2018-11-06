@@ -22,13 +22,12 @@ R script and (if necessary) a corresponding dataset.
 
 
 
+
 --------------------------------------------------------------
-VERSIONS CDM 7.0  |  2018-10-17  |  Last: CDM 7.0-3
+VERSIONS CDM 7.1  |  2018-11-06  |  Last: CDM 7.1-1
 --------------------------------------------------------------
 
-NOTE  * included argument 'prob_min' in reglca() to prevent
-        negatively estimated probabilities (brought to attention
-        by a dataset of Boris Girnat)
+NOTE  * xxx
 
 
 DATA  * included/modified datasets: ---
@@ -37,6 +36,17 @@ EXAMP * included/modified examples: ---
 
 
 
+--------------------------------------------------------------
+VERSIONS CDM 7.0  |  2018-11-06  |  Last: CDM 7.0-12
+--------------------------------------------------------------
+
+NOTE  * included argument 'prob_min' in reglca() to prevent
+        negatively estimated probabilities or numerical
+        instabilities (thanks to Boris Girnat)
+NOTE  * included utility function cat_paste()
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
 
 --------------------------------------------------------------
 VERSIONS CDM 6.6  |  2018-09-30  |  Last: CDM 6.6-5

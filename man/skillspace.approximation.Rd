@@ -1,5 +1,5 @@
 %% File Name: skillspace.approximation.Rd
-%% File Version: 0.18
+%% File Version: 0.21
 
 \name{skillspace.approximation}
 \alias{skillspace.approximation}
@@ -50,7 +50,7 @@ with an emphasis on differential item functioning.
 }
 
 \note{
-This function uses the \code{QUnif} function from the \pkg{sfsmisc}
+This function uses the \code{sfsmisc::QUnif} function from the \pkg{sfsmisc}
 package.
 }
 

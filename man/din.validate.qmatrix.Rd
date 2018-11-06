@@ -1,5 +1,5 @@
 %% File Name: din.validate.qmatrix.Rd
-%% File Version: 1.30
+%% File Version: 1.34
 
 \name{din.validate.qmatrix}
 \alias{din.validate.qmatrix}
@@ -14,10 +14,6 @@ using the \code{\link{din}} function, item parameters and the item
 discrimination parameters \eqn{IDI_j} are recalculated. Q-matrix rows
 are determined by maximizing the estimated item discrimination index
 \eqn{IDI_j=1-s_j -g_j}.
-
-See Chiu (2013) for an alternative estimation approach based on
-residual sum of squares which is implemented in the \pkg{NPCD}
-package.
 }
 
 \usage{
@@ -74,7 +70,9 @@ validation for the DINA model: Development and applications.
 \seealso{
 The mixed DINA/DINO model can be estimated with \code{\link{din}}.
 
-See also the \code{NPCD::Qrefine} function in the \pkg{NPCD} package.
+See Chiu (2013) for an alternative estimation approach based on
+residual sum of squares which is implemented
+\code{NPCD::Qrefine} function in the \pkg{NPCD} package.
 
 See the \code{\link[GDINA:Qval]{GDINA::Qval}} function in the
 \pkg{GDINA} package for extended functionality.

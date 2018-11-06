@@ -1,5 +1,5 @@
 ## File Name: gdina_mstep_item_uls.R
-## File Version: 0.29
+## File Version: 0.30
 
 #####################################################
 # GDINA M-step item parameters
@@ -66,7 +66,7 @@ gdina_mstep_item_uls <- function( pjjj, Ilj.ast, Rlj.ast, eps, avoid.zeroprobs,
         #  RRUM:
         #  P(X=1)=pi * r1^( 1- alpha1) * r2^(1-alpha2)
         #=> log( P(X=1) )=log[ pi * r1 * r2 * r1^(-alpha1) * r2^(-alpha2) ]
-        #     =log( pi ) + log(r1) + log(r2) + -log(r1)*alpha1 + -log(r2) * alpha2
+        #    =log( pi ) + log(r1) + log(r2) + -log(r1)*alpha1 + -log(r2) * alpha2
         #=> b1=-log(r1) and r1=exp( -b1 )
         #=> log(pi)=b0 + b1 + b2 and pi=exp( b0 + b1 + b2 )
 

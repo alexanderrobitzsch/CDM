@@ -1,5 +1,5 @@
 ## File Name: reglca.R
-## File Version: 0.816
+## File Version: 0.817
 
 reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad", regular_lam=0,
                 sd_noise_init=1, item_probs_init=NULL, class_probs_init=NULL, random_starts=1,
@@ -100,7 +100,7 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
                     conv=conv, regular_lam=regular_lam, regular_type=regular_type, cd_steps=cd_steps,
                     item_probs=item_probs, max_increment=max_increment, iter=iter, G=G,
                     prob_min=prob_min)
-        item_probs <- res$item_probs    
+        item_probs <- res$item_probs
         penalty <- res$penalty
         n_par <- res$n_par
         n_reg <- res$n_reg

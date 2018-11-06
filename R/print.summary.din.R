@@ -1,5 +1,5 @@
 ## File Name: print.summary.din.R
-## File Version: 1.28
+## File Version: 1.29
 ################################################################################
 # print method for objects of class "summary.din"                              #
 ################################################################################
@@ -28,7 +28,7 @@ function(x, ...){
 #      print(as.table(x$IDI))
 #      cat("\nSummary of skill pattern distribution:\n")
  #     print(x$SKILL.CLASS.PROB)
-     cat("\nDeviance=", x$deviance, " |   Log-Likelihood=",
+     cat("\nDeviance","=", x$deviance, " |   Log-Likelihood=",
             round( x$din.object$loglike,3), "\n")
 
     #*** iterations
@@ -39,8 +39,8 @@ function(x, ...){
      cat( "\nNumber of item parameters:", x$Npars[,1], "\n")
      cat( "Number of skill class parameters:", x$Npars[,2], "\n")
   cat("\nInformation criteria:",
-      "\n  AIC=", x$AIC,
-      "\n  BIC=", x$BIC, "\n")
+      "\n  AIC","=", x$AIC,
+      "\n  BIC","=", x$BIC, "\n")
   cat("\nMean of RMSEA item fit:",
     round( x$din.object$mean.rmsea,3 ), "\n")
   cat("\nItem parameters\n")
@@ -54,7 +54,7 @@ function(x, ...){
         obji <- skill.cor(x$din.object)$cor.skills
         cat("\nTetrachoric correlations among skill dimensions\n")
         print( obji, digits=4 )
-            }
+    }
     cat("\nSkill Pattern Probabilities \n\n")
     xt <- round( x$din.object$attribute.patt[,1], digits=5 )
     names(xt) <- rownames( x$din.object$attribute.patt )

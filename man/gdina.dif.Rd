@@ -1,5 +1,5 @@
 %% File Name: gdina.dif.Rd
-%% File Version: 0.19
+%% File Version: 0.22
 
 \name{gdina.dif}
 \alias{gdina.dif}

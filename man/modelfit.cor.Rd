@@ -1,5 +1,5 @@
 %% File Name: modelfit.cor.Rd
-%% File Version: 1.61
+%% File Version: 1.63
 
 \name{modelfit.cor}
 \alias{modelfit.cor}

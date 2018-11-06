@@ -1,5 +1,5 @@
 %% File Name: numerical_Hessian.Rd
-%% File Version: 0.29
+%% File Version: 0.32
 
 \name{numerical_Hessian}
 \alias{numerical_Hessian}

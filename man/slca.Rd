@@ -1,5 +1,5 @@
 %% File Name: slca.Rd
-%% File Version: 1.820
+%% File Version: 1.822
 
 \name{slca}
 \alias{slca}

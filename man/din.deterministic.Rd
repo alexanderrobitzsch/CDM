@@ -1,5 +1,5 @@
 %% File Name: din.deterministic.Rd
-%% File Version: 0.23
+%% File Version: 0.28
 
 \name{din.deterministic}
 \alias{din.deterministic}
@@ -92,6 +92,8 @@ likelihood estimation see \code{\link{din}}.
 See also the \code{NPCD::JMLE} function in the \pkg{NPCD} package for
 joint maximum likelihood estimation of the DINA or the DINO model.
 }
+
+
 
 \examples{
 #############################################################################

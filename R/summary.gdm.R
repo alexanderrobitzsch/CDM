@@ -1,12 +1,11 @@
 ## File Name: summary.gdm.R
-## File Version: 1.27
+## File Version: 1.35
 #*******************************************************
 # Summary for gdm object
 summary.gdm <- function( object, file=NULL, ... )
 {
 
     osink( file=file, suffix=paste0( "__SUMMARY.Rout") )
-
 
     cat("-----------------------------------------------------------------------------\n")
     d1 <- utils::packageDescription("CDM")
@@ -41,26 +40,20 @@ summary.gdm <- function( object, file=NULL, ... )
     cat( "Number of iterations=", object$iter   )
     if ( ! object$converged ){ cat("\nMaximum number of iterations was reached.") }
 
-    cat( "\n\nDeviance=", round( object$deviance, 2 ), " | " )
-    cat( "Log Likelihood=", round( -object$deviance/2, 2 ), "\n" )
-    cat( "Number of persons=", object$ic$n, "\n" )
+    cat_paste( "\n\nDeviance", xx(), round( object$deviance, 2 ), " | " )
+    cat_paste( "Log Likelihood", xx(), round( -object$deviance/2, 2 ), "\n" )
+    cat_paste( "Number of persons", xx(), object$ic$n, "\n" )
 
-    cat( "Number of estimated parameters=", object$ic$np, "\n" )
-    cat( "  Number of estimated item parameters=", object$ic$itempars, "\n" )
-    cat( "      ", object$ic$itempars.b, "Intercepts and", object$ic$itempars.a, "Slopes \n")
-    cat( "      ", object$ic$centeredintercepts, "centered intercepts and",
-            object$ic$centeredslopes, "centered slopes \n")
-    cat( "  Number of estimated distribution parameters=", object$ic$traitpars, "\n" )
+    cat_paste( "Number of estimated parameters", xx(), object$ic$np, "\n" )
+    cat_paste( "  Number of estimated item parameters", xx(), object$ic$itempars, "\n" )
+    cat_paste( "      ", object$ic$itempars.b, " Intercepts and ", object$ic$itempars.a, " Slopes \n")
+    cat_paste( "      ", object$ic$centeredintercepts, " centered intercepts and ",
+            object$ic$centeredslopes, " centered slopes \n")
+    cat_paste( "  Number of estimated distribution parameters", xx(),
+                        object$ic$traitpars, "\n\n" )
 
-
-    cat( "AIC=", round( object$ic$AIC, 2 ), " | penalty=", round( object$ic$AIC - object$ic$deviance,2 ),
-            "   | AIC=-2*LL + 2*p  \n" )
-    cat( "AICc=", round( object$ic$AICc, 2 )," | penalty=", round( object$ic$AICc - object$ic$deviance,2 ) )
-        cat("    | AICc=-2*LL + 2*p + 2*p*(p+1)/(n-p-1)  (bias corrected AIC)\n" )
-    cat( "BIC=", round( object$ic$BIC, 2 ), " | penalty=", round( object$ic$BIC - object$ic$deviance,2 ),
-            "   | BIC=-2*LL + log(n)*p  \n" )
-    cat( "CAIC=", round( object$ic$CAIC, 2 )," | penalty=", round( object$ic$CAIC - object$ic$deviance,2 ) )
-        cat("   | CAIC=-2*LL + [log(n)+1]*p  (consistent AIC)\n\n" )
+    #** print information criteria
+    cdm_print_summary_information_criteria(object=object)
 
     cat("-----------------------------------------------------------------------------\n")
     cat("Trait Distribution\n")
@@ -71,11 +64,11 @@ summary.gdm <- function( object, file=NULL, ... )
     print( round( t(object$sd.trait ), 3 ) )
     cat( "\nSkewness Trait:\n" )
     print( round( t(object$skewness.trait ), 3 ) )
-                    cat( "\nCorrelations Trait: \n" )
-                    for (gg in 1:object$G){
-                        cat("Group", gg, "\n")
-                        print( round( object$correlation.trait[[gg]], 3 ) )
-                    }
+    cat( "\nCorrelations Trait: \n" )
+    for (gg in 1:object$G){
+        cat("Group", gg, "\n")
+        print( round( object$correlation.trait[[gg]], 3 ) )
+    }
     if ( object$skillspace=="est" ){
         cat("\n\nEstimated Skill Distribution\n")
         dfr <- data.frame( "theta.k"=object$theta.k, "pi.k"=object$pi.k )

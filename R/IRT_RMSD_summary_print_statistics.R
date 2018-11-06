@@ -1,7 +1,8 @@
-## File Name: summary.IRT.RMSD_print_statistics.R
-## File Version: 0.05
+## File Name: IRT_RMSD_summary_print_statistics.R
+## File Version: 0.07
 
-summary.IRT.RMSD_print_statistics <- function( stat_summary, stat, digits){
+IRT_RMSD_summary_print_statistics <- function( stat_summary, stat, digits)
+{
     obji <- stat_summary
     NC <- ncol(obji)
     for (gg in 2:NC ){
@@ -14,5 +15,8 @@ summary.IRT.RMSD_print_statistics <- function( stat_summary, stat, digits){
     for (gg in 2:NC ){
         obji[,gg] <- round( obji[,gg], digits=digits)
     }
-    print( obji )
+    print(obji)
 }
+
+
+summary.IRT.RMSD_print_statistics <- IRT_RMSD_summary_print_statistics

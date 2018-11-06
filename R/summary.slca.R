@@ -1,5 +1,5 @@
 ## File Name: summary.slca.R
-## File Version: 1.41
+## File Version: 1.42
 
 #*******************************************************
 # Summary for slca object
@@ -53,7 +53,6 @@ summary.slca <- function( object, file=NULL, ... )
     cat( "Regularization","=", object$regularization, "\n" )
     cat( "  Regularization method","=", object$regular_type, "\n" )
     cat( "  Regularization parameter lambda","=", object$regular_lam, "\n\n" )
-
 
     #-- information criteria
     cdm_print_summary_information_criteria(object=object)

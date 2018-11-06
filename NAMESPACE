@@ -92,6 +92,7 @@ importFrom(sfsmisc, QUnif)
 
 export(abs_approx)
 export(abs_approx_D1)
+export(cat_paste)
 export(cdi.kli)
 export(cdm.est.class.accuracy)
 export(cdm_calc_information_criteria)

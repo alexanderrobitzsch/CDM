@@ -1,5 +1,5 @@
 %% File Name: CDM-utilities.Rd
-%% File Version: 0.67
+%% File Version: 0.69
 
 \name{CDM-utilities}
 \alias{CDM-utilities}
@@ -38,6 +38,9 @@
 
 \alias{cdm_calc_information_criteria}
 \alias{cdm_print_summary_information_criteria}
+
+\alias{cat_paste}
+
 
 \title{Utility Functions in \pkg{CDM}}
 
@@ -115,6 +118,9 @@ abs_approx_D1(x, eps=1e-05)
 ## information criteria
 cdm_calc_information_criteria(ic)
 cdm_print_summary_information_criteria(object, digits_crit=0, digits_penalty=2)
+
+## string pasting
+cat_paste(...)
 }
 
 \arguments{
@@ -135,7 +141,7 @@ cdm_print_summary_information_criteria(object, digits_crit=0, digits_penalty=2)
 \item{mean}{Mean vector or matrix if separate means for cases are provided. In this case,
     \code{n} can be missing.}
 \item{sigma}{Covariance matrix}
-\item{\dots}{More arguments to be passed}
+\item{\dots}{More arguments to be passed (or a list of arguments)}
 \item{x}{Matrix or vector}
 \item{y}{Matrix or vector}
 \item{w}{Vector of sampling weights}

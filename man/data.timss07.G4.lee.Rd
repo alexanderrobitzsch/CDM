@@ -1,5 +1,5 @@
 %% File Name: data.timss07.G4.lee.Rd
-%% File Version: 0.30
+%% File Version: 0.32
 
 \name{data.timss07.G4.lee}
 \alias{data.timss07.G4.lee}
@@ -13,7 +13,7 @@ TIMSS 2007 Mathematics 4th Grade (Lee et al., 2011)
 \description{
 TIMSS 2007 (Grade 4) dataset with 25 mathematics (dichotomized) items used
 in Lee, Park and Taylan (2011), Park and Lee (2014) and Park, Xing and
-Lee (xxxx). The dataset includes a sample of 698 Austrian students.
+Lee (2018). The dataset includes a sample of 698 Austrian students.
 }
 
 \usage{
@@ -81,7 +81,7 @@ The format is:
 
 \item The dataset \code{data.timss07.G4.py} uses the same items as
 \code{data.timss07.G4.lee} but employs a simplified Q-matrix with 7 skills.
-This Q-matrix was used in Park and Lee (2014) and Park et al. (xxxx).
+This Q-matrix was used in Park and Lee (2014) and Park et al. (2018).
 
 \code{List of 3} \cr
 \code{ $ q.matrix:'data.frame':       25 obs. of  7 variables:} \cr
@@ -136,9 +136,9 @@ Park, Y. S., & Lee, Y. S. (2014). An extension of the DINA model using
 covariates: Examining factors affecting response probability and latent
 classification. \emph{Applied Psychological Measurement, 38}(5), 376-390.
 
-Park, Y. S., Xing, K., & Lee, Y. S. (xxxx). Explanatory cognitive
+Park, Y. S., Xing, K., & Lee, Y. S. (2018). Explanatory cognitive
 diagnostic models: Incorporating latent and observed predictors.
-\emph{Applied Psychological Measurement, xx}(xx), xxx-xxx.
+\emph{Applied Psychological Measurement, 42}(5), 376-392.
 
 Yamaguchi, K., & Okada, K. (2018). Comparison among cognitive diagnostic models
 for the TIMSS 2007 fourth grade mathematics assessment.

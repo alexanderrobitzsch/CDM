@@ -1,5 +1,5 @@
 ## File Name: reglca_mstep_item_parameters.R
-## File Version: 0.482
+## File Version: 0.483
 
 
 reglca_mstep_item_parameters <- function(I, n.ik, N.ik, h, mstep_iter, conv, regular_lam,
@@ -14,7 +14,7 @@ reglca_mstep_item_parameters <- function(I, n.ik, N.ik, h, mstep_iter, conv, reg
     expected_loglike <- rep(0,I)
     opt_fct_item_sum <- rep(0,I)
     bounds <- c( prob_min, 1-prob_min)
-    
+
     #-- sum counts in case of multiple groups
     if (G>1){
         ND <- dim(n.ik)

@@ -1,5 +1,5 @@
 %% File Name: gdina.wald.Rd
-%% File Version: 0.30
+%% File Version: 0.33
 
 \name{gdina.wald}
 \alias{gdina.wald}

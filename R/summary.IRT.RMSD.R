@@ -1,5 +1,5 @@
 ## File Name: summary.IRT.RMSD.R
-## File Version: 0.17
+## File Version: 0.19
 
 
 #*******************************************************
@@ -21,25 +21,25 @@ summary.IRT.RMSD <- function( object, file=NULL, digits=3, ... )
     cat("-----------------------------------------------------------------------------\n")
     cat("Root Mean Square Deviation (RMSD) \n\n")
 
-    res0 <- summary.IRT.RMSD_print_statistics( stat_summary=object$RMSD_summary,
+    res0 <- IRT_RMSD_summary_print_statistics( stat_summary=object$RMSD_summary,
                 stat=object$RMSD, digits=digits)
 
     cat("-----------------------------------------------------------------------------\n")
     cat("Bias Corrected Root Mean Square Deviation (RMSD) \n\n")
 
-    res0 <- summary.IRT.RMSD_print_statistics( stat_summary=object$RMSD_bc_summary,
+    res0 <- IRT_RMSD_summary_print_statistics( stat_summary=object$RMSD_bc_summary,
                 stat=object$RMSD_bc, digits=digits)
 
     cat("-----------------------------------------------------------------------------\n")
     cat("Mean Absolute Deviation (MAD) \n\n")
 
-    res0 <- summary.IRT.RMSD_print_statistics( stat_summary=object$MAD_summary,
+    res0 <- IRT_RMSD_summary_print_statistics( stat_summary=object$MAD_summary,
                 stat=object$MAD, digits=digits)
 
     cat("-----------------------------------------------------------------------------\n")
     cat("Mean Deviation (MD) \n\n")
 
-    res0 <- summary.IRT.RMSD_print_statistics( stat_summary=object$MD_summary,
+    res0 <- IRT_RMSD_summary_print_statistics( stat_summary=object$MD_summary,
                 stat=object$MD, digits=digits)
 
     csink( file=file )

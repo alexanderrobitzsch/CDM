@@ -1,5 +1,5 @@
 %% File Name: discrim.index.Rd
-%% File Version: 0.35
+%% File Version: 0.36
 
 \name{discrim.index}
 \alias{discrim.index}
@@ -60,7 +60,7 @@ is defined as
 \deqn{\overline{DI}=\frac{1}{J} \sum_{j=1}^J \max_k DI_{jk} } and can be found
 in \code{discrim_test}.
 
-According to de la Torre (2008) and de la Torre, Rossi and van der Ark (xxxx),
+According to de la Torre (2008) and de la Torre, Rossi and van der Ark (2018),
 the item discrimination index (IDI) is defined as
 \deqn{IDI_j=\max_{ \boldmath{\alpha}_1,\boldmath{\alpha}_2, h}
      | P(X_j=h| \boldmath{\alpha}_1 ) - P(X_j=h| \boldmath{\alpha}_2 ) |}
@@ -82,10 +82,10 @@ de la Torre, J. (2008). An empirically based method of Q-matrix validation
 for the DINA model: Development and applications.
 \emph{Journal of Educational Measurement, 45}, 343-362.
 
-de la Torre, J., van der Ark, L. A., & Rossi, G. (xxxx).
+de la Torre, J., van der Ark, L. A., & Rossi, G. (2018).
 Analysis of clinical data from a cognitive diagnosis modeling framework.
-\emph{Measurement and Evaluation in Counseling and Development, xxx}(xx),
-xxx-xxx.
+\emph{Measurement and Evaluation in Counseling and Development, 51}(4),
+281-296.
 
 Henson, R., DiBello, L., & Stout, B. (2018). A generalized approach to defining item
 discrimination for DCMs.

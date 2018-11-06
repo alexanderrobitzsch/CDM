@@ -1,5 +1,5 @@
 ## File Name: zzz.R
-## File Version: 2.09
+## File Version: 2.11
 #  zzz.R
 #
 # This function is simply copied from mice package.
@@ -29,4 +29,12 @@ version <- function(pkg="CDM")
             m1, "\n",sep=""),
         paste("** Cognitive Diagnostic Models  **",sep=""),
         "\n**********************************\n" )
+}
+
+xx <- function(f1, f2)
+{
+    v1 <- paste0( rep(" ",f1), collapse="" )
+    v2 <- paste0( rep(" ",f2), collapse="" )
+    res <- paste0( v1, "=", v2)
+    return(res)
 }

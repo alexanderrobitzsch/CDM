@@ -1,5 +1,5 @@
 ## File Name: summary.mcdina.R
-## File Version: 0.34
+## File Version: 0.35
 
 
 ##################################################################
@@ -78,10 +78,10 @@ summary.mcdina <- function( object, digits=4, file=NULL, ... )
     if ( object$G==1 ){
         xt <- round( object$attribute.patt[,1], rdigits )
         names(xt) <- rownames( object$attribute.patt )
-            } else {
-    xt <- round( object$attribute.patt, rdigits )
-    rownames(xt) <- rownames( object$attribute.patt )
-                    }
+    } else {
+        xt <- round( object$attribute.patt, rdigits )
+        rownames(xt) <- rownames( object$attribute.patt )
+    }
     print(xt)
 
     csink( file=file )

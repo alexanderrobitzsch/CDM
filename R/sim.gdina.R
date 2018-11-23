@@ -1,5 +1,5 @@
 ## File Name: sim.gdina.R
-## File Version: 2.19
+## File Version: 2.20
 
 
 
@@ -30,15 +30,15 @@ sim.gdina <- function( n, q.matrix, delta, link="identity",
             l1.al <- paste( l1.al, alpha.ii[,vv], sep="")
         }
         resp.ii <- patt.prob[ match( l1.al, l1.Aj ) ]
-        if ( link=="logit"){ 
-            resp.ii <- stats::plogis( resp.ii ) 
+        if ( link=="logit"){
+            resp.ii <- stats::plogis( resp.ii )
         }
-        if ( link=="log"){ 
-            resp.ii <- exp( resp.ii ) 
+        if ( link=="log"){
+            resp.ii <- exp( resp.ii )
         }
         dat[, ii] <- 1*( stats::runif(n) < resp.ii )
     }
-    res <- list( data=dat, alpha=alpha, q.matrix=q.matrix, delta=delta, 
+    res <- list( data=dat, alpha=alpha, q.matrix=q.matrix, delta=delta,
                         Aj=Aj, Mj=Mj, link=link )
     return(res)
 }

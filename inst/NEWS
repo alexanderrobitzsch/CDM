@@ -24,10 +24,10 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 7.1  |  2018-11-06  |  Last: CDM 7.1-1
+VERSIONS CDM 7.1  |  2018-11-23  |  Last: CDM 7.1-4
 --------------------------------------------------------------
 
-NOTE  * xxx
+NOTE  * included function numerical_gradient()
 
 
 DATA  * included/modified datasets: ---

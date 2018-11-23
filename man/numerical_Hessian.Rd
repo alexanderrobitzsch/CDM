@@ -1,17 +1,20 @@
 %% File Name: numerical_Hessian.Rd
-%% File Version: 0.32
+%% File Version: 0.34
 
 \name{numerical_Hessian}
 \alias{numerical_Hessian}
 \alias{numerical_Hessian_partial}
+\alias{numerical_gradient}
+
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Numerical Computation of the Hessian Matrix
 }
 \description{
 Computes numerically the Hessian matrix of a given function for
-all coordinates (\code{numerical_Hessian}) or for a selected
-direction (\code{numerical_Hessian_partial}).
+all coordinates (\code{numerical_Hessian}), for a selected
+direction (\code{numerical_Hessian_partial}) or the gradient
+of a multivariate function (\code{numerical_gradient}).
 }
 
 \usage{
@@ -19,6 +22,8 @@ numerical_Hessian(par, FUN, h=1e-05, gradient=FALSE,
        hessian=TRUE, diag_only=FALSE, ...)
 
 numerical_Hessian_partial(par, FUN, h=1e-05, coordinate=1, ... )
+
+numerical_gradient(par, FUN, h=1E-5, ...)
 }
 
 %- maybe also 'usage' for other objects documented here.

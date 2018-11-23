@@ -1,5 +1,5 @@
 ## File Name: skill.cor.R
-## File Version: 1.26
+## File Version: 1.28
 
 
 ######################################################################################
@@ -23,8 +23,8 @@ skill.cor <- function( object)
     res <- data.frame( "skill1"=rownames(object$skill.patt)[ skill.combis[,1] ],
                 "skill2"=rownames(object$skill.patt)[ skill.combis[,2] ],
                 skill.combis,   skills.bivariate )
-    for (vv in 3:8){ 
-        res[,vv] <- as.numeric( paste( res[,vv] ) ) 
+    for (vv in 3:8){
+        res[,vv] <- as.numeric( paste( res[,vv] ) )
     }
     # calculate tetrachoric correlation
     res$tetracor <- apply( res[, 5:8 ], 1, FUN=function(ll){

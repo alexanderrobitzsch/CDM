@@ -1,5 +1,5 @@
 //// File Name: cdm_rcpp_mcdina_probs_multcat_items_counts.cpp
-//// File Version: 3.14
+//// File Version: 3.17
 
 // #include <RcppArmadillo.h>
 #include <Rcpp.h>

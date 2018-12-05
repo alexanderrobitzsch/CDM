@@ -1,5 +1,5 @@
 ## File Name: zzz.R
-## File Version: 2.11
+## File Version: 2.12
 #  zzz.R
 #
 # This function is simply copied from mice package.
@@ -31,7 +31,7 @@ version <- function(pkg="CDM")
         "\n**********************************\n" )
 }
 
-xx <- function(f1, f2)
+xx <- function(f1=1, f2=1)
 {
     v1 <- paste0( rep(" ",f1), collapse="" )
     v2 <- paste0( rep(" ",f2), collapse="" )

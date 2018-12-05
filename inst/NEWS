@@ -24,11 +24,12 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 7.1  |  2018-11-23  |  Last: CDM 7.1-4
+VERSIONS CDM 7.1  |  2018-12-05  |  Last: CDM 7.1-10
 --------------------------------------------------------------
 
 NOTE  * included function numerical_gradient()
-
+NOTE  * changed computation of numerical gradient to symmetric
+        difference quotient in numerical_Hessian()
 
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: ---

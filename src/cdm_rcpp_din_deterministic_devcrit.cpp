@@ -1,5 +1,5 @@
 //// File Name: cdm_rcpp_din_deterministic_devcrit.cpp
-//// File Version: 3.19
+//// File Version: 3.21
 
 
 // #include <RcppArmadillo.h>
@@ -88,16 +88,16 @@ Rcpp::List cdm_rcpp_din_jml_devcrit( Rcpp::NumericMatrix DAT, Rcpp::NumericMatri
             for (int ii=0;ii<I;ii++){ // begin item loop
                 if ( DATRESP(nn,ii)==1 ){  // begin if datresp == 1
                     if ( (LATRESP(aa,ii) == 1 ) && ( DAT(nn,ii)==0 ) ){
-                        devcrit(nn,aa) = devcrit(nn,aa) * SLIP[ii];
+                        devcrit(nn,aa) *= SLIP[ii];
                     }
                     if ( (LATRESP(aa,ii) == 1 ) && ( DAT(nn,ii)==1 ) ){
-                        devcrit(nn,aa) = devcrit(nn,aa) * (1-SLIP[ii]);
+                        devcrit(nn,aa) *= 1-SLIP[ii];
                     }
                     if ( (LATRESP(aa,ii) == 0 ) && ( DAT(nn,ii)==1 ) ){
-                        devcrit(nn,aa) = devcrit(nn,aa) * GUESS[ii];
+                        devcrit(nn,aa) *= GUESS[ii];
                     }
                     if ( (LATRESP(aa,ii) == 0 ) && ( DAT(nn,ii)==0 ) ){
-                        devcrit(nn,aa) = devcrit(nn,aa) * (1-GUESS[ii]);
+                        devcrit(nn,aa) *= 1-GUESS[ii];
                     }
                 } // end if datresp == 1
             } // end loop over items ii

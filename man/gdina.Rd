@@ -1,5 +1,5 @@
 %% File Name: gdina.Rd
-%% File Version: 3.456
+%% File Version: 3.458
 
 \name{gdina}
 \alias{gdina}
@@ -211,7 +211,8 @@ or \code{none} (no regularization).}
 \item{regular_tau}{Regularization parameter \eqn{\tau} for truncated
 \eqn{L_1} penalty.}
 \item{mono.constr}{Logical indicating whether monotonicity constraints
-should be fulfilled in estimation.}
+should be fulfilled in estimation (implemented by the increasing penalty method; see
+Nash, 2014, p. 156).}
 \item{prior_intercepts}{Vector with mean and standard deviation for prior
 of random intercepts (applies to all items)}
 \item{prior_slopes}{Vector with mean and standard deviation for prior
@@ -475,6 +476,9 @@ Ma, W., & de la Torre, J. (2016).
 A sequential cognitive diagnosis model for polytomous responses.
 \emph{British Journal of Mathematical and Statistical Psychology, 69}(3),
 253-275.
+
+Nash, J. C. (2014). \emph{Nonlinear parameter optimization using \R tools}.
+West Sussex: Wiley.
 
 Rupp, A. A., & Templin, J. (2008). Unique characteristics of
 diagnostic classification models: A comprehensive review of the current

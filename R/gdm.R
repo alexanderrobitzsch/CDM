@@ -1,5 +1,5 @@
 ## File Name: gdm.R
-## File Version: 8.646
+## File Version: 8.655
 
 
 ###########################################
@@ -238,12 +238,16 @@ gdm <- function( data, theta.k, irtmodel="2PL", group=NULL,
     iter <- 0
     globconv1 <- conv1 <- 1000
     disp <- paste( paste( rep(".", 70 ), collapse=""),"\n", sep="")
+    # timecat <- TRUE
+    # timecat <- FALSE
 
     ############################################
     # BEGIN MML Algorithm
     ############################################
 
     while( ( iter < maxiter ) & ( ( globconv1 > globconv) | ( conv1 > conv) ) ){
+
+z0 <- Sys.time()
 
         #****
         # collect old parameters
@@ -473,3 +477,5 @@ gdm <- function( data, theta.k, irtmodel="2PL", group=NULL,
     return(res)
 }
 ###################################################
+
+# z0 <- cdm_timecat(z0, label=" *** gdm_calc_prob", timecat)

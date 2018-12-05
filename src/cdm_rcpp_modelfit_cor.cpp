@@ -1,5 +1,5 @@
 //// File Name: cdm_rcpp_modelfit_cor.cpp
-//// File Version: 3.22
+//// File Version: 3.23
 
 // #include <RcppArmadillo.h>
 #include <Rcpp.h>
@@ -84,7 +84,7 @@ Rcpp::List cdm_rcpp_modelfit_cor2( Rcpp::NumericMatrix posterior,
         vii = ( vii - niijj * mii * mii ) / ( niijj - 1 );
         vjj = ( vjj - niijj * mjj * mjj ) / ( niijj - 1 );
         ciijj = ( ciijj - niijj * mii * mjj ) / ( niijj - 1 );
-        Q3[zz] = ciijj / sqrt( vii * vjj );
+        Q3[zz] = ciijj / std::sqrt( vii * vjj );
     }   // end zz ( item pairs ii and jj )
 
     /////////////////////////////////////////////

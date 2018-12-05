@@ -1,5 +1,5 @@
 //// File Name: cdm_rcpp_slca.cpp
-//// File Version: 3.16
+//// File Version: 3.17
 
 // #include <RcppArmadillo.h>
 #include <Rcpp.h>
@@ -35,7 +35,7 @@ Rcpp::NumericVector cdm_rcpp_slca_calc_probs( Rcpp::NumericMatrix XdesM,
             tmp=0;
             for (int kk = 0; kk < maxK; kk++ ){
                 pp = ii +I*kk+I*maxK*tt;
-                probs[pp] = exp( p1[pp] );
+                probs[pp] = std::exp( p1[pp] );
                 tmp += probs[pp];
             }
             for (int kk = 0; kk < maxK; kk++ ){

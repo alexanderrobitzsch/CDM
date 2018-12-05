@@ -1,5 +1,5 @@
 %% File Name: gdm.Rd
-%% File Version: 4.45
+%% File Version: 4.46
 
 \name{gdm}
 \alias{gdm}
@@ -655,7 +655,7 @@ theta.k <- seq(-6,6,len=21)
 #***
 # Model 1: Generalized partial credit model with multiple groups
 mod1 <- CDM::gdm( dat, irtmodel="2PL", theta.k=theta.k, group=CDM::data.mg$group,
-              skillspace="normal", standardized.latent=TRUE,)
+              skillspace="normal", standardized.latent=TRUE)
 summary(mod1)
 }
 }

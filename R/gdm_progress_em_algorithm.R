@@ -1,5 +1,5 @@
 ## File Name: gdm_progress_em_algorithm.R
-## File Version: 0.08
+## File Version: 0.12
 
 gdm_progress_em_algorithm <- function( progress, disp, iter, dev, dev0, b_change,
         a_change, deltadiff, dev_digits=4, parm_digits=6 )
@@ -7,18 +7,18 @@ gdm_progress_em_algorithm <- function( progress, disp, iter, dev, dev0, b_change
     if (progress){
         cat(disp)
         cat("Iteration", iter, "   ", paste( Sys.time() ), "\n" )
-        cat( paste( "   Deviance=", round( dev, dev_digits ),
+        cat( paste( "   Deviance", "=", round( dev, dev_digits ),
                 if (iter > 1 ){ " | Deviance change=" } else {""},
-                        if( iter>1){round( - dev + dev0, parm_digits )} else { ""}    ,sep="") )
+                        if( iter>1){round( - dev + dev0, parm_digits )} else { ""},sep="") )
         if ( dev > dev0 & (iter>1 ) ){
             cat( "  Deviance increases!")
         }
         cat("\n")
-        cat( paste( "    Maximum item intercept parameter change=",
+        cat( paste( "    Maximum item intercept parameter change", "=",
                                 round( b_change, parm_digits ),  " \n"   )  )
-        cat( paste( "    Maximum item slope parameter change=",
+        cat( paste( "    Maximum item slope parameter change", "=",
                                 round( a_change, parm_digits ),  " \n"   )  )
-        cat( paste( "    Maximum distribution parameter change=",
+        cat( paste( "    Maximum distribution parameter change", "=",
                                 round( deltadiff, parm_digits ),  " \n"   )  )
         utils::flush.console()
     }

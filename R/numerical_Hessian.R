@@ -1,5 +1,5 @@
 ## File Name: numerical_Hessian.R
-## File Version: 0.34
+## File Version: 0.38
 
 ##############################################################################
 # numerical computation of the Hessian matrix
@@ -10,7 +10,7 @@ numerical_Hessian <- function(par, FUN, h=1E-5, gradient=FALSE,
     NP <- length(par)
 
     f0 <- FUN( x=par, ... )
-    fh <- rep(NA,NP)    # f(x+h)
+    fm <- fh <- rep(NA,NP)    # f(x+h)
     f2h <- rep(NA,NP)   # f(x+2*h)
     hess <- matrix(NA,nrow=NP, ncol=NP)
     fhh <- hess
@@ -21,14 +21,19 @@ numerical_Hessian <- function(par, FUN, h=1E-5, gradient=FALSE,
 
     #--- loop for computing f(x+h)
     for (ii in 1:NP){
+        # f(x+h)
         par1 <- par
         par1[ii] <- par[ii] + hvec[ii]
         fh[ii] <- FUN( x=par1, ...)
+        # f(x-h)
+        par1 <- par
+        par1[ii] <- par[ii] - hvec[ii]
+        fm[ii] <- FUN( x=par1, ...)
     }
 
     #--- computation of the gradient
     if (gradient){
-        grad1 <- res <- ( fh - f0 ) / hvec
+        grad1 <- res <- ( fh - fm ) / (2*hvec)
     }
 
     #------

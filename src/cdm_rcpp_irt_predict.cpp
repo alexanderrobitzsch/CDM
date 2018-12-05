@@ -1,5 +1,5 @@
 //// File Name: cdm_rcpp_irt_predict.cpp
-//// File Version: 3.11
+//// File Version: 3.12
 
 // [[Rcpp::depends(RcppArmadillo)]]
 
@@ -45,7 +45,7 @@ Rcpp::List cdm_rcpp_irt_predict( Rcpp::NumericMatrix resp, Rcpp::NumericVector i
                     var1(nn,tt,ii) = v1;
                     // residuals
                     resid1(nn,tt,ii) = ( resp( nn, ii ) - pred(nn,tt,ii) );
-                    sresid1(nn,tt,ii) = resid1(nn,tt,ii) / sqrt( var1(nn,tt,ii) );
+                    sresid1(nn,tt,ii) = resid1(nn,tt,ii) / std::sqrt( var1(nn,tt,ii) );
                 } // end tt
             }
             if ( R_IsNA( resp(nn,ii) ) ){

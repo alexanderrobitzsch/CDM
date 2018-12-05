@@ -1,5 +1,5 @@
 //// File Name: cdm_rcpp_gdd.cpp
-//// File Version: 3.12
+//// File Version: 3.13
 
 
 
@@ -34,12 +34,12 @@ Rcpp::List cdm_rcpp_generalized_distance_method( Rcpp::NumericMatrix data,
                     //*** data=1 and idealresp=0
                     if ( ( data(nn,ii) == 1 ) & ( idealresp(ii,ll) == 0 ) ){
                         //     1 - P0  = P1
-                        dist(nn,ll) += std::pow( 1 + exp( - ( b[ii] + a[ii] * theta[nn] ) ), -1 );
+                        dist(nn,ll) += std::pow( 1 + std::exp( - ( b[ii] + a[ii] * theta[nn] ) ), -1 );
                     }
                     //*** data=0 and idealresp=1
                     if ( ( data(nn,ii) == 0 ) & ( idealresp(ii,ll) == 1 ) ){
                         //     1 - P1  = P0
-                        dist(nn,ll) += std::pow( 1 + exp( ( b[ii] + a[ii] * theta[nn] ) ), -1 );
+                        dist(nn,ll) += std::pow( 1 + std::exp( ( b[ii] + a[ii] * theta[nn] ) ), -1 );
                     }
                 }  // end dataresp = 1
             }   // end ii

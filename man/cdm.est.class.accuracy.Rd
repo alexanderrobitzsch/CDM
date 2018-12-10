@@ -1,5 +1,5 @@
 %% File Name: cdm.est.class.accuracy.Rd
-%% File Version: 1.34
+%% File Version: 1.351
 
 \name{cdm.est.class.accuracy}
 \alias{cdm.est.class.accuracy}
@@ -11,8 +11,8 @@ Classification Reliability in a CDM
 This function computes the classification accuracy and
 consistency by the method of Cui, Gierl and Chang (2012)
 and by simulation. The function computes both statistics
-by estimators proposed by Sinharay and Johnson (XXXX) and
-simulation based estimation.
+by estimators proposed by Sinharay and Johnson (XXXX; see also
+Johnson & Sinharay, 2018) and simulation based estimation.
 }
 \usage{
 cdm.est.class.accuracy(cdmobj, n.sims=0, version=2)
@@ -60,7 +60,11 @@ Estimating classification consistency and accuracy for cognitive
 diagnostic assessment.
 \emph{Journal of Educational Measurement, 49}, 19-38.
 
-Sinharay, S., & Johnson, M. (XXXX). Measures of agreement:
+Johnson, M. S., & Sinharay, S. (2018). Measures of agreement to assess attribute-level 
+classification accuracy and consistency for cognitive diagnostic assessments.
+\emph{Journal of Educational Measurement, 45}(4), 635-664.
+    
+Sinharay, S., & Johnson, M. S. (XXXX). Measures of agreement:
 Reliability, classification accuracy, and classification consistency.
 In M. von Davier & Y.-S. Lee (Eds.). \emph{Handbook of diagnostic
 classification models}. New York: Springer.

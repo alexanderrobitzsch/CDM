@@ -24,7 +24,7 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 7.1  |  2018-12-05  |  Last: CDM 7.1-10
+VERSIONS CDM 7.1  |  2018-12-10  |  Last: CDM 7.1-11
 --------------------------------------------------------------
 
 NOTE  * included function numerical_gradient()

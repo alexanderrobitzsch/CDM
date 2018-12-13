@@ -1,5 +1,5 @@
 %% File Name: cdm.est.class.accuracy.Rd
-%% File Version: 1.351
+%% File Version: 1.352
 
 \name{cdm.est.class.accuracy}
 \alias{cdm.est.class.accuracy}
@@ -60,10 +60,10 @@ Estimating classification consistency and accuracy for cognitive
 diagnostic assessment.
 \emph{Journal of Educational Measurement, 49}, 19-38.
 
-Johnson, M. S., & Sinharay, S. (2018). Measures of agreement to assess attribute-level 
+Johnson, M. S., & Sinharay, S. (2018). Measures of agreement to assess attribute-level
 classification accuracy and consistency for cognitive diagnostic assessments.
 \emph{Journal of Educational Measurement, 45}(4), 635-664.
-    
+
 Sinharay, S., & Johnson, M. S. (XXXX). Measures of agreement:
 Reliability, classification accuracy, and classification consistency.
 In M. von Davier & Y.-S. Lee (Eds.). \emph{Handbook of diagnostic

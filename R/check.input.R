@@ -1,5 +1,5 @@
 ## File Name: check.input.R
-## File Version: 1.13
+## File Version: 1.14
 ################################################################################
 # check consistency of input to din-method (data, q.matrix, ...)               #
 ################################################################################
@@ -20,7 +20,7 @@ check.input <- function( data, q.matrix, conv.crit=0.001, maxit=100,
 ################################################################################
 
     # check for data classes matrix and data.frame
-    if ((data.class(data) !="matrix") && (data.class(data) !="data.frame"))
+    if ((data.class(data) !="matrix") & (data.class(data) !="data.frame"))
            return(warning("data must be matrix or data frame"))
     data <- as.matrix(data)
 
@@ -49,7 +49,7 @@ check.input <- function( data, q.matrix, conv.crit=0.001, maxit=100,
 ################################################################################
 
     # check for data classes matrix and data.frame
-    if ((data.class(q.matrix) !="matrix") && (data.class(q.matrix) !="data.frame"))
+    if ((data.class(q.matrix) !="matrix") & (data.class(q.matrix) !="data.frame"))
            return(warning("data must be matrix or data frame"))
     att.lbl <- attributes(q.matrix)$skill.labels
   q.matrix <- as.matrix(q.matrix)
@@ -90,8 +90,8 @@ check.input <- function( data, q.matrix, conv.crit=0.001, maxit=100,
 # check consistency of arguments for parameter estimation routine              #
 ################################################################################
 
-if(!is.numeric(conv.crit)||!is.numeric(maxit)) return(warning("Check your routine criteria"))
-if(conv.crit<=0||maxit<1) return(warning("Check your routine criteria"))
+if(!is.numeric(conv.crit)|!is.numeric(maxit)) return(warning("Check your routine criteria"))
+if(conv.crit<=0|maxit<1) return(warning("Check your routine criteria"))
 
 
 
@@ -102,10 +102,10 @@ if(conv.crit<=0||maxit<1) return(warning("Check your routine criteria"))
     # slip constraints see help files
     if(!is.null(constraint.slip)){                                                  #NULL permitted
 
-      if (any(is.na(constraint.slip))||any(!is.numeric(constraint.slip))||         #numeric values only
-        (!is.vector(constraint.slip) && (data.class(constraint.slip) !="matrix") &&
-        (data.class(constraint.slip) !="data.frame"))||                            #object typ
-        (length(constraint.slip %% 2 !=0) && ncol(constraint.slip)!=2)){                #two columns!
+      if (any(is.na(constraint.slip))|any(!is.numeric(constraint.slip))|         #numeric values only
+        (!is.vector(constraint.slip) & (data.class(constraint.slip) !="matrix") &
+        (data.class(constraint.slip) !="data.frame"))|                            #object typ
+        (length(constraint.slip %% 2 !=0) & ncol(constraint.slip)!=2)){                #two columns!
            return(warning("check your error parameter constraints. See Help-files."))
         }
         if(is.vector(constraint.slip))
@@ -113,19 +113,19 @@ if(conv.crit<=0||maxit<1) return(warning("Check your routine criteria"))
         if(data.class(constraint.slip)=="data.frame"){
             onstraint.slip <- as.matrix(constraint.slip) }
 
-        if(any(duplicated(constraint.slip[,1]))||                                   #no duplicates
-        any(!constraint.slip[,1]%in%1:ncol(data))||                                    #first column may only be indicees
-        all(!(constraint.slip[,2]>=0 && constraint.slip[,2]<=1))){                  #all entries between 0 and 1
+        if(any(duplicated(constraint.slip[,1]))|                                   #no duplicates
+        any(!constraint.slip[,1]%in%1:ncol(data))|                                    #first column may only be indicees
+        all(!(constraint.slip[,2]>=0 & constraint.slip[,2]<=1))){                  #all entries between 0 and 1
            return(warning("check your error parameter constraints. See Help-files."))
         }
     }
 
     # guessing constraints see help files
     if(!is.null(constraint.guess)){                                                 #NULL permitted
-      if(any(is.na(constraint.guess))||any(!is.numeric(constraint.guess))||         #numeric values only
-        (!is.vector(constraint.guess) && (data.class(constraint.guess) !="matrix")
-        && (data.class(constraint.guess) !="data.frame"))||                          #object typ
-        (length(constraint.guess)%%2!=0 && ncol(constraint.guess)!=2)){                #two columns!
+      if(any(is.na(constraint.guess))|any(!is.numeric(constraint.guess))|         #numeric values only
+        (!is.vector(constraint.guess) & (data.class(constraint.guess) !="matrix")
+        & (data.class(constraint.guess) !="data.frame"))|                          #object typ
+        (length(constraint.guess)%%2!=0 & ncol(constraint.guess)!=2)){                #two columns!
            return(warning("check your error parameter constraints. See Help-files."))
         }
 #        if(is.vector(constraint.guess))
@@ -134,9 +134,9 @@ if(conv.crit<=0||maxit<1) return(warning("Check your routine criteria"))
             constraint.guess <- as.matrix(constraint.guess)
                                     }
 
-        if(any(duplicated(constraint.guess[,1])) ||                                 #no duplicates
-        any(!constraint.guess[,1] %in% 1:ncol(data))||                                   #first column may only be indicees
-        all(!(constraint.guess[,2]>=0&&constraint.guess[,2]<=1))){                  #all entries between 0 and 1
+        if(any(duplicated(constraint.guess[,1])) |                                 #no duplicates
+        any(!constraint.guess[,1] %in% 1:ncol(data))|                                   #first column may only be indicees
+        all(!(constraint.guess[,2]>=0&constraint.guess[,2]<=1))){                  #all entries between 0 and 1
            return(warning("check your error parameter constraints. See Help-files."))
         }
     }
@@ -149,18 +149,18 @@ if(conv.crit<=0||maxit<1) return(warning("Check your routine criteria"))
 #    try({slip.init <- as.vector(slip.init)
 #         guess.init <- as.vector(guess.init)}, silent=T)
     if(!is.null(slip.init)){
-    if(any(is.na(slip.init))||
-      !all(is.numeric(slip.init))||
-      !all(slip.init>=0&&slip.init<=1)||
+    if(any(is.na(slip.init))|
+      !all(is.numeric(slip.init))|
+      !all(slip.init>=0&slip.init<=1)|
       (length(slip.init)!=ncol(data)))
      return(warning("Check your initial error parameter values. See Help-files."))
     }
 
     # guessing initialization see help files
     if(!is.null(guess.init)){
-    if(any(is.na(guess.init))||
-      !all(is.numeric(guess.init))||
-      !all(guess.init>=0&&guess.init<=1)||
+    if(any(is.na(guess.init))|
+      !all(is.numeric(guess.init))|
+      !all(guess.init>=0&guess.init<=1)|
       (length(guess.init)!=ncol(data)))
      return(warning("Check your initial error parameter values. See Help-files."))
     }
@@ -172,8 +172,8 @@ if(conv.crit<=0||maxit<1) return(warning("Check your routine criteria"))
 
     # weight see help files
 #    try(weights <- as.vector(weights), silent=T)
-    if(any(is.na(weights)) || is.null(weights) || !all(is.numeric(weights)) ||
-      !all(weights>0)|| (length(weights)!=nrow(data)))
+    if(any(is.na(weights)) | is.null(weights) | !all(is.numeric(weights)) |
+      !all(weights>0)| (length(weights)!=nrow(data)))
      return(warning("Check your specificated weights of the response patterns. See Help-files."))
 
 ################################################################################
@@ -181,7 +181,7 @@ if(conv.crit<=0||maxit<1) return(warning("Check your routine criteria"))
 ################################################################################
 
     # rule specification see help files
-    if(length(rule)!=1 && length(rule)!=ncol(data)){
+    if(length(rule)!=1 & length(rule)!=ncol(data)){
         return(warning("Check the condensation rule for parameter estimation. The character string has
         to be of length 1 or of length ncol(data)."))
     }

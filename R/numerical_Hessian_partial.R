@@ -1,5 +1,5 @@
 ## File Name: numerical_Hessian_partial.R
-## File Version: 0.08
+## File Version: 0.15
 
 numerical_Hessian_partial <- function(par, FUN, h=1E-5, coordinate=1, ... )
 {
@@ -18,9 +18,8 @@ numerical_Hessian_partial <- function(par, FUN, h=1E-5, coordinate=1, ... )
     par1[ii] <- par[ii] - hvec[ii]
     f2 <- FUN( x=par1, ...)
     #--- gradient and Hessian
-    grad <- (f1 - f2 ) / (2*hvec)
-    h_squared <- outer( hvec, hvec )
-    hessian <- (f1 + f2 -2*f0) / hsquared
+    grad <- (f1 - f2 ) / (2*hvec[ii])
+    hessian <- (f1 + f2 - 2*f0) / hvec[ii]^2
     #--- output
     res <- list( f0=f0, f1=f1, f2=f2, grad=grad, hessian=hessian)
     return(res)

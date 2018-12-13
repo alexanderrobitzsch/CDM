@@ -1,5 +1,5 @@
 %% File Name: CDM-package.Rd
-%% File Version: 2.86
+%% File Version: 2.88
 
 \name{CDM-package}
 
@@ -13,6 +13,12 @@
 
 \description{
 \packageDescription{CDM}
+}
+
+\author{
+\packageAuthor{CDM}
+
+Maintainer: \packageMaintainer{CDM}
 }
 
 \details{
@@ -82,11 +88,7 @@
   of the \pkg{CDM} package.
 }
 
-\author{
-\packageAuthor{CDM}
 
-Maintainer: \packageMaintainer{CDM}
-}
 
 \seealso{
     See the \pkg{GDINA} package for comprehensive functions for the
@@ -133,6 +135,7 @@ Formann, A. K. (1992). Linear logistic latent class analysis for polytomous data
 
 George, A. C., & Robitzsch, A. (2015) Cognitive diagnosis models in R: A didactic.
 \emph{The Quantitative Methods for Psychology, 11}, 189-205.
+doi:10.20982/tqmp.11.3.p189
 
 George, A. C., Robitzsch, A., Kiefer, T., Gross, J., & Uenlue, A. (2016).
 The R package CDM for cognitive diagnosis models.

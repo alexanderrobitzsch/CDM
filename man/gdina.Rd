@@ -1,5 +1,5 @@
 %% File Name: gdina.Rd
-%% File Version: 3.458
+%% File Version: 3.474
 
 \name{gdina}
 \alias{gdina}
@@ -14,8 +14,7 @@ Estimating the Generalized DINA (GDINA) Model
 \description{
     This function implements the generalized DINA model for dichotomous
     attributes (GDINA; de la Torre, 2011) and polytomous attributes
-    (pGDINA; Chen & de la Torre, 2013).
-    See the papers for details about estimable cognitive diagnosis models.
+    (pGDINA; Chen & de la Torre, 2013, 2018).
     In addition, multiple group estimation
     is also possible using the \code{gdina} function. This function also
     allows for the estimation of a higher order GDINA model
@@ -27,10 +26,10 @@ Estimating the Generalized DINA (GDINA) Model
     see argument \code{rule}).
 
     The estimation can also be conducted by posing monotonocity
-    constraints using the argument \code{mono.constr}. Moreover,
-    regularization methods SCAD, lasso, ridge, SCAD-L2 and
+    constraints (Hong, Chang, & Tsai, 2016) using the argument \code{mono.constr}.
+    Moreover, regularization methods SCAD, lasso, ridge, SCAD-L2 and
     truncated \eqn{L_1} penalty (TLP) for item parameters
-    can be employed (Xu & Shang, xxxx).
+    can be employed (Xu & Shang, 2018).
 
     Normally distributed priors can be specified for item parameters
     (item intercepts and item slopes). Note that (for convenience) the
@@ -44,8 +43,8 @@ gdina(data, q.matrix, skillclasses=NULL, conv.crit=0.0001, dev.crit=.1,  maxit=1
     zeroprob.skillclasses=NULL, attr.prob.init=NULL, reduced.skillspace=NULL,
     reduced.skillspace.method=2, HOGDINA=-1, Z.skillspace=NULL,
     weights=rep(1, nrow(data)), rule="GDINA", bugs=NULL, regular_lam=0,
-    regular_type="none", regular_alpha=NA, regular_tau=NA, mono.constr=FALSE,
-    prior_intercepts=NULL, prior_slopes=NULL, progress=TRUE,
+    regular_type="none", regular_alpha=NA, regular_tau=NA, regular_weights=NULL,
+    mono.constr=FALSE, prior_intercepts=NULL, prior_slopes=NULL, progress=TRUE,
     progress.item=FALSE, mstep_iter=10, mstep_conv=1E-4, increment.factor=1.01,
     fac.oldxsi=0, max.increment=.3, avoid.zeroprobs=FALSE, seed=0,
     save.devmin=TRUE, calc.se=TRUE, se_version=1, PEM=TRUE, PEM_itermax=maxit,
@@ -201,15 +200,17 @@ in the Q-matrix.}
 
 \item{regular_lam}{Regularization parameter \eqn{\lambda}}
 \item{regular_type}{Type of regularization. Can be \code{scad} (SCAD penalty),
-\code{lasso} (lasso penalty), \code{ridge} (ridge penalty),
-\code{elnet} (elastic net), \code{scadL2} (SCAD-\eqn{L_2};
-Zeng & Xie, 2014), \code{tlp} (truncated \eqn{L_1} penalty; Xu & Shang, xxxx;
-Shen, Pan, & Zhu, 2012), \code{mcp} (MCP penalty; Zhang, 2010)
-or \code{none} (no regularization).}
+  \code{lasso} (lasso penalty), \code{ridge} (ridge penalty),
+  \code{elnet} (elastic net), \code{scadL2} (SCAD-\eqn{L_2};
+  Zeng & Xie, 2014), \code{tlp} (truncated \eqn{L_1} penalty; Xu & Shang, 2018;
+  Shen, Pan, & Zhu, 2012), \code{mcp} (MCP penalty; Zhang, 2010)
+  or \code{none} (no regularization).}
 \item{regular_alpha}{Regularization parameter \eqn{\alpha}
 (applicable for elastic net or SCAD-L2.}
 \item{regular_tau}{Regularization parameter \eqn{\tau} for truncated
 \eqn{L_1} penalty.}
+\item{regular_weights}{Optional list of item parameter weights used for
+penalties in regularized estimation (see Example 13)}
 \item{mono.constr}{Logical indicating whether monotonicity constraints
 should be fulfilled in estimation (implemented by the increasing penalty method; see
 Nash, 2014, p. 156).}
@@ -427,6 +428,8 @@ An object of class \code{gdina} with following entries
 \item{numb_bound_mono}{Number of items with parameters at boundary of
 monotonicity constraints}
 \item{numb_regular_pars}{Number of regularized item parameters}
+\item{delta_regularized}{List indicating which item parameters
+are regularized}
 \item{cd_algorithm}{Logical indicating whether coordinate descent algorithm is
 used}
 \item{cd_steps}{Number of steps for each parameter in coordinate descent algorithm}
@@ -458,11 +461,18 @@ Chen, J., & de la Torre, J. (2013).
 A general cognitive diagnosis model for expert-defined polytomous attributes.
 \emph{Applied Psychological Measurement, 37}, 419-437.
 
+Chen, J., & de la Torre, J. (2018). Introducing the general polytomous diagnosis
+modeling framework.
+\emph{Frontiers in Psychology | Quantitative Psychology and Measurement, 9}(1474).
+
 de la Torre, J., & Douglas, J. A. (2004). Higher-order latent trait models
 for cognitive diagnosis. \emph{Psychometrika, 69}, 333-353.
 
 de la Torre, J. (2011). The generalized {DINA} model framework.
 \emph{Psychometrika, 76}, 179-199.
+
+Hong, C. Y., Chang, Y. W., & Tsai, R. C. (2016). Estimation of generalized DINA
+model with order restrictions. \emph{Journal of Classification, 33}(3), 460-484.
 
 Huo, Y., de la Torre, J. (2014). Estimating a cognitive diagnostic model for
 multiple strategies via the EM algorithm.
@@ -494,9 +504,9 @@ In W. van der Linden & R. K. Hambleton.
 \emph{Handbook of modern item response theory} (pp. 139-152).
 New York: Springer.
 
-Xu, G., & Shang, Z. (xxxx). Identifying latent structures in
+Xu, G., & Shang, Z. (2018). Identifying latent structures in
 restricted latent class models.
-\emph{Journal of the American Statistical Association, xxx}, xxx-xxx.
+\emph{Journal of the American Statistical Association, 523}, 1284-1295.
 
 Xu, X., & von Davier, M. (2008). \emph{Fitting the structured general diagnostic
 model to NAEP data}. ETS Research Report ETS RR-08-27. Princeton, ETS.
@@ -992,7 +1002,7 @@ mod3 <- CDM::gdina( dat, q.matrix=q.matrix2, rule="GDINA")
 IRT.compareModels(mod1,mod2,mod3)
 
 #############################################################################
-# EXAMPLE 12: SISM model involving skills and misconceptions (Kuo et al., 2018)
+# EXAMPLE 12: Simulataneous modeling of skills and misconceptions (Kuo et al., 2018)
 #############################################################################
 
 data(data.cdm08, package="CDM")
@@ -1004,26 +1014,46 @@ mod <- CDM::gdina( dat0, q.matrix, rule="SISM", bugs=colnames(q.matrix)[5:7] )
 summary(mod)
 
 #############################################################################
-# EXAMPLE 13: Regularized estimation in GDINA model
+# EXAMPLE 13: Regularized estimation in GDINA model data.dtmr
 #############################################################################
 
-data(data.ecpe, package="CDM")
-dat <- data.ecpe$data[,-1]
-Q <- data.ecpe$q.matrix
+data(data.dtmr, package="CDM")
+dat <- data.dtmr$data
+q.matrix <- data.dtmr$q.matrix
 
-#* LASSO regularization with lambda parameter of .12
-mod <- CDM::gdina(dat, q.matrix=Q, rule="GDINA", regular_lam=.12, regular_type="lasso")
-summary(mod)
+#***** LASSO regularization with lambda parameter of .02
+mod1 <- CDM::gdina(dat, q.matrix=q.matrix, rule="GDINA", regular_lam=.02,
+                  regular_type="lasso")
+summary(mod1)
+mod$delta_regularized
+
+#***** using starting values from previuos estimation
+delta.init <- mod1$delta
+attr.prob.init <- mod1$attr.prob
+mod2 <- CDM::gdina(dat, q.matrix=q.matrix, rule="GDINA", regular_lam=.02, regular_type="lasso",
+                delta.init=delta.init, attr.prob.init=attr.prob.init)
+summary(mod2)
+
+#***** final estimation fixing regularized estimates to zero and estimate all other
+#***** item parameters unregularized
+regular_weights <- mod2$delta_regularized
+delta.init <- mod2$delta
+attr.prob.init <- mod2$attr.prob
+
+mod3 <- CDM::gdina(dat, q.matrix=q.matrix, rule="GDINA", regular_lam=1E5, regular_type="lasso",
+                delta.init=delta.init, attr.prob.init=attr.prob.init,
+                regular_weights=regular_weights)
+summary(mod3)
 }
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Cognitive Diagnosis Models}
-\keyword{GDINA}
-\keyword{DINA}
-\keyword{Higher order GDINA model}
-\keyword{summary}
-\keyword{plot}
-\keyword{print}
+%% \keyword{Cognitive Diagnosis Models}
+%% \keyword{GDINA}
+%% \keyword{DINA}
+%% \keyword{Higher order GDINA model}
+%% \keyword{summary}
+%% \keyword{plot}
+%% \keyword{print}
 %%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

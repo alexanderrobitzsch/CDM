@@ -1,7 +1,7 @@
 ## File Name: slca_est_xlambda_constraint.R
-## File Version: 0.03
+## File Version: 0.04
 
-slca_est_xlambda_constraint <- function( Xlambda.constr.V, V1, e2 )
+slca_est_xlambda_constraint <- function( Xlambda, Xlambda.constr.V, V1, e2 )
 {
     V <- Xlambda.constr.V
     if (! is.null(V)){

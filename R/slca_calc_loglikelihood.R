@@ -1,12 +1,13 @@
 ## File Name: slca_calc_loglikelihood.R
-## File Version: 0.09
+## File Version: 0.13
 
 slca_calc_loglikelihood <- function(Xlambda, delta, delta.designmatrix, XdesM, dimXdes, gwt0, dat, I, resp.ind.list,
         G, use.freqpatt, ind.group, weights, Xlambda.constr.V, e2, V1, Xlambda_positive)
 {
     #-- Xlambda constraint
     if ( ! is.null(Xlambda.constr.V) ){
-        Xlambda <- slca_est_xlambda_constraint( Xlambda.constr.V=Xlambda.constr.V, V1=V1, e2=e2 )
+        Xlambda <- slca_est_xlambda_constraint( Xlambda=Xlambda,
+                        Xlambda.constr.V=Xlambda.constr.V, V1=V1, e2=e2 )
     }
     #-- positivity constraint
     Xlambda <- cdm_positivity_restriction(x=Xlambda, positive=Xlambda_positive)

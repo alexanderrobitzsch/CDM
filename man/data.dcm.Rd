@@ -1,5 +1,5 @@
 %% File Name: data.dcm.Rd
-%% File Version: 0.28
+%% File Version: 0.29
 
 \name{data.dcm}
 \alias{data.dcm}
@@ -260,4 +260,4 @@ summary(mod8a)
 summary(mod8b)
 }
 }
-\keyword{datasets}
+%% \keyword{datasets}

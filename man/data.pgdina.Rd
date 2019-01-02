@@ -1,5 +1,5 @@
 %% File Name: data.pgdina.Rd
-%% File Version: 0.20
+%% File Version: 0.21
 
 \name{data.pgdina}
 \alias{data.pgdina}
@@ -92,4 +92,4 @@ A general cognitive diagnosis model for expert-defined polytomous attributes.
 %## maybe str(data.pgdina) ; plot(data.pgdina) ...
 %}
 
-\keyword{datasets}
+%% \keyword{datasets}

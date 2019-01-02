@@ -1,5 +1,5 @@
 %% File Name: din.equivalent.class.Rd
-%% File Version: 0.30
+%% File Version: 0.31
 
 \name{din.equivalent.class}
 \alias{din.equivalent.class}
@@ -91,6 +91,6 @@ m1 <- CDM::din.equivalent.class( q.matrix=CDM::fraction.subtraction.qmatrix, rul
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{DINA}
-\keyword{DINO}
-\keyword{Equivalent skill classes}
+%% \keyword{DINA}
+%% \keyword{DINO}
+%% \keyword{Equivalent skill classes}

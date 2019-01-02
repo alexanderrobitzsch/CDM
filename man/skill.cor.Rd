@@ -1,5 +1,5 @@
 %% File Name: skill.cor.Rd
-%% File Version: 2.12
+%% File Version: 2.13
 
 \name{skill.cor}
 \alias{skill.cor}
@@ -71,5 +71,5 @@ CDM::skill.cor(d4)
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Skill correlation}
+%% \keyword{Skill correlation}
 %\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

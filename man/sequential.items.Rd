@@ -1,5 +1,5 @@
 %% File Name: sequential.items.Rd
-%% File Version: 0.21
+%% File Version: 0.22
 
 \name{sequential.items}
 \alias{sequential.items}
@@ -175,5 +175,5 @@ mod <- CDM::gdm( dat.expand, irtmodel="1PL", theta.k=seq(-5,5,len=21),
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Sequential item response model}
+%% \keyword{Sequential item response model}
 %% \keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

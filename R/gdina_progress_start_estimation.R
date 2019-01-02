@@ -1,7 +1,8 @@
 ## File Name: gdina_progress_start_estimation.R
-## File Version: 0.03
+## File Version: 0.05
 
-gdina_progress_start_estimation <- function( progress, linkfct, disp, G, groupre, s1)
+gdina_progress_start_estimation <- function( progress, linkfct, disp, G, groupre,
+        s1, display)
 {
     if (progress){
         cat(disp,"\n")
@@ -11,7 +12,7 @@ gdina_progress_start_estimation <- function( progress, linkfct, disp, G, groupre
             if (groupre){ cat( "  Renumbered group identifier from 1 to",G,"\n") }
         }
         cat( "  **", paste(s1), "\n"   )
-        cat("---------------------------------------------------------------------------------\n")
+        cat(display)
         utils::flush.console()
     }
 }

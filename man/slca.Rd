@@ -1,5 +1,5 @@
 %% File Name: slca.Rd
-%% File Version: 1.822
+%% File Version: 1.823
 
 \name{slca}
 \alias{slca}
@@ -789,6 +789,6 @@ summary(mod1)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Structured latent class analysis (SLCA)}
-\keyword{summary}% __ONLY ONE__ keyword per line
-\keyword{plot}
+%% \keyword{Structured latent class analysis (SLCA)}
+%% \keyword{summary}% __ONLY ONE__ keyword per line
+%% \keyword{plot}

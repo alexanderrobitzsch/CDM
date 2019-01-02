@@ -1,9 +1,10 @@
 ## File Name: gdina_post_calc_se.R
-## File Version: 0.06
+## File Version: 0.152
 
 gdina_post_calc_se <- function(G, p.aj.xi, item.patt.freq, attr.prob, p.xi.aj, IP, J,
         calc.se, aggr.attr.patt, Aj, Mj, R.lj, I.lj, item.patt.split, resp.patt, delta, linkfct,
-        rule, avoid.zeroprobs, data, se_version, method, delta.fixed, q.matrix )
+        rule, avoid.zeroprobs, data, se_version, method, delta.fixed, q.matrix,
+        delta_regularized, regularization)
 {
     varmat.delta <- NULL
     varmat.palj <-  NULL
@@ -49,8 +50,18 @@ gdina_post_calc_se <- function(G, p.aj.xi, item.patt.freq, attr.prob, p.xi.aj, I
             se.jj <- sqrt( diag(varmat.delta[[jj]] )  )
         }
 
+        Mj_jj2 <- unlist(Mj[[jj]][2])
+        regul <- NULL
+        if (regularization){
+            regul <- 1*delta_regularized[[jj]]
+        }
         delta.summary.jj <-    data.frame( link=linkfct, item=colnames(data)[jj], itemno=jj,
-                            type=Mj[[jj]][2], rule=rule[jj], est=delta[[jj]], se=se.jj )
+                             partype=Mj_jj2)
+        delta.summary.jj$rule <- rule[jj]
+        delta.summary.jj$regul <- regul
+        delta.summary.jj$est <- delta[[jj]]
+        delta.summary.jj$se <- se.jj
+
         # fix delta parameter here!!
         if ( ! is.null( delta.fixed ) ){
             delta.fixed.jj <- delta.fixed[[jj]]
@@ -59,7 +70,7 @@ gdina_post_calc_se <- function(G, p.aj.xi, item.patt.freq, attr.prob, p.xi.aj, I
             }
         }
 
-        colnames(delta.summary.jj)[4] <- "partype"
+        # colnames(delta.summary.jj)[4] <- "partype"
         delta.summary <- rbind( delta.summary, delta.summary.jj )
     }
 

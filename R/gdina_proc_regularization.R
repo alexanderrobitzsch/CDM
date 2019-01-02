@@ -1,8 +1,8 @@
 ## File Name: gdina_proc_regularization.R
-## File Version: 0.21
+## File Version: 0.23
 
 gdina_proc_regularization <- function( regular_type, cd, mono.constr, linkfct,
-    method, PEM, regular_alpha, regular_tau, rule, optimizer="CDM" )
+    method, PEM, regular_lam, regular_alpha, regular_tau, rule, optimizer="CDM" )
 {
     save.devmin <- TRUE
     regularization <- FALSE
@@ -42,7 +42,8 @@ gdina_proc_regularization <- function( regular_type, cd, mono.constr, linkfct,
     #---- output
     res <- list( linkfct=linkfct, save.devmin=save.devmin, method=method,
                 regularization=regularization, cd_algorithm=cd_algorithm,
-                PEM=PEM, regular_alpha=regular_alpha, regular_tau=regular_tau,
-                regularization_types=regularization_types, optimizer=optimizer )
+                PEM=PEM, regular_lam=regular_lam, regular_alpha=regular_alpha,
+                regular_tau=regular_tau, regularization_types=regularization_types,
+                optimizer=optimizer )
     return(res)
 }

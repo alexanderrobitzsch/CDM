@@ -1,5 +1,5 @@
 %% File Name: plot.din.Rd
-%% File Version: 2.14
+%% File Version: 2.15
 
 \name{plot.din}
 
@@ -162,5 +162,5 @@ plot(fractions.dina.fixed, uncertainty=0.1, top.n.skill.classes=6,
   pattern=pattern)
 }
 
-\keyword{methods}
-\keyword{print}
+%% \keyword{methods}
+%% \keyword{print}

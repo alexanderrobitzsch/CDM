@@ -1,5 +1,5 @@
 ## File Name: reglca_calc_probs.R
-## File Version: 0.07
+## File Version: 0.09
 
 reglca_calc_probs <- function(parm, eps=1E-10)
 {

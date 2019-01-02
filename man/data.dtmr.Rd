@@ -1,9 +1,10 @@
 %% File Name: data.dtmr.Rd
-%% File Version: 0.17
+%% File Version: 0.25
 
 \name{data.dtmr}
 \alias{data.dtmr}
 \docType{data}
+
 \title{
 DTMR Fraction Data (Bradshaw et al., 2014)
 }
@@ -22,16 +23,34 @@ data(data.dtmr)
 \format{
   The format is:
 
-\code{List of 2} \cr
-\code{ $ data    : num [1:5000, 1:27] 0 0 0 0 0 1 0 0 1 1 ...} \cr
+\code{List of 5} \cr
+\code{ $ data              : num [1:5000, 1:27] 0 0 0 0 0 1 0 0 1 1 ...} \cr
 \code{  ..- attr(*, "dimnames")=List of 2} \cr
 \code{  .. ..$ : NULL} \cr
 \code{  .. ..$ : chr [1:27] "M1" "M2" "M3" "M4" ...} \cr
-\code{ $ q.matrix:'data.frame':} \cr
+\code{ $ q.matrix          :'data.frame':     27 obs. of  4 variables:} \cr
 \code{  ..$ RU : int [1:27] 1 0 0 1 1 0 1 0 0 0 ...} \cr
 \code{  ..$ PI : int [1:27] 0 0 1 0 0 1 0 0 0 0 ...} \cr
 \code{  ..$ APP: int [1:27] 0 1 0 0 0 0 0 1 1 1 ...} \cr
 \code{  ..$ MC : int [1:27] 0 0 0 0 0 0 0 0 0 0 ...} \cr
+\code{ $ skill.distribution:'data.frame':     16 obs. of  5 variables:} \cr
+\code{  ..$ RU  : int [1:16] 0 0 0 0 0 0 0 0 1 1 ...} \cr
+\code{  ..$ PI  : int [1:16] 0 0 0 0 1 1 1 1 0 0 ...} \cr
+\code{  ..$ APP : int [1:16] 0 0 1 1 0 0 1 1 0 0 ...} \cr
+\code{  ..$ MC  : int [1:16] 0 1 0 1 0 1 0 1 0 1 ...} \cr
+\code{  ..$ freq: int [1:16] 1064 350 280 406 196 126 238 770 14 28 ...} \cr
+\code{ $ itempars          :'data.frame':     27 obs. of  7 variables:} \cr
+\code{  ..$ item : chr [1:27] "M1" "M2" "M3" "M4" ...} \cr
+\code{  ..$ lam0 : num [1:27] -1.12 0.59 -2.07 -1.19 -1.67 -3.81 -0.73 -0.62 -0.09 0.28 ...} \cr
+\code{  ..$ RU   : num [1:27] 2.24 0 0 0.65 1.52 0 1.2 0 0 0 ...} \cr
+\code{  ..$ PI   : num [1:27] 0 0 1.7 0 0 2.08 0 0 0 0 ...} \cr
+\code{  ..$ APP  : num [1:27] 0 1.27 0 0 0 0 0 4.25 2.16 0.87 ...} \cr
+\code{  ..$ MC   : num [1:27] 0 0 0 0 0 0 0 0 0 0 ...} \cr
+\code{  ..$ RU.PI: num [1:27] 0 0 0 0 0 0 0 0 0 0 ...} \cr
+\code{ $ sim_data          :function (N, skill.distribution, itempars)  } \cr
+\code{  ..- attr(*, "srcref")='srcref' int [1:8] 1 13 20 1 13 1 1 20} \cr
+\code{  .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x00000000298a8ed0> } \cr
+
 
 The attribute definition are as follows
 
@@ -61,8 +80,11 @@ multidimensional test within the diagnostic classification framework.
 
 \examples{
 \dontrun{
-data(data.dtmr, package="CDM")
+#############################################################################
+# EXAMPLE 1: Model comparisons data.dtmr
+#############################################################################
 
+data(data.dtmr, package="CDM")
 data <- data.dtmr$data
 q.matrix <- data.dtmr$q.matrix
 I <- ncol(data)
@@ -112,6 +134,17 @@ summary( CDM::modelfit.cor.din( mod1 ) )
   ##   MX2             0.75696
   ##   100*MADRESIDCOV 0.20283
   ##   MADQ3           0.02220
+
+#############################################################################
+# EXAMPLE 2: Simulating data of structure data.dtmr
+#############################################################################
+
+data(data.dtmr, package="CDM")
+
+# draw sample of N=200
+set.seed(87)
+data.dtmr$sim_data(N=200, skill.distribution=data.dtmr$skill.distribution,
+             itempars=data.dtmr$itempars)
 }
 }
-\keyword{datasets}
+%% \keyword{datasets}

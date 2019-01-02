@@ -1,5 +1,5 @@
 %% File Name: din.deterministic.Rd
-%% File Version: 0.28
+%% File Version: 0.29
 
 \name{din.deterministic}
 \alias{din.deterministic}
@@ -145,6 +145,6 @@ as.data.frame(res$par.est )
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Deterministic classification}
-\keyword{Cluster analysis}
-\keyword{Joint maximum likelihood}% __ONLY ONE__ keyword per line
+%% \keyword{Deterministic classification}
+%% \keyword{Cluster analysis}
+%% \keyword{Joint maximum likelihood}% __ONLY ONE__ keyword per line

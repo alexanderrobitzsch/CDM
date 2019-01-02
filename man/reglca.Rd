@@ -1,5 +1,5 @@
 %% File Name: reglca.Rd
-%% File Version: 0.21
+%% File Version: 0.25
 
 \name{reglca}
 \alias{reglca}
@@ -156,7 +156,7 @@ slip <- .1
 rho <- 0.3  # skill correlation
 set.seed(987)
 dat <- CDM::sim.din( N=N, q.matrix=q.matrix, guess=guess, slip=slip,
-    mean=0*c( .2, -.2 ), Sigma=matrix( c( 1, rho,rho,1), 2, 2 ) )
+           mean=0*c( .2, -.2 ), Sigma=matrix( c( 1, rho,rho,1), 2, 2 ) )
 dat <- dat$dat
 
 #--- Model 1: Four latent classes without regularization
@@ -164,10 +164,19 @@ mod1 <- CDM::reglca(dat=dat, nclasses=4, regular_lam=0, random_starts=3,
                random_iter=10, conv=1E-4)
 summary(mod1)
 
-#--- Model 2: Four latent classes with regularization
-mod2 <- CDM::reglca(dat=dat, nclasses=4, regular_lam=0.03, regular_type="scad",
+#--- Model 2: Four latent classes with regularization and lambda=.08
+mod2 <- CDM::reglca(dat=dat, nclasses=4, regular_lam=0.08, regular_type="scad",
                random_starts=3, random_iter=10, conv=1E-4)
 summary(mod2)
+
+#--- Model 3: Four latent classes with regularization and lambda=.05 with warm start
+
+# "warm start" -> use initial parameters from fitted model with higher lambda value
+item_probs_init <- mod2$item_probs
+class_probs_init <- mod2$class_probs
+mod3 <- CDM::reglca(dat=dat, nclasses=4, regular_lam=0.05, regular_type="scad",
+               item_probs_init=item_probs_init, class_probs_init=class_probs_init,
+               random_starts=3, random_iter=10, conv=1E-4)
 }
 }
 

@@ -1,5 +1,5 @@
 %% File Name: data.hr.Rd
-%% File Version: 0.18
+%% File Version: 0.19
 
 \name{data.hr}
 \alias{data.hr}
@@ -162,4 +162,4 @@ summary(fmod3)
   ##   MADQ3           0.02416
 }
 }
-\keyword{datasets}
+%% \keyword{datasets}

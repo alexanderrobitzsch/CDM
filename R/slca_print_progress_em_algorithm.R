@@ -1,8 +1,8 @@
 ## File Name: slca_print_progress_em_algorithm.R
-## File Version: 0.13
+## File Version: 0.15
 
 slca_print_progress_em_algorithm <- function(progress, disp, iter, dev, dev0, deltadiff, Xlambda_change,
-        regularization, regular_penalty, digits_dev=4, digits_parm=6 )
+        regularization, regular_penalty, numb_regularized, digits_dev=4, digits_parm=6 )
 {
     if (progress){
         cat(disp)
@@ -15,7 +15,8 @@ slca_print_progress_em_algorithm <- function(progress, disp, iter, dev, dev0, de
         }
         cat("\n")
         if (regularization){
-            cat( paste( "   Penalty=",    round( regular_penalty, digits_dev ), "\n" ) )
+            cat( paste( "   Penalty=",    round( regular_penalty, digits_dev ), " | " ) )
+            cat( paste( "Number of regularized parameters=",    numb_regularized, "\n" ) )
         }
         cat( paste( "    Maximum Xlambda parameter change=",
                                 round( max( Xlambda_change ), digits_parm ),  " \n"   )  )

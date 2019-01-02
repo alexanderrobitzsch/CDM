@@ -1,5 +1,5 @@
 ## File Name: deltaMethod.R
-## File Version: 0.09
+## File Version: 0.11
 ###############################################################
 deltaMethod <- function( derived.pars, est, Sigma, h=1E-5 )
 {
@@ -36,25 +36,16 @@ deltaMethod <- function( derived.pars, est, Sigma, h=1E-5 )
     derived.Sigma <- A %*% Sigma %*% t(A)
     #--- univariate tests
     se <- sqrt( diag(derived.Sigma) )
-    univarTest <- data.frame(
-        "parm"=names(derived.pars),
-        "est"=derived.est, "se"=se,
-        "t"=derived.est / se,
-        "p"=2 * stats::pnorm( - abs( derived.est / se) )
-            )
+    univarTest <- data.frame( parm=names(derived.pars),
+        est=derived.est, se=se,    t=derived.est / se,
+        p=2*stats::pnorm( - abs( derived.est / se) ) )
     rownames(univarTest) <- NULL
     #--- multivariate test
     R <- diag(ND)
     wt <- WaldTest( delta=derived.est, vcov=derived.Sigma, R=R, nobs=NA)
     #--- output
-    res <- list(
-            "coef"=derived.est,
-            "vcov"=derived.Sigma,
-            "se"=se,
-            "A"=A,
-            "univarTest"=univarTest,
-            "WaldTest"=wt
-                )
+    res <- list( coef=derived.est, vcov=derived.Sigma, se=se, A=A,
+            univarTest=univarTest, WaldTest=wt)
     return(res)
 }
 ###############################################################

@@ -1,5 +1,5 @@
 %% File Name: WaldTest.Rd
-%% File Version: 0.11
+%% File Version: 0.12
 
 \name{WaldTest}
 \alias{WaldTest}
@@ -65,5 +65,5 @@ p value (\code{p}) and RMSEA statistic (\code{RMSEA}).
 %}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Wald test}
+%% \keyword{Wald test}
 %\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

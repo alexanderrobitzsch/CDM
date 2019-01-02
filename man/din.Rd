@@ -1,5 +1,5 @@
 %% File Name: din.Rd
-%% File Version: 2.49
+%% File Version: 2.50
 
 \name{din}
 
@@ -644,7 +644,7 @@ mod2
 }
 }
 
-\keyword{Cognitive Diagnosis Models}
-\keyword{DINA}
-\keyword{DINO}
-\keyword{print}
+%% \keyword{Cognitive Diagnosis Models}
+%% \keyword{DINA}
+%% \keyword{DINO}
+%% \keyword{print}

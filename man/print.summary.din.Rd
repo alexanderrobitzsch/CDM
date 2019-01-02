@@ -1,5 +1,5 @@
 %% File Name: print.summary.din.Rd
-%% File Version: 1.11
+%% File Version: 1.12
 
 \name{print.summary.din}
 
@@ -68,5 +68,5 @@ smod <- summary(mod)
 str(smod)
 }
 
-\keyword{methods}
-\keyword{print}
+%% \keyword{methods}
+%% \keyword{print}

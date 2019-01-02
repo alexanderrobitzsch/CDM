@@ -1,5 +1,5 @@
 %% File Name: summary.din.Rd
-%% File Version: 2.11
+%% File Version: 2.12
 
 \name{summary.din}
 
@@ -116,5 +116,5 @@ detailed.summary.fs <- summary(fractions.dina)
 str(detailed.summary.fs)
 }
 
-\keyword{methods}
-\keyword{summary}
+%% \keyword{methods}
+%% \keyword{summary}

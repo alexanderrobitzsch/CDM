@@ -1,5 +1,5 @@
 %% File Name: IRT.factor.scores.Rd
-%% File Version: 0.10
+%% File Version: 0.11
 
 \name{IRT.factor.scores}
 \alias{IRT.factor.scores}
@@ -105,6 +105,6 @@ graphics::boxplot( fsc1c[,1] ~ fsc1a[,1] )
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Factor scores}
+%% \keyword{Factor scores}
 % \keyword{IRT.factor.scores}
 %%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

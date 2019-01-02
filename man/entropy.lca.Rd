@@ -1,5 +1,5 @@
 %% File Name: entropy.lca.Rd
-%% File Version: 0.26
+%% File Version: 0.27
 
 \name{entropy.lca}
 \alias{entropy.lca}
@@ -114,8 +114,8 @@ summary(emod1)
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 
-\keyword{Entropy}
+%% \keyword{Entropy}
 %\keyword{din}
 %\keyword{gdina}
 %\keyword{mcdina}
-\keyword{summary}% __ONLY ONE__ keyword per line
+%% \keyword{summary}% __ONLY ONE__ keyword per line

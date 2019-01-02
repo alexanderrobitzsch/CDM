@@ -1,5 +1,5 @@
 ## File Name: summary.slca.R
-## File Version: 1.42
+## File Version: 1.43
 
 #*******************************************************
 # Summary for slca object
@@ -8,7 +8,9 @@ summary.slca <- function( object, file=NULL, ... )
 
     osink( file=file, suffix=paste0( "__SUMMARY.Rout") )
 
-    cat("-----------------------------------------------------------------------------\n")
+    # Parameter summary
+    display <- cdm_summary_display()
+    cat(display)
 
     #-- print package
     cdm_print_summary_package(pack="CDM")
@@ -34,7 +36,7 @@ summary.slca <- function( object, file=NULL, ... )
         print( object$group.stat )
     }
 
-    cat("\n-----------------------------------------------------------------------------\n")
+    cat(display)
     cat( "Number of iterations=", object$iter, "\n" )
     if ( ! object$converged ){ cat("Maximum number of iterations was reached.\n") }
     cat( "Iteration with minimal deviance","=", object$iter.min, "\n" )
@@ -57,22 +59,22 @@ summary.slca <- function( object, file=NULL, ... )
     #-- information criteria
     cdm_print_summary_information_criteria(object=object)
 
-    cat("-----------------------------------------------------------------------------\n")
+    cat(display)
     cat("Xlambda Parameters \n")
     obji <- object$Xlambda
     cdm_print_summary_data_frame(obji, digits=3)
 
-    cat("-----------------------------------------------------------------------------\n")
+    cat(display)
     cat("Conditional Item Probabilities \n")
     obji <- object$item
     cdm_print_summary_data_frame(obji, from=3, digits=3)
 
-    cat("-----------------------------------------------------------------------------\n")
+    cat(display)
     cat("Skill Class Parameters \n")
     obji <- object$delta
     cdm_print_summary_data_frame(obji, digits=3)
 
-    cat("-----------------------------------------------------------------------------\n")
+    cat(display)
     cat("Skill Class Probabilities \n")
     obji <- object$pi.k
     cdm_print_summary_data_frame(obji, digits=4)

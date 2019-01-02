@@ -1,5 +1,5 @@
 %% File Name: IRT.expectedCounts.Rd
-%% File Version: 0.13
+%% File Version: 0.14
 
 \name{IRT.expectedCounts}
 \alias{IRT.expectedCounts}
@@ -113,5 +113,5 @@ str(emod2)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Expected counts}
+%% \keyword{Expected counts}
 %\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

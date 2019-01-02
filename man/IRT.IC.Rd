@@ -1,5 +1,5 @@
 %% File Name: IRT.IC.Rd
-%% File Version: 0.10
+%% File Version: 0.11
 
 \name{IRT.IC}
 \alias{IRT.IC}
@@ -67,5 +67,5 @@ IRT.IC(mod1)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Information criteria}
+%% \keyword{Information criteria}
 % \keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

@@ -24,13 +24,22 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 7.2  |  2018-12-13  |  Last: CDM 7.2-1
+VERSIONS CDM 7.2  |  2019-01-02  |  Last: CDM 7.2-16
 --------------------------------------------------------------
 
-NOTE  * xxx
+NOTE  * changes in estimation algorithm in reglca() 
+NOTE  * changes in estimation algorithm for regularized 
+        estimation in gdina() and slca()
+ADDED * included argument 'regular_weights' for adaptive 
+        regularized estimation in gdina()
+NOTE  * added simulation function in data.dtmr  
+FIXED * fixed a bug in slca() in estimation problems with
+        equality constraints
 
-DATA  * included/modified datasets: ---
-EXAMP * included/modified examples: ---
+
+DATA  * included/modified datasets: data.dtmr
+EXAMP * included/modified examples: reglca (1), gdina (13),
+        data.dtmr (2)
 
 
 

@@ -1,5 +1,5 @@
 %% File Name: personfit.appropriateness.Rd
-%% File Version: 0.23
+%% File Version: 0.24
 
 \name{personfit.appropriateness}
 \alias{personfit.appropriateness}
@@ -150,6 +150,6 @@ plot(res)
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Person fit}
-\keyword{summary}
-\keyword{plot}
+%% \keyword{Person fit}
+%% \keyword{summary}
+%% \keyword{plot}

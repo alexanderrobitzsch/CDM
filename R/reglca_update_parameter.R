@@ -1,42 +1,38 @@
 ## File Name: reglca_update_parameter.R
-## File Version: 0.548
+## File Version: 0.574
 
 
 reglca_update_parameter <- function(parm, pp, C, W, h, lambda, regular_type,
-    cd_steps, conv, max_increment, vt=NULL, prob_min=0 )
+    cd_steps, conv, max_increment, vt=NULL, prob_min=0, increment_factor=1.02,
+    ii=NULL, eps=1e-8)
 {
-    eps <- 1E-8
     iterate <- TRUE
     iter <- 0
     parchange <- 1
     vt_null <- is.null(vt)
     bounds <- c(prob_min, 1-prob_min)
+    NC <- length(parm)
+    ind_pp <- pp:NC
 
     #*** iterations
     while (iterate){
         parm_old <- parm
         probs0 <- reglca_calc_probs(parm=parm)
-        # first derivative
+        # evaluate log-likelihood
         q0 <- reglca_freq_ll( x=probs0, C=C, W=W )
-        parm1 <- parm
-        parm1[pp] <- parm[pp] + h
-        probs1 <- reglca_calc_probs(parm=parm1)
-        q1 <- reglca_freq_ll( x=probs1, C=C, W=W )
-        # second derivative
-        parm1 <- parm
-        parm1[pp] <- parm[pp] - h
-        probs1 <- reglca_calc_probs(parm=parm1)
-        q2 <- reglca_freq_ll( x=probs1, C=C, W=W )
-        # differential quotients
-        res <- cdm_ll_numerical_differentiation(ll0=q0, ll1=q1, ll2=q2, h=h)
-        f1 <- res$d1
-        f2 <- res$d2
+        # 1st derivative
+        contr <- C / probs0 - W / (1-probs0)
+        f1 <- sum(contr[ind_pp])
+        # 2nd derivative
+        contr <- -C / probs0^2 - W / (1-probs0)^2
+        f2 <- sum(contr[ind_pp])
+        # parameter update
         incr <- - sign(f2) * f1 / ( abs(f2) + eps )
-        # incr <- - f1 / f2
         incr <- cdm_trim_increment( increment=incr, max.increment=max_increment, type=1)
-        max_increment <- min( .10, max( abs(incr) ) / 1.02 )
+        max_increment <- min( .10, max( abs(incr) ) / increment_factor )
         parm[pp] <- parm[pp] + incr
         parm[pp] <- cdm_squeeze( x=parm[pp], bounds=bounds )
+
         #-- apply threshold operator
         if (pp>1){
             if ( vt_null ){
@@ -47,11 +43,9 @@ reglca_update_parameter <- function(parm, pp, C, W, h, lambda, regular_type,
         }
         iter <- iter + 1
         if ( iter > cd_steps ){ iterate <- FALSE }
-        parchange <- max( abs( parm[pp] - parm_old[pp] ))
+        parchange <- abs( parm[pp] - parm_old[pp] )
         if ( parchange < conv ){ iterate <- FALSE }
-
     }
-
     #-- output
     return(parm)
 }

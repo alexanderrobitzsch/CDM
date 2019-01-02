@@ -1,5 +1,5 @@
 %% File Name: data.mg.Rd
-%% File Version: 0.23
+%% File Version: 0.24
 
 \name{data.mg}
 \alias{data.mg}
@@ -67,4 +67,4 @@ psych::describe( data.mg )
 }
 
 
-\keyword{datasets}
+%% \keyword{datasets}

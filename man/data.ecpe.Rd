@@ -1,5 +1,5 @@
 %% File Name: data.ecpe.Rd
-%% File Version: 0.26
+%% File Version: 0.27
 
 \name{data.ecpe}
 \alias{data.ecpe}
@@ -147,4 +147,4 @@ summary(mod5c)
 IRT.compareModels(mod5a, mod5b, mod5c)
 }
 }
-\keyword{datasets}
+%% \keyword{datasets}

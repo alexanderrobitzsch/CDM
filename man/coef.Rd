@@ -1,5 +1,5 @@
 %% File Name: coef.Rd
-%% File Version: 0.22
+%% File Version: 0.23
 
 \name{coef}
 \alias{coef.din}
@@ -77,5 +77,5 @@ coef(d3)
 }
 }
 
-\keyword{methods}
-\keyword{coef}
+%% \keyword{methods}
+%% \keyword{coef}

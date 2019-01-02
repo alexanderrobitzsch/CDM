@@ -1,5 +1,5 @@
 %% File Name: gdina.dif.Rd
-%% File Version: 0.22
+%% File Version: 0.23
 
 \name{gdina.dif}
 \alias{gdina.dif}
@@ -129,6 +129,6 @@ summary(dmod1)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{GDINA model}
-\keyword{Differential item functioning (DIF)}
-\keyword{summary}
+%% \keyword{GDINA model}
+%% \keyword{Differential item functioning (DIF)}
+%% \keyword{summary}

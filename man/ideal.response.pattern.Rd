@@ -1,5 +1,5 @@
 %% File Name: ideal.response.pattern.Rd
-%% File Version: 0.12
+%% File Version: 0.13
 
 \name{ideal.response.pattern}
 \alias{ideal.response.pattern}
@@ -74,5 +74,5 @@ CDM::ideal.response.pattern( q.matrix, skillspace=skillspace)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Ideal response pattern}
+%% \keyword{Ideal response pattern}
 %% \keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

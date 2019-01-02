@@ -1,15 +1,16 @@
 ## File Name: summary.reglca.R
-## File Version: 0.26
+## File Version: 0.282
 
 
 summary.reglca <- function( object, digits=4, file=NULL, ... )
 {
-    rdigits <- digits
-
     osink( file=file, suffix=paste0( "__SUMMARY.Rout") )
 
+    rdigits <- digits
+
     # Parameter summary
-    cat("---------------------------------------------------------------------------------------------------------- \n")
+    display <- cdm_summary_display()
+    cat(display)
 
     #-- print package
     cdm_print_summary_package(pack="CDM")
@@ -54,16 +55,17 @@ summary.reglca <- function( object, digits=4, file=NULL, ... )
     cat( " (", object$nclasses, "latent classes,", object$G, grlab, ")\n")
     cat( "\n")
 
+    #* information criteria
     cdm_print_summary_information_criteria(object=object)
 
-    cat("----------------------------------------------------------------------------\n")
+    cat(display)
     cat("Model Implied Conditional Item Probabilities \n\n")
     res <- cdm_print_summary_data_frame(obji=object$item, from=2, digits=rdigits, rownames_null=TRUE)
 
-    cat("----------------------------------------------------------------------------\n")
+    cat(display)
     cat("Latent Class Probabilities \n\n")
     print(round(object$class_probs,rdigits) )
 
     csink( file=file )
 }
-##########################################################################
+

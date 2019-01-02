@@ -1,5 +1,5 @@
 %% File Name: Data-sim.Rd
-%% File Version: 1.15
+%% File Version: 1.16
 
 \name{Data-sim}
 
@@ -78,4 +78,4 @@
 %% ## (2) examples based on dataset sim.dina
 %% }
 
-\keyword{datasets}
+%% \keyword{datasets}

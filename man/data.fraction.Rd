@@ -1,5 +1,5 @@
 %% File Name: data.fraction.Rd
-%% File Version: 0.23
+%% File Version: 0.24
 
 
 \name{data.fraction}
@@ -251,4 +251,4 @@ about the data source.
 %\examples{
 %% data(data.fraction1)
 %}
-\keyword{datasets}
+%% \keyword{datasets}

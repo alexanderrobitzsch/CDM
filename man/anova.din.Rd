@@ -1,5 +1,5 @@
 %% File Name: anova.din.Rd
-%% File Version: 1.26
+%% File Version: 1.27
 
 \name{anova}
 \alias{anova.din}
@@ -102,6 +102,6 @@ anova(d3,d4)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Likelihood ratio test}
-\keyword{anova}
+%% \keyword{Likelihood ratio test}
+%% \keyword{anova}
 %%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

@@ -1,5 +1,5 @@
 %% File Name: gdm.Rd
-%% File Version: 4.46
+%% File Version: 4.47
 
 \name{gdm}
 \alias{gdm}
@@ -661,8 +661,8 @@ summary(mod1)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{General diagnostic model}
-\keyword{summary}
-\keyword{print}
-\keyword{plot}
+%% \keyword{General diagnostic model}
+%% \keyword{summary}
+%% \keyword{print}
+%% \keyword{plot}
 %% \keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

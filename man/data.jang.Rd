@@ -1,5 +1,5 @@
 %% File Name: data.jang.Rd
-%% File Version: 0.17
+%% File Version: 0.18
 
 \name{data.jang}
 \alias{data.jang}
@@ -119,4 +119,4 @@ summary( CDM::modelfit.cor.din( mod3, jkunits=0) )
   ##   MADQ3           0.02258
 }
 }
-\keyword{datasets}
+%% \keyword{datasets}

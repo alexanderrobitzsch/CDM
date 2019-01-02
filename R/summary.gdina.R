@@ -1,21 +1,17 @@
 ## File Name: summary.gdina.R
-## File Version: 1.77
+## File Version: 1.784
 
 
-##################################################################
 # Summary of the GDINA model
-summary.gdina <- function( object, digits=4, file=NULL, ... ){
-    #-------------------------------------------------------
-    # INPUT:
-    # object    ... result from GDINA analysis
-    # rdigits     ... number of digits for rounding parameter estimates
-    #-------------------------------------------------------
-    rdigits <- digits
-
+summary.gdina <- function( object, digits=4, file=NULL, ... )
+{
     osink( file=file, suffix=paste0( "__SUMMARY.Rout") )
 
+    rdigits <- digits
+
     # Parameter summary
-    cat("---------------------------------------------------------------------------------------------------------- \n")
+    display <- cdm_summary_display()
+    cat(display)
 
     #-- print package
     cdm_print_summary_package(pack="CDM")
@@ -87,12 +83,12 @@ summary.gdina <- function( object, digits=4, file=NULL, ... ){
     #*** information criteria
     cdm_print_summary_information_criteria(object=object)
 
-    cat("----------------------------------------------------------------------------\n")
+    cat(display)
     cat("Used Q-matrix \n\n")
     print(object$q.matrix)
     cat("\n")
 
-    cat("----------------------------------------------------------------------------\n")
+    cat(display)
     cat("\nItem Parameter Estimates \n\n")
 
     ds <- object$coef
@@ -123,17 +119,18 @@ summary.gdina <- function( object, digits=4, file=NULL, ... ){
         cat("\n")
     }
 
-    cat("----------------------------------------------------------------------------\n")
+    cat(display)
     cat("Model Implied Conditional Item Probabilities \n\n")
     obji <- object$probitem
     obji[,"prob"] <- round( obji$prob, rdigits )
     print(obji)
-    cat("----------------------------------------------------------------------------\n")
+
+    cat(display)
     cat("\nSkill Probabilities \n\n")
     print(round(object$skill.patt,rdigits) )
 
     #**** output tetrachoric or polychoric correlations
-    cat("----------------------------------------------------------------------------\n")
+    cat(display)
     cat("\nPolychoric Correlations \n")
     G <- object$G
     for (gg in 1:G){
@@ -142,7 +139,7 @@ summary.gdina <- function( object, digits=4, file=NULL, ... ){
         print( round( obji, 3 ))
     }
 
-    cat("\n----------------------------------------------------------------------------\n")
+    cat("\n", display)
     cat("\nSkill Pattern Probabilities \n\n")
     if ( object$G==1 ){
         xt <- round( object$attribute.patt[,1], rdigits )
@@ -154,7 +151,7 @@ summary.gdina <- function( object, digits=4, file=NULL, ... ){
     print(xt)
 
     if (object$HOGDINA>=0){
-        cat("\n***************************\n")
+        cat("\n", display)
         cat("Higher Order GDINA Model ")
         cat("\n  Attribute Response Function Parameters \n\n")
         print( round( object$attr.rf,3) )
@@ -162,4 +159,4 @@ summary.gdina <- function( object, digits=4, file=NULL, ... ){
 
     csink( file=file )
 }
-##########################################################################
+

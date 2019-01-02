@@ -1,5 +1,5 @@
 %% File Name: data.timss03.G8.su.Rd
-%% File Version: 0.19
+%% File Version: 0.20
 
 \name{data.timss03.G8.su}
 \alias{data.timss03.G8.su}
@@ -111,4 +111,4 @@ ss3 <- CDM::skillspace.hierarchy(B=B, skill.names=skill.names)
 mod3 <- CDM::din( data, q.matrix, skillclasses=ss3$skillspace.reduced )
 }
 }
-\keyword{datasets}
+%% \keyword{datasets}

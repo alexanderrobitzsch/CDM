@@ -1,5 +1,5 @@
 ## File Name: gdina_mstep_item_parameters.R
-## File Version: 0.64
+## File Version: 0.658
 
 gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.increment,
         increment.factor, J, Aj, Mj, delta, method, avoid.zeroprobs, invM.list, linkfct,
@@ -7,7 +7,7 @@ gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.
         Mj.index, suffstat_probs, regular_lam, regular_type, cd_steps,
         mono.constr, Aj_mono_constraints, mono_maxiter, regular_alpha, regular_tau,
         regularization_types, prior_intercepts, prior_slopes, use_prior,
-        optimizer="CDM", regularization=FALSE )
+        optimizer="CDM", regularization=FALSE, regular_weights=NULL )
 {
     mono_constraints_fitted <- NULL
     # calculation of expected counts
@@ -33,9 +33,11 @@ gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.
         #--- define argument list
         if ( method %in% c("ULS","WLS","ML") ){
             arglist <- list( pjjj=pjjj, Ilj.ast=Ilj.ast, Rlj.ast=Rlj.ast, eps=eps,
-                            avoid.zeroprobs=avoid.zeroprobs, Mjjj=Mjjj, invM.list=invM.list, linkfct=linkfct, rule=rule,
-                            method=method, iter=iter, delta.new=delta.new, max.increment=max.increment, fac.oldxsi=fac.oldxsi,
-                            jj=jj, delta=delta, rrum.model=rrum.model, delta.fixed=delta.fixed, devchange=devchange )
+                            avoid.zeroprobs=avoid.zeroprobs, Mjjj=Mjjj, invM.list=invM.list,
+                            linkfct=linkfct, rule=rule,    method=method, iter=iter,
+                            delta.new=delta.new, max.increment=max.increment, fac.oldxsi=fac.oldxsi,
+                            jj=jj, delta=delta, rrum.model=rrum.model, delta.fixed=delta.fixed,
+                            devchange=devchange )
         }
         #*** optimization ULS / WLS
         if ( method %in% c("ULS","WLS") ){
@@ -60,6 +62,7 @@ gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.
                 arglist$prior_slopes <- prior_slopes
                 arglist$use_prior <- use_prior
                 arglist$optimizer <- optimizer
+                arglist$regular_weights <- regular_weights
                 #-- estimation step
                 res_jj <- do.call( what=gdina_mstep_item_ml, args=arglist )
                 penalty <- penalty + res_jj$penalty
@@ -76,12 +79,15 @@ gdina_mstep_item_parameters <- function(R.lj, I.lj, aggr.patt.designmatrix, max.
     }        # end item
 
     # number of regularized item parameters
-    numb_regular_pars <- gdina_mstep_item_parameters_number_of_regularized_parameters(
+    res <- gdina_mstep_item_parameters_number_of_regularized_parameters(
                         regularization=regularization, delta=delta, J=J)
+    numb_regular_pars <- res$numb_regular_pars
+    delta_regularized <- res$delta_regularized
 
     #----------------- OUTPUT -------------
-    res <- list( delta.new=delta.new, suffstat_probs=suffstat_probs, mono_constraints_fitted=mono_constraints_fitted,
+    res <- list( delta.new=delta.new, suffstat_probs=suffstat_probs,
+                    mono_constraints_fitted=mono_constraints_fitted,
                     penalty=penalty, ll_value=ll_value, logprior_value=logprior_value,
-                    numb_regular_pars=numb_regular_pars)
+                    numb_regular_pars=numb_regular_pars, delta_regularized=delta_regularized)
     return(res)
 }

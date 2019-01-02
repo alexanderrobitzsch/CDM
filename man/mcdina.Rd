@@ -1,5 +1,5 @@
 %% File Name: mcdina.Rd
-%% File Version: 0.38
+%% File Version: 0.39
 
 \name{mcdina}
 \alias{mcdina}
@@ -247,8 +247,8 @@ summary(mod1)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Multiple choice}
-\keyword{Multiple choice DINA model (MCDINA)}
-\keyword{DINA}
-\keyword{summary}
-\keyword{print}
+%% \keyword{Multiple choice}
+%% \keyword{Multiple choice DINA model (MCDINA)}
+%% \keyword{DINA}
+%% \keyword{summary}
+%% \keyword{print}

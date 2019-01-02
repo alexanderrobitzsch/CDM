@@ -1,5 +1,5 @@
 %% File Name: IRT.jackknife.Rd
-%% File Version: 0.22
+%% File Version: 0.23
 
 \name{IRT.jackknife}
 \alias{IRT.jackknife}
@@ -148,5 +148,5 @@ coef(jmod2a)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Jackknife}
+%% \keyword{Jackknife}
 % \keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

@@ -1,5 +1,5 @@
 %% File Name: cdm.est.class.accuracy.Rd
-%% File Version: 1.352
+%% File Version: 1.353
 
 \name{cdm.est.class.accuracy}
 \alias{cdm.est.class.accuracy}
@@ -124,5 +124,5 @@ colnames(m2) <- c("g.M1", "s.M1", "g.M2", "s.M2" )
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Classification reliability}
+%% \keyword{Classification reliability}
 %\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

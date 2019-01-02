@@ -1,5 +1,5 @@
 %% File Name: IRT.anova.Rd
-%% File Version: 0.04
+%% File Version: 0.05
 
 \name{IRT.anova}
 \alias{IRT.anova}
@@ -65,5 +65,5 @@ See also as \code{\link{anova.din}}.
 %}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{anova}
-\keyword{Likelihood ratio test}% __ONLY ONE__ keyword per line
+%% \keyword{anova}
+%% \keyword{Likelihood ratio test}% __ONLY ONE__ keyword per line

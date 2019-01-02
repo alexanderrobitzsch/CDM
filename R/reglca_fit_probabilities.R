@@ -1,21 +1,18 @@
 ## File Name: reglca_fit_probabilities.R
-## File Version: 0.414
+## File Version: 0.428
 
-reglca_fit_probabilities <- function( freq, lambda, parm_init=NULL, regular_type="scad",
-    h=1E-4, maxit=100, conv=1E-5, cd_steps=5, max_increment=1, verbose=TRUE, prob_min=0 )
+reglca_fit_probabilities <- function( freq, pi_class, lambda, parm_init=NULL, regular_type="scad",
+    h=1E-4, maxit=100, conv=1E-5, cd_steps=5, max_increment=1, verbose=TRUE, prob_min=0,
+    ii=NULL )
 {
-
-    vt <- .25
-    vt <- NULL
-
     #--- order frequencies
     NP <- length(freq)
-    freq_index <- data.frame("index"=1:NP, "freq"=freq )
+    freq_index <- data.frame(index=1:NP, freq=freq, pi_class=pi_class )
     freq_index <- freq_index[ order(freq_index$freq), ]
     freq <- freq_index$freq
-    C <- freq
-    W <- 1 - freq
-
+    pi_class <- freq_index$pi_class
+    C <- pi_class*freq
+    W <- pi_class*(1-freq)
     #--- init parameters
     if ( is.null(parm_init) ){
         parm_init <- c( freq[1], diff(freq) )
@@ -35,7 +32,7 @@ reglca_fit_probabilities <- function( freq, lambda, parm_init=NULL, regular_type
         for (pp in 1:NP){
             parm <- reglca_update_parameter( parm=parm, pp=pp, C=C, W=W, h=h, lambda=lambda,
                         regular_type=regular_type, cd_steps=cd_steps, conv=conv,
-                        max_increment=max_increment, vt=vt, prob_min=prob_min)
+                        max_increment=max_increment, vt=NULL, prob_min=prob_min, ii=ii)
         }
         #-- normalize probabilities
         parm <- reglca_normalize_probabilities(parm=parm)

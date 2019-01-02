@@ -1,5 +1,5 @@
 %% File Name: predict.Rd
-%% File Version: 0.19
+%% File Version: 0.20
 
 \name{predict}
 
@@ -126,5 +126,5 @@ str(prmod1)
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Predicted values}
-\keyword{Residuals}% __ONLY ONE__ keyword per line
+%% \keyword{Predicted values}
+%% \keyword{Residuals}% __ONLY ONE__ keyword per line

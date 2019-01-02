@@ -1,5 +1,5 @@
 %% File Name: data.cdm.Rd
-%% File Version: 0.46
+%% File Version: 0.47
 
 \name{data.cdm}
 
@@ -326,4 +326,4 @@ summary(mod1)
 }
 }
 
-\keyword{datasets}
+%% \keyword{datasets}

@@ -1,5 +1,5 @@
 ## File Name: reglca_mstep_item_parameters.R
-## File Version: 0.483
+## File Version: 0.488
 
 
 reglca_mstep_item_parameters <- function(I, n.ik, N.ik, h, mstep_iter, conv, regular_lam,
@@ -31,9 +31,12 @@ reglca_mstep_item_parameters <- function(I, n.ik, N.ik, h, mstep_iter, conv, reg
     item_probs0 <- item_probs
     for (ii in 1:I){
         freq <- n.ik[,ii,2] / N.ik[,ii]
-        res <- reglca_fit_probabilities( freq=freq, h=h, maxit=mstep_iter, conv=conv, verbose=FALSE,
-                            parm_init=NULL, lambda=regular_lam, regular_type=regular_type,
-                            cd_steps=cd_steps, max_increment=max_increment, prob_min=prob_min)
+        pi_class <- cdm_sumnorm(N.ik[,ii])
+        res <- reglca_fit_probabilities( freq=freq, pi_class=pi_class, h=h, maxit=mstep_iter,
+                            conv=conv, verbose=FALSE, parm_init=NULL, lambda=regular_lam,
+                            regular_type=regular_type, cd_steps=cd_steps,
+                            max_increment=max_increment, prob_min=prob_min,
+                            ii=ii)
         expected_loglike[ii] <- res$ll
         opt_fct_item_sum[ii] <- res$ll + res$pen
         incr <- res$probs - item_probs[ii,]

@@ -1,5 +1,5 @@
 %% File Name: gdd.Rd
-%% File Version: 0.19
+%% File Version: 0.20
 
 \name{gdd}
 \alias{gdd}
@@ -102,5 +102,5 @@ res <- CDM::gdd( data, q.matrix, theta=theta, b=b, a=a )
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Generalized distance discriminating method (GDD)}
+%% \keyword{Generalized distance discriminating method (GDD)}
 %\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

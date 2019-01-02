@@ -1,5 +1,5 @@
 %% File Name: equivalent.dina.Rd
-%% File Version: 1.23
+%% File Version: 1.24
 
 \name{equivalent.dina}
 \alias{equivalent.dina}
@@ -135,5 +135,5 @@ res2
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{DINA}
+%% \keyword{DINA}
 %%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

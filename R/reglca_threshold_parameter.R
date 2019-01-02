@@ -1,10 +1,10 @@
 ## File Name: reglca_threshold_parameter.R
-## File Version: 0.09
+## File Version: 0.15
 
 reglca_threshold_parameter <- function(x, regular_type, lambda, vt=1 )
 {
-    # multiply <- TRUE
-    multiply <- ( vt < 1 )
+    multiply <- TRUE
+    # multiply <- ( vt < 1 )
     if (multiply){
         x <- x * vt
     }

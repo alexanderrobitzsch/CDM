@@ -1,5 +1,5 @@
 %% File Name: IRT.compareModels.Rd
-%% File Version: 0.18
+%% File Version: 0.19
 
 \name{IRT.compareModels}
 \alias{IRT.compareModels}
@@ -166,5 +166,5 @@ res
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Model comparison}
+%% \keyword{Model comparison}
 %\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

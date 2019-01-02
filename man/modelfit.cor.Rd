@@ -1,5 +1,5 @@
 %% File Name: modelfit.cor.Rd
-%% File Version: 1.63
+%% File Version: 1.64
 
 \name{modelfit.cor}
 \alias{modelfit.cor}
@@ -308,7 +308,7 @@ summary(fmod1)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Model fit}
-\keyword{Local dependence}
-\keyword{summary}
+%% \keyword{Model fit}
+%% \keyword{Local dependence}
+%% \keyword{summary}
 %\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

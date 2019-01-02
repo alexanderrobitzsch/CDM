@@ -1,5 +1,5 @@
 %% File Name: vcov.Rd
-%% File Version: 0.38
+%% File Version: 0.39
 
 \name{vcov}
 \alias{vcov.din}
@@ -163,7 +163,7 @@ infomod2 <- vcov(mod2, infomat=TRUE)
 }
 }
 
-\keyword{methods}
-\keyword{vcov}
-\keyword{confint}
+%% \keyword{methods}
+%% \keyword{vcov}
+%% \keyword{confint}
 % \keyword{IRT.se}

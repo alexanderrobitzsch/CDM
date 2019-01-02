@@ -1,5 +1,5 @@
 %% File Name: itemfit.sx2.Rd
-%% File Version: 1.35
+%% File Version: 1.36
 
 \name{itemfit.sx2}
 \alias{itemfit.sx2}
@@ -249,7 +249,7 @@ summary( CDM::itemfit.sx2( mod3 ) )
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Item fit}
-\keyword{summary}
-\keyword{plot}
+%% \keyword{Item fit}
+%% \keyword{summary}
+%% \keyword{plot}
 %% \keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

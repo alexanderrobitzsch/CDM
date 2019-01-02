@@ -1,5 +1,5 @@
 %% File Name: IRT.repDesign.Rd
-%% File Version: 0.21
+%% File Version: 0.22
 
 \name{IRT.repDesign}
 \alias{IRT.repDesign}
@@ -128,5 +128,5 @@ rdes <- CDM::IRT.repDesign( data=dat, jktype="BOOT", Nboot=300 )
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Replication weights}
+%% \keyword{Replication weights}
 %% \keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

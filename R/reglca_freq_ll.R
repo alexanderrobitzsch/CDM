@@ -1,9 +1,8 @@
 ## File Name: reglca_freq_ll.R
-## File Version: 0.13
+## File Version: 0.15
 
-reglca_freq_ll <- function(x,C,W)
+reglca_freq_ll <- function(x, C, W, eps=1e-20)
 {
-    eps <- 1E-20
     res <- sum( C * cdm_log(x, eps) + W * cdm_log( 1 - x, eps) )
     return(res)
 }

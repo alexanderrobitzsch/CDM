@@ -1,5 +1,5 @@
 %% File Name: sim.gdina.Rd
-%% File Version: 1.25
+%% File Version: 1.26
 
 \name{sim.gdina}
 \alias{sim.gdina}
@@ -223,5 +223,5 @@ dat <- sim.res$data
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{GDINA}
+%% \keyword{GDINA}
 %%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

@@ -1,5 +1,5 @@
 %% File Name: gdina.wald.Rd
-%% File Version: 0.33
+%% File Version: 0.34
 
 \name{gdina.wald}
 \alias{gdina.wald}
@@ -100,5 +100,5 @@ summary(res1, vars=c("wgtdist", "p") )
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Wald test}
-\keyword{GDINA model}% __ONLY ONE__ keyword per line
+%% \keyword{Wald test}
+%% \keyword{GDINA model}% __ONLY ONE__ keyword per line

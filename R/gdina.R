@@ -1,5 +1,5 @@
 ## File Name: gdina.R
-## File Version: 9.286
+## File Version: 9.318
 
 
 ################################################################################
@@ -7,87 +7,30 @@
 ################################################################################
 
 gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
-                    dev.crit=.1, maxit=1000,
-                    linkfct="identity", Mj=NULL,
-                    group=NULL,
-                    invariance=TRUE,
-                    method=NULL,
-                    delta.init=NULL,
-                    delta.fixed=NULL,
-                    delta.designmatrix=NULL,
-                    delta.basispar.lower=NULL,
-                    delta.basispar.upper=NULL,
-                    delta.basispar.init=NULL,
-                    zeroprob.skillclasses=NULL,
-                    attr.prob.init=NULL,
-                    reduced.skillspace=NULL,
-                    reduced.skillspace.method=2,
-                    HOGDINA=-1,
-                    Z.skillspace=NULL,
-                    weights=rep( 1, nrow( data ) ),  rule="GDINA",
-                    bugs=NULL,
-                    regular_lam=0, regular_type="none",
-                    regular_alpha=NA, regular_tau=NA,
-                    mono.constr=FALSE,
-                    prior_intercepts=NULL, prior_slopes=NULL,
-                    progress=TRUE,
-                    progress.item=FALSE,
-                    mstep_iter=10,
-                    mstep_conv=1E-4,
-                    increment.factor=1.01,
-                    fac.oldxsi=0,
-                    max.increment=.3,
-                    avoid.zeroprobs=FALSE,
-                    seed=0,
-                    save.devmin=TRUE, calc.se=TRUE,
-                    se_version=1, PEM=TRUE, PEM_itermax=maxit,
-                    cd=FALSE, cd_steps=1, mono_maxiter=10,
-                    freq_weights=FALSE, optimizer="CDM",
-                    ...
-                        )
+            dev.crit=.1, maxit=1000, linkfct="identity", Mj=NULL, group=NULL,
+            invariance=TRUE, method=NULL, delta.init=NULL, delta.fixed=NULL,
+            delta.designmatrix=NULL, delta.basispar.lower=NULL,    delta.basispar.upper=NULL,
+            delta.basispar.init=NULL, zeroprob.skillclasses=NULL, attr.prob.init=NULL,
+            reduced.skillspace=NULL, reduced.skillspace.method=2, HOGDINA=-1,
+            Z.skillspace=NULL, weights=rep(1, nrow(data)),  rule="GDINA", bugs=NULL,
+            regular_lam=0, regular_type="none",    regular_alpha=NA, regular_tau=NA,
+            regular_weights=NULL, mono.constr=FALSE, prior_intercepts=NULL, prior_slopes=NULL,
+            progress=TRUE, progress.item=FALSE, mstep_iter=10, mstep_conv=1E-4,
+            increment.factor=1.01, fac.oldxsi=0, max.increment=.3, avoid.zeroprobs=FALSE,
+            seed=0,    save.devmin=TRUE, calc.se=TRUE, se_version=1, PEM=TRUE, PEM_itermax=maxit,
+            cd=FALSE, cd_steps=1, mono_maxiter=10, freq_weights=FALSE,
+            optimizer="CDM", ... )
 {
-
-# data: a required matrix of binary response data, whereas the items are in the columns
-#       and the response pattern in the rows. NA values are allowed.
-#
-# q.matrix: a required binary matrix describing which attributes are required, coded by 1,
-#       and which attributes are not required, coded by 0, to master the items, whereas the
-#       attributes are in the columns and the items in the rows.
-#
-# method: WLS (using W matrix) or ULS (without a W matrix) estimation
-#
-# conv.crit: termination criterion of the iterations defined as the maximum change in parameter
-#       estimates. Iteration ends if maximal parameter change is below this value.
-#
-# maxit: maximal number of iterations.
-#
-# zeroprob.skillclasses:  an optional vector of integers which indicates which skill classes should have
-#                            zero probability
-#
-# weights: an optional vector of weights for the response pattern. Noninteger weights allow for different
-#       sampling schemes.
-#
-# weight.matrix: use weighting matrix in least squares estimation
-
-# rule: an optional character string or vector of character strings specifying the model rule that is used.
-#       The character strings must be of "DINA" or "DINO". If a vector of character strings is specified,
-#       implying an itemwise condensation rule, the vector must be of length ncol(data). The default is the
-#       condensation rule "DINA" for all items.
-#        See help: DINA, DINO, ACDM (=GDINA1), GDINA1, GDINA2
-#        The saturated specification GDINA is the default.
-#
-# progress: an optional logical indicating whether the function should print the progress of iteration.
-
-    CALL <- match.call()
+    cl <- CALL <- match.call()
     s1 <- Sys.time()
 
+    display <- cdm_summary_display()
+
     if (progress){
-        cat("---------------------------------------------------------------------------------\n")
-        d1 <- packageDescription("CDM")
-        cat( paste( d1$Package, " ", d1$Version, " (", d1$Date, ")", sep=""), "\n" )
+        cat(display)
+        cdm_print_summary_package(pack="CDM")
     }
     time1 <- list( "s1"=Sys.time() )
-    cl <- match.call()
 
     #########################################################
     # treat sequential items
@@ -171,7 +114,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
     disp <- r1
     #--- display progress
     res <- gdina_progress_start_estimation( progress=progress, linkfct=linkfct, disp=disp,
-                G=G, groupre=groupre, s1=s1 )
+                G=G, groupre=groupre, s1=s1, display=display )
 
     ################################################################################
     # definition of model parameters                                               #
@@ -356,10 +299,10 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
 
     deviance.history <- rep(NA, maxit)
 
-    #------------------------------
-    # choose regularization, coordinate descent and monotonicity constraints
+    #--- choose regularization, coordinate descent and monotonicity constraints
     res <- gdina_proc_regularization( regular_type=regular_type, cd=cd, mono.constr=mono.constr, linkfct=linkfct,
-                    method=method, PEM=PEM, regular_alpha=regular_alpha, regular_tau=regular_tau,
+                    method=method, PEM=PEM, regular_lam=regular_lam,
+                    regular_alpha=regular_alpha, regular_tau=regular_tau,
                     rule=rule, optimizer=optimizer)
     linkfct <- res$linkfct
     save.devmin <- res$save.devmin
@@ -367,14 +310,15 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
     regularization <- res$regularization
     cd_algorithm <- res$cd_algorithm
     PEM <- res$PEM
+    regular_lam <- res$regular_lam
     regular_alpha <- res$regular_alpha
     regular_tau <- res$regular_tau
     regularization_types <- res$regularization_types
     optimizer <- res$optimizer
 
-    #--------- process prior distributions
-    res <- gdina_proc_prior_distribution( prior_intercepts=prior_intercepts, prior_slopes=prior_slopes, method=method,
-                    linkfct=linkfct, PEM=PEM )
+    #--- process prior distributions
+    res <- gdina_proc_prior_distribution( prior_intercepts=prior_intercepts,
+                prior_slopes=prior_slopes, method=method, linkfct=linkfct, PEM=PEM )
     prior_intercepts <- res$prior_intercepts
     prior_slopes <- res$prior_slopes
     linkfct <- res$linkfct
@@ -385,16 +329,12 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
     #**** some precalculations
     ones_matrix <- matrix( 1, nrow=IP, ncol=L )
 
-
     #********************************
     # extract parameters with minimal deviances
-
     dev.min <- 1E99
     R.lj.gg <- I.lj.gg <- NULL
     suffstat_probs <- as.list(1:J)
-
     devchange <- 0
-    #*********************************
 
     ################################################################################
     # BEGIN OF THE ITERATION LOOP                                                  #
@@ -491,7 +431,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
                         mono_maxiter=mono_maxiter, regular_alpha=regular_alpha, regular_tau=regular_tau,
                         regularization_types=regularization_types, prior_intercepts=prior_intercepts,
                         prior_slopes=prior_slopes, use_prior=use_prior, optimizer=optimizer,
-                        regularization=regularization )
+                        regularization=regularization, regular_weights=regular_weights )
         delta.new <- res$delta.new
         suffstat_probs <- res$suffstat_probs
         mono_constraints_fitted <- res$mono_constraints_fitted
@@ -499,6 +439,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
         ll_value <- res$ll_value
         logprior_value <- res$logprior_value
         numb_regular_pars <- res$numb_regular_pars
+        delta_regularized <- res$delta_regularized
 
         ##########################################################################
         # estimation with a design matrix for delta parameters
@@ -564,15 +505,14 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
                     numb_regular_pars=numb_regular_pars)
 
         utils::flush.console() # Output is flushing on the console
-        iter <- iter + 1 # new iteration number
         devchange <- abs( 2*(like.new-loglikeold) )
 
         #**** update parameters at minimal deviance
         dev <- -2*like.new
-        deviance.history[iter-1] <- dev
+        deviance.history[iter] <- dev
         if (save.devmin){
             if ( dev < dev.min ){
-                iter.min <- iter-1
+                iter.min <- iter
                 delta.min <- delta
                 dev.min <- dev
                 p.aj.xi.min <- p.aj.xi
@@ -588,6 +528,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
         }
         #********************************
 
+        iter <- iter + 1 # new iteration number
     }
     ################################################################################
     # END OF THE ITERATION LOOP                                                    #
@@ -622,7 +563,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
                 p.xi.aj=p.xi.aj, IP=IP, J=J, calc.se=calc.se, aggr.attr.patt=aggr.attr.patt, Aj=Aj, Mj=Mj, R.lj=R.lj,
                 I.lj=I.lj, item.patt.split=item.patt.split, resp.patt=resp.patt, delta=delta, linkfct=linkfct, rule=rule,
                 avoid.zeroprobs=avoid.zeroprobs, data=data, se_version=se_version, method=method, delta.fixed=delta.fixed,
-                q.matrix=q.matrix )
+                q.matrix=q.matrix, delta_regularized=delta_regularized, regularization=regularization )
     varmat.delta <- res$varmat.delta
     varmat.palj <- res$varmat.palj
     se.delta <- res$se.delta
@@ -686,7 +627,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
 
     #***************************** OUTPUT **********************************
     if (progress){
-        cat("---------------------------------------------------------------------------------\n")
+        cat(display)
     }
 
     iter <- iterused
@@ -697,8 +638,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
                 Nskillclasses=L, varmat.delta=varmat.delta, varmat.palj=varmat.palj,
                 posterior=posterior, like=p.xi.aj, data=data, q.matrix=q.matrix,
                 pattern=pattern, attribute.patt=attr.prob, skill.patt=skill.patt,
-                attr.prob=attr_prob,
-                subj.pattern=item.patt.subj, attribute.patt.splitted=attr.patt,
+                attr.prob=attr_prob, subj.pattern=item.patt.subj, attribute.patt.splitted=attr.patt,
                 pjk=pjM,  Mj=Mj, Aj=Aj, rule=rule, linkfct=linkfct, delta.designmatrix=delta.designmatrix,
                 reduced.skillspace=reduced.skillspace, Z.skillspace=if(reduced.skillspace){ Z } else { NULL },
                 beta=beta, covbeta=covbeta, display=disp, item.patt.split=item.patt.split,
@@ -708,7 +648,8 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
                 HOGDINA=HOGDINA, mono.constr=mono.constr, regularization=regularization, regular_lam=regular_lam,
                 regular_alpha=regular_alpha, regular_tau=regular_tau,
                 numb_bound_mono=numb_bound_mono, item_bound_mono=item_bound_mono, numb_regular_pars=numb_regular_pars,
-                regular_type=regular_type, cd_algorithm=cd_algorithm, cd_steps=cd_steps,
+                regular_type=regular_type, delta_regularized=delta_regularized,
+                regular_weights=regular_weights, cd_algorithm=cd_algorithm, cd_steps=cd_steps,
                 prior_intercepts=prior_intercepts, prior_slopes=prior_slopes, use_prior=use_prior,
                 logprior_value=logprior_value,
                 seed=seed, iter=iter, converged=iter < maxit, iter.min=iter.min,

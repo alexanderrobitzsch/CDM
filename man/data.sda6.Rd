@@ -1,5 +1,5 @@
 %% File Name: data.sda6.Rd
-%% File Version: 0.16
+%% File Version: 0.17
 
 \name{data.sda6}
 \alias{data.sda6}
@@ -108,4 +108,4 @@ summary( CDM::modelfit.cor.din(mod3) )
 }
 
 
-\keyword{datasets}
+%% \keyword{datasets}

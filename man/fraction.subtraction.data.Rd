@@ -1,5 +1,5 @@
 %% File Name: fraction.subtraction.data.Rd
-%% File Version: 2.05
+%% File Version: 2.06
 
 \name{fraction.subtraction.data}
 
@@ -66,4 +66,4 @@
 %\examples{
 %}
 
-\keyword{datasets}
+%% \keyword{datasets}

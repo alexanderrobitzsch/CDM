@@ -1,5 +1,5 @@
 %% File Name: din.validate.qmatrix.Rd
-%% File Version: 1.34
+%% File Version: 1.35
 
 \name{din.validate.qmatrix}
 \alias{din.validate.qmatrix}
@@ -158,5 +158,5 @@ plot(Qrefine.out)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Q-matrix validation}
+%% \keyword{Q-matrix validation}
 %\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

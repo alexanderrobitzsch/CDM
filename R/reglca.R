@@ -1,5 +1,5 @@
 ## File Name: reglca.R
-## File Version: 0.817
+## File Version: 0.818
 
 reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad", regular_lam=0,
                 sd_noise_init=1, item_probs_init=NULL, class_probs_init=NULL, random_starts=1,
@@ -61,7 +61,6 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
     while (iterate){
 
 # z0 <- Sys.time()
-
         item_probs0 <- item_probs
         class_probs0 <- class_probs
         loglikeold <- like.new

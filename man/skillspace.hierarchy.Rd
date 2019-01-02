@@ -1,5 +1,5 @@
 %% File Name: skillspace.hierarchy.Rd
-%% File Version: 0.23
+%% File Version: 0.24
 
 \name{skillspace.hierarchy}
 \alias{skillspace.hierarchy}
@@ -198,5 +198,5 @@ sp4$skillspace.reduced
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Skill hierarchy}
+%% \keyword{Skill hierarchy}
 %\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

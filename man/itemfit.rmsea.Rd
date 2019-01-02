@@ -1,5 +1,5 @@
 %% File Name: itemfit.rmsea.Rd
-%% File Version: 1.14
+%% File Version: 1.15
 
 \name{itemfit.rmsea}
 \alias{itemfit.rmsea}
@@ -85,5 +85,5 @@ This function is used in \code{\link{din}}, \code{\link{gdina}} and
 %}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Item fit}
-\keyword{RMSEA}
+%% \keyword{Item fit}
+%% \keyword{RMSEA}

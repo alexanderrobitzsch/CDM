@@ -1,8 +1,7 @@
 ## File Name: slca_est_Xlambda.R
-## File Version: 0.30
+## File Version: 0.359
 
 
-###########################################################################
 # estimation of Xlambda parameters
 slca_est_Xlambda <- function(Xlambda, Xdes, probs, n.ik1, N.ik1, I, K, G,
     max.increment, TP,msteps, convM, Xlambda.fixed, XdesM, dimXdes, oldfac,
@@ -18,12 +17,13 @@ slca_est_Xlambda <- function(Xlambda, Xdes, probs, n.ik1, N.ik1, I, K, G,
     n.ik <- aperm( n.ik1, c(2,3,1) )
     N.ik <- aperm( N.ik1, c(2,1) )
     maxK <- K+1
-    #--------------------------------
-    # begin M-steps
+
+    #---- begin M-steps
     while( ( iter <=msteps ) & ( parchange > convM)  ){
+
         Xlambda0 <- Xlambda
         probs <- slca_calc_prob( XdesM=XdesM, dimXdes=dimXdes, Xlambda=Xlambda )
-        d2.b <- d1.b <- rep(eps,Nlam)
+        d2.b <- d1.b <- rep(eps, Nlam)
         # probs  num [1:I, 1:maxK, 1:TP]
         # n.ik  num [1:I, 1:maxK, 1:TP]
         # N.ik  num [1:I,1:TP]
@@ -33,11 +33,16 @@ slca_est_Xlambda <- function(Xlambda, Xdes, probs, n.ik1, N.ik1, I, K, G,
                         probs=probs, n.ik=n.ik, N.ik=N.ik )
         d1.b <- res$d1b
         d2.b <- res$d2b
+
         #-- calculate increment
-        res <- slca_est_Xlambda_calc_increment( d1=d1.b, d2=d2.b, x0=Xlambda, regularization=regularization,
-                        regular_lam_used=regular_lam_used, max.increment=max.increment, regular_type=regular_type )
+        res <- slca_est_Xlambda_calc_increment( d1=d1.b, d2=d2.b, x0=Xlambda,
+                        regularization=regularization, regular_lam_used=regular_lam_used,
+                        max.increment=max.increment, regular_type=regular_type,
+                        regular_n=regular_n)
         increment <- res$increment
         max.increment <- res$max.increment
+        parm_regularized <- res$parm_regularized
+        numb_regularized <- res$numb_regularized
 
         #-- update parameter
         Xlambda <- Xlambda + increment
@@ -64,7 +69,8 @@ slca_est_Xlambda <- function(Xlambda, Xdes, probs, n.ik1, N.ik1, I, K, G,
             # See the Neuhaus paper:
             # e_cons=e + V * (V'V)^(-1) * ( c - V * e )
     if ( ! is.null(Xlambda.constr.V) ){
-        Xlambda <- slca_est_xlambda_constraint( Xlambda.constr.V=Xlambda.constr.V, V1=V1, e2=e2 )
+        Xlambda <- slca_est_xlambda_constraint( Xlambda=Xlambda,
+                            Xlambda.constr.V=Xlambda.constr.V, V1=V1, e2=e2 )
     }
 
     if (oldfac > 0 ){
@@ -74,10 +80,13 @@ slca_est_Xlambda <- function(Xlambda, Xdes, probs, n.ik1, N.ik1, I, K, G,
     if (decrease.increments){
         max.increment0 <- max.increment0 / dampening_factor
     }
-    penalty <- cdm_penalty_values(x=Xlambda, regular_type=regular_type, regular_lam=regular_lam_used)
-    regular_penalty <- regular_n * sum( penalty )
+    penalty <- cdm_penalty_values(x=Xlambda, regular_type=regular_type,
+                        regular_lam=regular_lam_used)
+    regular_penalty <- regular_n * sum(penalty)
     #----- output
-    res <- list(Xlambda=Xlambda, se.Xlambda=se.Xlambda, max.increment=max.increment0, regular_penalty=regular_penalty)
+    res <- list(Xlambda=Xlambda, se.Xlambda=se.Xlambda, max.increment=max.increment0,
+                    regular_penalty=regular_penalty, parm_regularized=parm_regularized,
+                    numb_regularized=numb_regularized)
     return(res)
 }
 

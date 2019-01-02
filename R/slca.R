@@ -1,5 +1,5 @@
 ## File Name: slca.R
-## File Version: 1.857
+## File Version: 1.869
 
 
 ###########################################
@@ -136,7 +136,8 @@ slca <- function( data, group=NULL,
     #---
     # initial values algorithm
     max.increment <- 1
-    dev <- 0    ; iter <- 0
+    dev <- 0
+    iter <- 0
     globconv1 <- conv1 <- 1000
     disp <- paste( paste( rep(".", 70 ), collapse=""),"\n", sep="")
     mindev <- Inf
@@ -182,23 +183,26 @@ slca <- function( data, group=NULL,
         #5 M step: Xdelta parameter estimation
         # n.ik  [1:TP,1:I,1:K,1:G]
         # probs[1:I,1:K,1:TP]
-
-    res <- slca_est_Xlambda( Xlambda=Xlambda, Xdes=Xdes, probs=probs, n.ik1=n.ik1, N.ik1=N.ik1, I=I, K=K, G=G,
-                    max.increment=max.increment, TP=TP, msteps=msteps, convM=convM,
-                    Xlambda.fixed=Xlambda.fixed, XdesM=XdesM, dimXdes=dimXdes, oldfac=oldfac,
+        res <- slca_est_Xlambda( Xlambda=Xlambda, Xdes=Xdes, probs=probs,
+                    n.ik1=n.ik1, N.ik1=N.ik1, I=I, K=K, G=G, max.increment=max.increment,
+                    TP=TP, msteps=msteps, convM=convM, Xlambda.fixed=Xlambda.fixed,
+                    XdesM=XdesM, dimXdes=dimXdes, oldfac=oldfac,
                     decrease.increments=decrease.increments, dampening_factor=dampening_factor,
                     Xlambda.constr.V=Xlambda.constr.V, e2=e2, V1=V1, regularization=regularization,
-                    regular_lam_used=regular_lam_used, regular_n=regular_n, Xlambda_positive=Xlambda_positive,
-                    regular_type=regular_type )
+                    regular_lam_used=regular_lam_used, regular_n=regular_n,
+                    Xlambda_positive=Xlambda_positive, regular_type=regular_type )
         Xlambda <- res$Xlambda
         se.Xlambda <- res$se.Xlambda
         max.increment <- res$max.increment
         regular_penalty <- res$regular_penalty
+        parm_regularized <- res$parm_regularized
+        numb_regularized <- res$numb_regularized
 
         #*****
         #7 M step: estimate reduced skillspace
-        res <- slca_est_skillspace( Ngroup=Ngroup, pi.k=pi.k, delta.designmatrix=delta.designmatrix, G=G, delta=delta,
-                    delta.fixed=delta.fixed, eps=1E-7, oldfac=oldfac, delta.linkfct=delta.linkfct )
+        res <- slca_est_skillspace( Ngroup=Ngroup, pi.k=pi.k, delta.designmatrix=delta.designmatrix,
+                    G=G, delta=delta, delta.fixed=delta.fixed, eps=1E-7, oldfac=oldfac,
+                    delta.linkfct=delta.linkfct )
         pi.k <- res$pi.k
         delta <- res$delta
         covdelta <- res$covdelta
@@ -248,8 +252,9 @@ slca <- function( data, group=NULL,
         iter <- iter +1
         #---- print progress
         res <- slca_print_progress_em_algorithm( progress=progress, disp=disp, iter=iter,
-                    dev=dev, dev0=dev0, deltadiff=deltadiff,
-                    Xlambda_change=pardiff, regularization=regularization, regular_penalty=regular_penalty )
+                    dev=dev, dev0=dev0, deltadiff=deltadiff, Xlambda_change=pardiff,
+                    regularization=regularization, regular_penalty=regular_penalty,
+                    numb_regularized=numb_regularized)
         if ( globconv1 < globconv ){
             iterate <- FALSE
         }
@@ -313,17 +318,14 @@ slca <- function( data, group=NULL,
                         data0=data0, deltaNULL=deltaNULL, Xlambda.constr.V=Xlambda.constr.V,
                         regularization=regularization, regular_indicator_parameters=regular_indicator_parameters,
                         Xlambda_positive=Xlambda_positive )
-    #########################################
+
     # item fit [ items, theta, categories ]
     # # n.ik [ 1:TP, 1:I, 1:(K+1), 1:G ]
     probs <- aperm( probs, c(3,1,2) )
 
     # person parameters
-    # ...
-
-    # person parameters
-    mle.class <- max.col( p.xi.aj )
-    map.class <- max.col( p.aj.xi )
+    mle.class <- max.col( m=p.xi.aj )
+    map.class <- max.col( m=p.aj.xi )
 
     #*************************
     # collect output
@@ -342,6 +344,7 @@ slca <- function( data, group=NULL,
                 Xlambda_positive=Xlambda_positive, regular_penalty=regular_penalty, regular_n=regular_n,
                 regular_type=regular_type, regular_lam=regular_lam, regular_w=regular_w, regular_lam_used=regular_lam_used,
                 regular_indicator_parameters=regular_indicator_parameters, regularization=regularization,
+                numb_regularized=numb_regularized, parm_regularized=parm_regularized,
                 control=control, call=cl )
     class(res) <- "slca"
     #--- print progress

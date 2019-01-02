@@ -1,5 +1,5 @@
 %% File Name: cdi.kli.Rd
-%% File Version: 0.21
+%% File Version: 0.22
 
 \name{cdi.kli}
 \alias{cdi.kli}
@@ -140,6 +140,6 @@ round( cmod$attr_item_disc, 3 )
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Item discrimination}
-\keyword{Cognitive diagnostic discrimination}
-\keyword{summary}
+%% \keyword{Item discrimination}
+%% \keyword{Cognitive diagnostic discrimination}
+%% \keyword{summary}

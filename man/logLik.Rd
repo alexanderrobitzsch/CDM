@@ -1,5 +1,5 @@
 %% File Name: logLik.Rd
-%% File Version: 0.19
+%% File Version: 0.20
 
 \name{logLik}
 \alias{logLik.din}
@@ -61,6 +61,6 @@ AIC(lld1)
 BIC(lld1)
 }
 
-\keyword{methods}
-\keyword{logLik}
+%% \keyword{methods}
+%% \keyword{logLik}
 

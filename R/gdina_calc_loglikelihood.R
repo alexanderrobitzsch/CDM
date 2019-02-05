@@ -1,5 +1,5 @@
 ## File Name: gdina_calc_loglikelihood.R
-## File Version: 0.03
+## File Version: 0.04
 
 gdina_calc_loglikelihood <- function(delta_vec, beta, attr.prob, Z, delta_indices, J,
         iter, disp, L, aggr.attr.patt, Mj, linkfct, IP, item.patt.split,
@@ -20,6 +20,15 @@ gdina_calc_loglikelihood <- function(delta_vec, beta, attr.prob, Z, delta_indice
                 attr.prob[,gg] <- reduced_skillspace_beta_2_probs( Z=Z, beta=beta[,gg] )
             }
         }
+    } else {
+        if (G==1){
+            attr.prob <- cdm_shrink_positive(x=attr.prob)
+        } else {
+            for (gg in 1:G){
+                attr.prob[,gg] <- cdm_shrink_positive(x=attr.prob[,gg])
+            }
+        }    
+    
     }
     #-- calculate total log-likelihood
     pjM <- gdina_calc_prob( progress=FALSE, iter=iter, disp=disp, J=J, L=L,
@@ -28,6 +37,7 @@ gdina_calc_loglikelihood <- function(delta_vec, beta, attr.prob, Z, delta_indice
                         J=J, resp.ind.list=resp.ind.list, zeroprob.skillclasses=zeroprob.skillclasses )
     ll <- gdina_calc_deviance( p.xi.aj=p.xi.aj, attr.prob=attr.prob, item.patt.freq=item.patt.freq,
                     loglike=loglike, G=G, IP=IP )$like.new
+                        
     res <- list( ll=ll, attr.prob=attr.prob, delta.new=delta.new, beta=beta, delta_vec=delta_vec )
     return(res)
 }

@@ -1,5 +1,5 @@
 %% File Name: cdi.kli.Rd
-%% File Version: 0.22
+%% File Version: 0.24
 
 \name{cdi.kli}
 \alias{cdi.kli}
@@ -56,12 +56,19 @@ discrimination statistics}
 }
 
 \references{
+Henson, R., DiBello, L., & Stout, B. (2018). A generalized approach to defining item
+discrimination for DCMs.
+\emph{Measurement: Interdisciplinary Research and Perspectives, 16}(1), 18-29.
+http://dx.doi.org/10.1080/15366367.2018.1436855
+
 Henson, R., & Douglas, J. (2005). Test construction for cognitive diagnosis.
 \emph{Applied Psychological Measurement, 29}, 262-277.
+http://dx.doi.org/10.1177/0146621604272623
 
 Henson, R., Roussos, L., Douglas, J., & He, X. (2008).
 Cognitive diagnostic attribute-level discrimination indices.
 \emph{Applied Psychological Measurement, 32}, 275-288.
+http://dx.doi.org/10.1177/0146621607302478
 
 Rupp, A. A., Templin, J., & Henson, R. A. (2010). \emph{Diagnostic
 Measurement: Theory, Methods, and Applications}.  New York: The Guilford
@@ -81,6 +88,9 @@ Press.
 \seealso{
 See \code{\link{discrim.index}} for computing discrimination indices at the
 probability metric.
+
+See Henson, DiBello and Stout (2018) for an overview of different discrimination
+indices.
 }
 
 \examples{

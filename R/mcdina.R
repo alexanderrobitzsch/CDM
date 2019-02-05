@@ -1,9 +1,9 @@
 ## File Name: mcdina.R
-## File Version: 0.928
+## File Version: 0.935
 
-#############################################################
-# Multiple Choice DINA Model
-# mcdina model (de la Torre, 2009)
+
+#- Multiple Choice DINA Model
+#- mcdina model (de la Torre, 2009)
 mcdina <- function( dat, q.matrix, group=NULL,
             itempars="gr", weights=NULL, skillclasses=NULL,
             zeroprob.skillclasses=NULL,  reduced.skillspace=TRUE,
@@ -27,6 +27,9 @@ mcdina <- function( dat, q.matrix, group=NULL,
     skillclasses0 <- res1$skillclasses0
     maxmaxattr <- res1$maxmaxattr
 
+    #- data check
+    res <- mcdina_check_data(dat=dat, q.matrix=q.matrix)
+    
     dat0 <- dat
     dat_na <- is.na(dat)
     dat.resp <- 1* ( 1 - dat_na )
@@ -213,11 +216,12 @@ mcdina <- function( dat, q.matrix, group=NULL,
             cat("Iteration", iter, "   ", paste( Sys.time() ), "\n" )
             cat( "Deviance=", round( dev, 5 ) )
             g11 <-  - ( dev - dev0 )
-                if (iter >1){
-                    cat(" | Deviance change=", round( -(dev-dev0), 7) )
-                if (g11 < 0 ){ cat( "\n**** Deviances decreases! Check for nonconvergence.   ****\n")
-                        }
-                    }
+            if (iter >1){
+                cat(" | Deviance change=", round( -(dev-dev0), 7) )
+                if (g11 < 0 ){ 
+                    cat( "\n**** Deviances decreases! Check for nonconvergence.   ****\n")
+                }
+            }
             cat("\n" )
             cat("Maximum parameter change:", round( max.par.change, 6), "\n")
             utils::flush.console()
@@ -293,4 +297,4 @@ mcdina <- function( dat, q.matrix, group=NULL,
     res$call <- cl
     return(res)
 }
-###########################################################
+

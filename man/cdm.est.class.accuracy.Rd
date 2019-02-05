@@ -1,5 +1,5 @@
 %% File Name: cdm.est.class.accuracy.Rd
-%% File Version: 1.353
+%% File Version: 1.359
 
 \name{cdm.est.class.accuracy}
 \alias{cdm.est.class.accuracy}
@@ -9,10 +9,10 @@ Classification Reliability in a CDM
 }
 \description{
 This function computes the classification accuracy and
-consistency by the method of Cui, Gierl and Chang (2012)
-and by simulation. The function computes both statistics
-by estimators proposed by Sinharay and Johnson (XXXX; see also
-Johnson & Sinharay, 2018) and simulation based estimation.
+consistency originally proposed by Cui, Gierl and Chang (2012;
+see also Wang et al., 2015).
+The function computes both statistics by estimators of Johnson and Sinharay (2018;
+see also Sinharay & Johnson, XXXX) and simulation based estimation.
 }
 \usage{
 cdm.est.class.accuracy(cdmobj, n.sims=0, version=2)
@@ -31,7 +31,7 @@ size is used.
 \item{version}{Correct classification reliability statistics can be obtained
     using the default \code{version=2}. For backward compatibility,
     \code{version=1} contains estimators for \pkg{CDM} (<=6.2) which
-    have been shown to be biased (Sinharay & Johnson, xxxx).
+    have been shown to be biased (Johnson & Sinharay, 2018).
 }
 }
 \details{
@@ -46,11 +46,11 @@ A data frame for MLE, MAP and MAP (Skill 1, ..., Skill \eqn{K})
 classification reliability for the whole latent class pattern and
 marginal skill classification with following columns:
   \item{Pa_est}{Classification accuracy (Cui et al., 2012) using
-  the estimator of Sinharay and Johnson (XXXX)}
+  the estimator of Johnson and Sinharay, 2018}
   \item{Pa_sim}{Classification accuracy based on simulated data
   (only for \code{din} models)}
   \item{Pc}{Classification consistency (Cui et al., 2012) using
-  the estimator of Sinharay and Johnson (XXXX)}
+  the estimator of Johnson and Sinharay, 2018}
   \item{Pc_sim}{Classification consistency based on simulated data
   (only for \code{din} models)}
 }
@@ -59,15 +59,22 @@ Cui, Y., Gierl, M. J., & Chang, H.-H. (2012).
 Estimating classification consistency and accuracy for cognitive
 diagnostic assessment.
 \emph{Journal of Educational Measurement, 49}, 19-38.
+\cr http://dx.doi.org/10.1111/j.1745-3984.2011.00158.x
 
 Johnson, M. S., & Sinharay, S. (2018). Measures of agreement to assess attribute-level
 classification accuracy and consistency for cognitive diagnostic assessments.
 \emph{Journal of Educational Measurement, 45}(4), 635-664.
+http://dx.doi.org/10.1111/jedm.12196
 
 Sinharay, S., & Johnson, M. S. (XXXX). Measures of agreement:
 Reliability, classification accuracy, and classification consistency.
 In M. von Davier & Y.-S. Lee (Eds.). \emph{Handbook of diagnostic
 classification models}. New York: Springer.
+
+Wang, W., Song, L., Chen, P., Meng, Y., & Ding, S. (2015). Attribute-level and
+pattern-level classification consistency and accuracy indices for cognitive diagnostic
+assessment. \emph{Journal of Educational Measurement, 52}(4), 457-476.
+http://dx.doi.org/10.1111/jedm.12096
 }
 %\author{
 %Alexander Robitzsch

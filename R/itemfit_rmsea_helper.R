@@ -1,9 +1,8 @@
 ## File Name: itemfit_rmsea_helper.R
-## File Version: 0.04
+## File Version: 0.05
 
 
-##########################################
-# auxiliary function itemfit.rmsea
+#-- auxiliary function itemfit.rmsea
 itemfit_rmsea_helper <- function( n.ik, pi.k, probs ){
     # probs ... [ classes, items, categories ]
     # n.ik ... [ classes, items, categories, groups ]
@@ -48,5 +47,3 @@ itemfit_rmsea_helper <- function( n.ik, pi.k, probs ){
     return(itemfit.rmsea)
 }
 
-
-.rmsea.aux <- itemfit_rmsea_helper

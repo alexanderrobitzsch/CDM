@@ -1,5 +1,5 @@
 ## File Name: gdina.R
-## File Version: 9.318
+## File Version: 9.322
 
 
 ################################################################################
@@ -471,6 +471,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
                         pem_parameter_sequence=pem_parameter_sequence, pem_pars=pem_pars,
                         PEM_itermax=PEM_itermax, parmlist=parmlist, ll_fct=ll_fct, ll_args=ll_args,
                         deviance.history=deviance.history )
+
             #-- collect output
             PEM <- res$PEM
             pem_parameter_sequence <- res$pem_parameter_sequence

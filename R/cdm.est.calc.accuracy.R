@@ -1,8 +1,8 @@
 ## File Name: cdm.est.calc.accuracy.R
-## File Version: 2.51
+## File Version: 2.52
 
-########################################################################
-# CDM classification accuracy
+
+#**** CDM classification accuracy
 cdm.est.class.accuracy <- function( cdmobj, n.sims=0, version=2 )
 {
     CALL <- match.call()
@@ -23,5 +23,3 @@ cdm.est.class.accuracy <- function( cdmobj, n.sims=0, version=2 )
     class(res) <- "cdm.est.class.accuracy"
     return(res)
 }
-########################################################################
-

@@ -1,5 +1,5 @@
 %% File Name: data.cdm.Rd
-%% File Version: 0.47
+%% File Version: 0.505
 
 \name{data.cdm}
 
@@ -257,35 +257,42 @@ the specification in their simulation study.
 \references{
 Chen, H., & Chen, J. (2017). Cognitive diagnostic research on chinese
 students' English listening skills and implications on skill training.
-\emph{English Language Teaching, 10}(12), 107-115.
+\emph{English Language Teaching, 10}(12), 107-115. 
+http://dx.doi.org/10.5539/elt.v10n12p107
 
 Chen, Y., Li, X., Liu, J., & Ying, Z. (2017).
 Regularized latent class analysis with application in cognitive diagnosis.
 \emph{Psychometrika, 82}, 660-692.
+http://dx.doi.org/10.1007/s11336-016-9545-6
 
 Chiu, C.-Y., Koehn, H.-F., & Wu, H.-M. (2016).
 Fitting the reduced RUM with Mplus: A tutorial.
 \emph{International Journal of Testing, 16}(4), 331-351.
+http://dx.doi.org/10.1080/15305058.2016.1148038
 
 Fang, G., Liu, J., & Ying, Z. (2017). On the identifiability of
 diagnostic classification models. \emph{arXiv}, 1706.01240.
+https://arxiv.org/abs/1706.01240
 
 Heller, J. and Wickelmaier, F. (2013). Minimum discrepancy estimation in
 probabilistic knowledge structures.
 \emph{Electronic Notes in Discrete Mathematics, 42}, 49-56.
+\cr http://dx.doi.org/10.1016/j.endm.2013.05.145
 
 Kuo, B.-C., Chen, C.-H., & de la Torre, J. (2018).
 A cognitive diagnosis model for identifying coexisting skills and misconceptions.
 \emph{Applied Psychological Measurement, 42}(3), 179-191.
+http://dx.doi.org/10.1177/0146621617722791
 
 Ma, W., & de la Torre, J. (2016).
 A sequential cognitive diagnosis model for polytomous responses.
-\emph{British Journal of Mathematical and Statistical Psychology, 69}(3),
-253-275.
+\emph{British Journal of Mathematical and Statistical Psychology, 69}(3), 253-275. 
+\cr https://doi.org/10.1111/bmsp.12070
 
 Philipp, M., Strobl, C., de la Torre, J., & Zeileis, A. (2018).
 On the estimation of standard errors in cognitive diagnosis models.
 \emph{Journal of Educational and Behavioral Statistics, 43}(1), 88-115.
+http://dx.doi.org/10.3102/1076998617719728
 }
 
 

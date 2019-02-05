@@ -1,9 +1,8 @@
 ## File Name: IRT_RMSD_calc_rmsd.R
-## File Version: 3.30
+## File Version: 3.34
 
 
-##########################################
-# auxiliary function RMSD calculation
+#--- auxiliary function RMSD calculation
 IRT_RMSD_calc_rmsd <- function( n.ik, pi.k, probs, eps=1E-30 )
 {
     #*** compute distributions based on expected counts
@@ -47,7 +46,7 @@ IRT_RMSD_calc_rmsd <- function( n.ik, pi.k, probs, eps=1E-30 )
     #*** MAD fit statistic
     dist.item <- pi.k_tot * abs( p.ik_observed - probs )
     h1 <- IRT_RMSD_proc_dist_item(dist.item=dist.item)
-    MAD <- colSums( h1 ) / maxK
+    MAD <- colSums(h1) / maxK
 
     RMSD <- cdm_replace_inf(x=RMSD)
     RMSD_bc <- cdm_replace_inf(x=RMSD_bc)
@@ -65,4 +64,3 @@ rmsea_aux <- function( n.ik, pi.k, probs, eps=1E-30 )
     return( res$RMSD )
 }
 
-.rmsea.aux <- rmsea_aux

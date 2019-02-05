@@ -1,5 +1,5 @@
 %% File Name: entropy.lca.Rd
-%% File Version: 0.27
+%% File Version: 0.28
 
 \name{entropy.lca}
 \alias{entropy.lca}
@@ -42,7 +42,7 @@ A list with the data frame \code{entropy} as an entry.
 
 \references{
 Asparouhov, T. & Muthen, B. (2014). \emph{Variable-specific entropy
-contribution}. Technical Appendix. \url{http://www.statmodel.com/7_3_papers.shtml}
+contribution}. Technical Appendix. http://www.statmodel.com/7_3_papers.shtml
 }
 
 %\author{

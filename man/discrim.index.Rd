@@ -1,5 +1,5 @@
 %% File Name: discrim.index.Rd
-%% File Version: 0.36
+%% File Version: 0.41
 
 \name{discrim.index}
 \alias{discrim.index}
@@ -81,15 +81,18 @@ A list with following entries
 de la Torre, J. (2008). An empirically based method of Q-matrix validation
 for the DINA model: Development and applications.
 \emph{Journal of Educational Measurement, 45}, 343-362.
+\cr http://dx.doi.org/10.1111/j.1745-3984.2008.00069.x
 
 de la Torre, J., van der Ark, L. A., & Rossi, G. (2018).
 Analysis of clinical data from a cognitive diagnosis modeling framework.
 \emph{Measurement and Evaluation in Counseling and Development, 51}(4),
 281-296.
+https://doi.org/10.1080/07481756.2017.1327286
 
 Henson, R., DiBello, L., & Stout, B. (2018). A generalized approach to defining item
 discrimination for DCMs.
 \emph{Measurement: Interdisciplinary Research and Perspectives, 16}(1), 18-29.
+\cr http://dx.doi.org/10.1080/15366367.2018.1436855
 }
 
 %\author{
@@ -105,6 +108,10 @@ discrimination for DCMs.
 \seealso{
 See \code{\link{cdi.kli}} for discrimination indices based on the
 Kullback-Leibler information.
+
+For a fitted model \code{mod} in the \pkg{GDINA} package, discrimination indices can be
+extracted by the method \code{extract(mod,"discrim")}
+(\code{\link[GDINA:extract]{GDINA::extract}}).
 }
 
 \examples{

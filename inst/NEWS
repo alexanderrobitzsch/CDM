@@ -24,7 +24,7 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 7.2  |  2019-01-02  |  Last: CDM 7.2-16
+VERSIONS CDM 7.2  |  2019-02-05  |  Last: CDM 7.2-24
 --------------------------------------------------------------
 
 NOTE  * changes in estimation algorithm in reglca() 
@@ -35,6 +35,13 @@ ADDED * included argument 'regular_weights' for adaptive
 NOTE  * added simulation function in data.dtmr  
 FIXED * fixed a bug in slca() in estimation problems with
         equality constraints
+NOTE  * included data check routine for non-defined categories
+        in Q-matrix in mcdina() (suggested by Marcus Kubsch)
+FIXED * fixed a bug in cdm.est.class.accuracy() when skill names
+        were missing in Q.matrix (reported by Sandip Sinharay)
+FIXED * prevent negatively estimated probabilities in gdina()
+        function when PEM acceleration is used
+        (thanks to Yi-Jhen Wu)
 
 
 DATA  * included/modified datasets: data.dtmr

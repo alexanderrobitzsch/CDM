@@ -1,5 +1,5 @@
 ## File Name: cdm_est_calc_accuracy_version2.R
-## File Version: 0.06
+## File Version: 0.12
 
 
 cdm_est_calc_accuracy_version2 <- function( cdmobj, n.sims=0 )
@@ -9,16 +9,20 @@ cdm_est_calc_accuracy_version2 <- function( cdmobj, n.sims=0 )
     theta <- attr(irfprob, "theta")
     TP <- nrow(theta)
     prob_theta <- attr(irfprob, "prob.theta")
+    prob_theta <- cdm_shrink_positive(x=prob_theta)
     prior <- prob_theta
     data <- IRT.data(cdmobj)
     N <- nrow(data)
     if (n.sims==0){
         n.sims <- N
     }
-    sizes <- round( n.sims*prob_theta )
+    sizes <- round( n.sims*prob_theta )    
     theta_index <- rep(1:TP, sizes)
     K <- ncol(theta)   # number of skills
     skill_names <- colnames(theta)
+    if (is.null(skill_names)){
+        skill_names <- paste0("skill",1:K)
+    }
     statistics_names <- c( "MLE_patt", "MAP_patt", paste0("MLE_", skill_names),
                         paste0("MAP_", skill_names) )
 
@@ -27,7 +31,7 @@ cdm_est_calc_accuracy_version2 <- function( cdmobj, n.sims=0 )
                     N_sim=n.sims )$dat
     dat2 <- sim_model(object=NULL, irfprob=irfprob, theta_index=theta_index, data=data,
                     N_sim=n.sims )$dat
-
+                    
     #-- compute classifications based on simulated data
     class1 <- cdm_est_calc_accuracy_version2_classify_simulated_data( data=dat1,
                     irfprob=irfprob, prior=prior)
@@ -38,7 +42,7 @@ cdm_est_calc_accuracy_version2 <- function( cdmobj, n.sims=0 )
     dfr <- as.data.frame( matrix( 0, nrow=2*(1+K), ncol=4 ) )
     colnames(dfr) <- c("Pa_est", "Pa_sim", "Pc_est", "Pc_sim")
     rownames(dfr) <- statistics_names
-
+    
     estimators <- c("MLE", "MAP")
     #-- multivariate pattern
     for (pp in estimators ){

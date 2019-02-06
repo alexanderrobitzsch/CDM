@@ -24,7 +24,7 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 7.2  |  2019-02-05  |  Last: CDM 7.2-24
+VERSIONS CDM 7.2  |  2019-02-06  |  Last: CDM 7.2-29
 --------------------------------------------------------------
 
 NOTE  * changes in estimation algorithm in reglca() 
@@ -42,13 +42,19 @@ FIXED * fixed a bug in cdm.est.class.accuracy() when skill names
 FIXED * prevent negatively estimated probabilities in gdina()
         function when PEM acceleration is used
         (thanks to Yi-Jhen Wu)
+ADDED * added S3 method IRT.marginal_posterior() for computing
+        marginal posterior distributions 
+        (requested by Elif Oezlem Ardic)
+ADDED * included checks of identifiability conditions of the
+        DINA model according Gu and Xu in din_identifiability()
 
 
-DATA  * included/modified datasets: data.dtmr
+
+DATA  * included/modified datasets: data.dtmr, data.cdm09,
+        data.cdm10
 EXAMP * included/modified examples: reglca (1), gdina (13),
-        data.dtmr (2)
-
-
+        data.dtmr (2), IRT.marginal_posterior (1),
+        din_identifiability (1)
 
 
 --------------------------------------------------------------

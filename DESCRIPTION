@@ -1,8 +1,8 @@
 Package: CDM
 Type: Package
 Title: Cognitive Diagnosis Modeling
-Version: 7.2-24
-Date: 2019-02-05 15:10:54
+Version: 7.2-29
+Date: 2019-02-06 19:37:36
 Author: 
     Alexander Robitzsch [aut, cre], Thomas Kiefer [aut],
     Ann Cathrice George [aut], Ali Uenlue [aut]

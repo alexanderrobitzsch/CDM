@@ -1,5 +1,5 @@
 ## File Name: cdm_est_calc_accuracy_version2.R
-## File Version: 0.12
+## File Version: 0.14
 
 
 cdm_est_calc_accuracy_version2 <- function( cdmobj, n.sims=0 )
@@ -16,7 +16,7 @@ cdm_est_calc_accuracy_version2 <- function( cdmobj, n.sims=0 )
     if (n.sims==0){
         n.sims <- N
     }
-    sizes <- round( n.sims*prob_theta )    
+    sizes <- round( n.sims*prob_theta )
     theta_index <- rep(1:TP, sizes)
     K <- ncol(theta)   # number of skills
     skill_names <- colnames(theta)
@@ -31,7 +31,7 @@ cdm_est_calc_accuracy_version2 <- function( cdmobj, n.sims=0 )
                     N_sim=n.sims )$dat
     dat2 <- sim_model(object=NULL, irfprob=irfprob, theta_index=theta_index, data=data,
                     N_sim=n.sims )$dat
-                    
+
     #-- compute classifications based on simulated data
     class1 <- cdm_est_calc_accuracy_version2_classify_simulated_data( data=dat1,
                     irfprob=irfprob, prior=prior)
@@ -42,7 +42,7 @@ cdm_est_calc_accuracy_version2 <- function( cdmobj, n.sims=0 )
     dfr <- as.data.frame( matrix( 0, nrow=2*(1+K), ncol=4 ) )
     colnames(dfr) <- c("Pa_est", "Pa_sim", "Pc_est", "Pc_sim")
     rownames(dfr) <- statistics_names
-    
+
     estimators <- c("MLE", "MAP")
     #-- multivariate pattern
     for (pp in estimators ){
@@ -67,7 +67,7 @@ cdm_est_calc_accuracy_version2 <- function( cdmobj, n.sims=0 )
     post <- IRT.posterior(cdmobj)
     eps <- 1E-7
     for (pp in estimators){
-        if (pp=="MLE"){ matr <- like } else {    matr <- post }
+        if (pp=="MLE"){ matr <- like } else { matr <- post }
         est <- cdm_rcpp_irt_classify_individuals(like=as.matrix(matr))$class_index
         index <- cbind(1:N, est)
 

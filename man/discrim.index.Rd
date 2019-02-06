@@ -1,5 +1,5 @@
 %% File Name: discrim.index.Rd
-%% File Version: 0.41
+%% File Version: 0.42
 
 \name{discrim.index}
 \alias{discrim.index}
@@ -51,7 +51,7 @@ specific discrimination for attribute \eqn{k}
 according to Henson et al. (2018) is defined as
 \deqn{ DI_{jk}=\frac{1}{2} \max_{ \boldmath{\alpha} }
 \left(  \sum_{h=1}^{H_j} | P(X_j=h| \boldmath{\alpha} ) -
-P(X_j=h| \boldmath{\alpha}^{(-k)} )
+P(X_j=h| \boldmath{\alpha}^{(-k)} ) |
 \right )   }
 where \eqn{\boldmath{\alpha}^{(-k)}} and \eqn{\boldmath{\alpha}} differ only
 in attribute \eqn{k}. The index \eqn{DI_{jk}} can be found as the

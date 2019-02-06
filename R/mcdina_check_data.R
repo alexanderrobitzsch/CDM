@@ -1,5 +1,5 @@
 ## File Name: mcdina_check_data.R
-## File Version: 0.05
+## File Version: 0.07
 
 mcdina_check_data <- function(dat, q.matrix)
 {
@@ -7,7 +7,7 @@ mcdina_check_data <- function(dat, q.matrix)
     print_warning <- FALSE
     for (ii in 1L:I){
         values_ii <- sort(unique( stats::na.omit(dat[,ii]) ))
-        q_ii <- q.matrix[ q.matrix$item == ii, "categ"]
+        q_ii <- q.matrix[ q.matrix$item==ii, "categ"]
         non_def <- setdiff(values_ii, q_ii)
         if (length(non_def)>0){
             v1 <- paste0("Non-defined category for item ", colnames(dat)[ii], ": ")

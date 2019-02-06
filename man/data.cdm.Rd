@@ -1,5 +1,5 @@
 %% File Name: data.cdm.Rd
-%% File Version: 0.505
+%% File Version: 0.515
 
 \name{data.cdm}
 
@@ -12,6 +12,8 @@
 \alias{data.cdm06}
 \alias{data.cdm07}
 \alias{data.cdm08}
+\alias{data.cdm09}
+\alias{data.cdm10}
 
 \docType{data}
 \title{
@@ -31,6 +33,8 @@ data(data.cdm05)
 data(data.cdm06)
 data(data.cdm07)
 data(data.cdm08)
+data(data.cdm09)
+data(data.cdm10)
 }
 
 
@@ -240,6 +244,36 @@ the specification in their simulation study.
 \code{  ..$ B2: num [1:20] 0 0 0 0 0 1 0 0 0 0 ...} \cr
 \code{  ..$ B3: num [1:20] 0 0 0 0 0 0 1 0 0 1 ...} \cr
 
+\item Dataset \code{data.cdm09}:
+This is a simulated dataset involving polytomous skills which is adapted
+from the empirical example (proportional reasoning data)
+of Chen and de la Torre (2013).
+
+\code{List of 2} \cr
+\code{ $ data    : num [1:500, 1:15] 1 0 1 1 0 1 1 1 1 1 ...} \cr
+\code{  ..- attr(*, "dimnames")=List of 2} \cr
+\code{  .. ..$ : NULL} \cr
+\code{  .. ..$ : chr [1:15] "I1" "I2" "I3" "I4" ...} \cr
+\code{ $ q.matrix:'data.frame':       15 obs. of  4 variables:} \cr
+\code{  ..$ A1: int [1:15] 0 0 0 0 2 0 0 2 1 1 ...} \cr
+\code{  ..$ A2: int [1:15] 1 0 2 0 0 1 2 0 1 1 ...} \cr
+\code{  ..$ A3: int [1:15] 0 0 0 1 0 0 0 0 0 0 ...} \cr
+\code{  ..$ A4: int [1:15] 0 1 1 0 0 0 0 0 0 0 ...} \cr
+
+\item Dataset \code{data.cdm10}:
+This is a simulated dataset involving a hierarchical skill structure.
+Skill A has four levels, skill B possesses two levels and skill C has three levels.
+
+\code{List of 2} \cr
+\code{ $ data    : num [1:1500, 1:15] 1 1 0 0 0 1 1 0 0 1 ...} \cr
+\code{  ..- attr(*, "dimnames")=List of 2} \cr
+\code{  .. ..$ : NULL} \cr
+\code{  .. ..$ : chr [1:15] "I1" "I2" "I3" "I4" ...} \cr
+\code{ $ q.matrix: num [1:15, 1:6] 1 1 1 1 1 1 0 0 0 0 ...} \cr
+\code{  ..- attr(*, "dimnames")=List of 2} \cr
+\code{  .. ..$ : chr [1:15] "I1" "I2" "I3" "I4" ...} \cr
+\code{  .. ..$ : chr [1:6] "A1" "A2" "A3" "B1" ...} \cr
+
 
 }
 
@@ -257,8 +291,13 @@ the specification in their simulation study.
 \references{
 Chen, H., & Chen, J. (2017). Cognitive diagnostic research on chinese
 students' English listening skills and implications on skill training.
-\emph{English Language Teaching, 10}(12), 107-115. 
+\emph{English Language Teaching, 10}(12), 107-115.
 http://dx.doi.org/10.5539/elt.v10n12p107
+
+Chen, J., & de la Torre, J. (2013). A general cognitive diagnosis model for
+expert-defined polytomous attributes. \emph{Applied Psychological Measurement, 37},
+419-437.
+http://dx.doi.org/10.1177/0146621613479818
 
 Chen, Y., Li, X., Liu, J., & Ying, Z. (2017).
 Regularized latent class analysis with application in cognitive diagnosis.
@@ -286,7 +325,7 @@ http://dx.doi.org/10.1177/0146621617722791
 
 Ma, W., & de la Torre, J. (2016).
 A sequential cognitive diagnosis model for polytomous responses.
-\emph{British Journal of Mathematical and Statistical Psychology, 69}(3), 253-275. 
+\emph{British Journal of Mathematical and Statistical Psychology, 69}(3), 253-275.
 \cr https://doi.org/10.1111/bmsp.12070
 
 Philipp, M., Strobl, C., de la Torre, J., & Zeileis, A. (2018).

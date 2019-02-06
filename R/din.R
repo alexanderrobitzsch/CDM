@@ -1,5 +1,5 @@
 ## File Name: din.R
-## File Version: 2.518
+## File Version: 2.522
 
 
 
@@ -189,6 +189,11 @@ z0 <- Sys.time()
         attr.patt <- skillclasses
         L <- nrow(attr.patt)
             }
+    if ( ! is.null(colnames(q.matrix) ) ){
+        if (ncol(attr.patt)==ncol(q.matrix) ){
+            colnames(attr.patt) <- colnames(q.matrix)
+        }
+    }
 
     # combine all attributes in an attribute pattern as a string
     attr.patt.c <- apply( attr.patt, 1, FUN=function(ll){ paste(ll,collapse="" ) } )
@@ -585,7 +590,6 @@ z0 <- Sys.time()
     itemfit.rmsea <- itemfit.rmsea( n.ik, pi.k, probs )$rmsea
 
     #*****
-
     datfr <-  data.frame( round( cbind( guess, slip  ), 3 ) )
     colnames(datfr) <- c("guess", "se.guess", "slip", "se.slip" )
     rownames(datfr) <- colnames( dat.items )

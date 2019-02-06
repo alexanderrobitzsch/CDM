@@ -1,5 +1,5 @@
 ## File Name: mcdina.R
-## File Version: 0.935
+## File Version: 0.936
 
 
 #- Multiple Choice DINA Model
@@ -29,7 +29,7 @@ mcdina <- function( dat, q.matrix, group=NULL,
 
     #- data check
     res <- mcdina_check_data(dat=dat, q.matrix=q.matrix)
-    
+
     dat0 <- dat
     dat_na <- is.na(dat)
     dat.resp <- 1* ( 1 - dat_na )
@@ -218,7 +218,7 @@ mcdina <- function( dat, q.matrix, group=NULL,
             g11 <-  - ( dev - dev0 )
             if (iter >1){
                 cat(" | Deviance change=", round( -(dev-dev0), 7) )
-                if (g11 < 0 ){ 
+                if (g11 < 0 ){
                     cat( "\n**** Deviances decreases! Check for nonconvergence.   ****\n")
                 }
             }

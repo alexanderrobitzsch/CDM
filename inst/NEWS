@@ -23,8 +23,22 @@ R script and (if necessary) a corresponding dataset.
 
 
 
+
 --------------------------------------------------------------
-VERSIONS CDM 7.2  |  2019-02-06  |  Last: CDM 7.2-29
+VERSIONS CDM 7.3  |  2019-02-08  |  Last: CDM 7.3-1
+--------------------------------------------------------------
+
+NOTE  * xxx
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
+
+
+
+
+
+--------------------------------------------------------------
+VERSIONS CDM 7.2  |  2019-02-08  |  Last: CDM 7.2-30
 --------------------------------------------------------------
 
 NOTE  * changes in estimation algorithm in reglca() 
@@ -48,14 +62,11 @@ ADDED * added S3 method IRT.marginal_posterior() for computing
 ADDED * included checks of identifiability conditions of the
         DINA model according Gu and Xu in din_identifiability()
 
-
-
 DATA  * included/modified datasets: data.dtmr, data.cdm09,
         data.cdm10
 EXAMP * included/modified examples: reglca (1), gdina (13),
         data.dtmr (2), IRT.marginal_posterior (1),
         din_identifiability (1)
-
 
 --------------------------------------------------------------
 VERSIONS CDM 7.1  |  2018-12-13  |  Last: CDM 7.1-20

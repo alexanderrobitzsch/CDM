@@ -1,5 +1,5 @@
 ## File Name: slca_est_Xlambda.R
-## File Version: 0.359
+## File Version: 0.364
 
 
 # estimation of Xlambda parameters

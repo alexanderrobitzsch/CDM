@@ -1,5 +1,5 @@
 ## File Name: gdina_mstep_item_ml_update_parameter.R
-## File Version: 0.596
+## File Version: 0.608
 
 gdina_mstep_item_ml_update_parameter <- function( delta_jj, max_increment,
     regular_lam, regular_type, regularization, ll_FUN, h, mstep_conv, cd_steps,
@@ -9,7 +9,8 @@ gdina_mstep_item_ml_update_parameter <- function( delta_jj, max_increment,
     if (is.null(N)){ N <- 1 }
     #--- no regularization
     if ( ! regularization ){
-        res1 <- numerical_Hessian(par=delta_jj, h=h, FUN=ll_FUN, gradient=TRUE, hessian=TRUE, diag_only=FALSE )
+        res1 <- numerical_Hessian(par=delta_jj, h=h, FUN=ll_FUN, gradient=TRUE,
+                        hessian=TRUE, diag_only=FALSE )
         grad <- res1$grad
         hessian <- - res1$hessian
         hessian <- cdm_add_ridge_diagonal(x=hessian, eps=eps )
@@ -22,7 +23,7 @@ gdina_mstep_item_ml_update_parameter <- function( delta_jj, max_increment,
         NP <- length(delta_jj)
         for (pp in 1:NP){
             iterate_pp <- TRUE
-        # cat("---------- pp=", pp, "----------------\n")
+        #cat("---------- pp=", pp, "----------------\n")
             vv <- 0
             #- start iterations in coordinate descent algorithm
             while (iterate_pp){
@@ -35,9 +36,10 @@ gdina_mstep_item_ml_update_parameter <- function( delta_jj, max_increment,
                 vv <- vv + 1
                 if (pp >=2){
                     x0 <- delta_jj[pp]
-                    regular_lam_temp <- regular_lam
-                    regular_tau_temp <- regular_tau
-                    vt <- abs(hessian) / N
+                    regular_lam_temp <- regular_lam*N
+                    regular_tau_temp <- regular_tau*N
+                    #vt <- abs(hessian) / N
+                    vt <- abs(hessian)
                     if ( ! is.null(regular_weights) ){
                         regular_lam_temp <- regular_lam_temp*regular_weights[pp]
                         regular_tau_temp <- regular_tau_temp*regular_weights[pp]

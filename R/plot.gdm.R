@@ -1,5 +1,5 @@
 ## File Name: plot.gdm.R
-## File Version: 0.15
+## File Version: 0.16
 
 
 
@@ -29,17 +29,17 @@ plot.gdm <- function( x, perstype="EAP", group=1, barwidth=.1, histcol=1,
     graphics::par( mfrow=c(Ndim,Ndim) )
     for (pp in 1:PG){
         if ( paste(plotgrid$type)[pp]=="cornumber"){
-            plot_gdm_cor_numbers( cor.trait=cor.trait, dim1=plotgrid[pp,1], 
+            plot_gdm_cor_numbers( cor.trait=cor.trait, dim1=plotgrid[pp,1],
                     dim2=plotgrid[pp,2], cexcor=cexcor)
         }
         if ( paste(plotgrid$type)[pp]=="scatterEAP"){
-            plot_gdm_pers( person=person, dim1=plotgrid[pp,1], dim2=plotgrid[pp,2], 
+            plot_gdm_pers( person=person, dim1=plotgrid[pp,1], dim2=plotgrid[pp,2],
                     pchpers=pchpers, cexpers=cexpers, perstype=perstype )
         }
         if ( paste(plotgrid$type)[pp]=="hist"){
-            plot_gdm_hist( theta.k=theta.k, pi.k=pi.k, object=object, dim=plotgrid[pp,1], 
-                        group=group, barwidth=barwidth, histcol=histcol, 
-                        mean.trait=mean.trait, sd.trait=sd.trait ) 
+            plot_gdm_hist( theta.k=theta.k, pi.k=pi.k, object=object, dim=plotgrid[pp,1],
+                        group=group, barwidth=barwidth, histcol=histcol,
+                        mean.trait=mean.trait, sd.trait=sd.trait )
         }
     }
     graphics::par( mfrow=c(1,1))

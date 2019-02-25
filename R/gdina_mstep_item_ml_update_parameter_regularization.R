@@ -1,5 +1,5 @@
 ## File Name: gdina_mstep_item_ml_update_parameter_regularization.R
-## File Version: 0.22
+## File Version: 0.23
 
 
 gdina_mstep_item_ml_update_parameter_regularization <- function(x, regular_type, regular_lam,

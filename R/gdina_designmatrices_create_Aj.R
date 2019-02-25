@@ -1,9 +1,9 @@
 ## File Name: gdina_designmatrices_create_Aj.R
-## File Version: 0.09
+## File Version: 0.12
 
 
-#****************************************************************
-# design matrices for GDINA model
+
+#**** design matrices for GDINA model
 gdina_designmatrices_create_Aj <- function(nq)
 {
     Aj <- NULL
@@ -59,14 +59,13 @@ gdina_designmatrices_create_Aj <- function(nq)
                 1,1,0,1,1,
                 1,0,1,1,1,
                 0,1,1,1,1,
-                1,1,1,1,1          ), byrow=TRUE, ncol=5 )
+                1,1,1,1,1 ), byrow=TRUE, ncol=5 )
                     }
     if ( nq > 5){
         Aj <- gdina_designmatrices_create_Aj_general(nq)
     }
     return(Aj)
 }
-#*****************************************************************
 
 
 .create.Aj <- gdina_designmatrices_create_Aj

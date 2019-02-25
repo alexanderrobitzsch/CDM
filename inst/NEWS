@@ -25,10 +25,16 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 7.3  |  2019-02-08  |  Last: CDM 7.3-1
+VERSIONS CDM 7.3  |  2019-02-25  |  Last: CDM 7.3-6
 --------------------------------------------------------------
 
-NOTE  * xxx
+NOTE  * improved estimation with monotonicity constraints
+        (thanks to discussion with Xin Xu)
+NOTE  * changed normalization of penalty terms in regularized 
+        estimation in gdina() and slca()
+NOTE  * fixed numerical instabilities for extreme probabilities
+        in reglca() (thanks to Boris Girnat)
+
 
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: ---

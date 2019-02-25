@@ -1,7 +1,7 @@
 ## File Name: gdina_proc_noninvariance_multiple_groups.R
-## File Version: 0.11
-#####################################################################
-# handle non-invariance of multiple group parameters
+## File Version: 0.16
+
+#--- handle non-invariance of multiple group parameters
 gdina_proc_noninvariance_multiple_groups <- function( data, q.matrix, invariance,
     group )
 {
@@ -28,4 +28,3 @@ gdina_proc_noninvariance_multiple_groups <- function( data, q.matrix, invariance
     res <- list( data=data, q.matrix=q.matrix )
     return(res)
 }
-#####################################################################

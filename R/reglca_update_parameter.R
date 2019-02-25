@@ -1,10 +1,10 @@
 ## File Name: reglca_update_parameter.R
-## File Version: 0.574
+## File Version: 0.588
 
 
 reglca_update_parameter <- function(parm, pp, C, W, h, lambda, regular_type,
     cd_steps, conv, max_increment, vt=NULL, prob_min=0, increment_factor=1.02,
-    ii=NULL, eps=1e-8)
+    ii=NULL, eps=1e-8, iter=NULL)
 {
     iterate <- TRUE
     iter <- 0
@@ -17,7 +17,7 @@ reglca_update_parameter <- function(parm, pp, C, W, h, lambda, regular_type,
     #*** iterations
     while (iterate){
         parm_old <- parm
-        probs0 <- reglca_calc_probs(parm=parm)
+        probs0 <- reglca_calc_probs(parm=parm, eps=1E-5)
         # evaluate log-likelihood
         q0 <- reglca_freq_ll( x=probs0, C=C, W=W )
         # 1st derivative

@@ -1,5 +1,5 @@
 ## File Name: gdina_mstep_item_ml.R
-## File Version: 0.897
+## File Version: 0.952
 
 
 #**** GDINA M-step item parameters
@@ -12,6 +12,7 @@ gdina_mstep_item_ml <- function( pjjj, Ilj.ast, Rlj.ast, eps, avoid.zeroprobs,
 {
     eps2 <- eps
     delta_jj <- delta[[jj]]
+    delta_jj0 <- delta[[jj]]
     if ( ! is.null(regular_weights) ){
         regular_weights <- regular_weights[[jj]]
     }
@@ -80,18 +81,17 @@ gdina_mstep_item_ml <- function( pjjj, Ilj.ast, Rlj.ast, eps, avoid.zeroprobs,
 
     #--- algorithm with monotonicity constraints
     if (mono.constr){
-
-        C <- C0 <- abs(ll_FUN(delta_jj))
         iterate_mono <- FALSE
+        C <- 1
         crit_pen <- 1E-10
         delta_jj_uncon <- delta_jj
         irf1 <- gdina_prob_item_designmatrix( delta_jj=delta_jj, Mjjj=Mjjj, linkfct=linkfct, eps_squeeze=eps )
         constraints_fitted_jj <- as.vector( Aj_mono_constraints_jj %*% irf1 )
         penalty_constraints <- gdina_mstep_mono_constraints_penalty(x=constraints_fitted_jj)
-        if ( sum(penalty_constraints) > crit_pen ){
+        pen <- sum(penalty_constraints)
+        if ( pen > crit_pen ){
             iterate_mono <- TRUE
         }
-
         #------------------ define log-likelihood function with penalty
         ll_FUN_mono <- function(x)
                     {
@@ -108,42 +108,25 @@ gdina_mstep_item_ml <- function( pjjj, Ilj.ast, Rlj.ast, eps, avoid.zeroprobs,
                     }
         #------------------
 
-        hh <- 1
-        while (iterate_mono){
+        # res <- ll_FUN(x=delta_jj)
 
-            #------------------ define log-likelihood function with penalty
-            ll_FUN_mono <- function(x)
-                        {
-                            irf1 <- gdina_prob_item_designmatrix( delta_jj=x, Mjjj=Mjjj, linkfct=linkfct, eps_squeeze=eps )
-                            ll <- - sum( Rlj.ast * log(abs(irf1)) + ( Ilj.ast - Rlj.ast ) * log( abs(1 - irf1 ) ) )
-                            if (use_prior){
-                                ll <- ll - logprior_FUN(x=x, p1=prior_intercepts, p2=prior_slopes)
-                            }
-                            # constraints
-                            y <- gdina_mstep_mono_constraints_penalty( as.vector( Aj_mono_constraints_jj %*% irf1 ) )
-                            y <- C * sum( y^2 )
-                            ll <- ll + y
-                            return(ll)
-                        }
-            #------------------
+        ll_constraints <- function(x){
+            irf1 <- gdina_prob_item_designmatrix( delta_jj=x, Mjjj=Mjjj, linkfct=linkfct, eps_squeeze=eps )
+            con <- gdina_mstep_mono_constraints_penalty( as.vector( Aj_mono_constraints_jj %*% irf1 ) )
+            return(con)
+        }
+        #constraint function
+        confun <- function(x){
+            ceq <- -ll_constraints(x=x)
+            return(list(ceq=ceq,c=NULL))
+        }
+        monocon <- ll_constraints(x=delta_jj)
 
-            delta_jj <- gdina_mstep_item_ml_algorithm( delta_jj=delta_jj, max_increment=max_increment,
-                                regular_lam=regular_lam, regular_type=regular_type,
-                                regularization=regularization, ll_FUN=ll_FUN_mono, h=h,
-                                mstep_conv=mstep_conv, cd_steps=cd_steps, mstep_iter=mstep_iter )
-            irf1 <- gdina_prob_item_designmatrix( delta_jj=delta_jj, Mjjj=Mjjj, linkfct=linkfct, eps_squeeze=eps )
-            constraints_fitted_jj <- as.vector( Aj_mono_constraints_jj %*% irf1 )
-            penalty_constraints <- gdina_mstep_mono_constraints_penalty(x=constraints_fitted_jj)
-            if ( sum(penalty_constraints) < crit_pen ){
-                iterate_mono <- FALSE
-            }
-            C <- 10*C
-            hh <- hh+1
-            if (hh > mono_maxiter){
-                iterate_mono <- FALSE
-            }
-
-        } # end iterations for monotonicity constraints
+        args <- list(start=delta_jj0, objective=ll_FUN, eqFun=ll_constraints,
+                            control=list(maxit=10*mstep_iter))
+        optim_fn <- gdina_mstep_item_ml_mono_optim_function()
+        res <- do.call( what=optim_fn, args=args)
+        delta_jj <- res$par
         ll_value <- ll_FUN_mono(x=delta_jj)
     }
 

@@ -1,5 +1,5 @@
 ## File Name: summary.gdina.R
-## File Version: 1.784
+## File Version: 1.792
 
 
 # Summary of the GDINA model
@@ -44,7 +44,7 @@ summary.gdina <- function( object, digits=4, file=NULL, ... )
     cat( paste0("Monotonicity constraints: ",  object$mono.constr, "\n") )
     cat( paste0("Number of items at boundary monotonicity constraint: ",  object$numb_bound_mono, "\n") )
     if ( ! is.na(object$numb_bound_mono) > 0 ){
-        v1 <- paste0( paste0("Items at boundary constraint:"), paste0( object$item_bound_mono, collapse=" " ) )
+        v1 <- paste0( paste0("Items at boundary constraint: "), paste0( object$item_bound_mono, collapse=" " ) )
         cat(v1,"\n")
     }
     cat("\n")

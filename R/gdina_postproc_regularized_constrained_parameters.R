@@ -1,5 +1,5 @@
 ## File Name: gdina_postproc_regularized_constrained_parameters.R
-## File Version: 0.07
+## File Version: 0.14
 
 gdina_postproc_regularized_constrained_parameters <- function( mono.constr, delta, Aj_mono_constraints,
         Mj, linkfct, regularization, data )

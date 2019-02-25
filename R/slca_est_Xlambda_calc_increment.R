@@ -1,5 +1,5 @@
 ## File Name: slca_est_Xlambda_calc_increment.R
-## File Version: 0.09
+## File Version: 0.11
 
 slca_est_Xlambda_calc_increment <- function(d1, d2, x0, regularization,
         regular_lam_used, max.increment, regular_type, regular_n )

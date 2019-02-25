@@ -1,9 +1,9 @@
 ## File Name: gdina_mstep_item_ml_algorithm.R
-## File Version: 0.252
+## File Version: 0.254
 
 gdina_mstep_item_ml_algorithm <- function(delta_jj, max_increment,
                 regular_lam, regular_type, regularization, ll_FUN, h, mstep_conv, cd_steps,
-                mstep_iter, regular_alpha, regular_tau, N=NULL, regular_weights=NULL )
+                mstep_iter, regular_alpha, regular_tau, N=NULL, regular_weights=NULL, ... )
 {
     ii <- 0
     converged <- FALSE
@@ -15,7 +15,7 @@ gdina_mstep_item_ml_algorithm <- function(delta_jj, max_increment,
                             regular_type=regular_type, regularization=regularization,
                             ll_FUN=ll_FUN, h=h, mstep_conv=mstep_conv, cd_steps=cd_steps,
                             regular_alpha=regular_alpha, regular_tau=regular_tau, N=N,
-                            regular_weights=regular_weights)
+                            regular_weights=regular_weights, ...)
         ii <- ii + 1
         decr <- max( abs( delta_jj - delta_jj0) )
         if ( ii >=mstep_iter ){  converged <- TRUE    }

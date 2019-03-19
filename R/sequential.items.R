@@ -1,6 +1,6 @@
 ## File Name: sequential.items.R
-## File Version: 1.10
-#################################################
+## File Version: 1.11
+
 # converts a dataset with polytomous item responses
 # into a dataset with sequential dichotomous items
 sequential.items <- function( data )
@@ -42,4 +42,4 @@ sequential.items <- function( data )
                         "maxK"=maxK)
     return(res)
 }
-##############################################################
+

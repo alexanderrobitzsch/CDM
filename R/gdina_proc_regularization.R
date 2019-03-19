@@ -1,5 +1,5 @@
 ## File Name: gdina_proc_regularization.R
-## File Version: 0.23
+## File Version: 0.24
 
 gdina_proc_regularization <- function( regular_type, cd, mono.constr, linkfct,
     method, PEM, regular_lam, regular_alpha, regular_tau, rule, optimizer="CDM" )
@@ -22,6 +22,7 @@ gdina_proc_regularization <- function( regular_type, cd, mono.constr, linkfct,
     if ( mono.constr ){
         linkfct <- "logit"
         method <- "ML"
+        PEM <- FALSE
     }
     if (regularization){
         save.devmin <- FALSE

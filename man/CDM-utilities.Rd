@@ -1,5 +1,5 @@
 %% File Name: CDM-utilities.Rd
-%% File Version: 0.69
+%% File Version: 0.701
 
 \name{CDM-utilities}
 \alias{CDM-utilities}
@@ -40,6 +40,7 @@
 \alias{cdm_print_summary_information_criteria}
 
 \alias{cat_paste}
+\alias{cdm_attach_internal_function}
 
 
 \title{Utility Functions in \pkg{CDM}}
@@ -52,6 +53,8 @@ Utility functions in \pkg{CDM}.
 \usage{
 ## requireNamespace with package message for needed installation
 CDM_require_namespace(pkg)
+## attach internal function in a package
+cdm_attach_internal_function(pack, fun)
 
 ## print function in summary
 cdm_print_summary_data_frame(obji, from=NULL, to=NULL, digits=3, rownames_null=FALSE)
@@ -125,6 +128,8 @@ cat_paste(...)
 
 \arguments{
 \item{pkg}{An \R package}
+\item{pack}{An \R package}
+\item{fun}{An \R function}
 \item{obji}{Object}
 \item{from}{Integer}
 \item{to}{Integer}

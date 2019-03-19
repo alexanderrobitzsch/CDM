@@ -7,8 +7,7 @@
 gdm_thetadesign <- function( theta.k, thetaDes, Qmatrix )
 {
     D <- 1  # default dimension 1
-    ####################
-    # definition of theta.k
+    #--- definition of theta.k
     if ( ! is.null(Qmatrix) ){
         D <- ncol(Qmatrix)
         if ( length( dim(Qmatrix))==2 ){
@@ -28,7 +27,7 @@ gdm_thetadesign <- function( theta.k, thetaDes, Qmatrix )
             theta.k <- th1
         }
     }
-    if ( is.list( theta.k) ){
+    if ( is.list(theta.k) ){
         tk <- theta.k
         theta.k <- expand.grid( theta.k )
         colnames(theta.k) <- names(tk)
@@ -38,7 +37,6 @@ gdm_thetadesign <- function( theta.k, thetaDes, Qmatrix )
     if ( is.null( colnames(theta.k) ) ){
         colnames(theta.k) <- paste0("F",1:D)
     }
-    ##############################
     if ( is.null(thetaDes) ){
         # thetaDes [TP,TD]
         TD <- D

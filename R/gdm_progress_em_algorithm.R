@@ -1,5 +1,5 @@
 ## File Name: gdm_progress_em_algorithm.R
-## File Version: 0.12
+## File Version: 0.15
 
 gdm_progress_em_algorithm <- function( progress, disp, iter, dev, dev0, b_change,
         a_change, deltadiff, dev_digits=4, parm_digits=6 )
@@ -7,8 +7,8 @@ gdm_progress_em_algorithm <- function( progress, disp, iter, dev, dev0, b_change
     if (progress){
         cat(disp)
         cat("Iteration", iter, "   ", paste( Sys.time() ), "\n" )
-        cat( paste( "   Deviance", "=", round( dev, dev_digits ),
-                if (iter > 1 ){ " | Deviance change=" } else {""},
+        cat( paste( "   Deviance ", "=", " ", round( dev, dev_digits ),
+                if (iter > 1 ){ paste0(" | Deviance change ", "=", " ") } else {""},
                         if( iter>1){round( - dev + dev0, parm_digits )} else { ""},sep="") )
         if ( dev > dev0 & (iter>1 ) ){
             cat( "  Deviance increases!")

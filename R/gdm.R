@@ -1,5 +1,5 @@
 ## File Name: gdm.R
-## File Version: 8.655
+## File Version: 8.659
 
 
 ###########################################
@@ -177,8 +177,8 @@ gdm <- function( data, theta.k, irtmodel="2PL", group=NULL,
 
     #****
     # create thetaDes design matrix for loglinear smoothing
-    res <- gdm_create_delta_designmatrix( delta.designmatrix=delta.designmatrix, TP=TP, D=D, theta.k=theta.k,
-                skill.levels=skill.levels, G=G )
+    res <- gdm_create_delta_designmatrix( delta.designmatrix=delta.designmatrix,
+                TP=TP, D=D, theta.k=theta.k, skill.levels=skill.levels, G=G )
     delta <- res$delta
     covdelta <- res$covdelta
     delta.designmatrix <- res$delta.designmatrix
@@ -200,15 +200,16 @@ gdm <- function( data, theta.k, irtmodel="2PL", group=NULL,
     #***
     # set constraints for a and b parameters if the maximal
     # item category differs from item to item
-    res <- gdm_constraints_itempars2( b.constraint=b.constraint, a.constraint=a.constraint, K=K, TD=TD, I=I, dat=dat )
+    res <- gdm_constraints_itempars2( b.constraint=b.constraint,
+                    a.constraint=a.constraint, K=K, TD=TD, I=I, dat=dat )
     K.item <- res$K.item
     a.constraint <- res$a.constraint
     b.constraint <- res$b.constraint
 
     #***
     # preparations for calc.counts
-    res <- gdm_prep_calc_counts( K=K, G=G, group=group, weights=weights, dat.resp=dat.resp, dat.ind=dat.ind,
-                use.freqpatt=use.freqpatt )
+    res <- gdm_prep_calc_counts( K=K, G=G, group=group, weights=weights,
+                dat.resp=dat.resp, dat.ind=dat.ind,    use.freqpatt=use.freqpatt )
     ind.group <- res$ind.group
     dat.ind2 <- res$dat.ind2
 
@@ -259,11 +260,13 @@ z0 <- Sys.time()
 
         #****
         #1 calculate probabilities
-        probs <- gdm_calc_prob( a=a, b=b, thetaDes=thetaDes, Qmatrix=Qmatrix, I=I, K=K, TP=TP, TD=TD )
+        probs <- gdm_calc_prob( a=a, b=b, thetaDes=thetaDes, Qmatrix=Qmatrix,
+                        I=I, K=K, TP=TP, TD=TD )
 
         #*****
         #2 calculate individual likelihood
-        res.hwt <- gdm_calc_posterior( probs=probs, gwt0=gwt0, dat=dat, I=I, resp.ind.list=resp.ind.list )
+        res.hwt <- gdm_calc_posterior( probs=probs, gwt0=gwt0, dat=dat, I=I,
+                        resp.ind.list=resp.ind.list )
         p.xi.aj <- res.hwt$hwt
 
         #*****

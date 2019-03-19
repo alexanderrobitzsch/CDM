@@ -1,5 +1,5 @@
 ## File Name: summary.gdm.R
-## File Version: 1.35
+## File Version: 1.37
 #*******************************************************
 # Summary for gdm object
 summary.gdm <- function( object, file=NULL, ... )
@@ -14,6 +14,9 @@ summary.gdm <- function( object, file=NULL, ... )
     cat("Computation Time:", print(object$time$s2 - object$time$s1), "\n\n")
     cat("General Diagnostic Model \n\n")
     modeltype <- object$irtmodel
+
+    #-- summary call
+    cdm_print_summary_call(object=object)
 
     cat( "   ", object$N, "Cases, ", object$I, "Items, ", object$G, "Group(s)", ",",
                 object$D, "Dimension(s)\n")

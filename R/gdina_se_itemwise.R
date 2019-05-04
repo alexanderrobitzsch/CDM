@@ -1,5 +1,5 @@
 ## File Name: gdina_se_itemwise.R
-## File Version: 0.32
+## File Version: 0.33
 
 gdina_se_itemwise <- function( R.lj_jj, I.lj_jj, apjj,
         Mjjj, Mjj2, PAJXI, IP, item.patt.split_jj, resp.patt_jj,
@@ -25,7 +25,7 @@ gdina_se_itemwise <- function( R.lj_jj, I.lj_jj, apjj,
         }
         res_jj <- loglike_item_jj(x=delta_jj)
         hess_jj <- numerical_Hessian( par=delta_jj, FUN=loglike_item_jj )
-        varmat.delta_jj <- MASS::ginv( - hess_jj )
+        varmat.delta_jj <- cdm_ginv( - hess_jj )
     }
 
     #********* standard error calculation formulas de la Torre (2011)

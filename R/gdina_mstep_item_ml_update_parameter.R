@@ -1,5 +1,5 @@
 ## File Name: gdina_mstep_item_ml_update_parameter.R
-## File Version: 0.608
+## File Version: 0.609
 
 gdina_mstep_item_ml_update_parameter <- function( delta_jj, max_increment,
     regular_lam, regular_type, regularization, ll_FUN, h, mstep_conv, cd_steps,
@@ -14,7 +14,7 @@ gdina_mstep_item_ml_update_parameter <- function( delta_jj, max_increment,
         grad <- res1$grad
         hessian <- - res1$hessian
         hessian <- cdm_add_ridge_diagonal(x=hessian, eps=eps )
-        delta_change <- as.vector( MASS::ginv(hessian) %*% grad )
+        delta_change <- as.vector( cdm_ginv(hessian) %*% grad )
         delta_change <- cdm_trim_increment( increment=delta_change, max.increment=max_increment, type=2 )
         delta_jj <- delta_jj + delta_change
     }

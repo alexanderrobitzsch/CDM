@@ -69,20 +69,22 @@ import(mvtnorm)
 #***************************************************
 #************** Imports ****************************
 
-importFrom(MASS, ginv)
+
 importFrom(polycor, polychor)
-importFrom(sfsmisc, QUnif)
 
 
 #***************************************************
 #************** Suggests ****************************
+
 # requireNamespace("another_package")
 # CDM_require_namespace("CDM_another_package")
 
 # importFrom(BIFIEsurvey, BIFIE.data.jack)
 # importFrom(BIFIEsurvey, BIFIE.data.boot)
 # importFrom(lattice, xyplot)
+# importFrom(MASS, ginv)
 # importFrom(psych, fa)
+# importFrom(sfsmisc, QUnif)
 # importFrom(sirt, rowCumsums.sirt)
 # importFrom(sirt, rowIntervalIndex.sirt)
 

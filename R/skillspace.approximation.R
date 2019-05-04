@@ -1,12 +1,14 @@
 ## File Name: skillspace.approximation.R
-## File Version: 0.08
-###########################################
-# skill space approximation
+## File Version: 0.11
+
+
+#-- skill space approximation
 skillspace.approximation <- function( L, K, nmax=5000 )
 {
+    CDM_require_namespace("sfsmisc")
     n <- nmax
     ndim <- K
-    res <- sfsmisc::QUnif (n, p=ndim, leap=409)
+    res <- sfsmisc::QUnif(n, p=ndim, leap=409)
     res <- 1*(res>.5)
     res <- rbind( rep( 0,ndim), rep(1,ndim), res )
     v1 <- paste0("P", res[,1] )
@@ -19,4 +21,3 @@ skillspace.approximation <- function( L, K, nmax=5000 )
     res <- res[ order( rownames(res) ), ]
     return(res)
 }
-###########################################

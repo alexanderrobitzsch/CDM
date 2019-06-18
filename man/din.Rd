@@ -134,7 +134,7 @@ zero to random initial values with \code{set.seed(seed)}.}
   \eqn{j} conditional on the respondent's skill class \eqn{\alpha_n}{alpha_n}:
    \deqn{ P(X_{nj}=1 | \alpha_n)=g_j^{(1- \eta_{nj})}(1 - s_j) ^{\eta_{nj}}.  }
   The respondent's latent response (class) \eqn{\eta_{nj}}{eta_{nj}} is a binary number,
-  0 or 1, indicating absence or presence of all (\code{rule="DINO"})
+  0 or 1, indicating absence or presence of all (\code{rule="DINA"})
   or at least one (\code{rule="DINO"}) required skill(s) for
   item \eqn{j}, respectively.
 

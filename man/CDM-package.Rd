@@ -1,9 +1,11 @@
 %% File Name: CDM-package.Rd
-%% File Version: 2.88
+%% File Version: 2.891
 
 \name{CDM-package}
 
 \alias{CDM-package}
+\alias{CDM}
+
 \concept{cognitive diagnosis modeling}
 \docType{package}
 

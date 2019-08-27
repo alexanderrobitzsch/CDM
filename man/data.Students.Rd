@@ -1,5 +1,5 @@
 %% File Name: data.Students.Rd
-%% File Version: 0.197
+%% File Version: 0.198
 
 \name{data.Students}
 \alias{data.Students}
@@ -25,15 +25,15 @@ mathematics joyment (\code{mj}).
     \item{\code{act3}}{Visit a rock or pop concert (0,1,2)}
     \item{\code{act4}}{Visit a cinema (0,1,2)}
     \item{\code{act5}}{Visit a public library (0,1,2)}
-    \item{\code{sc1}}{Item 1 self concept "I am usually good at math." 
-    (0=do not agree at all, 
+    \item{\code{sc1}}{Item 1 self concept "I am usually good at math."
+    (0=do not agree at all,
     1=rather do not agree, 2=rather agree, 3=completely agree)}
-    \item{\code{sc2}}{Item 2 self concept: "Mathematics is harder for me than many of my 
+    \item{\code{sc2}}{Item 2 self concept: "Mathematics is harder for me than many of my
     classmates." (0,1,2,3) (reversed)}
-    \item{\code{sc3}}{Item 3 self concept: "I am just not good at math." 
+    \item{\code{sc3}}{Item 3 self concept: "I am just not good at math."
     (0,1,2,3) (reversed)}
     \item{\code{sc4}}{Item 4 self concept: "I'm learning fast in math." (0,1,2,3)}
-    \item{\code{mj1}}{Item 1 mathematics joyment: 
+    \item{\code{mj1}}{Item 1 mathematics joyment:
     "I would like more math at school." (0,1,2,3)}
     \item{\code{mj2}}{Item 2 mathematics joyment:
     "I like to learn mathematics." (0,1,2,3)}

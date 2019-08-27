@@ -1,5 +1,5 @@
 ## File Name: IRT.RMSD.R
-## File Version: 0.41
+## File Version: 0.44
 
 IRT.RMSD <- function( object )
 {
@@ -35,16 +35,16 @@ IRT.RMSD <- function( object )
         pi.k <- attr(mod_irfprob, "prob.theta")[, gg, drop=FALSE ]
         probs <- aperm( mod_irfprob, perm=c(3,1,2) )
         n.ik <- aperm( mod_counts, perm=c(3,1,2,4) )[,,,gg,drop=FALSE]
-        #*** chi square calculation
+        #-- chi square calculation
         chisquare_stat[,gg+1] <- rmsd_chisquare( n.ik=n.ik, pi.k=pi.k, probs=probs )
-        #*** RMSD calculations
+        #-- RMSD calculations
         res0 <- IRT_RMSD_calc_rmsd( n.ik=n.ik, pi.k=pi.k, probs=probs )
         RMSD[,gg+1] <- res0$RMSD   # RMSD
         RMSD_bc[,gg+1] <- res0$RMSD_bc   # RMSD_bc
-        #----
+        #-- MD calculation
         md_gg <- IRT_RMSD_calc_md( n.ik=n.ik, pi.k=pi.k, probs=probs )
         MD[,gg+1] <- md_gg
-        # MD[,gg+1] <- res0$MD      # MD
+        #-- MAD calculation
         MAD[,gg+1] <- res0$MAD   # MAD
     }
 

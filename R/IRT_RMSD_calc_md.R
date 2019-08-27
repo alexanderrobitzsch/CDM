@@ -1,10 +1,10 @@
 ## File Name: IRT_RMSD_calc_md.R
-## File Version: 2.08
+## File Version: 2.17
 
 
-##########################################
-# auxiliary function
-IRT_RMSD_calc_md <- function( n.ik, pi.k, probs, eps=10^(-30) ){
+#-- MD statistic
+IRT_RMSD_calc_md <- function( n.ik, pi.k, probs, eps=1e-30 )
+{
     # probs ... [ classes, items, categories ]
     # n.ik ... [ classes, items, categories, groups ]
     # N.ik ... [ classes, items, categories]
@@ -13,7 +13,7 @@ IRT_RMSD_calc_md <- function( n.ik, pi.k, probs, eps=10^(-30) ){
     pitot <- pi.k[,1]
     eps <- 1E-10
     if (G>1){
-        for (gg in 2:G ){
+        for (gg in 2:G){
             N.ik <- N.ik + n.ik[,,,gg]
             pitot <- pitot + pi.k[,gg]
         }
@@ -38,6 +38,7 @@ IRT_RMSD_calc_md <- function( n.ik, pi.k, probs, eps=10^(-30) ){
     # calculate itemwise statistics
     p.ik_observed <- N.ik / ( N.ik_tot + eps )
     p.ik_observed[ is.na( p.ik_observed ) ] <- 0
+
     # define class weights
     pi.k_tot <- array( 0, dim=dim(p.ik_observed) )
     for (kk in 1:K){
@@ -45,13 +46,13 @@ IRT_RMSD_calc_md <- function( n.ik, pi.k, probs, eps=10^(-30) ){
     }
     # calculate statistics
     dist.item <- pi.k_tot * ( p.ik_observed - probs )
-
     h1 <- 0 * dist.item[,,1]
     for (kk in 2:K){
         h1 <- h1 + (kk-1) * dist.item[,,kk]
     }
-
     itemfit.md <- colSums( h1 / ( maxK - 1) )
+    v1 <- apply(p.ik_observed, 2, sum)
+    itemfit.md[ v1==0 ] <- NA
     return(itemfit.md)
 }
 

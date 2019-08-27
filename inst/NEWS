@@ -26,20 +26,21 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 7.4  |  2019-06-19  |  Last: CDM 7.4-11
+VERSIONS CDM 7.4  |  2019-08-27  |  Last: CDM 7.4-16
 --------------------------------------------------------------
 
-NOTE  * included item stems for dataset data.Student in the
+NOTE  * included item content for dataset data.Student in the
         ?data.Students (requested by Ren Liu)
 NOTE  * corrected ?din (thanks @ifengji,
         https://github.com/alexanderrobitzsch/CDM/pull/2)
+NOTE  * included NAs for non-defined entries for MD statistic
+        in IRT.RMSD()
+NOTE  * removed redundant code in gdina() function
+        (thanks to Jeremy Zheng; issue #4)
 
 
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: ---
-
-
-
 
 --------------------------------------------------------------
 VERSIONS CDM 7.3  |  2019-03-18  |  Last: CDM 7.3-17

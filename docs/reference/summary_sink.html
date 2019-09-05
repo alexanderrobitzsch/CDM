@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">CDM</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Versions">7.4-vv</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Versions">7.5-vv</span>
       </span>
     </div>
 
@@ -155,11 +155,12 @@ be appended to an already existing file. See argument <code>append</code> in
 
 <span class='co'>#--- fit a linear model and sink summary into a file</span>
 <span class='no'>mod1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></span>( <span class='no'>y</span> ~ <span class='no'>x</span> )
-<span class='fu'>summary_sink</span>(<span class='no'>mod1</span>, <span class='kw'>file</span><span class='kw'>=</span><span class='st'>"my_model"</span>)
+<span class='co'># }</span><span class='co'># NOT RUN {</span>
+<span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/summary_sink'>summary_sink</a></span>(<span class='no'>mod1</span>, <span class='kw'>file</span><span class='kw'>=</span><span class='st'>"my_model"</span>)
 
 <span class='co'>#--- fit a second model and append it to file</span>
 <span class='no'>mod2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></span>( <span class='no'>y</span> ~ <span class='no'>x</span> + <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/AsIs'>I</a></span>(<span class='no'>x</span>^<span class='fl'>2</span>) )
-<span class='fu'>summary_sink</span>(<span class='no'>mod2</span>, <span class='kw'>file</span><span class='kw'>=</span><span class='st'>"my_model"</span>, <span class='kw'>append</span><span class='kw'>=</span><span class='fl'>TRUE</span> )
+<span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/summary_sink'>summary_sink</a></span>(<span class='no'>mod2</span>, <span class='kw'>file</span><span class='kw'>=</span><span class='st'>"my_model"</span>, <span class='kw'>append</span><span class='kw'>=</span><span class='fl'>TRUE</span> )
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

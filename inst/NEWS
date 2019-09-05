@@ -13,7 +13,7 @@ CDM package
          A. C. George [aut], & A. Uenlue [aut]
 
 mailto:
-robitzsch@ipn.uni-kiel.de
+robitzsch@leibniz-ipn.de
 
 For reporting a bug, please always provide a reproducible 
 R script and (if necessary) a corresponding dataset.
@@ -24,9 +24,20 @@ R script and (if necessary) a corresponding dataset.
 
 
 
+--------------------------------------------------------------
+VERSIONS CDM 7.5  |  2019-09-05  |  Last: CDM 7.5-1
+--------------------------------------------------------------
+
+NOTE  * xxx
+
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
+
+
 
 --------------------------------------------------------------
-VERSIONS CDM 7.4  |  2019-08-27  |  Last: CDM 7.4-16
+VERSIONS CDM 7.4  |  2019-09-04  |  Last: CDM 7.4-19
 --------------------------------------------------------------
 
 NOTE  * included item content for dataset data.Student in the
@@ -37,7 +48,6 @@ NOTE  * included NAs for non-defined entries for MD statistic
         in IRT.RMSD()
 NOTE  * removed redundant code in gdina() function
         (thanks to Jeremy Zheng; issue #4)
-
 
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: ---

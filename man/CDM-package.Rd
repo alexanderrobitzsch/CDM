@@ -1,5 +1,5 @@
 %% File Name: CDM-package.Rd
-%% File Version: 2.891
+%% File Version: 2.892
 
 \name{CDM-package}
 

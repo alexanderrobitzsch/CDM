@@ -1,5 +1,5 @@
 %% File Name: CDM-package.Rd
-%% File Version: 2.892
+%% File Version: 2.893
 
 \name{CDM-package}
 
@@ -86,7 +86,8 @@ Maintainer: \packageMaintainer{CDM}
   (\code{\link{fraction.subtraction.data}} and \code{\link{fraction.subtraction.qmatrix}})
   and artificial examples (\code{\link{Data-sim}}).
 
-  See George et al. (2016) for an overview and some computational details
+  See George et al. (2016) and Robitzsch and George (2019) 
+  for an overview and some computational details
   of the \pkg{CDM} package.
 }
 
@@ -150,6 +151,11 @@ Junker, B. W., & Sijtsma, K. (2001). Cognitive assessment models with few
 Ravand, H., & Robitzsch, A.(2015). Cognitive diagnostic modeling using R.
 \emph{Practical Assessment, Research & Evaluation, 20}(11).
 Available online: http://pareonline.net/getvn.asp?v=20&n=11
+
+Robitzsch, A., & George, A. C. (2019). The R package CDM.
+In M. von Davier & Y.-S. Lee (Eds.). \emph{Handbook of diagnostic
+classification models} (pp. 549-572). Cham: Springer.
+\doi{10.1007/978-3-030-05584-4_26}
 
   Rupp, A. A., & Templin, J. (2008). Unique characteristics of
   diagnostic classification models: A comprehensive review of the current

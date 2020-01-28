@@ -1,5 +1,5 @@
 %% File Name: cdm.est.class.accuracy.Rd
-%% File Version: 1.359
+%% File Version: 1.363
 
 \name{cdm.est.class.accuracy}
 \alias{cdm.est.class.accuracy}
@@ -12,7 +12,7 @@ This function computes the classification accuracy and
 consistency originally proposed by Cui, Gierl and Chang (2012;
 see also Wang et al., 2015).
 The function computes both statistics by estimators of Johnson and Sinharay (2018;
-see also Sinharay & Johnson, XXXX) and simulation based estimation.
+see also Sinharay & Johnson, 2019) and simulation based estimation.
 }
 \usage{
 cdm.est.class.accuracy(cdmobj, n.sims=0, version=2)
@@ -59,22 +59,23 @@ Cui, Y., Gierl, M. J., & Chang, H.-H. (2012).
 Estimating classification consistency and accuracy for cognitive
 diagnostic assessment.
 \emph{Journal of Educational Measurement, 49}, 19-38.
-\cr http://dx.doi.org/10.1111/j.1745-3984.2011.00158.x
+\doi{10.1111/j.1745-3984.2011.00158.x}
 
 Johnson, M. S., & Sinharay, S. (2018). Measures of agreement to assess attribute-level
 classification accuracy and consistency for cognitive diagnostic assessments.
 \emph{Journal of Educational Measurement, 45}(4), 635-664.
-http://dx.doi.org/10.1111/jedm.12196
+\doi{10.1111/jedm.12196}
 
-Sinharay, S., & Johnson, M. S. (XXXX). Measures of agreement:
+Sinharay, S., & Johnson, M. S. (2019). Measures of agreement:
 Reliability, classification accuracy, and classification consistency.
 In M. von Davier & Y.-S. Lee (Eds.). \emph{Handbook of diagnostic
-classification models}. New York: Springer.
+classification models} (pp. 359-377). Cham: Springer.
+\doi{10.1007/978-3-030-05584-4_17}
 
 Wang, W., Song, L., Chen, P., Meng, Y., & Ding, S. (2015). Attribute-level and
 pattern-level classification consistency and accuracy indices for cognitive diagnostic
 assessment. \emph{Journal of Educational Measurement, 52}(4), 457-476.
-http://dx.doi.org/10.1111/jedm.12096
+\doi{10.1111/jedm.12096}
 }
 %\author{
 %Alexander Robitzsch

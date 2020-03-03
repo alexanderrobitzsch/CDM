@@ -9,21 +9,25 @@
 <title>Dataset from Book 'Diagnostic Measurement' of Rupp, Templin and
 Henson (2010) — data.dcm • CDM</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -31,12 +35,13 @@ Henson (2010) — data.dcm • CDM</title>
 
 
 
+
 <meta property="og:title" content="Dataset from Book 'Diagnostic Measurement' of Rupp, Templin and
 Henson (2010) — data.dcm" />
-
 <meta property="og:description" content="Dataset from Chapter 9 of the book 'Diagnostic Measurement'
 (Rupp, Templin &amp;amp; Henson, 2010)." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -48,6 +53,7 @@ Henson (2010) — data.dcm" />
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -74,7 +80,7 @@ Henson (2010) — data.dcm" />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -82,11 +88,10 @@ Henson (2010) — data.dcm" />
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/alexanderrobitzsch/CDM">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -97,6 +102,7 @@ Henson (2010) — data.dcm" />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -109,14 +115,13 @@ Henson (2010)</h1>
     </div>
 
     <div class="ref-description">
-    
     <p>Dataset from Chapter 9 of the book 'Diagnostic Measurement'
 (Rupp, Templin &amp; Henson, 2010).</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>data.dcm</span>)</pre>
-        
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>data.dcm</span>)</pre>
+
+
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>The format of the data is a list containing the dichotomous item
@@ -136,24 +141,21 @@ and the Q-matrix <code>q.matrix</code> (7 items and 3 skills):</p>
 <code>  ..- attr(*, "dimnames")=List of 2</code> <br />
 <code>  .. ..$ : chr [1:7] "D1" "D2" "D3" "D4" ...</code> <br />
 <code>  .. ..$ : chr [1:3] "skill1" "skill2" "skill3"</code> <br /></p>
-    
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p>For supplementary material of the Rupp, Templin and Henson book (2010)
 see <a href='http://dcm.coe.uga.edu/'>http://dcm.coe.uga.edu/</a>.</p>
 <p>The dataset was downloaded from
 <a href='http://dcm.coe.uga.edu/supplemental/chapter9.html'>http://dcm.coe.uga.edu/supplemental/chapter9.html</a>.</p>
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Rupp, A. A., Templin, J., &amp; Henson, R. A. (2010). <em>Diagnostic
 Measurement: Theory, Methods, and Applications</em>. New York: The Guilford
 Press.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>data.dcm</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"CDM"</span>)
+    <pre class="examples"><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>data.dcm</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"CDM"</span>)
 
 <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='no'>data.dcm</span>$<span class='no'>data</span>[,-<span class='fl'>1</span>]
 <span class='no'>Q</span> <span class='kw'>&lt;-</span> <span class='no'>data.dcm</span>$<span class='no'>q.matrix</span>
@@ -161,21 +163,21 @@ Press.</p>
 <span class='co'>#*****************************************************</span>
 <span class='co'># Model 1: DINA model</span>
 <span class='co'>#*****************************************************</span>
-<span class='no'>mod1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/din'>din</a></span>( <span class='no'>dat</span>, <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>Q</span> )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod1</span>)
+<span class='no'>mod1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/din.html'>din</a></span>( <span class='no'>dat</span>, <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>Q</span> )
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod1</span>)
 
 <span class='co'>#--------</span>
 <span class='co'># Model 1m: estimate model in mirt package</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>mirt</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>sirt</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mirt</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sirt</span>)
 
   <span class='co'>#** define theta grid of skills</span>
   <span class='co'># use the function skillspace.hierarchy just for convenience</span>
 <span class='no'>hier</span> <span class='kw'>&lt;-</span> <span class='st'>"skill1 &gt; skill2"</span>
-<span class='no'>skillspace</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/skillspace.hierarchy'>skillspace.hierarchy</a></span>( <span class='no'>hier</span>, <span class='kw'>skill.names</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>colnames</a></span>(<span class='no'>Q</span>) )
-<span class='no'>Theta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>as.matrix</a></span>(<span class='no'>skillspace</span>$<span class='no'>skillspace.complete</span>)
+<span class='no'>skillspace</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/skillspace.hierarchy.html'>skillspace.hierarchy</a></span>( <span class='no'>hier</span>, <span class='kw'>skill.names</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='no'>Q</span>) )
+<span class='no'>Theta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='no'>skillspace</span>$<span class='no'>skillspace.complete</span>)
   <span class='co'>#** create mirt model</span>
-<span class='no'>mirtmodel</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/mirt/topics/mirt.model'>mirt.model</a></span>(<span class='st'>"
+<span class='no'>mirtmodel</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mirt/man/mirt.model.html'>mirt.model</a></span>(<span class='st'>"
       skill1=1
       skill2=2
       skill3=3
@@ -185,45 +187,45 @@ Press.</p>
       (skill1*skill2*skill3)=7
           "</span> )
   <span class='co'>#** mirt parameter table</span>
-<span class='no'>mod.pars</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/mirt/topics/mirt'>mirt</a></span>( <span class='no'>dat</span>, <span class='no'>mirtmodel</span>, <span class='kw'>pars</span><span class='kw'>=</span><span class='st'>"values"</span>)
+<span class='no'>mod.pars</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mirt/man/mirt.html'>mirt</a></span>( <span class='no'>dat</span>, <span class='no'>mirtmodel</span>, <span class='kw'>pars</span><span class='kw'>=</span><span class='st'>"values"</span>)
   <span class='co'># use starting values of .20 for guessing parameter</span>
-<span class='no'>ind</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/which'>which</a></span>( <span class='no'>mod.pars</span>$<span class='no'>name</span><span class='kw'>==</span><span class='st'>"d"</span> )
-<span class='no'>mod.pars</span>[<span class='no'>ind</span>,<span class='st'>"value"</span>] <span class='kw'>&lt;-</span> <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Logistic'>qlogis</a></span>(<span class='fl'>.20</span>) <span class='co'># guessing parameter on the logit metric</span>
+<span class='no'>ind</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span>( <span class='no'>mod.pars</span>$<span class='no'>name</span><span class='kw'>==</span><span class='st'>"d"</span> )
+<span class='no'>mod.pars</span>[<span class='no'>ind</span>,<span class='st'>"value"</span>] <span class='kw'>&lt;-</span> <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/stats/Logistic.html'>qlogis</a></span>(<span class='fl'>.20</span>) <span class='co'># guessing parameter on the logit metric</span>
   <span class='co'># use starting values of .80 for anti-slipping parameter</span>
-<span class='no'>ind</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/which'>which</a></span>( ( <span class='no'>mod.pars</span>$<span class='no'>name</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"a"</span>,<span class='fl'>1</span>:<span class='fl'>20</span> ) ) <span class='kw'>&amp;</span> (<span class='no'>mod.pars</span>$<span class='no'>est</span>) )
-<span class='no'>mod.pars</span>[<span class='no'>ind</span>,<span class='st'>"value"</span>] <span class='kw'>&lt;-</span> <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Logistic'>qlogis</a></span>(<span class='fl'>.80</span>) - <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Logistic'>qlogis</a></span>(<span class='fl'>.20</span>)
+<span class='no'>ind</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span>( ( <span class='no'>mod.pars</span>$<span class='no'>name</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"a"</span>,<span class='fl'>1</span>:<span class='fl'>20</span> ) ) <span class='kw'>&amp;</span> (<span class='no'>mod.pars</span>$<span class='no'>est</span>) )
+<span class='no'>mod.pars</span>[<span class='no'>ind</span>,<span class='st'>"value"</span>] <span class='kw'>&lt;-</span> <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/stats/Logistic.html'>qlogis</a></span>(<span class='fl'>.80</span>) - <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/stats/Logistic.html'>qlogis</a></span>(<span class='fl'>.20</span>)
 <span class='no'>mod.pars</span>
   <span class='co'>#** prior for the skill space distribution</span>
-<span class='no'>I</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>ncol</a></span>(<span class='no'>dat</span>)
+<span class='no'>I</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span>(<span class='no'>dat</span>)
 <span class='no'>lca_prior</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>Theta</span>,<span class='no'>Etable</span>){
-  <span class='no'>TP</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>Theta</span>)
-  <span class='kw'>if</span> ( <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/NULL'>is.null</a></span>(<span class='no'>Etable</span>) ){ <span class='no'>prior</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>( <span class='fl'>1</span>/<span class='no'>TP</span>, <span class='no'>TP</span> ) }
-  <span class='kw'>if</span> ( ! <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/NULL'>is.null</a></span>(<span class='no'>Etable</span>) ){
-    <span class='no'>prior</span> <span class='kw'>&lt;-</span> ( <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colSums'>rowSums</a></span>(<span class='no'>Etable</span>[, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>*<span class='no'>I</span>,<span class='fl'>2</span>)]) + <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colSums'>rowSums</a></span>(<span class='no'>Etable</span>[,<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>2</span>,<span class='fl'>2</span>*<span class='no'>I</span>,<span class='fl'>2</span>)]) )/<span class='no'>I</span>
+  <span class='no'>TP</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>Theta</span>)
+  <span class='kw'>if</span> ( <span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span>(<span class='no'>Etable</span>) ){ <span class='no'>prior</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>( <span class='fl'>1</span>/<span class='no'>TP</span>, <span class='no'>TP</span> ) }
+  <span class='kw'>if</span> ( ! <span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span>(<span class='no'>Etable</span>) ){
+    <span class='no'>prior</span> <span class='kw'>&lt;-</span> ( <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></span>(<span class='no'>Etable</span>[, <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>*<span class='no'>I</span>,<span class='fl'>2</span>)]) + <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></span>(<span class='no'>Etable</span>[,<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>2</span>,<span class='fl'>2</span>*<span class='no'>I</span>,<span class='fl'>2</span>)]) )/<span class='no'>I</span>
   }
-  <span class='no'>prior</span> <span class='kw'>&lt;-</span> <span class='no'>prior</span> / <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='no'>prior</span>)
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/function'>return</a></span>(<span class='no'>prior</span>)
+  <span class='no'>prior</span> <span class='kw'>&lt;-</span> <span class='no'>prior</span> / <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='no'>prior</span>)
+  <span class='fu'><a href='https://rdrr.io/r/base/function.html'>return</a></span>(<span class='no'>prior</span>)
  }
 
  <span class='co'>#** estimate model in mirt</span>
-<span class='no'>mod1m</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/mirt/topics/mirt'>mirt</a></span>(<span class='no'>dat</span>, <span class='no'>mirtmodel</span>, <span class='kw'>pars</span><span class='kw'>=</span><span class='no'>mod.pars</span>, <span class='kw'>verbose</span><span class='kw'>=</span><span class='fl'>TRUE</span>,
-            <span class='kw'>technical</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>( <span class='kw'>customTheta</span><span class='kw'>=</span><span class='no'>Theta</span>, <span class='kw'>customPriorFun</span><span class='kw'>=</span><span class='no'>lca_prior</span>) )
+<span class='no'>mod1m</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mirt/man/mirt.html'>mirt</a></span>(<span class='no'>dat</span>, <span class='no'>mirtmodel</span>, <span class='kw'>pars</span><span class='kw'>=</span><span class='no'>mod.pars</span>, <span class='kw'>verbose</span><span class='kw'>=</span><span class='fl'>TRUE</span>,
+            <span class='kw'>technical</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>( <span class='kw'>customTheta</span><span class='kw'>=</span><span class='no'>Theta</span>, <span class='kw'>customPriorFun</span><span class='kw'>=</span><span class='no'>lca_prior</span>) )
   <span class='co'># The number of estimated parameters is incorrect because mirt does not correctly count</span>
   <span class='co'># estimated parameters from the user customized  prior distribution.</span>
-<span class='no'>mod1m</span>@<span class='kw'>nest</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/integer'>as.integer</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='no'>mod.pars</span>$<span class='no'>est</span>) + <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>Theta</span>) - <span class='fl'>1</span>)
+<span class='no'>mod1m</span>@<span class='kw'>nest</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/integer.html'>as.integer</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='no'>mod.pars</span>$<span class='no'>est</span>) + <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>Theta</span>) - <span class='fl'>1</span>)
   <span class='co'># extract log-likelihood</span>
 <span class='no'>mod1m</span>@<span class='kw'>logLik</span>
   <span class='co'># compute AIC and BIC</span>
 ( <span class='no'>AIC</span> <span class='kw'>&lt;-</span> -<span class='fl'>2</span>*<span class='no'>mod1m</span>@<span class='kw'>logLik</span>+<span class='fl'>2</span>*<span class='no'>mod1m</span>@<span class='kw'>nest</span> )
-( <span class='no'>BIC</span> <span class='kw'>&lt;-</span> -<span class='fl'>2</span>*<span class='no'>mod1m</span>@<span class='kw'>logLik</span>+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>(<span class='no'>mod1m</span>@<span class='kw'>Data</span>$<span class='no'>N</span>)*<span class='no'>mod1m</span>@<span class='kw'>nest</span> )
+( <span class='no'>BIC</span> <span class='kw'>&lt;-</span> -<span class='fl'>2</span>*<span class='no'>mod1m</span>@<span class='kw'>logLik</span>+<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='no'>mod1m</span>@<span class='kw'>Data</span>$<span class='no'>N</span>)*<span class='no'>mod1m</span>@<span class='kw'>nest</span> )
   <span class='co'>#** extract item parameters</span>
-<span class='no'>cmod1m</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sirt/topics/mirt.wrapper'>mirt.wrapper.coef</a></span>(<span class='no'>mod1m</span>)$<span class='no'>coef</span>
+<span class='no'>cmod1m</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sirt/man/mirt.wrapper.html'>mirt.wrapper.coef</a></span>(<span class='no'>mod1m</span>)$<span class='no'>coef</span>
 <span class='co'># compare estimated guessing and slipping parameters</span>
-<span class='no'>dfr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(    <span class='st'>"din.guess"</span><span class='kw'>=</span><span class='no'>mod1</span>$<span class='no'>guess</span>$<span class='no'>est</span>,
-                  <span class='st'>"mirt.guess"</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Logistic'>plogis</a></span>(<span class='no'>cmod1m</span>$<span class='no'>d</span>), <span class='st'>"din.slip"</span><span class='kw'>=</span><span class='no'>mod1</span>$<span class='no'>slip</span>$<span class='no'>est</span>,
-                  <span class='st'>"mirt.slip"</span><span class='kw'>=</span><span class='fl'>1</span>-<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Logistic'>plogis</a></span>( <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colSums'>rowSums</a></span>( <span class='no'>cmod1m</span>[, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"d"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"a"</span>,<span class='fl'>1</span>:<span class='fl'>7</span>) ) ] ) )
+<span class='no'>dfr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(    <span class='st'>"din.guess"</span><span class='kw'>=</span><span class='no'>mod1</span>$<span class='no'>guess</span>$<span class='no'>est</span>,
+                  <span class='st'>"mirt.guess"</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/Logistic.html'>plogis</a></span>(<span class='no'>cmod1m</span>$<span class='no'>d</span>), <span class='st'>"din.slip"</span><span class='kw'>=</span><span class='no'>mod1</span>$<span class='no'>slip</span>$<span class='no'>est</span>,
+                  <span class='st'>"mirt.slip"</span><span class='kw'>=</span><span class='fl'>1</span>-<span class='fu'><a href='https://rdrr.io/r/stats/Logistic.html'>plogis</a></span>( <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></span>( <span class='no'>cmod1m</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"d"</span>, <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"a"</span>,<span class='fl'>1</span>:<span class='fl'>7</span>) ) ] ) )
                     )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Round'>round</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/t'>t</a></span>(<span class='no'>dfr</span>),<span class='fl'>3</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span>(<span class='no'>dfr</span>),<span class='fl'>3</span>)
   <span class='co'>##               [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]</span>
   <span class='co'>##   din.guess  0.217 0.193 0.189 0.135 0.143 0.135 0.162</span>
   <span class='co'>##   mirt.guess 0.226 0.189 0.184 0.132 0.142 0.132 0.158</span>
@@ -231,21 +233,21 @@ Press.</p>
   <span class='co'>##   mirt.slip  0.339 0.333 0.336 0.223 0.225 0.214 0.044</span>
 
 <span class='co'># compare estimated skill class distribution</span>
-<span class='no'>dfr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='st'>"din"</span><span class='kw'>=</span><span class='no'>mod1</span>$<span class='no'>attribute.patt</span>$<span class='no'>class.prob</span>,
+<span class='no'>dfr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='st'>"din"</span><span class='kw'>=</span><span class='no'>mod1</span>$<span class='no'>attribute.patt</span>$<span class='no'>class.prob</span>,
                     <span class='st'>"mirt"</span><span class='kw'>=</span><span class='no'>mod1m</span>@<span class='kw'>Prior</span><span class='kw'>[[</span><span class='fl'>1</span>]] )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Round'>round</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/t'>t</a></span>(<span class='no'>dfr</span>),<span class='fl'>3</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span>(<span class='no'>dfr</span>),<span class='fl'>3</span>)
   <span class='co'>##         [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]</span>
   <span class='co'>##   din  0.113 0.083 0.094 0.092 0.064 0.059 0.065 0.429</span>
   <span class='co'>##   mirt 0.116 0.074 0.095 0.064 0.095 0.058 0.066 0.433</span>
 
 <span class='co'>#** extract estimated classifications</span>
-<span class='no'>fsc1m</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sirt/topics/mirt.wrapper'>mirt.wrapper.fscores</a></span>( <span class='no'>mod1m</span> )
+<span class='no'>fsc1m</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sirt/man/mirt.wrapper.html'>mirt.wrapper.fscores</a></span>( <span class='no'>mod1m</span> )
 <span class='co'>#- estimated reliabilities</span>
 <span class='no'>fsc1m</span>$<span class='no'>EAP.rel</span>
   <span class='co'>##      skill1    skill2    skill3</span>
   <span class='co'>##   0.5479942 0.5362595 0.5357961</span>
 <span class='co'>#- estimated classfications: EAPs, MLEs and MAPs</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>( <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Round'>round</a></span>(<span class='no'>fsc1m</span>$<span class='no'>person</span>,<span class='fl'>3</span>) )
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>( <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='no'>fsc1m</span>$<span class='no'>person</span>,<span class='fl'>3</span>) )
   <span class='co'>##     case     M EAP.skill1 SE.EAP.skill1 EAP.skill2 SE.EAP.skill2 EAP.skill3 SE.EAP.skill3</span>
   <span class='co'>##   1    1 0.286      0.508         0.500      0.067         0.251      0.820         0.384</span>
   <span class='co'>##   2    2 0.000      0.162         0.369      0.191         0.393      0.190         0.392</span>
@@ -262,65 +264,65 @@ Press.</p>
   <span class='co'>##   6          1          1          1          1          1          1</span>
 
 <span class='co'>#** estimate model fit in mirt</span>
-( <span class='no'>fit1m</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/mirt/topics/M2'>M2</a></span>( <span class='no'>mod1m</span> ) )
+( <span class='no'>fit1m</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mirt/man/M2.html'>M2</a></span>( <span class='no'>mod1m</span> ) )
 
 <span class='co'>#*****************************************************</span>
 <span class='co'># Model 2: DINO model</span>
 <span class='co'>#*****************************************************</span>
-<span class='no'>mod2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/din'>din</a></span>( <span class='no'>dat</span>, <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>Q</span>, <span class='kw'>rule</span><span class='kw'>=</span><span class='st'>"DINO"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod2</span>)
+<span class='no'>mod2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/din.html'>din</a></span>( <span class='no'>dat</span>, <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>Q</span>, <span class='kw'>rule</span><span class='kw'>=</span><span class='st'>"DINO"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod2</span>)
 
 <span class='co'>#*****************************************************</span>
 <span class='co'># Model 3: log-linear model (LCDM): this model is the GDINA model with the</span>
 <span class='co'>#    logit link function</span>
 <span class='co'>#*****************************************************</span>
-<span class='no'>mod3</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdina'>gdina</a></span>( <span class='no'>dat</span>, <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>Q</span>, <span class='kw'>link</span><span class='kw'>=</span><span class='st'>"logit"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod3</span>)
+<span class='no'>mod3</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdina.html'>gdina</a></span>( <span class='no'>dat</span>, <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>Q</span>, <span class='kw'>link</span><span class='kw'>=</span><span class='st'>"logit"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod3</span>)
 
 <span class='co'>#*****************************************************</span>
 <span class='co'># Model 4: GDINA model with identity link function</span>
 <span class='co'>#*****************************************************</span>
-<span class='no'>mod4</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdina'>gdina</a></span>( <span class='no'>dat</span>, <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>Q</span> )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod4</span>)
+<span class='no'>mod4</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdina.html'>gdina</a></span>( <span class='no'>dat</span>, <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>Q</span> )
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod4</span>)
 
 <span class='co'>#*****************************************************</span>
 <span class='co'># Model 5: GDINA additive model identity link function</span>
 <span class='co'>#*****************************************************</span>
-<span class='no'>mod5</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdina'>gdina</a></span>( <span class='no'>dat</span>, <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>Q</span>, <span class='kw'>rule</span><span class='kw'>=</span><span class='st'>"ACDM"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod5</span>)
+<span class='no'>mod5</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdina.html'>gdina</a></span>( <span class='no'>dat</span>, <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>Q</span>, <span class='kw'>rule</span><span class='kw'>=</span><span class='st'>"ACDM"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod5</span>)
 
 <span class='co'>#*****************************************************</span>
 <span class='co'># Model 6: GDINA additive model logit link function</span>
 <span class='co'>#*****************************************************</span>
-<span class='no'>mod6</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdina'>gdina</a></span>( <span class='no'>dat</span>, <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>Q</span>, <span class='kw'>link</span><span class='kw'>=</span><span class='st'>"logit"</span>, <span class='kw'>rule</span><span class='kw'>=</span><span class='st'>"ACDM"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod6</span>)
+<span class='no'>mod6</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdina.html'>gdina</a></span>( <span class='no'>dat</span>, <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>Q</span>, <span class='kw'>link</span><span class='kw'>=</span><span class='st'>"logit"</span>, <span class='kw'>rule</span><span class='kw'>=</span><span class='st'>"ACDM"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod6</span>)
 
 <span class='co'>#--------</span>
 <span class='co'># Model 6m: GDINA additive model in mirt package</span>
 <span class='co'># use data specifications from Model 1m)</span>
   <span class='co'>#** create mirt model</span>
-<span class='no'>mirtmodel</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/mirt/topics/mirt.model'>mirt.model</a></span>(<span class='st'>"
+<span class='no'>mirtmodel</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mirt/man/mirt.model.html'>mirt.model</a></span>(<span class='st'>"
       skill1=1,4,5,7
       skill2=2,4,6,7
       skill3=3,5,6,7
           "</span> )
   <span class='co'>#** mirt parameter table</span>
-<span class='no'>mod.pars</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/mirt/topics/mirt'>mirt</a></span>( <span class='no'>dat</span>, <span class='no'>mirtmodel</span>, <span class='kw'>pars</span><span class='kw'>=</span><span class='st'>"values"</span>)
+<span class='no'>mod.pars</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mirt/man/mirt.html'>mirt</a></span>( <span class='no'>dat</span>, <span class='no'>mirtmodel</span>, <span class='kw'>pars</span><span class='kw'>=</span><span class='st'>"values"</span>)
  <span class='co'>#** estimate model in mirt</span>
  <span class='co'># Theta and lca_prior as defined as in Model 1m</span>
-<span class='no'>mod6m</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/mirt/topics/mirt'>mirt</a></span>(<span class='no'>dat</span>, <span class='no'>mirtmodel</span>, <span class='kw'>pars</span><span class='kw'>=</span><span class='no'>mod.pars</span>, <span class='kw'>verbose</span><span class='kw'>=</span><span class='fl'>TRUE</span>,
-            <span class='kw'>technical</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>( <span class='kw'>customTheta</span><span class='kw'>=</span><span class='no'>Theta</span>, <span class='kw'>customPriorFun</span><span class='kw'>=</span><span class='no'>lca_prior</span>) )
-<span class='no'>mod6m</span>@<span class='kw'>nest</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/integer'>as.integer</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='no'>mod.pars</span>$<span class='no'>est</span>) + <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>Theta</span>) - <span class='fl'>1</span>)
+<span class='no'>mod6m</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mirt/man/mirt.html'>mirt</a></span>(<span class='no'>dat</span>, <span class='no'>mirtmodel</span>, <span class='kw'>pars</span><span class='kw'>=</span><span class='no'>mod.pars</span>, <span class='kw'>verbose</span><span class='kw'>=</span><span class='fl'>TRUE</span>,
+            <span class='kw'>technical</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>( <span class='kw'>customTheta</span><span class='kw'>=</span><span class='no'>Theta</span>, <span class='kw'>customPriorFun</span><span class='kw'>=</span><span class='no'>lca_prior</span>) )
+<span class='no'>mod6m</span>@<span class='kw'>nest</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/integer.html'>as.integer</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='no'>mod.pars</span>$<span class='no'>est</span>) + <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>Theta</span>) - <span class='fl'>1</span>)
   <span class='co'># extract log-likelihood</span>
 <span class='no'>mod6m</span>@<span class='kw'>logLik</span>
   <span class='co'># compute AIC and BIC</span>
 ( <span class='no'>AIC</span> <span class='kw'>&lt;-</span> -<span class='fl'>2</span>*<span class='no'>mod6m</span>@<span class='kw'>logLik</span>+<span class='fl'>2</span>*<span class='no'>mod6m</span>@<span class='kw'>nest</span> )
-( <span class='no'>BIC</span> <span class='kw'>&lt;-</span> -<span class='fl'>2</span>*<span class='no'>mod6m</span>@<span class='kw'>logLik</span>+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>(<span class='no'>mod6m</span>@<span class='kw'>Data</span>$<span class='no'>N</span>)*<span class='no'>mod6m</span>@<span class='kw'>nest</span> )
+( <span class='no'>BIC</span> <span class='kw'>&lt;-</span> -<span class='fl'>2</span>*<span class='no'>mod6m</span>@<span class='kw'>logLik</span>+<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='no'>mod6m</span>@<span class='kw'>Data</span>$<span class='no'>N</span>)*<span class='no'>mod6m</span>@<span class='kw'>nest</span> )
   <span class='co'>#** skill distribution</span>
   <span class='no'>mod6m</span>@<span class='kw'>Prior</span><span class='kw'>[[</span><span class='fl'>1</span>]]
   <span class='co'>#** extract item parameters</span>
-<span class='no'>cmod6m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/sirt/topics/mirt.wrapper'>mirt.wrapper.coef</a></span>(<span class='no'>mod6m</span>)$<span class='no'>coef</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>cmod6m</span>,<span class='kw'>digits</span><span class='kw'>=</span><span class='fl'>4</span>)
+<span class='no'>cmod6m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sirt/man/mirt.wrapper.html'>mirt.wrapper.coef</a></span>(<span class='no'>mod6m</span>)$<span class='no'>coef</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>cmod6m</span>,<span class='kw'>digits</span><span class='kw'>=</span><span class='fl'>4</span>)
   <span class='co'>##     item    a1    a2    a3       d g u</span>
   <span class='co'>##   1   D1 1.882 0.000 0.000 -0.9330 0 1</span>
   <span class='co'>##   2   D2 0.000 2.049 0.000 -1.0430 0 1</span>
@@ -333,39 +335,36 @@ Press.</p>
 <span class='co'>#*****************************************************</span>
 <span class='co'># Model 7: Reduced RUM model</span>
 <span class='co'>#*****************************************************</span>
-<span class='no'>mod7</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdina'>gdina</a></span>( <span class='no'>dat</span>, <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>Q</span>, <span class='kw'>rule</span><span class='kw'>=</span><span class='st'>"RRUM"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod7</span>)
+<span class='no'>mod7</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdina.html'>gdina</a></span>( <span class='no'>dat</span>, <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>Q</span>, <span class='kw'>rule</span><span class='kw'>=</span><span class='st'>"RRUM"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod7</span>)
 
 <span class='co'>#*****************************************************</span>
 <span class='co'># Model 8: latent class model with 3 classes and 4 sets of starting values</span>
 <span class='co'>#*****************************************************</span>
 
 <span class='co'>#-- Model 8a: randomLCA package</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>randomLCA</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>randomLCA</span>)
 <span class='no'>mod8a</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>randomLCA</span><span class='kw ns'>::</span><span class='fu'>randomLCA</span>( <span class='no'>dat</span>, <span class='kw'>nclass</span><span class='kw'>=</span><span class='fl'>3</span>, <span class='kw'>verbose</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>notrials</span><span class='kw'>=</span><span class='fl'>4</span>)
 
 <span class='co'>#-- Model8b: rasch.mirtlc function in sirt package</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>sirt</span>)
-<span class='no'>mod8b</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sirt/topics/rasch.mirtlc'>rasch.mirtlc</a></span>( <span class='no'>dat</span>, <span class='kw'>Nclasses</span><span class='kw'>=</span><span class='fl'>3</span>, <span class='kw'>nstarts</span><span class='kw'>=</span><span class='fl'>4</span> )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod8a</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod8b</span>)
-<span class='co'># }</span></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sirt</span>)
+<span class='no'>mod8b</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sirt/man/rasch.mirtlc.html'>rasch.mirtlc</a></span>( <span class='no'>dat</span>, <span class='kw'>Nclasses</span><span class='kw'>=</span><span class='fl'>3</span>, <span class='kw'>nstarts</span><span class='kw'>=</span><span class='fl'>4</span> )
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod8a</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod8b</span>)
+}</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
       <li><a href="#format">Format</a></li>
-
       <li><a href="#source">Source</a></li>
-
       <li><a href="#references">References</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -373,13 +372,16 @@ Press.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

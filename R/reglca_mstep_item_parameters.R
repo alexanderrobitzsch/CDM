@@ -1,10 +1,10 @@
 ## File Name: reglca_mstep_item_parameters.R
-## File Version: 0.493
+## File Version: 0.4957
 
 
 reglca_mstep_item_parameters <- function(I, n.ik, N.ik, h, mstep_iter, conv, regular_lam,
         regular_type, cd_steps, item_probs, max_increment, iter, G, fac=1.02,
-        prob_min=0)
+        prob_min=0, est_type="CD", xsi=NULL)
 {
     penalty <- rep(0,I)
     n_par <- rep(0,I)
@@ -35,7 +35,8 @@ reglca_mstep_item_parameters <- function(I, n.ik, N.ik, h, mstep_iter, conv, reg
         res <- reglca_fit_probabilities( freq=freq, pi_class=pi_class, h=h, maxit=mstep_iter,
                             conv=conv, verbose=FALSE, parm_init=NULL, lambda=regular_lam,
                             regular_type=regular_type, cd_steps=cd_steps,
-                            max_increment=max_increment, prob_min=prob_min, ii=ii, iter=iter)
+                            max_increment=max_increment, prob_min=prob_min, ii=ii,
+                            iter=iter, xsi=xsi, est_type=est_type)
         expected_loglike[ii] <- res$ll
         opt_fct_item_sum[ii] <- res$ll + res$pen
         incr <- res$probs - item_probs[ii,]

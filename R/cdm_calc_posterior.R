@@ -1,8 +1,8 @@
 ## File Name: cdm_calc_posterior.R
-## File Version: 1.16
+## File Version: 1.175
 
-###########################################################
-# compute posterior distribution
+
+#--- compute posterior distribution
 cdm_calc_posterior <- function(rprobs, gwt, resp, nitems,
     resp.ind.list, normalization=TRUE,
     thetasamp.density=NULL, snodes=0 )

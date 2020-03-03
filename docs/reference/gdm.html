@@ -8,21 +8,25 @@
 
 <title>General Diagnostic Model — gdm • CDM</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,14 +34,15 @@
 
 
 
-<meta property="og:title" content="General Diagnostic Model — gdm" />
 
+<meta property="og:title" content="General Diagnostic Model — gdm" />
 <meta property="og:description" content="This function estimates the general diagnostic model
 (von Davier, 2008; Xu &amp;amp; von Davier, 2008) which handles
 multidimensional item response models with ordered discrete
 or continuous latent variables for polytomous item
 responses." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -49,6 +54,7 @@ responses." />
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -75,7 +81,7 @@ responses." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -83,11 +89,10 @@ responses." />
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/alexanderrobitzsch/CDM">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -98,6 +103,7 @@ responses." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -109,35 +115,33 @@ responses." />
     </div>
 
     <div class="ref-description">
-    
     <p>This function estimates the general diagnostic model
 (von Davier, 2008; Xu &amp; von Davier, 2008) which handles
 multidimensional item response models with ordered discrete
 or continuous latent variables for polytomous item
 responses.</p>
-    
     </div>
 
-    <pre class="usage">gdm( data, theta.k, irtmodel="2PL", group=NULL, weights=rep(1, nrow(data)),
-    Qmatrix=NULL, thetaDes=NULL, skillspace="loglinear",
-    b.constraint=NULL, a.constraint=NULL,
-    mean.constraint=NULL, Sigma.constraint=NULL, delta.designmatrix=NULL,
-    standardized.latent=FALSE, centered.latent=FALSE,
-    centerintercepts=FALSE, centerslopes=FALSE,
-    maxiter=1000,  conv=1e-5, globconv=1e-5, msteps=4, convM=.0005,
-    decrease.increments=FALSE, use.freqpatt=FALSE, progress=TRUE,
-    PEM=FALSE, PEM_itermax=maxiter, ...)
+    <pre class="usage"><span class='fu'>gdm</span>( <span class='no'>data</span>, <span class='no'>theta.k</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PL"</span>, <span class='kw'>group</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>weights</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>data</span>)),
+    <span class='kw'>Qmatrix</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>thetaDes</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"loglinear"</span>,
+    <span class='kw'>b.constraint</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>a.constraint</span><span class='kw'>=</span><span class='kw'>NULL</span>,
+    <span class='kw'>mean.constraint</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>Sigma.constraint</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>delta.designmatrix</span><span class='kw'>=</span><span class='kw'>NULL</span>,
+    <span class='kw'>standardized.latent</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>centered.latent</span><span class='kw'>=</span><span class='fl'>FALSE</span>,
+    <span class='kw'>centerintercepts</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>centerslopes</span><span class='kw'>=</span><span class='fl'>FALSE</span>,
+    <span class='kw'>maxiter</span><span class='kw'>=</span><span class='fl'>1000</span>,  <span class='kw'>conv</span><span class='kw'>=</span><span class='fl'>1e-5</span>, <span class='kw'>globconv</span><span class='kw'>=</span><span class='fl'>1e-5</span>, <span class='kw'>msteps</span><span class='kw'>=</span><span class='fl'>4</span>, <span class='kw'>convM</span><span class='kw'>=</span><span class='fl'>.0005</span>,
+    <span class='kw'>decrease.increments</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>use.freqpatt</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>progress</span><span class='kw'>=</span><span class='fl'>TRUE</span>,
+    <span class='kw'>PEM</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>PEM_itermax</span><span class='kw'>=</span><span class='no'>maxiter</span>, <span class='no'>...</span>)
 
-# S3 method for gdm
-summary(object, file=NULL, &#8230;)
+<span class='co'># S3 method for gdm</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='kw'>file</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='no'>...</span>)
 
-# S3 method for gdm
-print(x, &#8230;)
+<span class='co'># S3 method for gdm</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
-# S3 method for gdm
-plot(x, perstype="EAP", group=1, barwidth=.1, histcol=1,
-       cexcor=3, pchpers=16, cexpers=.7, &#8230; )</pre>
-    
+<span class='co'># S3 method for gdm</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>perstype</span><span class='kw'>=</span><span class='st'>"EAP"</span>, <span class='kw'>group</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>barwidth</span><span class='kw'>=</span><span class='fl'>.1</span>, <span class='kw'>histcol</span><span class='kw'>=</span><span class='fl'>1</span>,
+       <span class='kw'>cexcor</span><span class='kw'>=</span><span class='fl'>3</span>, <span class='kw'>pchpers</span><span class='kw'>=</span><span class='fl'>16</span>, <span class='kw'>cexpers</span><span class='kw'>=</span><span class='fl'>.7</span>, <span class='no'>...</span> )</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -354,12 +358,12 @@ parameters in <code>plot.gdm</code></p></td>
 parameters in <code>plot.gdm</code></p></td>
     </tr>
     <tr>
-      <th>&#8230;</th>
+      <th>...</th>
       <td><p>Optional parameters to be passed to or from other
     methods will be ignored.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Case <code>irtmodel="1PL"</code>: <br />
@@ -392,7 +396,6 @@ Yamamoto (2004) and von Davier (2008).</p>
 (the grid of the theta distribution) are estimated (Bartolucci, 2007;
 Bacci, Bartolucci &amp; Gnaldi, 2012). This model is called a multidimensional
 latent class item response model.</p>
-    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An object of class <code>gdm</code>. The list contains the
@@ -458,10 +461,9 @@ following entries:</p>
 parameters in <code>plot.gdm</code></p></dd>
 <dt>cexpers</dt><dd><p>Point size for scatter plot of person
 parameters in <code>plot.gdm</code></p></dd>
-<dt>&#8230;</dt><dd><p>Optional parameters to be passed to or from other
+<dt>...</dt><dd><p>Optional parameters to be passed to or from other
     methods will be ignored.</p></dd>
 
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Bacci, S., Bartolucci, F., &amp; Gnaldi, M. (2012).
@@ -480,7 +482,6 @@ An extension of the generalized partial-credit model.
 <em>Applied Psychological Measurement, 28</em>, 389-406.</p>
 <p>Xu, X., &amp; von Davier, M. (2008). <em>Fitting the structured general diagnostic
 model to NAEP data</em>. ETS Research Report ETS RR-08-27. Princeton, ETS.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Cognitive diagnostic models for dichotomous data can be estimated
@@ -491,232 +492,230 @@ with <code><a href='din.html'>din</a></code> (DINA or DINO model) or <code><a hr
 <p>See <code><a href='itemfit.sx2.html'>itemfit.sx2</a></code> for item fit statistics.</p>
 <p>For the estimation of the multidimensional
 latent class item response model see the <span class="pkg">MultiLCIRT</span> package
-and <span class="pkg">sirt</span> package (function <code><a href='https://www.rdocumentation.org/packages/sirt/topics/rasch.mirtlc'>sirt::rasch.mirtlc</a></code>).</p></div>
-    
+and <span class="pkg">sirt</span> package (function <code><a href='https://rdrr.io/pkg/sirt/man/rasch.mirtlc.html'>sirt::rasch.mirtlc</a></code>).</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'>#############################################################################</span>
+    <pre class="examples"><span class='co'>#############################################################################</span>
 <span class='co'># EXAMPLE 1: Fraction Dataset 1</span>
 <span class='co'>#      Unidimensional Models for dichotomous data</span>
 <span class='co'>#############################################################################</span>
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>data.fraction1</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"CDM"</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>data.fraction1</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"CDM"</span>)
 <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='no'>data.fraction1</span>$<span class='no'>data</span>
-<span class='no'>theta.k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>( -<span class='fl'>6</span>, <span class='fl'>6</span>, <span class='kw'>len</span><span class='kw'>=</span><span class='fl'>15</span> )   <span class='co'># discretized ability</span>
+<span class='no'>theta.k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>( -<span class='fl'>6</span>, <span class='fl'>6</span>, <span class='kw'>len</span><span class='kw'>=</span><span class='fl'>15</span> )   <span class='co'># discretized ability</span>
 
 <span class='co'>#***</span>
 <span class='co'># Model 1: Rasch model (normal distribution)</span>
-<span class='no'>mod1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"normal"</span>,
+<span class='no'>mod1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"normal"</span>,
                <span class='kw'>centered.latent</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod1</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>mod1</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod1</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>mod1</span>)
 
 <span class='co'>#***</span>
 <span class='co'># Model 2: Rasch model (log-linear smoothing)</span>
 <span class='co'># set the item difficulty of the 8th item to zero</span>
-<span class='no'>b.constraint</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>( <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>8</span>,<span class='fl'>1</span>,<span class='fl'>0</span>), <span class='fl'>1</span>, <span class='fl'>3</span> )
-<span class='no'>mod2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,
+<span class='no'>b.constraint</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>( <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>8</span>,<span class='fl'>1</span>,<span class='fl'>0</span>), <span class='fl'>1</span>, <span class='fl'>3</span> )
+<span class='no'>mod2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,
                <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"loglinear"</span>, <span class='kw'>b.constraint</span><span class='kw'>=</span><span class='no'>b.constraint</span>  )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod2</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod2</span>)
 
 <span class='co'>#***</span>
 <span class='co'># Model 3: 2PL model</span>
-<span class='no'>mod3</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,
+<span class='no'>mod3</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,
                <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"normal"</span>, <span class='kw'>standardized.latent</span><span class='kw'>=</span><span class='fl'>TRUE</span>  )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod3</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod3</span>)
 
-<span class='co'># }</span><span class='co'># NOT RUN {</span>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'>#***</span>
 <span class='co'># Model 4: include quadratic term in item response function</span>
 <span class='co'>#   using the argument decrease.increments=TRUE leads to a more</span>
 <span class='co'>#   stable estimate</span>
-<span class='no'>thetaDes</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>cbind</a></span>( <span class='no'>theta.k</span>, <span class='no'>theta.k</span>^<span class='fl'>2</span> )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>colnames</a></span>(<span class='no'>thetaDes</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>( <span class='st'>"F1"</span>, <span class='st'>"F1q"</span> )
-<span class='no'>mod4</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,
+<span class='no'>thetaDes</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>( <span class='no'>theta.k</span>, <span class='no'>theta.k</span>^<span class='fl'>2</span> )
+<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='no'>thetaDes</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>( <span class='st'>"F1"</span>, <span class='st'>"F1q"</span> )
+<span class='no'>mod4</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,
           <span class='kw'>thetaDes</span><span class='kw'>=</span><span class='no'>thetaDes</span>, <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"normal"</span>,
           <span class='kw'>standardized.latent</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>decrease.increments</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod4</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod4</span>)
 
 <span class='co'>#***</span>
 <span class='co'># Model 5: step function for ICC</span>
 <span class='co'>#          two different probabilities theta &lt; 0 and theta &gt; 0</span>
-<span class='no'>thetaDes</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>( <span class='fl'>1</span>*(<span class='no'>theta.k</span><span class='kw'>&gt;</span><span class='fl'>0</span>), <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>1</span> )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>colnames</a></span>(<span class='no'>thetaDes</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>( <span class='st'>"Fgrm1"</span> )
-<span class='no'>mod5</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,
+<span class='no'>thetaDes</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>( <span class='fl'>1</span>*(<span class='no'>theta.k</span><span class='kw'>&gt;</span><span class='fl'>0</span>), <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>1</span> )
+<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='no'>thetaDes</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>( <span class='st'>"Fgrm1"</span> )
+<span class='no'>mod5</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,
           <span class='kw'>thetaDes</span><span class='kw'>=</span><span class='no'>thetaDes</span>, <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"normal"</span> )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod5</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod5</span>)
 
 <span class='co'>#***</span>
 <span class='co'># Model 6: DINA model with din function</span>
-<span class='no'>mod6</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/din'>din</a></span>( <span class='no'>dat</span>, <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>( <span class='fl'>1</span>, <span class='kw'>nrow</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>ncol</a></span>(<span class='no'>dat</span>),<span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>1</span> ) )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod6</span>)
+<span class='no'>mod6</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/din.html'>din</a></span>( <span class='no'>dat</span>, <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>( <span class='fl'>1</span>, <span class='kw'>nrow</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span>(<span class='no'>dat</span>),<span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>1</span> ) )
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod6</span>)
 
 <span class='co'>#***</span>
 <span class='co'># Model 7: Estimating a version of the DINA model with gdm</span>
-<span class='no'>theta.k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(-<span class='fl'>.5</span>,<span class='fl'>.5</span>)
-<span class='no'>mod7</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"loglinear"</span> )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod7</span>)
+<span class='no'>theta.k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>.5</span>,<span class='fl'>.5</span>)
+<span class='no'>mod7</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"loglinear"</span> )
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod7</span>)
 
 <span class='co'>#############################################################################</span>
 <span class='co'># EXAMPLE 2: Cultural Activities - data.Students</span>
 <span class='co'>#      Unidimensional Models for polytomous data</span>
 <span class='co'>#############################################################################</span>
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>data.Students</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"CDM"</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>data.Students</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"CDM"</span>)
 <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='no'>data.Students</span>
 
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='no'>dat</span>[, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/grep'>grep</a></span>( <span class='st'>"act"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>colnames</a></span>(<span class='no'>dat</span>) ) ]
-<span class='no'>theta.k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>( -<span class='fl'>4</span>, <span class='fl'>4</span>, <span class='kw'>len</span><span class='kw'>=</span><span class='fl'>11</span> )   <span class='co'># discretized ability</span>
+<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='no'>dat</span>[, <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>grep</a></span>( <span class='st'>"act"</span>, <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='no'>dat</span>) ) ]
+<span class='no'>theta.k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>( -<span class='fl'>4</span>, <span class='fl'>4</span>, <span class='kw'>len</span><span class='kw'>=</span><span class='fl'>11</span> )   <span class='co'># discretized ability</span>
 
 <span class='co'>#***</span>
 <span class='co'># Model 1: Partial Credit Model (PCM)</span>
-<span class='no'>mod1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"normal"</span>,
+<span class='no'>mod1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"normal"</span>,
            <span class='kw'>centered.latent</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod1</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>mod1</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod1</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>mod1</span>)
 
 <span class='co'>#***</span>
 <span class='co'># Model 1b: PCM using frequency patterns</span>
-<span class='no'>mod1b</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"normal"</span>,
+<span class='no'>mod1b</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"normal"</span>,
            <span class='kw'>centered.latent</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>use.freqpatt</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod1b</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod1b</span>)
 
 <span class='co'>#***</span>
 <span class='co'># Model 2: PCM with two groups</span>
-<span class='no'>mod2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,
-            <span class='kw'>group</span><span class='kw'>=</span><span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/CDM/topics/data.Students'>data.Students</a></span>$<span class='no'>urban</span> + <span class='fl'>1</span>, <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"normal"</span>,
+<span class='no'>mod2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,
+            <span class='kw'>group</span><span class='kw'>=</span><span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/CDM/man/data.Students.html'>data.Students</a></span>$<span class='no'>urban</span> + <span class='fl'>1</span>, <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"normal"</span>,
             <span class='kw'>centered.latent</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod2</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod2</span>)
 
 <span class='co'>#***</span>
 <span class='co'># Model 3: PCM with loglinear smoothing</span>
-<span class='no'>b.constraint</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>( <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>0</span>), <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>3</span> )
-<span class='no'>mod3</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,
+<span class='no'>b.constraint</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>( <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>0</span>), <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>3</span> )
+<span class='no'>mod3</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,
     <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"loglinear"</span>, <span class='kw'>b.constraint</span><span class='kw'>=</span><span class='no'>b.constraint</span> )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod3</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod3</span>)
 
 <span class='co'>#***</span>
 <span class='co'># Model 4: Model with pre-specified item weights in Q-matrix</span>
-<span class='no'>Qmatrix</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/array'>array</a></span>( <span class='fl'>1</span>, <span class='kw'>dim</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>5</span>,<span class='fl'>1</span>,<span class='fl'>2</span>) )
+<span class='no'>Qmatrix</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/array.html'>array</a></span>( <span class='fl'>1</span>, <span class='kw'>dim</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5</span>,<span class='fl'>1</span>,<span class='fl'>2</span>) )
 <span class='no'>Qmatrix</span>[,<span class='fl'>1</span>,<span class='fl'>2</span>] <span class='kw'>&lt;-</span> <span class='fl'>2</span>     <span class='co'># default is score 2 for category 2</span>
 <span class='co'># now change the scoring of category 2:</span>
-<span class='no'>Qmatrix</span>[<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>4</span>),<span class='fl'>1</span>,<span class='fl'>1</span>] <span class='kw'>&lt;-</span> <span class='fl'>.74</span>
-<span class='no'>Qmatrix</span>[<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>4</span>),<span class='fl'>1</span>,<span class='fl'>2</span>] <span class='kw'>&lt;-</span> <span class='fl'>2.3</span>
+<span class='no'>Qmatrix</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>4</span>),<span class='fl'>1</span>,<span class='fl'>1</span>] <span class='kw'>&lt;-</span> <span class='fl'>.74</span>
+<span class='no'>Qmatrix</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>4</span>),<span class='fl'>1</span>,<span class='fl'>2</span>] <span class='kw'>&lt;-</span> <span class='fl'>2.3</span>
 <span class='co'># for items 2 and 4 the score for category 1 is .74 and for category 2 it is 2.3</span>
-<span class='no'>mod4</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>Qmatrix</span><span class='kw'>=</span><span class='no'>Qmatrix</span>,
+<span class='no'>mod4</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>Qmatrix</span><span class='kw'>=</span><span class='no'>Qmatrix</span>,
            <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"normal"</span>, <span class='kw'>centered.latent</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod4</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod4</span>)
 
 <span class='co'>#***</span>
 <span class='co'># Model 5: Generalized partial credit model</span>
-<span class='no'>mod5</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,
+<span class='no'>mod5</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,
           <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"normal"</span>, <span class='kw'>standardized.latent</span><span class='kw'>=</span><span class='fl'>TRUE</span> )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod5</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod5</span>)
 
 <span class='co'>#***</span>
 <span class='co'># Model 6: Item-category slope estimation</span>
-<span class='no'>mod6</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PLcat"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,  <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"normal"</span>,
+<span class='no'>mod6</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PLcat"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,  <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"normal"</span>,
                  <span class='kw'>standardized.latent</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>decrease.increments</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod6</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod6</span>)
 
 <span class='co'>#***</span>
 <span class='co'># Models 7: items with different number of categories</span>
 <span class='no'>dat0</span> <span class='kw'>&lt;-</span> <span class='no'>dat</span>
-<span class='no'>dat0</span>[ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='no'>dat0</span>[,<span class='fl'>1</span>])<span class='kw'>==</span><span class='fl'>2</span>, <span class='fl'>1</span> ] <span class='kw'>&lt;-</span> <span class='fl'>1</span> <span class='co'># 1st item has only two categories</span>
-<span class='no'>dat0</span>[ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='no'>dat0</span>[,<span class='fl'>3</span>])<span class='kw'>==</span><span class='fl'>2</span>, <span class='fl'>3</span> ] <span class='kw'>&lt;-</span> <span class='fl'>1</span> <span class='co'># 3rd item has only two categories</span>
+<span class='no'>dat0</span>[ <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='no'>dat0</span>[,<span class='fl'>1</span>])<span class='kw'>==</span><span class='fl'>2</span>, <span class='fl'>1</span> ] <span class='kw'>&lt;-</span> <span class='fl'>1</span> <span class='co'># 1st item has only two categories</span>
+<span class='no'>dat0</span>[ <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='no'>dat0</span>[,<span class='fl'>3</span>])<span class='kw'>==</span><span class='fl'>2</span>, <span class='fl'>3</span> ] <span class='kw'>&lt;-</span> <span class='fl'>1</span> <span class='co'># 3rd item has only two categories</span>
 
 <span class='co'># Model 7a: PCM</span>
-<span class='no'>mod7a</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat0</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,  <span class='kw'>centered.latent</span><span class='kw'>=</span><span class='fl'>TRUE</span> )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod7a</span>)
+<span class='no'>mod7a</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat0</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,  <span class='kw'>centered.latent</span><span class='kw'>=</span><span class='fl'>TRUE</span> )
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod7a</span>)
 
 <span class='co'># Model 7b: Item category slopes</span>
-<span class='no'>mod7b</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat0</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PLcat"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,
+<span class='no'>mod7b</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat0</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PLcat"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,
                  <span class='kw'>standardized.latent</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>decrease.increments</span><span class='kw'>=</span><span class='fl'>TRUE</span> )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod7b</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod7b</span>)
 
 <span class='co'>#############################################################################</span>
 <span class='co'># EXAMPLE 3: Fraction Dataset 2</span>
 <span class='co'>#      Multidimensional Models for dichotomous data</span>
 <span class='co'>#############################################################################</span>
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>data.fraction2</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"CDM"</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>data.fraction2</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"CDM"</span>)
 <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='no'>data.fraction2</span>$<span class='no'>data</span>
 <span class='no'>Qmatrix</span> <span class='kw'>&lt;-</span> <span class='no'>data.fraction2</span>$<span class='no'>q.matrix3</span>
 
 <span class='co'>#***</span>
 <span class='co'># Model 1: One-dimensional Rasch model</span>
-<span class='no'>theta.k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>( -<span class='fl'>4</span>, <span class='fl'>4</span>, <span class='kw'>len</span><span class='kw'>=</span><span class='fl'>11</span> )   <span class='co'># discretized ability</span>
-<span class='no'>mod1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,  <span class='kw'>centered.latent</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod1</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>mod1</span>)
+<span class='no'>theta.k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>( -<span class='fl'>4</span>, <span class='fl'>4</span>, <span class='kw'>len</span><span class='kw'>=</span><span class='fl'>11</span> )   <span class='co'># discretized ability</span>
+<span class='no'>mod1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,  <span class='kw'>centered.latent</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod1</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>mod1</span>)
 
 <span class='co'>#***</span>
 <span class='co'># Model 2: One-dimensional 2PL model</span>
-<span class='no'>mod2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>standardized.latent</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod2</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>mod2</span>)
+<span class='no'>mod2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>standardized.latent</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod2</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>mod2</span>)
 
 <span class='co'>#***</span>
 <span class='co'># Model 3: 3-dimensional Rasch Model (normal distribution)</span>
-<span class='no'>mod3</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>Qmatrix</span><span class='kw'>=</span><span class='no'>Qmatrix</span>,
+<span class='no'>mod3</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>Qmatrix</span><span class='kw'>=</span><span class='no'>Qmatrix</span>,
             <span class='kw'>centered.latent</span><span class='kw'>=</span><span class='fl'>TRUE</span>,  <span class='kw'>globconv</span><span class='kw'>=</span><span class='fl'>5</span>*<span class='fl'>1E-3</span>, <span class='kw'>conv</span><span class='kw'>=</span><span class='fl'>1E-4</span> )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod3</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod3</span>)
 
 <span class='co'>#***</span>
 <span class='co'># Model 4: 3-dimensional Rasch model (loglinear smoothing)</span>
 <span class='co'># set some item parameters of items 4,1 and 2 to zero</span>
-<span class='no'>b.constraint</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>cbind</a></span>( <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>4</span>,<span class='fl'>1</span>,<span class='fl'>2</span>), <span class='fl'>1</span>, <span class='fl'>0</span> )
-<span class='no'>mod4</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>Qmatrix</span><span class='kw'>=</span><span class='no'>Qmatrix</span>,
+<span class='no'>b.constraint</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>( <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>4</span>,<span class='fl'>1</span>,<span class='fl'>2</span>), <span class='fl'>1</span>, <span class='fl'>0</span> )
+<span class='no'>mod4</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>Qmatrix</span><span class='kw'>=</span><span class='no'>Qmatrix</span>,
               <span class='kw'>b.constraint</span><span class='kw'>=</span><span class='no'>b.constraint</span>, <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"loglinear"</span> )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod4</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod4</span>)
 
 <span class='co'>#***</span>
 <span class='co'># Model 5: define a different theta grid for each dimension</span>
-<span class='no'>theta.k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>( <span class='st'>"Dim1"</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>( -<span class='fl'>5</span>, <span class='fl'>5</span>, <span class='kw'>len</span><span class='kw'>=</span><span class='fl'>11</span> ),
-                 <span class='st'>"Dim2"</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(-<span class='fl'>5</span>,<span class='fl'>5</span>,<span class='kw'>len</span><span class='kw'>=</span><span class='fl'>8</span>),
-                 <span class='st'>"Dim3"</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>( -<span class='fl'>3</span>,<span class='fl'>3</span>,<span class='kw'>len</span><span class='kw'>=</span><span class='fl'>6</span>) )
-<span class='no'>mod5</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>Qmatrix</span><span class='kw'>=</span><span class='no'>Qmatrix</span>,
+<span class='no'>theta.k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>( <span class='st'>"Dim1"</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>( -<span class='fl'>5</span>, <span class='fl'>5</span>, <span class='kw'>len</span><span class='kw'>=</span><span class='fl'>11</span> ),
+                 <span class='st'>"Dim2"</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(-<span class='fl'>5</span>,<span class='fl'>5</span>,<span class='kw'>len</span><span class='kw'>=</span><span class='fl'>8</span>),
+                 <span class='st'>"Dim3"</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>( -<span class='fl'>3</span>,<span class='fl'>3</span>,<span class='kw'>len</span><span class='kw'>=</span><span class='fl'>6</span>) )
+<span class='no'>mod5</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>Qmatrix</span><span class='kw'>=</span><span class='no'>Qmatrix</span>,
                  <span class='kw'>b.constraint</span><span class='kw'>=</span><span class='no'>b.constraint</span>,  <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"loglinear"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod5</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod5</span>)
 
 <span class='co'>#***</span>
 <span class='co'># Model 6: multdimensional 2PL model (normal distribution)</span>
-<span class='no'>theta.k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>( -<span class='fl'>5</span>, <span class='fl'>5</span>, <span class='kw'>len</span><span class='kw'>=</span><span class='fl'>13</span> )
-<span class='no'>a.constraint</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>cbind</a></span>( <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>8</span>,<span class='fl'>1</span>,<span class='fl'>3</span>), <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='fl'>1</span>, <span class='fl'>1</span> ) <span class='co'># fix some slopes to 1</span>
-<span class='no'>mod6</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,  <span class='kw'>Qmatrix</span><span class='kw'>=</span><span class='no'>Qmatrix</span>,
+<span class='no'>theta.k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>( -<span class='fl'>5</span>, <span class='fl'>5</span>, <span class='kw'>len</span><span class='kw'>=</span><span class='fl'>13</span> )
+<span class='no'>a.constraint</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>( <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>8</span>,<span class='fl'>1</span>,<span class='fl'>3</span>), <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='fl'>1</span>, <span class='fl'>1</span> ) <span class='co'># fix some slopes to 1</span>
+<span class='no'>mod6</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,  <span class='kw'>Qmatrix</span><span class='kw'>=</span><span class='no'>Qmatrix</span>,
             <span class='kw'>centered.latent</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>a.constraint</span><span class='kw'>=</span><span class='no'>a.constraint</span>, <span class='kw'>decrease.increments</span><span class='kw'>=</span><span class='fl'>TRUE</span>,
             <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"normal"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod6</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod6</span>)
 
 <span class='co'>#***</span>
 <span class='co'># Model 7: multdimensional 2PL model (loglinear distribution)</span>
-<span class='no'>a.constraint</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>cbind</a></span>( <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>8</span>,<span class='fl'>1</span>,<span class='fl'>3</span>), <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='fl'>1</span>, <span class='fl'>1</span> )
-<span class='no'>b.constraint</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>cbind</a></span>( <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>8</span>,<span class='fl'>1</span>,<span class='fl'>3</span>), <span class='fl'>1</span>, <span class='fl'>0</span> )
-<span class='no'>mod7</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,  <span class='kw'>Qmatrix</span><span class='kw'>=</span><span class='no'>Qmatrix</span>,
+<span class='no'>a.constraint</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>( <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>8</span>,<span class='fl'>1</span>,<span class='fl'>3</span>), <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='fl'>1</span>, <span class='fl'>1</span> )
+<span class='no'>b.constraint</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>( <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>8</span>,<span class='fl'>1</span>,<span class='fl'>3</span>), <span class='fl'>1</span>, <span class='fl'>0</span> )
+<span class='no'>mod7</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>,  <span class='kw'>Qmatrix</span><span class='kw'>=</span><span class='no'>Qmatrix</span>,
                <span class='kw'>b.constraint</span><span class='kw'>=</span><span class='no'>b.constraint</span>,  <span class='kw'>a.constraint</span><span class='kw'>=</span><span class='no'>a.constraint</span>,
                <span class='kw'>decrease.increments</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"loglinear"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod7</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod7</span>)
 
 <span class='co'>#############################################################################</span>
 <span class='co'># EXAMPLE 4: Unidimensional latent class 1PL IRT model</span>
 <span class='co'>#############################################################################</span>
 
 <span class='co'># simulate data</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>754</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>754</span>)
 <span class='no'>I</span> <span class='kw'>&lt;-</span> <span class='fl'>20</span>     <span class='co'># number of items</span>
 <span class='no'>N</span> <span class='kw'>&lt;-</span> <span class='fl'>2000</span>   <span class='co'># number of persons</span>
-<span class='no'>theta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>( -<span class='fl'>2</span>, <span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>2</span> )
-<span class='no'>theta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>( <span class='no'>theta</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>N</span>/<span class='fl'>4</span>,<span class='no'>N</span>/<span class='fl'>4</span>, <span class='fl'>3</span>*<span class='no'>N</span>/<span class='fl'>8</span>, <span class='no'>N</span>/<span class='fl'>8</span>)  )
-<span class='no'>b</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(-<span class='fl'>2</span>,<span class='fl'>2</span>,<span class='kw'>len</span><span class='kw'>=</span><span class='no'>I</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>sirt</span>)   <span class='co'># use function sim.raschtype from sirt package</span>
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sirt/topics/sim.raschtype'>sim.raschtype</a></span>( <span class='kw'>theta</span><span class='kw'>=</span><span class='no'>theta</span>, <span class='kw'>b</span><span class='kw'>=</span><span class='no'>b</span> )
+<span class='no'>theta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>( -<span class='fl'>2</span>, <span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>2</span> )
+<span class='no'>theta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>( <span class='no'>theta</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>N</span>/<span class='fl'>4</span>,<span class='no'>N</span>/<span class='fl'>4</span>, <span class='fl'>3</span>*<span class='no'>N</span>/<span class='fl'>8</span>, <span class='no'>N</span>/<span class='fl'>8</span>)  )
+<span class='no'>b</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(-<span class='fl'>2</span>,<span class='fl'>2</span>,<span class='kw'>len</span><span class='kw'>=</span><span class='no'>I</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sirt</span>)   <span class='co'># use function sim.raschtype from sirt package</span>
+<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sirt/man/sim.raschtype.html'>sim.raschtype</a></span>( <span class='kw'>theta</span><span class='kw'>=</span><span class='no'>theta</span>, <span class='kw'>b</span><span class='kw'>=</span><span class='no'>b</span> )
 
-<span class='no'>theta.k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(-<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='kw'>len</span><span class='kw'>=</span><span class='fl'>4</span>)      <span class='co'># initial vector of theta</span>
+<span class='no'>theta.k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(-<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='kw'>len</span><span class='kw'>=</span><span class='fl'>4</span>)      <span class='co'># initial vector of theta</span>
 <span class='co'># estimate model</span>
-<span class='no'>mod1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"est"</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>,
+<span class='no'>mod1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"est"</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>,
             <span class='kw'>centerintercepts</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>maxiter</span><span class='kw'>=</span><span class='fl'>200</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod1</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod1</span>)
   <span class='co'>##   Estimated Skill Distribution</span>
   <span class='co'>##         F1    pi.k</span>
   <span class='co'>##   1 -1.988 0.24813</span>
@@ -732,35 +731,35 @@ and <span class="pkg">sirt</span> package (function <code><a href='https://www.r
 <span class='co'># are observed at a fixed discrete grid (see below).</span>
 
 <span class='co'># simulate data</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>754</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>754</span>)
 <span class='no'>I</span> <span class='kw'>&lt;-</span> <span class='fl'>13</span>     <span class='co'># number of items</span>
 <span class='no'>N</span> <span class='kw'>&lt;-</span> <span class='fl'>2400</span>   <span class='co'># number of persons</span>
 
 <span class='co'># simulate Dimension 1 at 4 discrete theta points</span>
-<span class='no'>theta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>( -<span class='fl'>2</span>, <span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>2</span> )
-<span class='no'>theta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>( <span class='no'>theta</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>N</span>/<span class='fl'>4</span>,<span class='no'>N</span>/<span class='fl'>4</span>, <span class='fl'>3</span>*<span class='no'>N</span>/<span class='fl'>8</span>, <span class='no'>N</span>/<span class='fl'>8</span>)  )
-<span class='no'>b</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(-<span class='fl'>2</span>,<span class='fl'>2</span>,<span class='kw'>len</span><span class='kw'>=</span><span class='no'>I</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>sirt</span>)  <span class='co'># use simulation function from sirt package</span>
-<span class='no'>dat1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sirt/topics/sim.raschtype'>sim.raschtype</a></span>( <span class='kw'>theta</span><span class='kw'>=</span><span class='no'>theta</span>, <span class='kw'>b</span><span class='kw'>=</span><span class='no'>b</span> )
+<span class='no'>theta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>( -<span class='fl'>2</span>, <span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>2</span> )
+<span class='no'>theta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>( <span class='no'>theta</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>N</span>/<span class='fl'>4</span>,<span class='no'>N</span>/<span class='fl'>4</span>, <span class='fl'>3</span>*<span class='no'>N</span>/<span class='fl'>8</span>, <span class='no'>N</span>/<span class='fl'>8</span>)  )
+<span class='no'>b</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(-<span class='fl'>2</span>,<span class='fl'>2</span>,<span class='kw'>len</span><span class='kw'>=</span><span class='no'>I</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sirt</span>)  <span class='co'># use simulation function from sirt package</span>
+<span class='no'>dat1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sirt/man/sim.raschtype.html'>sim.raschtype</a></span>( <span class='kw'>theta</span><span class='kw'>=</span><span class='no'>theta</span>, <span class='kw'>b</span><span class='kw'>=</span><span class='no'>b</span> )
 <span class='co'># simulate Dimension 2 at 4 discrete theta points</span>
-<span class='no'>theta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>( -<span class='fl'>3</span>, <span class='fl'>0</span>, <span class='fl'>1.5</span>, <span class='fl'>2</span> )
-<span class='no'>theta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>( <span class='no'>theta</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>N</span>/<span class='fl'>4</span>,<span class='no'>N</span>/<span class='fl'>4</span>, <span class='fl'>3</span>*<span class='no'>N</span>/<span class='fl'>8</span>, <span class='no'>N</span>/<span class='fl'>8</span>)  )
-<span class='no'>dat2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sirt/topics/sim.raschtype'>sim.raschtype</a></span>( <span class='kw'>theta</span><span class='kw'>=</span><span class='no'>theta</span>, <span class='kw'>b</span><span class='kw'>=</span><span class='no'>b</span> )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>colnames</a></span>(<span class='no'>dat2</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/grep'>gsub</a></span>( <span class='st'>"I"</span>, <span class='st'>"U"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>colnames</a></span>(<span class='no'>dat2</span>))
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>cbind</a></span>( <span class='no'>dat1</span>, <span class='no'>dat2</span> )
+<span class='no'>theta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>( -<span class='fl'>3</span>, <span class='fl'>0</span>, <span class='fl'>1.5</span>, <span class='fl'>2</span> )
+<span class='no'>theta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>( <span class='no'>theta</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>N</span>/<span class='fl'>4</span>,<span class='no'>N</span>/<span class='fl'>4</span>, <span class='fl'>3</span>*<span class='no'>N</span>/<span class='fl'>8</span>, <span class='no'>N</span>/<span class='fl'>8</span>)  )
+<span class='no'>dat2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sirt/man/sim.raschtype.html'>sim.raschtype</a></span>( <span class='kw'>theta</span><span class='kw'>=</span><span class='no'>theta</span>, <span class='kw'>b</span><span class='kw'>=</span><span class='no'>b</span> )
+<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='no'>dat2</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span>( <span class='st'>"I"</span>, <span class='st'>"U"</span>, <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='no'>dat2</span>))
+<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>( <span class='no'>dat1</span>, <span class='no'>dat2</span> )
 
 <span class='co'># define Q-matrix</span>
-<span class='no'>Qmatrix</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fl'>0</span>,<span class='fl'>2</span>*<span class='no'>I</span>,<span class='fl'>2</span>)
-<span class='no'>Qmatrix</span>[ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>cbind</a></span>( <span class='fl'>1</span>:(<span class='fl'>2</span>*<span class='no'>I</span>), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>each</span><span class='kw'>=</span><span class='no'>I</span>) ) ] <span class='kw'>&lt;-</span> <span class='fl'>1</span>
+<span class='no'>Qmatrix</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fl'>0</span>,<span class='fl'>2</span>*<span class='no'>I</span>,<span class='fl'>2</span>)
+<span class='no'>Qmatrix</span>[ <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>( <span class='fl'>1</span>:(<span class='fl'>2</span>*<span class='no'>I</span>), <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>each</span><span class='kw'>=</span><span class='no'>I</span>) ) ] <span class='kw'>&lt;-</span> <span class='fl'>1</span>
 
-<span class='no'>theta.k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(-<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='kw'>len</span><span class='kw'>=</span><span class='fl'>4</span>)      <span class='co'># initial matrix</span>
-<span class='no'>theta.k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>cbind</a></span>( <span class='no'>theta.k</span>, <span class='no'>theta.k</span> )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>colnames</a></span>(<span class='no'>theta.k</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Dim1"</span>,<span class='st'>"Dim2"</span>)
+<span class='no'>theta.k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(-<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='kw'>len</span><span class='kw'>=</span><span class='fl'>4</span>)      <span class='co'># initial matrix</span>
+<span class='no'>theta.k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>( <span class='no'>theta.k</span>, <span class='no'>theta.k</span> )
+<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='no'>theta.k</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Dim1"</span>,<span class='st'>"Dim2"</span>)
 
 <span class='co'># estimate model</span>
-<span class='no'>mod2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"est"</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>,
+<span class='no'>mod2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"est"</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span>,
               <span class='kw'>Qmatrix</span><span class='kw'>=</span><span class='no'>Qmatrix</span>, <span class='kw'>centerintercepts</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod2</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod2</span>)
   <span class='co'>##   Estimated Skill Distribution</span>
   <span class='co'>##     theta.k.Dim1 theta.k.Dim2    pi.k</span>
   <span class='co'>##   1       -2.022       -3.035 0.25010</span>
@@ -772,35 +771,31 @@ and <span class="pkg">sirt</span> package (function <code><a href='https://www.r
 <span class='co'># EXAMPLE 6: Large-scale dataset data.mg</span>
 <span class='co'>#############################################################################</span>
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>data.mg</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"CDM"</span>)
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='no'>data.mg</span>[, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"I"</span>, <span class='fl'>1</span>:<span class='fl'>11</span> ) ]
-<span class='no'>theta.k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(-<span class='fl'>6</span>,<span class='fl'>6</span>,<span class='kw'>len</span><span class='kw'>=</span><span class='fl'>21</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>data.mg</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"CDM"</span>)
+<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='no'>data.mg</span>[, <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"I"</span>, <span class='fl'>1</span>:<span class='fl'>11</span> ) ]
+<span class='no'>theta.k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(-<span class='fl'>6</span>,<span class='fl'>6</span>,<span class='kw'>len</span><span class='kw'>=</span><span class='fl'>21</span>)
 
 <span class='co'>#***</span>
 <span class='co'># Model 1: Generalized partial credit model with multiple groups</span>
-<span class='no'>mod1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/gdm'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>group</span><span class='kw'>=</span><span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/CDM/topics/data.mg'>data.mg</a></span>$<span class='no'>group</span>,
+<span class='no'>mod1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PL"</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='no'>theta.k</span>, <span class='kw'>group</span><span class='kw'>=</span><span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/CDM/man/data.mg.html'>data.mg</a></span>$<span class='no'>group</span>,
               <span class='kw'>skillspace</span><span class='kw'>=</span><span class='st'>"normal"</span>, <span class='kw'>standardized.latent</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod1</span>)
-<span class='co'># }</span></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod1</span>)
+}</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#details">Details</a></li>
-
       <li><a href="#value">Value</a></li>
-
       <li><a href="#references">References</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -808,13 +803,16 @@ and <span class="pkg">sirt</span> package (function <code><a href='https://www.r
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

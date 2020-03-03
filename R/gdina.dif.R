@@ -1,11 +1,14 @@
 ## File Name: gdina.dif.R
-## File Version: 1.21
-##########################################################
-# differential item functioning in the GDINA model
-# a Wald test is used for testing item-wise DIF
+## File Version: 1.222
+
+
+#** differential item functioning in the GDINA model
+#** Wald test is used for testing item-wise DIF
 gdina.dif <- function( object )
 {
     ocontrol <- object$control
+Revalprstr("ocontrol")
+Revalprstr("ocontrol$item.patt")
     G <- object$G
     J <- ncol(object$dat)
     delta.group <- as.list(1:G)
@@ -14,7 +17,7 @@ gdina.dif <- function( object )
     names(varmat.group) <- names(prob.exp.group) <- paste0("Group", 1:G )
     ocoef <- object$coef
     for (gg in 1:G){  # gg <- 1
-        res.gg <- gdina.dif.aux( ocontrol, gg=gg, data=object$data)
+        res.gg <- gdina_dif_compute( ocontrol=ocontrol, gg=gg, data=object$data)
         prob.exp.group[[gg]] <- res.gg$prob_exp
         names(prob.exp.group[[gg]]) <- colnames(object$data)
         delta.group[[gg]] <- res.gg$delta
@@ -64,11 +67,8 @@ gdina.dif <- function( object )
     difstats$p <- 1 - stats::pchisq( difstats$X2, df=difstats$df )
     difstats$p.holm <- stats::p.adjust( difstats$p )
     if (G==2){ difstats$UA <- dif_es }
-    res <- list("difstats"=difstats, "coef"=ocoef,
-            "delta_all"=delta_all,
-            "varmat_all"=varmat_all, "prob.exp.group"=prob.exp.group)
+    res <- list(difstats=difstats, coef=ocoef, delta_all=delta_all,
+            varmat_all=varmat_all, prob.exp.group=prob.exp.group)
     class(res) <- "gdina.dif"
     return(res)
 }
-##########################################################
-

@@ -8,21 +8,25 @@
 
 <title>Structured Latent Class Analysis (SLCA) — slca • CDM</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,13 +34,14 @@
 
 
 
-<meta property="og:title" content="Structured Latent Class Analysis (SLCA) — slca" />
 
+<meta property="og:title" content="Structured Latent Class Analysis (SLCA) — slca" />
 <meta property="og:description" content="This function implements a structured latent class model for
 polytomous item responses (Formann, 1985, 1992). Lasso estimation for the
 item parameters is included (Chen, Liu, Xu &amp;amp; Ying, 2015;
 Chen, Li, Liu &amp;amp; Ying, 2017; Sun, Chen, Liu, Ying &amp;amp; Xin,  2016)." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -48,6 +53,7 @@ Chen, Li, Liu &amp;amp; Ying, 2017; Sun, Chen, Liu, Ying &amp;amp; Xin,  2016)."
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -74,7 +80,7 @@ Chen, Li, Liu &amp;amp; Ying, 2017; Sun, Chen, Liu, Ying &amp;amp; Xin,  2016)."
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -82,11 +88,10 @@ Chen, Li, Liu &amp;amp; Ying, 2017; Sun, Chen, Liu, Ying &amp;amp; Xin,  2016)."
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/alexanderrobitzsch/CDM">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -97,6 +102,7 @@ Chen, Li, Liu &amp;amp; Ying, 2017; Sun, Chen, Liu, Ying &amp;amp; Xin,  2016)."
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -108,32 +114,30 @@ Chen, Li, Liu &amp;amp; Ying, 2017; Sun, Chen, Liu, Ying &amp;amp; Xin,  2016)."
     </div>
 
     <div class="ref-description">
-    
     <p>This function implements a structured latent class model for
 polytomous item responses (Formann, 1985, 1992). Lasso estimation for the
 item parameters is included (Chen, Liu, Xu &amp; Ying, 2015;
 Chen, Li, Liu &amp; Ying, 2017; Sun, Chen, Liu, Ying &amp; Xin,  2016).</p>
-    
     </div>
 
-    <pre class="usage">slca(data, group=NULL, weights=rep(1, nrow(data)), Xdes,
-  Xlambda.init=NULL, Xlambda.fixed=NULL, Xlambda.constr.V=NULL,
-  Xlambda.constr.c=NULL,  delta.designmatrix=NULL,
-  delta.init=NULL, delta.fixed=NULL, delta.linkfct="log",
-  Xlambda_positive=NULL, regular_type="lasso", regular_lam=0, regular_w=NULL,
-  regular_n=nrow(data), maxiter=1000, conv=1e-5, globconv=1e-5, msteps=10,
-  convM=5e-04, decrease.increments=FALSE, oldfac=0, dampening_factor=1.01,
-  seed=NULL, progress=TRUE, PEM=TRUE, PEM_itermax=maxiter, ...)
+    <pre class="usage"><span class='fu'>slca</span>(<span class='no'>data</span>, <span class='kw'>group</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>weights</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>data</span>)), <span class='no'>Xdes</span>,
+  <span class='kw'>Xlambda.init</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>Xlambda.fixed</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>Xlambda.constr.V</span><span class='kw'>=</span><span class='kw'>NULL</span>,
+  <span class='kw'>Xlambda.constr.c</span><span class='kw'>=</span><span class='kw'>NULL</span>,  <span class='kw'>delta.designmatrix</span><span class='kw'>=</span><span class='kw'>NULL</span>,
+  <span class='kw'>delta.init</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>delta.fixed</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>delta.linkfct</span><span class='kw'>=</span><span class='st'>"log"</span>,
+  <span class='kw'>Xlambda_positive</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>regular_type</span><span class='kw'>=</span><span class='st'>"lasso"</span>, <span class='kw'>regular_lam</span><span class='kw'>=</span><span class='fl'>0</span>, <span class='kw'>regular_w</span><span class='kw'>=</span><span class='kw'>NULL</span>,
+  <span class='kw'>regular_n</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>data</span>), <span class='kw'>maxiter</span><span class='kw'>=</span><span class='fl'>1000</span>, <span class='kw'>conv</span><span class='kw'>=</span><span class='fl'>1e-5</span>, <span class='kw'>globconv</span><span class='kw'>=</span><span class='fl'>1e-5</span>, <span class='kw'>msteps</span><span class='kw'>=</span><span class='fl'>10</span>,
+  <span class='kw'>convM</span><span class='kw'>=</span><span class='fl'>5e-04</span>, <span class='kw'>decrease.increments</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>oldfac</span><span class='kw'>=</span><span class='fl'>0</span>, <span class='kw'>dampening_factor</span><span class='kw'>=</span><span class='fl'>1.01</span>,
+  <span class='kw'>seed</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>progress</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>PEM</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>PEM_itermax</span><span class='kw'>=</span><span class='no'>maxiter</span>, <span class='no'>...</span>)
 
-# S3 method for slca
-summary(object, file=NULL, &#8230;)
+<span class='co'># S3 method for slca</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='kw'>file</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='no'>...</span>)
 
-# S3 method for slca
-print(x, &#8230;)
+<span class='co'># S3 method for slca</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
-# S3 method for slca
-plot(x, group=1, ... )</pre>
-    
+<span class='co'># S3 method for slca</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>group</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='no'>...</span> )</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -301,12 +305,12 @@ should be sinked.</p></td>
       <td><p>A required object of class <code>slca</code></p></td>
     </tr>
     <tr>
-      <th>&#8230;</th>
+      <th>...</th>
       <td><p>Optional parameters to be passed to or from other
     methods will be ignored.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The structured latent class model allows for general constraints of items
@@ -335,7 +339,6 @@ $$pen( \bold{\lambda}_x )=p_\lambda \sum_v n_v w_v | \lambda_{xv} | $$
 where \(p_\lambda\) can be specified with <code>regular_lam</code>,
 \(w_v\) can be specified with <code>regular_w</code>, and
 \(n_v\) can be specified with <code>regular_n</code>.</p>
-    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An object of class <code>slca</code>. The list contains the
@@ -370,7 +373,6 @@ following entries:</p>
 <dt>delta.init</dt><dd><p>Used initial delta parameters</p></dd>
 <dt>converged</dt><dd><p>Logical indicating whether convergence was achieved.</p></dd>
 
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Berlinet, A. F., &amp; Roland, C. (2012).
@@ -400,7 +402,6 @@ Latent variable selection for multidimensional item response theory models
 via \(L_1\) regularization. <em>Psychometrika, 81</em>(4), 921-939.</p>
 <p>Xu, X., &amp; von Davier, M. (2008). <em>Fitting the structured general diagnostic
 model to NAEP data</em>. ETS Research Report ETS RR-08-27. Princeton, ETS.</p>
-    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>If some items have differing number of categories, appropriate
@@ -409,7 +410,6 @@ practically set to zero by loading an item for all skill classes
 on a fixed \(\lambda_x\) parameter of a small number, e.g. <code>-999</code>.</p>
 <p>The implementation of the model builds on pieces work of Anton Formann.
 See <a href='http://www.antonformann.at/'>http://www.antonformann.at/</a> for more information.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>For latent trait models with continuous latent variables see the
@@ -419,526 +419,25 @@ the <span class="pkg">MultiLCIRT</span> package.</p>
 package.</p>
 <p>For mixture Rasch or mixture IRT models see the <span class="pkg">psychomix</span> or
 <span class="pkg">mRm</span> package.</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'>#############################################################################</span>
-<span class='co'># EXAMPLE 1: data.Students | (Generalized) Partial Credit Model</span>
-<span class='co'>#############################################################################</span>
-
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>data.Students</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"CDM"</span>)
-
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='no'>data.Students</span>[, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"mj1"</span>,<span class='st'>"mj2"</span>,<span class='st'>"mj3"</span>,<span class='st'>"mj4"</span>,<span class='st'>"sc1"</span>, <span class='st'>"sc2"</span>) ]
-<span class='co'># define discretized ability</span>
-<span class='no'>theta.k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>( -<span class='fl'>6</span>, <span class='fl'>6</span>, <span class='kw'>len</span><span class='kw'>=</span><span class='fl'>21</span> )
-
-<span class='co'>#*** Model 1: Partial credit model</span>
-
-<span class='co'># define design matrix for lambda</span>
-<span class='no'>I</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>ncol</a></span>(<span class='no'>dat</span>)
-<span class='no'>maxK</span> <span class='kw'>&lt;-</span> <span class='fl'>4</span>
-<span class='no'>TP</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>theta.k</span>)
-<span class='no'>NXlam</span> <span class='kw'>&lt;-</span> <span class='no'>I</span>*(<span class='no'>maxK</span>-<span class='fl'>1</span>) + <span class='fl'>1</span>       <span class='co'># number of estimated parameters</span>
-       <span class='co'># last parameter is joint slope parameter</span>
-<span class='no'>Xdes</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/array'>array</a></span>( <span class='fl'>0</span>, <span class='kw'>dim</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>I</span>, <span class='no'>maxK</span>, <span class='no'>TP</span>,  <span class='no'>NXlam</span> ) )
-<span class='co'># Item1Cat1, ..., Item1Cat3, Item2Cat1, ...,</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/dimnames'>dimnames</a></span>(<span class='no'>Xdes</span>)<span class='kw'>[[</span><span class='fl'>1</span>]] <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>colnames</a></span>(<span class='no'>dat</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/dimnames'>dimnames</a></span>(<span class='no'>Xdes</span>)<span class='kw'>[[</span><span class='fl'>2</span>]] <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"Cat"</span>, <span class='fl'>1</span>:(<span class='no'>maxK</span>) )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/dimnames'>dimnames</a></span>(<span class='no'>Xdes</span>)<span class='kw'>[[</span><span class='fl'>3</span>]] <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"Class"</span>, <span class='fl'>1</span>:<span class='no'>TP</span> )
-<span class='no'>v2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/unlist'>unlist</a></span>( <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>sapply</a></span>( <span class='fl'>1</span>:<span class='no'>I</span>, <span class='kw'>FUN</span><span class='kw'>=</span><span class='kw'>function</span>(<span class='no'>ii</span>){ <span class='co'># ii</span>
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>( <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>( <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>colnames</a></span>(<span class='no'>dat</span>)[<span class='no'>ii</span>], <span class='st'>"_b"</span>  ), <span class='st'>"Cat"</span>, <span class='fl'>1</span>:(<span class='no'>maxK</span>-<span class='fl'>1</span>) )
-                }, <span class='kw'>simplify</span><span class='kw'>=</span><span class='fl'>FALSE</span>) )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/dimnames'>dimnames</a></span>(<span class='no'>Xdes</span>)<span class='kw'>[[</span><span class='fl'>4</span>]] <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>( <span class='no'>v2</span>, <span class='st'>"a"</span> )
-<span class='co'># define theta design and item discriminations</span>
-<span class='kw'>for</span> (<span class='no'>ii</span> <span class='kw'>in</span> <span class='fl'>1</span>:<span class='no'>I</span>){
-    <span class='kw'>for</span> (<span class='no'>hh</span> <span class='kw'>in</span> <span class='fl'>1</span>:(<span class='no'>maxK</span>-<span class='fl'>1</span>) ){
-        <span class='no'>Xdes</span>[<span class='no'>ii</span>, <span class='no'>hh</span> + <span class='fl'>1</span>,, <span class='no'>NXlam</span> ] <span class='kw'>&lt;-</span> <span class='no'>hh</span> * <span class='no'>theta.k</span>
-    }
-}
-<span class='co'># item intercepts</span>
-<span class='kw'>for</span> (<span class='no'>ii</span> <span class='kw'>in</span> <span class='fl'>1</span>:<span class='no'>I</span>){
-    <span class='kw'>for</span> (<span class='no'>hh</span> <span class='kw'>in</span> <span class='fl'>1</span>:(<span class='no'>maxK</span>-<span class='fl'>1</span>) ){
-        <span class='co'># ii &lt;- 1  # Item    # hh &lt;- 1  # category</span>
-        <span class='no'>Xdes</span>[<span class='no'>ii</span>,<span class='no'>hh</span>+<span class='fl'>1</span>,, ( <span class='no'>ii</span> - <span class='fl'>1</span>)*(<span class='no'>maxK</span>-<span class='fl'>1</span>) + <span class='no'>hh</span>] <span class='kw'>&lt;-</span> <span class='fl'>1</span>
-    }
-}
-<span class='co'>#****</span>
-<span class='co'># skill space designmatrix</span>
-<span class='no'>TP</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>theta.k</span>)
-<span class='no'>w1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>dnorm</a></span>(<span class='no'>theta.k</span>)
-<span class='no'>w1</span> <span class='kw'>&lt;-</span> <span class='no'>w1</span> / <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='no'>w1</span>)
-<span class='no'>delta.designmatrix</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>( <span class='fl'>1</span>, <span class='kw'>nrow</span><span class='kw'>=</span><span class='no'>TP</span>, <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>1</span> )
-<span class='no'>delta.designmatrix</span>[,<span class='fl'>1</span>] <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>(<span class='no'>w1</span>)
-
-<span class='co'># initial lambda parameters</span>
-<span class='no'>Xlambda.init</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>( <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>( <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/dim'>dim</a></span>(<span class='no'>Xdes</span>)<span class='kw'>[[</span><span class='fl'>4</span>]] - <span class='fl'>1</span> ), <span class='fl'>1</span> )
-<span class='co'># fixed delta parameter</span>
-<span class='no'>delta.fixed</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>cbind</a></span>( <span class='fl'>1</span>, <span class='fl'>1</span>,<span class='fl'>1</span> )
-
-<span class='co'># estimate model</span>
-<span class='no'>mod1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/slca'>slca</a></span>( <span class='no'>dat</span>, <span class='kw'>Xdes</span><span class='kw'>=</span><span class='no'>Xdes</span>, <span class='kw'>delta.designmatrix</span><span class='kw'>=</span><span class='no'>delta.designmatrix</span>,
-            <span class='kw'>Xlambda.init</span><span class='kw'>=</span><span class='no'>Xlambda.init</span>, <span class='kw'>delta.fixed</span><span class='kw'>=</span><span class='no'>delta.fixed</span> )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod1</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>mod1</span>, <span class='kw'>cex.names</span><span class='kw'>=</span><span class='fl'>.7</span> )
-
-<span class='co'># }</span># NOT RUN {
-#*** Model 2: Partial credit model with some parameter constraints
-# fixed lambda parameters
-Xlambda.fixed <- cbind( c(1,19), c(3.2,1.52 ) )
-# 1st parameter=3.2
-# 19th parameter=1.52 (joint item slope)
-mod2 <- CDM::slca( dat, Xdes=Xdes, delta.designmatrix=delta.designmatrix,
-            delta.init=delta.init, Xlambda.init=Xlambda.init, delta.fixed=delta.fixed,
-            Xlambda.fixed=Xlambda.fixed, maxiter=70 )
-
-#*** Model 3: Partial credit model with non-normal distribution
-Xlambda.fixed <- cbind(  c(1,19), c(3.2,1) ) # fix item slope to one
-delta.designmatrix <- cbind( 1, theta.k, theta.k^2, theta.k^3 )
-mod3 <- CDM::slca( dat, Xdes=Xdes,  delta.designmatrix=delta.designmatrix,
-            Xlambda.fixed=Xlambda.fixed,  maxiter=200 )
-summary(mod3)
-
-# non-normal distribution with convergence regularizing factor oldfac
-mod3a <- CDM::slca( dat, Xdes=Xdes,  delta.designmatrix=delta.designmatrix,
-            Xlambda.fixed=Xlambda.fixed, maxiter=500, oldfac=.95 )
-summary(mod3a)
-
-#*** Model 4: Generalized Partial Credit Model
-
-# estimate generalized partial credit model without restrictions on trait
-# distribution and item parameters to ensure better convergence behavior
-# Note that two parameters are not identifiable and information criteria
-# have to be adapted.
-
-#---
-# define design matrix for lambda
-I <- ncol(dat)
-maxK <- 4
-TP <- length(theta.k)
-NXlam <- I*(maxK-1) + I       # number of estimated parameters
-Xdes <- array( 0, dim=c(I, maxK, TP,  NXlam ) )
-# Item1Cat1, ..., Item1Cat3, Item2Cat1, ...,
-dimnames(Xdes)[[1]] <- colnames(dat)
-dimnames(Xdes)[[2]] <- paste0("Cat", 1:(maxK) )
-dimnames(Xdes)[[3]] <- paste0("Class", 1:TP )
-v2 <- unlist( sapply( 1:I, FUN=function(ii){ # ii
-    paste0( paste0( colnames(dat)[ii], "_b"  ), "Cat", 1:(maxK-1) )
-                }, simplify=FALSE) )
-dimnames(Xdes)[[4]] <- c( v2, paste0( colnames(dat),"_a") )
-dimnames(Xdes)
-# define theta design and item discriminations
-for (ii in 1:I){
-    for (hh in 1:(maxK-1) ){
-        Xdes[ii, hh + 1,, I*(maxK-1) + ii ] <- hh * theta.k
-    }
-}
-# item intercepts
-for (ii in 1:I){
-    for (hh in 1:(maxK-1) ){
-        Xdes[ii,hh+1,, ( ii - 1)*(maxK-1) + hh] <- 1
-    }
-}
-#****
-# skill space designmatrix
-delta.designmatrix <- cbind( 1, theta.k,theta.k^2 )
-# initial lambda parameters from partial credit model
-Xlambda.init <- mod1$Xlambda
-Xlambda.init <- c( mod1$Xlambda[ - length(Xlambda.init) ],
-         rep( Xlambda.init[ length(Xlambda.init)  ],I) )
-
-# estimate model
-mod4 <- CDM::slca( dat, Xdes=Xdes, Xlambda.init=Xlambda.init,
-             delta.designmatrix=delta.designmatrix, decrease.increments=TRUE,
-             maxiter=300 )
-
-#############################################################################
-# EXAMPLE 2: Latent class model with two classes
-#############################################################################
-
-set.seed(9876)
-I <- 7    # number of items
-# simulate response probabilities
-a1 <- stats::runif(I, 0, .4 )
-a2 <- stats::runif(I, .6, 1 )
-N <- 1000    # sample size
-# simulate data in two classes of proportions .3 and .7
-N1 <- round(.3*N)
-dat1 <- 1 * ( matrix(a1,N1,I,byrow=TRUE) > matrix( stats::runif( N1 * I), N1, I ) )
-N2 <- round(.7*N)
-dat2 <- 1 * ( matrix(a2,N2,I,byrow=TRUE) > matrix( stats::runif( N2 * I), N2, I ) )
-dat <- rbind( dat1, dat2 )
-colnames(dat) <- paste0("I", 1:I)
-
-# define design matrices
-TP <- 2     # two classes
-# The idea is that latent classes refer to two different "dimensions".
-# Items load on latent class indicators 1 and 2, see below.
-Xdes <- array(0, dim=c(I,2,2,2*I) )
-items <- colnames(dat)
-dimnames(Xdes)[[4]] <- c(paste0( colnames(dat), "Class", 1),
-          paste0( colnames(dat), "Class", 2) )
-    # items, categories, classes, parameters
-# probabilities for correct solution
-for (ii in 1:I){
-    Xdes[ ii, 2, 1, ii ] <- 1    # probabilities class 1
-    Xdes[ ii, 2, 2, ii+I ] <- 1  # probabilities class 2
-}
-# estimate model
-mod1 <- CDM::slca( dat, Xdes=Xdes )
-summary(mod1)
-
-#############################################################################
-# EXAMPLE 3: Mixed Rasch model with two classes
-#############################################################################
-
-set.seed(987)
-library(sirt)
-# simulate two latent classes of Rasch populations
-I <- 15  # 6 items
-b1 <- seq( -1.5, 1.5, len=I)      # difficulties latent class 1
-b2 <- b1    # difficulties latent class 2
-b2[ c(4,7, 9, 11, 12, 13) ] <- c(1, -.5, -.5, .33, .33, -.66 )
-N <- 3000    # number of persons
-wgt <- .25       # class probability for class 1
-# class 1
-dat1 <- sirt::sim.raschtype( stats::rnorm( wgt*N ), b1 )
-# class 2
-dat2 <- sirt::sim.raschtype( stats::rnorm( (1-wgt)*N, mean=1, sd=1.7), b2 )
-dat <- rbind( dat1, dat2 )
-# theta grid
-theta.k <- seq( -5, 5, len=9 )
-TP <- length(theta.k)
-
-#*** Model 1: Rasch model with normal distribution
-maxK <- 2
-NXlam <- I +1
-Xdes <- array( 0, dim=c(I, maxK, TP,  NXlam ) )
-dimnames(Xdes)[[1]] <- colnames(dat)
-dimnames(Xdes)[[2]] <- paste0("Cat", 1:(maxK) )
-dimnames(Xdes)[[4]] <- c( paste0( "b_", colnames(dat)[1:I] ), "a" )
-# define item difficulties
-for (ii in 1:I){
-    Xdes[ii, 2,, ii ] <- -1
-}
-# theta design
-for (tt in 1:TP){
-    Xdes[1:I, 2, tt, I + 1] <- theta.k[tt]
-}
-
-# skill space definition
-delta.designmatrix <- cbind( 1, theta.k^2 )
-delta.fixed <- NULL
-Xlambda.init <- c( stats::runif( I, -.8, .8 ), 1 )
-Xlambda.fixed <- cbind( I+1, 1 )
-# estimate model
-mod1 <- CDM::slca( dat, Xdes=Xdes, delta.designmatrix=delta.designmatrix,
-            delta.fixed=delta.fixed, Xlambda.fixed=Xlambda.fixed,
-            Xlambda.init=Xlambda.init, decrease.increments=TRUE, maxiter=200 )
-summary(mod1)
-
-#*** Model 1b: Constraint the sum of item difficulties to zero
-
-# change skill space definition
-delta.designmatrix <- cbind( 1, theta.k, theta.k^2 )
-delta.fixed <- NULL
-# constrain sum of difficulties Xlambda parameters to zero
-Xlambda.constr.V <- matrix( 1, nrow=I+1, ncol=1 )
-Xlambda.constr.V[I+1,1] <- 0
-Xlambda.constr.c <- c(0)
-# estimate model
-mod1b <- CDM::slca( dat, Xdes=Xdes, delta.designmatrix=delta.designmatrix,
-            Xlambda.fixed=Xlambda.fixed, Xlambda.constr.V=Xlambda.constr.V,
-            Xlambda.constr.c=Xlambda.constr.c  )
-summary(mod1b)
-
-#*** Model 2: Mixed Rasch model with two latent classes
-NXlam <- 2*I +2
-Xdes <- array( 0, dim=c(I, maxK, 2*TP,  NXlam ) )
-dimnames(Xdes)[[1]] <- colnames(dat)
-dimnames(Xdes)[[2]] <- paste0("Cat", 1:(maxK) )
-dimnames(Xdes)[[4]] <- c( paste0( "bClass1_", colnames(dat)[1:I] ),
-        paste0( "bClass2_", colnames(dat)[1:I] ), "aClass1", "aClass2" )
-# define item difficulties
-for (ii in 1:I){
-    Xdes[ii, 2, 1:TP, ii ] <- -1  # first class
-    Xdes[ii, 2, TP + 1:TP, I+ii ] <- -1  # second class
-}
-# theta design
-for (tt in 1:TP){
-    Xdes[1:I, 2, tt, 2*I+1 ] <- theta.k[tt]
-    Xdes[1:I, 2, TP+tt, 2*I+2 ] <- theta.k[tt]
-}
-# skill space definition
-delta.designmatrix <- matrix( 0, nrow=2*TP, ncol=4 )
-delta.designmatrix[1:TP,1] <- 1
-delta.designmatrix[1:TP,2] <- theta.k^2
-delta.designmatrix[TP + 1:TP,3] <- 1
-delta.designmatrix[TP+ 1:TP,4] <- theta.k^2
-b1 <- stats::qnorm( colMeans(dat) )
-Xlambda.init <- c( stats::runif( 2*I, -1.8, 1.8 ), 1,1 )
-Xlambda.fixed <- cbind( c(2*I+1, 2*I+2), 1 )
-# estimate model
-mod2 <- CDM::slca( dat, Xdes=Xdes,  delta.designmatrix=delta.designmatrix,
-            Xlambda.fixed=Xlambda.fixed, decrease.increments=TRUE,
-            Xlambda.init=Xlambda.init, maxiter=1000 )
-summary(mod2)
-summary(mod1)
-# latent class proportions
-stats::aggregate( mod2$pi.k, list( rep(1:2, each=TP)), sum )
-
-#*** Model 2b: Different parametrization with sum constraint on item difficulties
-
-# skill space definition
-delta.designmatrix <- matrix( 0, nrow=2*TP, ncol=6 )
-delta.designmatrix[1:TP,1] <- 1
-delta.designmatrix[1:TP,2] <- theta.k
-delta.designmatrix[1:TP,3] <- theta.k^2
-delta.designmatrix[TP+ 1:TP,4] <- 1
-delta.designmatrix[TP+ 1:TP,5] <- theta.k
-delta.designmatrix[TP+ 1:TP,6] <- theta.k^2
-Xlambda.fixed <- cbind( c(2*I+1,2*I+2), c(1,1) )
-b1 <- stats::qnorm( colMeans( dat ) )
-Xlambda.init <- c( b1, b1 + stats::runif(I, -1, 1 ), 1, 1 )
-# constraints on item difficulties
-Xlambda.constr.V <- matrix( 0, nrow=NXlam, ncol=2)
-Xlambda.constr.V[1:I, 1 ] <- 1
-Xlambda.constr.V[I + 1:I, 2 ] <- 1
-Xlambda.constr.c <- c(0,0)
-# estimate model
-mod2b <- CDM::slca( dat, Xdes=Xdes, delta.designmatrix=delta.designmatrix,
-            Xlambda.fixed=Xlambda.fixed,  Xlambda.init=Xlambda.init,
-            Xlambda.constr.V=Xlambda.constr.V, Xlambda.constr.c=Xlambda.constr.c,
-            decrease.increments=TRUE, maxiter=1000 )
-summary(mod2b)
-stats::aggregate( mod2b$pi.k, list( rep(1:2, each=TP)), sum )
-
-#*** Model 2c: Estimation with mRm package
-library(mRm)
-mod2c <- mRm::mrm(data.matrix=dat, cl=2)
-plot(mod2c)
-print(mod2c)
-
-#*** Model 2d: Estimation with psychomix package
-library(psychomix)
-mod2d <- psychomix::raschmix(data=dat, k=2, verbose=TRUE )
-summary(mod2d)
-plot(mod2d)
-
-#############################################################################
-# EXAMPLE 4: Located latent class model, Rasch model
-#############################################################################
-
-set.seed(487)
-library(sirt)
-I <- 15  # I items
-b1 <- seq( -2, 2, len=I)      # item difficulties
-N <- 4000    # number of persons
-# simulate 4 theta classes
-theta0 <- c( -2.5, -1, 0.3, 1.3 )  # skill classes
-probs0 <- c( .1, .4, .2, .3 )
-TP <- length(theta0)
-theta <- theta0[ rep(1:TP, round(probs0*N)  ) ]
-dat <- sirt::sim.raschtype( theta, b1 )
-
-#*** Model 1: Located latent class model with 4 classes
-maxK <- 2
-NXlam <- I + TP
-Xdes <- array( 0, dim=c(I, maxK, TP,  NXlam ) )
-dimnames(Xdes)[[1]] <- colnames(dat)
-dimnames(Xdes)[[2]] <- paste0("Cat", 1:(maxK) )
-dimnames(Xdes)[[3]] <- paste0("Class", 1:TP )
-dimnames(Xdes)[[4]] <- c( paste0( "b_", colnames(dat)[1:I] ), paste0("theta", 1:TP) )
-# define item difficulties
-for (ii in 1:I){
-    Xdes[ii, 2,, ii ] <- -1
-}
-# theta design
-for (tt in 1:TP){
-    Xdes[1:I, 2, tt, I + tt] <- 1
-}
-
-# skill space definition
-delta.designmatrix <- diag(TP)
-Xlambda.init <- c( - stats::qnorm( colMeans(dat) ), seq(-2,1,len=TP)  )
-# constraint on item difficulties
-Xlambda.constr.V <- matrix( 0, nrow=NXlam, ncol=1)
-Xlambda.constr.V[1:I,1] <- 1
-Xlambda.constr.c <- c(0)
-delta.init <- matrix( c(1,1,1,1), TP, 1 )
-# estimate model
-mod1 <- CDM::slca( dat, Xdes=Xdes, delta.designmatrix=delta.designmatrix,
-            delta.init=delta.init, Xlambda.init=Xlambda.init,
-            Xlambda.constr.V=Xlambda.constr.V, Xlambda.constr.c=Xlambda.constr.c,
-            decrease.increments=TRUE,  maxiter=400 )
-summary(mod1)
-# compare estimated and simulated theta class locations
-cbind( mod1$Xlambda[ - c(1:I) ], theta0 )
-# compare estimated and simulated latent class proportions
-cbind( mod1$pi.k, probs0 )
-
-#############################################################################
-# EXAMPLE 5: DINA model with two skills
-#############################################################################
-
-set.seed(487)
-N <- 3000   # number of persons
-# define Q-matrix
-I <- 9  # 9 items
-NS <- 2 # 2 skills
-TP <- 4 # number of skill classes
-Q <- scan( nlines=3)
-  1 0   1 0   1 0
-  0 1   0 1   0 1
-  1 1   1 1   1 1
-Q <- matrix(Q, I, ncol=NS,byrow=TRUE)
-# define skill distribution
-alpha0 <- matrix( c(0,0,1,0,0,1,1,1), nrow=4,ncol=2,byrow=TRUE)
-prob0 <- c( .2, .4, .1, .3 )
-alpha <- alpha0[ rep( 1:TP, prob0*N),]
-# define guessing and slipping parameters
-guess <- round( stats::runif(I, 0, .4 ), 2 )
-slip <- round( stats::runif(I, 0, .3 ), 2 )
-# simulate data according to the DINA model
-dat <- CDM::sim.din( q.matrix=Q, alpha=alpha, slip=slip, guess=guess )$dat
-
-# define Xlambda design matrix
-maxK <- 2
-NXlam <- 2*I
-Xdes <- array( 0, dim=c(I, maxK, TP,  NXlam ) )
-dimnames(Xdes)[[1]] <- colnames(dat)
-dimnames(Xdes)[[2]] <- paste0("Cat", 1:(maxK) )
-dimnames(Xdes)[[3]] <- c("S00","S10","S01","S11")
-dimnames(Xdes)[[4]] <- c( paste0("guess",1:I ), paste0( "antislip", 1:I ) )
-dimnames(Xdes)
-# define item difficulties
-for (ii in 1:I){
-        # define latent responses
-        latresp <- 1*( alpha0 %*% Q[ii,]==sum(Q[ii,]) )[,1]
-        # model slipping parameters
-        Xdes[ii, 2, latresp==1, I+ii ] <- 1
-        # guessing parameters
-        Xdes[ii, 2, latresp==0, ii ] <- 1
-}
-Xdes[1,2,,]
-Xdes[7,2,,]
-# skill space definition
-delta.designmatrix <- diag(TP)
-Xlambda.init <- c( rep( stats::qlogis( .2 ), I ), rep( stats::qlogis( .8 ), I ) )
-
-# estimate DINA model with slca function
-mod1 <- CDM::slca( dat, Xdes=Xdes, delta.designmatrix=delta.designmatrix,
-            Xlambda.init=Xlambda.init, decrease.increments=TRUE, maxiter=400 )
-summary(mod1)
-
-# compare estimated and simulated latent class proportions
-cbind( mod1$pi.k, probs0 )
-# compare estimated and simulated guessing parameters
-cbind( mod1$pjk[1,,2], guess )
-# compare estimated and simulated slipping parameters
-cbind( 1 - mod1$pjk[4,,2], slip )
-
-#############################################################################
-# EXAMPLE 6: Investigating differential item functioning in Rasch models
-#            with regularization
-#############################################################################
-
-#---- simulate data
-set.seed(987)
-N <- 1000   # number of persons in a group
-I <- 20    # number of items
-#* population parameters of two groups
-mu1 <- 0
-mu2 <- .6
-sd1 <- 1.4
-sd2 <- 1
-# item difficulties
-b <- seq( -1.1, 1.1, len=I )
-# define some DIF effects
-dif <- rep(0,I)
-dif[ c(3,6,9,12)] <- c( .6, -1, .75, -.35 )
-print(dif)
-#* simulate datasets
-dat1 <- sirt::sim.raschtype( rnorm(N, mean=mu1, sd=sd1), b=b - dif /2 )
-colnames(dat1) <- paste0("I", 1:I, "_G1")
-dat2 <- sirt::sim.raschtype( rnorm(N, mean=mu2, sd=sd2), b=b + dif /2 )
-colnames(dat2) <- paste0("I", 1:I, "_G2")
-dat <- CDM::CDM_rbind_fill( dat1, dat2 )
-dat <- data.frame( "group"=rep(1:2, each=N), dat )
-
-#-- nodes for distribution
-theta.k <- seq(-4, 4, len=11)
-# define design matrix for lambda
-nitems <- ncol(dat) - 1
-maxK <- 2
-TP <- length(theta.k)
-NXlam <- 2*I + 1
-Xdes <- array( 0, dim=c( nitems, maxK, TP,  NXlam  ) )
-dimnames(Xdes)[[1]] <- colnames(dat)[-1]
-dimnames(Xdes)[[2]] <- paste0("Cat", 0:(maxK-1) )
-dimnames(Xdes)[[3]] <- paste0("Theta", 1:TP )
-dimnames(Xdes)[[4]] <- c( paste0("b", 1:I ), paste0("dif", 1:I ), "const" )
-# define theta design
-for (ii in 1:nitems){
-    Xdes[ii,2,,NXlam ] <- theta.k
-}
-# item intercepts and DIF effects
-for (ii in 1:I){
-    Xdes[c(ii,ii+I),2,, ii ] <- -1
-    Xdes[ii,2,,ii+I] <- - 1/2
-    Xdes[ii+I,2,,ii+I] <- 1/2
-}
-#--- skill space designmatrix
-TP <- length(theta.k)
-w1 <- stats::dnorm(theta.k)
-w1 <- w1 / sum(w1)
-delta.designmatrix <- matrix( 1, nrow=TP, ncol=2 )
-delta.designmatrix[,2] <- log(w1)
-
-# fixed lambda parameters
-Xlambda.fixed <- cbind(NXlam, 1 )
-# initial Xlambda parameters
-dif_sim <- 0*stats::rnorm(I, sd=.2)
-Xlambda.init <- c( - stats::qnorm( colMeans(dat1) ), dif_sim, 1 )
-
-# delta.fixed
-delta.fixed <- cbind( 1, 1, 0 )
-# regularization parameter
-regular_lam <- .2
-# weighting vector: regularize only DIF effects
-regular_w <- c( rep(0,I), rep(1,I), 0 )
-
-#--- estimation model with scad penalty
-mod1 <- CDM::slca( dat[,-1], group=dat$group, Xdes=Xdes,
-            delta.designmatrix=delta.designmatrix, regular_type="scad",
-            Xlambda.init=Xlambda.init, delta.fixed=delta.fixed, Xlambda.fixed=Xlambda.fixed,
-            regular_lam=regular_lam, regular_w=regular_w )
-# compare true and estimated DIF effects
-cbind( "true"=dif, "estimated"=round(coef(mod1)[seq(I+1,2*I)],2) )
-summary(mod1)
-# }
-</pre>
+    <pre class="examples"></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#details">Details</a></li>
-
       <li><a href="#value">Value</a></li>
-
       <li><a href="#references">References</a></li>
-
       <li><a href="#note">Note</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -946,13 +445,16 @@ summary(mod1)
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

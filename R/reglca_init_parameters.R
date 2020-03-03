@@ -1,9 +1,12 @@
 ## File Name: reglca_init_parameters.R
-## File Version: 0.15
+## File Version: 0.167
 
-reglca_init_parameters <- function( nclasses, dat0, sd_noise_init, item_probs_init, class_probs_init,
-        random_starts, G)
+reglca_init_parameters <- function( nclasses, dat0, sd_noise_init, item_probs_init,
+        class_probs_init, random_starts, G, est_type=NULL)
 {
+    if (is.null(est_type)){
+        est_type <- "CD"
+    }
     use_random_starts <- FALSE
     means <- colMeans(dat0, na.rm=TRUE )
     I <- ncol(dat0)
@@ -25,14 +28,20 @@ reglca_init_parameters <- function( nclasses, dat0, sd_noise_init, item_probs_in
         item_probs <- item_probs_init
         random_starts <- 1
     }
+    #- transformation into logit parameters
+    xsi <- NULL
+    if (est_type=="DIFF"){
+        xsi <- stats::qlogis(p=item_probs)
+    }
 
     #--- item probabilities in case of random starts
     if (random_starts > 1){
         item_probs <- list()
         sd_noise_init <- max( sd_noise_init, .01 )
         for (rr in 1:random_starts){
-            item_probs[[rr]] <- reglca_init_parameters_item_probs( qmeans=qmeans, I=I, nclasses=nclasses,
-                                        sd_noise_init=sd_noise_init, parm_range=1 )
+            item_probs[[rr]] <- reglca_init_parameters_item_probs( qmeans=qmeans,
+                            I=I, nclasses=nclasses,    sd_noise_init=sd_noise_init,
+                            parm_range=1 )
         }
     }
 
@@ -48,6 +57,7 @@ reglca_init_parameters <- function( nclasses, dat0, sd_noise_init, item_probs_in
 
     #--- output
     res <- list( class_probs=class_probs, item_probs=item_probs, random_starts=random_starts,
-                        use_random_starts=use_random_starts )
+                        use_random_starts=use_random_starts, est_type=est_type,
+                        xsi=xsi )
     return(res)
 }

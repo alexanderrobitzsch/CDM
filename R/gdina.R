@@ -1,5 +1,5 @@
 ## File Name: gdina.R
-## File Version: 9.338
+## File Version: 9.3402
 
 
 ################################################################################
@@ -686,8 +686,8 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
                     reduced.skillspace=reduced.skillspace, HOGDINA=HOGDINA, Z.skillspace=Z.skillspace,
                     weights=weights, rule=rule, I.lj=I.lj, R.lj=R.lj, I.lj.gg=I.lj.gg,
                     R.lj.gg=R.lj.gg, aggr.patt.designmatrix=aggr.patt.designmatrix,    Mj.index=Mj.index, method=method,
-                    aggr.attr.patt=aggr.attr.patt,IP=IP, p.aj.xi=p.aj.xi,item.patt.split=item.patt.split,
-                    resp.patt=resp.patt,freq.pattern=freq.pattern, item.patt.freq=item.patt.freq,invM.list=invM.list,
+                    aggr.attr.patt=aggr.attr.patt, IP=IP, p.aj.xi=p.aj.xi,item.patt.split=item.patt.split,
+                    resp.patt=resp.patt, freq.pattern=freq.pattern, item.patt.freq=item.patt.freq,invM.list=invM.list,
                     item.patt.subj=item.patt.subj, item.patt=item.patt, suffstat_probs=suffstat_probs,
                     increment.factor=increment.factor, fac.oldxsi=fac.oldxsi, avoid.zeroprobs=avoid.zeroprobs,
                     attr.prob=attr.prob0, delta.fixed=delta.fixed, sequential=sequential,

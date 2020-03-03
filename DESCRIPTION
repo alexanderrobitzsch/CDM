@@ -1,8 +1,8 @@
 Package: CDM
 Type: Package
 Title: Cognitive Diagnosis Modeling
-Version: 7.5-3
-Date: 2019-10-25 15:39:34
+Version: 7.5-8
+Date: 2020-03-03 16:53:01
 Author: 
     Alexander Robitzsch [aut, cre], Thomas Kiefer [aut],
     Ann Cathrice George [aut], Ali Uenlue [aut]
@@ -41,4 +41,3 @@ URL:
 License: GPL (>= 2)
 BugReports: 
     https://github.com/alexanderrobitzsch/CDM/issues?state=open
-RoxygenNote: 6.1.1

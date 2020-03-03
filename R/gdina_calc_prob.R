@@ -1,7 +1,7 @@
 ## File Name: gdina_calc_prob.R
-## File Version: 0.18
+## File Version: 0.19
 
-gdina_calc_prob <- function( progress, iter, disp, J, L, aggr.attr.patt, Mj, 
+gdina_calc_prob <- function( progress, iter, disp, J, L, aggr.attr.patt, Mj,
         delta, linkfct)
 {
     if ( progress ){

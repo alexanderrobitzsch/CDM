@@ -25,10 +25,11 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 7.5  |  2019-10-25  |  Last: CDM 7.5-3
+VERSIONS CDM 7.5  |  2020-03-03  |  Last: CDM 7.5-8
 --------------------------------------------------------------
 
-NOTE  * xxx
+FIXED * corrected a bug that stopped gdina.dif()
+        (thanks to Sookhyun Park)
 
 
 DATA  * included/modified datasets: ---

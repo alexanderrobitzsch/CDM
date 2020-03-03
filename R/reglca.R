@@ -1,5 +1,5 @@
 ## File Name: reglca.R
-## File Version: 0.821
+## File Version: 0.8296
 
 reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad", regular_lam=0,
                 sd_noise_init=1, item_probs_init=NULL, class_probs_init=NULL, random_starts=1,
@@ -9,6 +9,7 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
 
     CALL <- match.call()
     s1 <- Sys.time()
+    est_type <- NULL
 
     #--- data processing
     TP <- nclasses
@@ -32,11 +33,13 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
     #--- initial probabilities
     res <- reglca_init_parameters( nclasses=nclasses, dat0=dat0, sd_noise_init=sd_noise_init,
                     item_probs_init=item_probs_init, class_probs_init=class_probs_init,
-                    random_starts=random_starts, G=G)
+                    random_starts=random_starts, G=G, est_type=est_type)
     class_probs_random_starts <- class_probs <- res$class_probs
     item_probs_random_starts <- item_probs <- res$item_probs
+    est_type <- res$est_type
     random_starts <- res$random_starts
     use_random_starts <- res$use_random_starts
+    xsi <- res$xsi
     alpha <- alpha_init <- 1
     use_dpm <- FALSE
 
@@ -71,13 +74,13 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
         pjM[,1,] <- 1 - item_probs
 
         #--- calculate individual likelihood
-        p.xi.aj <- reglca_calc_individual_likelihood( N=N, nclasses=nclasses, pjM=pjM, dat=dat, I=I,
-                            resp.ind.list=resp.ind.list )
+        p.xi.aj <- reglca_calc_individual_likelihood( N=N, nclasses=nclasses,
+                        pjM=pjM, dat=dat, I=I, resp.ind.list=resp.ind.list )
 
         #--- calculate posterior
-        res <- reglca_calc_individual_posterior( class_probs=class_probs, p.xi.aj=p.xi.aj, N=N,
-                        nclasses=nclasses, weights=weights, W=W, G=G, ind_groups=ind_groups,
-                        N_groups=N_groups )
+        res <- reglca_calc_individual_posterior( class_probs=class_probs, p.xi.aj=p.xi.aj,
+                        N=N, nclasses=nclasses, weights=weights, W=W, G=G,
+                        ind_groups=ind_groups, N_groups=N_groups )
         p.aj.xi <- res$p.aj.xi
         class_probs <- res$class_probs
 
@@ -93,12 +96,11 @@ reglca <- function( dat, nclasses, weights=NULL, group=NULL, regular_type="scad"
                             n.ik=n.ik, TP=TP, I=I, dat.ind2=dat.ind2, ind_groups=ind_groups, G=G )
         n.ik <- res$n.ik
         N.ik <- res$N.ik
-
         #--- item parameter estimation
         res <- reglca_mstep_item_parameters( I=I, n.ik=n.ik, N.ik=N.ik, h=h, mstep_iter=mstep_iter,
                     conv=conv, regular_lam=regular_lam, regular_type=regular_type, cd_steps=cd_steps,
                     item_probs=item_probs, max_increment=max_increment, iter=iter, G=G,
-                    prob_min=prob_min)
+                    prob_min=prob_min, est_type=est_type, xsi=xsi)
         item_probs <- res$item_probs
         penalty <- res$penalty
         n_par <- res$n_par

@@ -8,21 +8,25 @@
 
 <title>Parameter Estimation for Mixed DINA/DINO Model — din • CDM</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,12 +34,13 @@
 
 
 
-<meta property="og:title" content="Parameter Estimation for Mixed DINA/DINO Model — din" />
 
+<meta property="og:title" content="Parameter Estimation for Mixed DINA/DINO Model — din" />
 <meta property="og:description" content="din provides parameter estimation for cognitive
 diagnosis models of the types ``DINA'', ``DINO'' and ``mixed DINA
 and DINO''." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -47,6 +52,7 @@ and DINO''." />
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -73,7 +79,7 @@ and DINO''." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -81,11 +87,10 @@ and DINO''." />
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/alexanderrobitzsch/CDM">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -96,6 +101,7 @@ and DINO''." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -107,25 +113,23 @@ and DINO''." />
     </div>
 
     <div class="ref-description">
-    
     <p><code>din</code> provides parameter estimation for cognitive
 diagnosis models of the types ``DINA'', ``DINO'' and ``mixed DINA
 and DINO''.</p>
-    
     </div>
 
-    <pre class="usage">din(data, q.matrix, skillclasses=NULL,
-      conv.crit=0.001, dev.crit=10^(-5), maxit=500,
-      constraint.guess=NULL, constraint.slip=NULL,
-      guess.init=rep(0.2, ncol(data)), slip.init=guess.init,
-      guess.equal=FALSE, slip.equal=FALSE, zeroprob.skillclasses=NULL,
-      weights=rep(1, nrow(data)), rule="DINA",
-      wgt.overrelax=0, wgtest.overrelax=FALSE, param.history=FALSE,
-      seed=0, progress=TRUE, guess.min=0, slip.min=0, guess.max=1, slip.max=1)
+    <pre class="usage"><span class='fu'>din</span>(<span class='no'>data</span>, <span class='no'>q.matrix</span>, <span class='kw'>skillclasses</span><span class='kw'>=</span><span class='kw'>NULL</span>,
+      <span class='kw'>conv.crit</span><span class='kw'>=</span><span class='fl'>0.001</span>, <span class='kw'>dev.crit</span><span class='kw'>=</span><span class='fl'>10</span>^(-<span class='fl'>5</span>), <span class='kw'>maxit</span><span class='kw'>=</span><span class='fl'>500</span>,
+      <span class='kw'>constraint.guess</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>constraint.slip</span><span class='kw'>=</span><span class='kw'>NULL</span>,
+      <span class='kw'>guess.init</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>0.2</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span>(<span class='no'>data</span>)), <span class='kw'>slip.init</span><span class='kw'>=</span><span class='no'>guess.init</span>,
+      <span class='kw'>guess.equal</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>slip.equal</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>zeroprob.skillclasses</span><span class='kw'>=</span><span class='kw'>NULL</span>,
+      <span class='kw'>weights</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>data</span>)), <span class='kw'>rule</span><span class='kw'>=</span><span class='st'>"DINA"</span>,
+      <span class='kw'>wgt.overrelax</span><span class='kw'>=</span><span class='fl'>0</span>, <span class='kw'>wgtest.overrelax</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>param.history</span><span class='kw'>=</span><span class='fl'>FALSE</span>,
+      <span class='kw'>seed</span><span class='kw'>=</span><span class='fl'>0</span>, <span class='kw'>progress</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>guess.min</span><span class='kw'>=</span><span class='fl'>0</span>, <span class='kw'>slip.min</span><span class='kw'>=</span><span class='fl'>0</span>, <span class='kw'>guess.max</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>slip.max</span><span class='kw'>=</span><span class='fl'>1</span>)
 
-# S3 method for din
-print(x, &#8230;)</pre>
-    
+<span class='co'># S3 method for din</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -240,7 +244,7 @@ iterations should be saved. The default is <code>FALSE</code>.</p></td>
       <th>seed</th>
       <td><p>Simulation seed for initial parameters. A value of zero corresponds
 to deterministic starting values, an integer value different from
-zero to random initial values with <code><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed(seed)</a></code>.</p></td>
+zero to random initial values with <code><a href='https://rdrr.io/r/base/Random.html'>set.seed(seed)</a></code>.</p></td>
     </tr>
     <tr>
       <th>progress</th>
@@ -268,11 +272,11 @@ zero to random initial values with <code><a href='https://www.rdocumentation.org
       <td><p>Object of class <code>din</code></p></td>
     </tr>
     <tr>
-      <th>&#8230;</th>
+      <th>...</th>
       <td><p>Further arguments to be passed</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>In the CDM DINA (deterministic-input, noisy-and-gate; de la Torre &amp;
@@ -298,7 +302,6 @@ zero to random initial values with <code><a href='https://www.rdocumentation.org
   <code>print</code>, and <code>summary</code> methods are provided;
   <code><a href='plot.din.html'>plot.din</a></code>, <code>print.din</code>, and
   <code><a href='summary.din.html'>summary.din</a></code>, respectively.</p>
-    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p></p>
@@ -360,7 +363,6 @@ zero to random initial values with <code><a href='https://www.rdocumentation.org
    <dt>converged</dt><dd><p>Logical indicating whether convergence was achieved.</p></dd>
   <dt>control</dt><dd><p>Optimization parameters used in estimation</p></dd>
 
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>de la Torre, J. (2009). DINA model parameter estimation:
@@ -377,13 +379,11 @@ zero to random initial values with <code><a href='https://www.rdocumentation.org
 <p>Templin, J., &amp; Henson, R. (2006). Measurement of
   psychological disorders using cognitive diagnosis
   models. <em>Psychological Methods, 11</em>, 287--305.</p>
-    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>The calculation of standard errors using sampling weights which
   represent multistage sampling schemes is not correct.  Please use
   replication methods (like Jackknife) instead.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='plot.din.html'>plot.din</a></code>, the S3 method for plotting objects of
@@ -407,396 +407,25 @@ zero to random initial values with <code><a href='https://www.rdocumentation.org
   of the DINA, DINO and NIDA model.</p>
 <p>See the <code>dina::DINA_Gibbs</code> function in the <span class="pkg">dina</span>
   package for MCMC based estimation of the DINA model.</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'>#############################################################################</span>
-<span class='co'># EXAMPLE 1: Examples based on dataset fractions.subtraction.data</span>
-<span class='co'>#############################################################################</span>
-
-<span class='co'>## dataset fractions.subtraction.data and corresponding Q-Matrix</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>fraction.subtraction.data</span>)
-<span class='no'>fraction.subtraction.qmatrix</span>
-
-<span class='co'>## Misspecification in parameter specification for method CDM::din()</span>
-<span class='co'>## leads to warnings and terminates estimation procedure. E.g.,</span>
-
-<span class='co'># See Q-Matrix specification</span>
-<span class='no'>fractions.dina.warning1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/din'>din</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>fraction.subtraction.data</span>,
-  <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/t'>t</a></span>(<span class='no'>fraction.subtraction.qmatrix</span>))
-
-<span class='co'># See guess.init specification</span>
-<span class='no'>fractions.dina.warning2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/din'>din</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>fraction.subtraction.data</span>,
-  <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>fraction.subtraction.qmatrix</span>, <span class='kw'>guess.init</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>1.2</span>,
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>ncol</a></span>(<span class='no'>fraction.subtraction.data</span>)))
-
-<span class='co'># See rule specification</span>
-<span class='no'>fractions.dina.warning3</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/din'>din</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>fraction.subtraction.data</span>,
-  <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>fraction.subtraction.qmatrix</span>, <span class='kw'>rule</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='st'>"DINA"</span>,
-  <span class='fl'>10</span>), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='st'>"DINO"</span>, <span class='fl'>9</span>)))
-
-<span class='co'>## Parameter estimation of DINA model</span>
-<span class='co'># rule="DINA" is default</span>
-<span class='no'>fractions.dina</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/din'>din</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>fraction.subtraction.data</span>,
-  <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>fraction.subtraction.qmatrix</span>, <span class='kw'>rule</span><span class='kw'>=</span><span class='st'>"DINA"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/attributes'>attributes</a></span>(<span class='no'>fractions.dina</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/str'>str</a></span>(<span class='no'>fractions.dina</span>)
-
-<span class='co'>## For instance assessing the guessing parameters through</span>
-<span class='co'>## assignment</span>
-<span class='no'>fractions.dina</span>$<span class='no'>guess</span>
-
-<span class='co'>## corresponding summaries, including IDI,</span>
-<span class='co'>## most frequent skill classes and information</span>
-<span class='co'>## criteria AIC and BIC</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>fractions.dina</span>)
-
-<span class='co'>## In particular, assessing detailed summary through assignment</span>
-<span class='no'>detailed.summary.fs</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>fractions.dina</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/str'>str</a></span>(<span class='no'>detailed.summary.fs</span>)
-
-<span class='co'>## Item discrimination index of item 8 is too low. This is also</span>
-<span class='co'>## visualized in the first plot</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>fractions.dina</span>)
-
-<span class='co'>## The reason therefore is a high guessing parameter</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Round'>round</a></span>(<span class='no'>fractions.dina</span>$<span class='no'>guess</span>[,<span class='fl'>1</span>], <span class='fl'>2</span>)
-
-<span class='co'>## Estimate DINA model with different random initial parameters using seed=1345</span>
-<span class='no'>fractions.dina1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/din'>din</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>fraction.subtraction.data</span>,
-  <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>fraction.subtraction.qmatrix</span>, <span class='kw'>rule</span><span class='kw'>=</span><span class='st'>"DINA"</span>, <span class='kw'>seed</span><span class='kw'>=</span><span class='fl'>1345</span>)
-
-<span class='co'>## Fix the guessing parameters of items 5, 8 and 9 equal to .20</span>
-<span class='co'># define a constraint.guess matrix</span>
-<span class='no'>constraint.guess</span> <span class='kw'>&lt;-</span>  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>5</span>,<span class='fl'>8</span>,<span class='fl'>9</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>0.2</span>, <span class='fl'>3</span>)), <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>2</span>)
-<span class='no'>fractions.dina.fixed</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/CDM/topics/din'>din</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>fraction.subtraction.data</span>,
-  <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>fraction.subtraction.qmatrix</span>,
-  <span class='kw'>constraint.guess</span><span class='kw'>=</span><span class='no'>constraint.guess</span>)
-
-<span class='co'>## The second plot shows the expected (MAP) and observed skill</span>
-<span class='co'>## probabilities. The third plot visualizes the skill class</span>
-<span class='co'>## occurrence probabilities; Only the 'top.n.skill.classes' most frequent</span>
-<span class='co'>## skill classes are labeled; it is obvious that the skill class '11111111'</span>
-<span class='co'>## (all skills are mastered) is the most probable in this population.</span>
-<span class='co'>## The fourth plot shows the skill probabilities conditional on response</span>
-<span class='co'>## patterns; in this population the skills 3 and 6 seem to be</span>
-<span class='co'>## mastered easier than the others. The fourth plot shows the</span>
-<span class='co'>## skill probabilities conditional on a specified response</span>
-<span class='co'>## pattern; it is shown whether a skill is mastered (above</span>
-<span class='co'>## .5+'uncertainty') unclassifiable (within the boundaries) or</span>
-<span class='co'>## not mastered (below .5-'uncertainty'). In this case, the</span>
-<span class='co'>## 527th respondent was chosen; if no response pattern is</span>
-<span class='co'>## specified, the plot will not be shown (of course)</span>
-<span class='no'>pattern</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='no'>fraction.subtraction.data</span>[<span class='fl'>527</span>, ], <span class='kw'>collapse</span><span class='kw'>=</span><span class='st'>""</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>fractions.dina</span>, <span class='kw'>pattern</span><span class='kw'>=</span><span class='no'>pattern</span>, <span class='kw'>display.nr</span><span class='kw'>=</span><span class='fl'>4</span>)
-
-<span class='co'>#uncertainty=0.1, top.n.skill.classes=6 are default</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>fractions.dina.fixed</span>, <span class='kw'>uncertainty</span><span class='kw'>=</span><span class='fl'>0.1</span>, <span class='kw'>top.n.skill.classes</span><span class='kw'>=</span><span class='fl'>6</span>,
-  <span class='kw'>pattern</span><span class='kw'>=</span><span class='no'>pattern</span>)
-
-<span class='co'># }</span># NOT RUN {
-#############################################################################
-# EXAMPLE 2: Examples based on dataset sim.dina
-#############################################################################
-
-# DINA Model
-d1 <- CDM::din(sim.dina, q.matr=sim.qmatrix, rule="DINA",
-  conv.crit=0.01, maxit=500, progress=TRUE)
-summary(d1)
-
-# DINA model with hierarchical skill classes (Hierarchical DINA model)
-# 1st step:  estimate an initial full model to look at the indexing
-#    of skill classes
-d0 <- CDM::din(sim.dina, q.matr=sim.qmatrix, maxit=1)
-d0$attribute.patt.splitted
-#      [,1] [,2] [,3]
-# [1,]    0    0    0
-# [2,]    1    0    0
-# [3,]    0    1    0
-# [4,]    0    0    1
-# [5,]    1    1    0
-# [6,]    1    0    1
-# [7,]    0    1    1
-# [8,]    1    1    1
-#
-# In this example, following hierarchical skill classes are only allowed:
-# 000, 001, 011, 111
-# We define therefore a vector of indices for skill classes with
-# zero probabilities (see entries in the rows of the matrix
-# d0$attribute.patt.splitted above)
-zeroprob.skillclasses <- c(2,3,5,6)     # classes 100, 010, 110, 101
-# estimate the hierarchical DINA model
-d1a <- CDM::din(sim.dina, q.matr=sim.qmatrix,
-          zeroprob.skillclasses=zeroprob.skillclasses )
-summary(d1a)
-
-# Mixed DINA and DINO Model
-d1b <- CDM::din(sim.dina, q.matr=sim.qmatrix, rule=
-          c(rep("DINA", 7), rep("DINO", 2)), conv.crit=0.01,
-          maxit=500, progress=FALSE)
-summary(d1b)
-
-# DINO Model
-d2 <- CDM::din(sim.dina, q.matr=sim.qmatrix, rule="DINO",
-  conv.crit=0.01, maxit=500, progress=FALSE)
-summary(d2)
-
-# Comparison of DINA and DINO estimates
-lapply(list("guessing"=rbind("DINA"=d1$guess[,1],
-  "DINO"=d2$guess[,1]), "slipping"=rbind("DINA"=
-  d1$slip[,1], "DINO"=d2$slip[,1])), round, 2)
-
-# Comparison of the information criteria
-c("DINA"=d1$AIC, "MIXED"=d1b$AIC, "DINO"=d2$AIC)
-
-# following estimates:
-d1$coef            # guessing and slipping parameter
-d1$guess           # guessing parameter
-d1$slip            # slipping parameter
-d1$skill.patt      # probabilities for skills
-d1$attribute.patt  # skill classes with probabilities
-d1$subj.pattern    # pattern per subject
-
-# posterior probabilities for every response pattern
-d1$posterior
-
-# Equal guessing parameters
-d2a <- CDM::din( data=sim.dina, q.matrix=sim.qmatrix,
-            guess.equal=TRUE, slip.equal=FALSE )
-d2a$coef
-
-# Equal guessing and slipping parameters
-d2b <- CDM::din( data=sim.dina, q.matrix=sim.qmatrix,
-            guess.equal=TRUE, slip.equal=TRUE )
-d2b$coef
-
-#############################################################################
-# EXAMPLE 3: Examples based on dataset sim.dino
-#############################################################################
-
-# DINO Estimation
-d3 <- CDM::din(sim.dino, q.matr=sim.qmatrix, rule="DINO",
-        conv.crit=0.005, progress=FALSE)
-
-# Mixed DINA and DINO Model
-d3b <- CDM::din(sim.dino, q.matr=sim.qmatrix,
-          rule=c(rep("DINA", 4), rep("DINO", 5)), conv.crit=0.001,
-          progress=FALSE)
-
-# DINA Estimation
-d4 <- CDM::din(sim.dino, q.matr=sim.qmatrix, rule="DINA",
-  conv.crit=0.005, progress=FALSE)
-
-# Comparison of DINA and DINO estimates
-lapply(list("guessing"=rbind("DINO"=d3$guess[,1],  "DINA"=d4$guess[,1]),
-       "slipping"=rbind("DINO"=d3$slip[,1], "DINA"=d4$slip[,1])), round, 2)
-
-# Comparison of the information criteria
-c("DINO"=d3$AIC, "MIXED"=d3b$AIC, "DINA"=d4$AIC)
-
-#############################################################################
-# EXAMPLE 4: Example estimation with weights based on dataset sim.dina
-#############################################################################
-
-# Here, a weighted maximum likelihood estimation is used
-# This could be useful for survey data.
-
-# i.e. first 200 persons have weight 2, the other have weight 1
-(weights <- c(rep(2, 200), rep(1, 200)))
-
-d5 <- CDM::din(sim.dina, sim.qmatrix, rule="DINA", conv.crit=
-  0.005, weights=weights, progress=FALSE)
-
-# Comparison of the information criteria
-c("DINA"=d1$AIC, "WEIGHTS"=d5$AIC)
-
-#############################################################################
-# EXAMPLE 5: Example estimation within a balanced incomplete
-##           block (BIB) design generated on dataset sim.dina
-#############################################################################
-
-# generate BIB data
-
-# The next example shows that the din function works for
-# (relatively arbitrary) missing value pattern
-
-# Here, a missing by design is generated in the dataset dinadat.bib
-sim.dina.bib <- sim.dina
-sim.dina.bib[1:100, 1:3] <- NA
-sim.dina.bib[101:300, 4:8] <- NA
-sim.dina.bib[301:400, c(1,2,9)] <- NA
-
-d6 <- CDM::din(sim.dina.bib, sim.qmatrix, rule="DINA",
-         conv.crit=0.0005, weights=weights, maxit=200)
-
-d7 <- CDM::din(sim.dina.bib, sim.qmatrix, rule="DINO",
-         conv.crit=0.005, weights=weights)
-
-# Comparison of DINA and DINO estimates
-lapply(list("guessing"=rbind("DINA"=d6$guess[,1],
-  "DINO"=d7$guess[,1]), "slipping"=rbind("DINA"=
-  d6$slip[,1], "DINO"=d7$slip[,1])), round, 2)
-
-#############################################################################
-# EXAMPLE 6: DINA model with attribute hierarchy
-#############################################################################
-
-set.seed(987)
-# assumed skill distribution: P(000)=P(100)=P(110)=P(111)=.245 and
-#     "deviant pattern": P(010)=.02
-K <- 3 # number of skills
-
-# define alpha
-alpha <- scan()
-    0 0 0
-    1 0 0
-    1 1 0
-    1 1 1
-    0 1 0
-
-alpha <- matrix( alpha, length(alpha)/K, K, byrow=TRUE )
-alpha <- alpha[ c( rep(1:4,each=245), rep(5,20) ),  ]
-
-# define Q-matrix
-q.matrix <- scan()
-    1 0 0   1 0 0   1 0 0
-    0 1 0   0 1 0   0 1 0
-    0 0 1   0 1 0   0 0 1
-    1 1 0   1 0 1   0 1 1
-
-q.matrix <- matrix( q.matrix, nrow=length(q.matrix)/K, ncol=K, byrow=TRUE )
-
-# simulate DINA data
-dat <- CDM::sim.din( alpha=alpha, q.matrix=q.matrix )$dat
-
-#*** Model 1: estimate DINA model | no skill space restriction
-mod1 <- CDM::din( dat, q.matrix )
-
-#*** Model 2: DINA model | hierarchy A2 > A3
-B <- "A2 > A3"
-skill.names <- paste0("A",1:3)
-skillspace <- CDM::skillspace.hierarchy( B, skill.names )$skillspace.reduced
-mod2 <- CDM::din( dat, q.matrix, skillclasses=skillspace )
-
-#*** Model 3: DINA model | linear hierarchy A1 > A2 > A3
-#   This is a misspecied model because due to P(010)=.02 the relation A1>A2
-#   does not hold.
-B <- "A1 > A2
-      A2 > A3"
-skill.names <- paste0("A",1:3)
-skillspace <- CDM::skillspace.hierarchy( B, skill.names )$skillspace.reduced
-mod3 <- CDM::din( dat, q.matrix, skillclasses=skillspace )
-
-#*** Model 4: 2PL model in gdm
-mod4 <- CDM::gdm( dat, theta.k=seq(-5,5,len=21),
-           decrease.increments=TRUE, skillspace="normal" )
-summary(mod4)
-
-anova(mod1,mod2)
-  ##       Model   loglike Deviance Npars      AIC      BIC  Chisq df       p
-  ##   2 Model 2 -7052.460 14104.92    29 14162.92 14305.24 0.9174  2 0.63211
-  ##   1 Model 1 -7052.001 14104.00    31 14166.00 14318.14     NA NA      NA
-
-anova(mod2,mod3)
-  ##       Model   loglike Deviance Npars      AIC      BIC    Chisq df       p
-  ##   2 Model 2 -7059.058 14118.12    27 14172.12 14304.63 13.19618  2 0.00136
-  ##   1 Model 1 -7052.460 14104.92    29 14162.92 14305.24       NA NA      NA
-
-anova(mod2,mod4)
-  ##       Model  loglike Deviance Npars      AIC      BIC    Chisq df  p
-  ##   2 Model 2 -7220.05 14440.10    24 14488.10 14605.89 335.1805  5  0
-  ##   1 Model 1 -7052.46 14104.92    29 14162.92 14305.24       NA NA NA
-
-# compare fit statistics
-summary( CDM::modelfit.cor.din( mod2 ) )
-summary( CDM::modelfit.cor.din( mod4 ) )
-
-#############################################################################
-# EXAMPLE 7: Fitting the basic local independence model (BLIM) with din
-#############################################################################
-
-library(pks)
-data(DoignonFalmagne7, package="pks")
-  ##  str(DoignonFalmagne7)
-  ##    $ K  : int [1:9, 1:5] 0 1 0 1 1 1 1 1 1 0 ...
-  ##     ..- attr(*, "dimnames")=List of 2
-  ##     .. ..$ : chr [1:9] "00000" "10000" "01000" "11000" ...
-  ##     .. ..$ : chr [1:5] "a" "b" "c" "d" ...
-  ##    $ N.R: Named int [1:32] 80 92 89 3 2 1 89 16 18 10 ...
-  ##     ..- attr(*, "names")=chr [1:32] "00000" "10000" "01000" "00100" ...
-
-# The idea is to fit the local independence model with the din function.
-# This can be accomplished by specifying a DINO model with
-# prespecified skill classes.
-
-# extract dataset
-dat <- as.numeric( unlist( sapply( names(DoignonFalmagne7$N.R),
-    FUN=function( ll){ strsplit( ll, split="") } ) ) )
-dat <- matrix( dat, ncol=5, byrow=TRUE )
-colnames(dat) <- colnames(DoignonFalmagne7$K)
-rownames(dat) <- names(DoignonFalmagne7$N.R)
-
-# sample weights
-weights <- DoignonFalmagne7$N.R
-
-# define Q-matrix
-q.matrix <- t(DoignonFalmagne7$K)
-v1 <- colnames(q.matrix) <- paste0("S", colnames(q.matrix))
-q.matrix <- q.matrix[, - 1] # remove S00000
-
-# define skill classes
-SC <- ncol(q.matrix)
-skillclasses <- matrix( 0, nrow=SC+1, ncol=SC)
-colnames(skillclasses) <- colnames(q.matrix)
-rownames(skillclasses) <- v1
-skillclasses[ cbind( 2:(SC+1), 1:SC ) ] <- 1
-
-# estimate BLIM with din function
-mod1 <- CDM::din(data=dat, q.matrix=q.matrix, skillclasses=skillclasses,
-            rule="DINO", weights=weights   )
-summary(mod1)
-  ##   Item parameters
-  ##     item guess  slip   IDI rmsea
-  ##   a    a 0.158 0.162 0.680 0.011
-  ##   b    b 0.145 0.159 0.696 0.009
-  ##   c    c 0.008 0.181 0.811 0.001
-  ##   d    d 0.012 0.129 0.859 0.001
-  ##   e    e 0.025 0.146 0.828 0.007
-
-# estimate basic local independence model with pks package
-mod2 <- pks::blim(K, N.R, method="ML") # maximum likelihood estimation by EM algorithm
-mod2
-  ##   Error and guessing parameters
-  ##         beta      eta
-  ##   a 0.164871 0.103065
-  ##   b 0.163113 0.095074
-  ##   c 0.188839 0.000004
-  ##   d 0.079835 0.000003
-  ##   e 0.088648 0.019910
-# }
-</pre>
+    <pre class="examples"></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#details">Details</a></li>
-
       <li><a href="#value">Value</a></li>
-
       <li><a href="#references">References</a></li>
-
       <li><a href="#note">Note</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -804,13 +433,16 @@ mod2
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

@@ -8,21 +8,25 @@
 
 <title>Cognitive Diagnosis Modeling — CDM-package • CDM</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,8 +34,8 @@
 
 
 
-<meta property="og:title" content="Cognitive Diagnosis Modeling — CDM-package" />
 
+<meta property="og:title" content="Cognitive Diagnosis Modeling — CDM-package" />
 <meta property="og:description" content="Functions for cognitive diagnosis modeling and multidimensional item response modeling 
     for dichotomous and polytomous item responses. This package enables the estimation of 
     the DINA and DINO model (Junker &amp;amp; Sijtsma, 2001, &amp;lt;doi:10.1177/01466210122032064&amp;gt;),
@@ -51,6 +55,7 @@
 
 
 
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -59,6 +64,7 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -85,7 +91,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -93,11 +99,10 @@
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/alexanderrobitzsch/CDM">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -108,6 +113,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -119,7 +125,6 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Functions for cognitive diagnosis modeling and multidimensional item response modeling 
     for dichotomous and polytomous item responses. This package enables the estimation of 
     the DINA and DINO model (Junker &amp; Sijtsma, 2001, &lt;doi:10.1177/01466210122032064&gt;),
@@ -135,14 +140,15 @@
     For tutorials on how to use the CDM package see 
     George and Robitzsch (2015, &lt;doi:10.20982/tqmp.11.3.p189&gt;) as well as
     Ravand and Robitzsch (2015).</p>
-    
     </div>
 
-        
+
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     
-    <p>Cognitive diagnosis models (CDMs) are restricted latent class models.
+
+<p>Cognitive diagnosis models (CDMs) are restricted latent class models.
   They represent model-based classification approaches, which aim at
   assigning respondents to different attribute profile groups.  The latent
   classes correspond to the possible attribute profiles, and the
@@ -202,7 +208,6 @@
 <p>See George et al. (2016) and Robitzsch and George (2019) 
   for an overview and some computational details
   of the <span class="pkg">CDM</span> package.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>See the <span class="pkg">GDINA</span> package for comprehensive functions for the
@@ -210,7 +215,6 @@
 <p>See also the <span class="pkg">ACTCD</span> and <span class="pkg">NPCD</span> packages for nonparametric cognitive
     diagnostic models.</p>
 <p>See the <span class="pkg">dina</span> package for estimating the DINA model with a Gibbs sampler.</p></div>
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Bartolucci, F. (2007). A class of multidimensional IRT models for testing
@@ -249,7 +253,7 @@ Available online: http://pareonline.net/getvn.asp?v=20&amp;n=11</p>
 <p>Robitzsch, A., &amp; George, A. C. (2019). The R package CDM.
 In M. von Davier &amp; Y.-S. Lee (Eds.). <em>Handbook of diagnostic
 classification models</em> (pp. 549-572). Cham: Springer.
-doi: <a href='http://doi.org/10.1007/978-3-030-05584-4_26'>10.1007/978-3-030-05584-4_26</a></p>
+doi: <a href='https://doi.org/10.1007/978-3-030-05584-4_26'>10.1007/978-3-030-05584-4_26</a></p>
 <p>Rupp, A. A., &amp; Templin, J. (2008). Unique characteristics of
   diagnostic classification models: A comprehensive review of the current
   state-of-the-art. <em>Measurement: Interdisciplinary Research and
@@ -263,29 +267,22 @@ doi: <a href='http://doi.org/10.1007/978-3-030-05584-4_26'>10.1007/978-3-030-055
 <p>von Davier, M. (2008). A general diagnostic model applied to
   language testing data. <em>British Journal
   of Mathematical and Statistical Psychology, 61</em>, 287-307.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"># NOT RUN {
-##
+    <pre class="examples">##
 ##   **********************************
 ##   ** CDM 2.5-16 (2013-11-29)      **
 ##   ** Cognitive Diagnostic Models  **
 ##   **********************************
 ##
-# }
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
       <li><a href="#details">Details</a></li>
-
       <li><a href="#see-also">See also</a></li>
-
       <li><a href="#references">References</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -296,19 +293,23 @@ doi: <a href='http://doi.org/10.1007/978-3-030-05584-4_26'>10.1007/978-3-030-055
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by Alexander Robitzsch.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

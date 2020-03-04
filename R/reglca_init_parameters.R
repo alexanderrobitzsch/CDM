@@ -1,5 +1,5 @@
 ## File Name: reglca_init_parameters.R
-## File Version: 0.167
+## File Version: 0.168
 
 reglca_init_parameters <- function( nclasses, dat0, sd_noise_init, item_probs_init,
         class_probs_init, random_starts, G, est_type=NULL)
@@ -40,7 +40,7 @@ reglca_init_parameters <- function( nclasses, dat0, sd_noise_init, item_probs_in
         sd_noise_init <- max( sd_noise_init, .01 )
         for (rr in 1:random_starts){
             item_probs[[rr]] <- reglca_init_parameters_item_probs( qmeans=qmeans,
-                            I=I, nclasses=nclasses,    sd_noise_init=sd_noise_init,
+                            I=I, nclasses=nclasses, sd_noise_init=sd_noise_init,
                             parm_range=1 )
         }
     }

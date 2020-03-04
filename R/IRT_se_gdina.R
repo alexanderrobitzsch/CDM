@@ -1,5 +1,5 @@
 ## File Name: IRT_se_gdina.R
-## File Version: 0.19
+## File Version: 0.21
 
 IRT_se_gdina <- function(object, h=1E-4)
 {
@@ -115,7 +115,6 @@ IRT_se_gdina <- function(object, h=1E-4)
             d1a <- d1a + sum( rowSums( p.aj.xi[,,gg] * like_der ) * item.patt.freq[,gg] )
         }
     }
-# Revalpr("d1a")
 
     #---- derivatives with respect to beta
 
@@ -163,9 +162,6 @@ IRT_se_gdina <- function(object, h=1E-4)
     }
     M1 <- cdm_matrix2( ( attr_prob1 - attr_prob2 ) / (2*h) / ( attr_prob + eps ), nrow=IP)
     d1a <- sum( rowSums( post * M1 ) * freq )
-
-
-# Revalpr("d1a")
 
     ### This function is yet incomplete. But the remaining derivatives can be simply calculated.
 

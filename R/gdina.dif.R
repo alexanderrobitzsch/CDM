@@ -1,5 +1,5 @@
 ## File Name: gdina.dif.R
-## File Version: 1.222
+## File Version: 1.223
 
 
 #** differential item functioning in the GDINA model
@@ -7,8 +7,6 @@
 gdina.dif <- function( object )
 {
     ocontrol <- object$control
-Revalprstr("ocontrol")
-Revalprstr("ocontrol$item.patt")
     G <- object$G
     J <- ncol(object$dat)
     delta.group <- as.list(1:G)

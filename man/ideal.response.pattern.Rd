@@ -1,5 +1,5 @@
 %% File Name: ideal.response.pattern.Rd
-%% File Version: 0.13
+%% File Version: 0.145
 
 \name{ideal.response.pattern}
 \alias{ideal.response.pattern}
@@ -14,7 +14,7 @@ with skill profile \eqn{l} at item \eqn{j}.
 }
 
 \usage{
-ideal.response.pattern(q.matrix, skillspace=NULL)
+ideal.response.pattern(q.matrix, skillspace=NULL, rule="DINA")
 }
 
 %- maybe also 'usage' for other objects documented here.
@@ -25,6 +25,9 @@ The Q-matrix
   \item{skillspace}{
 An optional skill space matrix. If it is not provided, then all skill
 classes are used for creating an ideal response pattern.
+}
+\item{rule}{
+Chosen condensation rule for the CDM. Can be \code{"DINA"} or \code{"DINO"}.
 }
 }
 
@@ -63,9 +66,13 @@ A list with following entries
 #############################################################################
 
 data(sim.qmatrix, package="CDM")
-
 q.matrix <- sim.qmatrix
-CDM::ideal.response.pattern( q.matrix )
+
+#- ideal response pattern for DINA model
+CDM::ideal.response.pattern(q.matrix)
+
+#- ideal response pattern for DINO model
+CDM::ideal.response.pattern( q.matrix, rule="DINO" )
 
 # compute ideal responses for a reduced skill space
 skillspace <- matrix( c( 0,1,0,

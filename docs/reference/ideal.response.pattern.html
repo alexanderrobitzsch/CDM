@@ -118,7 +118,7 @@ item response \(\eta_{lj}=\prod_{k=1}^K \alpha_{lk}\) for a person
 with skill profile \(l\) at item \(j\).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ideal.response.pattern</span>(<span class='no'>q.matrix</span>, <span class='kw'>skillspace</span><span class='kw'>=</span><span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>ideal.response.pattern</span>(<span class='no'>q.matrix</span>, <span class='kw'>skillspace</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>rule</span><span class='kw'>=</span><span class='st'>"DINA"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -131,6 +131,10 @@ with skill profile \(l\) at item \(j\).</p>
       <th>skillspace</th>
       <td><p>An optional skill space matrix. If it is not provided, then all skill
 classes are used for creating an ideal response pattern.</p></td>
+    </tr>
+    <tr>
+      <th>rule</th>
+      <td><p>Chosen condensation rule for the CDM. Can be <code>"DINA"</code> or <code>"DINO"</code>.</p></td>
     </tr>
     </table>
 
@@ -147,9 +151,13 @@ classes are used for creating an ideal response pattern.</p></td>
 <span class='co'>#############################################################################</span>
 
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>sim.qmatrix</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"CDM"</span>)
-
 <span class='no'>q.matrix</span> <span class='kw'>&lt;-</span> <span class='no'>sim.qmatrix</span>
-<span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/ideal.response.pattern.html'>ideal.response.pattern</a></span>( <span class='no'>q.matrix</span> )
+
+<span class='co'>#- ideal response pattern for DINA model</span>
+<span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/ideal.response.pattern.html'>ideal.response.pattern</a></span>(<span class='no'>q.matrix</span>)
+
+<span class='co'>#- ideal response pattern for DINO model</span>
+<span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/ideal.response.pattern.html'>ideal.response.pattern</a></span>( <span class='no'>q.matrix</span>, <span class='kw'>rule</span><span class='kw'>=</span><span class='st'>"DINO"</span> )
 
 <span class='co'># compute ideal responses for a reduced skill space</span>
 <span class='no'>skillspace</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>( <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>( <span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,

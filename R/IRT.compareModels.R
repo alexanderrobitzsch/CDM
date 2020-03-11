@@ -1,8 +1,8 @@
 ## File Name: IRT.compareModels.R
-## File Version: 0.23
+## File Version: 0.24
 
-###############################################################################
-# compare models based on likelihood and information criteria
+
+#--- compare models based on likelihood and information criteria
 IRT.compareModels <- function( object, ... )
 {
     cl <- match.call()
@@ -67,8 +67,8 @@ IRT.compareModels <- function( object, ... )
     # rownames(IC) <- paste(dfr$Model)
     rownames(IC) <- NULL
     res <- list("IC"=IC )
-    #*************************************
-    # collect all likelihood ratio tests
+
+    #--- collect all likelihood ratio tests
     dfr <- NULL
     M0 <- nrow(IC)
     for (ii in 1:(M0-1) ){
@@ -93,10 +93,10 @@ IRT.compareModels <- function( object, ... )
     class(res) <- "IRT.compareModels"
     return(res)
 }
-##########################################################################
 
-################################################
-# summary method for IRT.compareModels
+
+
+#--- summary method for IRT.compareModels
 summary.IRT.compareModels <- function( object, extended=TRUE, ... )
 {
     dfr1 <- object$IC

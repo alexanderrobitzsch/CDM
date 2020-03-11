@@ -23,9 +23,21 @@ R script and (if necessary) a corresponding dataset.
 
 
 
+--------------------------------------------------------------
+VERSIONS CDM 7.6  |  2020-03-11  |  Last: CDM 7.6-3
+--------------------------------------------------------------
+
+NOTE  * xxx
+
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
+
+
+
 
 --------------------------------------------------------------
-VERSIONS CDM 7.5  |  2020-03-08  |  Last: CDM 7.5-13
+VERSIONS CDM 7.5  |  2020-03-10  |  Last: CDM 7.5-15
 --------------------------------------------------------------
 
 FIXED * corrected a bug that stopped gdina.dif()
@@ -34,12 +46,9 @@ NOTE  * included argument 'rule' in ideal.response.pattern().
         Ideal response patterns can now be also computed for
         the DINO model (in addition to the DINA model).
         (suggested by Emine Yavuz)
-        
-
+       
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: ideal.response.pattern(1)
-
-
 
 --------------------------------------------------------------
 VERSIONS CDM 7.4  |  2019-09-04  |  Last: CDM 7.4-19

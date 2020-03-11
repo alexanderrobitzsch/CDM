@@ -1,8 +1,8 @@
 ## File Name: IRT.IC.R
-## File Version: 0.09
+## File Version: 0.121
 
-##############################################################################
-# information criteria
+
+#--- information criteria
 IRT.IC <- function( object )
 {
     ll <- logLik(object)
@@ -15,12 +15,10 @@ IRT.IC <- function( object )
     res["AIC3"] <- -2*ll + 3*Npars
     res["AICc"] <- -2*ll + 2*p + 2*p*(p+1)/(n-p-1)
     res["CAIC"] <- -2*ll + (log(n)+1)*p
+    #- add GHP if included
+    if ( !is.null(object$ic$GHP)){
+        res["GHP"] <- object$ic$GHP
+    }
     return(res)
 }
-##############################################################################
-#            "   | AIC=-2*LL + 2*p  \n" )
-#        cat("    | AICc=-2*LL + 2*p + 2*p*(p+1)/(n-p-1)  (bias corrected AIC)\n" )
-#            "   | BIC=-2*LL + log(n)*p  \n" )
-#        cat("   | CAIC=-2*LL + [log(n)+1]*p  (consistent AIC)\n\n" )
-##############################################################################
 

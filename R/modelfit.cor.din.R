@@ -1,8 +1,8 @@
 ## File Name: modelfit.cor.din.R
-## File Version: 2.21
+## File Version: 2.241
 
-#############################################################
-# Model fit for din object
+
+###---  Model fit for din object
 modelfit.cor.din <- function( dinobj, jkunits=0 )
 {
     mod <- dinobj
@@ -23,8 +23,7 @@ modelfit.cor.din <- function( dinobj, jkunits=0 )
 
     res <- modelfit.cor2( data=data, posterior=posterior, probs=probs )
 
-    #******************************************
-    # Jackknife
+    #**** Jackknife
     HJJ <- sum( abs( jkunits) )
     if ( HJJ > 0 ){
         data <- dinobj$data
@@ -110,8 +109,10 @@ modelfit.cor.din <- function( dinobj, jkunits=0 )
     class(res) <- "modelfit.cor.din"
     return(res)
 }
-##############################################################
-# summary
+
+
+
+#*** summary
 summary.modelfit.cor.din <- function( object, ... )
 {
     cat("Test of Global Model Fit\n")
@@ -123,5 +124,5 @@ summary.modelfit.cor.din <- function( object, ... )
     for (vv in seq(1,ncol(obji))){    obji[,vv] <- round( obji[,vv], 3 ) }
     print(obji)
 }
-#################################################################
+
 

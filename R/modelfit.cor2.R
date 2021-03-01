@@ -1,5 +1,5 @@
 ## File Name: modelfit.cor2.R
-## File Version: 3.80
+## File Version: 3.821
 
 
 
@@ -52,6 +52,8 @@ modelfit.cor2 <- function( data, posterior, probs )
     itempairs$Exp10 <- r1[,2]
     itempairs$Exp01 <- r1[,3]
     itempairs$Exp00 <- r1[,4]
+    eps <- 1e-10
+    itempairs[, -c(1,2)] <- itempairs[, -c(1,2)] + eps
 
     # observed correlation
     n <- itempairs$n
@@ -66,20 +68,19 @@ modelfit.cor2 <- function( data, posterior, probs )
     t1 <- itempairs$Exp11 / n  - m1 * m2
     itempairs$corExp <- t1 / sqrt( m1 * ( 1 - m1 ) * m2 * ( 1-m2 ) )
 
+
     # define further quantities
     itempairs$X2 <- NA
     itempairs$RESIDCOV <- NA
     itempairs$Q3 <- res$Q3
-
-    ##############################
     itempairs$X2 <- ( itempairs$n00 - itempairs$Exp00 )^2 / itempairs$Exp00 +
                     ( itempairs$n10 - itempairs$Exp10 )^2 / itempairs$Exp10    +
                     ( itempairs$n01 - itempairs$Exp01 )^2 / itempairs$Exp01    +
                     ( itempairs$n11 - itempairs$Exp11 )^2 / itempairs$Exp11
     itempairs$RESIDCOV <- ( itempairs$n11 * itempairs$n00 - itempairs$n10 * itempairs$n01 ) / itempairs$n^2 -
                 ( itempairs$Exp11 * itempairs$Exp00 - itempairs$Exp10 * itempairs$Exp01 ) / itempairs$n^2
-    ##############################
-    # labels
+
+    #**** labels
     itempairs$item1 <- colnames(data)[ itempairs$item1 ]
     itempairs$item2 <- colnames(data)[ itempairs$item2 ]
 
@@ -102,8 +103,7 @@ modelfit.cor2 <- function( data, posterior, probs )
     itempairs$fcor_p.fdr <- stats::p.adjust( itempairs$fcor_p, method="fdr")
 
 
-    #**********************
-    # model fit
+    #***** model fit
     modelfit <- data.frame( "est"=c(
             mean( abs( itempairs$corObs - itempairs$corExp ), na.rm=TRUE),
             sqrt( mean( ( itempairs$corObs - itempairs$corExp )^2, na.rm=TRUE ) ),

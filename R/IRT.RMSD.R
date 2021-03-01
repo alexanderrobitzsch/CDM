@@ -1,7 +1,7 @@
 ## File Name: IRT.RMSD.R
-## File Version: 0.44
+## File Version: 0.45
 
-IRT.RMSD <- function( object )
+IRT.RMSD <- function(object)
 {
     CALL <- match.call()
     mod <- object

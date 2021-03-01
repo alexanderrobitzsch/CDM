@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -40,7 +44,6 @@
   model.  The model type DINA or DINO can be specified item wise.  The number of items,
   the sample size, and two parameters for each item,
   the slipping and guessing parameters, can be set explicitly." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -58,7 +61,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -90,7 +93,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/alexanderrobitzsch/CDM">
+  <a href="https://github.com/alexanderrobitzsch/CDM/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -223,7 +226,7 @@
 <span class='no'>guess</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>0.1</span>,<span class='fl'>0.05</span>,<span class='fl'>0.2</span>)
 
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1567</span>) <span class='co'># fix random numbers</span>
-<span class='no'>dat1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/sim.din.html'>sim.din</a></span>(<span class='kw'>N</span><span class='kw'>=</span><span class='fl'>200</span>, <span class='no'>q.matrix</span>, <span class='kw'>slip</span><span class='kw'>=</span><span class='no'>slip</span>, <span class='kw'>guess</span><span class='kw'>=</span><span class='no'>guess</span>,
+<span class='no'>dat1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'>sim.din</span>(<span class='kw'>N</span><span class='kw'>=</span><span class='fl'>200</span>, <span class='no'>q.matrix</span>, <span class='kw'>slip</span><span class='kw'>=</span><span class='no'>slip</span>, <span class='kw'>guess</span><span class='kw'>=</span><span class='no'>guess</span>,
   <span class='co'># Possession of the attributes with high probability</span>
   <span class='kw'>mean</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.5</span>,<span class='fl'>0.2</span>),
   <span class='co'># Possession of the attributes is weakly correlated</span>
@@ -231,7 +234,7 @@
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>dat1</span>)
 
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>15367</span>) <span class='co'># fix random numbers</span>
-<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/sim.din.html'>sim.din</a></span>(<span class='kw'>N</span><span class='kw'>=</span><span class='fl'>200</span>, <span class='no'>q.matrix</span>, <span class='kw'>slip</span><span class='kw'>=</span><span class='no'>slip</span>, <span class='kw'>guess</span><span class='kw'>=</span><span class='no'>guess</span>, <span class='kw'>mean</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.5</span>,<span class='fl'>0.2</span>),
+<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'>sim.din</span>(<span class='kw'>N</span><span class='kw'>=</span><span class='fl'>200</span>, <span class='no'>q.matrix</span>, <span class='kw'>slip</span><span class='kw'>=</span><span class='no'>slip</span>, <span class='kw'>guess</span><span class='kw'>=</span><span class='no'>guess</span>, <span class='kw'>mean</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.5</span>,<span class='fl'>0.2</span>),
          <span class='kw'>Sigma</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>0.2</span>,<span class='fl'>0.2</span>,<span class='fl'>1</span>), <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>2</span>), <span class='kw'>rule</span><span class='kw'>=</span><span class='st'>"DINO"</span>)
 
 <span class='co'># extract simulated data</span>
@@ -250,7 +253,7 @@
 <span class='co'>#          -&gt; 5 persons with 2 attributes -&gt; see the Q-matrix above</span>
 <span class='no'>alpha</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>( <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>1</span>),
     <span class='kw'>nrow</span><span class='kw'>=</span><span class='fl'>5</span>,<span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>byrow</span><span class='kw'>=</span><span class='fl'>TRUE</span> )
-<span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/sim.din.html'>sim.din</a></span>(  <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>q.matrix</span>, <span class='kw'>alpha</span><span class='kw'>=</span><span class='no'>alpha</span> )
+<span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'>sim.din</span>(  <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>q.matrix</span>, <span class='kw'>alpha</span><span class='kw'>=</span><span class='no'>alpha</span> )
 
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'>#############################################################################</span>
@@ -273,10 +276,10 @@
 <span class='no'>guess</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>.26</span>,<span class='fl'>.3</span>,<span class='fl'>.07</span>,<span class='fl'>.23</span>,<span class='fl'>.24</span>,<span class='fl'>.34</span>,<span class='fl'>.05</span>,<span class='fl'>.1</span>)
 <span class='no'>slip</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>.05</span>,<span class='fl'>.16</span>,<span class='fl'>.19</span>,<span class='fl'>.03</span>,<span class='fl'>.03</span>,<span class='fl'>.19</span>,<span class='fl'>.15</span>,<span class='fl'>.05</span>)
 <span class='co'># simulation of the DINA model</span>
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/sim.din.html'>sim.din</a></span>(<span class='kw'>N</span><span class='kw'>=</span><span class='fl'>0</span>, <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>Qmatrix</span>, <span class='kw'>guess</span><span class='kw'>=</span><span class='no'>guess</span>,
+<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'>sim.din</span>(<span class='kw'>N</span><span class='kw'>=</span><span class='fl'>0</span>, <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>Qmatrix</span>, <span class='kw'>guess</span><span class='kw'>=</span><span class='no'>guess</span>,
               <span class='kw'>slip</span><span class='kw'>=</span><span class='no'>slip</span>, <span class='kw'>alpha</span><span class='kw'>=</span><span class='no'>alpha</span>)$<span class='no'>dat</span>
 <span class='co'># estimate model</span>
-<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/din.html'>din</a></span>( <span class='no'>dat</span>, <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>Qmatrix</span> )
+<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='din.html'>din</a></span>( <span class='no'>dat</span>, <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>Qmatrix</span> )
 <span class='co'># extract maximum likelihood estimates for individual classifications</span>
 <span class='no'>est</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>( <span class='no'>res</span>$<span class='no'>pattern</span>$<span class='no'>mle.est</span> )
 <span class='co'># calculate classification accuracy</span>
@@ -287,12 +290,12 @@
 <span class='co'># EXAMPLE 3: Simulation based on already estimated DINA model for data.ecpe</span>
 <span class='co'>#############################################################################</span>
 
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/CDM/man/data.ecpe.html'>data.ecpe</a></span>$<span class='no'>data</span>
-<span class='no'>q.matrix</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/CDM/man/data.ecpe.html'>data.ecpe</a></span>$<span class='no'>q.matrix</span>
+<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='no'><a href='data.ecpe.html'>data.ecpe</a></span>$<span class='no'>data</span>
+<span class='no'>q.matrix</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='no'><a href='data.ecpe.html'>data.ecpe</a></span>$<span class='no'>q.matrix</span>
 
 <span class='co'>#***</span>
 <span class='co'># (1) estimate DINA model</span>
-<span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/din.html'>din</a></span>( <span class='kw'>data</span><span class='kw'>=</span><span class='no'>dat</span>[,-<span class='fl'>1</span>], <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>q.matrix</span>, <span class='kw'>rule</span><span class='kw'>=</span><span class='st'>"DINA"</span>)
+<span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='din.html'>din</a></span>( <span class='kw'>data</span><span class='kw'>=</span><span class='no'>dat</span>[,-<span class='fl'>1</span>], <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>q.matrix</span>, <span class='kw'>rule</span><span class='kw'>=</span><span class='st'>"DINA"</span>)
 
 <span class='co'>#***</span>
 <span class='co'># (2) simulate data according to DINA model</span>
@@ -304,22 +307,16 @@
 <span class='no'>patt</span> <span class='kw'>&lt;-</span> <span class='no'>mod</span>$<span class='no'>attribute.patt.splitted</span>      <span class='co'># response patterns</span>
 <span class='no'>alpha</span> <span class='kw'>&lt;-</span> <span class='no'>patt</span>[ <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>( <span class='fl'>1</span>:(<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>probs</span>) ), <span class='no'>n</span>, <span class='kw'>prob</span><span class='kw'>=</span><span class='no'>probs</span>, <span class='kw'>replace</span><span class='kw'>=</span><span class='fl'>TRUE</span>), ]
 <span class='co'># simulate data using estimated item parameters</span>
-<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/CDM/man/sim.din.html'>sim.din</a></span>(<span class='kw'>N</span><span class='kw'>=</span><span class='no'>n</span>, <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>q.matrix</span>, <span class='kw'>guess</span><span class='kw'>=</span><span class='no'>mod</span>$<span class='no'>guess</span>$<span class='no'>est</span>, <span class='kw'>slip</span><span class='kw'>=</span><span class='no'>mod</span>$<span class='no'>slip</span>$<span class='no'>est</span>,
+<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'>sim.din</span>(<span class='kw'>N</span><span class='kw'>=</span><span class='no'>n</span>, <span class='kw'>q.matrix</span><span class='kw'>=</span><span class='no'>q.matrix</span>, <span class='kw'>guess</span><span class='kw'>=</span><span class='no'>mod</span>$<span class='no'>guess</span>$<span class='no'>est</span>, <span class='kw'>slip</span><span class='kw'>=</span><span class='no'>mod</span>$<span class='no'>slip</span>$<span class='no'>est</span>,
               <span class='kw'>rule</span><span class='kw'>=</span><span class='st'>"DINA"</span>, <span class='kw'>alpha</span><span class='kw'>=</span><span class='no'>alpha</span>)
 <span class='co'># extract data</span>
 <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='no'>res</span>$<span class='no'>dat</span>
 }</pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -330,7 +327,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

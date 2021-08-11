@@ -24,7 +24,7 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 7.6  |  2021-08-11  |  Last: CDM 7.6-5
+VERSIONS CDM 7.6  |  2021-08-11  |  Last: CDM 7.6-7
 --------------------------------------------------------------
 
 FIXED * fixed numerical issues in modelfit.cor.din()

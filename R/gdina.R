@@ -1,5 +1,5 @@
 ## File Name: gdina.R
-## File Version: 9.3407
+## File Version: 9.3408
 
 
 ################################################################################
@@ -600,7 +600,8 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
     #--- calculation of the AIC und BIC
     res <- gdina_calc_ic( delta=delta, delta.designmatrix=delta.designmatrix, delta.fixed=delta.fixed,
                 G=G, ncolZ=ncolZ, K=K, HOGDINA=HOGDINA, item.patt.freq=item.patt.freq,
-                zeroprob.skillclasses=zeroprob.skillclasses, loglike=loglike, numb_regular_pars=numb_regular_pars )
+                zeroprob.skillclasses=zeroprob.skillclasses, loglike=loglike, 
+                numb_regular_pars=numb_regular_pars, attr.prob.fixed=attr.prob.fixed )
     Npars <- res$Npars
     aic <- res$aic
     bic <- res$bic

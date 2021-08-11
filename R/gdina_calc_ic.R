@@ -1,8 +1,9 @@
 ## File Name: gdina_calc_ic.R
-## File Version: 0.06
+## File Version: 0.08
 
 gdina_calc_ic <- function( delta, delta.designmatrix, delta.fixed, G, ncolZ, K, HOGDINA,
-        item.patt.freq, zeroprob.skillclasses, loglike, numb_regular_pars )
+        item.patt.freq, zeroprob.skillclasses, loglike, numb_regular_pars,
+        attr.prob.fixed=NULL)
 {
     bb <- 0
     Nipar <- length( unlist(delta) )
@@ -16,6 +17,9 @@ gdina_calc_ic <- function( delta, delta.designmatrix, delta.fixed, G, ncolZ, K, 
         Nipar <- Nipar - numb_regular_pars
     }
     Nskillpar <- G*ncolZ - length( zeroprob.skillclasses )
+    if (!is.null(attr.prob.fixed)){
+        Nskillpar <- 0
+    }
     if (HOGDINA==1){ Nskillpar <- 2*K*G }
     if (HOGDINA==0){ Nskillpar <- K*G }
     Npars <- Nipar  - bb + Nskillpar

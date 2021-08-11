@@ -1,5 +1,5 @@
 %% File Name: gdina.Rd
-%% File Version: 3.475
+%% File Version: 3.476
 
 \name{gdina}
 \alias{gdina}
@@ -40,8 +40,8 @@ gdina(data, q.matrix, skillclasses=NULL, conv.crit=0.0001, dev.crit=.1,  maxit=1
     linkfct="identity", Mj=NULL, group=NULL, invariance=TRUE,method=NULL,
     delta.init=NULL, delta.fixed=NULL, delta.designmatrix=NULL,
     delta.basispar.lower=NULL, delta.basispar.upper=NULL, delta.basispar.init=NULL,
-    zeroprob.skillclasses=NULL, attr.prob.init=NULL, reduced.skillspace=NULL,
-    reduced.skillspace.method=2, HOGDINA=-1, Z.skillspace=NULL,
+    zeroprob.skillclasses=NULL, attr.prob.init=NULL, attr.prob.fixed=NULL,
+    reduced.skillspace=NULL, reduced.skillspace.method=2, HOGDINA=-1, Z.skillspace=NULL,
     weights=rep(1, nrow(data)), rule="GDINA", bugs=NULL, regular_lam=0,
     regular_type="none", regular_alpha=NA, regular_tau=NA, regular_weights=NULL,
     mono.constr=FALSE, prior_intercepts=NULL, prior_slopes=NULL, progress=TRUE,
@@ -144,7 +144,7 @@ For free estimated parameters \code{NA} must be declared.}
   classes should have zero probability. Default is NULL
     (no skill classes with zero probability).}
 \item{attr.prob.init}{Initial probabilities of skill distribution.}
-
+\item{attr.prob.fixed}{Vector or matrix with fixed probabilities of skill distribution.}
 \item{reduced.skillspace}{A logical which indicates if the latent class skill space dimension
         should be reduced (see Xu & von Davier, 2008). The default is \code{NULL}
         which applies skill space reduction for more than four skills.

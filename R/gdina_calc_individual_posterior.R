@@ -1,8 +1,9 @@
 ## File Name: gdina_calc_individual_posterior.R
-## File Version: 0.18
+## File Version: 0.192
 
 gdina_calc_individual_posterior <- function(G, IP, attr.prob, p.xi.aj, L, I,
-        zeroprob.skillclasses, reduced.skillspace, item.patt.freq)
+        zeroprob.skillclasses, reduced.skillspace, item.patt.freq,
+        attr.prob.fixed=NULL)
 {
     # posterior probabilities  P( \alpha_l | X_i )
     if (G==1){
@@ -35,6 +36,9 @@ gdina_calc_individual_posterior <- function(G, IP, attr.prob, p.xi.aj, L, I,
             Igg <- sum( item.patt.freq[,gg] )
             attr.prob[,gg] <- colSums( p.aj.xi[,,gg] * item.patt.freq[,gg] ) / Igg
         }
+    }
+    if (! is.null(attr.prob.fixed)){
+        attr.prob <- attr.prob.fixed
     }
     #---- OUTPUT
     res <- list( p.aj.xi=p.aj.xi, attr.prob=attr.prob)

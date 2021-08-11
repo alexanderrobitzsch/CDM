@@ -159,8 +159,8 @@ Normally distributed priors can be specified for item parameters
     <span class='kw'>linkfct</span><span class='kw'>=</span><span class='st'>"identity"</span>, <span class='kw'>Mj</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>group</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>invariance</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>method</span><span class='kw'>=</span><span class='kw'>NULL</span>,
     <span class='kw'>delta.init</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>delta.fixed</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>delta.designmatrix</span><span class='kw'>=</span><span class='kw'>NULL</span>,
     <span class='kw'>delta.basispar.lower</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>delta.basispar.upper</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>delta.basispar.init</span><span class='kw'>=</span><span class='kw'>NULL</span>,
-    <span class='kw'>zeroprob.skillclasses</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>attr.prob.init</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>reduced.skillspace</span><span class='kw'>=</span><span class='kw'>NULL</span>,
-    <span class='kw'>reduced.skillspace.method</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>HOGDINA</span><span class='kw'>=</span>-<span class='fl'>1</span>, <span class='kw'>Z.skillspace</span><span class='kw'>=</span><span class='kw'>NULL</span>,
+    <span class='kw'>zeroprob.skillclasses</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>attr.prob.init</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>attr.prob.fixed</span><span class='kw'>=</span><span class='kw'>NULL</span>,
+    <span class='kw'>reduced.skillspace</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>reduced.skillspace.method</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>HOGDINA</span><span class='kw'>=</span>-<span class='fl'>1</span>, <span class='kw'>Z.skillspace</span><span class='kw'>=</span><span class='kw'>NULL</span>,
     <span class='kw'>weights</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>data</span>)), <span class='kw'>rule</span><span class='kw'>=</span><span class='st'>"GDINA"</span>, <span class='kw'>bugs</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>regular_lam</span><span class='kw'>=</span><span class='fl'>0</span>,
     <span class='kw'>regular_type</span><span class='kw'>=</span><span class='st'>"none"</span>, <span class='kw'>regular_alpha</span><span class='kw'>=</span><span class='fl'>NA</span>, <span class='kw'>regular_tau</span><span class='kw'>=</span><span class='fl'>NA</span>, <span class='kw'>regular_weights</span><span class='kw'>=</span><span class='kw'>NULL</span>,
     <span class='kw'>mono.constr</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>prior_intercepts</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>prior_slopes</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>progress</span><span class='kw'>=</span><span class='fl'>TRUE</span>,
@@ -291,6 +291,10 @@ For free estimated parameters <code>NA</code> must be declared.</p></td>
     <tr>
       <th>attr.prob.init</th>
       <td><p>Initial probabilities of skill distribution.</p></td>
+    </tr>
+    <tr>
+      <th>attr.prob.fixed</th>
+      <td><p>Vector or matrix with fixed probabilities of skill distribution.</p></td>
     </tr>
     <tr>
       <th>reduced.skillspace</th>

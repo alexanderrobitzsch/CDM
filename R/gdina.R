@@ -1,5 +1,5 @@
 ## File Name: gdina.R
-## File Version: 9.3408
+## File Version: 9.3409
 
 
 ################################################################################
@@ -270,12 +270,12 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
             }
         }
     }
-    
+
     #--- attribute probabilities
     if (!is.null(attr.prob.fixed)){
         attr.prob <- attr.prob.fixed
     }
-    
+
     #--- delta parameter indices
     res <- gdina_proc_delta_indices(delta=delta, Mj=Mj)
     delta_indices <- res$delta_indices
@@ -375,7 +375,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
                     attr.prob.fixed=attr.prob.fixed)
         p.aj.xi <- res$p.aj.xi
         attr.prob <- res$attr.prob
-        
+
         #######################################################################
         # STEP II0: higher order GDINA model
         #######################################################################
@@ -600,7 +600,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
     #--- calculation of the AIC und BIC
     res <- gdina_calc_ic( delta=delta, delta.designmatrix=delta.designmatrix, delta.fixed=delta.fixed,
                 G=G, ncolZ=ncolZ, K=K, HOGDINA=HOGDINA, item.patt.freq=item.patt.freq,
-                zeroprob.skillclasses=zeroprob.skillclasses, loglike=loglike, 
+                zeroprob.skillclasses=zeroprob.skillclasses, loglike=loglike,
                 numb_regular_pars=numb_regular_pars, attr.prob.fixed=attr.prob.fixed )
     Npars <- res$Npars
     aic <- res$aic

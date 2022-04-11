@@ -1,5 +1,5 @@
 ## File Name: cdm_est_calc_accuracy_version1.R
-## File Version: 0.03
+## File Version: 0.041
 
 
 cdm_est_calc_accuracy_version1 <- function( cdmobj, n.sims=0 )
@@ -19,10 +19,11 @@ cdm_est_calc_accuracy_version1 <- function( cdmobj, n.sims=0 )
                 class.prob=class.prob)
     dfr <- rbind( c1, c2 )
     rownames(dfr) <- c("MLE", "MAP" )
-    if ( class(cdmobj)=="gdina" ){ n.sims <- 0 }
-    #***********************************
-    # simulated classification
+    if ( inherits(cdmobj,"gdina") ){ 
+        n.sims <- 0 
+    }
 
+    #--- simulated classification
     if ( sum(is.na(data) ) > 0 & ( n.sims > 0 ) ){
         n.sims <- nrow(data)
     }

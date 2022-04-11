@@ -1,5 +1,5 @@
 //// File Name: cdm_rcpp_ideal_resp_pattern.cpp
-//// File Version: 0.21
+//// File Version: 0.221
 
 
 
@@ -25,7 +25,7 @@ Rcpp::NumericMatrix cdm_rcpp_ideal_resp_pattern( Rcpp::NumericMatrix qmatrix,
         for (int ll=0; ll<L; ll++){
             idealresp(ii,ll) = 1;
             for (int kk=0;kk<K;kk++){
-                if ( ( qmatrix(ii,kk) == 1 ) & ( skillspace(ll,kk) == 0 ) ){
+                if ( ( qmatrix(ii,kk) == 1 ) && ( skillspace(ll,kk) == 0 ) ){
                     idealresp(ii, ll) = 0;
                 }
             }

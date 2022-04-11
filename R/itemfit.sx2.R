@@ -1,15 +1,15 @@
 ## File Name: itemfit.sx2.R
-## File Version: 3.24
+## File Version: 3.251
 
-############################################################
-# Item fit according to the S-X^2 statistic
-# Orlando & Thissen (2000, 2003)
+
+#*** Item fit according to the S-X^2 statistic
+#*** Orlando & Thissen (2000, 2003)
 itemfit.sx2 <- function( object, Eik_min=1, progress=TRUE )
 {
     mod <- object
     #*****************************
     # object of class gdm
-    if ( class(mod)=="gdm" ){
+    if ( inherits(mod,"gdm") ){
         if ( dim( mod$n.ik)[4] > 1){
             stop("Only applicable in One-group case!")
         }
@@ -20,9 +20,9 @@ itemfit.sx2 <- function( object, Eik_min=1, progress=TRUE )
         if ( mod$irtmodel=="1PL" ){ npars <- rep( 1, I ) }
         if ( mod$irtmodel=="2PL" ){ npars <- rep( 2, I ) }
     }
-    #*****************************
-    # object of class smirt (sirt)
-    if ( class(mod)=="smirt" ){
+
+    #--- object of class smirt (sirt)
+    if ( inherits(mod,"smirt") ){
         pi.k <- mod$pi.k[,1]
         pjk <- aperm( mod$probs, c(3,1,2) )
         D <- ncol( object$Qmatrix )
@@ -47,9 +47,9 @@ itemfit.sx2 <- function( object, Eik_min=1, progress=TRUE )
         }
         data <- mod$dat
     }
-    #*****************************************
-    # rasch.mml (in sirt)
-    if ( class(object)=="rasch.mml" ){
+
+    #--- rasch.mml (in sirt)
+    if ( inherits(object,"rasch.mml") ){
         pi.k <- object$trait.distr[,2]
         pjk0 <- object$pjk
         pjk <- array( 0, dim=c( dim(pjk0), 2 ) )
@@ -59,25 +59,25 @@ itemfit.sx2 <- function( object, Eik_min=1, progress=TRUE )
         npars <- 1*( object$item$est.a > 0 ) + 1*( object$item$est.b > 0 ) +
             1*( object$item$est.c > 0 ) + 1*( object$item$est.d > 0 )
     }
-    #*********************************************
-    # din (in CDM)
-    if (class(object)=="din"){
+
+    #--- din (in CDM)
+    if (inherits(object,"din") ){
         data <- object$data
         pi.k <-  object$attribute.patt$class.prob
         pjk <- aperm( object$pjk, c(3,1,2) )
         npars <- rep(2,ncol(data))
     }
-    #*********************************************
-    # gdina (in CDM)
-    if (class(object)=="gdina"){
+
+    #--- gdina (in CDM)
+    if (inherits(object,"gdina") ){
         data <- object$data
         pi.k <-  object$attribute.patt$class.prob
         pjk <- aperm( object$pjk, c(3,1,2) )
         npars <- unlist( lapply( object$delta, FUN=function(ll){ length(ll) } ) )
     }
-    #***********************************************
-    # tam.mml (in TAM)
-    if (class(object)=="tam.mml"){
+
+    #--- tam.mml (in TAM)
+    if (inherits(object,"tam.mml")){
         data <- object$resp
         I <- ncol(data)
         pi.k <-  object$pi.k
@@ -92,9 +92,7 @@ itemfit.sx2 <- function( object, Eik_min=1, progress=TRUE )
         if ( object$irtmodel=="2PL"){ npars <- rep(2,I) }
     }
 
-    #************************************
-    #************************************
-    # data preparation
+    #--- data preparation
     I <- ncol(data)
     sumscore <- rowSums( data )
     N <- nrow(data)
@@ -139,6 +137,7 @@ itemfit.sx2 <- function( object, Eik_min=1, progress=TRUE )
     class(res) <- "itemfit.sx2"
     return(res)
 }
+
 #############################################################################
 # summary of item fit
 summary.itemfit.sx2 <- function(object,...)

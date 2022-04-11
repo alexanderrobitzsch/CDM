@@ -13,7 +13,7 @@ CDM package
          A. C. George [aut], & A. Uenlue [aut]
 
 mailto:
-robitzsch@leibniz-ipn.de
+robitzsch@ipn.uni-kiel.de
 
 For reporting a bug, please always provide a reproducible 
 R script and (if necessary) a corresponding dataset.
@@ -24,13 +24,10 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 7.6  |  2021-08-11  |  Last: CDM 7.6-7
+VERSIONS CDM 8.0  |  2022-04-11  |  Last: CDM 8.0-1
 --------------------------------------------------------------
 
-FIXED * fixed numerical issues in modelfit.cor.din()
-        (thanks to @yjchen, Github issue #6)
-NOTE  * included argument 'attr.prob.fixed' in gdina()
-        (thanks to a discussion with Wenchao Ma)
+NOTE  * xxx
 
 
 DATA  * included/modified datasets: ---
@@ -38,6 +35,17 @@ EXAMP * included/modified examples: ---
 
 
 
+--------------------------------------------------------------
+VERSIONS CDM 7.6  |  2022-04-11  |  Last: CDM 7.6-11
+--------------------------------------------------------------
+
+FIXED * fixed numerical issues in modelfit.cor.din()
+        (thanks to @yjchen, Github issue #6)
+NOTE  * included argument 'attr.prob.fixed' in gdina()
+        (thanks to a discussion with Wenchao Ma)
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
 
 --------------------------------------------------------------
 VERSIONS CDM 7.5  |  2020-03-10  |  Last: CDM 7.5-15

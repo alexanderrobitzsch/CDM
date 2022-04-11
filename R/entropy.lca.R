@@ -1,15 +1,15 @@
 ## File Name: entropy.lca.R
-## File Version: 0.18
+## File Version: 0.191
 
-####################################################
-# entropy for din, gdina and mcdina objects
+
+#--- entropy for din, gdina and mcdina objects
 entropy.lca <- function( object )
 {
     posterior <- object$like
     data <- object$data
     weights <- object$control$weights
     pjk <- object$pjk
-    if ( class(object)=="mcdina" ){
+    if ( inherits(object,"mcdina") ){
         weights <- object$weights
         data <- object$dat
         data <- data - 1

@@ -1,12 +1,12 @@
 Package: CDM
 Type: Package
 Title: Cognitive Diagnosis Modeling
-Version: 7.6-7
-Date: 2021-08-11 15:42:29
+Version: 8.0-1
+Date: 2022-04-11 16:52:49
 Author: 
     Alexander Robitzsch [aut, cre], Thomas Kiefer [aut],
     Ann Cathrice George [aut], Ali Uenlue [aut]
-Maintainer: Alexander Robitzsch <robitzsch@leibniz-ipn.de>
+Maintainer: Alexander Robitzsch <robitzsch@ipn.uni-kiel.de>
 Description: 
     Functions for cognitive diagnosis modeling and multidimensional item response modeling 
     for dichotomous and polytomous item responses. This package enables the estimation of 

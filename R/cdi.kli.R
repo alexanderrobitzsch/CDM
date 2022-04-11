@@ -1,12 +1,12 @@
 ## File Name: cdi.kli.R
-## File Version: 0.17
+## File Version: 0.181
 
-#######################################################
-# cognitive diagnostic indices
+
+#--- cognitive diagnostic indices
 cdi.kli <- function( object )
 {
     # object must be of class din or gdina
-    if ( ! ( class(object) %in% c("din","gdina") ) ){
+    if ( ! inherits(object, c("din","gdina") ) ){
         stop("This functions only supports objects of class din or gdina!")
     }
     items <- colnames( object$data )
@@ -49,5 +49,3 @@ cdi.kli <- function( object )
     class(res) <- "cdi.kli"
     return(res)
 }
-##############################################################
-

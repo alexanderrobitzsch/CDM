@@ -1,5 +1,5 @@
 ## File Name: din.validate.qmatrix.R
-## File Version: 1.426
+## File Version: 1.429
 
 
 #---- Q-matrix validation based on the DINA model
@@ -22,7 +22,8 @@ din.validate.qmatrix <- function( object, IDI_diff=.02, print=TRUE )
     nodes <- c(0,1)
     K <- ncol(q.matrix)
     L <- 2^K
-    q.matrix.poss <- as.matrix( expand.grid( as.data.frame( matrix( rep(nodes, K), ncol=K ) ) ) )
+    q.matrix.poss <- as.matrix( expand.grid( as.data.frame( matrix( rep(nodes, K),
+                            ncol=K ) ) ) )
     colnames(q.matrix.poss) <- colnames(q.matrix)
     q.matrix.poss <- q.matrix.poss[ ! ( rowMeans( q.matrix.poss ) %in% c(0) ), ]
     QQM <- nrow(q.matrix.poss)     # number of possible Q-matrix vectors
@@ -50,8 +51,8 @@ din.validate.qmatrix <- function( object, IDI_diff=.02, print=TRUE )
     coef.modified$IDI <- 1 - coef.modified$slip - coef.modified$guess
 
     # look for original rows
-    coef.modified$qmatrix.orig <- 1 * ( rowMeans( q.matrix.poss[ coef.modified$qmatrix.row, ]
-                ==    q.matrix[ coef.modified$item, ] )==1 )
+    coef.modified$qmatrix.orig <- 1*( rowMeans(q.matrix.poss[ coef.modified$qmatrix.row,]
+                ==q.matrix[ coef.modified$item, ] )==1 )
 
     coef.modified$IDI.orig <- IDI[ coef.modified$item ]
     coef.modified$delta.IDI <- coef.modified$IDI - coef.modified$IDI.orig
@@ -68,7 +69,7 @@ din.validate.qmatrix <- function( object, IDI_diff=.02, print=TRUE )
                     itemindex=coef.modified$itemindex, I=I)
 
     coef.modified$max.IDI <- a1[ coef.modified$itemindex, 2]
-    coef.modified <- coef.modified[ order( coef.modified$itemindex - coef.modified$IDI ), ]
+    coef.modified <- coef.modified[ order(coef.modified$itemindex - coef.modified$IDI ),]
 
     # print output
     coef.modified2 <- coef.modified
@@ -95,12 +96,11 @@ din.validate.qmatrix <- function( object, IDI_diff=.02, print=TRUE )
     }
 
     s2 <- Sys.time()
-    res <- list( coef.modified=coef.modified,
-                coef.modified.short=coef.modified2,
+    res <- list( coef.modified=coef.modified, coef.modified.short=coef.modified2,
                 q.matrix.prop=q.matrix.prop, time_diff=s2 - s1 )
     class(res) <- "din.validate.qmatrix"
     return(res)
 }
-######################################################
+
 
 # cat("* loop") ; z1 <- Sys.time(); print(z1-z0) ; z0 <- z1

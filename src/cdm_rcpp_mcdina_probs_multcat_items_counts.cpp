@@ -1,5 +1,5 @@
 //// File Name: cdm_rcpp_mcdina_probs_multcat_items_counts.cpp
-//// File Version: 3.17
+//// File Version: 3.183
 
 // #include <RcppArmadillo.h>
 #include <Rcpp.h>
@@ -26,7 +26,8 @@ Rcpp::List cdm_rcpp_mcdina_probs_pcm_groups( Rcpp::NumericMatrix dat,
                 for (int tt=0;tt<TP;tt++){
                     // probs ( ii, cc, tt, gg ) =
                     // probs_C(ii,  cc + tt*CC + gg * CC*TP )
-                    fyiqk(nn,tt) = fyiqk(nn,tt) * probs( ii, dat(nn,ii) + tt * CC + group[nn] * CC * TP );
+                    fyiqk(nn,tt) = fyiqk(nn,tt) * probs( ii, dat(nn,ii) + tt * CC +
+                                        group[nn] * CC * TP );
                 }  // end tt
             }  // end if dat_resp = 1
         } // end ii
@@ -45,8 +46,9 @@ Rcpp::List cdm_rcpp_mcdina_probs_pcm_groups( Rcpp::NumericMatrix dat,
 ///**  cdm_rcpp_mcdina_calccounts_pcm_groups
 // [[Rcpp::export]]
 Rcpp::List cdm_rcpp_mcdina_calccounts_pcm_groups( Rcpp::NumericMatrix dat,
-        Rcpp::LogicalMatrix dat_resp_bool, Rcpp::NumericVector group, Rcpp::NumericMatrix fyiqk,
-        Rcpp::NumericMatrix pik, int CC, Rcpp::NumericVector weights )
+        Rcpp::LogicalMatrix dat_resp_bool, Rcpp::NumericVector group,
+        Rcpp::NumericMatrix fyiqk, Rcpp::NumericMatrix pik, int CC,
+        Rcpp::NumericVector weights )
 {
     int TP = fyiqk.ncol();
     int G = pik.ncol();
@@ -75,7 +77,8 @@ Rcpp::List cdm_rcpp_mcdina_calccounts_pcm_groups( Rcpp::NumericMatrix dat,
         for (int nn=0;nn<N;nn++){
             if (dat_resp_bool(nn,ii)){
                 for(int tt=0;tt<TP;tt++){
-                    nik(ii,dat(nn,ii)+tt*CC+group[nn]*CC*TP ) +=  fqkyi(nn,tt) * weights[nn];
+                    nik(ii,dat(nn,ii)+tt*CC+group[nn]*CC*TP ) +=  fqkyi(nn,tt) *
+                                        weights[nn];
                 } // end tt
             }  // end if dat_resp == 1
         } // end nn

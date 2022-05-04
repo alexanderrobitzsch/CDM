@@ -1,14 +1,11 @@
 ## File Name: cdm_est_calc_accuracy_version1_computation.R
-## File Version: 0.01
+## File Version: 0.03
 
 
-
-
-#####################################################################################
-# estimate classification accuracy and consistency
+#**** estimate classification accuracy and consistency
 cdm_est_calc_accuracy_version1_computation <- function( p.xi.aj, est.class, class.prob )
 {
-    m0 <- matrix(  colSums( p.xi.aj ), nrow=nrow(p.xi.aj), ncol=ncol(p.xi.aj), byrow=TRUE )
+    m0 <- matrix( colSums(p.xi.aj), nrow=nrow(p.xi.aj), ncol=ncol(p.xi.aj), byrow=TRUE)
     p.xi.aj <- p.xi.aj  / m0
     # calculate class index
     est.class.index <- match( paste(est.class), colnames(p.xi.aj ) )
@@ -35,6 +32,6 @@ cdm_est_calc_accuracy_version1_computation <- function( p.xi.aj, est.class, clas
     res <- data.frame( P_c=P_c, P_a=P_a )
     return(res)
 }
-#####################################################################################
+
 
 .est.class.accuracy <- cdm_est_calc_accuracy_version1_computation

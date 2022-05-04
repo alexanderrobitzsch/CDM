@@ -1,5 +1,5 @@
 ## File Name: cdm_est_calc_accuracy_version2.R
-## File Version: 0.14
+## File Version: 0.153
 
 
 cdm_est_calc_accuracy_version2 <- function( cdmobj, n.sims=0 )
@@ -47,7 +47,7 @@ cdm_est_calc_accuracy_version2 <- function( cdmobj, n.sims=0 )
     #-- multivariate pattern
     for (pp in estimators ){
         dfr[ paste0(pp, "_patt"), "Pa_sim" ] <- ( mean( theta_index==class1[[pp]] ) +
-                                                    mean( theta_index==class2[[pp]] ) ) / 2
+                                mean( theta_index==class2[[pp]] ) ) / 2
         dfr[ paste0(pp, "_patt"), "Pc_sim" ] <- mean( class1[[pp]]==class2[[pp]] )
     }
     #-- single skills
@@ -56,8 +56,9 @@ cdm_est_calc_accuracy_version2 <- function( cdmobj, n.sims=0 )
             theta_index_kk <- theta[ theta_index, kk]
             est1_kk <- theta[ class1[[pp]], kk]
             est2_kk <- theta[ class2[[pp]], kk]
-            dfr[ paste0(pp, "_", skill_names[kk] ), "Pa_sim" ] <- ( mean( theta_index_kk==est1_kk ) +
-                                                            mean( theta_index_kk==est2_kk ) ) / 2
+            dfr[ paste0(pp, "_", skill_names[kk] ), "Pa_sim" ] <-
+                                ( mean( theta_index_kk==est1_kk ) +
+                                    mean( theta_index_kk==est2_kk ) ) / 2
             dfr[ paste0(pp, "_", skill_names[kk] ), "Pc_sim" ] <- mean( est1_kk==est2_kk )
         }
     }

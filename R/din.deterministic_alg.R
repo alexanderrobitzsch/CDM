@@ -1,11 +1,11 @@
 ## File Name: din.deterministic_alg.R
-## File Version: 0.17
+## File Version: 0.182
 
 ##############################################################
 # link to Rcpp functions
 din.deterministic.devcrit <- function( dat, datresp, latresp, guess, slip )
 {
-    res <- cdm_rcpp_din_deterministic_devcrit(    dat, datresp, latresp, guess, slip )
+    res <- cdm_rcpp_din_deterministic_devcrit( dat, datresp, latresp, guess, slip )
     return(res)
 }
 #**********
@@ -21,7 +21,7 @@ define.attribute.space <- function( q.matrix )
 {
     nodes <- c(0,1)
     K <- ncol(q.matrix)
-    attr.patt <- as.matrix( expand.grid( as.data.frame( matrix( rep(nodes, K), ncol=K ) ) ) )
+    attr.patt <- as.matrix( expand.grid( as.data.frame( matrix(rep(nodes, K), ncol=K))))
     if ( ! is.null( colnames(q.matrix) ) ){
         colnames(attr.patt) <- colnames(q.matrix)
     }
@@ -29,7 +29,7 @@ define.attribute.space <- function( q.matrix )
 }
 #################################################################
 # compute latent responses
-compute.latent.response <- function( attr.patt, q.matrix,rule=NULL)
+compute.latent.response <- function( attr.patt, q.matrix, rule=NULL)
 {
     AP <- nrow(attr.patt)
     I <- nrow(q.matrix)
@@ -52,7 +52,7 @@ calc.devcrit <- function( dat, dat.resp, latresp,slip, guess, N, I, AP)
     for (aa in 1:AP){
         lat.aa <- matrix( latresp[aa,], nrow=N, ncol=I, byrow=TRUE)
         dev.crit[,aa] <- rowSums( slip * ( lat.aa - dat ) * ( lat.aa==1 ) * dat.resp +
-                            guess * ( dat - lat.aa ) * ( lat.aa==0 ) * dat.resp )
+                                guess * ( dat - lat.aa ) * ( lat.aa==0 ) * dat.resp )
     }
     return(dev.crit)
 }

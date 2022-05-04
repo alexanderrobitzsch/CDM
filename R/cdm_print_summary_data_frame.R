@@ -1,8 +1,9 @@
 ## File Name: cdm_print_summary_data_frame.R
-## File Version: 0.06
+## File Version: 0.072
 
 
-cdm_print_summary_data_frame <- function(obji, from=NULL, to=NULL, digits=3, rownames_null=FALSE)
+cdm_print_summary_data_frame <- function(obji, from=NULL, to=NULL, digits=3,
+                    rownames_null=FALSE)
 {
     if (is.vector(obji)){
         obji <- round(obji, digits)

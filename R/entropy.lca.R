@@ -1,5 +1,5 @@
 ## File Name: entropy.lca.R
-## File Version: 0.191
+## File Version: 0.194
 
 
 #--- entropy for din, gdina and mcdina objects
@@ -31,7 +31,7 @@ entropy.lca <- function( object )
     posterior <- posterior / rowSums( posterior )
 
     #*** calculate entropy for whole test
-    entropy.total <- 1 +  sum( weights * posterior * log( posterior + eps) ) / N / log(L)
+    entropy.total <- 1 +  sum( weights * posterior * log( posterior + eps) )/N/log(L)
 
     #*** maximum number of skills
     maxskill <- apply( skillspace, 2, max )
@@ -45,7 +45,8 @@ entropy.lca <- function( object )
         for (vv in 0:Nkk){
             posterior.kk[,vv+1] <- rowSums( posterior[, skillspace[,kk]==vv ]  )
         }
-        entropy.skill[kk] <- 1 +  sum( weights * posterior.kk * log( posterior.kk + eps) ) / N / log(Nkk+1)
+        entropy.skill[kk] <- 1 +
+                sum( weights * posterior.kk * log(posterior.kk+eps))/ N / log(Nkk+1)
     }
 
     #******** entropy for each item
@@ -58,7 +59,8 @@ entropy.lca <- function( object )
         pjkM <- pjk.ii[ data[,ii] +1, ]
         posterior.ii <- pjkM
         posterior.ii <- posterior.ii / rowSums( posterior.ii )
-        entropyM[ii+1,1] <- 1 +  sum( weights.ii * posterior.ii * log( posterior.ii + eps) ) / N.ii / log(L)
+        entropyM[ii+1,1] <- 1 +
+                sum( weights.ii * posterior.ii * log(posterior.ii + eps) )/N.ii/log(L)
         for (kk in 1:K){
             # skill kk and item ii
             Nkk <- maxskill[kk]
@@ -66,7 +68,8 @@ entropy.lca <- function( object )
             for (vv in 0:Nkk){
                 posterior.kk[,vv+1] <- rowSums( posterior.ii[, skillspace[,kk]==vv ]  )
             }
-            entropyM[ii+1,kk+1] <- 1 +  sum( weights * posterior.kk * log( posterior.kk + eps) ) / N / log(Nkk+1)
+            entropyM[ii+1,kk+1] <- 1 +
+                    sum( weights * posterior.kk * log(posterior.kk + eps) )/N/log(Nkk+1)
         }
     }
 

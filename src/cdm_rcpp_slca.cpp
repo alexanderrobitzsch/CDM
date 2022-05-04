@@ -1,5 +1,5 @@
 //// File Name: cdm_rcpp_slca.cpp
-//// File Version: 3.17
+//// File Version: 3.182
 
 // #include <RcppArmadillo.h>
 #include <Rcpp.h>
@@ -51,9 +51,10 @@ Rcpp::NumericVector cdm_rcpp_slca_calc_probs( Rcpp::NumericMatrix XdesM,
 ///********************************************************************
 ///**  cdm_rcpp_slca_calc_deriv
 // [[Rcpp::export]]
-Rcpp::List cdm_rcpp_slca_calc_deriv( Rcpp::NumericMatrix XdesM, Rcpp::NumericVector dimXdes,
-        Rcpp::NumericVector Xlambda, Rcpp::NumericVector probs, Rcpp::NumericVector nik,
-        Rcpp::NumericVector Nik )
+Rcpp::List cdm_rcpp_slca_calc_deriv( Rcpp::NumericMatrix XdesM,
+            Rcpp::NumericVector dimXdes, Rcpp::NumericVector Xlambda,
+            Rcpp::NumericVector probs, Rcpp::NumericVector nik,
+            Rcpp::NumericVector Nik )
 {
 
     // $dimXdes
@@ -133,7 +134,7 @@ Rcpp::List cdm_rcpp_slca_calc_deriv( Rcpp::NumericMatrix XdesM, Rcpp::NumericVec
         //  t2 <- sum( Xdes[, hh,, ll] * N.ik * probs[,hh,] *
         //   ( Xdes[, hh,, ll ] - tmp1 ) )
         d2b[ll] += XdesM(rr,4) * Nik[ii + I*tt ] * probs[ ii + I*hh + I*maxK*tt ] *
-                        ( XdesM(rr,4) - tmp1[vv] );
+                            ( XdesM(rr,4) - tmp1[vv] );
         //   tmp1[vv] += XdesM(rr,4) * probs[ii+I*hh+I*maxK*tt];
     }
     //*************************************************
@@ -150,7 +151,8 @@ Rcpp::List cdm_rcpp_slca_calc_deriv( Rcpp::NumericMatrix XdesM, Rcpp::NumericVec
 ///********************************************************************
 ///**  cdm_rcpp_slca_calc_Xdes
 // [[Rcpp::export]]
-Rcpp::List cdm_rcpp_slca_calc_Xdes( Rcpp::NumericVector XDES, Rcpp::NumericVector dimXdes )
+Rcpp::List cdm_rcpp_slca_calc_Xdes( Rcpp::NumericVector XDES,
+                    Rcpp::NumericVector dimXdes )
 {
     // $dimXdes
     // [1]  6  4 21 19

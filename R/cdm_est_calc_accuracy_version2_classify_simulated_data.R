@@ -1,5 +1,5 @@
 ## File Name: cdm_est_calc_accuracy_version2_classify_simulated_data.R
-## File Version: 0.03
+## File Version: 0.04
 
 
 cdm_est_calc_accuracy_version2_classify_simulated_data <- function( data, irfprob, prior)
@@ -9,7 +9,7 @@ cdm_est_calc_accuracy_version2_classify_simulated_data <- function( data, irfpro
     post <- eval_likelihood(data=data, irfprob=irfprob, prior=prior, normalization=TRUE)
     res_post <- cdm_rcpp_irt_classify_individuals(like=post)
     #--- output
-    res <- list( like=like, MLE=res_like$class_index, post=post, MAP=res_post$class_index )
+    res <- list( like=like, MLE=res_like$class_index, post=post, MAP=res_post$class_index)
     return(res)
 }
 

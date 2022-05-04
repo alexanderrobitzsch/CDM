@@ -1,10 +1,10 @@
 ## File Name: confint.din.R
-## File Version: 0.16
+## File Version: 0.172
 
 
 # confidence interval for objects of class din
-confint.din <- function(object, parm, level=.95, extended=FALSE, ind.item.skillprobs=TRUE,
-        ind.item=FALSE, diagcov=FALSE, h=.001,...)
+confint.din <- function(object, parm, level=.95, extended=FALSE,
+            ind.item.skillprobs=TRUE, ind.item=FALSE, diagcov=FALSE, h=.001,...)
 {
     if ( ! missing( parm) ){
         partable <- object$partable
@@ -18,7 +18,8 @@ confint.din <- function(object, parm, level=.95, extended=FALSE, ind.item.skillp
             extended <- TRUE
         }
     }
-    v1 <- vcov( object, extended=extended, infomat=FALSE,ind.item.skillprobs=ind.item.skillprobs,
+    v1 <- vcov( object, extended=extended, infomat=FALSE,
+                    ind.item.skillprobs=ind.item.skillprobs,
                     ind.item=ind.item, diagcov=diagcov, h=h,...)
     c1 <- attr( v1, "coef" )
     c1 <- c1[ ! duplicated(names(c1) ) ]

@@ -1,5 +1,5 @@
 //// File Name: cdm_rcpp_din_em.cpp
-//// File Version: 0.557
+//// File Version: 0.559
 
 
 
@@ -48,7 +48,8 @@ Rcpp::NumericVector cdm_rcpp_din_calc_prob( Rcpp::LogicalMatrix latresp1,
 ///********************************************************************
 ///**  cdm_rcpp_din_calc_counts
 // [[Rcpp::export]]
-Rcpp::NumericMatrix cdm_rcpp_din_calc_counts( Rcpp::NumericMatrix p_aj_xi, Rcpp::NumericVector item_patt_freq,
+Rcpp::NumericMatrix cdm_rcpp_din_calc_counts( Rcpp::NumericMatrix p_aj_xi,
+            Rcpp::NumericVector item_patt_freq,
             Rcpp::LogicalMatrix item_patt_split1, Rcpp::LogicalMatrix resp_patt_bool,
             int J, int L)
 {
@@ -70,4 +71,5 @@ Rcpp::NumericMatrix cdm_rcpp_din_calc_counts( Rcpp::NumericMatrix p_aj_xi, Rcpp:
 }
 ///********************************************************************
 
-// return Rcpp::List::create(  Rcpp::Named("dist") = dist,  Rcpp::Named("est_skill") = est_skill  );
+// return Rcpp::List::create(  Rcpp::Named("dist") = dist,
+//     Rcpp::Named("est_skill") = est_skill  );

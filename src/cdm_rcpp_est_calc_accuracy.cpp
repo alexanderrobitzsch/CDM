@@ -1,5 +1,5 @@
 //// File Name: cdm_rcpp_est_calc_accuracy.cpp
-//// File Version: 0.06
+//// File Version: 0.072
 
 // [[Rcpp::depends(RcppArmadillo)]]
 
@@ -13,8 +13,8 @@ using namespace Rcpp;
 ///**  cdm_rcpp_est_calc_accuracy_version2_consistency_helper
 // [[Rcpp::export]]
 double cdm_rcpp_est_calc_accuracy_version2_consistency_helper( Rcpp::NumericMatrix post,
-        Rcpp::IntegerVector est, int max_est_index, double N, Rcpp::NumericVector prob_theta,
-        double eps )
+        Rcpp::IntegerVector est, int max_est_index, double N,
+        Rcpp::NumericVector prob_theta, double eps )
 {
     double val=0;
     double temp=0;

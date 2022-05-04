@@ -1,5 +1,5 @@
 ## File Name: din_identifiability.R
-## File Version: 0.06
+## File Version: 0.071
 
 din_identifiability <- function(q.matrix)
 {
@@ -35,7 +35,7 @@ din_identifiability <- function(q.matrix)
     Q_ast <- q.matrix[-na.omit(index_single),]
     for (ii in 1:(K-1)){
         for (jj in (ii+1):K){
-            submat_distinct <- submat_distinct & ( ! ( mean( Q_ast[,ii]==Q_ast[,jj] )==1 ) )
+            submat_distinct <- submat_distinct & ( !( mean( Q_ast[,ii]==Q_ast[,jj] )==1 ))
         }
     }
 

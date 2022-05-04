@@ -1,5 +1,5 @@
 ## File Name: cdm_est_calc_accuracy_version1.R
-## File Version: 0.041
+## File Version: 0.045
 
 
 cdm_est_calc_accuracy_version1 <- function( cdmobj, n.sims=0 )
@@ -11,16 +11,18 @@ cdm_est_calc_accuracy_version1 <- function( cdmobj, n.sims=0 )
     # class probabilities
     class.prob <- cdmobj$attribute.patt$class.prob
     # MLE (orginal data)
-    c1 <- cdm_est_calc_accuracy_version1_computation( p.xi.aj=p.xi.aj, est.class=cdmobj$pattern$mle.est,
-                class.prob=class.prob)
+    c1 <- cdm_est_calc_accuracy_version1_computation( p.xi.aj=p.xi.aj,
+                        est.class=cdmobj$pattern$mle.est,
+                        class.prob=class.prob)
 
     # MAP (original data)
-    c2 <- cdm_est_calc_accuracy_version1_computation( p.xi.aj=p.xi.aj, est.class=cdmobj$pattern$map.est,
-                class.prob=class.prob)
+    c2 <- cdm_est_calc_accuracy_version1_computation( p.xi.aj=p.xi.aj,
+                    est.class=cdmobj$pattern$map.est,
+                    class.prob=class.prob)
     dfr <- rbind( c1, c2 )
     rownames(dfr) <- c("MLE", "MAP" )
-    if ( inherits(cdmobj,"gdina") ){ 
-        n.sims <- 0 
+    if ( inherits(cdmobj,"gdina") ){
+        n.sims <- 0
     }
 
     #--- simulated classification
@@ -61,13 +63,15 @@ cdm_est_calc_accuracy_version1 <- function( cdmobj, n.sims=0 )
         # fixed item parameters
 #        I <- length(guess0)
         mod1 <- din( simdata1$dat, q.matrix=cdmobj$q.matrix,
-                    constraint.guess=cbind(1:I, guess0), constraint.slip=cbind(1:I, slip0 ),
-                    rule=cdmobj$rule, progress=FALSE, skillclasses=attr.splitted,
-                    zeroprob.skillclasses=cdmobj$zeroprob.skillclasses )
+                        constraint.guess=cbind(1:I, guess0),
+                        constraint.slip=cbind(1:I, slip0 ),
+                        rule=cdmobj$rule, progress=FALSE, skillclasses=attr.splitted,
+                        zeroprob.skillclasses=cdmobj$zeroprob.skillclasses )
         mod2 <- din( simdata2$dat, q.matrix=cdmobj$q.matrix,
-                    constraint.guess=cbind(1:I, guess0), constraint.slip=cbind(1:I, slip0 ),
-                    rule=cdmobj$rule, progress=FALSE, skillclasses=attr.splitted,
-                    zeroprob.skillclasses=cdmobj$zeroprob.skillclasses)
+                        constraint.guess=cbind(1:I, guess0),
+                        constraint.slip=cbind(1:I, slip0 ),
+                        rule=cdmobj$rule, progress=FALSE, skillclasses=attr.splitted,
+                        zeroprob.skillclasses=cdmobj$zeroprob.skillclasses)
         # compare MLE estimates
         dfr1 <- data.frame( "true"=paste( rownames(alpha.sim)  ) )
         dfr1$mle.simdata1 <- paste( mod1$pattern$mle.est )
@@ -101,22 +105,21 @@ cdm_est_calc_accuracy_version1 <- function( cdmobj, n.sims=0 )
         ind.kk0 <- which( attribute.patt.splitted[, kk ]==0 )
         ind.kk1 <- which( attribute.patt.splitted[, kk ]==1 )
         # marginal likelihood
-        pxiaj_kk <- cbind( rowSums( p.xi.aj[, ind.kk0 ] ), rowSums( p.xi.aj[, ind.kk1 ] ) )
+        pxiaj_kk <- cbind( rowSums( p.xi.aj[, ind.kk0 ] ), rowSums( p.xi.aj[, ind.kk1 ]))
         colnames(pxiaj_kk) <- c("0", "1" )
         patt1 <- 1 * ( cdmobj$pattern[, paste0( "post.attr", kk ) ] > .5 )
         c1 <- cdmobj$skill.patt[kk,1]
         class.prob.kk <- c( 1-c1, c1 )
-        c2 <- cdm_est_calc_accuracy_version1_computation( p.xi.aj=pxiaj_kk,  est.class=patt1,
-                        class.prob=class.prob.kk)
+        c2 <- cdm_est_calc_accuracy_version1_computation( p.xi.aj=pxiaj_kk,
+                        est.class=patt1, class.prob=class.prob.kk)
         dfr10 <- rbind( dfr10, c2 )
     }
     rownames(dfr10) <- paste0( "MAP_Skill", 1:K)
     if (n.sims>0){ dfr10 <- cbind( dfr10, NA, NA ) }
     colnames(dfr10) <- colnames(dfr)
     dfr <- rbind( dfr, dfr10 )
-    #*****************************************************
-    dfr <- dfr[, order( paste(colnames(dfr)))  ]
+    dfr <- dfr[, order( paste(colnames(dfr))) ]
     return(dfr)
 }
-########################################################################
+
 

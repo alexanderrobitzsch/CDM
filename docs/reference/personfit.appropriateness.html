@@ -76,7 +76,7 @@ spuriously low scorers (attr.type=0)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">CDM</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Versions">8.0-vv</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Versions">8.1-vv</span>
       </span>
     </div>
 
@@ -242,7 +242,7 @@ diagnosis. <em>Applied Psychological Measurement, 33</em>(8), 579-598.</p>
 <span class='no'>I</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span>(<span class='no'>dat</span>)
 
 <span class='co'># fit 2PL model</span>
-<span class='no'>mod1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sirt/man/rasch.mml.html'>rasch.mml2</a></span>( <span class='no'>dat</span>, <span class='kw'>est.a</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='no'>I</span>)
+<span class='no'>mod1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'>rasch.mml2</span>( <span class='no'>dat</span>, <span class='kw'>est.a</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='no'>I</span>)
 <span class='co'># person fit statistic</span>
 <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='no'>mod1</span>$<span class='no'>dat</span>
 <span class='no'>probs0</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span>(<span class='no'>mod1</span>$<span class='no'>pjk</span>)

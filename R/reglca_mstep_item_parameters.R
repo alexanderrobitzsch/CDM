@@ -1,5 +1,5 @@
 ## File Name: reglca_mstep_item_parameters.R
-## File Version: 0.4957
+## File Version: 0.501
 
 
 reglca_mstep_item_parameters <- function(I, n.ik, N.ik, h, mstep_iter, conv, regular_lam,

@@ -1,5 +1,5 @@
 ## File Name: cdm_pem_acceleration.R
-## File Version: 0.12
+## File Version: 0.132
 
 
 cdm_pem_acceleration <- function( iter, pem_parameter_index, pem_parameter_sequence,
@@ -9,10 +9,13 @@ cdm_pem_acceleration <- function( iter, pem_parameter_index, pem_parameter_seque
     PEM <- TRUE
 
     #-- transform into a vector
-    pem_parm <- cdm_pem_collect_parameters( parmlist=parmlist, pem_parameter_index=pem_parameter_index )
+    pem_parm <- cdm_pem_collect_parameters( parmlist=parmlist,
+                            pem_parameter_index=pem_parameter_index )
     #-- collect parameters in initial iterations
-    pem_parameter_sequence <- cdm_pem_parameter_sequence_initial_iterations( pem_parm=pem_parm,
-                                            pem_parameter_sequence=pem_parameter_sequence, iter=iter )
+    pem_parameter_sequence <- cdm_pem_parameter_sequence_initial_iterations(
+                                    pem_parm=pem_parm,
+                                    pem_parameter_sequence=pem_parameter_sequence,
+                                    iter=iter )
     pem_update <- FALSE
 
     if ( ( iter %% 2==0 ) & ( iter > 0 ) & ( iter < PEM_itermax ) ){
@@ -21,7 +24,8 @@ cdm_pem_acceleration <- function( iter, pem_parameter_index, pem_parameter_seque
         pem_parameter_sequence$P2 <- pem_parm
 
         #** baseline likelihood
-        ll_args <- cdm_pem_include_ll_args( ll_args=ll_args, pem_parm=pem_parm, pem_pars=pem_pars,
+        ll_args <- cdm_pem_include_ll_args( ll_args=ll_args,
+                            pem_parm=pem_parm, pem_pars=pem_pars,
                             pem_parameter_index=pem_parameter_index )
         res0 <- res <- do.call( what=ll_fct, args=ll_args )
         ll0 <- ll <- res$ll
@@ -39,8 +43,8 @@ cdm_pem_acceleration <- function( iter, pem_parameter_index, pem_parameter_seque
             ll0 <- ll
             tt <- cdm_pem_algorithm_compute_t( i=ii )
             Pnew <- cdm_pem_algorithm_compute_Pnew( tt=tt, P0=P0, P1=P1, P2=P2 )
-            ll_args <- cdm_pem_include_ll_args( ll_args=ll_args, pem_parm=Pnew, pem_pars=pem_pars,
-                            pem_parameter_index=pem_parameter_index )
+            ll_args <- cdm_pem_include_ll_args( ll_args=ll_args, pem_parm=Pnew,
+                            pem_pars=pem_pars, pem_parameter_index=pem_parameter_index )
             res <- do.call( what=ll_fct, args=ll_args )
             ll <- res$ll
             if ( is.na(ll) ){

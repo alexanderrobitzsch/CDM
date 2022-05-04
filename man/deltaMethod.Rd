@@ -1,5 +1,5 @@
 %% File Name: deltaMethod.Rd
-%% File Version: 0.12
+%% File Version: 0.132
 
 \name{deltaMethod}
 \alias{deltaMethod}
@@ -56,8 +56,7 @@ Numerical differentiation parameter
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-See \code{\link[car:deltaMethod]{car::deltaMethod}} or
-\code{msm::deltamethod}.
+See \code{car::deltaMethod} or \code{msm::deltamethod}.
 }
 
 %% \code{\link{msm::deltamethod}}.

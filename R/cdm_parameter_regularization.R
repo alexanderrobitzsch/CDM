@@ -1,5 +1,5 @@
 ## File Name: cdm_parameter_regularization.R
-## File Version: 0.20
+## File Version: 0.213
 
 
 cdm_parameter_regularization <- function(x, regular_type, regular_lam,
@@ -20,11 +20,13 @@ cdm_parameter_regularization <- function(x, regular_type, regular_lam,
     }
     #--- elastic net
     if ( regular_type=="elnet"){
-        y <- cdm_penalty_threshold_elnet( beta=x, lambda=regular_lam, alpha=regular_alpha )
+        y <- cdm_penalty_threshold_elnet( beta=x, lambda=regular_lam,
+                                alpha=regular_alpha )
     }
     #--- scadL2
     if ( regular_type=="scadL2"){
-        y <- cdm_penalty_threshold_scadL2( beta=x, lambda=regular_lam, alpha=regular_alpha)
+        y <- cdm_penalty_threshold_scadL2( beta=x, lambda=regular_lam,
+                                alpha=regular_alpha)
     }
     #--- tlp
     if ( regular_type=="tlp"){

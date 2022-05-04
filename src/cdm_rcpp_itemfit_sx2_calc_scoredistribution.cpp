@@ -1,5 +1,5 @@
 //// File Name: cdm_rcpp_itemfit_sx2_calc_scoredistribution.cpp
-//// File Version: 3.07
+//// File Version: 3.082
 
 
 // #include <RcppArmadillo.h>
@@ -10,8 +10,8 @@ using namespace Rcpp;
 ///********************************************************************
 ///**  cdm_rcpp_itemfit_sx2_calc_scoredistribution
 // [[Rcpp::export]]
-Rcpp::NumericMatrix cdm_rcpp_itemfit_sx2_calc_scoredistribution( Rcpp::NumericMatrix P1,
-        Rcpp::NumericMatrix Q1 )
+Rcpp::NumericMatrix cdm_rcpp_itemfit_sx2_calc_scoredistribution(
+            Rcpp::NumericMatrix P1, Rcpp::NumericMatrix Q1 )
 {
     int TP= P1.nrow();
     int I= P1.ncol();
@@ -28,7 +28,8 @@ Rcpp::NumericMatrix cdm_rcpp_itemfit_sx2_calc_scoredistribution( Rcpp::NumericMa
         }
         for (int kk=0; kk < ii; kk++){
             for (int hh=0;hh<TP;hh++){
-                scoredist(hh,ii-kk) = Q1(hh,ii) * scoredist0(hh,ii-kk) + P1(hh,ii) * scoredist0(hh,ii-kk-1);
+                scoredist(hh,ii-kk) = Q1(hh,ii) * scoredist0(hh,ii-kk) + P1(hh,ii) *
+                                            scoredist0(hh,ii-kk-1);
             }
         }
         for (int hh=0;hh<TP;hh++){

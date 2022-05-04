@@ -76,7 +76,7 @@ responses." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">CDM</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Versions">8.0-vv</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Versions">8.1-vv</span>
       </span>
     </div>
 
@@ -495,7 +495,7 @@ with <code><a href='din.html'>din</a></code> (DINA or DINO model) or <code><a hr
 <p>See <code><a href='itemfit.sx2.html'>itemfit.sx2</a></code> for item fit statistics.</p>
 <p>For the estimation of the multidimensional
 latent class item response model see the <span class="pkg">MultiLCIRT</span> package
-and <span class="pkg">sirt</span> package (function <code><a href='https://rdrr.io/pkg/sirt/man/rasch.mirtlc.html'>sirt::rasch.mirtlc</a></code>).</p></div>
+and <span class="pkg">sirt</span> package (function <code>sirt::rasch.mirtlc</code>).</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'>#############################################################################</span>
@@ -712,7 +712,7 @@ and <span class="pkg">sirt</span> package (function <code><a href='https://rdrr.
 <span class='no'>theta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>( <span class='no'>theta</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>N</span>/<span class='fl'>4</span>,<span class='no'>N</span>/<span class='fl'>4</span>, <span class='fl'>3</span>*<span class='no'>N</span>/<span class='fl'>8</span>, <span class='no'>N</span>/<span class='fl'>8</span>)  )
 <span class='no'>b</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(-<span class='fl'>2</span>,<span class='fl'>2</span>,<span class='kw'>len</span><span class='kw'>=</span><span class='no'>I</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sirt</span>)   <span class='co'># use function sim.raschtype from sirt package</span>
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sirt/man/sim.raschtype.html'>sim.raschtype</a></span>( <span class='kw'>theta</span><span class='kw'>=</span><span class='no'>theta</span>, <span class='kw'>b</span><span class='kw'>=</span><span class='no'>b</span> )
+<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'>sim.raschtype</span>( <span class='kw'>theta</span><span class='kw'>=</span><span class='no'>theta</span>, <span class='kw'>b</span><span class='kw'>=</span><span class='no'>b</span> )
 
 <span class='no'>theta.k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(-<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='kw'>len</span><span class='kw'>=</span><span class='fl'>4</span>)      <span class='co'># initial vector of theta</span>
 <span class='co'># estimate model</span>
@@ -743,11 +743,11 @@ and <span class="pkg">sirt</span> package (function <code><a href='https://rdrr.
 <span class='no'>theta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>( <span class='no'>theta</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>N</span>/<span class='fl'>4</span>,<span class='no'>N</span>/<span class='fl'>4</span>, <span class='fl'>3</span>*<span class='no'>N</span>/<span class='fl'>8</span>, <span class='no'>N</span>/<span class='fl'>8</span>)  )
 <span class='no'>b</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(-<span class='fl'>2</span>,<span class='fl'>2</span>,<span class='kw'>len</span><span class='kw'>=</span><span class='no'>I</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sirt</span>)  <span class='co'># use simulation function from sirt package</span>
-<span class='no'>dat1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sirt/man/sim.raschtype.html'>sim.raschtype</a></span>( <span class='kw'>theta</span><span class='kw'>=</span><span class='no'>theta</span>, <span class='kw'>b</span><span class='kw'>=</span><span class='no'>b</span> )
+<span class='no'>dat1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'>sim.raschtype</span>( <span class='kw'>theta</span><span class='kw'>=</span><span class='no'>theta</span>, <span class='kw'>b</span><span class='kw'>=</span><span class='no'>b</span> )
 <span class='co'># simulate Dimension 2 at 4 discrete theta points</span>
 <span class='no'>theta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>( -<span class='fl'>3</span>, <span class='fl'>0</span>, <span class='fl'>1.5</span>, <span class='fl'>2</span> )
 <span class='no'>theta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>( <span class='no'>theta</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>N</span>/<span class='fl'>4</span>,<span class='no'>N</span>/<span class='fl'>4</span>, <span class='fl'>3</span>*<span class='no'>N</span>/<span class='fl'>8</span>, <span class='no'>N</span>/<span class='fl'>8</span>)  )
-<span class='no'>dat2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sirt/man/sim.raschtype.html'>sim.raschtype</a></span>( <span class='kw'>theta</span><span class='kw'>=</span><span class='no'>theta</span>, <span class='kw'>b</span><span class='kw'>=</span><span class='no'>b</span> )
+<span class='no'>dat2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'>sim.raschtype</span>( <span class='kw'>theta</span><span class='kw'>=</span><span class='no'>theta</span>, <span class='kw'>b</span><span class='kw'>=</span><span class='no'>b</span> )
 <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='no'>dat2</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span>( <span class='st'>"I"</span>, <span class='st'>"U"</span>, <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='no'>dat2</span>))
 <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>( <span class='no'>dat1</span>, <span class='no'>dat2</span> )
 

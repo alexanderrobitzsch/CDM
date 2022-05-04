@@ -1,5 +1,5 @@
 ## File Name: cdm_fit_normal.R
-## File Version: 0.04
+## File Version: 0.051
 
 
 cdm_fit_normal <- function(x, w)
@@ -23,7 +23,8 @@ cdm_fit_normal <- function(x, w)
         }
         for (dd1 in 1:D){
             for (dd2 in dd1:D){
-                Sigma.gg[dd1,dd2] <- sum( w * (theta.k[,dd1] - mean.gg[dd1] )*(theta.k[,dd2] - mean.gg[dd2] ) )
+                Sigma.gg[dd1,dd2] <- sum( w * (theta.k[,dd1] - mean.gg[dd1] )*
+                                        (theta.k[,dd2] - mean.gg[dd2] ) )
                 Sigma.gg[dd2,dd1] <- Sigma.gg[dd1,dd2]
             }
         }

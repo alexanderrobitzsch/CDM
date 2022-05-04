@@ -1,5 +1,5 @@
 %% File Name: summary_sink.Rd
-%% File Version: 0.11
+%% File Version: 0.121
 
 \name{summary_sink}
 \alias{summary_sink}
@@ -57,6 +57,7 @@ be appended to an already existing file. See argument \code{append} in
 
 
 \examples{
+\donttest{
 #############################################################################
 # EXAMPLE 1: summary_sink example for lm function
 #############################################################################
@@ -69,7 +70,6 @@ y <- .4 * x + stats::rnorm(N, sd=.5 )
 
 #--- fit a linear model and sink summary into a file
 mod1 <- stats::lm( y ~ x )
-\donttest{
 CDM::summary_sink(mod1, file="my_model")
 
 #--- fit a second model and append it to file

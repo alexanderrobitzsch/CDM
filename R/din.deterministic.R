@@ -1,13 +1,13 @@
 ## File Name: din.deterministic.R
-## File Version: 1.11
+## File Version: 1.126
 
-#####################################################
-# Deterministic din estimation
+
+#*** Deterministic din estimation
 din.deterministic <- function( dat, q.matrix, rule="DINA", method="JML",
     conv=.001, maxiter=300, increment.factor=1.05, progress=TRUE)
 {
-    #********************************
-    # data preparations
+
+    #--- data preparations
     dat0 <- dat
     I <- ncol(dat)
     N <- nrow(dat)
@@ -17,14 +17,15 @@ din.deterministic <- function( dat, q.matrix, rule="DINA", method="JML",
     dat <- as.matrix(dat)
     dat.resp <- as.matrix(dat.resp)
     # define attribute patterns
-    attr.patt <- define.attribute.space( q.matrix )
+    attr.patt <- define.attribute.space(q.matrix=q.matrix)
     AP <- nrow(attr.patt)
     rownames(q.matrix) <- colnames(dat)
     # compute latent responses
-    latresp <- compute.latent.response( attr.patt, q.matrix, rule)
+    latresp <- compute.latent.response( attr.patt=attr.patt,
+                        q.matrix=q.matrix, rule=rule)
     # initial guessing and slipping parameters
-    guess <- stats::runif(  I, .1, .15)
-    slip <- stats::runif(  I, .1, .15)
+    guess <- stats::runif( I, .1, .15)
+    slip <- stats::runif( I, .1, .15)
     max.increment <- 1
     # initial latent response vector
     latresp.est <- latresp[ rep(1,N), ]
@@ -45,10 +46,13 @@ din.deterministic <- function( dat, q.matrix, rule="DINA", method="JML",
         latresp.est0 <- latresp.est
         # compute individual deviations
         if (method!="JML"){
-            res <- din.deterministic.devcrit( dat=dat, datresp=dat.resp, latresp, guess, slip )
+            res <- cdm_rcpp_din_deterministic_devcrit( DAT=dat, DATRESP=dat.resp,
+                        LATRESP=latresp, GUESS=guess, SLIP=slip )
+
         }
         if (method=="JML"){
-            res <- din.jml.devcrit( dat=dat, datresp=dat.resp, latresp, guess, slip )
+            res <- cdm_rcpp_din_jml_devcrit(DAT=dat, DATRESP=dat.resp,
+                        LATRESP=latresp, GUESS=guess, SLIP=slip )
         }
         # compute individual classifications
         attr.est <- attr.patt[ res$indexcrit, ]
@@ -70,9 +74,11 @@ din.deterministic <- function( dat, q.matrix, rule="DINA", method="JML",
         if (maxiter > 1){
             increment <- guess - guess0
             max.increment <- max.increment/increment.factor
-            guess <- guess0 +  ifelse( abs( increment) > max.increment, sign(increment)*max.increment, increment )
+            guess <- guess0 + ifelse( abs( increment) > max.increment,
+                                sign(increment)*max.increment, increment )
             increment <- slip - slip0
-            slip <- slip0 +  ifelse( abs( increment) > max.increment, sign(increment)*max.increment, increment )
+            slip <- slip0 + ifelse( abs( increment) > max.increment,
+                                sign(increment)*max.increment, increment )
         }
         max.increment <- parchange <- max( abs( c(guess-guess0, slip-slip0) ) )
         # extract deviation value
@@ -97,8 +103,8 @@ din.deterministic <- function( dat, q.matrix, rule="DINA", method="JML",
             utils::flush.console()
         }
     }
-    ##################################################################
-    # compute prediction error
+
+    #--- compute prediction error
     prederror <- sum( dat.resp * abs( dat - latresp.est ) ) / sum( dat.resp )
     if (progress){
         cat("-------------------\n" )
@@ -107,9 +113,8 @@ din.deterministic <- function( dat, q.matrix, rule="DINA", method="JML",
     }
     # collect output values
     res <- list( attr.est=latresp.est, criterion=devval,
-                guess=guess, slip=slip, prederror=prederror,
-                q.matrix=q.matrix,
-                dat=dat0 )
+                    guess=guess, slip=slip, prederror=prederror,
+                    q.matrix=q.matrix, dat=dat0 )
     return(res)
 }
-#################################################################################
+

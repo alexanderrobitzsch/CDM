@@ -1,5 +1,5 @@
 //// File Name: cdm_rcpp_eval_likelihood.cpp
-//// File Version: 0.34
+//// File Version: 0.352
 
 // [[Rcpp::depends(RcppArmadillo)]]
 
@@ -93,9 +93,9 @@ Rcpp::NumericMatrix cdm_rcpp_eval_likelihood_calc_wide_format( Rcpp::IntegerMatr
 ///********************************************************************
 ///**  cdm_rcpp_eval_likelihood_calc_long_format
 // [[Rcpp::export]]
-Rcpp::NumericMatrix cdm_rcpp_eval_likelihood_calc_long_format( Rcpp::IntegerMatrix data_long,
-        Rcpp::NumericVector irfprob, Rcpp::IntegerVector dim_irfprob,
-        Rcpp::NumericMatrix like0)
+Rcpp::NumericMatrix cdm_rcpp_eval_likelihood_calc_long_format(
+            Rcpp::IntegerMatrix data_long, Rcpp::NumericVector irfprob,
+            Rcpp::IntegerVector dim_irfprob, Rcpp::NumericMatrix like0)
 {
     int I = dim_irfprob[0];
     int K = dim_irfprob[1];
@@ -136,9 +136,11 @@ Rcpp::NumericMatrix cdm_rcpp_eval_likelihood( Rcpp::IntegerMatrix data,
 
     // computation likelihood wide format
     if ( ! long_format){
-        like = cdm_rcpp_eval_likelihood_calc_wide_format( data, irfprob, dim_irfprob, like);
+        like = cdm_rcpp_eval_likelihood_calc_wide_format( data, irfprob,
+                        dim_irfprob, like);
     } else {
-        like = cdm_rcpp_eval_likelihood_calc_long_format( data, irfprob, dim_irfprob, like);
+        like = cdm_rcpp_eval_likelihood_calc_long_format( data, irfprob,
+                        dim_irfprob, like);
     }
     // normalization
     if (normalization){

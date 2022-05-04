@@ -1,5 +1,5 @@
 ## File Name: equivalent.skillclasses.R
-## File Version: 0.15
+## File Version: 0.16
 
 #**********************************************************
 # calculates a latent response under the din function
@@ -25,7 +25,7 @@ din.equivalent.class <-function( q.matrix, rule="DINA")
 {
     Q <- q.matrix
     # Matrix with all skill classes
-    S <- expand.grid( as.data.frame( t( matrix( rep( c(0,1), each=ncol(Q) ), ncol=2 ) ) ) )
+    S <- expand.grid( as.data.frame( t( matrix( rep( c(0,1), each=ncol(Q) ), ncol=2 ))))
     J <- nrow(Q)
     if ( length(rule)==1){ rule <- rep( rule, J ) }
     rownames(S) <- paste0("Skills_", apply( S, 1,
@@ -56,8 +56,8 @@ din.equivalent.class <-function( q.matrix, rule="DINA")
     return(res)
 }
 
-#********************
-# Gini coefficient, function simply copied from the R ineq package
+
+#--- Gini coefficient, function simply copied from the R ineq package
 cdm_gini <- function(x)
 {
     n <- length(x)

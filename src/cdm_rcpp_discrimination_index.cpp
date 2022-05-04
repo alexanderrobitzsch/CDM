@@ -1,5 +1,5 @@
 //// File Name: cdm_rcpp_discrimination_index.cpp
-//// File Version: 0.858
+//// File Version: 0.862
 
 
 #include <Rcpp.h>
@@ -42,7 +42,8 @@ bool cdm_rcpp_discrimination_index_compare_vectors( Rcpp::NumericVector patt0,
 ///********************************************************************
 ///** cdm_rcpp_discrimination_index_attribute_patterns
 // [[Rcpp::export]]
-Rcpp::IntegerMatrix cdm_rcpp_discrimination_index_attribute_patterns( Rcpp::NumericMatrix attr_patt)
+Rcpp::IntegerMatrix cdm_rcpp_discrimination_index_attribute_patterns(
+            Rcpp::NumericMatrix attr_patt)
 {
     int K = attr_patt.ncol();
     int AP = attr_patt.nrow();
@@ -60,7 +61,8 @@ Rcpp::IntegerMatrix cdm_rcpp_discrimination_index_attribute_patterns( Rcpp::Nume
             for (int jj=0; jj<AP; jj++){
                 comp_ii = TRUE;
                 patt1 = attr_patt(jj,_);
-                comp_vec = cdm_rcpp_discrimination_index_compare_vectors( patt0, patt1, aa);
+                comp_vec = cdm_rcpp_discrimination_index_compare_vectors( patt0,
+                                patt1, aa);
                 if (comp_vec){
                     comp_matrix(cc,0) = aa;
                     comp_matrix(cc,1) = ii;
@@ -94,8 +96,9 @@ double cdm_rcpp_abs_difference( double x, double y )
 ///********************************************************************
 ///** cdm_rcpp_discrimination_index_calc
 // [[Rcpp::export]]
-Rcpp::NumericMatrix cdm_rcpp_discrimination_index_calc( Rcpp::IntegerMatrix comp_matrix,
-        Rcpp::NumericVector probs, Rcpp::NumericVector dim_probs, int K )
+Rcpp::NumericMatrix cdm_rcpp_discrimination_index_calc(
+            Rcpp::IntegerMatrix comp_matrix, Rcpp::NumericVector probs,
+            Rcpp::NumericVector dim_probs, int K )
 {
     int I = dim_probs[0];
     int ncat = dim_probs[1];
@@ -137,7 +140,8 @@ Rcpp::NumericMatrix cdm_rcpp_discrimination_index_calc( Rcpp::IntegerMatrix comp
 ///********************************************************************
 ///** cdm_rcpp_discrimination_index_test_level
 // [[Rcpp::export]]
-double cdm_rcpp_discrimination_index_test_level( Rcpp::NumericMatrix discrim_item_attribute )
+double cdm_rcpp_discrimination_index_test_level(
+            Rcpp::NumericMatrix discrim_item_attribute )
 {
     double I = discrim_item_attribute.nrow();
     int K = discrim_item_attribute.ncol();

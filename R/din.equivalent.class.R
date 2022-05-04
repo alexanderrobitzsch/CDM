@@ -1,15 +1,14 @@
 ## File Name: din.equivalent.class.R
-## File Version: 0.18
+## File Version: 0.191
 
 
 
-###################################
-# calculation of equivalent skill classes
+#**** calculation of equivalent skill classes
 din.equivalent.class <-function( q.matrix, rule="DINA")
 {
     Q <- q.matrix
     # Matrix with all skill classes
-    S <- expand.grid( as.data.frame( t( matrix( rep( c(0,1), each=ncol(Q) ), ncol=2 ) ) ) )
+    S <- expand.grid( as.data.frame( t( matrix( rep( c(0,1), each=ncol(Q)), ncol=2 ))))
     J <- nrow(Q)
     if ( length(rule)==1){ rule <- rep( rule, J ) }
     rownames(S) <- paste0("Skills_", apply( S, 1,

@@ -1,5 +1,5 @@
 //// File Name: cdm_rcpp_din_validate.cpp
-//// File Version: 0.52
+//// File Version: 0.54
 
 
 #include <Rcpp.h>
@@ -103,8 +103,9 @@ Rcpp::List cdm_rcpp_din_validate_update_qmatrix_one_pattern(
 ///** cdm_rcpp_din_validate_update_qmatrix
 // [[Rcpp::export]]
 Rcpp::List cdm_rcpp_din_validate_update_qmatrix(
-        Rcpp::IntegerMatrix qmatrix_poss, Rcpp::IntegerMatrix attr_patt, Rcpp::NumericMatrix Ilj,
-        Rcpp::NumericMatrix Rlj, int I, int L, int K, Rcpp::CharacterVector rule)
+        Rcpp::IntegerMatrix qmatrix_poss, Rcpp::IntegerMatrix attr_patt,
+        Rcpp::NumericMatrix Ilj, Rcpp::NumericMatrix Rlj, int I, int L, int K,
+        Rcpp::CharacterVector rule)
 {
     int QQM=qmatrix_poss.nrow();
     Rcpp::NumericVector guess_M(QQM*I);
@@ -113,11 +114,13 @@ Rcpp::List cdm_rcpp_din_validate_update_qmatrix(
     Rcpp::List res;
     for (int qq=0; qq<QQM; qq++){
         qvec = qmatrix_poss(qq,_);
-        res = cdm_rcpp_din_validate_update_qmatrix_one_pattern( qvec, attr_patt, Ilj, Rlj,
-                    I, L, K, rule );
+        res = cdm_rcpp_din_validate_update_qmatrix_one_pattern( qvec, attr_patt,
+                        Ilj, Rlj, I, L, K, rule );
         // ind_qqm <- I*( qqm - 1 ) + 1:I
-        guess_M[ Rcpp::Range( I*qq, I*qq+ I-1 ) ] = Rcpp::as< Rcpp::NumericVector >(res["guess"]);
-        slip_M[ Rcpp::Range( I*qq, I*qq+ I-1 ) ] = Rcpp::as< Rcpp::NumericVector >(res["slip"]);
+        guess_M[ Rcpp::Range( I*qq, I*qq+ I-1 ) ] =
+                        Rcpp::as< Rcpp::NumericVector >(res["guess"]);
+        slip_M[ Rcpp::Range( I*qq, I*qq+ I-1 ) ] =
+                        Rcpp::as< Rcpp::NumericVector >(res["slip"]);
     }
     //--- output
     return Rcpp::List::create(

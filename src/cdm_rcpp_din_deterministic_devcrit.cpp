@@ -1,5 +1,5 @@
 //// File Name: cdm_rcpp_din_deterministic_devcrit.cpp
-//// File Version: 3.21
+//// File Version: 3.222
 
 
 // #include <RcppArmadillo.h>
@@ -11,8 +11,9 @@ using namespace Rcpp;
 ///********************************************************************
 ///** cdm_rcpp_din_deterministic_devcrit
 // [[Rcpp::export]]
-Rcpp::List cdm_rcpp_din_deterministic_devcrit( Rcpp::NumericMatrix DAT, Rcpp::NumericMatrix DATRESP,
-        Rcpp::NumericMatrix LATRESP, Rcpp::NumericVector GUESS, Rcpp::NumericVector SLIP )
+Rcpp::List cdm_rcpp_din_deterministic_devcrit( Rcpp::NumericMatrix DAT,
+            Rcpp::NumericMatrix DATRESP, Rcpp::NumericMatrix LATRESP,
+            Rcpp::NumericVector GUESS, Rcpp::NumericVector SLIP )
 {
     // define row and column numbers
     int N=DAT.nrow();

@@ -1,5 +1,5 @@
 ## File Name: din.R
-## File Version: 2.522
+## File Version: 2.524
 
 
 
@@ -7,17 +7,14 @@
 # Main function for parameter estimation in cognitive diagnosis models         #
 ################################################################################
 
-din <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.001, dev.crit=10^(-5), maxit=500,
-                    constraint.guess=NULL, constraint.slip=NULL,
+din <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.001, dev.crit=10^(-5),
+                    maxit=500, constraint.guess=NULL, constraint.slip=NULL,
                     guess.init=rep(.2, ncol(data) ), slip.init=guess.init,
                     guess.equal=FALSE, slip.equal=FALSE,
-                    zeroprob.skillclasses=NULL,
-                    weights=rep( 1, nrow( data ) ),  rule="DINA",
-                    wgt.overrelax=0,
-                    wgtest.overrelax=FALSE,
-                    param.history=FALSE,
-                    seed=0,
-                    progress=TRUE, guess.min=0, slip.min=0, guess.max=1, slip.max=1)
+                    zeroprob.skillclasses=NULL, weights=rep( 1, nrow( data ) ),
+                    rule="DINA", wgt.overrelax=0, wgtest.overrelax=FALSE,
+                    param.history=FALSE, seed=0, progress=TRUE, guess.min=0,
+                    slip.min=0, guess.max=1, slip.max=1)
 {
 
 # data: a required matrix of binary response data, whereas the items are in the columns

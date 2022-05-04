@@ -1,5 +1,5 @@
 ## File Name: discrim_index_computation.R
-## File Version: 0.21
+## File Version: 0.222
 
 discrim_index_computation <- function( attr_patt, probs,
     skill_names=NULL, item_names=NULL)
@@ -12,8 +12,9 @@ discrim_index_computation <- function( attr_patt, probs,
     dim_probs <- dim(probs)
     ncat <- dim_probs[2]
     K <- ncol(attr_patt)
-    discrim_item_attribute <- cdm_rcpp_discrimination_index_calc( comp_matrix=comp_matrix,
-                                probs=probs_, dim_probs=dim_probs, K=K )
+    discrim_item_attribute <- cdm_rcpp_discrimination_index_calc(
+                                comp_matrix=comp_matrix, probs=probs_,
+                                dim_probs=dim_probs, K=K )
     colnames(discrim_item_attribute) <- skill_names
 
     #--- item discrimination index IDI
@@ -21,7 +22,8 @@ discrim_index_computation <- function( attr_patt, probs,
     names(idi) <- item_names
 
     #--- discrimination index at test level
-    discrim_test <- cdm_rcpp_discrimination_index_test_level(discrim_item_attribute=discrim_item_attribute)
+    discrim_test <- cdm_rcpp_discrimination_index_test_level(
+                        discrim_item_attribute=discrim_item_attribute)
 
     #--- labelling
     if ( is.null(skill_names)){
@@ -34,8 +36,8 @@ discrim_index_computation <- function( attr_patt, probs,
     discrim_item_attribute <- data.frame( item=item_names, discrim_item_attribute )
 
     #--- output
-    res <- list( comp_matrix=comp_matrix, discrim_item_attribute=discrim_item_attribute, discrim_test=discrim_test,
-                    idi=idi)
+    res <- list( comp_matrix=comp_matrix, discrim_item_attribute=discrim_item_attribute,
+                    discrim_test=discrim_test, idi=idi)
     class(res) <- "discrim.index"
     return(res)
 }

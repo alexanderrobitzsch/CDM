@@ -1,5 +1,5 @@
 //// File Name: cdm_rcpp_kli.cpp
-//// File Version: 3.241
+//// File Version: 3.243
 
 
 #include <Rcpp.h>
@@ -57,8 +57,9 @@ Rcpp::List cdm_rcpp_kli_id( Rcpp::NumericMatrix pjk, Rcpp::NumericMatrix sc )
         tmp2 = 0;
         for (int tt=0;tt<TP;tt++){
             for (int uu=0;uu<TP;uu++){
-                kli( tt, uu + TP * ii ) = pjk( ii, tt ) * std::log( pjk( ii, tt ) / pjk( ii, uu ) ) +
-                        pjk( ii, tt+TP ) * std::log( pjk( ii, tt+TP ) / pjk( ii, uu+TP ) );
+                kli( tt, uu + TP * ii ) = pjk( ii, tt ) * std::log( pjk( ii, tt ) /
+                                pjk( ii, uu ) ) + pjk( ii, tt+TP ) *
+                                std::log( pjk( ii, tt+TP ) / pjk( ii, uu+TP ) );
                 tmp2 += kli( tt, uu + TP*ii ) * hdist( tt, uu );
                 for (int aa=0;aa<K;aa++){
                     if ( ( sc(uu,aa) != sc(tt,aa) ) && ( hdist(uu,tt) == 1)  ){

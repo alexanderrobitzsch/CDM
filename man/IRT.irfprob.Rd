@@ -1,5 +1,5 @@
 %% File Name: IRT.irfprob.Rd
-%% File Version: 0.16
+%% File Version: 0.171
 
 \name{IRT.irfprob}
 \alias{IRT.irfprob}
@@ -90,7 +90,7 @@ Plot functions for item response curves: \code{\link{IRT.irfprobPlot}}.
 For extracting the individual likelihood or posterior see
 \code{\link{IRT.likelihood}} or \code{\link{IRT.posterior}}.
 }
-%%% TAM, sirt and mirt links
+
 
 \examples{
 \dontrun{

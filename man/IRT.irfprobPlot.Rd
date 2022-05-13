@@ -1,5 +1,5 @@
 %% File Name: IRT.irfprobPlot.Rd
-%% File Version: 0.17
+%% File Version: 0.181
 
 \name{IRT.irfprobPlot}
 \alias{IRT.irfprobPlot}
@@ -75,7 +75,7 @@ More arguments to be passed for the plot in \pkg{lattice}.
 %For extracting the individual likelihood or posterior see
 %\code{\link{IRT.likelihood}} or \code{\link{IRT.posterior}}.
 %}
-%%% TAM, sirt and mirt links
+
 
 \examples{
 \dontrun{

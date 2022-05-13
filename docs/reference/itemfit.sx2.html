@@ -74,7 +74,7 @@ necessary for applying this function." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">CDM</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Versions">8.1-vv</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Versions">8.2-vv</span>
       </span>
     </div>
 
@@ -136,15 +136,13 @@ necessary for applying this function.</p>
       <th>object</th>
       <td><p>Object of class <code><a href='din.html'>din</a></code>, <code><a href='gdina.html'>gdina</a></code>, <code><a href='gdm.html'>gdm</a></code>,
 <code>sirt::rasch.mml</code>,
-<code>sirt::smirt</code> or
-<code><a href='https://rdrr.io/pkg/TAM/man/tam.mml.html'>TAM::tam.mml</a></code></p></td>
+<code>sirt::smirt</code> or <code><a href='https://rdrr.io/pkg/TAM/man/tam.mml.html'>TAM::tam.mml</a></code></p></td>
     </tr>
     <tr>
       <th>x</th>
       <td><p>Object of class <code><a href='din.html'>din</a></code>, <code><a href='gdina.html'>gdina</a></code>, <code><a href='gdm.html'>gdm</a></code>,
 <code>sirt::rasch.mml</code>,
-<code>sirt::smirt</code> or
-<code><a href='https://rdrr.io/pkg/TAM/man/tam.mml.html'>TAM::tam.mml</a></code></p></td>
+<code>sirt::smirt</code> or <code><a href='https://rdrr.io/pkg/TAM/man/tam.mml.html'>TAM::tam.mml</a></code></p></td>
     </tr>
     <tr>
       <th>Eik_min</th>
@@ -203,7 +201,8 @@ item response models. <em>Educational and Psychological Measurement,
     <p>This function does not work properly for multiple groups.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'>#############################################################################</span>
+    <pre class="examples"><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='co'>#############################################################################</span>
 <span class='co'># EXAMPLE 1: Items with unequal item slopes</span>
 <span class='co'>#############################################################################</span>
 
@@ -243,7 +242,6 @@ item response models. <em>Educational and Psychological Measurement,
 <span class='co'># plot item fit</span>
 <span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>fitmod1</span>)
 
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'>#*** 2PL model estimated with gdm</span>
 <span class='no'>mod2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(-<span class='fl'>6</span>,<span class='fl'>6</span>,<span class='kw'>len</span><span class='kw'>=</span><span class='fl'>21</span>), <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"2PL"</span>, <span class='kw'>maxiter</span><span class='kw'>=</span><span class='fl'>100</span> )
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod2</span>)

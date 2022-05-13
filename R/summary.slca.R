@@ -1,8 +1,8 @@
 ## File Name: summary.slca.R
-## File Version: 1.43
+## File Version: 1.443
 
-#*******************************************************
-# Summary for slca object
+
+#**** Summary for slca object
 summary.slca <- function( object, file=NULL, ... )
 {
 
@@ -38,19 +38,21 @@ summary.slca <- function( object, file=NULL, ... )
 
     cat(display)
     cat( "Number of iterations=", object$iter, "\n" )
-    if ( ! object$converged ){ cat("Maximum number of iterations was reached.\n") }
-    cat( "Iteration with minimal deviance","=", object$iter.min, "\n" )
+    if ( ! object$converged ){
+        cat("Maximum number of iterations was reached.\n")
+    }
+    cat( "Iteration with minimal deviance","=", object$iter.min, "\n")
 
-    cat( "\nDeviance","=", round( object$deviance, 2 ), " | " )
-    cat( "Log Likelihood","=", round( -object$deviance/2, 2 ), "\n" )
-    cat( "Penalty","=", round( object$regular_penalty, 2 ), "\n" )
+    cat( "\nDeviance","=", round( object$deviance, 2 ), " | ")
+    cat( "Log Likelihood","=", round( -object$deviance/2, 2 ), "\n")
+    cat( "Penalty","=", round( object$regular_penalty, 2 ), "\n")
 
     cat( "Number of persons","=", object$ic$n, "\n" )
 
-    cat( "Number of estimated parameters","=", object$ic$np, "\n" )
-    cat( "  Number of estimated lambda parameters","=", object$ic$itempars, "\n" )
-    cat( "  Number of non-active lambda parameters","=", object$ic$nonactive, "\n" )
-    cat( "  Number of estimated distribution parameters","=", object$ic$traitpars, "\n\n" )
+    cat( "Number of estimated parameters","=", object$ic$np, "\n")
+    cat( "  Number of estimated lambda parameters","=", object$ic$itempars, "\n")
+    cat( "  Number of non-active lambda parameters","=", object$ic$nonactive, "\n")
+    cat( "  Number of estimated distribution parameters","=", object$ic$traitpars, "\n\n")
 
     cat( "Regularization","=", object$regularization, "\n" )
     cat( "  Regularization method","=", object$regular_type, "\n" )
@@ -81,4 +83,3 @@ summary.slca <- function( object, file=NULL, ... )
 
     csink( file=file )
 }
-#*******************************************************

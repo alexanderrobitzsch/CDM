@@ -1,5 +1,5 @@
 ## File Name: summary.reglca.R
-## File Version: 0.282
+## File Version: 0.284
 
 
 summary.reglca <- function( object, digits=4, file=NULL, ... )
@@ -60,7 +60,8 @@ summary.reglca <- function( object, digits=4, file=NULL, ... )
 
     cat(display)
     cat("Model Implied Conditional Item Probabilities \n\n")
-    res <- cdm_print_summary_data_frame(obji=object$item, from=2, digits=rdigits, rownames_null=TRUE)
+    res <- cdm_print_summary_data_frame(obji=object$item, from=2, digits=rdigits,
+                        rownames_null=TRUE)
 
     cat(display)
     cat("Latent Class Probabilities \n\n")

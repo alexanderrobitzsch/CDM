@@ -1,5 +1,5 @@
 %% File Name: IRT.factor.scores.Rd
-%% File Version: 0.11
+%% File Version: 0.12
 
 \name{IRT.factor.scores}
 \alias{IRT.factor.scores}
@@ -78,7 +78,7 @@ A matrix or a vector with classified scores.
 For extracting the individual likelihood or the individual posterior see
 \code{\link{IRT.likelihood}} or \code{\link{IRT.posterior}}.
 }
-%%% TAM, sirt and mirt links
+
 
 \examples{
 #############################################################################

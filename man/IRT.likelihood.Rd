@@ -1,5 +1,5 @@
 %% File Name: IRT.likelihood.Rd
-%% File Version: 0.19
+%% File Version: 0.21
 
 \name{IRT.likelihood}
 \alias{IRT.likelihood}
@@ -102,7 +102,7 @@ it is a matrix with attributes
 \code{\link[GDINA:indlogLik]{GDINA::indlogLik}},
 \code{\link[GDINA:indlogPost]{GDINA::indlogPost}}
 }
-%%% TAM, sirt and mirt links
+
 
 \examples{
 #############################################################################

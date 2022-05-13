@@ -1,5 +1,5 @@
 %% File Name: summary_sink.Rd
-%% File Version: 0.121
+%% File Version: 0.122
 
 \name{summary_sink}
 \alias{summary_sink}
@@ -57,7 +57,7 @@ be appended to an already existing file. See argument \code{append} in
 
 
 \examples{
-\donttest{
+\dontrun{
 #############################################################################
 # EXAMPLE 1: summary_sink example for lm function
 #############################################################################

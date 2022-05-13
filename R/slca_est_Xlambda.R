@@ -1,5 +1,5 @@
 ## File Name: slca_est_Xlambda.R
-## File Version: 0.364
+## File Version: 0.365
 
 
 # estimation of Xlambda parameters
@@ -60,7 +60,7 @@ slca_est_Xlambda <- function(Xlambda, Xdes, probs, n.ik1, N.ik1, I, K, G,
     #-----------------------------------------
 
         # linear constraints on Xlambda parameters
-        # below is code copied from rasch.pml3 (sirt package)
+        # below is code copied from sirt::rasch.pml3
         #................
             # linear constraints: Let e be the vector of error
             # correlations, V a design matrix and c a vector.

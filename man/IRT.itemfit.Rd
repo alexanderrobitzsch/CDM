@@ -1,5 +1,5 @@
 %% File Name: IRT.itemfit.Rd
-%% File Version: 0.09
+%% File Version: 0.11
 
 \name{IRT.itemfit}
 \alias{IRT.itemfit}
@@ -78,7 +78,7 @@ Vector or data frame with item fit statistics.
 For extracting the individual likelihood or posterior see
 \code{\link{IRT.likelihood}} or \code{\link{IRT.posterior}}.
 }
-%%% TAM, sirt and mirt links
+
 
 \examples{
 \dontrun{

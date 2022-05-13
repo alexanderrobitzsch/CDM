@@ -1,23 +1,11 @@
 ## File Name: mcdina.simul.R
-## File Version: 0.18
+## File Version: 0.194
 
 
-#*******************************************************************
-# simulation mcdina model
-# input:
-# alpha vectors
-# pars_lc: Q-matrix, probabilities, ..., see below
-# pars_lr: see below
-#*******************************************************************
 
-# sirt package is needed for loading this function
-
-#################################################################
 simul.mcdina <- function( alpha,  pars_lc, pars_lr, skillcl )
 {
-    # skills ... alpha vectors
-    #   skillcl <- scan.vec( "P000 P100 P010 P110 P001 P101 P011 P111" )
-    requireNamespace("sirt")
+    # requireNamespace("sirt")
     skills <- alpha
     N <- length(alpha)
     I <- max( pars_lc$item )
@@ -35,13 +23,17 @@ simul.mcdina <- function( alpha,  pars_lc, pars_lr, skillcl )
         probs <- lc.ii[ match( lr.ii, paste(lc.ii$lr) ), grep( "Cat", colnames(pars_lc ) ) ]
         Nc <- ncol(probs)
         rn <- stats::runif(N)
-        probs1 <- sirt::rowCumsums.sirt(matr=as.matrix(probs)  )
-        dat[,ii] <- sirt::rowIntervalIndex.sirt(matr=probs1,rn)
-        print(paste0( "Item ",ii )) ; utils::flush.console()
+        # probs1 <- sirt::rowCumsums.sirt(matr=as.matrix(probs))
+        eval(parse(text=paste("probs1 <- sirt","::",
+                            "rowCumsums.sirt(matr=as.matrix(probs))")))
+        # dat[,ii] <- sirt::rowIntervalIndex.sirt(matr=probs1,rn=rn)
+        eval(parse(text=paste("dat[,ii] <- sirt","::",
+                            "rowIntervalIndex.sirt(matr=probs1,rn=rn)")))
+        print(paste0( "Item ",ii ))
+        utils::flush.console()
     }
     return(dat)
 }
-#################################################################
 
 # Examples:
 

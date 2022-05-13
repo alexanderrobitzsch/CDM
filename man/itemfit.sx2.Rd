@@ -1,5 +1,5 @@
 %% File Name: itemfit.sx2.Rd
-%% File Version: 1.36
+%% File Version: 1.373
 
 \name{itemfit.sx2}
 \alias{itemfit.sx2}
@@ -27,15 +27,13 @@ itemfit.sx2(object, Eik_min=1, progress=TRUE)
 \arguments{
 \item{object}{
 Object of class \code{\link{din}}, \code{\link{gdina}}, \code{\link{gdm}},
-\code{\link[sirt:rasch.mml]{sirt::rasch.mml}},
-\code{\link[sirt:smirt]{sirt::smirt}} or
-\code{\link[TAM:tam.mml]{TAM::tam.mml}}
+\code{sirt::rasch.mml},
+\code{sirt::smirt} or \code{TAM::tam.mml}
 }
 \item{x}{
 Object of class \code{\link{din}}, \code{\link{gdina}}, \code{\link{gdm}},
-\code{\link[sirt:rasch.mml]{sirt::rasch.mml}},
-\code{\link[sirt:smirt]{sirt::smirt}} or
-\code{\link[TAM:tam.mml]{TAM::tam.mml}}
+\code{sirt::rasch.mml},
+\code{sirt::smirt} or \code{TAM::tam.mml}
 }
   \item{Eik_min}{
 The minimum expected cell size for merging score groups.
@@ -103,6 +101,7 @@ This function does not work properly for multiple groups.
 %}
 
 \examples{
+\dontrun{
 #############################################################################
 # EXAMPLE 1: Items with unequal item slopes
 #############################################################################
@@ -143,7 +142,6 @@ summary(fitmod1)
 # plot item fit
 plot(fitmod1)
 
-\dontrun{
 #*** 2PL model estimated with gdm
 mod2 <- CDM::gdm( dat, theta.k=seq(-6,6,len=21), irtmodel="2PL", maxiter=100 )
 summary(mod2)

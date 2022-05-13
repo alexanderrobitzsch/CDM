@@ -1,5 +1,5 @@
 %% File Name: gdm.Rd
-%% File Version: 4.47
+%% File Version: 4.481
 
 \name{gdm}
 \alias{gdm}
@@ -364,7 +364,7 @@ See \code{\link{itemfit.sx2}} for item fit statistics.
 
 For the estimation of the multidimensional
 latent class item response model see the \pkg{MultiLCIRT} package
-and \pkg{sirt} package (function \code{sirt::rasch.mirtlc}).
+and \bold{sirt} package (function \code{sirt::rasch.mirtlc}).
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,5 +1,5 @@
 %% File Name: slca.Rd
-%% File Version: 1.823
+%% File Version: 1.825
 
 \name{slca}
 \alias{slca}
@@ -280,7 +280,7 @@ See \url{http://www.antonformann.at/} for more information.
 
 \seealso{
 For latent trait models with continuous latent variables see the
-\pkg{mirt} or \pkg{TAM} packages. For a discrete trait distribution see
+\pkg{mirt} or \bold{TAM} packages. For a discrete trait distribution see
 the \pkg{MultiLCIRT} package.
 
 For latent class models see the \pkg{poLCA}, \pkg{covLCA} or \pkg{randomLCA}

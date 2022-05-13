@@ -1,5 +1,5 @@
 %% File Name: plot_item_mastery.Rd
-%% File Version: 0.07
+%% File Version: 0.081
 
 \name{plot_item_mastery}
 \alias{plot_item_mastery}
@@ -66,7 +66,6 @@ Plot
 \seealso{
 Plot functions for item response curves: \code{\link{IRT.irfprobPlot}}.
 }
-%%% TAM, sirt and mirt links
 
 \examples{
 \dontrun{

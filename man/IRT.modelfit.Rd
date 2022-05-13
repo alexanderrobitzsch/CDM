@@ -1,5 +1,5 @@
 %% File Name: IRT.modelfit.Rd
-%% File Version: 0.20
+%% File Version: 0.232
 
 \name{IRT.modelfit}
 \alias{IRT.modelfit}
@@ -72,10 +72,9 @@ For extracting the individual likelihood or posterior see
 
 The model fit of objects of class \code{\link{gdm}} can be obtained
 by using the
-\code{\link[TAM:tam.modelfit.IRT]{TAM::tam.modelfit.IRT}}
-function in the \pkg{TAM} package.
+\code{TAM::tam.modelfit.IRT} function in the \bold{TAM} package.
 }
-%%% TAM, sirt and mirt links
+
 
 \examples{
 \dontrun{

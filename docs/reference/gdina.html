@@ -91,7 +91,7 @@ Normally distributed priors can be specified for item parameters
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">CDM</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Versions">8.2-vv</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Versions">8.3-vv</span>
       </span>
     </div>
 
@@ -588,11 +588,11 @@ skills and misconceptions (SISM; Kuo, Chen &amp; de la Torre, 2018) can be
 estimated with <code>rule="SISM"</code> (see Example 12).</p>
 
 <p>The <code>gdina</code> function internally parameterizes the GDINA model as
-    $$ g [ P( X_{nj}=1 | \alpha_n ) ]=\boldmath{M}_j ( \alpha _n )
-    \boldmath{\delta}_j
+    $$ g [ P( X_{nj}=1 | \alpha_n ) ]=\bm{M}_j ( \alpha _n )
+    \bm{\delta}_j
         $$
-with item-specific design matrices \(\boldmath{M}_j (\alpha _n ) \) and item parameters
-\(\boldmath{\delta}_j\). Only those attributes are modelled which correspond
+with item-specific design matrices \(\bm{M}_j (\alpha _n ) \) and item parameters
+\(\bm{\delta}_j\). Only those attributes are modelled which correspond
 to non-zero entries in the Q-matrix. Because the Q-matrix (in <code>q.matrix</code>)
 and the design matrices (in <code>M_j</code>; see Example 3) can be
 specified by the user, several
@@ -607,7 +607,7 @@ These models include the DINA model with multiple strategies
 <dt>delta</dt><dd><p>List with basis item parameters</p></dd>
 <dt>se.delta</dt><dd><p>Standard errors of basis item parameters</p></dd>
 <dt>probitem</dt><dd><p>Data frame with model implied conditional item probabilities
-    \(P(X_i=1 | \bold{\alpha})\). These probabilities are displayed
+    \(P(X_i=1 | \bm{\alpha})\). These probabilities are displayed
     in <code>plot.gdina</code>.</p></dd>
 <dt>itemfit.rmsea</dt><dd><p>The RMSEA item fit index (see <code><a href='itemfit.rmsea.html'>itemfit.rmsea</a></code>).</p></dd>
 <dt>mean.rmsea</dt><dd><p>Mean of RMSEA item fit indexes.</p></dd>

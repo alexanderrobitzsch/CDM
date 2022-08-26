@@ -24,7 +24,7 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 8.2  |  2022-05-13  |  Last: CDM 8.2-3
+VERSIONS CDM 8.3  |  2022-08-26  |  Last: CDM 8.3-1
 --------------------------------------------------------------
 
 NOTE  * xxx
@@ -34,6 +34,16 @@ DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: ---
 
 
+
+--------------------------------------------------------------
+VERSIONS CDM 8.2  |  2022-08-25  |  Last: CDM 8.2-6
+--------------------------------------------------------------
+
+NOTE  * fixed issues in CRAN checks due to the recent use 
+        of KaTeX
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
 
 --------------------------------------------------------------
 VERSIONS CDM 8.1  |  2022-05-12  |  Last: CDM 8.1-12

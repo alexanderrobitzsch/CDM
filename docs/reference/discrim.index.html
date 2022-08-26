@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">CDM</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Versions">8.2-vv</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Versions">8.3-vv</span>
       </span>
     </div>
 
@@ -160,11 +160,11 @@ output should be sunk</p></td>
     <p>If item \(j\) possesses \(H_j\) categories, the item-attribute
 specific discrimination for attribute \(k\)
 according to Henson et al. (2018) is defined as
-$$ DI_{jk}=\frac{1}{2} \max_{ \boldmath{\alpha} }
-\left(  \sum_{h=1}^{H_j} | P(X_j=h| \boldmath{\alpha} ) -
-P(X_j=h| \boldmath{\alpha}^{(-k)} ) |
+$$ DI_{jk}=\frac{1}{2} \max_{ \bm{\alpha} }
+\left(  \sum_{h=1}^{H_j} | P(X_j=h| \bm{\alpha} ) -
+P(X_j=h| \bm{\alpha}^{(-k)} ) |
 \right )   $$
-where \(\boldmath{\alpha}^{(-k)}\) and \(\boldmath{\alpha}\) differ only
+where \(\bm{\alpha}^{(-k)}\) and \(\bm{\alpha}\) differ only
 in attribute \(k\). The index \(DI_{jk}\) can be found as the
 value <code>discrim_item_attribute</code>. The test-level discrimination index
 is defined as
@@ -172,8 +172,8 @@ $$\overline{DI}=\frac{1}{J} \sum_{j=1}^J \max_k DI_{jk} $$ and can be found
 in <code>discrim_test</code>.</p>
 <p>According to de la Torre (2008) and de la Torre, Rossi and van der Ark (2018),
 the item discrimination index (IDI) is defined as
-$$IDI_j=\max_{ \boldmath{\alpha}_1,\boldmath{\alpha}_2, h}
-     | P(X_j=h| \boldmath{\alpha}_1 ) - P(X_j=h| \boldmath{\alpha}_2 ) |$$
+$$IDI_j=\max_{ \bm{\alpha}_1,\bm{\alpha}_2, h}
+     | P(X_j=h| \bm{\alpha}_1 ) - P(X_j=h| \bm{\alpha}_2 ) |$$
     and can be found as <code>idi</code> in the values list.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 

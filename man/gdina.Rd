@@ -1,5 +1,5 @@
 %% File Name: gdina.Rd
-%% File Version: 3.476
+%% File Version: 3.477
 
 \name{gdina}
 \alias{gdina}
@@ -351,11 +351,11 @@ estimated with \code{rule="SISM"} (see Example 12).
 
 
 The \code{gdina} function internally parameterizes the GDINA model as
-    \deqn{ g [ P( X_{nj}=1 | \alpha_n ) ]=\boldmath{M}_j ( \alpha _n )
-    \boldmath{\delta}_j
+    \deqn{ g [ P( X_{nj}=1 | \alpha_n ) ]=\bm{M}_j ( \alpha _n )
+    \bm{\delta}_j
         }
-with item-specific design matrices \eqn{\boldmath{M}_j (\alpha _n ) } and item parameters
-\eqn{\boldmath{\delta}_j}. Only those attributes are modelled which correspond
+with item-specific design matrices \eqn{\bm{M}_j (\alpha _n ) } and item parameters
+\eqn{\bm{\delta}_j}. Only those attributes are modelled which correspond
 to non-zero entries in the Q-matrix. Because the Q-matrix (in \code{q.matrix})
 and the design matrices (in \code{M_j}; see Example 3) can be
 specified by the user, several
@@ -378,7 +378,7 @@ An object of class \code{gdina} with following entries
 \item{delta}{List with basis item parameters}
 \item{se.delta}{Standard errors of basis item parameters}
 \item{probitem}{Data frame with model implied conditional item probabilities
-    \eqn{P(X_i=1 | \bold{\alpha})}. These probabilities are displayed
+    \eqn{P(X_i=1 | \bm{\alpha})}. These probabilities are displayed
     in \code{plot.gdina}.
 }
 \item{itemfit.rmsea}{The RMSEA item fit index (see \code{\link{itemfit.rmsea}}).

@@ -74,7 +74,7 @@ necessary for applying this function." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">CDM</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Versions">8.2-vv</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Versions">8.3-vv</span>
       </span>
     </div>
 
@@ -136,13 +136,13 @@ necessary for applying this function.</p>
       <th>object</th>
       <td><p>Object of class <code><a href='din.html'>din</a></code>, <code><a href='gdina.html'>gdina</a></code>, <code><a href='gdm.html'>gdm</a></code>,
 <code>sirt::rasch.mml</code>,
-<code>sirt::smirt</code> or <code><a href='https://rdrr.io/pkg/TAM/man/tam.mml.html'>TAM::tam.mml</a></code></p></td>
+<code><a href='https://rdrr.io/pkg/sirt/man/smirt.html'>sirt::smirt</a></code> or <code><a href='https://rdrr.io/pkg/TAM/man/tam.mml.html'>TAM::tam.mml</a></code></p></td>
     </tr>
     <tr>
       <th>x</th>
       <td><p>Object of class <code><a href='din.html'>din</a></code>, <code><a href='gdina.html'>gdina</a></code>, <code><a href='gdm.html'>gdm</a></code>,
 <code>sirt::rasch.mml</code>,
-<code>sirt::smirt</code> or <code><a href='https://rdrr.io/pkg/TAM/man/tam.mml.html'>TAM::tam.mml</a></code></p></td>
+<code><a href='https://rdrr.io/pkg/sirt/man/smirt.html'>sirt::smirt</a></code> or <code><a href='https://rdrr.io/pkg/TAM/man/tam.mml.html'>TAM::tam.mml</a></code></p></td>
     </tr>
     <tr>
       <th>Eik_min</th>
@@ -214,7 +214,7 @@ item response models. <em>Educational and Psychological Measurement,
 <span class='no'>a</span>[<span class='fl'>4</span>] <span class='kw'>&lt;-</span> <span class='fl'>.4</span>
 <span class='no'>N</span> <span class='kw'>&lt;-</span> <span class='fl'>1000</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sirt</span>)
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'>sim.raschtype</span>( <span class='kw'>theta</span><span class='kw'>=</span><span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>N</span>), <span class='kw'>b</span><span class='kw'>=</span><span class='no'>b</span>, <span class='kw'>fixed.a</span><span class='kw'>=</span><span class='no'>a</span>)
+<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sirt/man/sim.raschtype.html'>sim.raschtype</a></span>( <span class='kw'>theta</span><span class='kw'>=</span><span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>N</span>), <span class='kw'>b</span><span class='kw'>=</span><span class='no'>b</span>, <span class='kw'>fixed.a</span><span class='kw'>=</span><span class='no'>a</span>)
 
 <span class='co'>#*** 1PL model estimated with gdm</span>
 <span class='no'>mod1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'><a href='gdm.html'>gdm</a></span>( <span class='no'>dat</span>, <span class='kw'>theta.k</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(-<span class='fl'>6</span>,<span class='fl'>6</span>,<span class='kw'>len</span><span class='kw'>=</span><span class='fl'>21</span>), <span class='kw'>irtmodel</span><span class='kw'>=</span><span class='st'>"1PL"</span> )
@@ -263,21 +263,21 @@ item response models. <em>Educational and Psychological Measurement,
 
 <span class='co'>#*** 1PL model estimation in smirt (sirt package)</span>
 <span class='no'>Qmatrix</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fl'>1</span>, <span class='kw'>nrow</span><span class='kw'>=</span><span class='no'>I</span>, <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>1</span> )
-<span class='no'>mod1a</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'>smirt</span>( <span class='no'>dat</span>, <span class='kw'>Qmatrix</span><span class='kw'>=</span><span class='no'>Qmatrix</span> )
+<span class='no'>mod1a</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sirt/man/smirt.html'>smirt</a></span>( <span class='no'>dat</span>, <span class='kw'>Qmatrix</span><span class='kw'>=</span><span class='no'>Qmatrix</span> )
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod1a</span>)
 <span class='co'># item fit statistic</span>
 <span class='no'>fitmod1a</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'>itemfit.sx2</span>(<span class='no'>mod1a</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>fitmod1a</span>)
 
 <span class='co'>#*** 2PL model estimation in smirt (sirt package)</span>
-<span class='no'>mod2a</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'>smirt</span>( <span class='no'>dat</span>, <span class='kw'>Qmatrix</span><span class='kw'>=</span><span class='no'>Qmatrix</span>, <span class='kw'>est.a</span><span class='kw'>=</span><span class='st'>"2PL"</span>)
+<span class='no'>mod2a</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sirt/man/smirt.html'>smirt</a></span>( <span class='no'>dat</span>, <span class='kw'>Qmatrix</span><span class='kw'>=</span><span class='no'>Qmatrix</span>, <span class='kw'>est.a</span><span class='kw'>=</span><span class='st'>"2PL"</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod2a</span>)
 <span class='co'># item fit statistic</span>
 <span class='no'>fitmod2a</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'>itemfit.sx2</span>(<span class='no'>mod2a</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>fitmod2a</span>)
 
 <span class='co'>#*** 1PL model estimated with rasch.mml2 (in sirt)</span>
-<span class='no'>mod1b</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'>rasch.mml2</span>(<span class='no'>dat</span>)
+<span class='no'>mod1b</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sirt/man/rasch.mml.html'>rasch.mml2</a></span>(<span class='no'>dat</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod1b</span>)
 <span class='co'># estimate item fit statistic</span>
 <span class='no'>fitmod1b</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'>itemfit.sx2</span>(<span class='no'>mod1b</span>)
@@ -292,7 +292,7 @@ item response models. <em>Educational and Psychological Measurement,
 <span class='co'># conversion to mirt object</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sirt</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mirt</span>)
-<span class='no'>cmod1c</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'>tam2mirt</span>( <span class='no'>mod1c</span> )
+<span class='no'>cmod1c</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sirt/man/tam2mirt.html'>tam2mirt</a></span>( <span class='no'>mod1c</span> )
 <span class='co'># item fit in mirt</span>
 <span class='kw pkg'>mirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mirt/man/itemfit.html'>itemfit</a></span>( <span class='no'>cmod1c</span>$<span class='no'>mirt</span> )
 
@@ -302,7 +302,7 @@ item response models. <em>Educational and Psychological Measurement,
 <span class='co'># item fit</span>
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>( <span class='kw pkg'>CDM</span><span class='kw ns'>::</span><span class='fu'>itemfit.sx2</span>( <span class='no'>mod2c</span>) )
 <span class='co'># conversion to mirt object and item fit in mirt</span>
-<span class='no'>cmod2c</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'>tam2mirt</span>( <span class='no'>mod2c</span> )
+<span class='no'>cmod2c</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sirt/man/tam2mirt.html'>tam2mirt</a></span>( <span class='no'>mod2c</span> )
 <span class='kw pkg'>mirt</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mirt/man/itemfit.html'>itemfit</a></span>( <span class='no'>cmod2c</span>$<span class='no'>mirt</span> )
 
 <span class='co'># estimation in mirt</span>

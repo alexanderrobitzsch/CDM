@@ -1,5 +1,5 @@
 ## File Name: cdm_calc_posterior.R
-## File Version: 1.175
+## File Version: 1.176
 
 
 #--- compute posterior distribution
@@ -16,7 +16,7 @@ cdm_calc_posterior <- function(rprobs, gwt, resp, nitems,
     nstud <- nrow(fx)
 
     # using C Code
-    storage.mode(resp) <- "integer"
+    storage.mode(resp) <- 'integer'
     fx <- .Call( '_CDM_calcfx', PACKAGE='CDM', fx, rprobs, resp.ind.list, resp)
     # numerical integration
     if ( snodes==0 ){
@@ -36,9 +36,9 @@ cdm_calc_posterior <- function(rprobs, gwt, resp, nitems,
             hwt <- fx
         }
     }
-    res <-  list("hwt"=hwt, "rfx"=rfx )
+    res <-  list('hwt'=hwt, 'rfx'=rfx )
     if ( snodes > 0 ){
-        res[["swt" ]] <- swt
+        res[['swt' ]] <- swt
     }
     return(res)
 }

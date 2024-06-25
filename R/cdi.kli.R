@@ -1,13 +1,13 @@
 ## File Name: cdi.kli.R
-## File Version: 0.181
+## File Version: 0.184
 
 
 #--- cognitive diagnostic indices
 cdi.kli <- function( object )
 {
     # object must be of class din or gdina
-    if ( ! inherits(object, c("din","gdina") ) ){
-        stop("This functions only supports objects of class din or gdina!")
+    if ( ! inherits(object, c('din','gdina') ) ){
+        stop('This functions only supports objects of class din or gdina!')
     }
     items <- colnames( object$data )
     q.matrix <- object$q.matrix
@@ -39,13 +39,13 @@ cdi.kli <- function( object )
     l1 <- c( sum(res0$glob_item), colSums( res0$attr_item ) )
     dfr <- rbind( l1, dfr )
     rownames(dfr) <- NULL
-    colnames(dfr) <- c( "cdi_test", paste0( "cdi_skill", 1:( ncol(dfr) -1 ) ) )
-    dfr <- data.frame( "item"=c("test", items ), dfr )
+    colnames(dfr) <- c( 'cdi_test', paste0( 'cdi_skill', 1L:( ncol(dfr) -1 ) ) )
+    dfr <- data.frame( 'item'=c('test', items ), dfr )
     # names
     names(res$attr_disc) <- colnames(res$attr_item_disc) <- colnames(q.matrix)
     dimnames(res$KLI)[[1]] <- items
     names(res$glob_item_disc) <- rownames(res$attr_item_disc) <- items
     res$summary <- dfr
-    class(res) <- "cdi.kli"
+    class(res) <- 'cdi.kli'
     return(res)
 }

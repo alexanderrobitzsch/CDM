@@ -1,5 +1,5 @@
 ## File Name: cdm_calc_increment.R
-## File Version: 0.142
+## File Version: 0.143
 
 cdm_calc_increment <- function( d1, d2, max.increment, eps=1E-10, adj_fac=.98, type=1 )
 {
@@ -13,7 +13,7 @@ cdm_calc_increment <- function( d1, d2, max.increment, eps=1E-10, adj_fac=.98, t
     #--- matrix increment
     if (is.matrix(increment) ){
         K <- ncol(increment)
-        for (kk in 1:K){
+        for (kk in 1L:K){
             increment[,kk] <- cdm_trim_increment( increment=increment[,kk],
                                 max.increment=max.increment, type=type)
         }

@@ -1,5 +1,5 @@
 ## File Name: numerical_Hessian.R
-## File Version: 0.38
+## File Version: 0.399
 
 ##############################################################################
 # numerical computation of the Hessian matrix
@@ -18,6 +18,7 @@ numerical_Hessian <- function(par, FUN, h=1E-5, gradient=FALSE,
     #** select h parameters according to size of parameters
     abs_par <- abs(par)
     hvec <- h * ifelse( abs_par > 1, abs_par, 1 )
+
 
     #--- loop for computing f(x+h)
     for (ii in 1:NP){
@@ -54,7 +55,9 @@ numerical_Hessian <- function(par, FUN, h=1E-5, gradient=FALSE,
             par1 <- par
             par1[ii] <- par[ii] + 2*hvec[ii]
             f2h[ii] <- FUN( x=par1, ... )
+
         }
+
         #--- computation f(x+h,y+h)
         if ( ! diag_only ){
             for (ii in 1:NP){

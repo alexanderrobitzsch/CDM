@@ -1,5 +1,5 @@
 ## File Name: gdina_attr_rpf_hogdina.R
-## File Version: 0.19
+## File Version: 0.212
 
 
 ####################################
@@ -33,11 +33,12 @@ gdina_attr_rpf_hogdina <- function( attr.patt, attr.prob, theta.k, wgt.theta, HO
     probsL[,1,] <- 1 - probs
     # probsL
     probsAP <- array( 1, dim=c( NAP, TP) )
-    for (kk in 1:NB){
+    for (kk in 1L:NB){
         probsAP <- probsAP * probsL[ kk, attr.patt[,kk] + 1, ]
     }
     # expected attribute probabilities
-    attr.prob.exp <- rowSums( probsAP * matrix( wgt.theta, nrow=NAP, ncol=TP, byrow=TRUE ) )
+    attr.prob.exp <- rowSums( probsAP * matrix( wgt.theta, nrow=NAP, ncol=TP,
+                                    byrow=TRUE ) )
     res <- list( a.attr=L1, b.attr=b1, attr.prob.exp=attr.prob.exp,
                     tetrachoric=wc)
     return(res)

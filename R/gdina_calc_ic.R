@@ -1,5 +1,5 @@
 ## File Name: gdina_calc_ic.R
-## File Version: 0.08
+## File Version: 0.092
 
 gdina_calc_ic <- function( delta, delta.designmatrix, delta.fixed, G, ncolZ, K, HOGDINA,
         item.patt.freq, zeroprob.skillclasses, loglike, numb_regular_pars,
@@ -30,7 +30,7 @@ gdina_calc_ic <- function( delta, delta.designmatrix, delta.fixed, G, ncolZ, K, 
     #*** create object ic
     ic <- list(deviance=-2*loglike, AIC=aic, BIC=bic, CAIC=caic)
     #---- OUTPUT
-    res <- list(Npars=Npars, aic=aic, bic=bic, caic=caic, Nskillpar=Nskillpar, Nipar=Nipar,
-                    ic=ic)
+    res <- list(Npars=Npars, aic=aic, bic=bic, caic=caic, Nskillpar=Nskillpar,
+                        Nipar=Nipar, ic=ic)
     return(res)
 }

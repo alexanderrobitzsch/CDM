@@ -1,14 +1,14 @@
 ## File Name: array3_sum.R
-## File Version: 0.01
+## File Version: 0.02
 
 #*** summation of the third margin in a three-dimensional array
-array3_sum <- function( arr  )
+array3_sum <- function(arr)
 {
     dimA <- dim(arr)
     K <- dimA[ 3 ]
     h1 <- arr[,,1]
     if (K>=2){
-        for (kk in 2:K){
+        for (kk in 2L:K){
             h1 <- h1 + arr[,,kk]
         }
     }

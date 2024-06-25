@@ -1,8 +1,9 @@
 ## File Name: slca_est_skillspace.R
-## File Version: 0.11
+## File Version: 0.125
 
-###########################################################################
-# reduced skillspace estimation
+
+
+#**** reduced skillspace estimation
 slca_est_skillspace <- function(Ngroup, pi.k, delta.designmatrix, G, delta, delta.fixed,
             eps=1E-10, oldfac, delta.linkfct)
 {
@@ -49,7 +50,7 @@ slca_est_skillspace <- function(Ngroup, pi.k, delta.designmatrix, G, delta, delt
         delta[,gg] <- beta
         covdelta[[gg]] <- covbeta
     }
-    res <- list( pi.k=pi.k, delta=delta,     covdelta=covdelta )
+    res <- list( pi.k=pi.k, delta=delta, covdelta=covdelta )
     return(res)
 }
 

@@ -1,5 +1,5 @@
 //// File Name: cdm_rcpp_kli.cpp
-//// File Version: 3.243
+//// File Version: 3.257
 
 
 #include <Rcpp.h>
@@ -21,6 +21,7 @@ Rcpp::List cdm_rcpp_kli_id( Rcpp::NumericMatrix pjk, Rcpp::NumericMatrix sc )
     double tmp1 =0;
     double tmp2 = 0;
     double sum_hdist = 0;
+    double eps = 1e-30;
 
     // create item wise matrices of KLI entries
     Rcpp::NumericMatrix kli(TP,TP*I);
@@ -44,7 +45,8 @@ Rcpp::List cdm_rcpp_kli_id( Rcpp::NumericMatrix pjk, Rcpp::NumericMatrix sc )
             }
             hdist(tt,uu) = tmp1;
             hdist(uu,tt) = tmp1;
-            sum_hdist += 2 * tmp1;
+            // sum_hdist += 2*tmp1;
+            sum_hdist += 2 / ( tmp1 + eps );
         }
     }
 
@@ -60,7 +62,10 @@ Rcpp::List cdm_rcpp_kli_id( Rcpp::NumericMatrix pjk, Rcpp::NumericMatrix sc )
                 kli( tt, uu + TP * ii ) = pjk( ii, tt ) * std::log( pjk( ii, tt ) /
                                 pjk( ii, uu ) ) + pjk( ii, tt+TP ) *
                                 std::log( pjk( ii, tt+TP ) / pjk( ii, uu+TP ) );
-                tmp2 += kli( tt, uu + TP*ii ) * hdist( tt, uu );
+                if (tt != uu){
+                    // tmp2 += kli( tt, uu + TP*ii ) * hdist( tt, uu );
+                    tmp2 += kli( tt, uu + TP*ii ) / ( hdist( tt, uu ) + eps );
+                }
                 for (int aa=0;aa<K;aa++){
                     if ( ( sc(uu,aa) != sc(tt,aa) ) && ( hdist(uu,tt) == 1)  ){
                         attr_item(ii,aa) += kli( tt, uu + TP*ii );

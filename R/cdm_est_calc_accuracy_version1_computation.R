@@ -1,5 +1,5 @@
 ## File Name: cdm_est_calc_accuracy_version1_computation.R
-## File Version: 0.03
+## File Version: 0.04
 
 
 #**** estimate classification accuracy and consistency
@@ -13,8 +13,8 @@ cdm_est_calc_accuracy_version1_computation <- function( p.xi.aj, est.class, clas
     CC <- ncol( p.xi.aj )
     # classification probability matrix
     class.prob.matrix2 <- class.prob.matrix1 <- matrix( NA, CC, CC )
-    for (aa in 1:CC){
-        for (cc in 1:CC){
+    for (aa in 1L:CC){
+        for (cc in 1L:CC){
             class.prob.matrix1[cc,aa] <- sum( p.xi.aj[ est.class.index==cc, aa ] )^2
             class.prob.matrix2[cc,aa] <- sum( p.xi.aj[ est.class.index==cc, aa ] )
         }

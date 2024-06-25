@@ -39,7 +39,8 @@ bibentry( key="jsscdm",
 
 
 
-citEntry(key = paste0(pkg, "_", meta$Version), entry = "Manual",
+bibentry(key = paste0(pkg, "_", meta$Version), 
+         bibtype = "Manual",
          title = paste0( pkg , ": " , pkg_title ) ,
          author = c(
                    person(given = "Alexander",
@@ -58,5 +59,6 @@ citEntry(key = paste0(pkg, "_", meta$Version), entry = "Manual",
          paste0("Robitzsch, A., Kiefer, T., George, A. C., & Uenlue, A. (",
                year,
                "). " , pkg , ": " , pkg_title , ". ",
-               vers, paste0( ". https://CRAN.R-project.org/package=", pkg) )
+               vers, paste0( ". https://CRAN.R-project.org/package=", pkg) ),
+   doi = paste0( "10.32614/CRAN.package.", pkg )
     )

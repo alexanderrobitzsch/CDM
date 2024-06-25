@@ -1,5 +1,5 @@
 ## File Name: gdina.R
-## File Version: 9.351
+## File Version: 9.356
 
 
 ################################################################################
@@ -221,7 +221,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
     if ( fac.oldxsi>=1){
         fac.oldxsi <- 0
     }
-    djj_old <- as.list( 1:J )
+    djj_old <- as.list( 1L:J )
 
     ################################################################################
     # some prelimaries for EM algorithm                                            #
@@ -247,8 +247,8 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
 
     # calculations for expected counts
     # response indicator list
-    resp.ind.list <- list( 1:J )
-    for (i in 1:J){
+    resp.ind.list <- list( 1L:J )
+    for (i in 1L:J){
         resp.ind.list[[i]] <- which( resp.patt[,i]==1)
     }
 
@@ -265,7 +265,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
             item_patt_freq_matr <- cdm_matrix1( item.patt.freq, ncol=L )
         } else {
             item_patt_freq_matr <- array( NA, dim=c(nrow(item.patt.freq), L, G ) )
-            for (gg in 1:G){
+            for (gg in 1L:G){
                 item_patt_freq_matr[,,gg] <- cdm_matrix1( item.patt.freq[,gg], ncol=L )
             }
         }
@@ -338,7 +338,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
     # extract parameters with minimal deviances
     dev.min <- 1E99
     R.lj.gg <- I.lj.gg <- NULL
-    suffstat_probs <- as.list(1:J)
+    suffstat_probs <- as.list(1L:J)
     devchange <- 0
 
     ################################################################################
@@ -665,10 +665,10 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
                 optimizer=optimizer, method=method, ic=ic )
 
     if (HOGDINA>=0) {
-        colnames(a.attr) <- paste0( "a.Gr", 1:G )
-        colnames(b.attr) <- paste0( "b.Gr", 1:G )
+        colnames(a.attr) <- paste0( "a.Gr", 1L:G )
+        colnames(b.attr) <- paste0( "b.Gr", 1L:G )
         int.attr <- - b.attr / a.attr
-        colnames(int.attr) <- paste0( "int.Gr", 1:G )
+        colnames(int.attr) <- paste0( "int.Gr", 1L:G )
         rownames(int.attr) <- rownames(b.attr) <- rownames(a.attr) <- colnames(q.matrix)
         res$a.attr <- a.attr
         res$b.attr <- b.attr

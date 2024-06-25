@@ -1,5 +1,5 @@
 %% File Name: data.dtmr.Rd
-%% File Version: 0.25
+%% File Version: 0.261
 
 \name{data.dtmr}
 \alias{data.dtmr}
@@ -54,13 +54,13 @@ data(data.dtmr)
 
 The attribute definition are as follows
 
-\code{RU}: {Referent units}
+\code{RU}: Referent units
 
-\code{PI}: {Partitioning and iterating attribute}
+\code{PI}: Partitioning and iterating attribute
 
-\code{APP}: {Appropriateness attribute}
+\code{APP}: Appropriateness attribute
 
-\code{MC}: {Multiplicative Comparison attribute}
+\code{MC}: Multiplicative Comparison attribute
 }
 
 %\details{

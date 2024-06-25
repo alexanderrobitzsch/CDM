@@ -24,11 +24,11 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 8.3  |  2022-08-26  |  Last: CDM 8.3-1
+VERSIONS CDM 8.3  |  2024-06-25  |  Last: CDM 8.3-7
 --------------------------------------------------------------
 
-NOTE  * xxx
-
+FIXED * fixed a bug in CDI computation in cdi.kli()
+        (thanks to Jake Thomposon)
 
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: ---

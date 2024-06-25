@@ -1,5 +1,5 @@
 ## File Name: cdm.est.calc.accuracy.R
-## File Version: 2.52
+## File Version: 2.53
 
 
 #**** CDM classification accuracy
@@ -20,6 +20,6 @@ cdm.est.class.accuracy <- function( cdmobj, n.sims=0, version=2 )
     }
     #--- output
     res$CALL <- CALL
-    class(res) <- "cdm.est.class.accuracy"
+    class(res) <- 'cdm.est.class.accuracy'
     return(res)
 }

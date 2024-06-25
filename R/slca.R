@@ -1,5 +1,5 @@
 ## File Name: slca.R
-## File Version: 1.869
+## File Version: 1.877
 
 
 ###########################################
@@ -159,21 +159,23 @@ slca <- function( data, group=NULL,
         probs <- slca_calc_prob( XdesM=XdesM, dimXdes=dimXdes, Xlambda=Xlambda )
 
         #--- 2 calculate individual likelihood
-        res.hwt <- slca_calc_posterior( probs=probs, gwt0=gwt0, dat=dat, I=I, resp.ind.list=resp.ind.list )
+        res.hwt <- slca_calc_posterior( probs=probs, gwt0=gwt0, dat=dat, I=I,
+                            resp.ind.list=resp.ind.list )
         p.xi.aj <- res.hwt$hwt
 
         #--- 3 calculate posterior and marginal distributions
-        res <- gdm_calc_post( pi.k=pi.k, group=group, p.xi.aj=p.xi.aj, weights=weights, G=G, ind.group=ind.group,
-                    use.freqpatt=use.freqpatt )
+        res <- gdm_calc_post( pi.k=pi.k, group=group, p.xi.aj=p.xi.aj, weights=weights,
+                        G=G, ind.group=ind.group, use.freqpatt=use.freqpatt )
         p.aj.xi <- res$p.aj.xi
         pi.k <- res$pi.k
 
         #*****
         #4 calculate expected counts
         # n.ik [ 1:TP, 1:I, 1:(K+1), 1:G ]
-        res <- slca_calc_counts( G=G, weights=weights, dat.ind=dat.ind, dat=dat, dat.resp=dat.resp, p.aj.xi=p.aj.xi, K=K,
-                    n.ik=n.ik, TP=TP, I=I, group=group, dat.ind2=dat.ind2, ind.group=ind.group,
-                    use.freqpatt=use.freqpatt )
+        res <- slca_calc_counts( G=G, weights=weights, dat.ind=dat.ind, dat=dat,
+                    dat.resp=dat.resp, p.aj.xi=p.aj.xi, K=K,
+                    n.ik=n.ik, TP=TP, I=I, group=group, dat.ind2=dat.ind2,
+                    ind.group=ind.group, use.freqpatt=use.freqpatt )
         n.ik <- res$n.ik
         n.ik1 <- res$n.ik1
         N.ik <- res$N.ik
@@ -187,8 +189,9 @@ slca <- function( data, group=NULL,
                     n.ik1=n.ik1, N.ik1=N.ik1, I=I, K=K, G=G, max.increment=max.increment,
                     TP=TP, msteps=msteps, convM=convM, Xlambda.fixed=Xlambda.fixed,
                     XdesM=XdesM, dimXdes=dimXdes, oldfac=oldfac,
-                    decrease.increments=decrease.increments, dampening_factor=dampening_factor,
-                    Xlambda.constr.V=Xlambda.constr.V, e2=e2, V1=V1, regularization=regularization,
+                    decrease.increments=decrease.increments,
+                    dampening_factor=dampening_factor, Xlambda.constr.V=Xlambda.constr.V,
+                    e2=e2, V1=V1, regularization=regularization,
                     regular_lam_used=regular_lam_used, regular_n=regular_n,
                     Xlambda_positive=Xlambda_positive, regular_type=regular_type )
         Xlambda <- res$Xlambda
@@ -200,9 +203,10 @@ slca <- function( data, group=NULL,
 
         #*****
         #7 M step: estimate reduced skillspace
-        res <- slca_est_skillspace( Ngroup=Ngroup, pi.k=pi.k, delta.designmatrix=delta.designmatrix,
-                    G=G, delta=delta, delta.fixed=delta.fixed, eps=1E-7, oldfac=oldfac,
-                    delta.linkfct=delta.linkfct )
+        res <- slca_est_skillspace( Ngroup=Ngroup, pi.k=pi.k,
+                        delta.designmatrix=delta.designmatrix,
+                        G=G, delta=delta, delta.fixed=delta.fixed, eps=1E-7,
+                        oldfac=oldfac, delta.linkfct=delta.linkfct )
         pi.k <- res$pi.k
         delta <- res$delta
         covdelta <- res$covdelta

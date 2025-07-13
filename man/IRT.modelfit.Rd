@@ -1,12 +1,14 @@
 %% File Name: IRT.modelfit.Rd
-%% File Version: 0.232
+%% File Version: 0.234
 
 \name{IRT.modelfit}
 \alias{IRT.modelfit}
 \alias{IRT.modelfit.din}
 \alias{IRT.modelfit.gdina}
+\alias{IRT.modelfit.gdm}
 \alias{summary.IRT.modelfit.din}
 \alias{summary.IRT.modelfit.gdina}
+\alias{summary.IRT.modelfit.gdm}
 
 
 %- Also NEED an '\alias' for EACH other topic documented here.
@@ -25,15 +27,17 @@ IRT.modelfit(object, \dots)
 
 \method{IRT.modelfit}{din}(object, \dots)
 \method{IRT.modelfit}{gdina}(object, \dots)
+\method{IRT.modelfit}{gdm}(object, \dots)
 
 \method{summary}{IRT.modelfit.din}(object, \dots)
 \method{summary}{IRT.modelfit.gdina}(object, \dots)
+\method{summary}{IRT.modelfit.gdm}(object, \dots)
 }
 
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{object}{
-Object of classes \code{\link{din}} or \code{\link{gdina}}.
+Object of classes \code{\link{din}}, \code{\link{gdina}} or \code{\link{gdm}}.
 }
   \item{\dots}{
 More arguments to be passed.

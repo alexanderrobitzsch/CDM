@@ -1,8 +1,7 @@
 ## File Name: vcov.din.R
-## File Version: 1.62
+## File Version: 1.633
 
-##########################################################
-# vcov din object
+#--- vcov din object
 vcov.din <- function( object, extended=FALSE, infomat=FALSE,
             ind.item.skillprobs=TRUE, ind.item=FALSE, diagcov=FALSE, h=.001, ... )
 {
@@ -33,7 +32,7 @@ vcov.din <- function( object, extended=FALSE, infomat=FALSE,
     guess0 <- guess
     slip0 <- slip
     skillprobs0 <- attribute.patt
-    res <- vcov.loglike.din( weights, skillprobs0, slip0, guess0,
+    res <- vcov_loglike_din( weights, skillprobs0, slip0, guess0,
                     latresp, item.patt.split, resp.ind.list, return.p.xi.aj=TRUE)
     ll1 <- res$ll
     p.xi.aj <- res$p.xi.aj
@@ -73,7 +72,7 @@ vcov.din <- function( object, extended=FALSE, infomat=FALSE,
             recalc.ll <- FALSE
         }
         if ( recalc.ll){
-            ll2 <- vcov.loglike.din( weights, skillprobs0, slip0, guess0,
+            ll2 <- vcov_loglike_din( weights, skillprobs0, slip0, guess0,
                         latresp, item.patt.split, resp.ind.list)
         } else {
             skillprobsM <- matrix( skillprobs0, nrow=IP, ncol=L, byrow=TRUE )
@@ -130,4 +129,3 @@ vcov.din <- function( object, extended=FALSE, infomat=FALSE,
     }
 return(covmat)
 }
-#########################################################################

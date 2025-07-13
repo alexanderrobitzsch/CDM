@@ -1,14 +1,12 @@
-## File Name: vcov.loglike.din.R
-## File Version: 0.10
+## File Name: vcov_loglike_din.R
+## File Version: 0.121
 
 
-#########################################################################
-# compute log-likelihood for din objects
-vcov.loglike.din <- function( weights, skillprobs0, slip0, guess0,
+#*** compute log-likelihood for din objects
+vcov_loglike_din <- function( weights, skillprobs0, slip0, guess0,
         latresp, item.patt.split, resp.ind.list,
         return.p.xi.aj=FALSE )
 {
-    ########################
     IP <- N <- length(weights)
     L <- length(skillprobs0)
     J <- length(guess0)
@@ -29,10 +27,10 @@ vcov.loglike.din <- function( weights, skillprobs0, slip0, guess0,
     # Log-Likelihood (casewise)
     ll2 <- log( rowSums( p.xi.aj * skillprobsM ) )
     if (return.p.xi.aj){
-        res <- list( "ll"=ll2, "p.xi.aj"=p.xi.aj )
+        res <- list( ll=ll2, p.xi.aj=p.xi.aj )
     }  else {
         res <- ll2
     }
     return(res)
 }
-#########################################################################
+

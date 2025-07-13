@@ -1,5 +1,5 @@
 ## File Name: din.R
-## File Version: 2.524
+## File Version: 2.526
 
 
 
@@ -64,9 +64,9 @@ din <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.001, dev.crit=10
 
 z0 <- Sys.time()
 
-    if ( progress){
-        cat("---------------------------------------------------------------------------------\n")
-                }
+    if (progress){
+        cat("-----------------------------------------------------------------------\n")
+    }
     cl <- match.call()
 
 ################################################################################
@@ -83,7 +83,7 @@ z0 <- Sys.time()
         set.seed(seed)
         slip.init <- stats::runif( I, 0, .4 )
         guess.init <- stats::runif( I, 0, .4 )
-                    }
+    }
 
     clean <- check.input(data, q.matrix, conv.crit, maxit, constraint.guess,
         constraint.slip, guess.init, slip.init, weights, rule, progress)

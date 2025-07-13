@@ -1,5 +1,5 @@
 %% File Name: data.fraction.Rd
-%% File Version: 0.24
+%% File Version: 0.251
 
 
 \name{data.fraction}
@@ -212,7 +212,7 @@ about the data source.
 
 
 \seealso{
-\code{\link[GDINA:frac20]{GDINA::frac20}}
+\code{GDINA::frac20}
 }
 
 

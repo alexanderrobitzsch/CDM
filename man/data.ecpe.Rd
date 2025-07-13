@@ -1,5 +1,5 @@
 %% File Name: data.ecpe.Rd
-%% File Version: 0.27
+%% File Version: 0.281
 
 \name{data.ecpe}
 \alias{data.ecpe}
@@ -69,7 +69,7 @@ Obtaining diagnostic classification model estimates using Mplus.
 }
 
 \seealso{
-\code{\link[GDINA:ecpe]{GDINA::ecpe}}
+\code{GDINA::ecpe}
 }
 
 \examples{

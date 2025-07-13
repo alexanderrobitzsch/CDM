@@ -1,5 +1,5 @@
 %% File Name: discrim.index.Rd
-%% File Version: 0.431
+%% File Version: 0.433
 
 \name{discrim.index}
 \alias{discrim.index}
@@ -30,7 +30,7 @@ discrim.index(object, ...)
 
 \method{discrim.index}{mcdina}(object, \dots)
 
-\method{summary}{discrim.index}(object, file=NULL, digits=3,  \dots)
+\method{summary}{discrim.index}(object, file=NULL, digits=3, \dots)
 }
 
 

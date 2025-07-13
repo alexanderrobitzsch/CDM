@@ -11,7 +11,7 @@ all necessary information on the used librarys, the R version, and the OS it is 
 
 The manual can be found here [https://alexanderrobitzsch.github.io/CDM/](https://alexanderrobitzsch.github.io/CDM/) 
 
-#### CRAN version `CDM` 8.2-6 (2022-08-25)
+#### CRAN version `CDM` 8.3-14 (2025-07-13)
 
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version-last-release/CDM)](https://cran.r-project.org/package=CDM)
@@ -25,9 +25,9 @@ The CRAN version can be installed from within R using:
 utils::install.packages("CDM")
 ```
 
-#### GitHub version `CDM` 8.3-7 (2024-06-25)
+#### GitHub version `CDM` 8.4-2 (2025-07-13)
 
-[![](https://img.shields.io/badge/github%20version-8.3--7-orange.svg)](https://github.com/alexanderrobitzsch/CDM)&#160;&#160;
+[![](https://img.shields.io/badge/github%20version-8.4--2-orange.svg)](https://github.com/alexanderrobitzsch/CDM)&#160;&#160;
 
 The version hosted [here](https://github.com/alexanderrobitzsch/CDM) is the development version of `CDM`. 
 The GitHub version can be installed using `devtools` as:

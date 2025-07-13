@@ -1,5 +1,5 @@
 ## File Name: IRT.modelfit.R
-## File Version: 0.21
+## File Version: 0.221
 
 ###########################################################
 IRT.modelfit <- function (object, ...)
@@ -8,7 +8,7 @@ IRT.modelfit <- function (object, ...)
 }
 ###########################################################
 # general model fit function for CDM objects
-IRT.modelfit.CDM <- function( object, mod )
+IRT_modelfit_CDM <- function( object, mod )
 {
     res <- modelfit.cor.din( dinobj=object)
     res$IRT.IC <- IRT.IC(object)
@@ -24,7 +24,7 @@ IRT.modelfit.CDM <- function( object, mod )
 IRT.modelfit.din <- function( object, ... )
 {
     cl <- paste(match.call())[2]
-    res <- IRT.modelfit.CDM( object, mod=cl )
+    res <- IRT_modelfit_CDM( object, mod=cl )
     return(res)
 }
 #####################################################
@@ -32,7 +32,7 @@ IRT.modelfit.din <- function( object, ... )
 IRT.modelfit.gdina <- function( object, ... )
 {
     cl <- paste(match.call())[2]
-    res <- IRT.modelfit.CDM( object, mod=cl )
+    res <- IRT_modelfit_CDM( object, mod=cl )
     return(res)
 }
 #############################################################
@@ -42,7 +42,7 @@ IRT.modelfit.gdina <- function( object, ... )
 IRT.modelfit.gdm <- function( object, ... )
 {
     cl <- paste(match.call())[2]
-    res <- IRT.modelfit.CDM( object, mod=cl )
+    res <- IRT_modelfit_CDM( object, mod=cl )
     return(res)
 }
 #############################################################

@@ -1,5 +1,5 @@
 ## File Name: IRT_RMSD_summary_print_statistics.R
-## File Version: 0.07
+## File Version: 0.081
 
 IRT_RMSD_summary_print_statistics <- function( stat_summary, stat, digits)
 {
@@ -18,5 +18,3 @@ IRT_RMSD_summary_print_statistics <- function( stat_summary, stat, digits)
     print(obji)
 }
 
-
-summary.IRT.RMSD_print_statistics <- IRT_RMSD_summary_print_statistics

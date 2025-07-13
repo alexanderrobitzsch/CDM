@@ -1,11 +1,21 @@
 Package: CDM
 Type: Package
 Title: Cognitive Diagnosis Modeling
-Version: 8.3-7
-Date: 2024-06-25 14:02:45
-Author: 
-    Alexander Robitzsch [aut, cre], Thomas Kiefer [aut],
-    Ann Cathrice George [aut], Ali Uenlue [aut]
+Version: 8.4-2
+Date: 2025-07-13 19:59:29
+Authors@R: c(person(given = "Alexander",
+                        family = "Robitzsch",
+                        role = c("aut", "cre"),
+                        email = "robitzsch@ipn.uni-kiel.de"),
+                 person(given = "Thomas",
+                        family = "Kiefer",
+                        role = "aut"),
+                 person(given = c("Ann", "Cathrice"),
+                        family = "George",
+                        role = "aut"),
+                 person(given = "Ali",
+                        family = "Uenlue",
+                        role = "aut"))
 Maintainer: Alexander Robitzsch <robitzsch@ipn.uni-kiel.de>
 Description: 
     Functions for cognitive diagnosis modeling and multidimensional item response modeling 
@@ -37,7 +47,7 @@ LazyLoad: yes
 LazyData: yes
 URL: 
     https://github.com/alexanderrobitzsch/CDM,
-    https://sites.google.com/site/alexanderrobitzsch2/software
+    https://sites.google.com/view/alexander-robitzsch/software
 License: GPL (>= 2)
 BugReports: 
     https://github.com/alexanderrobitzsch/CDM/issues?state=open

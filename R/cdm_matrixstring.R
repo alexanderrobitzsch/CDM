@@ -1,18 +1,16 @@
 ## File Name: cdm_matrixstring.R
-## File Version: 0.01
+## File Version: 0.03
 
 
-############################################################
-# calculates a string pattern consisting of matrix entries
+#--- calculates a string pattern consisting of matrix entries
 # matr <- skillclasses
 # string <- "Q"
 cdm_matrixstring <- function( matr, string )
 {
     VV <- ncol(matr)
     l1 <- string
-    for ( vv in 1:VV){
+    for ( vv in 1L:VV){
         l1 <- paste0( l1, matr[,vv] )
     }
     return(l1)
 }
-#################################################################

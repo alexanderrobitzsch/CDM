@@ -95,7 +95,7 @@ Press.</p>
 <span></span>
 <span><span class="co">#--------</span></span>
 <span><span class="co"># Model 1m: estimate model in mirt package</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/philchalmers/mirt" class="external-link">mirt</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://philchalmers.github.io/mirt/" class="external-link">mirt</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alexanderrobitzsch/sirt" class="external-link">sirt</a></span><span class="op">)</span></span>
 <span></span>
 <span>  <span class="co">#** define theta grid of skills</span></span>
@@ -104,7 +104,7 @@ Press.</p>
 <span><span class="va">skillspace</span> <span class="op">&lt;-</span> <span class="fu">CDM</span><span class="fu">::</span><span class="fu"><a href="skillspace.hierarchy.html">skillspace.hierarchy</a></span><span class="op">(</span> <span class="va">hier</span>, skill.names<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">Q</span><span class="op">)</span> <span class="op">)</span></span>
 <span><span class="va">Theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">skillspace</span><span class="op">$</span><span class="va">skillspace.complete</span><span class="op">)</span></span>
 <span>  <span class="co">#** create mirt model</span></span>
-<span><span class="va">mirtmodel</span> <span class="op">&lt;-</span> <span class="fu">mirt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mirt/man/mirt.model.html" class="external-link">mirt.model</a></span><span class="op">(</span><span class="st">"</span></span>
+<span><span class="va">mirtmodel</span> <span class="op">&lt;-</span> <span class="fu">mirt</span><span class="fu">::</span><span class="fu"><a href="https://philchalmers.github.io/mirt/reference/mirt.model.html" class="external-link">mirt.model</a></span><span class="op">(</span><span class="st">"</span></span>
 <span><span class="st">      skill1=1</span></span>
 <span><span class="st">      skill2=2</span></span>
 <span><span class="st">      skill3=3</span></span>
@@ -114,7 +114,7 @@ Press.</p>
 <span><span class="st">      (skill1*skill2*skill3)=7</span></span>
 <span><span class="st">          "</span> <span class="op">)</span></span>
 <span>  <span class="co">#** mirt parameter table</span></span>
-<span><span class="va">mod.pars</span> <span class="op">&lt;-</span> <span class="fu">mirt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mirt/man/mirt.html" class="external-link">mirt</a></span><span class="op">(</span> <span class="va">dat</span>, <span class="va">mirtmodel</span>, pars<span class="op">=</span><span class="st">"values"</span><span class="op">)</span></span>
+<span><span class="va">mod.pars</span> <span class="op">&lt;-</span> <span class="fu">mirt</span><span class="fu">::</span><span class="fu"><a href="https://philchalmers.github.io/mirt/reference/mirt.html" class="external-link">mirt</a></span><span class="op">(</span> <span class="va">dat</span>, <span class="va">mirtmodel</span>, pars<span class="op">=</span><span class="st">"values"</span><span class="op">)</span></span>
 <span>  <span class="co"># use starting values of .20 for guessing parameter</span></span>
 <span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span> <span class="va">mod.pars</span><span class="op">$</span><span class="va">name</span><span class="op">==</span><span class="st">"d"</span> <span class="op">)</span></span>
 <span><span class="va">mod.pars</span><span class="op">[</span><span class="va">ind</span>,<span class="st">"value"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Logistic.html" class="external-link">qlogis</a></span><span class="op">(</span><span class="fl">.20</span><span class="op">)</span> <span class="co"># guessing parameter on the logit metric</span></span>
@@ -135,7 +135,7 @@ Press.</p>
 <span> <span class="op">}</span></span>
 <span></span>
 <span> <span class="co">#** estimate model in mirt</span></span>
-<span><span class="va">mod1m</span> <span class="op">&lt;-</span> <span class="fu">mirt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mirt/man/mirt.html" class="external-link">mirt</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">mirtmodel</span>, pars<span class="op">=</span><span class="va">mod.pars</span>, verbose<span class="op">=</span><span class="cn">TRUE</span>,</span>
+<span><span class="va">mod1m</span> <span class="op">&lt;-</span> <span class="fu">mirt</span><span class="fu">::</span><span class="fu"><a href="https://philchalmers.github.io/mirt/reference/mirt.html" class="external-link">mirt</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">mirtmodel</span>, pars<span class="op">=</span><span class="va">mod.pars</span>, verbose<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>            technical<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span> customTheta<span class="op">=</span><span class="va">Theta</span>, customPriorFun<span class="op">=</span><span class="va">lca_prior</span><span class="op">)</span> <span class="op">)</span></span>
 <span>  <span class="co"># The number of estimated parameters is incorrect because mirt does not correctly count</span></span>
 <span>  <span class="co"># estimated parameters from the user customized  prior distribution.</span></span>
@@ -191,7 +191,7 @@ Press.</p>
 <span>  <span class="co">##   6          1          1          1          1          1          1</span></span>
 <span></span>
 <span><span class="co">#** estimate model fit in mirt</span></span>
-<span><span class="op">(</span> <span class="va">fit1m</span> <span class="op">&lt;-</span> <span class="fu">mirt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mirt/man/M2.html" class="external-link">M2</a></span><span class="op">(</span> <span class="va">mod1m</span> <span class="op">)</span> <span class="op">)</span></span>
+<span><span class="op">(</span> <span class="va">fit1m</span> <span class="op">&lt;-</span> <span class="fu">mirt</span><span class="fu">::</span><span class="fu"><a href="https://philchalmers.github.io/mirt/reference/M2.html" class="external-link">M2</a></span><span class="op">(</span> <span class="va">mod1m</span> <span class="op">)</span> <span class="op">)</span></span>
 <span></span>
 <span><span class="co">#*****************************************************</span></span>
 <span><span class="co"># Model 2: DINO model</span></span>
@@ -228,16 +228,16 @@ Press.</p>
 <span><span class="co"># Model 6m: GDINA additive model in mirt package</span></span>
 <span><span class="co"># use data specifications from Model 1m)</span></span>
 <span>  <span class="co">#** create mirt model</span></span>
-<span><span class="va">mirtmodel</span> <span class="op">&lt;-</span> <span class="fu">mirt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mirt/man/mirt.model.html" class="external-link">mirt.model</a></span><span class="op">(</span><span class="st">"</span></span>
+<span><span class="va">mirtmodel</span> <span class="op">&lt;-</span> <span class="fu">mirt</span><span class="fu">::</span><span class="fu"><a href="https://philchalmers.github.io/mirt/reference/mirt.model.html" class="external-link">mirt.model</a></span><span class="op">(</span><span class="st">"</span></span>
 <span><span class="st">      skill1=1,4,5,7</span></span>
 <span><span class="st">      skill2=2,4,6,7</span></span>
 <span><span class="st">      skill3=3,5,6,7</span></span>
 <span><span class="st">          "</span> <span class="op">)</span></span>
 <span>  <span class="co">#** mirt parameter table</span></span>
-<span><span class="va">mod.pars</span> <span class="op">&lt;-</span> <span class="fu">mirt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mirt/man/mirt.html" class="external-link">mirt</a></span><span class="op">(</span> <span class="va">dat</span>, <span class="va">mirtmodel</span>, pars<span class="op">=</span><span class="st">"values"</span><span class="op">)</span></span>
+<span><span class="va">mod.pars</span> <span class="op">&lt;-</span> <span class="fu">mirt</span><span class="fu">::</span><span class="fu"><a href="https://philchalmers.github.io/mirt/reference/mirt.html" class="external-link">mirt</a></span><span class="op">(</span> <span class="va">dat</span>, <span class="va">mirtmodel</span>, pars<span class="op">=</span><span class="st">"values"</span><span class="op">)</span></span>
 <span> <span class="co">#** estimate model in mirt</span></span>
 <span> <span class="co"># Theta and lca_prior as defined as in Model 1m</span></span>
-<span><span class="va">mod6m</span> <span class="op">&lt;-</span> <span class="fu">mirt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mirt/man/mirt.html" class="external-link">mirt</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">mirtmodel</span>, pars<span class="op">=</span><span class="va">mod.pars</span>, verbose<span class="op">=</span><span class="cn">TRUE</span>,</span>
+<span><span class="va">mod6m</span> <span class="op">&lt;-</span> <span class="fu">mirt</span><span class="fu">::</span><span class="fu"><a href="https://philchalmers.github.io/mirt/reference/mirt.html" class="external-link">mirt</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">mirtmodel</span>, pars<span class="op">=</span><span class="va">mod.pars</span>, verbose<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>            technical<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span> customTheta<span class="op">=</span><span class="va">Theta</span>, customPriorFun<span class="op">=</span><span class="va">lca_prior</span><span class="op">)</span> <span class="op">)</span></span>
 <span><span class="va">mod6m</span><span class="op">@</span><span class="va">nest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">mod.pars</span><span class="op">$</span><span class="va">est</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">Theta</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span></span>
 <span>  <span class="co"># extract log-likelihood</span></span>

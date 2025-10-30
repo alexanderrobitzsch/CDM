@@ -1,5 +1,5 @@
 ## File Name: cdm_pem_acceleration.R
-## File Version: 0.132
+## File Version: 0.133
 
 
 cdm_pem_acceleration <- function( iter, pem_parameter_index, pem_parameter_sequence,
@@ -64,7 +64,7 @@ cdm_pem_acceleration <- function( iter, pem_parameter_index, pem_parameter_seque
         PEM <- FALSE
     }
     if ( ! is.null( deviance.history) ){
-        diff_history <- diff( deviance.history[ 1:iter ] )
+        diff_history <- diff( deviance.history[ 1L:iter ] )
         NL0 <- 15
         NL <- min( NL0, iter )   # number of lags
         if ( iter > NL0 ){

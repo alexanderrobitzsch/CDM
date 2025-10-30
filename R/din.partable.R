@@ -1,5 +1,5 @@
 ## File Name: din.partable.R
-## File Version: 0.24
+## File Version: 0.254
 
 ##############################################
 # parameter table for the din model
@@ -15,16 +15,16 @@ din.partable <- function( guess,  slip, attribute.patt, data, rule,
 
     #**************
     # create parameter table
-    partable <- data.frame( "partype"=c( rep( c("guess","slip"), J),
+    partable <- data.frame( partype=c( rep( c("guess","slip"), J),
                         rep("probs", L), rep("margprobs", K ) )
                             )
-    partable$parindex <- c( 1:J, J + 1:J, 2*J + 1:(L-1), 0, rep( 0, K ))
-    partable$item <- c( rep(1:J, each=2 ), rep(0,L+K) )
+    partable$parindex <- c( 1L:J, J + 1L:J, 2*J + 1L:(L-1), 0, rep( 0, K ))
+    partable$item <- c( rep(1L:J, each=2 ), rep(0,L+K) )
     partable$item.name <- c( rep(colnames(data),each=2), rep("",L+K) )
     partable$skillclass <- c( rep(0,2*J), 1:(L), rep(0,K))
-    partable$varyindex <- c( rep(1:J, each=2 ), 1:(L-1), 0, rep(0,K))
+    partable$varyindex <- c( rep(1L:J, each=2 ), 1L:(L-1), 0, rep(0,K))
     m1 <- paste0( rep( items, each=2 ), "_", c( "guess", "slip" ) )
-    partable$parnames <- c( m1, paste0( "prob_class", 1:L ),
+    partable$parnames <- c( m1, paste0( "prob_class", 1L:L ),
                 paste0( "prob_skill", 1:K ))
     dfr <- cbind( guess$est, slip$est )
     dfr <- matrix( t(dfr), nrow=1, byrow=TRUE )
@@ -101,7 +101,7 @@ din.partable <- function( guess,  slip, attribute.patt, data, rule,
     #*********************************
     # introduce new parameter index
     partable$parindex <- match( partable$parindex, sort(unique(partable$parindex) ) ) - 1
-    res <- list( "partable"=partable, "vcov.derived"=list("A"=A) )
+    res <- list( partable=partable, vcov.derived=list(A=A) )
     return(res)
 }
 ###########################################################

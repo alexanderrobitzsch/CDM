@@ -105,7 +105,7 @@ hessian should be computed.</p></dd>
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index"><p>See the <span class="pkg">numDeriv</span> package and the
-<code><a href="https://rdrr.io/pkg/mirt/man/numerical_deriv.html" class="external-link">mirt::numerical_deriv</a></code>
+<code><a href="https://philchalmers.github.io/mirt/reference/numerical_deriv.html" class="external-link">mirt::numerical_deriv</a></code>
 function from the <span class="pkg">mirt</span> package.</p></div>
     </div>
 
@@ -125,11 +125,11 @@ function from the <span class="pkg">mirt</span> package.</p></div>
 <span><span class="co">#--- compute gradient</span></span>
 <span><span class="fu">CDM</span><span class="fu">::</span><span class="fu">numerical_Hessian</span><span class="op">(</span> par<span class="op">=</span><span class="va">par</span>, FUN<span class="op">=</span><span class="va">f</span>, gradient<span class="op">=</span><span class="cn">TRUE</span>, hessian<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span><span class="fu">mirt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mirt/man/numerical_deriv.html" class="external-link">numerical_deriv</a></span><span class="op">(</span>par<span class="op">=</span><span class="va">par</span>, f<span class="op">=</span><span class="va">f</span>, gradient<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">mirt</span><span class="fu">::</span><span class="fu"><a href="https://philchalmers.github.io/mirt/reference/numerical_deriv.html" class="external-link">numerical_deriv</a></span><span class="op">(</span>par<span class="op">=</span><span class="va">par</span>, f<span class="op">=</span><span class="va">f</span>, gradient<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#--- compute Hessian matrix</span></span>
 <span><span class="fu">CDM</span><span class="fu">::</span><span class="fu">numerical_Hessian</span><span class="op">(</span> par<span class="op">=</span><span class="va">par</span>, FUN<span class="op">=</span><span class="va">f</span> <span class="op">)</span></span>
-<span><span class="fu">mirt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mirt/man/numerical_deriv.html" class="external-link">numerical_deriv</a></span><span class="op">(</span>par<span class="op">=</span><span class="va">par</span>, f<span class="op">=</span><span class="va">f</span>, gradient<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu">mirt</span><span class="fu">::</span><span class="fu"><a href="https://philchalmers.github.io/mirt/reference/numerical_deriv.html" class="external-link">numerical_deriv</a></span><span class="op">(</span>par<span class="op">=</span><span class="va">par</span>, f<span class="op">=</span><span class="va">f</span>, gradient<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu">numerical_Hessian</span><span class="op">(</span> par<span class="op">=</span><span class="va">par</span>, FUN<span class="op">=</span><span class="va">f</span>, h<span class="op">=</span><span class="fl">1E-4</span> <span class="op">)</span></span>
 <span></span>
 <span><span class="co">#--- compute gradient and Hessian matrix</span></span>

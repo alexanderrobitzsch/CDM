@@ -1,5 +1,5 @@
 ## File Name: cdi.kli.R
-## File Version: 0.184
+## File Version: 0.185
 
 
 #--- cognitive diagnostic indices
@@ -40,7 +40,7 @@ cdi.kli <- function( object )
     dfr <- rbind( l1, dfr )
     rownames(dfr) <- NULL
     colnames(dfr) <- c( 'cdi_test', paste0( 'cdi_skill', 1L:( ncol(dfr) -1 ) ) )
-    dfr <- data.frame( 'item'=c('test', items ), dfr )
+    dfr <- data.frame( item=c('test', items ), dfr )
     # names
     names(res$attr_disc) <- colnames(res$attr_item_disc) <- colnames(q.matrix)
     dimnames(res$KLI)[[1]] <- items

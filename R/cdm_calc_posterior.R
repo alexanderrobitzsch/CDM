@@ -1,5 +1,5 @@
 ## File Name: cdm_calc_posterior.R
-## File Version: 1.176
+## File Version: 1.177
 
 
 #--- compute posterior distribution
@@ -36,7 +36,7 @@ cdm_calc_posterior <- function(rprobs, gwt, resp, nitems,
             hwt <- fx
         }
     }
-    res <-  list('hwt'=hwt, 'rfx'=rfx )
+    res <-  list(hwt=hwt, rfx=rfx)
     if ( snodes > 0 ){
         res[['swt' ]] <- swt
     }

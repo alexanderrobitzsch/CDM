@@ -1,12 +1,12 @@
 ## File Name: din_identifiability.R
-## File Version: 0.071
+## File Version: 0.074
 
 din_identifiability <- function(q.matrix)
 {
     K <- ncol(q.matrix)
     I <- nrow(q.matrix)
     if (is.null(colnames(q.matrix))){
-        colnames(q.matrix) <- paste0("Skill", 1:K)
+        colnames(q.matrix) <- paste0('Skill', 1L:K)
     }
     skills <- colnames(q.matrix)
 
@@ -15,7 +15,7 @@ din_identifiability <- function(q.matrix)
     index_single <- cdm_create_vector(names=skills, val=NA)
     is_single <- cdm_create_vector(names=skills, val=FALSE)
 
-    for (kk in 1:K){
+    for (kk in 1L:K){
         vec1 <- vec0
         vec1[kk] <- 1
         rm1 <- rowMeans( q.matrix==cdm_matrix2(vec1, nrow=I) )
@@ -33,7 +33,7 @@ din_identifiability <- function(q.matrix)
     #- distinctness of columns in submatrix
     submat_distinct <- TRUE
     Q_ast <- q.matrix[-na.omit(index_single),]
-    for (ii in 1:(K-1)){
+    for (ii in 1L:(K-1)){
         for (jj in (ii+1):K){
             submat_distinct <- submat_distinct & ( !( mean( Q_ast[,ii]==Q_ast[,jj] )==1 ))
         }
@@ -50,6 +50,6 @@ din_identifiability <- function(q.matrix)
                     is_three_items=is_three_items, submat_distinct=submat_distinct,
                     q.matrix=q.matrix, I=I, K=K, qmat_stat=qmat_stat,
                     dina_identified=dina_identified)
-    class(res) <- "din_identifiability"
+    class(res) <- 'din_identifiability'
     return(res)
 }

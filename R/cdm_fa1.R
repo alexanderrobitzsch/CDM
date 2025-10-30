@@ -1,5 +1,5 @@
 ## File Name: cdm_fa1.R
-## File Version: 0.08
+## File Version: 0.091
 
 #--- function for unidimensional factor analysis
 cdm_fa1 <- function(Sigma, method=1, maxit=50, conv=1E-5)
@@ -14,7 +14,7 @@ cdm_fa1 <- function(Sigma, method=1, maxit=50, conv=1E-5)
         L0 <- L
         #--- method=1 -> different item loadings
         if (method==1){
-            for (ll in 1:I){
+            for (ll in 1L:I){
                 y <- Sigma[ll,-ll]
                 x <- L[-ll,1]
                 L[ll,1] <- sum(x*y) / sum(x^2)

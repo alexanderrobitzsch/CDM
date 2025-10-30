@@ -1,5 +1,5 @@
 ## File Name: cdm_include_fixed_parameters.R
-## File Version: 0.04
+## File Version: 0.05
 
 cdm_include_fixed_parameters <- function( parm, se_parm, parm_fixed )
 {
@@ -13,8 +13,8 @@ cdm_include_fixed_parameters <- function( parm, se_parm, parm_fixed )
     #--- matrix of parameters
     if ( is.matrix(parm) ){
         if ( ! is.null( parm_fixed ) ){
-            parm[ parm_fixed[,1:2,drop=FALSE] ] <- parm_fixed[,3,drop=FALSE]
-            se_parm[ parm_fixed[,1:2,drop=FALSE] ] <- 0
+            parm[ parm_fixed[,1L:2,drop=FALSE] ] <- parm_fixed[,3,drop=FALSE]
+            se_parm[ parm_fixed[,1L:2,drop=FALSE] ] <- 0
         }
     }
     #-------------------------------------

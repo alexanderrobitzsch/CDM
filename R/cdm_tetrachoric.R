@@ -1,9 +1,8 @@
 ## File Name: cdm_tetrachoric.R
-## File Version: 0.20
+## File Version: 0.214
 
 
-####################################################################
-# hogdina: tetrachoric correlation
+#### hogdina: tetrachoric correlation
 cdm_tetrachoric <- function( dat, weights, rho_init=NULL,
         delta=.007, maxit=10000, maxval=.999 )
 {
@@ -16,7 +15,7 @@ cdm_tetrachoric <- function( dat, weights, rho_init=NULL,
     dat[ dat.resp==0] <- 9
     I <- ncol(dat)
     # calculate frequencies
-    dfr <- data.frame( "item1"=rep(1:I,I), "item2"=rep(1:I, each=I ) )
+    dfr <- data.frame( item1=rep(1L:I,I), item2=rep(1L:I, each=I ) )
     h1 <- crossprod( 1*(dat==1), (dat==0) )
     dfr$f11 <- matrix( crossprod( ( dat==1 )*w2, (w2*( dat==1 ))), ncol=1, byrow=TRUE )
     dfr$f10 <- matrix( crossprod( ( dat==1 )*w2, (w2*( dat==0 ))), ncol=1, byrow=TRUE )
@@ -53,7 +52,7 @@ cdm_tetrachoric <- function( dat, weights, rho_init=NULL,
     dfr$conv <- 0
 
     ii <- 0
-    vars <-  c("A0","r0","iter","conv")
+    vars <-  c('A0','r0','iter','conv')
     while( ( mean( dfr$conv) < 1 ) & ( ii < maxit ) ){
         # iterations
         dfr0 <- dfr
@@ -77,9 +76,9 @@ cdm_tetrachoric <- function( dat, weights, rho_init=NULL,
     }
     TC <- matrix(NA, I, I )
     diag(TC) <- 1
-    TC[ as.matrix(dfr[, c("item1","item2") ] ) ] <- dfr$r0
-    TC[ as.matrix(dfr[, c("item2","item1") ] ) ] <- dfr$r0
-    res <- list("tau"=tau, "rho"=TC )
+    TC[ as.matrix(dfr[, c('item1','item2') ] ) ] <- dfr$r0
+    TC[ as.matrix(dfr[, c('item2','item1') ] ) ] <- dfr$r0
+    res <- list(tau=tau, rho=TC )
     return(res)
 }
 

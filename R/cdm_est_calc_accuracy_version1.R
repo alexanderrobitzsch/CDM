@@ -1,5 +1,5 @@
 ## File Name: cdm_est_calc_accuracy_version1.R
-## File Version: 0.047
+## File Version: 0.054
 
 
 cdm_est_calc_accuracy_version1 <- function( cdmobj, n.sims=0 )
@@ -72,18 +72,19 @@ cdm_est_calc_accuracy_version1 <- function( cdmobj, n.sims=0 )
                         constraint.slip=cbind(1L:I, slip0 ),
                         rule=cdmobj$rule, progress=FALSE, skillclasses=attr.splitted,
                         zeroprob.skillclasses=cdmobj$zeroprob.skillclasses)
+
         # compare MLE estimates
-        dfr1 <- data.frame( 'true'=paste( rownames(alpha.sim)  ) )
+        dfr1 <- data.frame( true=paste( rownames(alpha.sim)  ) )
         dfr1$mle.simdata1 <- paste( mod1$pattern$mle.est )
         dfr1$mle.simdata2 <- paste( mod2$pattern$mle.est )
         # classification consistency
-        dfr11 <- data.frame( 'P_c_sim'=mean( dfr1[,2]==dfr1[,3]  ) )
+        dfr11 <- data.frame( P_c_sim=mean( dfr1[,2]==dfr1[,3]  ) )
         dfr11$P_a_sim <-  mean( dfr1[,1]==dfr1[,3]  )
         # compare MAP estimates
-        dfr1 <- data.frame( 'true'=paste( rownames(alpha.sim)  ) )
+        dfr1 <- data.frame( true=paste( rownames(alpha.sim)  ) )
         dfr1$mle.simdata1 <- paste( mod1$pattern$map.est )
         dfr1$mle.simdata2 <- paste( mod2$pattern$map.est )
-        dfr12 <- data.frame( 'P_c_sim'=mean( dfr1[,2]==dfr1[,3]  ) )
+        dfr12 <- data.frame( P_c_sim=mean( dfr1[,2]==dfr1[,3]  ) )
         # accuracy
         dfr12$P_a_sim <-  mean( dfr1[,1]==dfr1[,3]  )
         dfr11 <- rbind( dfr11, dfr12 )
@@ -105,7 +106,8 @@ cdm_est_calc_accuracy_version1 <- function( cdmobj, n.sims=0 )
         ind.kk0 <- which( attribute.patt.splitted[, kk ]==0 )
         ind.kk1 <- which( attribute.patt.splitted[, kk ]==1 )
         # marginal likelihood
-        pxiaj_kk <- cbind( rowSums( p.xi.aj[, ind.kk0 ] ), rowSums( p.xi.aj[, ind.kk1 ]))
+        pxiaj_kk <- cbind( cdm_rowSums( p.xi.aj[, ind.kk0 ] ),
+                                cdm_rowSums( p.xi.aj[, ind.kk1 ]))
         colnames(pxiaj_kk) <- c('0', '1' )
         patt1 <- 1 * ( cdmobj$pattern[, paste0( 'post.attr', kk ) ] > .5 )
         c1 <- cdmobj$skill.patt[kk,1]

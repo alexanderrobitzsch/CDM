@@ -1,5 +1,5 @@
 ## File Name: din.equivalent.class.R
-## File Version: 0.191
+## File Version: 0.194
 
 
 
@@ -20,9 +20,9 @@ din.equivalent.class <-function( q.matrix, rule="DINA")
     I <- nrow(A)
     # calculate latent responses
     latent.response <- paste0("LatResp_",
-        sapply( 1:I, FUN=function(ii){ paste( A[ ii, ], collapse="" )  } ) )
+        sapply( 1L:I, FUN=function(ii){ paste( A[ ii, ], collapse="" )  } ) )
 
-    skillclasses <- data.frame( "skillclass"=rownames(S) )
+    skillclasses <- data.frame( skillclass=rownames(S) )
     skillclasses$latent.response <- latent.response
 
     # define distinguishable skill classes
@@ -31,11 +31,11 @@ din.equivalent.class <-function( q.matrix, rule="DINA")
     latent.response <- table( latent.response )
     six <- sort( latent.response, index.return=FALSE, decreasing=TRUE)
     gini_mod <- cdm_gini( as.numeric(six) )
-    res <- list( "latent.responseM"=A, "latent.response"=latent.response,
-                "S"=S, "gini"=gini_mod, "skillclasses"=skillclasses )
+    res <- list( latent.responseM=A, latent.response=latent.response,
+                    S=S, gini=gini_mod, skillclasses=skillclasses )
     cat( nrow(S), "Skill classes |", max( skillclasses$distinguish.class ),
-        " distinguishable skill classes |",
-        "Gini coefficient=", round( gini_mod,3 ), "\n")
+                " distinguishable skill classes |",
+                "Gini coefficient=", round( gini_mod,3 ), "\n")
     return(res)
 }
 

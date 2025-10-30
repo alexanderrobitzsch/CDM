@@ -1,5 +1,5 @@
 ## File Name: din.validate.qmatrix.R
-## File Version: 1.429
+## File Version: 1.431
 
 
 #---- Q-matrix validation based on the DINA model
@@ -38,8 +38,8 @@ din.validate.qmatrix <- function( object, IDI_diff=.02, print=TRUE )
     coef.modified <- matrix( 0, nrow=QQM*I, ncol=4 )
     colnames(coef.modified) <- c("item", "qmatrix.row", "guess", "slip" )
     coef.modified <- as.data.frame( coef.modified )
-    coef.modified$item <- rep( 1:I, QQM )
-    coef.modified$qmatrix.row <- rep( 1:QQM, each=I )
+    coef.modified$item <- rep( 1L:I, QQM )
+    coef.modified$qmatrix.row <- rep( 1L:QQM, each=I )
 
     #-- Q-matrix validation core function
     res <- cdm_rcpp_din_validate_update_qmatrix( qmatrix_poss=q.matrix.poss,
@@ -61,7 +61,7 @@ din.validate.qmatrix <- function( object, IDI_diff=.02, print=TRUE )
     coef.modified <- data.frame( item=colnames(data)[ coef.modified$item ],
                 itemindex=coef.modified$item,
                 q.matrix.poss[ coef.modified$qmatrix.row, ],
-                coef.modified[, - c(1:2) ] )
+                coef.modified[, - c(1L:2) ] )
 
     #-- calculate maximum delta index per item
     # a1 <- stats::aggregate( coef.modified$IDI, list( coef.modified$itemindex ), max )

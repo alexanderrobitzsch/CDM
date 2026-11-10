@@ -24,11 +24,13 @@ R script and (if necessary) a corresponding dataset.
 
 
 --------------------------------------------------------------
-VERSIONS CDM 8.4  |  2025-10-30  |  Last: CDM 8.4-9
+VERSIONS CDM 8.4  |  2026-11-10  |  Last: CDM 8.4-12
 --------------------------------------------------------------
 
 FIXED * fixed a bug in cdm.est.class.accuracy() for models with
         a single attribute (thanks to Matthew Madision)
+FIXED * fixed a bug in gdina.dif() (reported by Michael Bostick,
+        @bostickmike, Github Issue #11)
 
 
 DATA  * included/modified datasets: ---

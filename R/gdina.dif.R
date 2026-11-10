@@ -1,5 +1,5 @@
 ## File Name: gdina.dif.R
-## File Version: 1.223
+## File Version: 1.224
 
 
 #** differential item functioning in the GDINA model
@@ -56,8 +56,11 @@ gdina.dif <- function( object )
         if ( G==2 ){
             tab1 <- prob.exp.group[[1]][[jj]]
             tab2 <- prob.exp.group[[2]][[jj]]
-            g1 <- (tab1[,1]+tab2[,2])/2
-            g1 <- sum( g1 * abs( tab1[,2] - tab2[,2] ) )
+            #-- correction due to Github issue #11
+            # g1 <- (tab1[,1]+tab2[,2])/2
+            # g1 <- sum( g1 * abs( tab1[,2] - tab2[,2] ) )
+            g1 <- (tab1[,1]+tab2[,1])/2
+            g1 <- sum( g1 * abs( tab1[,2] - tab2[,2] ) )        
             dif_es[jj]  <- g1
         }
     }

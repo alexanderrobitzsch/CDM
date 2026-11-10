@@ -1,20 +1,21 @@
 ## File Name: gdina_post_posterior_output.R
-## File Version: 0.10
+## File Version: 0.113
 
-gdina_post_posterior_output <- function(G, p.aj.xi, p.xi.aj, pattern, data, item.patt.subj,
-        item.patt, attr.prob, group)
+gdina_post_posterior_output <- function(G, p.aj.xi, p.xi.aj, pattern, data,
+        item.patt.subj,    item.patt, attr.prob, group)
 {
 
     if (G==1){
-        rownames( p.aj.xi ) <- rownames( pattern ) # output rownames posterior probabilities
+        # output rownames posterior probabilities
+        rownames( p.aj.xi ) <- rownames( pattern )
         pattern <- data.frame(pattern) # convert pattern to numeric format
         for (vv in seq(1,ncol(pattern))[ -c(2,4) ] ){
                         pattern[,vv ] <- as.numeric( paste( pattern[,vv] ) ) }
 
         # subject pattern
-        item.patt.subj <- data.frame( "case"=1:(nrow(data) ),
-                                "pattern"=item.patt.subj,
-                                "pattern.index"=match( item.patt.subj, item.patt[,1] ) )
+        item.patt.subj <- data.frame( case=1L:(nrow(data) ),
+                                pattern=item.patt.subj,
+                                pattern.index=match( item.patt.subj, item.patt[,1] ) )
         # attribute pattern (expected frequencies)
         attr.prob0 <- attr.prob
         attr.prob <- data.frame( attr.prob )
@@ -43,7 +44,7 @@ gdina_post_posterior_output <- function(G, p.aj.xi, p.xi.aj, pattern, data, item
         rownames(p.aj.xi) <- pattern$pattern
         ND <- dim(p.aj.xi)
         posterior <- matrix( 0, nrow=ND[1], ncol=ND[2] )
-        for (gg in 1:G){
+        for (gg in 1L:G){
             ind.gg <- which( group==gg )
             posterior[ ind.gg, ] <- p.aj.xi[ ind.gg,, gg ]
         }

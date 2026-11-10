@@ -1,5 +1,5 @@
 ## File Name: gdina_create_attribute_patterns.R
-## File Version: 0.07
+## File Version: 0.083
 
 gdina_create_attribute_patterns <- function( q.matrix, skillclasses, zeroprob.skillclasses,
         Z.skillspace, G, reduced.skillspace )

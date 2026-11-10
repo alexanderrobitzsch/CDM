@@ -1,5 +1,5 @@
 ## File Name: gdina.R
-## File Version: 9.356
+## File Version: 9.377
 
 
 ################################################################################
@@ -21,6 +21,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
             cd=FALSE, cd_steps=1, mono_maxiter=10, freq_weights=FALSE,
             optimizer="CDM", ... )
 {
+
     cl <- CALL <- match.call()
     s1 <- Sys.time()
 
@@ -597,6 +598,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
     numb_regular_pars <- res$numb_regular_pars
     item_bound_mono <- res$item_bound_mono
 
+
     #--- calculation of the AIC und BIC
     res <- gdina_calc_ic( delta=delta, delta.designmatrix=delta.designmatrix, delta.fixed=delta.fixed,
                 G=G, ncolZ=ncolZ, K=K, HOGDINA=HOGDINA, item.patt.freq=item.patt.freq,
@@ -611,8 +613,9 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
     ic <- res$ic
 
     #--- postprocess posterior distributions
-    res <- gdina_post_posterior_output( G=G, p.aj.xi=p.aj.xi, p.xi.aj=p.xi.aj, pattern=pattern, data=data,
-                item.patt.subj=item.patt.subj, item.patt=item.patt, attr.prob=attr.prob, group=group )
+    res <- gdina_post_posterior_output( G=G, p.aj.xi=p.aj.xi, p.xi.aj=p.xi.aj,
+                pattern=pattern, data=data, item.patt.subj=item.patt.subj,
+                item.patt=item.patt, attr.prob=attr.prob, group=group )
     item.patt.subj <- res$item.patt.subj
     attr.prob <- res$attr.prob
     p.xi.aj <- res$p.xi.aj
@@ -620,6 +623,7 @@ gdina <- function( data, q.matrix, skillclasses=NULL, conv.crit=0.0001,
     pattern <- res$pattern
     attr.prob0 <- res$attr.prob0
     attr_prob <- res$attr_prob
+
 
     #--- item fit [ items, theta, categories ]
     res <- gdina_itemfit( L=L, J=J, R.lj=R.lj, I.lj=I.lj, item.patt.freq=item.patt.freq, G=G,

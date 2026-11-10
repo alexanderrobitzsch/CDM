@@ -1,5 +1,5 @@
 ## File Name: deltaMethod.R
-## File Version: 0.124
+## File Version: 0.125
 
 
 ###-- delta method
@@ -40,7 +40,7 @@ deltaMethod <- function( derived.pars, est, Sigma, h=1E-5 )
     se <- sqrt( diag(derived.Sigma) )
     t <- derived.est / se
     univarTest <- data.frame( parm=names(derived.pars),
-                    est=derived.est, se=se,    t=t,
+                    est=derived.est, se=se, t=t,
                     p=2*stats::pnorm(-abs(t)) )
     rownames(univarTest) <- NULL
     #--- multivariate test
